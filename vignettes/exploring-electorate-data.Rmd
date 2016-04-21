@@ -22,7 +22,7 @@ This vignette (so far) documents how to access the data, and what it is.
 
 The data is loaded as `abs2011`. Let's look take a brief glimpse of the data.
 
-```{r}
+```{r load-read, message=FALSE, error = FALSE}
 library(echidnaR)
 library(dplyr)
 
@@ -36,7 +36,7 @@ Each observation is data pertaining to a particular federal electorate as descri
 
 Each column is now described here:
 
-```{r create-data-dictionary, include = FALSE}
+```{r make-data-dictionary, include = FALSE}
 
 data_dictionary <- data_frame(
   Variable = c(
@@ -50,7 +50,17 @@ data_dictionary <- data_frame(
     "Bachelor",
     "Postgraduate",
     "NoReligion",
-    "Age0_4...Age85Plus",
+    "Age0_4",
+    "Age5_14",
+    "Age15_19",
+    "Age20_24",
+    "Age25_34",
+    "Age35_44",
+    "Age45_54",
+    "Age55_64",
+    "Age65_74",
+    "Age75_84",
+    "Age85plus",
     "BornOverseas",
     "Indigenous",
     "EnglishOnly",
@@ -60,45 +70,149 @@ data_dictionary <- data_frame(
     "FamilyRatio"
     ), 
   Details = c(
-    "ID is the primary key that links this dataset to the other datasets in this R package",
-    "Name is the name of the federal electorate",
-    "State is the state, these include QLD for Queenland, NSW for New South Wales, Vic for Victoria, NT for Northern Territory, WA for Western Australia, Tas for Tasmania, ACT for Australian Capital Territory, SA for South Australia.",
-    "Population is the number of individuals counted in the census",
-    "Area is the area of the electorate",
-    "MedianIncome is the Median Income",
-    "Unemployed is the % of unemployed people in the electorate",
-    "Bachelor is the % of the population who hold a Bachelors degree in the electorate",
-    "Postgraduate is the % of the population who hold a Postgraduate degree in the electorate",
-    "NoReligion is the % of the population who not identify with a religion, in the electorate",
-    "Age0_4...Age85Plus is the % of the population who fit within that age bracket",
-    "BornOverseas is the % of individuals born overseas",
-    "Indigenous the % of individuals who identify as Inigenous",
-    "EnglishOnly the % of idividuals who only speak English",
-    "OtherLanguageHome is the % of people who speak another language at home",
-    "Married is the % of the population who are married",
-    "DeFacto  is the % of the population who are DeFactor",
-    "FamilyRatio is the % of the population who have a family?"
-    )
-)
-
+    "Commonwealth Electoral District identifier",
+    "Name of electorate",
+    "State containing electorate",
+    "Total population of electorate",
+    "Area of electorate in square kilometres",
+    "Median income of people within electorate",
+    "Percentage of people unemployed",
+    "Percentage of people whose highest qualification is a Bachelor degree",
+    "Percentage of people whose highest qualification is a postgraduate degree",
+    "Percentage of people with no religion.",
+    "Percentage of people aged 0-4.",
+    "Percentage of people aged 5-9.",
+    "Percentage of people aged 15-19.",
+    "Percentage of people aged 20-24.",
+    "Percentage of people aged 25-34.",
+    "Percentage of people aged 35-44.",
+    "Percentage of people aged 45-54.",
+    "Percentage of people aged 55-64.",
+    "Percentage of people aged 65-74.",
+    "Percentage of people aged 75-84.",
+    "Percentage of people aged 85 or higher.",
+    "Percentage of people born outside Australia.",
+    "Percentage of people who are Indigenous",
+    "Percentage of people who speak only English",
+    "Percentage of people who speak a language other than English at home",
+    "Percentage of people who are married",
+    "Percentage of people who are in a de facto marriage",
+    "Total number of families to total number of people (times 100).")
+) # close data_frame
 ```
 
-```{r display-data-dictionary}
-
+```{r display-data-dictionary, echo = FALSE}
 library(knitr)
-
 kable(data_dictionary)
 
 ```
 
 # General usage
 
+So let's just look at some nice and simple plots.
+
+Let's see what our age population is like
+
+```{r}
+
+library(tidyr)
+library(ggplot2)
+
+abs2011 %>%
+  select(starts_with("Age"), Name) %>%
+  gather(key = "Age",
+         value = "Percent_in_electorate",
+         -Name) %>% 
+  ggplot(data = .,
+         aes(x = Age,
+             y = Percent_in_electorate,
+             fill = Age)) +
+  geom_boxplot() + 
+  coord_flip() + 
+  theme(legend.position = "none")
+             
+
+```
+
+## Unemployment 
+
+```{r}
+
+ggplot(data = abs2011,
+       aes(x = Unemployed)) + 
+  geom_density(fill = "salmon") + 
+  geom_rug(colour = "salmon")
+
+```
+
+
+## Unemployment by state
+
+```{r}
+
+ggplot(data = abs2011,
+       aes(x = reorder(State, -Unemployed),
+           y = Unemployed,
+           fill = State)) + 
+  geom_boxplot() + 
+  labs(x = "State",
+       y = "% Unemployment") + 
+  theme_minimal() + 
+  theme(legend.position = "none") 
+  
+           
+```
+
+
+## Income
+
+```{r}
+
+ggplot(data = abs2011,
+       aes(x = MedianIncome)) + 
+  geom_density(fill = "salmon") + 
+  geom_rug(colour = "salmon") + 
+  theme_minimal()
+  
+```
+
+## Income by State
+
+```{r}
+
+ggplot(data = abs2011,
+       aes(x = reorder(State, -MedianIncome),
+           y = MedianIncome,
+           colour = State)) + 
+  geom_boxplot() + 
+  theme_minimal() + 
+  theme(legend.position = "none") + 
+  labs(x = "State")
+
+```
+
+Just a thought, you can add in the points to get a bit more info
+
+```{r}
+
+ggplot(data = abs2011,
+       aes(x = reorder(State, -MedianIncome),
+           y = MedianIncome,
+           colour = State)) + 
+  geom_boxplot() + 
+  geom_jitter(alpha = 0.35, 
+              size = 0.5,
+              width = 0.3) +
+  theme_minimal() + 
+  theme(legend.position = "none") + 
+  labs(x = "State")
+
+```
 
 
 # Spatial Mapping
 
-One of the really amazing things about this R package is that it contains the shapefiles of the electorates.
-
+One of the really amazing things about this R package is that it contains the shapefiles of the electorates. These are coming soon!
 
 Some small gripes.
 
