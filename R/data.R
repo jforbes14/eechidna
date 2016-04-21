@@ -53,8 +53,17 @@
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
 #' from \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm}.
 #' 
-#' #' @format A data frame with 150 rows with the following variables:
-"aec2013.rda"
+#' @format A data frame with 150 rows with the following variables:
+#' @examples 
+#' data(aec2013)
+#' data(nat_map)
+#' library(ggplot2)
+#' library(ggthemes)
+#' ggplot() +
+#' geom_path(aes(long, lat, group=group), data=nat_map) +
+#' geom_point(aes(Longitude, Latitude), colour="darkorange", data=aec2013, alpha=0.5) +
+#' theme_map()
+"aec2013"
 
 #' Map of Australian Electorate from 2013
 #'
@@ -64,6 +73,7 @@
 #' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
 #' @examples 
 #' data(nat_map)
+#' # choropleth map with Census data
 #' nat_map$region <- nat_map$ELECT_DIV
 #' data(abs2011)
 #' abs2011$region <- abs2011$Name
