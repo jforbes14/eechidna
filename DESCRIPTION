@@ -6,7 +6,9 @@ Depends:
     stats,
     graphics
 Imports:
-    ggplot2 (>= 2.0.0)
+    ggplot2 (>= 2.0.0),
+    tidyr,
+    shiny
 Suggests:
     testthat,
     knitr,
