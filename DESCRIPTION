@@ -1,0 +1,11 @@
+Package: echidnaR
+Version: 0.1
+Title: Electoral Commission Handling Intelligent Data Nationally for Australia using R
+Depends: R, stats, graphics
+Imports: ggplot2 (>= 2.0.0)
+Suggests: testthat
+LazyData: yes
+ByteCompile: TRUE
+BugReports: https://github.com/ropenscilabs/ausElectR/echidnaR
+License: GPL (>= 2)
+URL: https://github.com/ropenscilabs/ausElectR/echidnaR
