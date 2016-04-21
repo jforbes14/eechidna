@@ -53,7 +53,7 @@
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
 #' from \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm}.
 #' 
-#' #' @format A data frame with 150 rows with the following variables:
+#' @format A data frame with 150 rows with the following variables:
 #' \itemize{
 #'     \item StateAb           
 #'     \item DivisionID.x      
