@@ -21,9 +21,10 @@ data(nat_map)
 library(ggplot2)
 library(ggthemes)
 ggplot() +
-geom_path(aes(long, lat, group=group), data=nat_map) +
-geom_point(aes(Longitude, Latitude), colour="darkorange", data=aec2013, alpha=0.5) +
-theme_map()
+  geom_path(aes(long, lat, group=group), data=nat_map) +
+  geom_point(aes(Longitude, Latitude), colour="darkorange",      
+    data=aec2013, alpha=0.5) + 
+  theme_map()
 }
 \keyword{datasets}
 
