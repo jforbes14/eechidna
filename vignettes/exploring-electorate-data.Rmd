@@ -191,7 +191,7 @@ ggplot(data = abs2011,
 
 ```
 
-Just a thought, you can add in the points to get a bit more info
+Just a thought, you can add in the points to get a bit more information on the distribution
 
 ```{r}
 
@@ -206,6 +206,103 @@ ggplot(data = abs2011,
   theme_minimal() + 
   theme(legend.position = "none") + 
   labs(x = "State")
+
+```
+
+## Education
+
+### Bachelor
+
+```{r}
+
+ggplot(data = abs2011,
+       aes(x = Bachelor)) +
+  geom_density(fill = "salmon") + 
+  geom_rug(colour = "salmon") + 
+  theme_minimal() + 
+  labs(x = "% of individuals with a Bachelor degree")
+           
+
+```
+
+### Bachelor by state
+
+```{r}
+
+ggplot(data = abs2011,
+       aes(x = reorder(State, -Bachelor),
+           y = Bachelor,
+           colour = State)) +
+  geom_boxplot() +
+  theme_minimal() +
+  labs(x = "State") + 
+  theme(legend.position = "none")
+
+```
+
+### Bachelor and income
+
+```{r}
+
+ggplot(data = abs2011,
+       aes(x = Bachelor,
+           y = MedianIncome)) + 
+  geom_point() + 
+  theme_minimal()
+  
+           
+
+```
+
+
+## Postgraduate
+
+
+```{r}
+
+ggplot(data = abs2011,
+       aes(x = reorder(State, -Postgraduate),
+           y = Postgraduate,
+           colour = State)) +
+  geom_boxplot() +
+  theme_minimal() +
+  labs(x = "State") + 
+  theme(legend.position = "none")
+
+```
+
+### Postgraduate and income
+
+```{r}
+
+ggplot(data = abs2011,
+       aes(x = Postgraduate,
+           y = MedianIncome)) + 
+  geom_point() + 
+  theme_minimal()
+  
+```
+
+### Comparing income across Bachelors and postgraduate
+
+```{r}
+
+abs2011 %>%
+  select(Postgraduate,
+         Bachelor,
+         MedianIncome) %>% 
+  gather(key = "Education",
+         value = "Prop_Educated",
+         -MedianIncome) %>%
+ggplot(data = ,
+       aes(x = Prop_Educated,
+           y = MedianIncome,
+           colour = Education)) + 
+  geom_point() + 
+  geom_smooth() +
+  theme_minimal() 
+  # theme(legend.position = "bottom",
+  #       legend.direction = "vertical")
 
 ```
 
