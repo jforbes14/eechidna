@@ -1,6 +1,6 @@
 ---
-title: "Vignette Title"
-author: "Vignette Author"
+title: "Using echidnaR"
+author: "Rob Hyndman, Di Cook, Heike Hoffman, Ben Marwick, Carson Sievert, Fang Zhou, Nicholas Tierney."
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -9,50 +9,90 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-Vignettes are long form documentation commonly included in packages. Because they are part of the distribution of the package, they need to be as compact as possible. The `html_vignette` output type provides a custom style sheet (and tweaks some options) to ensure that the resulting html is as small as possible. The `html_vignette` format:
 
-- Never uses retina figures
-- Has a smaller default figure size
-- Uses a custom CSS stylesheet instead of the default Twitter Bootstrap style
+```{r}
 
-## Vignette Info
+# load_all(pkg = "echidnaR/")
 
-Note the various macros within the `vignette` section of the metadata block above. These are required in order to instruct R how to build the vignette. Note that you should change the `title` field and the `\VignetteIndexEntry` to match the title of your vignette.
-
-## Styles
-
-The `html_vignette` template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows:
-
-    output: 
-      rmarkdown::html_vignette:
-        css: mystyles.css
-
-## Figures
-
-The figure sizes have been customised so that you can easily put two images side-by-side. 
-
-```{r, fig.show='hold'}
-plot(1:10)
-plot(10:1)
 ```
 
-You can enable figure captions by `fig_caption: yes` in YAML:
+`echidnaR` is an R package that makes it easy to look at the data from the 2011 Australian Census.
 
-    output:
-      rmarkdown::html_vignette:
-        fig_caption: yes
+This vignette (so far) documents how to access the data, and what it is.
 
-Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr**.
+The data is loaded as `abs2011`. Let's look take a brief glimpse of the data.
 
-## More Examples
+```{r}
+library(echidnaR)
+library(dplyr)
 
-You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
+glimpse(abs2011)
 
-```{r, echo=FALSE, results='asis'}
-knitr::kable(head(mtcars, 10))
 ```
 
-Also a quote using `>`:
+Here we see that we have 150 observations and 28 variables.
 
-> "He who gives up [code] safety for [code] speed deserves neither."
-([via](https://twitter.com/hadleywickham/status/504368538874703872))
+Each observation is data pertaining to a particular federal electorate as described by <url to the gov website of electorates>.
+
+Each column is now described here:
+
+```{r create-data-dictionary, include = FALSE}
+
+data_dictionary <- data_frame(
+  Variable = c(
+    "ID",
+    "Name",
+    "State",
+    "Population",
+    "Area",
+    "MedianIncome",
+    "Unemployed",
+    "Bachelor",
+    "Postgraduate",
+    "NoReligion",
+    "Age0_4...Age85Plus",
+    "BornOverseas",
+    "Indigenous",
+    "EnglishOnly",
+    "OtherLanguageHome",
+    "Married",
+    "DeFacto",
+    "FamilyRatio"
+    ), 
+  Details = c(
+    "ID is the primary key that links this dataset to the other datasets in this R package",
+    "Name is the name of the federal electorate",
+    "State is the state, these include QLD for Queenland, NSW for New South Wales, Vic for Victoria, NT for Northern Territory, WA for Western Australia, Tas for Tasmania, ACT for Australian Capital Territory, SA for South Australia.",
+    "Population is the number of individuals counted in the census",
+    "Area is the area of the electorate",
+    "MedianIncome is the Median Income",
+    "Unemployed is the % of unemployed people in the electorate",
+    "Bachelor is the % of the population who hold a Bachelors degree in the electorate",
+    "Postgraduate is the % of the population who hold a Postgraduate degree in the electorate",
+    "NoReligion is the % of the population who not identify with a religion, in the electorate",
+    "Age0_4...Age85Plus is the % of the population who fit within that age bracket",
+    "BornOverseas is the % of individuals born overseas",
+    "Indigenous the % of individuals who identify as Inigenous",
+    "EnglishOnly the % of idividuals who only speak English",
+    "OtherLanguageHome is the % of people who speak another language at home",
+    "Married is the % of the population who are married",
+    "DeFacto  is the % of the population who are DeFactor",
+    "FamilyRatio is the % of the population who have a family?"
+    )
+)
+
+```
+
+```{r display-data-dictionary}
+
+library(knitr)
+
+kable(data_dictionary)
+
+```
+
+
+Some small gripes.
+
+- Variable names: Should they not be capitalised?
+- State names: These are capitalised for ACT and NSW, but not for Qld and Vic

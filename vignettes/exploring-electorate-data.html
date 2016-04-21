@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Rob Hyndman, Di Cook, Heike Hoffman, Ben Marwick, Carson Sievert, Fang Zhou, Nicholas Tierney." />
+
+<meta name="date" content="2016-04-21" />
+
+<title>Using echidnaR</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+
+
+<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Using echidnaR</h1>
+<h4 class="author"><em>Rob Hyndman, Di Cook, Heike Hoffman, Ben Marwick, Carson Sievert, Fang Zhou, Nicholas Tierney.</em></h4>
+<h4 class="date"><em>2016-04-21</em></h4>
+
+
+
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load_all(pkg = &quot;echidnaR/&quot;)</span></code></pre></div>
+<p><code>echidnaR</code> is an R package that makes it easy to look at the data from the 2011 Australian Census.</p>
+<p>This vignette (so far) documents how to access the data, and what it is.</p>
+<p>The data is loaded as <code>abs2011</code>. Let’s look take a brief glimpse of the data.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(echidnaR)
+<span class="kw">library</span>(dplyr)</code></pre></div>
+<pre><code>## 
+## Attaching package: 'dplyr'</code></pre>
+<pre><code>## The following objects are masked from 'package:stats':
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(abs2011)</code></pre></div>
+<pre><code>## Observations: 150
+## Variables: 28
+## $ ID                (fctr) 101, 102, 103, 104, 105, 106, 107, 108, 109...
+## $ Name              (chr) &quot;Banks&quot;, &quot;Barton&quot;, &quot;Bennelong&quot;, &quot;Berowra&quot;, &quot;...
+## $ State             (chr) &quot;NSW&quot;, &quot;NSW&quot;, &quot;NSW&quot;, &quot;NSW&quot;, &quot;NSW&quot;, &quot;NSW&quot;, &quot;N...
+## $ Population        (int) 147760, 142069, 148707, 131371, 158408, 1430...
+## $ Area              (dbl) 44.6388, 40.3341, 58.6107, 745.6880, 60.7705...
+## $ MedianIncome      (int) 537, 558, 624, 702, 385, 775, 522, 522, 491,...
+## $ Unemployed        (dbl) 6.1, 5.7, 5.7, 4.2, 9.4, 4.8, 5.1, 5.2, 8.6,...
+## $ Bachelor          (dbl) 13.360179, 12.721987, 18.823593, 17.275502, ...
+## $ Postgraduate      (dbl) 4.6974824, 4.1662854, 7.6654092, 5.7212018, ...
+## $ NoReligion        (dbl) 19.782756, 13.741210, 22.861062, 19.978534, ...
+## $ Age0_4            (dbl) 6.154575, 6.521479, 5.928436, 5.834621, 8.18...
+## $ Age5_14           (dbl) 11.767055, 11.075604, 11.033105, 14.055613, ...
+## $ Age15_19          (dbl) 6.197212, 5.305169, 5.965422, 7.746002, 7.02...
+## $ Age20_24          (dbl) 7.160260, 6.465168, 8.349977, 6.384210, 7.31...
+## $ Age25_34          (dbl) 14.648078, 16.128079, 15.028882, 8.705118, 1...
+## $ Age35_44          (dbl) 13.71819, 15.16024, 14.40215, 13.89728, 13.1...
+## $ Age45_54          (dbl) 14.18517, 12.95497, 14.03498, 16.33009, 12.7...
+## $ Age55_64          (dbl) 10.975230, 10.711696, 10.903320, 13.368247, ...
+## $ Age65_74          (dbl) 7.293584, 7.639950, 6.850384, 8.006333, 6.09...
+## $ Age75_84          (dbl) 5.362750, 5.532523, 5.177967, 3.972718, 4.42...
+## $ Age85plus         (dbl) 2.5378993, 2.5051208, 2.3240332, 1.6997663, ...
+## $ BornOverseas      (dbl) 5.5312669, 9.3912113, 5.9344886, 4.5040382, ...
+## $ Indigenous        (dbl) 0.6774499, 0.5476212, 0.3570780, 0.3760343, ...
+## $ EnglishOnly       (dbl) 7.095290, 7.603348, 9.403727, 13.687952, 4.8...
+## $ OtherLanguageHome (dbl) 47.860043, 54.082875, 42.427727, 21.679062, ...
+## $ Married           (dbl) 39.76245, 39.38650, 40.09562, 45.28625, 35.7...
+## $ DeFacto           (dbl) 3.768273, 4.418980, 4.036125, 3.300576, 2.37...
+## $ FamilyRatio       (dbl) 51.43814, 50.69508, 51.31702, 50.65730, 50.2...</code></pre>
+<p>Here we see that we have 150 observations and 28 variables.</p>
+<p>Each observation is data pertaining to a particular federal electorate as described by <url to the gov website of electorates>.</p>
+<p>Each column is now described here:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(knitr)
+
+<span class="kw">kable</span>(data_dictionary)</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Variable</th>
+<th align="left">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">ID</td>
+<td align="left">ID is the primary key that links this dataset to the other datasets in this R package</td>
+</tr>
+<tr class="even">
+<td align="left">Name</td>
+<td align="left">Name is the name of the federal electorate</td>
+</tr>
+<tr class="odd">
+<td align="left">State</td>
+<td align="left">State is the state, these include QLD for Queenland, NSW for New South Wales, Vic for Victoria, NT for Northern Territory, WA for Western Australia, Tas for Tasmania, ACT for Australian Capital Territory, SA for South Australia.</td>
+</tr>
+<tr class="even">
+<td align="left">Population</td>
+<td align="left">Population is the number of individuals counted in the census</td>
+</tr>
+<tr class="odd">
+<td align="left">Area</td>
+<td align="left">Area is the area of the electorate</td>
+</tr>
+<tr class="even">
+<td align="left">MedianIncome</td>
+<td align="left">MedianIncome is the Median Income</td>
+</tr>
+<tr class="odd">
+<td align="left">Unemployed</td>
+<td align="left">Unemployed is the % of unemployed people in the electorate</td>
+</tr>
+<tr class="even">
+<td align="left">Bachelor</td>
+<td align="left">Bachelor is the % of the population who hold a Bachelors degree in the electorate</td>
+</tr>
+<tr class="odd">
+<td align="left">Postgraduate</td>
+<td align="left">Postgraduate is the % of the population who hold a Postgraduate degree in the electorate</td>
+</tr>
+<tr class="even">
+<td align="left">NoReligion</td>
+<td align="left">NoReligion is the % of the population who not identify with a religion, in the electorate</td>
+</tr>
+<tr class="odd">
+<td align="left">Age0_4…Age85Plus</td>
+<td align="left">Age0_4…Age85Plus is the % of the population who fit within that age bracket</td>
+</tr>
+<tr class="even">
+<td align="left">BornOverseas</td>
+<td align="left">BornOverseas is the % of individuals born overseas</td>
+</tr>
+<tr class="odd">
+<td align="left">Indigenous</td>
+<td align="left">Indigenous the % of individuals who identify as Inigenous</td>
+</tr>
+<tr class="even">
+<td align="left">EnglishOnly</td>
+<td align="left">EnglishOnly the % of idividuals who only speak English</td>
+</tr>
+<tr class="odd">
+<td align="left">OtherLanguageHome</td>
+<td align="left">OtherLanguageHome is the % of people who speak another language at home</td>
+</tr>
+<tr class="even">
+<td align="left">Married</td>
+<td align="left">Married is the % of the population who are married</td>
+</tr>
+<tr class="odd">
+<td align="left">DeFacto</td>
+<td align="left">DeFacto is the % of the population who are DeFactor</td>
+</tr>
+<tr class="even">
+<td align="left">FamilyRatio</td>
+<td align="left">FamilyRatio is the % of the population who have a family?</td>
+</tr>
+</tbody>
+</table>
+<p>Some small gripes.</p>
+<ul>
+<li>Variable names: Should they not be capitalised?</li>
+<li>State names: These are capitalised for ACT and NSW, but not for Qld and Vic</li>
+</ul>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
