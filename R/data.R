@@ -12,11 +12,16 @@
 #'   \item State: State containing electorate.
 #'   \item Population: Total population of electorate.
 #'   \item Area: Area of electorate in square kilometres.
-#'   \item MedianIncome: Median income of people within electorate.
+#'   \item MedianIncome: Weekly median income of people within electorate (in $).
 #'   \item Unemployed: Percentage of people unemployed.
 #'   \item Bachelor: Percentage of people whose highest qualification is a Bachelor degree.
 #'   \item Postgraduate: Percentage of people whose highest qualification is a postgraduate degree.
-#'   \item NoReligion: Percentage of people with no religion.
+#'   \item Christianity: Percentage of people affiliated with the Christian religion (of all denominations).
+#'   \item Catholic: Percentage of people affiliated with the Catholic denomimation.
+#'   \item Buddhist: Percentage of people affiliated with the Buddhist religion.
+#'   \item Islam: Percentage of people affiliated with the Islam religion.
+#'   \item Judaism: Percentageof people affiliated with the Jewish religion. 
+#'   \item NoReligion: Percentage of people with no religious affiliation.
 #'   \item Age0_4: Percentage of people aged 0-4.
 #'   \item Age5_14: Percentage of people aged 5-9.
 #'   \item Age15_19: Percentage of people aged 15-19.
