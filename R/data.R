@@ -5,8 +5,6 @@
 #' The data were obtained from the Australian Bureau of Statistics, and downloaded 
 #' from \url{https://www.censusdata.abs.gov.au/datapacks/}.
 #'
-#' The variables are as follows:
-#'
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
 #'   \item ID: Commonwealth Electoral District identifier
