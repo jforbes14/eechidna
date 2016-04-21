@@ -8,7 +8,8 @@ Depends:
 Imports:
     ggplot2 (>= 2.0.0),
     tidyr,
-    shiny
+    shiny,
+    plotly
 Suggests:
     testthat,
     knitr,
