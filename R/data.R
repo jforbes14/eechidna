@@ -44,3 +44,12 @@
 #'   \item NotOwned: Percentage of dwellings not owned (either outright or with a mortgage).
 #' }
 "abs2011"
+
+#' 2013 General election data for the House of Representatives
+#' 
+#' A dataset containing vote counts, candidate names, polling place locations,
+#' and other national, state, divisional and polling place results for the
+#' House of Representatives from the 2013 Australian federal election. 
+#' The data were obtained from the Australian Electoral Commission, and downloaded 
+#' from \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm}.
+"aec2013.rda"
