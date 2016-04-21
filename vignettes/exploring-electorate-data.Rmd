@@ -91,6 +91,14 @@ kable(data_dictionary)
 
 ```
 
+# General usage
+
+
+
+# Spatial Mapping
+
+One of the really amazing things about this R package is that it contains the shapefiles of the electorates.
+
 
 Some small gripes.
 
