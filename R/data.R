@@ -54,6 +54,36 @@
 #' from \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm}.
 #' 
 #' #' @format A data frame with 150 rows with the following variables:
+#' \itemize{
+#'     \item StateAb           
+#'     \item DivisionID.x      
+#'     \item DivisionNm.x      
+#'     \item PollingPlaceID    
+#'     \item PollingPlace      
+#'     \item CandidateID       
+#'     \item Surname           
+#'     \item GivenNm           
+#'     \item BallotPosition    
+#'     \item Elected           
+#'     \item HistoricElected   
+#'     \item PartyAb           
+#'     \item PartyNm           
+#'     \item OrdinaryVotes     
+#'     \item Swing             
+#'     \item State             
+#'     \item DivisionID.y      
+#'     \item DivisionNm.y      
+#'     \item PollingPlaceTypeID
+#'     \item PollingPlaceNm    
+#'     \item PremisesNm        
+#'     \item PremisesAddress1  
+#'     \item PremisesAddress2  
+#'     \item PremisesAddress3  
+#'     \item PremisesSuburb    
+#'     \item PremisesStateAb   
+#'     \item PremisesPostCode  
+#'     \item Latitude          
+#'     \item Longitude
 "aec2013.rda"
 
 #' Map of Australian Electorate from 2013
