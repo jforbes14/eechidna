@@ -84,7 +84,8 @@
 #'     \item PremisesPostCode  
 #'     \item Latitude          
 #'     \item Longitude
-"aec2013.rda"
+"aec2013"
+
 
 #' Map of Australian Electorate from 2013
 #'
@@ -94,6 +95,7 @@
 #' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
 #' @examples 
 #' data(nat_map)
+#' # choropleth map with Census data
 #' nat_map$region <- nat_map$ELECT_DIV
 #' data(abs2011)
 #' abs2011$region <- abs2011$Name
