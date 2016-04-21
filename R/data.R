@@ -51,19 +51,39 @@
 #' and other national, state, divisional and polling place results for the
 #' House of Representatives from the 2013 Australian federal election. 
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm}.
+#' from \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm} and 
+#' \url{http://www.aec.gov.au/elections/federal_elections/2013/downloads.htm}.
 #' 
 #' @format A data frame with 150 rows with the following variables:
-#' @examples 
-#' data(aec2013)
-#' data(nat_map)
-#' library(ggplot2)
-#' library(ggthemes)
-#' ggplot() +
-#' geom_path(aes(long, lat, group=group), data=nat_map) +
-#' geom_point(aes(Longitude, Latitude), colour="darkorange", data=aec2013, alpha=0.5) +
-#' theme_map()
+#' \itemize{
+#'     \item StateAb: Abbreviation for State name           
+#'     \item DivisionID.x: Electoral division ID    
+#'     \item DivisionNm.x:  Electoral division name   
+#'     \item PollingPlaceID: Polling place ID  
+#'     \item PollingPlace: Polling place name     
+#'     \item CandidateID: Candidate ID       
+#'     \item Surname: Candidate surname          
+#'     \item GivenNm: Candidate given name            
+#'     \item BallotPosition: Candidate's position on the ballot    
+#'     \item Elected: Whether the candidate was elected (Y/N)           
+#'     \item HistoricElected:   
+#'     \item PartyAb: Abbreviation for political party name           
+#'     \item PartyNm: Political party name           
+#'     \item OrdinaryVotes: Number of ordinates votes cast at the polling place for the candidate     
+#'     \item Swing:             
+#'     \item State: State name             
+#'     \item PollingPlaceTypeID:
+#'     \item Premises Nm:        
+#'     \item PremisesAddress1:  
+#'     \item PremisesAddress2:  
+#'     \item PremisesAddress3:  
+#'     \item PremisesSuburb:    
+#'     \item PremisesStateAb:   
+#'     \item PremisesPostCode:  
+#'     \item Latitude:          
+#'     \item Longitude:S
 "aec2013"
+
 
 #' Map of Australian Electorate from 2013
 #'

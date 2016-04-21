@@ -1,6 +1,6 @@
 ---
 title: "Using echidnaR"
-author: "Rob Hyndman, Di Cook, Heike Hoffman, Ben Marwick, Carson Sievert, Fang Zhou, Nicholas Tierney."
+author: "Di Cook, Heike Hoffman, Rob Hyndman, Ben Marwick, Carson Sievert, Nicholas Tierney, Fang Zhou."
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
