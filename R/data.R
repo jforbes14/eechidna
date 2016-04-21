@@ -70,21 +70,18 @@
 #'     \item PartyAb: Abbreviation for political party name           
 #'     \item PartyNm: Political party name           
 #'     \item OrdinaryVotes: Number of ordinates votes cast at the polling place for the candidate     
-#'     \item Swing             
+#'     \item Swing:             
 #'     \item State: State name             
-#'     \item DivisionID.y      
-#'     \item DivisionNm.y      
-#'     \item PollingPlaceTypeID
-#'     \item PollingPlaceNm: Polling place name   
+#'     \item PollingPlaceTypeID:
 #'     \item Premises Nm:        
-#'     \item PremisesAddress1  
-#'     \item PremisesAddress2  
-#'     \item PremisesAddress3  
-#'     \item PremisesSuburb    
-#'     \item PremisesStateAb   
-#'     \item PremisesPostCode  
-#'     \item Latitude          
-#'     \item Longitude
+#'     \item PremisesAddress1:  
+#'     \item PremisesAddress2:  
+#'     \item PremisesAddress3:  
+#'     \item PremisesSuburb:    
+#'     \item PremisesStateAb:   
+#'     \item PremisesPostCode:  
+#'     \item Latitude:          
+#'     \item Longitude:S
 "aec2013"
 
 
