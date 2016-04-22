@@ -17,7 +17,7 @@
   \item Postgraduate: Percentage of people whose highest qualification is a postgraduate degree.
   \item Christianity: Percentage of people affiliated with the Christian religion (of all denominations).
   \item Catholic: Percentage of people affiliated with the Catholic denomimation.
-  \item Buddhist: Percentage of people affiliated with the Buddhist religion.
+  \item Buddhism: Percentage of people affiliated with the Buddhist religion.
   \item Islam: Percentage of people affiliated with the Islam religion.
   \item Judaism: Percentageof people affiliated with the Jewish religion. 
   \item NoReligion: Percentage of people with no religious affiliation.

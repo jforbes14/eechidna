@@ -11,7 +11,8 @@ Depends:
 Imports:
     ggplot2 (>= 2.0.0),
     tidyr,
-    shiny
+    shiny,
+    plotly
 Suggests:
     testthat,
     knitr,
@@ -28,8 +29,7 @@ Author:
 Maintainer: TBD. <email@place.com> 
 LazyData: yes
 ByteCompile: TRUE
-BugReports: https://github.com/ropenscilabs/ausElectR/echidnaR/issues
 License: GPL (>= 2)
-URL: https://github.com/ropenscilabs/ausElectR/echidnaR
+URL: https://github.com/ropenscilabs/ausElectR/tree/master/echidnaR
 VignetteBuilder: rmarkdown
 RoxygenNote: 5.0.1
