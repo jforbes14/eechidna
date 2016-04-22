@@ -11,9 +11,9 @@
 #' }
 
 launchApp <- function() {
-  data("abs2011", package = "echidnaR")
-  data("aec2013", package = "echidnaR")
-  data("hexDat", package = "echidnaR")
+  data("abs2011", package = "eechidna")
+  data("aec2013", package = "eechidna")
+  data("hexDat", package = "eechidna")
   # a bit of data cleaning
   longAbs <- tidyr::gather(abs2011, variable, value, -ID, -Electorate, -State)
   longAbs$value <- as.numeric(longAbs$value)
