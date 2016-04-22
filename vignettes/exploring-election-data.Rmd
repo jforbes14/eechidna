@@ -42,7 +42,7 @@ In the `echidnaR` package we have two election datasets. One is called `aec2013`
 ```{r load-read, message=FALSE, error = FALSE}
 library(echidnaR)
 library(dplyr)
-
+# inspect the data frame
 glimpse(aec2013)
 
 ```
@@ -113,6 +113,38 @@ ggplot(total_votes_for_parties, aes(reorder(PartyNm, total_votes), total_votes )
   theme(text = element_text(size=10))
 ```
 
-We can look at the proportion of voters for a particular party in each electorate, grouped by each state. This plot was inspired by [Peter Ellis's]() work on the NZ election data. 
+We can look at the proportion of voters for a particular party in each electorate, grouped by each state. This plot was inspired by [Peter Ellis's](https://peterellisblog.com/) work on the NZ election data. 
+
+
+```{r plot_prop_particular_party}
+# summarise and compute proportion of votes for a particular party
+p <- aec2013 %>%
+  group_by(Electorate, State) %>%
+  summarise(
+    TotalVotes = sum(OrdinaryVotes),
+    ProportionLabor = round(sum(OrdinaryVotes[PartyNm == "Australian Labor Party"]) / TotalVotes, 3)) %>%
+  filter(TotalVotes != 0) %>% 
+  arrange(desc(ProportionLabor)) %>% 
+ group_by(State) %>% 
+  # send the data to the plotting function
+  do(plots=ggplot(data = .) + 
+       aes(x = ProportionLabor, y = reorder(Electorate, ProportionLabor), size = TotalVotes, label = State) +
+       geom_point() +
+       ylab("Electorate") +
+       labs(title = .$State) + 
+       scale_x_continuous("Proportion voting Labor Party", label = percent) +
+       scale_size("Number of\nvotes cast", label = comma)  +
+       theme_bw() +
+       theme(text = element_text(size=10)))
+
+# draw the plots
+library(gridExtra)
+n <- length(p$plots)
+nCol <- floor(sqrt(n))
+do.call("grid.arrange", c(p$plots, ncol=nCol))
+
+
+
+```
 
 

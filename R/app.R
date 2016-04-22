@@ -3,6 +3,7 @@
 #' @import shiny
 #' @import plotly
 #' @import dplyr
+#' @import ggthemes
 #' @importFrom tidyr gather
 #' @export
 #' @examples \dontrun{
@@ -65,12 +66,6 @@ launchApp <- function() {
         )
       ),
       column(
-        width = 2,
-        checkboxInput(
-          "persist", "Persistant selections?", value = TRUE
-        )
-      ),
-      column(
         width = 6,
         selectizeInput(
           "parties", "Select parties:", unique(aec2013$PartyAb), 
@@ -108,8 +103,7 @@ launchApp <- function() {
           "densities", height = 2000, brush = brushOpts("denBrush", direction = "x")
         )
       )
-    ),
-    verbatimTextOutput("select")
+    )
   )
   
   
@@ -117,7 +111,7 @@ launchApp <- function() {
     
     # filter census data if brush is filled
     selectElect <- reactive({
-      if (!input$persist) selectDat(unique(longAbs$Electorate), "black")
+      selectDat(unique(longAbs$Electorate), "black")
       if (!is.null(input$ageBrush)) {
         b <- input$ageBrush
         idx <- (longAbs$variable %in% b$panelvar1) &
@@ -206,10 +200,6 @@ launchApp <- function() {
         scale_fill_identity() +
         lims(x = c(-80, 8), y = c(-40, 50))
       ggplotly(p, tooltip = "text")
-    })
-    
-    output$select <- renderPrint({
-      input$partyBrush
     })
     
   }
