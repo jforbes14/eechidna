@@ -10,7 +10,7 @@
 #' @param expand how large a chunk to cut out
 #'
 #' @examples
-#' data(nat_map.rda)
+#' data(nat_map)
 #' data(nat_data)
 #' aec_data_syd <- aec_extract(nat_data, expand=list(c(2,3)))
 aec_extract_f <- function(aec_data, ctr=c(151.2, -33.8),
@@ -32,7 +32,7 @@ aec_extract_f <- function(aec_data, ctr=c(151.2, -33.8),
 #' @param ... arguments to dorling function
 #'
 #' @examples
-#' data(nat_map.rda)
+#' data(nat_map)
 #' data(nat_data)
 #' aec_data_syd <- aec_extract(nat_data, expand=list(c(2,3)))
 #' aec_data_dor <- aec_carto(aec_data_syd, expand=list(c(3,4.5)))
@@ -59,7 +59,7 @@ aec_carto_f <-function(aec_data_sub, polygon.vertex=6, name.text=TRUE,
 #' @param aec_cartocartogram centers
 #'
 #' @examples
-#' data(nat_map.rda)
+#' data(nat_map)
 #' data(nat_data)
 #' cities <- list(c(151.2, -33.8), # Sydney
 #' c(153.0, -27.5), # Brisbane
