@@ -1,6 +1,6 @@
 ---
 title: "Mapping Australia's Electorates"
-author: "Di Cook, Heike Hofmann, Rob Hyndman, Ben Marwick, Carson Sievert, Nicholas Tierney, Fang Zhou"
+author: "Di Cook, Heike Hofmann, Rob Hyndman, Ben Marwick, Carson Sievert, Nicholas Tierney, Nathaniel Tomasetti, Fang Zhou"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
