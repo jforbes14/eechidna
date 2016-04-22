@@ -33,8 +33,7 @@ This vignette documents how to access the data from the 2011 Census. We show a f
 The data is loaded as `abs2011`. Let's look take a brief glimpse of the data.
 
 ```{r load-read, message=FALSE, error = FALSE}
-#library(eechidna)
-library(echidnaR) # To be changed later
+library(eechidna)
 library(dplyr)
 
 glimpse(abs2011)
