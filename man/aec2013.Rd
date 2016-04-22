@@ -4,7 +4,35 @@
 \name{aec2013}
 \alias{aec2013}
 \title{2013 General election data for the House of Representatives}
-\format{An object of class \code{tbl_df} (inherits from \code{data.frame}) with 82398 rows and 27 columns.}
+\format{A data frame with 150 rows with the following variables:
+\itemize{
+    \item ID: Electoral division ID    
+    \item Electorate:  Electoral division name   
+    \item PollingPlaceID: Polling place ID  
+    \item PollingPlace: Polling place name     
+    \item CandidateID: Candidate ID       
+    \item Surname: Candidate surname          
+    \item GivenNm: Candidate given name            
+    \item BallotPosition: Candidate's position on the ballot    
+    \item Elected: Whether the candidate was elected (Y/N)           
+    \item HistoricElected:   
+    \item PartyAb: Abbreviation for political party name           
+    \item PartyNm: Political party name           
+    \item OrdinaryVotes: Number of ordinates votes cast at the polling place for the candidate     
+    \item Swing:             
+    \item State: Abbreviation for state name             
+    \item PollingPlaceTypeID:
+    \item Premises Nm:        
+    \item PremisesAddress1:  
+    \item PremisesAddress2:  
+    \item PremisesAddress3:  
+    \item PremisesSuburb:    
+    \item PremisesStateAb:   
+    \item PremisesPostCode:  
+    \item Latitude:          
+    \item Longitude:
+    \item uid
+    }}
 \usage{
 aec2013
 }

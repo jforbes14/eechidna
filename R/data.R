@@ -8,7 +8,7 @@
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
 #'   \item ID: Commonwealth Electoral District identifier.
-#'   \item Name: Name of electorate
+#'   \item Electorate: Name of electorate
 #'   \item State: State containing electorate.
 #'   \item Population: Total population of electorate.
 #'   \item Area: Area of electorate in square kilometres.
@@ -56,9 +56,8 @@
 #' 
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
-#'     \item StateAb: Abbreviation for State name           
-#'     \item DivisionID.x: Electoral division ID    
-#'     \item DivisionNm.x:  Electoral division name   
+#'     \item ID: Electoral division ID    
+#'     \item Electorate:  Electoral division name   
 #'     \item PollingPlaceID: Polling place ID  
 #'     \item PollingPlace: Polling place name     
 #'     \item CandidateID: Candidate ID       
@@ -71,7 +70,7 @@
 #'     \item PartyNm: Political party name           
 #'     \item OrdinaryVotes: Number of ordinates votes cast at the polling place for the candidate     
 #'     \item Swing:             
-#'     \item State: State name             
+#'     \item State: Abbreviation for state name             
 #'     \item PollingPlaceTypeID:
 #'     \item Premises Nm:        
 #'     \item PremisesAddress1:  
@@ -82,7 +81,36 @@
 #'     \item PremisesPostCode:  
 #'     \item Latitude:          
 #'     \item Longitude:
+#'     \item uid
+#'     }
 "aec2013"
+
+#' Electorate-level 2013 summary of the general election data for the House of Representatives
+#' 
+#' A dataset containing vote counts, candidate names, and other national,
+#'  state, and divisional results for the
+#' House of Representatives from the 2013 Australian federal election. 
+#' The data were obtained from the Australian Electoral Commission, and downloaded 
+#' from \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm} and 
+#' \url{http://www.aec.gov.au/elections/federal_elections/2013/downloads.htm}.
+#' 
+#' @format A data frame with 150 rows with the following variables:
+#' \itemize{
+#'     \item ID: Electoral division ID    
+#'     \item Electorate:  Electoral division name   
+#'     \item CandidateID: Candidate ID       
+#'     \item Surname: Candidate surname          
+#'     \item GivenNm: Candidate given name            
+#'     \item BallotPosition: Candidate's position on the ballot    
+#'     \item Elected: Whether the candidate was elected (Y/N)           
+#'     \item HistoricElected:   
+#'     \item PartyAb: Abbreviation for political party name           
+#'     \item PartyNm: Political party name           
+#'     \item OrdinaryVotes: Number of ordinates votes cast at the polling place for the candidate     
+#'     \item State: Abbreviation for state name             
+#'     }
+"aec2013_electorate"
+
 
 
 #' Map of Australian Electorate from 2013
@@ -105,6 +133,29 @@
 #'   expand_limits(x=nat_map$long, y=nat_map$lat) + 
 #'   theme_map()
 "nat_map"
+
+
+#' Data of the Australian Electorate from 2013
+#'
+#' A dataset containing some demographic information for each of the 150 Australian electorates.
+#' The data were obtained from the Australian Electoral Commission, and downloaded 
+#' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
+#' The data is published 
+#' @format A data frame with 150 rows with the following variables:
+#' \itemize{
+#'     \item id: numeric identifier that links the electorate with the corresponding polygon in `nat_map`.
+#'     \item ELECT_DIV: Name of the electorate
+#'     \item STATE: abbreviation of the state name
+#'     \item NUMCCDS: AEC variable that might be filled with meaning or a description down the road
+#'     \item AREA_SQKM: combined square kilometers of each electorate
+#' @examples 
+#' data(nat_data)
+#' library(ggplot2)
+#' ggplot(aes(map_id=region), data=subset(abs2011, region %in% both)) +
+#'   geom_map(aes(fill=MedianIncome), map=subset(nat_map, region %in% both)) +
+#'   expand_limits(x=nat_map$long, y=nat_map$lat) + 
+#'   theme_map()
+"nat_data"
 
 
 #' Electorate hexagon data in a tidy form
