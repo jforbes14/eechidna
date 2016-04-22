@@ -7,7 +7,7 @@
 \format{A data frame with 150 rows with the following variables:
 \itemize{
   \item ID: Commonwealth Electoral District identifier.
-  \item Name: Name of electorate
+  \item Electorate: Name of electorate
   \item State: State containing electorate.
   \item Population: Total population of electorate.
   \item Area: Area of electorate in square kilometres.
