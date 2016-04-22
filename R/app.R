@@ -29,8 +29,6 @@ launchApp <- function() {
   other <- longAbs[!isAge & !isReg, ]
   
   # election data: proportion of total votes for each party by electorate
-  
-  
   byParty <- aec2013 %>% 
     mutate(formal = BallotPosition != 999) %>% 
     group_by(Electorate, PartyAb) %>% 
@@ -54,8 +52,6 @@ launchApp <- function() {
     }
   }
   selectDat <- selector()
-  
-  
   
   ui <- fluidPage(
     fluidRow(
@@ -109,7 +105,7 @@ launchApp <- function() {
   
   server <- function(input, output) {
     
-    # filter census data if brush is filled
+    # build up the selection sequentially
     selectElect <- reactive({
       selectDat(unique(longAbs$Electorate), "black")
       if (!is.null(input$ageBrush)) {
@@ -141,6 +137,7 @@ launchApp <- function() {
       }
       d <- event_data("plotly_selected")
       if (!is.null(d)) {
+        print(d)
         isolate({
           selectDat(d$key, input$color)
         })
@@ -148,7 +145,7 @@ launchApp <- function() {
       d2 <- event_data("plotly_click")
       if (!is.null(d2)) {
         isolate({
-          selectDat(d$key, input$color)
+          selectDat(d2$key, input$color)
         })
       }
       selectDat()
@@ -194,12 +191,12 @@ launchApp <- function() {
     
     output$map <- renderPlotly({
       d <- dplyr::left_join(hexDat, selectElect(), by = "Electorate")
-      p <- ggplot(d, aes(xcent, ycent, text = Electorate, fill = fill)) + 
+      p <- ggplot(d, aes(xcent, ycent, text = Electorate, key = Electorate, fill = fill)) + 
         geom_hex(stat = "identity") + ggthemes::theme_map() +
         theme(legend.position = "none") + 
         scale_fill_identity() +
         lims(x = c(-80, 8), y = c(-40, 50))
-      ggplotly(p, tooltip = "text")
+      ggplotly(p, tooltip = "text") %>% layout(dragmode = "lasso")
     })
     
   }
