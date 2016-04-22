@@ -1,5 +1,5 @@
 ---
-title: "Using echidnaR: 2011 Census data"
+title: "Using echidnaR: 2013 Election data"
 author: "Di Cook, Heike Hofmann, Rob Hyndman, Ben Marwick, Carson Sievert, Nicholas Tierney, Fang Zhou."
 date: "`r Sys.Date()`"
 output: 
@@ -119,7 +119,7 @@ We can look at the proportion of voters for a particular party in each electorat
 ```{r plot_prop_particular_party}
 # summarise and compute proportion of votes for a particular party
 p <- aec2013 %>%
-  group_by(Electorate, State) %>%
+  group_by(DivisionID.x, State) %>%
   summarise(
     TotalVotes = sum(OrdinaryVotes),
     ProportionLabor = round(sum(OrdinaryVotes[PartyNm == "Australian Labor Party"]) / TotalVotes, 3)) %>%
@@ -128,7 +128,7 @@ p <- aec2013 %>%
  group_by(State) %>% 
   # send the data to the plotting function
   do(plots=ggplot(data = .) + 
-       aes(x = ProportionLabor, y = reorder(Electorate, ProportionLabor), size = TotalVotes, label = State) +
+       aes(x = ProportionLabor, y = reorder(DivisionID.x, ProportionLabor), size = TotalVotes, label = State) +
        geom_point() +
        ylab("Electorate") +
        labs(title = .$State) + 
@@ -147,4 +147,14 @@ do.call("grid.arrange", c(p$plots, ncol=nCol))
 
 ```
 
+```{r}
+# Comparing party and candidate votes of several parties -------
+proportions <- aec2013 %>%
+  group_by(DivisionID.x) %>%
+  summarise(Prop_Labour = sum(OrdinaryVotes[PartyNm == "Australian Labor Party"]) / sum(OrdinaryVotes),
+            Prop_Liberal = sum(OrdinaryVotes[PartyNm == "Liberal"]) / sum(OrdinaryVotes),
+            Prop_Greens = sum(OrdinaryVotes[PartyNm == "The Greens"]) / sum(OrdinaryVotes))
+library(GGally)
+ggpairs(proportions, columns = 2:ncol(proportions)) + theme_bw()
 
+```
