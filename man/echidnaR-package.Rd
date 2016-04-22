@@ -11,7 +11,7 @@
 
 \author{
     Di Cook, 
-    Heike Hoffman, 
+    Heike Hofmann, 
     Rob Hyndman, 
     Ben Marwick, 
     Carson Sievert,
