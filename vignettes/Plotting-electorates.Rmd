@@ -1,6 +1,6 @@
 ---
 title: "Mapping Australia's Electorates"
-author: "Di Cook, Heike Hofmann, Rob Hyndman, Ben Marwick, Carson Sievert, Nicholas Tierney, Nathaniel Tomasetti, Fang Zhou"
+author: "Nathaniel Tomasetti, Di Cook, Heike Hofmann"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -9,20 +9,33 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-We're interested in making a map of each electorate to see how they all voted in the last election.
-We need to start with the `nat_map` and `nat_data_cart` loaded.
+We're interested in making a map of the latest Australian election results. To do so we need to take the electoral regions, merge with election results and plot the colored polygons. However, the Australian electoral map is not conducive to chloropleth map, because most of the regions concentrate in the five big cities: Sydney, Melbourne, Brisbane, Adelaide and Perth.  
 
-```{r load-read, message=FALSE, error = FALSE}
+We need to start with the `nat_map` and merge this with the election results.
+
+```{r load-read, message=FALSE, error = FALSE, warning=FALSE, echo=FALSE}
 library(eechidna)
 library(dplyr)
 library(ggplot2)
 data(nat_data_cart)
 data(nat_map)
-```
+data(aec2013_electorates)
+map.winners <- aec2013_electorates %>% filter(Elected == "Y") %>% 
+  select(Electorate, PartyNm) %>% 
+  merge(nat_map, by.x="Electorate", by.y="ELECT_DIV")
 
-Let's look at `nat_map` to start.
+#Grouping different Lib/Nats togethers
+map.winners$PartyNm <- as.character(map.winners$PartyNm)
+coalition <- c("Country Liberals (NT)", "Liberal", "Liberal National Party of Queensland", "The Nationals")
+map.winners.grouped <- mutate(map.winners, PartyNm = ifelse(as.character(PartyNm) %in% coalition,
+                                                      "Liberal National Coalition", PartyNm))
+map.winners.grouped <- map.winners.grouped %>% arrange(group, order)
 
-```{r, echo = FALSE}
+# Colour cells to match that parties colours
+# Order = Australian Labor Party, Independent, Katters, Lib/Nats Coalition, Palmer, The Greens
+partycolours = c("#FF0000", "#000000", "#550000", "#0000FF", "#FF9900", "#00FF00")
+
+# Make it look like a map
 theme_map <- theme_bw()
 theme_map$line <- element_blank()
 theme_map$strip.text <- element_blank()
@@ -34,27 +47,19 @@ theme_map$panel.border <- element_rect(colour = "grey90", size=1, fill=NA)
 
 
 ```{r fig.width=9, fig.height=6, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE}
-ggplot(data=nat_map) + geom_path(aes(x=long, y=lat, group=group, order=order)) +
-  theme_map + coord_equal()
+ggplot(data=map.winners.grouped) + 
+  geom_polygon(aes(x=long, y=lat, group=group, order=order, fill=PartyNm)) +
+  scale_fill_manual(name="Politcal Party", values=partycolours) +
+  theme_map + coord_equal() + theme(legend.position="bottom")
 ```
 
 Now lets overlay some cartograms on the electorates. 
-
-```{r fig.width=9, fig.height=6, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE}
-ggplot(data=nat_map) +
-  geom_polygon(aes(x=long, y=lat, group=group, order=order),
-               fill="grey90", colour="white") +
-  geom_point(data=nat_data_cart, aes(x=x, y=y), size=1, alpha=0.4) +
-  theme_map + coord_equal()
-```
 
 All that's left is colouring these by the current party holding each electorate.
 We're going to group the entire Liberal/National Coalition together under the colour blue.
 
 ```{r fig.width=9, fig.height=6, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE}
 # Load election results
-data(hexDat)
-data(aec2013_electorates)
 cart.winners <- aec2013_electorates %>% filter(Elected == "Y") %>% 
   select(Electorate, PartyNm) %>% 
   merge(nat_data_cart, by.x="Electorate", by.y="ELECT_DIV")
@@ -65,15 +70,11 @@ coalition <- c("Country Liberals (NT)", "Liberal", "Liberal National Party of Qu
 cart.winners.grouped <- mutate(cart.winners, PartyNm = ifelse(as.character(PartyNm) %in% coalition,
                                                       "Liberal National Coalition", PartyNm))
 
-#Colour cells to match that parties colours
-#Order = Australian Labor Party, Independent, Katters, Lib/Nats Coalition, Palmer, The Greens
-partycolours = c("#FF0000", "#000000", "#550000", "#0000FF", "#FF9900", "#00FF00")
-
-#Plot it
+# Plot it
 ggplot(data=nat_map) +
   geom_polygon(aes(x=long, y=lat, group=group, order=order),
                fill="grey90", colour="white") +
-  geom_point(data=cart.winners.grouped, aes(x=x, y=y, colour=PartyNm), size=1, alpha=0.4) +
+  geom_point(data=cart.winners.grouped, aes(x=x, y=y, colour=PartyNm), size=2, alpha=0.8) +
   scale_colour_manual(name="Politcal Party", values=partycolours) +
   theme_map + coord_equal() + theme(legend.position="bottom")
 
