@@ -17,12 +17,12 @@
   \item Postgraduate: Percentage of people whose highest qualification is a postgraduate degree.
   \item Christianity: Percentage of people affiliated with the Christian religion (of all denominations).
   \item Catholic: Percentage of people affiliated with the Catholic denomimation.
-  \item Buddhist: Percentage of people affiliated with the Buddhist religion.
+  \item Buddhism: Percentage of people affiliated with the Buddhist religion.
   \item Islam: Percentage of people affiliated with the Islam religion.
   \item Judaism: Percentageof people affiliated with the Jewish religion. 
   \item NoReligion: Percentage of people with no religious affiliation.
-  \item Age0_4: Percentage of people aged 0-4.
-  \item Age5_14: Percentage of people aged 5-9.
+  \item Age00_04: Percentage of people aged 0-4.
+  \item Age05_14: Percentage of people aged 5-9.
   \item Age15_19: Percentage of people aged 15-19.
   \item Age20_24: Percentage of people aged 20-24.
   \item Age25_34: Percentage of people aged 25-34.

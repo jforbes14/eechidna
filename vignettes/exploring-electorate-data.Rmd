@@ -10,15 +10,25 @@ vignette: >
 ---
 
 
-```{r}
+```{r setup, echo=FALSE}
+
+knitr::opts_chunk$set(fig.width = 6,
+                      fig.height = 4,
+                      fig.align='center',
+                      dev = "png")
+
+```
+
+
+```{r, echo=FALSE}
 
 # load_all(pkg = "echidnaR/")
 
 ```
 
-`echidnaR` is an R package that makes it easy to look at the data from the 2011 Australian Census.
+`echidnaR` (Electoral Commission Handling Intelligent Data Nationally for Australia using R) is an R package that makes it easy to look at the data from the 2011 Australian Census, and the 2013 Federal Election.
 
-This vignette (so far) documents how to access the data, and what it is.
+This vignette documents how to access the 2011 Census data, and what it contains.
 
 The data is loaded as `abs2011`. Let's look take a brief glimpse of the data.
 
@@ -32,7 +42,7 @@ glimpse(abs2011)
 
 Here we see that we have 150 observations and 28 variables.
 
-Each observation is data pertaining to a particular federal electorate as described by <url to the gov website of electorates>.
+Each observation is data pertaining to a particular federal electorate as described by http://www.aec.gov.au/profiles/.
 
 Each column is now described here:
 
@@ -49,9 +59,14 @@ data_dictionary <- data_frame(
     "Unemployed",
     "Bachelor",
     "Postgraduate",
+    "Christianity",
+    "Catholic",
+    "Buddhism",
+    "Islam",
+    "Judaism",
     "NoReligion",
-    "Age0_4",
-    "Age5_14",
+    "Age00_04",
+    "Age05_14",
     "Age15_19",
     "Age20_24",
     "Age25_34",
@@ -67,7 +82,9 @@ data_dictionary <- data_frame(
     "OtherLanguageHome",
     "Married",
     "DeFacto",
-    "FamilyRatio"
+    "FamilyRatio",
+    "Internet", 
+    "NotOwned"
     ), 
   Details = c(
     "Commonwealth Electoral District identifier",
@@ -79,6 +96,11 @@ data_dictionary <- data_frame(
     "Percentage of people unemployed",
     "Percentage of people whose highest qualification is a Bachelor degree",
     "Percentage of people whose highest qualification is a postgraduate degree",
+    "Percentage of people affiliated with the Christian religion (of all denominations)",
+    "Percentage of people affiliated with the Catholic denomimation.",
+    "Percentage of people affiliated with the Buddhist religion.",
+    "Percentage of people affiliated with the Islam religion.",
+    "Percentage of people affiliated with the Jewish religion. ",
     "Percentage of people with no religion.",
     "Percentage of people aged 0-4.",
     "Percentage of people aged 5-9.",
@@ -97,7 +119,9 @@ data_dictionary <- data_frame(
     "Percentage of people who speak a language other than English at home",
     "Percentage of people who are married",
     "Percentage of people who are in a de facto marriage",
-    "Total number of families to total number of people (times 100).")
+    "Total number of families to total number of people (times 100)",
+    "Percentage of people with home internet",
+    "Percentage of dwellings not owned (either outright or with a mortgage)")
 ) # close data_frame
 ```
 
@@ -111,7 +135,8 @@ kable(data_dictionary)
 
 So let's just look at some nice and simple plots.
 
-Let's see what our age population is like
+## Age
+
 
 ```{r}
 
@@ -126,11 +151,13 @@ abs2011 %>%
   ggplot(data = .,
          aes(x = Age,
              y = Percent_in_electorate,
-             fill = Age)) +
+             colour = Age)) +
   geom_boxplot() + 
   coord_flip() + 
-  theme(legend.position = "none")
-             
+  theme_minimal() + 
+  theme(legend.position = "none") +
+  labs(y = "% in Electorate")
+
 
 ```
 
@@ -140,8 +167,12 @@ abs2011 %>%
 
 ggplot(data = abs2011,
        aes(x = Unemployed)) + 
-  geom_density(fill = "salmon") + 
-  geom_rug(colour = "salmon")
+  geom_density(fill = "salmon", 
+               bw = "SJ",
+               colour = NA) + 
+  geom_rug(colour = "salmon") +
+  theme_minimal() +
+  xlim(0, 12)
 
 ```
 
@@ -153,7 +184,7 @@ ggplot(data = abs2011,
 ggplot(data = abs2011,
        aes(x = reorder(State, -Unemployed),
            y = Unemployed,
-           fill = State)) + 
+           colour = State)) + 
   geom_boxplot() + 
   labs(x = "State",
        y = "% Unemployment") + 
@@ -170,7 +201,9 @@ ggplot(data = abs2011,
 
 ggplot(data = abs2011,
        aes(x = MedianIncome)) + 
-  geom_density(fill = "salmon") + 
+  geom_density(fill = "salmon",
+               bw = "SJ",
+               colour = NA) + 
   geom_rug(colour = "salmon") + 
   theme_minimal()
   
@@ -217,10 +250,13 @@ ggplot(data = abs2011,
 
 ggplot(data = abs2011,
        aes(x = Bachelor)) +
-  geom_density(fill = "salmon") + 
+  geom_density(fill = "salmon",
+               bw = "SJ",
+               colour = NA) + 
   geom_rug(colour = "salmon") + 
   theme_minimal() + 
-  labs(x = "% of individuals with a Bachelor degree")
+  labs(x = "% of electorate with a Bachelor degree") +
+  xlim(0, 30)
            
 
 ```
@@ -247,10 +283,9 @@ ggplot(data = abs2011,
 ggplot(data = abs2011,
        aes(x = Bachelor,
            y = MedianIncome)) + 
-  geom_point() + 
+  geom_point(colour = "steelblue",
+             alpha = 0.75) + 
   theme_minimal()
-  
-           
 
 ```
 
@@ -278,7 +313,8 @@ ggplot(data = abs2011,
 ggplot(data = abs2011,
        aes(x = Postgraduate,
            y = MedianIncome)) + 
-  geom_point() + 
+  geom_point(colour = "steelblue",
+             alpha = 0.75) + 
   theme_minimal()
   
 ```
@@ -300,9 +336,90 @@ ggplot(data = ,
            colour = Education)) + 
   geom_point() + 
   geom_smooth() +
-  theme_minimal() 
+  theme_minimal() +
+  scale_color_brewer(type = "qual", palette = "Set1")
   # theme(legend.position = "bottom",
   #       legend.direction = "vertical")
+
+```
+
+## Religion
+
+Let's look at al of the religions
+
+```{r}
+
+abs2011 %>%
+  select(Christianity,
+         Catholic,
+         Buddhism,
+         Islam,
+         Judaism,
+         NoReligion) %>%
+  gather(key = "ReligionType",
+         value = "Percent") %>%
+  ggplot(data = .,
+         aes(x = reorder(ReligionType, -Percent),
+             y = Percent,
+             colour = ReligionType)) + 
+  geom_boxplot() + 
+  theme_minimal() + 
+  theme(legend.position = "none") +
+  coord_flip() + 
+  labs(x = "Religion")
+             
+
+```
+
+### Christianity by State
+
+
+```{r}
+
+ggplot(data = abs2011,
+       aes(x = reorder(State, -Christianity),
+           y = Christianity,
+           colour = State)) + 
+  geom_boxplot() +
+  theme_minimal() +
+  theme(legend.position = "none") +
+  coord_flip() + 
+  labs(x = "State")
+  
+           
+
+```
+
+## Internet
+
+```{r}
+
+ggplot(data = abs2011,
+       aes(x = Internet)) +
+  geom_density(fill = "steelblue",
+               bw = "SJ",
+               colour = NA) + 
+  geom_rug(colour = "steelblue") + 
+  theme_minimal() + 
+  labs(x = "% of electorate with Internet") +
+  xlim(85, 100)
+
+```
+
+
+## Internet by state
+
+```{r}
+
+ggplot(data = abs2011,
+       aes(x = reorder(State, -Internet),
+           y = Internet,
+           colour = State)) + 
+  geom_boxplot() +
+  theme_minimal() +
+  theme(legend.position = "none") +
+  coord_flip() + 
+  labs(x = "State")
 
 ```
 
@@ -311,7 +428,6 @@ ggplot(data = ,
 
 One of the really amazing things about this R package is that it contains the shapefiles of the electorates. These are coming soon!
 
-Some small gripes.
+Note to writers:
 
-- Variable names: Should they not be capitalised?
-- State names: These are capitalised for ACT and NSW, but not for Qld and Vic
+- It would be really great to look at visualisations that show **where do ... live**.

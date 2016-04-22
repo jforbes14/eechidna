@@ -18,12 +18,12 @@
 #'   \item Postgraduate: Percentage of people whose highest qualification is a postgraduate degree.
 #'   \item Christianity: Percentage of people affiliated with the Christian religion (of all denominations).
 #'   \item Catholic: Percentage of people affiliated with the Catholic denomimation.
-#'   \item Buddhist: Percentage of people affiliated with the Buddhist religion.
+#'   \item Buddhism: Percentage of people affiliated with the Buddhist religion.
 #'   \item Islam: Percentage of people affiliated with the Islam religion.
 #'   \item Judaism: Percentageof people affiliated with the Jewish religion. 
 #'   \item NoReligion: Percentage of people with no religious affiliation.
-#'   \item Age0_4: Percentage of people aged 0-4.
-#'   \item Age5_14: Percentage of people aged 5-9.
+#'   \item Age00_04: Percentage of people aged 0-4.
+#'   \item Age05_14: Percentage of people aged 5-9.
 #'   \item Age15_19: Percentage of people aged 15-19.
 #'   \item Age20_24: Percentage of people aged 20-24.
 #'   \item Age25_34: Percentage of people aged 25-34.
@@ -88,7 +88,7 @@
 #' Map of Australian Electorate from 2013
 #'
 #' A dataset containing the map of the all 150 Australian electorates using the 2013 boundaries of the 
-#' electorates (and downsampled to a 1% file to allow fast plotting).
+#' electorates (and downsampled to a 1\% file to allow fast plotting).
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
 #' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
 #' @examples 
@@ -101,8 +101,21 @@
 #' library(ggthemes)
 #' both <- intersect(unique(abs2011$region), unique(nat_map$region))
 #' ggplot(aes(map_id=region), data=subset(abs2011, region %in% both)) +
-#' geom_map(aes(fill=MedianIncome), map=subset(nat_map, region %in% both)) +
-#' expand_limits(x=nat_map$long, y=nat_map$lat) + 
-#' theme_map()
+#'   geom_map(aes(fill=MedianIncome), map=subset(nat_map, region %in% both)) +
+#'   expand_limits(x=nat_map$long, y=nat_map$lat) + 
+#'   theme_map()
 "nat_map"
 
+
+#' Electorate hexagon data in a tidy form
+#' @seealso Thomas Lumley
+#' @references Thomas Lumley
+#' @format A data frame
+#' @examples 
+#' data(hexDat)
+#' library(plotly)
+#' p <- ggplot(hexDat, aes(xcent, ycent, text = electorate)) + 
+#'   geom_hex(stat = "identity") + 
+#'   lims(x=c(-80, 8), y=c(-40, 50))
+#' ggplotly(p, tooltip = "text")
+"hexDat"

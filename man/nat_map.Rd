@@ -10,7 +10,7 @@ nat_map
 }
 \description{
 A dataset containing the map of the all 150 Australian electorates using the 2013 boundaries of the 
-electorates (and downsampled to a 1% file to allow fast plotting).
+electorates (and downsampled to a 1\% file to allow fast plotting).
 The data were obtained from the Australian Electoral Commission, and downloaded 
 from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
 }
@@ -24,9 +24,9 @@ library(ggplot2)
 library(ggthemes)
 both <- intersect(unique(abs2011$region), unique(nat_map$region))
 ggplot(aes(map_id=region), data=subset(abs2011, region \%in\% both)) +
-geom_map(aes(fill=MedianIncome), map=subset(nat_map, region \%in\% both)) +
-expand_limits(x=nat_map$long, y=nat_map$lat) + 
-theme_map()
+  geom_map(aes(fill=MedianIncome), map=subset(nat_map, region \%in\% both)) +
+  expand_limits(x=nat_map$long, y=nat_map$lat) + 
+  theme_map()
 }
 \keyword{datasets}
 
