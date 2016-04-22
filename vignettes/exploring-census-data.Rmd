@@ -209,6 +209,7 @@ ggplot(data = abs2011,
   geom_density(fill = "salmon",
                bw = "SJ",
                colour = NA) + 
+  xlim(250,1100) +
   geom_rug(colour = "salmon") + 
   theme_minimal()
   
