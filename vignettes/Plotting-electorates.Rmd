@@ -1,22 +1,23 @@
 ---
-  title: "Mapping Australia's Electorates"
-author: "Di Cook, Heike Hoffman, Rob Hyndman, Ben Marwick, Carson Sievert, Nicholas Tierney, Fang Zhou."
+title: "Mapping Australia's Electorates"
+author: "Di Cook, Heike Hofmann, Rob Hyndman, Ben Marwick, Carson Sievert, Nicholas Tierney, Fang Zhou"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Vignette Title}
-%\VignetteEngine{knitr::rmarkdown}
-%\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
+
 We're interested in making a map of each electorate to see how they all voted in the last election.
 We need to start with the `nat_map` and `nat_data_cart` loaded.
 
 ```{r load-read, message=FALSE, error = FALSE}
-library(echidnaR)
+library(eechidna)
 library(dplyr)
 library(ggplot2)
-load("data/nat_data_cart.rda")
-load("data/nat_map.rda")
+data(nat_data_cart)
+data(nat_map)
 ```
 
 Let's look at `nat_map` to start.
@@ -32,13 +33,14 @@ theme_map$panel.border <- element_rect(colour = "grey90", size=1, fill=NA)
 ```
 
 
-```{r}
+```{r fig.width=9, fig.height=6, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE}
 ggplot(data=nat_map) + geom_path(aes(x=long, y=lat, group=group, order=order)) +
   theme_map + coord_equal()
 ```
+
 Now lets overlay some cartograms on the electorates. 
 
-```{r}
+```{r fig.width=9, fig.height=6, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE}
 ggplot(data=nat_map) +
   geom_polygon(aes(x=long, y=lat, group=group, order=order),
                fill="grey90", colour="white") +
@@ -49,15 +51,17 @@ ggplot(data=nat_map) +
 All that's left is colouring these by the current party holding each electorate.
 We're going to group the entire Liberal/National Coalition together under the colour blue.
 
-```{r}
-#Attach the electoral winners data
-aes_winners <- read.csv(paste0(getwd(), "/AECdata/HouseMembersElectedDownload-17496.csv"), skip = 1)
-aes_winners %>% select(DivisionNm, PartyNm) %>% 
-  merge(aec_cart_join, by.x="DivisionNm", by.y="ELECT_DIV") -> cart.winners
+```{r fig.width=9, fig.height=6, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE}
+# Load election results
+data(hexDat)
+data(aec2013_electorates)
+cart.winners <- aec2013_electorates %>% filter(Elected == "Y") %>% 
+  select(Electorate, PartyNm) %>% 
+  merge(nat_data_cart, by.x="Electorate", by.y="ELECT_DIV")
 
 #Grouping different Lib/Nats togethers
-cart.winners$PartyNm <- as.character(cart.winners.large$PartyNm)
-coalition <- c("Country Liberals (NT)", "Liberal", "Liberal National Party", "The Nationals")
+cart.winners$PartyNm <- as.character(cart.winners$PartyNm)
+coalition <- c("Country Liberals (NT)", "Liberal", "Liberal National Party of Queensland", "The Nationals")
 cart.winners.grouped <- mutate(cart.winners, PartyNm = ifelse(as.character(PartyNm) %in% coalition,
                                                       "Liberal National Coalition", PartyNm))
 
@@ -70,15 +74,8 @@ ggplot(data=nat_map) +
   geom_polygon(aes(x=long, y=lat, group=group, order=order),
                fill="grey90", colour="white") +
   geom_point(data=cart.winners.grouped, aes(x=x, y=y, colour=PartyNm), size=1, alpha=0.4) +
-  theme_map + coord_equal() + scale_colour_manual(name="Politcal Party", values=partycolours)
-
-#Plot it
-ggplot(data=nat_map) +
-  geom_polygon(aes(x=long, y=lat, group=group, order=order),
-               fill="grey90", colour="white") +
-  geom_point(data=cart.winners, aes(x=x, y=y, colour=PartyNm), size=1, alpha=0.4) +
-  theme_map + coord_equal() + scale_colour_manual(name="Politcal Party", values=partycolours)
+  scale_colour_manual(name="Politcal Party", values=partycolours) +
+  theme_map + coord_equal() + theme(legend.position="bottom")
 
 ```
-
 
