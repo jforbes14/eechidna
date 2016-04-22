@@ -1,5 +1,5 @@
 ---
-title: "Using echidnaR"
+title: "Using echidnaR: 2011 Census data"
 author: "Di Cook, Heike Hofmann, Rob Hyndman, Ben Marwick, Carson Sievert, Nicholas Tierney, Fang Zhou."
 date: "`r Sys.Date()`"
 output: 
@@ -33,7 +33,7 @@ knitr::opts_chunk$set(fig.width = 6,
 
 `echidnaR` (Electoral Commission Handling Intelligent Data Nationally for Australia using R) is an R package that makes it easy to look at the data from the 2011 Australian Census, and the 2013 Federal Election.
 
-This vignette documents how to access the data from the 2011 Census and the 2013  Federal Election (House of Representatives). We show a few typical methods to explore the data.
+This vignette documents how to access the data from the 2011 Census. We show a few typical methods to explore the data.
 
 ## 2011 Census data
 
@@ -140,7 +140,7 @@ kable(data_dictionary)
 
 So let's just look at some nice and simple plots.
 
-### Age
+## Age
 
 
 ```{r}
@@ -166,7 +166,7 @@ abs2011 %>%
 
 ```
 
-### Unemployment 
+## Unemployment 
 
 ```{r}
 
@@ -182,7 +182,7 @@ ggplot(data = abs2011,
 ```
 
 
-### Unemployment by state
+## Unemployment by state
 
 ```{r}
 
@@ -200,7 +200,7 @@ ggplot(data = abs2011,
 ```
 
 
-### Income
+## Income
 
 ```{r}
 
@@ -214,7 +214,7 @@ ggplot(data = abs2011,
   
 ```
 
-### Income by State
+## Income by State
 
 ```{r}
 
@@ -247,7 +247,7 @@ ggplot(data = abs2011,
 
 ```
 
-### Education
+## Education
 
 ##### Bachelor
 
@@ -295,7 +295,7 @@ ggplot(data = abs2011,
 ```
 
 
-### Postgraduate
+## Postgraduate
 
 
 ```{r}
@@ -348,7 +348,7 @@ ggplot(data = ,
 
 ```
 
-### Religion
+## Religion
 
 Let's look at all of the religions
 
@@ -395,7 +395,7 @@ ggplot(data = abs2011,
 
 ```
 
-### Internet
+## Internet
 
 ```{r}
 
@@ -412,7 +412,7 @@ ggplot(data = abs2011,
 ```
 
 
-### Internet by state
+## Internet by state
 
 ```{r}
 
@@ -429,4 +429,3 @@ ggplot(data = abs2011,
 ```
 
 
-# Spatial Mapping
