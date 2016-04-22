@@ -1,0 +1,117 @@
+---
+title: "OzElectShapefiles"
+author: "Heike Hofmann"
+date: "April 22, 2016"
+output: html_document
+---
+
+The Australian Electorate Commission publishes the boundaries of the electorates on their website at [http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm](http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm).
+
+Once the files (preferrably the national files) are downloaded, unzip the file (it will build a folder with a set of files). We want to read the shapes contained in the `shp` file into R.
+```{r, message=FALSE}
+library(maptools)
+
+# shapeFile contains the path to the shp file:
+shapeFile <- "national-esri-16122011/COM20111216_ELB_region.shp"
+sF <- readShapeSpatial(shapeFile)
+class(sF)
+```
+`sF` is a spatial data frame containing all of the polygons. 
+We use the `rmapshaper` package available from ateucher's github page to thin the polygons while preserving the geography:
+
+```{r, message=FALSE}
+require(rmapshaper)
+```
+If the library is not available, install it from gitguh using 
+```devtools::install_github("ateucher/rmapshaper")```.
+
+```{r, message=FALSE}
+sFsmall <- ms_simplify(sF, keep=0.05) # use instead of thinnedSpatialPoly
+```
+`keep` indicates the percentage of points we want to keep in the polygons. 5% makes the electorate boundary still quite recognizable, but reduce the overall size of the map considerably, making it faster to plot.
+
+We can use base graphics to plot this map:
+```{r, cache=TRUE, message=FALSE}
+plot(sFsmall)
+```
+
+
+### Extracting the electorate information 
+
+A spatial polygons data frame consists of both a data set with information on each of the entities (in this case, electorates), and a set of polygons for each electorate (sometimes multiple polygons are needed, e.g. if the electorate has islands). We want to extract both of these parts.
+```{r, message=FALSE}
+nat_data <- sF@data
+head(nat_data)
+```
+The row names of the data file are identifiers corresponding to the polygons - we want to make them a separate variable:
+```{r, message=FALSE}
+nat_data$id <- row.names(nat_data)
+```
+In the currently published version of the 2013 electorate boundaries, the `data` data frame has variable `ELECT_DIV` of the electorates' names, and variable `STATE`, which is an abbreviation of the state name. It might be convenient to merge this information (or at least the state abbreviation) into the polygons (see below).
+We are almost ready to export this data  into a file, but we still want include geographic centers in the data (see also below).
+
+### Extracting the polygon information 
+
+The `fortify` function in the `ggplot2` package extracts the polygons into a data frame. 
+```{r}
+nat_map <- ggplot2::fortify(sFsmall)
+head(nat_map)
+
+```
+
+We need to make sure that `group` and `piece` are kept as factor variables - if they are allowed to be converted to numeric values, it messes things up, because as factor levels `9` and `9.0` are distinct, whereas they are not when interpreted as numbers ...
+```{r}
+nat_map$group <- paste("g",nat_map$group,sep=".")
+nat_map$piece <- paste("p",nat_map$piece,sep=".")
+```
+The map data is ready to be exported to a file:
+```{r}
+write.csv(nat_map, "National-map-2013.csv", row.names=FALSE)
+```
+
+###Getting centroids 
+Getting centroids or any other information from a polygon is fairly simple, once you have worked your way through the polygon structure.
+First, we are going to just focus on the polygons themselves:
+```{r}
+polys <- as(sF, "SpatialPolygons")
+class(polys) # should be SpatialPolygons
+length(polys) # should be 150
+```
+
+Because SpatialPolygons are an S4 object, they have so called `slots`, and in this case the slots are:
+```{r}
+slotNames(polys)
+```
+We are interested further into the polygon aspect of this object:
+
+```{r}
+Polygon(polys[1])
+```
+From this, we want to extract the `labpt` component, because those are the centroids we are interested in. We will wrap this into a little function called `centroid` to help us with that:
+
+```{r, message=FALSE, warning=FALSE}
+library(dplyr)
+centroid <- function(i, polys) {
+  ctr <- Polygon(polys[i])@labpt
+  data.frame(long_c=ctr[1], lat_c=ctr[2])
+}
+centroids <- seq_along(polys) %>% purrr::map_df(centroid, polys=polys)
+head(centroids)
+```
+The centroids come in the same order as the data (luckily) and we just extend the data set for the electorates by this information, and finally export:
+```{r, message=FALSE, warning=FALSE}
+nat_data <- data.frame(nat_data, centroids)
+write.csv(nat_data, "National-data-2013.csv", row.names=FALSE)
+```
+
+
+Finally, just to check the data, a map of the Australian electorates colored by their size as given in the data (variable `AREA_SQKM`):
+```{r, message=FALSE, warning=FALSE}
+library(ggplot2)
+library(ggthemes)
+ggplot(aes(map_id=id), data=nat_data) +
+  geom_map(aes(fill=AREA_SQKM), map=nat_map) +
+  expand_limits(x=nat_map$long, y=nat_map$lat) + 
+  theme_map()
+```
+

@@ -1,8 +1,11 @@
 ---
 title: "Using echidnaR"
-author: "Di Cook, Heike Hoffman, Rob Hyndman, Ben Marwick, Carson Sievert, Nicholas Tierney, Fang Zhou."
+author: "Di Cook, Heike Hofmann, Rob Hyndman, Ben Marwick, Carson Sievert, Nicholas Tierney, Fang Zhou."
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output: 
+    rmarkdown::html_vignette:
+        toc: true
+
 vignette: >
   %\VignetteIndexEntry{Vignette Title}
   %\VignetteEngine{knitr::rmarkdown}
@@ -26,9 +29,13 @@ knitr::opts_chunk$set(fig.width = 6,
 
 ```
 
-`echidnaR` is an R package that makes it easy to look at the data from the 2011 Australian Census, and the 2013 Federal Election.
+# Introduction
 
-This vignette documents how to access the 2011 Census data, and what it contains.
+`echidnaR` (Electoral Commission Handling Intelligent Data Nationally for Australia using R) is an R package that makes it easy to look at the data from the 2011 Australian Census, and the 2013 Federal Election.
+
+This vignette documents how to access the data from the 2011 Census and the 2013  Federal Election (House of Representatives). We show a few typical methods to explore the data.
+
+## 2011 Census data
 
 The data is loaded as `abs2011`. Let's look take a brief glimpse of the data.
 
@@ -131,11 +138,9 @@ kable(data_dictionary)
 
 ```
 
-# General usage
-
 So let's just look at some nice and simple plots.
 
-## Age
+### Age
 
 
 ```{r}
@@ -161,20 +166,23 @@ abs2011 %>%
 
 ```
 
-## Unemployment 
+### Unemployment 
 
 ```{r}
 
 ggplot(data = abs2011,
        aes(x = Unemployed)) + 
-  geom_density(fill = "salmon", bw="SJ") + 
+  geom_density(fill = "salmon", 
+               bw = "SJ",
+               colour = NA) + 
   geom_rug(colour = "salmon") +
-  theme_minimal()
+  theme_minimal() +
+  xlim(0, 12)
 
 ```
 
 
-## Unemployment by state
+### Unemployment by state
 
 ```{r}
 
@@ -192,19 +200,21 @@ ggplot(data = abs2011,
 ```
 
 
-## Income
+### Income
 
 ```{r}
 
 ggplot(data = abs2011,
        aes(x = MedianIncome)) + 
-  geom_density(fill = "salmon") + 
+  geom_density(fill = "salmon",
+               bw = "SJ",
+               colour = NA) + 
   geom_rug(colour = "salmon") + 
   theme_minimal()
   
 ```
 
-## Income by State
+### Income by State
 
 ```{r}
 
@@ -237,23 +247,26 @@ ggplot(data = abs2011,
 
 ```
 
-## Education
+### Education
 
-### Bachelor
+##### Bachelor
 
 ```{r}
 
 ggplot(data = abs2011,
        aes(x = Bachelor)) +
-  geom_density(fill = "salmon") + 
+  geom_density(fill = "salmon",
+               bw = "SJ",
+               colour = NA) + 
   geom_rug(colour = "salmon") + 
   theme_minimal() + 
-  labs(x = "% of individuals with a Bachelor degree")
+  labs(x = "% of electorate with a Bachelor degree") +
+  xlim(0, 30)
            
 
 ```
 
-### Bachelor by state
+##### Bachelor by state
 
 ```{r}
 
@@ -268,20 +281,21 @@ ggplot(data = abs2011,
 
 ```
 
-### Bachelor and income
+##### Bachelor and income
 
 ```{r}
 
 ggplot(data = abs2011,
        aes(x = Bachelor,
            y = MedianIncome)) + 
-  geom_point() + 
+  geom_point(colour = "steelblue",
+             alpha = 0.75) + 
   theme_minimal()
 
 ```
 
 
-## Postgraduate
+### Postgraduate
 
 
 ```{r}
@@ -297,19 +311,20 @@ ggplot(data = abs2011,
 
 ```
 
-### Postgraduate and income
+##### Postgraduate and income
 
 ```{r}
 
 ggplot(data = abs2011,
        aes(x = Postgraduate,
            y = MedianIncome)) + 
-  geom_point() + 
+  geom_point(colour = "steelblue",
+             alpha = 0.75) + 
   theme_minimal()
   
 ```
 
-### Comparing income across Bachelors and postgraduate
+##### Comparing income across Bachelors and postgraduate
 
 ```{r}
 
@@ -326,34 +341,92 @@ ggplot(data = ,
            colour = Education)) + 
   geom_point() + 
   geom_smooth() +
-  theme_minimal() 
+  theme_minimal() +
+  scale_color_brewer(type = "qual", palette = "Set1")
   # theme(legend.position = "bottom",
   #       legend.direction = "vertical")
 
 ```
 
-## Religion
+### Religion
 
-### Christian
+Let's look at all of the religions
 
-### Catholic
+```{r}
 
-###
+abs2011 %>%
+  select(Christianity,
+         Catholic,
+         Buddhism,
+         Islam,
+         Judaism,
+         NoReligion) %>%
+  gather(key = "ReligionType",
+         value = "Percent") %>%
+  ggplot(data = .,
+         aes(x = reorder(ReligionType, -Percent),
+             y = Percent,
+             colour = ReligionType)) + 
+  geom_boxplot() + 
+  theme_minimal() + 
+  theme(legend.position = "none") +
+  coord_flip() + 
+  labs(x = "Religion")
+             
 
-**where do ... live**
+```
 
-- 
+##### Christianity by State
 
 
 ```{r}
 
+ggplot(data = abs2011,
+       aes(x = reorder(State, -Christianity),
+           y = Christianity,
+           colour = State)) + 
+  geom_boxplot() +
+  theme_minimal() +
+  theme(legend.position = "none") +
+  coord_flip() + 
+  labs(x = "State")
+  
+           
 
+```
+
+### Internet
+
+```{r}
+
+ggplot(data = abs2011,
+       aes(x = Internet)) +
+  geom_density(fill = "steelblue",
+               bw = "SJ",
+               colour = NA) + 
+  geom_rug(colour = "steelblue") + 
+  theme_minimal() + 
+  labs(x = "% of electorate with Internet") +
+  xlim(85, 100)
 
 ```
 
 
+### Internet by state
+
+```{r}
+
+ggplot(data = abs2011,
+       aes(x = reorder(State, -Internet),
+           y = Internet,
+           colour = State)) + 
+  geom_boxplot() +
+  theme_minimal() +
+  theme(legend.position = "none") +
+  coord_flip() + 
+  labs(x = "State")
+
+```
+
 
 # Spatial Mapping
-
-One of the really amazing things about this R package is that it contains the shapefiles of the electorates. These are coming soon!
-
