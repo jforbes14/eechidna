@@ -4,7 +4,7 @@
 \name{aec2013}
 \alias{aec2013}
 \title{2013 General election data for the House of Representatives}
-\format{An object of class \code{tbl_df} (inherits from \code{data.frame}) with 82398 rows and 28 columns.}
+\format{An object of class \code{tbl_df} (inherits from \code{data.frame}) with 82398 rows and 27 columns.}
 \usage{
 aec2013
 }
