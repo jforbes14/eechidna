@@ -1,7 +1,6 @@
-Package: echidnaR
+Package: eechidna
 Version: 0.1
-Title: Electoral Commission Handling Intelligent Data Nationally for Australia
-    using R
+Title: Exploring Election and Census Highly Informative Data Nationally for Australia
 Description: Data from 2013 Australian Federal Election and 2011 Australian
     Census for each House of Representatives electorate, along with some tools
     for visualizing and analysing the data.
@@ -25,6 +24,7 @@ Author:
     Ben Marwick, 
     Carson Sievert,
     Nicholas Tierney, 
+    Nathaniel Tomasetti, 
     Fang Zhou.
 Maintainer: TBD. <email@place.com> 
 LazyData: yes
