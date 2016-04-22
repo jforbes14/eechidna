@@ -138,11 +138,9 @@ kable(data_dictionary)
 
 ```
 
-### General usage
-
 So let's just look at some nice and simple plots.
 
-#### Age
+### Age
 
 
 ```{r}
@@ -168,7 +166,7 @@ abs2011 %>%
 
 ```
 
-#### Unemployment 
+### Unemployment 
 
 ```{r}
 
@@ -184,7 +182,7 @@ ggplot(data = abs2011,
 ```
 
 
-#### Unemployment by state
+### Unemployment by state
 
 ```{r}
 
@@ -202,7 +200,7 @@ ggplot(data = abs2011,
 ```
 
 
-#### Income
+### Income
 
 ```{r}
 
@@ -216,7 +214,7 @@ ggplot(data = abs2011,
   
 ```
 
-#### Income by State
+### Income by State
 
 ```{r}
 
@@ -249,7 +247,7 @@ ggplot(data = abs2011,
 
 ```
 
-#### Education
+### Education
 
 ##### Bachelor
 
@@ -297,7 +295,7 @@ ggplot(data = abs2011,
 ```
 
 
-#### Postgraduate
+### Postgraduate
 
 
 ```{r}
@@ -350,7 +348,7 @@ ggplot(data = ,
 
 ```
 
-#### Religion
+### Religion
 
 Let's look at all of the religions
 
@@ -397,7 +395,7 @@ ggplot(data = abs2011,
 
 ```
 
-#### Internet
+### Internet
 
 ```{r}
 
@@ -414,7 +412,7 @@ ggplot(data = abs2011,
 ```
 
 
-#### Internet by state
+### Internet by state
 
 ```{r}
 
@@ -432,9 +430,3 @@ ggplot(data = abs2011,
 
 
 # Spatial Mapping
-
-One of the really amazing things about this R package is that it contains the shapefiles of the electorates. These are coming soon!
-
-Note to writers:
-
-- It would be really great to look at visualisations that show **where do ... live**.
