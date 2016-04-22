@@ -29,9 +29,13 @@ knitr::opts_chunk$set(fig.width = 6,
 
 ```
 
+# Introduction
+
 `echidnaR` (Electoral Commission Handling Intelligent Data Nationally for Australia using R) is an R package that makes it easy to look at the data from the 2011 Australian Census, and the 2013 Federal Election.
 
-This vignette documents how to access the 2011 Census data, and what it contains.
+This vignette documents how to access the data from the 2011 Census and the 2013  Federal Election (House of Representatives). We show a few typical methods to explore the data.
+
+## 2011 Census data
 
 The data is loaded as `abs2011`. Let's look take a brief glimpse of the data.
 
@@ -134,11 +138,11 @@ kable(data_dictionary)
 
 ```
 
-# General usage
+### General usage
 
 So let's just look at some nice and simple plots.
 
-## Age
+#### Age
 
 
 ```{r}
@@ -164,7 +168,7 @@ abs2011 %>%
 
 ```
 
-## Unemployment 
+#### Unemployment 
 
 ```{r}
 
@@ -180,7 +184,7 @@ ggplot(data = abs2011,
 ```
 
 
-## Unemployment by state
+#### Unemployment by state
 
 ```{r}
 
@@ -198,7 +202,7 @@ ggplot(data = abs2011,
 ```
 
 
-## Income
+#### Income
 
 ```{r}
 
@@ -212,7 +216,7 @@ ggplot(data = abs2011,
   
 ```
 
-## Income by State
+#### Income by State
 
 ```{r}
 
@@ -245,9 +249,9 @@ ggplot(data = abs2011,
 
 ```
 
-## Education
+#### Education
 
-### Bachelor
+##### Bachelor
 
 ```{r}
 
@@ -264,7 +268,7 @@ ggplot(data = abs2011,
 
 ```
 
-### Bachelor by state
+##### Bachelor by state
 
 ```{r}
 
@@ -279,7 +283,7 @@ ggplot(data = abs2011,
 
 ```
 
-### Bachelor and income
+##### Bachelor and income
 
 ```{r}
 
@@ -293,7 +297,7 @@ ggplot(data = abs2011,
 ```
 
 
-## Postgraduate
+#### Postgraduate
 
 
 ```{r}
@@ -309,7 +313,7 @@ ggplot(data = abs2011,
 
 ```
 
-### Postgraduate and income
+##### Postgraduate and income
 
 ```{r}
 
@@ -322,7 +326,7 @@ ggplot(data = abs2011,
   
 ```
 
-### Comparing income across Bachelors and postgraduate
+##### Comparing income across Bachelors and postgraduate
 
 ```{r}
 
@@ -346,9 +350,9 @@ ggplot(data = ,
 
 ```
 
-## Religion
+#### Religion
 
-Let's look at al of the religions
+Let's look at all of the religions
 
 ```{r}
 
@@ -374,7 +378,7 @@ abs2011 %>%
 
 ```
 
-### Christianity by State
+##### Christianity by State
 
 
 ```{r}
@@ -393,7 +397,7 @@ ggplot(data = abs2011,
 
 ```
 
-## Internet
+#### Internet
 
 ```{r}
 
@@ -410,7 +414,7 @@ ggplot(data = abs2011,
 ```
 
 
-## Internet by state
+#### Internet by state
 
 ```{r}
 
