@@ -23,6 +23,21 @@ launchApp <- function() {
   ages <- longAbs[grepl("^Age", longAbs$variable), ]
   other <- longAbs[!grepl("^Age", longAbs$variable), ]
   
+  # election data: proportion of total votes for each party by electorate
+  parties_of_interest <- c("ALP", "GRN", "LP", "NP", "CLP", "LNQ")
+  
+  electorate_level_formal_vote_counts_by_major_party <- 
+    # formal vote
+    aec2013 %>% 
+    mutate(formal = BallotPosition != 999) %>% 
+    group_by(DivisionNm.x, PartyAb) %>% 
+    summarize(total_formal = sum(OrdinaryVotes[formal], na.rm=TRUE),
+              prop_informal  = sum(OrdinaryVotes[!formal]/(sum(OrdinaryVotes, na.rm=TRUE) * 100))) %>%
+    # each electorate sums to not quite 100%, but pretty close
+    mutate(prop_total_of_electorate = total_formal / sum(total_formal)) %>% 
+    rename(Electorate = DivisionNm.x) %>% 
+    filter(PartyAb %in% parties_of_interest) 
+  
   # retrieve selected electorates
   selector <- function() {
     d <- data.frame(
