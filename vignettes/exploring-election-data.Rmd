@@ -40,7 +40,7 @@ This vignette documents how to access the data from the 2013 Federal Election (H
 In the `echidnaR` package we have two election datasets. One is called `aec2013`, and each row represents a particular canditate at a particular polling place. We can and can inspect this data like this:
 
 ```{r load-read, message=FALSE, error = FALSE}
-library(echidnaR)
+library(eechidna)
 library(dplyr)
 # inspect the data frame
 glimpse(aec2013)
@@ -119,7 +119,7 @@ We can look at the proportion of voters for a particular party in each electorat
 ```{r plot_prop_particular_party}
 # summarise and compute proportion of votes for a particular party
 p <- aec2013 %>%
-  group_by(DivisionID.x, State) %>%
+  group_by(Electorate, State) %>%
   summarise(
     TotalVotes = sum(OrdinaryVotes),
     ProportionLabor = round(sum(OrdinaryVotes[PartyNm == "Australian Labor Party"]) / TotalVotes, 3)) %>%
@@ -128,7 +128,7 @@ p <- aec2013 %>%
  group_by(State) %>% 
   # send the data to the plotting function
   do(plots=ggplot(data = .) + 
-       aes(x = ProportionLabor, y = reorder(DivisionID.x, ProportionLabor), size = TotalVotes, label = State) +
+       aes(x = ProportionLabor, y = reorder(Electorate, ProportionLabor), size = TotalVotes, label = State) +
        geom_point() +
        ylab("Electorate") +
        labs(title = .$State) + 
@@ -150,7 +150,7 @@ do.call("grid.arrange", c(p$plots, ncol=nCol))
 ```{r}
 # Comparing party and candidate votes of several parties -------
 proportions <- aec2013 %>%
-  group_by(DivisionID.x) %>%
+  group_by(Electorate) %>%
   summarise(Prop_Labour = sum(OrdinaryVotes[PartyNm == "Australian Labor Party"]) / sum(OrdinaryVotes),
             Prop_Liberal = sum(OrdinaryVotes[PartyNm == "Liberal"]) / sum(OrdinaryVotes),
             Prop_Greens = sum(OrdinaryVotes[PartyNm == "The Greens"]) / sum(OrdinaryVotes))
