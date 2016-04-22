@@ -12,10 +12,9 @@ launchApp <- function() {
   data("abs2011", package = "echidnaR")
   data("aec2013", package = "echidnaR")
   data("hexDat", package = "echidnaR")
+  # a bit of data cleaning
   longAbs <- tidyr::gather(abs2011, variable, value, -ID, -Name, -State)
   longAbs$value <- as.numeric(longAbs$value)
-  # by default, no electorates
-  longAbs$selected_ <- FALSE
   longAbs <- longAbs[!is.na(longAbs$value),]
   longAbs$variable <- factor(
     longAbs$variable, 
@@ -24,13 +23,44 @@ launchApp <- function() {
   ages <- longAbs[grepl("^Age", longAbs$variable), ]
   other <- longAbs[!grepl("^Age", longAbs$variable), ]
   
-  electorates <- unique(abs2011$ELECT_DIV)
+  # retrieve selected electorates
+  selector <- function() {
+    d <- data.frame(
+      Name = hexDat$Name,
+      fill = rep("black", nrow(hexDat)),
+      stringsAsFactors = FALSE
+    )
+    function(nms, color = "red") {
+      if (missing(nms)) return(d)
+      d[d$Name %in% nms, "fill"] <- color
+      d <<- d
+      d
+    }
+  }
+  
+  selectDat <- selector()
+  
   ui <- fluidPage(
+    fluidRow(
+      column(
+        width = 2,
+        selectInput(
+          "color", "Select a color:", choices = c("red", "blue", "yellow", "purple")
+        )
+      ),
+      column(
+        width = 2,
+        checkboxInput(
+          "persist", "Persistant selections?", value = TRUE
+        )
+      )
+    ),
     fluidRow(
       column(
         width = 6,
         plotlyOutput("map")
       )
+      # TODO: electorate summary statistics
     ),
     fluidRow(
       column(
@@ -59,38 +89,52 @@ launchApp <- function() {
     
     # filter census data if brush is filled
     selectElect <- reactive({
-      if (is.null(input$ageBrush)) {
-        return(longAbs)
+      if (!input$persist) selectDat(unique(longAbs$Name), "black")
+      if (!is.null(input$ageBrush)) {
+        b <- input$ageBrush
+        idx <- (longAbs$variable %in% b$panelvar1) &
+          (b$xmin <= longAbs$value & longAbs$value <= b$xmax)
+        nms <- unique(longAbs[idx, "Name"])
+        isolate({
+          selectDat(nms, input$color)
+        })
       }
-      b <- input$ageBrush
-      idx1 <- longAbs$variable %in% b$panelvar1
-      idx2 <- b$xmin <= longAbs$value & longAbs$value <= b$xmax
-      unique(longAbs[idx1 & idx2, "Name"])
+      if (!is.null(input$denBrush)) {
+        b <- input$denBrush
+        idx <- (longAbs$variable %in% b$panelvar1) &
+          (b$xmin <= longAbs$value & longAbs$value <= b$xmax)
+        nms <- unique(longAbs[idx, "Name"])
+        isolate({
+          selectDat(nms, input$color)
+        })
+      }
+      selectDat()
     })
     
     output$ages <- renderPlot({
-      ages$selected_ <- ages$Name %in% selectElect()
-      p <- ggplot(ages, aes(value, fill = selected_)) + 
-        geom_dotplot(binwidth = 0.15, dotsize = 1.9)
-      p + 
-        facet_wrap(~variable, ncol = 1) + 
+      d <- dplyr::left_join(ages, selectElect(), by = "Name")
+      ggplot(d, aes(value, fill = fill)) + 
+        geom_dotplot(binwidth = 0.15, dotsize = 1.9) +
+        facet_wrap(~ variable, ncol = 1) + 
+        scale_fill_identity() +
         labs(x = NULL, y = NULL) + theme(legend.position = "none")
     })
     
     output$densities <- renderPlot({
-      other$selected_ <- other$Name %in% selectElect()
-      p <- ggplot(other, aes(value, colour = selected_)) + 
-        geom_dotplot(dotsize = 0.1)
-      p + 
+      d <- dplyr::left_join(other, selectElect(), by = "Name")
+      ggplot(d, aes(value, colour = fill)) + 
+        geom_dotplot(dotsize = 0.1) +
+        scale_colour_identity() +
         facet_wrap(~variable, scales = "free", ncol = 1) +
         labs(x = NULL, y = NULL) + theme(legend.position = "none")
     })
     
     output$map <- renderPlotly({
-      hexDat$selected_ <- hexDat$electorate %in% selectElect()
-      p <- ggplot(hexDat, aes(xcent, ycent, text = electorate, fill = selected_)) + 
+      d <- dplyr::left_join(hexDat, selectElect(), by = "Name")
+      p <- ggplot(d, aes(xcent, ycent, text = Name, fill = fill)) + 
         geom_hex(stat = "identity") + ggthemes::theme_map() +
         theme(legend.position = "none") + 
+        scale_fill_identity() +
         lims(x = c(-80, 8), y = c(-40, 50))
       ggplotly(p, tooltip = "text")
     })
