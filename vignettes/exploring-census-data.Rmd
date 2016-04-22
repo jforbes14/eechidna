@@ -58,7 +58,7 @@ Each column is now described here:
 data_dictionary <- data_frame(
   Variable = c(
     "ID",
-    "Name",
+    "Electorate",
     "State",
     "Population",
     "Area",
@@ -149,10 +149,10 @@ library(tidyr)
 library(ggplot2)
 
 abs2011 %>%
-  select(starts_with("Age"), Name) %>%
+  select(starts_with("Age"), Electorate) %>%
   gather(key = "Age",
          value = "Percent_in_electorate",
-         -Name) %>% 
+         -Electorate) %>% 
   ggplot(data = .,
          aes(x = Age,
              y = Percent_in_electorate,
