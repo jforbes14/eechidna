@@ -12,8 +12,8 @@ vignette: >
 
 ```{r setup, echo=FALSE}
 
-knitr::opts_chunk$set(fig.width = 5,
-                      fig.height = 5,
+knitr::opts_chunk$set(fig.width = 6,
+                      fig.height = 4,
                       fig.align='center',
                       dev = "png")
 
@@ -65,8 +65,8 @@ data_dictionary <- data_frame(
     "Islam",
     "Judaism",
     "NoReligion",
-    "Age0_4",
-    "Age5_14",
+    "Age00_04",
+    "Age05_14",
     "Age15_19",
     "Age20_24",
     "Age25_34",
@@ -157,7 +157,7 @@ abs2011 %>%
   theme_minimal() + 
   theme(legend.position = "none") +
   labs(y = "% in Electorate")
-             
+
 
 ```
 
@@ -167,7 +167,7 @@ abs2011 %>%
 
 ggplot(data = abs2011,
        aes(x = Unemployed)) + 
-  geom_density(fill = "salmon") + 
+  geom_density(fill = "salmon", bw="SJ") + 
   geom_rug(colour = "salmon") +
   theme_minimal()
 
@@ -357,7 +357,3 @@ ggplot(data = ,
 
 One of the really amazing things about this R package is that it contains the shapefiles of the electorates. These are coming soon!
 
-Some small gripes.
-
-- Variable names: Should they not be capitalised?
-- State names: These are capitalised for ACT and NSW, but not for Qld and Vic
