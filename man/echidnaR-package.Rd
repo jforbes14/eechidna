@@ -1,8 +1,8 @@
-\name{echidnaR-package}
-\alias{echidnaR-package}
-\alias{echidnaR}
+\name{eechidna-package}
+\alias{eechidna-package}
+\alias{eechidna}
 \docType{package}
-\title{Electoral Commission Handling Intelligent Data Nationally for Australia using R}
+\title{Exploring Election and Census Highly Informative Data Nationally for Australia}
 
 \description{Data from 2013 Australian Federal Election and 2011 Australian
     Census for each House of Representatives electorate, along with some tools
@@ -15,7 +15,8 @@
     Rob Hyndman, 
     Ben Marwick, 
     Carson Sievert,
-    Nicholas Tierney, 
+    Nicholas Tierney,
+    Nathaniel Tomasetti, 
     Fang Zhou.
 }
 

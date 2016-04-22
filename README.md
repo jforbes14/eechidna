@@ -1,14 +1,13 @@
-#echidnaR
+#eechidna
 
-##Electoral Commission Handling Intelligent Data Nationally for Australia using R
+##Exploring Election and Census Highly Informative Data Nationally for Australia
 
-The R package *echidnaR* provides tools for visualizing and analysing data for
-the 2011 Australian federal election. 
+The R package *eechidna* provides data from the 2013 Australian Federal Election and 2011 Australian Census for each House of Representatives electorate, along with some tools for visualizing and analysing the data. 
 
 ## Usage
 
 ```s
-library(echidnaR)
+library(eechidna)
 ```
 
 ## License
