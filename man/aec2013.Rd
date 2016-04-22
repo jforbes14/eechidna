@@ -4,7 +4,7 @@
 \name{aec2013}
 \alias{aec2013}
 \title{2013 General election data for the House of Representatives}
-\format{A data frame with 150 rows with the following variables:}
+\format{An object of class \code{tbl_df} (inherits from \code{data.frame}) with 82398 rows and 28 columns.}
 \usage{
 aec2013
 }
@@ -13,18 +13,8 @@ A dataset containing vote counts, candidate names, polling place locations,
 and other national, state, divisional and polling place results for the
 House of Representatives from the 2013 Australian federal election. 
 The data were obtained from the Australian Electoral Commission, and downloaded 
-from \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm}.
-}
-\examples{
-data(aec2013)
-data(nat_map)
-library(ggplot2)
-library(ggthemes)
-ggplot() +
-  geom_path(aes(long, lat, group=group), data=nat_map) +
-  geom_point(aes(Longitude, Latitude), colour="darkorange",      
-    data=aec2013, alpha=0.5) + 
-  theme_map()
+from \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm} and 
+\url{http://www.aec.gov.au/elections/federal_elections/2013/downloads.htm}.
 }
 \keyword{datasets}
 

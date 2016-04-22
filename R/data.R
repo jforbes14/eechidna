@@ -106,3 +106,16 @@
 #'   theme_map()
 "nat_map"
 
+
+#' Electorate hexagon data in a tidy form
+#' @seealso Thomas Lumley
+#' @references Thomas Lumley
+#' @format A data frame
+#' @examples 
+#' data(hexDat)
+#' library(plotly)
+#' p <- ggplot(hexDat, aes(xcent, ycent, text = electorate)) + 
+#'   geom_hex(stat = "identity") + 
+#'   lims(x=c(-80, 8), y=c(-40, 50))
+#' ggplotly(p, tooltip = "text")
+"hexDat"
