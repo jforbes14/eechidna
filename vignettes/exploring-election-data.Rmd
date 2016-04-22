@@ -1,5 +1,5 @@
 ---
-title: "Using echidnaR: 2011 Census data"
+title: "Using echidnaR: 2013 Election data"
 author: "Di Cook, Heike Hofmann, Rob Hyndman, Ben Marwick, Carson Sievert, Nicholas Tierney, Fang Zhou."
 date: "`r Sys.Date()`"
 output: 
@@ -40,7 +40,7 @@ This vignette documents how to access the data from the 2013 Federal Election (H
 In the `echidnaR` package we have two election datasets. One is called `aec2013`, and each row represents a particular canditate at a particular polling place. We can and can inspect this data like this:
 
 ```{r load-read, message=FALSE, error = FALSE}
-library(echidnaR)
+library(eechidna)
 library(dplyr)
 # inspect the data frame
 glimpse(aec2013)
@@ -147,4 +147,14 @@ do.call("grid.arrange", c(p$plots, ncol=nCol))
 
 ```
 
+```{r}
+# Comparing party and candidate votes of several parties -------
+proportions <- aec2013 %>%
+  group_by(Electorate) %>%
+  summarise(Prop_Labour = sum(OrdinaryVotes[PartyNm == "Australian Labor Party"]) / sum(OrdinaryVotes),
+            Prop_Liberal = sum(OrdinaryVotes[PartyNm == "Liberal"]) / sum(OrdinaryVotes),
+            Prop_Greens = sum(OrdinaryVotes[PartyNm == "The Greens"]) / sum(OrdinaryVotes))
+library(GGally)
+ggpairs(proportions, columns = 2:ncol(proportions)) + theme_bw()
 
+```

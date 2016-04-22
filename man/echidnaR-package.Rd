@@ -13,6 +13,7 @@
     Di Cook, 
     Heike Hofmann, 
     Rob Hyndman, 
+    Thomas Lumley,
     Ben Marwick, 
     Carson Sievert,
     Nicholas Tierney,
