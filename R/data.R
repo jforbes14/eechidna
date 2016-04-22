@@ -109,7 +109,7 @@
 #'     \item OrdinaryVotes: Number of ordinates votes cast at the polling place for the candidate     
 #'     \item State: Abbreviation for state name             
 #'     }
-"aec2013_electorate"
+"aec2013_electorates"
 
 
 
@@ -133,6 +133,30 @@
 #'   expand_limits(x=nat_map$long, y=nat_map$lat) + 
 #'   theme_map()
 "nat_map"
+
+
+#' Data of the Australian Electorate from 2013
+#'
+#' A dataset containing some demographic information for each of the 150 Australian electorates.
+#' The data were obtained from the Australian Electoral Commission, and downloaded 
+#' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
+#' The data is published 
+#' @format A data frame with 150 rows with the following variables:
+#' \itemize{
+#'     \item id: numeric identifier that links the electorate with the corresponding polygon in `nat_map`.
+#'     \item ELECT_DIV: Electorate division name   
+#'     \item STATE: abbreviation of the state name
+#'     \item NUMCCDS: AEC variable that might be filled with meaning or a description down the road
+#'     \item AREA_SQKM: combined square kilometers of each electorate
+#' }
+#' @examples 
+#' data(nat_data)
+#' library(ggplot2)
+#' ggplot(aes(map_id=region), data=subset(abs2011, region %in% both)) +
+#'   geom_map(aes(fill=MedianIncome), map=subset(nat_map, region %in% both)) +
+#'   expand_limits(x=nat_map$long, y=nat_map$lat) + 
+#'   theme_map()
+"nat_data"
 
 
 #' Electorate hexagon data in a tidy form
