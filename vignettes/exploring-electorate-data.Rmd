@@ -1,6 +1,6 @@
 ---
 title: "Using echidnaR"
-author: "Di Cook, Heike Hofmann, Rob Hyndman, Ben Marwick, Carson Sievert, Nicholas Tierney, Fang Zhou."
+author: "Rob Hyndman, Di Cook, Heike Hoffman, Ben Marwick, Carson Sievert, Fang Zhou, Nicholas Tierney."
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -8,6 +8,16 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
+
+
+```{r setup}
+
+knitr::opts_chunk$set(fig.width = 5,
+                      fig.height = 5,
+                      fig.align='center',
+                      dev = "png")
+
+```
 
 
 ```{r}
@@ -49,6 +59,11 @@ data_dictionary <- data_frame(
     "Unemployed",
     "Bachelor",
     "Postgraduate",
+    "Christianity",
+    "Catholic",
+    "Buddhist",
+    "Islam",
+    "Judaism",
     "NoReligion",
     "Age0_4",
     "Age5_14",
@@ -67,7 +82,9 @@ data_dictionary <- data_frame(
     "OtherLanguageHome",
     "Married",
     "DeFacto",
-    "FamilyRatio"
+    "FamilyRatio",
+    "Internet", 
+    "NotOwned"
     ), 
   Details = c(
     "Commonwealth Electoral District identifier",
@@ -79,6 +96,11 @@ data_dictionary <- data_frame(
     "Percentage of people unemployed",
     "Percentage of people whose highest qualification is a Bachelor degree",
     "Percentage of people whose highest qualification is a postgraduate degree",
+    "Percentage of people affiliated with the Christian religion (of all denominations)",
+    "Percentage of people affiliated with the Catholic denomimation.",
+    "Percentage of people affiliated with the Buddhist religion.",
+    "Percentage of people affiliated with the Islam religion.",
+    "Percentageof people affiliated with the Jewish religion. ",
     "Percentage of people with no religion.",
     "Percentage of people aged 0-4.",
     "Percentage of people aged 5-9.",
@@ -97,7 +119,9 @@ data_dictionary <- data_frame(
     "Percentage of people who speak a language other than English at home",
     "Percentage of people who are married",
     "Percentage of people who are in a de facto marriage",
-    "Total number of families to total number of people (times 100).")
+    "Total number of families to total number of people (times 100)",
+    "Percentage of people with home internet",
+    "Percentage of dwellings not owned (either outright or with a mortgage)")
 ) # close data_frame
 ```
 
@@ -111,7 +135,8 @@ kable(data_dictionary)
 
 So let's just look at some nice and simple plots.
 
-Let's see what our age population is like
+## Age
+
 
 ```{r}
 
@@ -126,10 +151,12 @@ abs2011 %>%
   ggplot(data = .,
          aes(x = Age,
              y = Percent_in_electorate,
-             fill = Age)) +
+             colour = Age)) +
   geom_boxplot() + 
   coord_flip() + 
-  theme(legend.position = "none")
+  theme_minimal() + 
+  theme(legend.position = "none") +
+  labs(y = "% in Electorate")
              
 
 ```
@@ -141,7 +168,8 @@ abs2011 %>%
 ggplot(data = abs2011,
        aes(x = Unemployed)) + 
   geom_density(fill = "salmon") + 
-  geom_rug(colour = "salmon")
+  geom_rug(colour = "salmon") +
+  theme_minimal()
 
 ```
 
@@ -153,7 +181,7 @@ ggplot(data = abs2011,
 ggplot(data = abs2011,
        aes(x = reorder(State, -Unemployed),
            y = Unemployed,
-           fill = State)) + 
+           colour = State)) + 
   geom_boxplot() + 
   labs(x = "State",
        y = "% Unemployment") + 
@@ -249,8 +277,6 @@ ggplot(data = abs2011,
            y = MedianIncome)) + 
   geom_point() + 
   theme_minimal()
-  
-           
 
 ```
 
@@ -305,6 +331,26 @@ ggplot(data = ,
   #       legend.direction = "vertical")
 
 ```
+
+## Religion
+
+### Christian
+
+### Catholic
+
+###
+
+**where do ... live**
+
+- 
+
+
+```{r}
+
+
+
+```
+
 
 
 # Spatial Mapping
