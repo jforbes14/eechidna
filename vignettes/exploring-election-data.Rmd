@@ -1,0 +1,38 @@
+---
+title: "Using echidnaR: 2011 Census data"
+author: "Di Cook, Heike Hofmann, Rob Hyndman, Ben Marwick, Carson Sievert, Nicholas Tierney, Fang Zhou."
+date: "`r Sys.Date()`"
+output: 
+    rmarkdown::html_vignette:
+        toc: true
+
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r setup, echo=FALSE}
+
+knitr::opts_chunk$set(fig.width = 6,
+                      fig.height = 4,
+                      fig.align='center',
+                      dev = "png")
+
+```
+
+
+```{r, echo=FALSE}
+
+# load_all(pkg = "echidnaR/")
+
+```
+
+# Introduction
+
+`echidnaR` (Electoral Commission Handling Intelligent Data Nationally for Australia using R) is an R package that makes it easy to look at the data from the 2011 Australian Census, and the 2013 Federal Election.
+
+This vignette documents how to access the data from the 2013 Federal Election. We show a few typical methods to explore the data.
+
+
