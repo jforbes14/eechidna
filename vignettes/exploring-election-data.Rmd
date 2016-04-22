@@ -1,5 +1,5 @@
 ---
-title: "Using echidnaR: 2011 Census data"
+title: "Using echidnaR: 2013 Election data"
 author: "Di Cook, Heike Hofmann, Rob Hyndman, Ben Marwick, Carson Sievert, Nicholas Tierney, Fang Zhou."
 date: "`r Sys.Date()`"
 output: 
@@ -40,9 +40,9 @@ This vignette documents how to access the data from the 2013 Federal Election (H
 In the `echidnaR` package we have two election datasets. One is called `aec2013`, and each row represents a particular canditate at a particular polling place. We can and can inspect this data like this:
 
 ```{r load-read, message=FALSE, error = FALSE}
-library(echidnaR)
+library(eechidna)
 library(dplyr)
-
+# inspect the data frame
 glimpse(aec2013)
 
 ```
@@ -116,18 +116,17 @@ ggplot(total_votes_for_parties, aes(reorder(PartyNm, total_votes), total_votes )
 We can look at the proportion of voters for a particular party in each electorate, grouped by each state. This plot was inspired by [Peter Ellis's](https://peterellisblog.com/) work on the NZ election data. 
 
 
-```{r}
-# summarise and compute proportion of votes for a particular 
+```{r plot_prop_particular_party}
+# summarise and compute proportion of votes for a particular party
 p <- aec2013 %>%
-  group_by(Electorate) %>%
+  group_by(Electorate, State) %>%
   summarise(
     TotalVotes = sum(OrdinaryVotes),
     ProportionLabor = round(sum(OrdinaryVotes[PartyNm == "Australian Labor Party"]) / TotalVotes, 3)) %>%
   filter(TotalVotes != 0) %>% 
   arrange(desc(ProportionLabor)) %>% 
-  left_join(polling_place_location, by = c("DivisionNm.x" = "DivisionNm")) %>% 
-  # str
-  group_by(State) %>% 
+ group_by(State) %>% 
+  # send the data to the plotting function
   do(plots=ggplot(data = .) + 
        aes(x = ProportionLabor, y = reorder(Electorate, ProportionLabor), size = TotalVotes, label = State) +
        geom_point() +
@@ -135,9 +134,10 @@ p <- aec2013 %>%
        labs(title = .$State) + 
        scale_x_continuous("Proportion voting Labor Party", label = percent) +
        scale_size("Number of\nvotes cast", label = comma)  +
-       theme_bw())
+       theme_bw() +
+       theme(text = element_text(size=10)))
 
-
+# draw the plots
 library(gridExtra)
 n <- length(p$plots)
 nCol <- floor(sqrt(n))
@@ -147,4 +147,14 @@ do.call("grid.arrange", c(p$plots, ncol=nCol))
 
 ```
 
+```{r}
+# Comparing party and candidate votes of several parties -------
+proportions <- aec2013 %>%
+  group_by(Electorate) %>%
+  summarise(Prop_Labour = sum(OrdinaryVotes[PartyNm == "Australian Labor Party"]) / sum(OrdinaryVotes),
+            Prop_Liberal = sum(OrdinaryVotes[PartyNm == "Liberal"]) / sum(OrdinaryVotes),
+            Prop_Greens = sum(OrdinaryVotes[PartyNm == "The Greens"]) / sum(OrdinaryVotes))
+library(GGally)
+ggpairs(proportions, columns = 2:ncol(proportions)) + theme_bw()
 
+```
