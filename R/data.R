@@ -8,7 +8,7 @@
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
 #'   \item ID: Commonwealth Electoral District identifier.
-#'   \item Name: Name of electorate
+#'   \item Electorate: Name of electorate
 #'   \item State: State containing electorate.
 #'   \item Population: Total population of electorate.
 #'   \item Area: Area of electorate in square kilometres.
@@ -56,9 +56,8 @@
 #' 
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
-#'     \item StateAb: Abbreviation for State name           
-#'     \item DivisionID.x: Electoral division ID    
-#'     \item DivisionNm.x:  Electoral division name   
+#'     \item ID: Electoral division ID    
+#'     \item Electorate:  Electoral division name   
 #'     \item PollingPlaceID: Polling place ID  
 #'     \item PollingPlace: Polling place name     
 #'     \item CandidateID: Candidate ID       
@@ -71,7 +70,7 @@
 #'     \item PartyNm: Political party name           
 #'     \item OrdinaryVotes: Number of ordinates votes cast at the polling place for the candidate     
 #'     \item Swing:             
-#'     \item State: State name             
+#'     \item State: Abbreviation for state name             
 #'     \item PollingPlaceTypeID:
 #'     \item Premises Nm:        
 #'     \item PremisesAddress1:  
@@ -82,6 +81,8 @@
 #'     \item PremisesPostCode:  
 #'     \item Latitude:          
 #'     \item Longitude:
+#'     \item uid
+#'     }
 "aec2013"
 
 
