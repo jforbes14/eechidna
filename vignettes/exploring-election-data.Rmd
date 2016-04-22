@@ -37,7 +37,7 @@ This vignette documents how to access the data from the 2013 Federal Election (H
 
 ## 2013 Federal Election House of Representatives data
 
-In the `echidnaR` package the election dataset is called `aec2013`, and can be inspected like this:
+In the `echidnaR` package we have two election datasets. One is called `aec2013`, and each row represents a particular canditate at a particular polling place. We can and can inspect this data like this:
 
 ```{r load-read, message=FALSE, error = FALSE}
 library(echidnaR)
@@ -48,52 +48,103 @@ glimpse(aec2013)
 ```
 
 
-We can see that the data contains `r nrow(aec2013)` rows and `r ncol(aec2013)` columns. 
+We can see that the data contains `r nrow(aec2013)` rows and `r ncol(aec2013)` columns.
 
-Each row represents one canditate at one polling place. We obtained the data from http://results.aec.gov.au/ . This package incorporates data that is
-© Commonwealth of Australia (Australian Electoral Commission) 2016.
+The other dataset is `aec2013_electorate` and is the results of the election aggregated for each electorate. Each row represents a particular candidate at a particular electorate.
 
-The table below describes the columns in the election data:
+ We obtained these data from http://results.aec.gov.au/ . This package incorporates data that is © Commonwealth of Australia (Australian Electoral Commission) 2016.
+
+<!-- The table below describes the columns in the `aec2013` data: -->
 
 ```{r make-data-dictionary, include = FALSE}
 
-data_dictionary <- data_frame(
-  Variable = c(
- "StateAb",            "DivisionID.x",       "DivisionNm.x",      
- "PollingPlaceID",     "PollingPlace",       "CandidateID",       
- "Surname",            "GivenNm",            "BallotPosition",    
- "Elected",            "HistoricElected",    "PartyAb",           
- "PartyNm",            "OrdinaryVotes",      "Swing",             
- "State",              "DivisionNm.y",       "PollingPlaceTypeID",
- "PremisesNm",         "PremisesAddress1",   "PremisesAddress2",  
- "PremisesAddress3",   "PremisesSuburb",     "PremisesStateAb",   
- "PremisesPostCode",   "Latitude",           "Longitude",         
- "uid"   
-  ), 
-  Details = c(
-    "Commonwealth Electoral District identifier",
-    'xxx')
-    
-  ) # close data_frame
+# data_dictionary_1 <- data_frame(
+#   Variable = c(
+#  "StateAb",            "DivisionID.x",       "DivisionNm.x",      
+#  "PollingPlaceID",     "PollingPlace",       "CandidateID",       
+#  "Surname",            "GivenNm",            "BallotPosition",    
+#  "Elected",            "HistoricElected",    "PartyAb",           
+#  "PartyNm",            "OrdinaryVotes",      "Swing",             
+#  "State",              "DivisionNm.y",       "PollingPlaceTypeID",
+#  "PremisesNm",         "PremisesAddress1",   "PremisesAddress2",  
+#  "PremisesAddress3",   "PremisesSuburb",     "PremisesStateAb",   
+#  "PremisesPostCode",   "Latitude",           "Longitude",         
+#  "uid"   
+#   ), 
+#   Details = c(
+#     "Commonwealth Electoral District identifier",
+#     'xxx')
+#     
+#   ) # close data_frame
 ```
 
 
 ```{r display-data-dictionary, echo = FALSE}
-library(knitr)
-kable(data_dictionary)
+# library(knitr)
+# kable(data_dictionary_1)
 
 ```
 
-We can summarise the data to discover some basic details about the election.
+We can summarise the data to discover some basic details about the election. Here we can find the total number of ordinary votes (not including postal votes, etc.) for each party:
 
 ```{r total_votes_for_parties}
-
-aec2013 %>% 
+total_votes_for_parties <- aec2013 %>% 
   select(PartyNm, OrdinaryVotes) %>% 
   group_by(PartyNm) %>% 
   summarise(total_votes = sum(OrdinaryVotes)) %>% 
   ungroup() %>%
   arrange(desc(total_votes))
+# inspect 
+total_votes_for_parties
+```
+
+And we can plot this like so:
+
+```{r plot_total_votes_for_parties,  fig.height = 6}
+library(ggplot2)
+library(scales)
+ggplot(total_votes_for_parties, aes(reorder(PartyNm, total_votes), total_votes )) +
+  geom_point() + 
+  coord_flip() + 
+  scale_y_continuous(labels = comma) +
+  theme_bw() +
+  ylab("Total ordinary votes") +
+  xlab("Party") +
+  theme(text = element_text(size=10))
+```
+
+We can look at the proportion of voters for a particular party in each electorate, grouped by each state. This plot was inspired by [Peter Ellis's](https://peterellisblog.com/) work on the NZ election data. 
+
+
+```{r}
+# summarise and compute proportion of votes for a particular 
+p <- aec2013 %>%
+  group_by(Electorate) %>%
+  summarise(
+    TotalVotes = sum(OrdinaryVotes),
+    ProportionLabor = round(sum(OrdinaryVotes[PartyNm == "Australian Labor Party"]) / TotalVotes, 3)) %>%
+  filter(TotalVotes != 0) %>% 
+  arrange(desc(ProportionLabor)) %>% 
+  left_join(polling_place_location, by = c("DivisionNm.x" = "DivisionNm")) %>% 
+  # str
+  group_by(State) %>% 
+  do(plots=ggplot(data = .) + 
+       aes(x = ProportionLabor, y = reorder(Electorate, ProportionLabor), size = TotalVotes, label = State) +
+       geom_point() +
+       ylab("Electorate") +
+       labs(title = .$State) + 
+       scale_x_continuous("Proportion voting Labor Party", label = percent) +
+       scale_size("Number of\nvotes cast", label = comma)  +
+       theme_bw())
+
+
+library(gridExtra)
+n <- length(p$plots)
+nCol <- floor(sqrt(n))
+do.call("grid.arrange", c(p$plots, ncol=nCol))
+
+
+
 ```
 
 

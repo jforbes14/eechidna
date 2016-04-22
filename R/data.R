@@ -54,7 +54,7 @@
 #' from \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm} and 
 #' \url{http://www.aec.gov.au/elections/federal_elections/2013/downloads.htm}.
 #' 
-#' @format A data frame with 150 rows with the following variables:
+#' @format A data frame with the following variables:
 #' \itemize{
 #'     \item ID: Electoral division ID    
 #'     \item Electorate:  Electoral division name   
@@ -94,7 +94,7 @@
 #' from \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm} and 
 #' \url{http://www.aec.gov.au/elections/federal_elections/2013/downloads.htm}.
 #' 
-#' @format A data frame with 150 rows with the following variables:
+#' @format A data frame with the following variables:
 #' \itemize{
 #'     \item ID: Electoral division ID    
 #'     \item Electorate:  Electoral division name   
