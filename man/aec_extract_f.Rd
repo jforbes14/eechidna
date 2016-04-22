@@ -20,7 +20,7 @@ cartogram we need to extract out the cities, expand these
 with dorling independently. This function does the extraction.
 }
 \examples{
-data(nat_map.rda)
+data(nat_map)
 data(nat_data)
 aec_data_syd <- aec_extract(nat_data, expand=list(c(2,3)))
 }
