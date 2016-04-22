@@ -16,7 +16,7 @@ Add the cartogram locations as new variables to original data
 and make any of these that were not made equal to the original centroids
 }
 \examples{
-data(nat_map.rda)
+data(nat_map)
 data(nat_data)
 cities <- list(c(151.2, -33.8), # Sydney
 c(153.0, -27.5), # Brisbane

@@ -33,6 +33,67 @@ knitr::opts_chunk$set(fig.width = 6,
 
 `echidnaR` (Electoral Commission Handling Intelligent Data Nationally for Australia using R) is an R package that makes it easy to look at the data from the 2011 Australian Census, and the 2013 Federal Election.
 
-This vignette documents how to access the data from the 2013 Federal Election. We show a few typical methods to explore the data.
+This vignette documents how to access the data from the 2013 Federal Election (House of Representatives (first preferences only). In this vignette we show a few typical methods to explore the data.
+
+## 2013 Federal Election House of Representatives data
+
+In the `echidnaR` package the election dataset is called `aec2013`, and can be inspected like this:
+
+```{r load-read, message=FALSE, error = FALSE}
+library(echidnaR)
+library(dplyr)
+
+glimpse(aec2013)
+
+```
+
+
+We can see that the data contains `r nrow(aec2013)` rows and `r ncol(aec2013)` columns. 
+
+Each row represents one canditate at one polling place. We obtained the data from http://results.aec.gov.au/ . This package incorporates data that is
+© Commonwealth of Australia (Australian Electoral Commission) 2016.
+
+The table below describes the columns in the election data:
+
+```{r make-data-dictionary, include = FALSE}
+
+data_dictionary <- data_frame(
+  Variable = c(
+ "StateAb",            "DivisionID.x",       "DivisionNm.x",      
+ "PollingPlaceID",     "PollingPlace",       "CandidateID",       
+ "Surname",            "GivenNm",            "BallotPosition",    
+ "Elected",            "HistoricElected",    "PartyAb",           
+ "PartyNm",            "OrdinaryVotes",      "Swing",             
+ "State",              "DivisionNm.y",       "PollingPlaceTypeID",
+ "PremisesNm",         "PremisesAddress1",   "PremisesAddress2",  
+ "PremisesAddress3",   "PremisesSuburb",     "PremisesStateAb",   
+ "PremisesPostCode",   "Latitude",           "Longitude",         
+ "uid"   
+  ), 
+  Details = c(
+    "Commonwealth Electoral District identifier",
+    'xxx')
+    
+  ) # close data_frame
+```
+
+
+```{r display-data-dictionary, echo = FALSE}
+library(knitr)
+kable(data_dictionary)
+
+```
+
+We can summarise the data to discover some basic details about the election.
+
+```{r total_votes_for_parties}
+
+aec2013 %>% 
+  select(PartyNm, OrdinaryVotes) %>% 
+  group_by(PartyNm) %>% 
+  summarise(total_votes = sum(OrdinaryVotes)) %>% 
+  ungroup() %>%
+  arrange(desc(total_votes))
+```
 
 
