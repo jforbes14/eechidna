@@ -75,17 +75,11 @@ launchApp <- function() {
           "densities", height = 2000, brush = brushOpts("denBrush", direction = "x")
         )
       )
-    ),
-    verbatimTextOutput("select")
+    )
   )
   
   
   server <- function(input, output) {
-    
-    output$select <- renderPrint({
-      #selectElect()
-      input$ageBrush
-    })
     
     # filter census data if brush is filled
     selectElect <- reactive({
