@@ -113,6 +113,38 @@ ggplot(total_votes_for_parties, aes(reorder(PartyNm, total_votes), total_votes )
   theme(text = element_text(size=10))
 ```
 
-We can look at the proportion of voters for a particular party in each electorate, grouped by each state. This plot was inspired by [Peter Ellis's]() work on the NZ election data. 
+We can look at the proportion of voters for a particular party in each electorate, grouped by each state. This plot was inspired by [Peter Ellis's](https://peterellisblog.com/) work on the NZ election data. 
+
+
+```{r}
+# summarise and compute proportion of votes for a particular 
+p <- aec2013 %>%
+  group_by(Electorate) %>%
+  summarise(
+    TotalVotes = sum(OrdinaryVotes),
+    ProportionLabor = round(sum(OrdinaryVotes[PartyNm == "Australian Labor Party"]) / TotalVotes, 3)) %>%
+  filter(TotalVotes != 0) %>% 
+  arrange(desc(ProportionLabor)) %>% 
+  left_join(polling_place_location, by = c("DivisionNm.x" = "DivisionNm")) %>% 
+  # str
+  group_by(State) %>% 
+  do(plots=ggplot(data = .) + 
+       aes(x = ProportionLabor, y = reorder(Electorate, ProportionLabor), size = TotalVotes, label = State) +
+       geom_point() +
+       ylab("Electorate") +
+       labs(title = .$State) + 
+       scale_x_continuous("Proportion voting Labor Party", label = percent) +
+       scale_size("Number of\nvotes cast", label = comma)  +
+       theme_bw())
+
+
+library(gridExtra)
+n <- length(p$plots)
+nCol <- floor(sqrt(n))
+do.call("grid.arrange", c(p$plots, ncol=nCol))
+
+
+
+```
 
 
