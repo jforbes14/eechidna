@@ -166,7 +166,7 @@
 #' @examples 
 #' data(hexDat)
 #' library(plotly)
-#' p <- ggplot(hexDat, aes(xcent, ycent, text = electorate)) + 
+#' p <- ggplot(hexDat, aes(xcent, ycent, text = Electorate)) + 
 #'   geom_hex(stat = "identity") + 
 #'   lims(x=c(-80, 8), y=c(-40, 50))
 #' ggplotly(p, tooltip = "text")
