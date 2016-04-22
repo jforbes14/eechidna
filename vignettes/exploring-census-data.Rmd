@@ -41,7 +41,7 @@ glimpse(abs2011)
 
 ```
 
-Here we see that we have 150 observations and 28 variables.
+Here we see that we have 150 observations and 35 variables.
 
 Each observation is data pertaining to a particular federal electorate as described by http://www.aec.gov.au/profiles/.
 
