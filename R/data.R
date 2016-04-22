@@ -81,7 +81,7 @@
 #'     \item PremisesStateAb:   
 #'     \item PremisesPostCode:  
 #'     \item Latitude:          
-#'     \item Longitude:S
+#'     \item Longitude:
 "aec2013"
 
 
