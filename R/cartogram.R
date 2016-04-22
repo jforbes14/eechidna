@@ -10,8 +10,9 @@
 #' @param expand how large a chunk to cut out
 #'
 #' @examples
-#' load("AECdata/nat_map.rda")
-#' aec_data_syd <- aec_extract(aec_data, expand=list(c(2,3)))
+#' data(nat_map.rda)
+#' data(nat_data)
+#' aec_data_syd <- aec_extract(nat_data, expand=list(c(2,3)))
 aec_extract_f <- function(aec_data, ctr=c(151.2, -33.8),
                           expand=c(3,4.5), ...) {
   aec_data_sub <- aec_data %>% filter(long_c > ctr[1]-expand[1]  &
@@ -31,8 +32,9 @@ aec_extract_f <- function(aec_data, ctr=c(151.2, -33.8),
 #' @param ... arguments to dorling function
 #'
 #' @examples
-#' load("AECdata/nat_map.rda")
-#' aec_data_syd <- aec_extract(aec_data, expand=list(c(2,3)))
+#' data(nat_map.rda)
+#' data(nat_data)
+#' aec_data_syd <- aec_extract(nat_data, expand=list(c(2,3)))
 #' aec_data_dor <- aec_carto(aec_data_syd, expand=list(c(3,4.5)))
 aec_carto_f <-function(aec_data_sub, polygon.vertex=6, name.text=TRUE,
                        dist.ratio=dist.ratio, iteration=100,
@@ -57,7 +59,8 @@ aec_carto_f <-function(aec_data_sub, polygon.vertex=6, name.text=TRUE,
 #' @param aec_cartocartogram centers
 #'
 #' @examples
-#' load("AECdata/nat_map.rda")
+#' data(nat_map.rda)
+#' data(nat_data)
 #' cities <- list(c(151.2, -33.8), # Sydney
 #' c(153.0, -27.5), # Brisbane
 #' c(145.0, -37.8), # Melbourne
@@ -65,11 +68,11 @@ aec_carto_f <-function(aec_data_sub, polygon.vertex=6, name.text=TRUE,
 #' c(115.9, -32.0)) # Perth
 #' expand <- list(c(2,3), c(2,3), c(2.5,4), c(3,5), c(5,8))
 #' aec_carto <- purrr::map2(.x=cities, .y=expand,
-#' .f=aec_extract_f, aec_data=aec_data) %>%
+#' .f=aec_extract_f, aec_data=nat_data) %>%
 #'   purrr::map_df(aec_carto_f) %>%
 #'     mutate(region=as.integer(as.character(region))) %>%
 #'       rename(id=region)
-#'       aec_cart_join <- aec_carto_join_f(aec_data, aec_carto)
+#'       aec_cart_join <- aec_carto_join_f(nat_data, aec_carto)
 #' ggplot(data=nat_map) +
 #'   geom_polygon(aes(x=long, y=lat, group=group, order=order),
 #'   fill="grey90", colour="white") +
