@@ -4,6 +4,8 @@
 
 The R package *eechidna* provides data from the 2013 Australian Federal Election and 2011 Australian Census for each House of Representatives electorate, along with some tools for visualizing and analysing the data. 
 
+This package was developed during the rOpenSci auunconf event in Brisbane, Queensland, during 21-22 April 2016. 
+
 ## How to install
 
 You can install the package from github using `devtools`:
