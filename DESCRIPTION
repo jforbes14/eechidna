@@ -29,7 +29,7 @@ Author:
     Nicholas Tierney, 
     Nathaniel Tomasetti, 
     Fang Zhou.
-Maintainer: TBD. <email@place.com> 
+Maintainer: Ben Marwick <benmarwick@gmail.com> 
 LazyData: yes
 ByteCompile: TRUE
 License: GPL (>= 2)
