@@ -27,24 +27,26 @@ knitr::opts_chunk$set(fig.width = 6,
 
 # Introduction
 
-`echidnaR` (Electoral Commission Handling Intelligent Data Nationally for Australia using R) is an R package that makes it easy to look at the data from the 2011 Australian Census, and the 2013 Federal Election.
+`eechidna` (Electoral Commission Handling Intelligent Data Nationally for Australia) is an R package that makes it easy to look at the data from the 2011 Australian Census, and the 2013 Federal Election.
 
-This vignette documents how to access the data from the 2013 Federal Election (House of Representatives (first preferences only). In this vignette we show a few typical methods to explore the data, inspired by [Peter Ellis's](https://peterellisblog.com/) work on NZ election data. 
+This vignette documents how to access the data from the 2013 Federal Election (House of Representatives (first preferences only). In this vignette we show a few typical methods to explore the data, inspired by [Peter Ellis's](https://github.com/ellisp/) work on NZ election data. 
 
 ## 2013 Federal Election House of Representatives data
 
-In the `echidnaR` package we have two election datasets. One is called `aec2013`, and each row represents a particular canditate at a particular polling place. We can and can inspect this data like this:
+In the `eechidna` package we have two election datasets. One is called `aec2013`, and each row represents a particular canditate at a particular polling place. We can and can inspect this data like this:
 
 ```{r load-read, message=FALSE, error = FALSE}
 library(eechidna)
 library(dplyr)
 # inspect the data frame
 glimpse(aec2013)
+# show the first few rows
+head(aec2013)
 
 ```
 
 
-We can see that the data contains `r nrow(aec2013)` rows and `r ncol(aec2013)` columns.
+We can see that the data contains `r formatC(nrow(aec2013), big.mark=",", drop0trailing=TRUE, format="f")` rows and `r ncol(aec2013)` columns.
 
 The other dataset is `aec2013_electorate` and is the results of the election aggregated for each electorate. Each row represents a particular candidate at a particular electorate.
 
@@ -109,7 +111,7 @@ ggplot(total_votes_for_parties, aes(reorder(PartyNm, total_votes), total_votes )
   theme(text = element_text(size=10))
 ```
 
-We can look at the proportion of voters for a particular party in each electorate, grouped by each state. This plot was inspired by [Peter Ellis's](https://peterellisblog.com/) work on the NZ election data. 
+We can look at the proportion of voters for a particular party in each electorate, grouped by each state. This plot was inspired by Peter Ellis's work on the NZ election data. 
 
 
 ```{r plot_prop_particular_party, fig.height = 12, fig.width=10}
@@ -140,7 +142,7 @@ nCol <- floor(sqrt(n))
 do.call("grid.arrange", c(p$plots, ncol=nCol))
 ```
 
-We can also comparing party votes of several parties (also inspired by  [Peter Ellis's](https://peterellisblog.com/)):
+We can also comparing party votes of several parties (also inspired by Peter Ellis):
 
 ```{r plot_prop_by_particular_party, fig.height = 6}
 # Comparing party and candidate votes of several parties -------
