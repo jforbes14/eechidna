@@ -29,12 +29,14 @@ from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
 The data is published
 }
 \examples{
+\dontrun{
 data(nat_data)
 library(ggplot2)
 ggplot(aes(map_id=region), data=subset(abs2011, region \%in\% both)) +
   geom_map(aes(fill=MedianIncome), map=subset(nat_map, region \%in\% both)) +
   expand_limits(x=nat_map$long, y=nat_map$lat) + 
   theme_map()
+  }
 }
 \keyword{datasets}
 

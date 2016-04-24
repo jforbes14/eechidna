@@ -1,7 +1,8 @@
 #' Shiny app for exploring census and electorate data
 #' 
+#' @import ggplot2
 #' @import shiny
-#' @import plotly
+#' @importFrom plotly ggplotly layout plotlyOutput event_data renderPlotly
 #' @import dplyr
 #' @import ggthemes
 #' @importFrom tidyr gather
@@ -11,9 +12,21 @@
 #' }
 
 launchApp <- function() {
-  data("abs2011", package = "eechidna")
-  data("aec2013_fp", package = "eechidna")
-  data("hexDat", package = "eechidna")
+ abs2011 <- NULL # to appease package check
+ variable <- NULL
+ value <- NULL
+ ID <- NULL
+ Electorate <- NULL
+ State <- NULL
+ aec2013_fp <- NULL
+ BallotPosition <- NULL
+ PartyAb <- NULL
+ OrdinaryVotes <- NULL
+ formal <- NULL
+ total_formal <- NULL
+  data("abs2011", package = "eechidna", envir = environment())
+  data("aec2013_fp", package = "eechidna", envir = environment())
+  data("hexDat", package = "eechidna", envir = environment())
   # a bit of data cleaning
   longAbs <- tidyr::gather(abs2011, variable, value, -ID, -Electorate, -State)
   longAbs$value <- as.numeric(longAbs$value)
@@ -39,6 +52,7 @@ launchApp <- function() {
   
   # retrieve selected electorates
   selector <- function() {
+    hexDat <- NULL
     d <- data.frame(
       Electorate = hexDat$Electorate,
       fill = rep("black", nrow(hexDat)),
@@ -104,6 +118,14 @@ launchApp <- function() {
   
   
   server <- function(input, output) {
+    PartyAb <-  NULL # to appease package check
+    prop_total_of_electorate <-  NULL
+    fill <- NULL
+    Electorate <- NULL
+    value <- NULL
+    hexDat <- NULL
+    xcent <- NULL
+    ycent <- NULL
     
     # build up the selection sequentially
     selectElect <- reactive({

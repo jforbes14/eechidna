@@ -195,6 +195,7 @@
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
 #' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
 #' @examples 
+#' \dontrun{
 #' data(nat_map)
 #' # choropleth map with Census data
 #' nat_map$region <- nat_map$ELECT_DIV
@@ -207,6 +208,7 @@
 #'   geom_map(aes(fill=MedianIncome), map=subset(nat_map, region %in% both)) +
 #'   expand_limits(x=nat_map$long, y=nat_map$lat) + 
 #'   theme_map()
+#' }
 "nat_map"
 
 #' (Very small) Map of Australian Electorate from 2013
@@ -232,13 +234,23 @@
 #'     \item AREA_SQKM: combined square kilometers of each electorate
 #' }
 #' @examples 
+#' \dontrun{
 #' data(nat_data)
 #' library(ggplot2)
 #' ggplot(aes(map_id=region), data=subset(abs2011, region %in% both)) +
 #'   geom_map(aes(fill=MedianIncome), map=subset(nat_map, region %in% both)) +
 #'   expand_limits(x=nat_map$long, y=nat_map$lat) + 
 #'   theme_map()
+#'   }
 "nat_data"
+
+
+
+#' This is the same as nat_data, but with a few more cols. 
+#' We can probabaly replace nat_dat with this one
+#'
+#'
+"nat_data_cart"
 
 
 #' Electorate hexagon data in a tidy form

@@ -32,4 +32,5 @@ This package is free and open source software, licensed under GPL (>= 2).
 
 Please open and issue if you find something that doesn't work as expected or have questions or suggestions. Note that this project is released with a [Guide to Contributing](CONTRIBUTING.md) and a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
 
+---
 [![ropensci_footer](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)

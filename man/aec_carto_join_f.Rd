@@ -2,20 +2,21 @@
 % Please edit documentation in R/cartogram.R
 \name{aec_carto_join_f}
 \alias{aec_carto_join_f}
-\title{aec_carto_join_f - bind the cartogram corrdinates to original data}
+\title{aec_carto_join_f - bind the cartogram coordinates to original data}
 \usage{
 aec_carto_join_f(aec_data, aec_carto)
 }
 \arguments{
-\item{aec_data_sub}{subset of data with centroids of electoral divisions}
+\item{aec_data}{subset of data with centroids of electoral divisions}
 
-\item{aec_cartocartogram}{centers}
+\item{aec_carto}{centers}
 }
 \description{
 Add the cartogram locations as new variables to original data
 and make any of these that were not made equal to the original centroids
 }
 \examples{
+\dontrun{
 data(nat_map)
 data(nat_data)
 cities <- list(c(151.2, -33.8), # Sydney
@@ -37,5 +38,6 @@ ggplot(data=nat_map) +
                  colour="#572d2c") +
     geom_text(data=aec_cart_join, aes(x=x, y=y, label=id), size=0.5) +
       coord_equal()
+      }
 }
 

@@ -12,16 +12,13 @@ aec_extract_f(aec_data, ctr = c(151.2, -33.8), expand = c(3, 4.5), ...)
 \item{ctr}{centroids of subset}
 
 \item{expand}{how large a chunk to cut out}
+
+\item{...}{other arguments}
 }
 \description{
 The dorling algorithm doesn't work on the entire country,
 because it is very clustered at the cities. To get a reasonable
 cartogram we need to extract out the cities, expand these
 with dorling independently. This function does the extraction.
-}
-\examples{
-data(nat_map)
-data(nat_data)
-aec_data_syd <- aec_extract(nat_data, expand=list(c(2,3)))
 }
 
