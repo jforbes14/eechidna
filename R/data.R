@@ -43,12 +43,14 @@
 #'   \item Internet: Percentage of people with home internet.
 #'   \item NotOwned: Percentage of dwellings not owned (either outright or with a mortgage).
 #' }
-"abs2011"
+"abs2011"    
 
-#' 2013 General election data for the House of Representatives
+
+
+#' 2013 General election data for first preference votes for candidates for the House of Representatives for each polling place
 #' 
-#' A dataset containing vote counts, candidate names, polling place locations,
-#' and other national, state, divisional and polling place results for the
+#' A dataset containing first preference vote counts, candidate names, polling place locations,
+#' and other results for the
 #' House of Representatives from the 2013 Australian federal election. 
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
 #' from \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm} and 
@@ -81,14 +83,15 @@
 #'     \item PremisesPostCode:  
 #'     \item Latitude:          
 #'     \item Longitude:
-#'     \item uid
+#'     \item uid:.
 #'     }
-"aec2013"
+"aec2013_fp"   
 
-#' Electorate-level 2013 summary of the general election data for the House of Representatives
+
+
+#' 2013 General election data for first preference votes for candidates for the House of Representative for each electorate
 #' 
-#' A dataset containing vote counts, candidate names, and other national,
-#'  state, and divisional results for the
+#' A dataset containing first preference vote counts, candidate names, and other results for the
 #' House of Representatives from the 2013 Australian federal election. 
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
 #' from \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm} and 
@@ -109,9 +112,81 @@
 #'     \item OrdinaryVotes: Number of ordinates votes cast at the polling place for the candidate     
 #'     \item State: Abbreviation for state name             
 #'     }
-"aec2013_electorates"
+"aec2013_fp_electorate"
 
+#' 2013 General election data for two party preferred votes for the House of Representatives for each polling place
+#' 
+#' A dataset containing two party preferred vote counts, winning candidate names, polling place locations,
+#' and other results for the House of Representatives from the 2013 Australian federal election. Includes the count of votes for
+#' the Australian Labor Party and the count of votes for the Liberal-National Coalition for each polling place.
+#' The data were obtained from the Australian Electoral Commission, and downloaded 
+#' from \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm} and 
+#' \url{http://www.aec.gov.au/elections/federal_elections/2013/downloads.htm}.
+#' 
+#' @format A data frame with the following variables:
+#' \itemize{
+#'     \item ID: Electoral division ID    
+#'     \item Electorate:  Electoral division name   
+#'     \item PollingPlaceID: Polling place ID  
+#'     \item PollingPlace: Polling place name     
+#'     \item CandidateID: Candidate ID       
+#'     \item Surname: Candidate surname          
+#'     \item GivenNm: Candidate given name            
+#'     \item BallotPosition: Candidate's position on the ballot    
+#'     \item Elected: Whether the candidate was elected (Y/N)           
+#'     \item HistoricElected:   
+#'     \item PartyAb: Abbreviation for political party name           
+#'     \item PartyNm: Political party name           
+#'     \item OrdinaryVotes: Number of ordinates votes cast at the polling place for the candidate     
+#'     \item Swing:             
+#'     \item State: Abbreviation for state name             
+#'     \item PollingPlaceTypeID:
+#'     \item Premises Nm:        
+#'     \item PremisesAddress1:  
+#'     \item PremisesAddress2:  
+#'     \item PremisesAddress3:  
+#'     \item PremisesSuburb:    
+#'     \item PremisesStateAb:   
+#'     \item PremisesPostCode:  
+#'     \item Latitude:          
+#'     \item Longitude:
+#'     \item Australian.Labor.Party.Votes:        
+#'     \item Australian.Labor.Party.Percentage:    
+#'     \item Liberal.National.Coalition.Votes:    
+#'     \item Liberal.National.Coalition.Percentage:
+#'     \item TotalVotes:
+#'     }
+"aec2013_2pp"
 
+#' 2013 General election data for two party preferred votes for candidates for the House of Representative for each electorate
+#' 
+#' A dataset containing two party preferred vote counts, winning candidate names, and other results for the House of Representatives from the 2013 Australian federal election. Includes the count of votes for
+#' the Australian Labor Party and the count of votes for the Liberal-National Coalition for each polling place.
+#' The data were obtained from the Australian Electoral Commission, and downloaded 
+#' from \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm} and 
+#' \url{http://www.aec.gov.au/elections/federal_elections/2013/downloads.htm}.
+#' 
+#' @format A data frame with the following variables:
+#' \itemize{
+#'     \item ID: Electoral division ID    
+#'     \item Electorate:  Electoral division name   
+#'     \item CandidateID: Candidate ID       
+#'     \item Surname: Candidate surname          
+#'     \item GivenNm: Candidate given name            
+#'     \item BallotPosition: Candidate's position on the ballot    
+#'     \item Elected: Whether the candidate was elected (Y/N)           
+#'     \item HistoricElected:   
+#'     \item PartyAb: Abbreviation for political party name           
+#'     \item PartyNm: Political party name           
+#'     \item OrdinaryVotes: Number of ordinates votes cast at the polling place for the candidate     
+#'     \item State: Abbreviation for state name        
+#'     \item Total_Australian_Labor_Party_Votes_per_electorate:     
+#'     \item Average_Australian_Labor_Party_Percentage_in_electorate:    
+#'     \item Total_Liberal_National_Coalition_Votes_per_electorate:      
+#'     \item Average_Liberal_National_Coalition_Percentage_in_electorate:
+#'     \item Total_2pp_votes_per_electorate:     
+#'     }
+"aec2013_2pp_electorate"
 
 #' Map of Australian Electorate from 2013
 #'
@@ -140,7 +215,7 @@
 #' electorates (and downsampled to a 0.5\% file to allow fast plotting).
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
 #' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
-"nat_map_small"
+# "nat_map_small"
 
 #' Data of the Australian Electorate from 2013
 #'

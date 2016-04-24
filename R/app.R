@@ -12,7 +12,7 @@
 
 launchApp <- function() {
   data("abs2011", package = "eechidna")
-  data("aec2013", package = "eechidna")
+  data("aec2013_fp", package = "eechidna")
   data("hexDat", package = "eechidna")
   # a bit of data cleaning
   longAbs <- tidyr::gather(abs2011, variable, value, -ID, -Electorate, -State)
@@ -29,7 +29,7 @@ launchApp <- function() {
   other <- longAbs[!isAge & !isReg, ]
   
   # election data: proportion of total votes for each party by electorate
-  byParty <- aec2013 %>% 
+  byParty <- aec2013_fp %>% 
     mutate(formal = BallotPosition != 999) %>% 
     group_by(Electorate, PartyAb) %>% 
     summarize(total_formal = sum(OrdinaryVotes[formal], na.rm=TRUE),
@@ -64,7 +64,7 @@ launchApp <- function() {
       column(
         width = 6,
         selectizeInput(
-          "parties", "Select parties:", unique(aec2013$PartyAb), 
+          "parties", "Select parties:", unique(aec2013_fp$PartyAb), 
           selected = c("ALP", "GRN", "LP", "NP", "CLP", "LNQ"),
           multiple = TRUE
         )
@@ -157,6 +157,7 @@ launchApp <- function() {
       p <- ggplot(d, aes(x = PartyAb, y = prop_total_of_electorate, colour = fill, key = Electorate)) + 
         geom_jitter(width = 0.25, alpha = 0.5) +
         scale_colour_identity() +
+        theme_bw() +
         theme(legend.position = "none") + 
         labs(x = NULL, y = NULL)
       ggplotly(p, tooltip = "key") %>% layout(dragmode = "select")
@@ -168,7 +169,9 @@ launchApp <- function() {
         geom_dotplot(binwidth = 0.15, dotsize = 1.9) +
         facet_wrap(~ variable, ncol = 1) + 
         scale_fill_identity() +
-        labs(x = NULL, y = NULL) + theme(legend.position = "none")
+        labs(x = NULL, y = NULL) + 
+        theme(legend.position = "none") +
+        theme_bw() 
     })
     
     output$religion <- renderPlot({
@@ -177,7 +180,9 @@ launchApp <- function() {
         geom_dotplot(dotsize = 0.1) +
         scale_colour_identity() +
         facet_wrap(~variable, ncol = 1) +
-        labs(x = NULL, y = NULL) + theme(legend.position = "none")
+        labs(x = NULL, y = NULL) + 
+        theme(legend.position = "none") +
+        theme_bw() 
     })
     
     output$densities <- renderPlot({
@@ -186,7 +191,9 @@ launchApp <- function() {
         geom_dotplot(dotsize = 0.1) +
         scale_colour_identity() +
         facet_wrap(~variable, scales = "free", ncol = 1) +
-        labs(x = NULL, y = NULL) + theme(legend.position = "none")
+        labs(x = NULL, y = NULL) + 
+        theme(legend.position = "none") +
+        theme_bw() 
     })
     
     output$map <- renderPlotly({

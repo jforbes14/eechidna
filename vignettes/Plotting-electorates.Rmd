@@ -19,8 +19,8 @@ library(dplyr)
 library(ggplot2)
 data(nat_data_cart)
 data(nat_map)
-data(aec2013_electorates)
-map.winners <- aec2013_electorates %>% filter(Elected == "Y") %>% 
+data(aec2013_fp_electorate)
+map.winners <- aec2013_fp_electorate %>% filter(Elected == "Y") %>% 
   select(Electorate, PartyNm) %>% 
   merge(nat_map, by.x="Electorate", by.y="ELECT_DIV")
 
@@ -60,7 +60,7 @@ We're going to group the entire Liberal/National Coalition together under the co
 
 ```{r fig.width=9, fig.height=6, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE}
 # Load election results
-cart.winners <- aec2013_electorates %>% filter(Elected == "Y") %>% 
+cart.winners <- aec2013_fp_electorate %>% filter(Elected == "Y") %>% 
   select(Electorate, PartyNm) %>% 
   merge(nat_data_cart, by.x="Electorate", by.y="ELECT_DIV")
 

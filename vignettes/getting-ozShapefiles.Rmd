@@ -29,8 +29,8 @@ We use the `rmapshaper` package available from ateucher's github page to thin th
 ```{r, message=FALSE}
 require(rmapshaper)
 ```
-If the library is not available, install it from gitguh using 
-```devtools::install_github("ateucher/rmapshaper")```.
+If the library is not available, install it from github using 
+`devtools::install_github("ateucher/rmapshaper")`.
 
 ```{r, message=FALSE}
 sFsmall <- ms_simplify(sF, keep=0.05) # use instead of thinnedSpatialPoly

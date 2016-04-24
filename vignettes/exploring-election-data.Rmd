@@ -39,16 +39,16 @@ In the `eechidna` package we have two election datasets. One is called `aec2013`
 library(eechidna)
 library(dplyr)
 # inspect the data frame
-glimpse(aec2013)
+glimpse(aec2013_fp)
 # show the first few rows
-head(aec2013)
+head(aec2013_fp)
 
 ```
 
 
-We can see that the data contains `r formatC(nrow(aec2013), big.mark=",", drop0trailing=TRUE, format="f")` rows and `r ncol(aec2013)` columns.
+We can see that the data contains `r formatC(nrow(aec2013_fp), big.mark=",", drop0trailing=TRUE, format="f")` rows and `r ncol(aec2013_fp)` columns.
 
-The other dataset is `aec2013_electorate` and is the results of the election aggregated for each electorate. Each row represents a particular candidate at a particular electorate.
+The other dataset is `aec2013_fp_electorate` and is the results of the election aggregated for each electorate. Each row represents a particular candidate at a particular electorate.
 
  We obtained these data from http://results.aec.gov.au/ . This package incorporates data that is © Commonwealth of Australia (Australian Electoral Commission) 2016.
 
@@ -86,7 +86,7 @@ The other dataset is `aec2013_electorate` and is the results of the election agg
 We can summarise the data to discover some basic details about the election. Here we can find the total number of ordinary votes (not including postal votes, etc.) for each party:
 
 ```{r total_votes_for_parties}
-total_votes_for_parties <- aec2013 %>% 
+total_votes_for_parties <- aec2013_fp %>% 
   select(PartyNm, OrdinaryVotes) %>% 
   group_by(PartyNm) %>% 
   summarise(total_votes = sum(OrdinaryVotes)) %>% 
@@ -116,7 +116,7 @@ We can look at the proportion of voters for a particular party in each electorat
 
 ```{r plot_prop_particular_party, fig.height = 12, fig.width=10}
 # summarise and compute proportion of votes for a particular party
-p <- aec2013 %>%
+p <- aec2013_fp %>%
   group_by(Electorate, State) %>%
   summarise(
     TotalVotes = sum(OrdinaryVotes),
@@ -146,7 +146,7 @@ We can also comparing party votes of several parties (also inspired by Peter Ell
 
 ```{r plot_prop_by_particular_party, fig.height = 6}
 # Comparing party and candidate votes of several parties -------
-proportions <- aec2013 %>%
+proportions <- aec2013_fp %>%
   group_by(Electorate) %>%
   summarise(Prop_Labour = sum(OrdinaryVotes[PartyNm == "Australian Labor Party"]) / sum(OrdinaryVotes),
             Prop_Liberal = sum(OrdinaryVotes[PartyNm == "Liberal"]) / sum(OrdinaryVotes),
