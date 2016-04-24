@@ -116,7 +116,7 @@
 #' Map of Australian Electorate from 2013
 #'
 #' A dataset containing the map of the all 150 Australian electorates using the 2013 boundaries of the 
-#' electorates (and downsampled to a 1\% file to allow fast plotting).
+#' electorates (and downsampled to a 5\% file to allow fast plotting).
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
 #' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
 #' @examples 
@@ -134,6 +134,13 @@
 #'   theme_map()
 "nat_map"
 
+#' (Very small) Map of Australian Electorate from 2013
+#'
+#' A dataset containing the map of the all 150 Australian electorates using the 2013 boundaries of the 
+#' electorates (and downsampled to a 0.5\% file to allow fast plotting).
+#' The data were obtained from the Australian Electoral Commission, and downloaded 
+#' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
+"nat_map_small"
 
 #' Data of the Australian Electorate from 2013
 #'

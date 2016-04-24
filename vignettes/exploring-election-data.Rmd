@@ -18,22 +18,18 @@ vignette: >
 knitr::opts_chunk$set(fig.width = 6,
                       fig.height = 4,
                       fig.align='center',
-                      dev = "png")
+                      dev = "png",
+                      warning = FALSE,
+                      message = FALSE)
 
 ```
 
-
-```{r, echo=FALSE}
-
-# load_all(pkg = "echidnaR/")
-
-```
 
 # Introduction
 
 `echidnaR` (Electoral Commission Handling Intelligent Data Nationally for Australia using R) is an R package that makes it easy to look at the data from the 2011 Australian Census, and the 2013 Federal Election.
 
-This vignette documents how to access the data from the 2013 Federal Election (House of Representatives (first preferences only). In this vignette we show a few typical methods to explore the data.
+This vignette documents how to access the data from the 2013 Federal Election (House of Representatives (first preferences only). In this vignette we show a few typical methods to explore the data, inspired by [Peter Ellis's](https://peterellisblog.com/) work on NZ election data. 
 
 ## 2013 Federal Election House of Representatives data
 
@@ -116,7 +112,7 @@ ggplot(total_votes_for_parties, aes(reorder(PartyNm, total_votes), total_votes )
 We can look at the proportion of voters for a particular party in each electorate, grouped by each state. This plot was inspired by [Peter Ellis's](https://peterellisblog.com/) work on the NZ election data. 
 
 
-```{r plot_prop_particular_party}
+```{r plot_prop_particular_party, fig.height = 12, fig.width=10}
 # summarise and compute proportion of votes for a particular party
 p <- aec2013 %>%
   group_by(Electorate, State) %>%
@@ -142,12 +138,11 @@ library(gridExtra)
 n <- length(p$plots)
 nCol <- floor(sqrt(n))
 do.call("grid.arrange", c(p$plots, ncol=nCol))
-
-
-
 ```
 
-```{r}
+We can also comparing party votes of several parties (also inspired by  [Peter Ellis's](https://peterellisblog.com/)):
+
+```{r plot_prop_by_particular_party, fig.height = 6}
 # Comparing party and candidate votes of several parties -------
 proportions <- aec2013 %>%
   group_by(Electorate) %>%
