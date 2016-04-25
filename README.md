@@ -3,6 +3,7 @@
 eechidna
 ========
 
+<!-- [![Travis-CI Build Status](https://travis-ci.org/ropenscilabs/eechidna.svg?branch=master)](https://travis-ci.org/ropenscilabs/eechidna) -->
 Exploring Election and Census Highly Informative Data Nationally for Australia
 ------------------------------------------------------------------------------
 
@@ -16,8 +17,7 @@ How to install
 You can install the package from github using `devtools`, like this:
 
 ``` r
-devtools::install_github("ropenscilabs/ausElectR", 
-                         subdir = "echidnaR")
+devtools::install_github("ropenscilabs/eechidna)
 library(eechidna)
 ```
 

@@ -27,8 +27,7 @@ This package was developed during the [rOpenSci auunconf event](http://auunconf.
 You can install the package from github using `devtools`, like this:
 
 ```{r eval = FALSE}
-devtools::install_github("ropenscilabs/ausElectR", 
-                         subdir = "echidnaR")
+devtools::install_github("ropenscilabs/eechidna)
 library(eechidna)
 ```
 
