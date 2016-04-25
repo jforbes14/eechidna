@@ -17,7 +17,7 @@ How to install
 You can install the package from github using `devtools`, like this:
 
 ``` r
-devtools::install_github("ropenscilabs/eechidna)
+devtools::install_github("ropenscilabs/eechidna")
 library(eechidna)
 ```
 
