@@ -3,7 +3,8 @@
 eechidna
 ========
 
-<!-- [![Travis-CI Build Status](https://travis-ci.org/ropenscilabs/eechidna.svg?branch=master)](https://travis-ci.org/ropenscilabs/eechidna) -->
+[![Travis-CI Build Status](https://travis-ci.org/ropenscilabs/eechidna.svg?branch=master)](https://travis-ci.org/ropenscilabs/eechidna)
+
 Exploring Election and Census Highly Informative Data Nationally for Australia
 ------------------------------------------------------------------------------
 
