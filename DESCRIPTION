@@ -5,7 +5,7 @@ Description: Data from 2013 Australian Federal Election and 2011 Australian
     Census for each House of Representatives electorate, along with some tools
     for visualizing and analysing the data.
 Depends:
-    R (>= 3.2.5),
+    R (>= 3.2.4),
     stats,
     graphics
 Imports:
@@ -19,17 +19,17 @@ Suggests:
     testthat,
     knitr,
     rmarkdown
-Author: 
-    Di Cook, 
-    Heike Hofmann, 
-    Rob Hyndman, 
+Author:
+    Di Cook,
+    Heike Hofmann,
+    Rob Hyndman,
     Thomas Lumley,
-    Ben Marwick, 
+    Ben Marwick,
     Carson Sievert,
-    Nicholas Tierney, 
-    Nathaniel Tomasetti, 
+    Nicholas Tierney,
+    Nathaniel Tomasetti,
     Fang Zhou.
-Maintainer: Ben Marwick <benmarwick@gmail.com> 
+Maintainer: Ben Marwick <benmarwick@gmail.com>
 LazyData: yes
 ByteCompile: TRUE
 License: GPL (>= 2)

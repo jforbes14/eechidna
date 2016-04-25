@@ -33,7 +33,7 @@ This vignette documents how to access the data from the 2013 Federal Election (H
 
 ## 2013 Federal Election House of Representatives data
 
-In the `eechidna` package we have two election datasets. One is called `aec2013`, and each row represents a particular canditate at a particular polling place. We can and can inspect this data like this:
+In the `eechidna` package we have two election datasets. One is called `aec2013`, and each row represents a particular candidate at a particular polling place. We can and can inspect this data like this:
 
 ```{r load-read, message=FALSE, error = FALSE}
 library(eechidna)

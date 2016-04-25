@@ -14,7 +14,7 @@ vignette: >
 
 The Australian Electorate Commission publishes the boundaries of the electorates on their website at [http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm](http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm).
 
-Once the files (preferrably the national files) are downloaded, unzip the file (it will build a folder with a set of files). We want to read the shapes contained in the `shp` file into R.
+Once the files (preferably the national files) are downloaded, unzip the file (it will build a folder with a set of files). We want to read the shapes contained in the `shp` file into R.
 ```{r, message=FALSE}
 library(maptools)
 

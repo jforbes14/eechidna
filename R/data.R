@@ -247,7 +247,7 @@
 
 
 #' This is the same as nat_data, but with a few more cols. 
-#' We can probabaly replace nat_dat with this one
+#' We can probably replace nat_dat with this one
 #'
 #'
 "nat_data_cart"
