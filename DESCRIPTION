@@ -35,4 +35,5 @@ ByteCompile: TRUE
 License: GPL (>= 2)
 URL: https://github.com/ropenscilabs/ausElectR/tree/master/echidnaR
 VignetteBuilder: rmarkdown
-RoxygenNote: 5.0.1.9000
+RoxygenNote: 5.0.1
+
