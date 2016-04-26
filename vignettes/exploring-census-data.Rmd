@@ -5,7 +5,6 @@ date: "`r Sys.Date()`"
 output: 
     rmarkdown::html_vignette:
         toc: true
-
 vignette: >
   %\VignetteIndexEntry{Vignette Title}
   %\VignetteEngine{knitr::rmarkdown}
@@ -30,7 +29,7 @@ This vignette documents how to access the data from the 2011 Census. We show a f
 
 ## 2011 Census data
 
-The data is loaded as `abs2011`. Let's look take a brief glimpse of the data.
+The data is loaded as `abs2011` when you load `eechidna`. Let's look take a brief glimpse of the data.
 
 ```{r load-read, message=FALSE, error = FALSE}
 library(eechidna)
@@ -131,37 +130,13 @@ kable(data_dictionary)
 
 ```
 
-So let's just look at some nice and simple plots.
-
-## Age
-
-
-```{r}
-
-library(tidyr)
-library(ggplot2)
-
-abs2011 %>%
-  select(starts_with("Age"), Electorate) %>%
-  gather(key = "Age",
-         value = "Percent_in_electorate",
-         -Electorate) %>% 
-  ggplot(data = .,
-         aes(x = Age,
-             y = Percent_in_electorate,
-             colour = Age)) +
-  geom_boxplot() + 
-  coord_flip() + 
-  theme_minimal() + 
-  theme(legend.position = "none") +
-  labs(y = "% in Electorate")
-
-
-```
+So let's just look at some nice and simple plots using `ggplot2`.
 
 ## Unemployment 
 
 ```{r}
+
+library(ggplot2)
 
 ggplot(data = abs2011,
        aes(x = Unemployed)) + 
@@ -192,6 +167,64 @@ ggplot(data = abs2011,
            
 ```
 
+## Age
+
+
+```{r}
+
+ggplot(data = abs2011,
+       aes(x = Age00_04)) +
+   geom_density(fill = "steelblue",
+               bw = "SJ",
+               colour = NA) + 
+  xlim(3,11) +
+  geom_rug(colour = "steelblue") + 
+  theme_minimal() +
+  labs(x = "% Aged between 0 and 4")
+
+```
+
+
+```{r}
+
+ggplot(data = abs2011,
+       aes(x = reorder(State, -Age00_04),
+           y = Age00_04,
+           colour = State)) +
+  geom_boxplot() + 
+  theme_minimal() +
+  labs(x = "State",
+       y = "% Aged between 0 and 4") +
+  theme(legend.position = "none") + 
+  coord_flip()
+
+```
+
+However, there are many age groups. To look at all of them at once, we can gather them into a dataframe ready for plotting using `tidyr`.
+
+```{r}
+
+library(tidyr)
+
+abs2011 %>%
+  select(starts_with("Age"), 
+         Electorate) %>%
+  gather(key = "Age",
+         value = "Percent_in_electorate",
+         -Electorate) %>% 
+  ggplot(data = .,
+         aes(x = reorder(Age, - Percent_in_electorate),
+             y = Percent_in_electorate,
+             colour = Age)) +
+  geom_boxplot() + 
+  coord_flip() + 
+  theme_minimal() + 
+  theme(legend.position = "none") +
+  labs(x = "Age Groups",
+       y = "% in Electorate")
+
+
+```
 
 ## Income
 
@@ -223,7 +256,7 @@ ggplot(data = abs2011,
 
 ```
 
-Just a thought, you can add in the points to get a bit more information on the distribution
+If you're intersted in getting a sense of the distribution of the data, you can add in the points to get a bit more of a sense on the distribution.
 
 ```{r}
 

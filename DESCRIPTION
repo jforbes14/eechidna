@@ -1,6 +1,7 @@
 Package: eechidna
 Version: 0.1
-Title: Exploring Election and Census Highly Informative Data Nationally for Australia
+Title: Exploring Election and Census Highly Informative Data Nationally for
+    Australia
 Description: Data from 2013 Australian Federal Election and 2011 Australian
     Census for each House of Representatives electorate, along with some tools
     for visualizing and analysing the data.
@@ -19,8 +20,7 @@ Suggests:
     testthat,
     knitr,
     rmarkdown
-Author:
-    Di Cook,
+Author: Di Cook,
     Heike Hofmann,
     Rob Hyndman,
     Thomas Lumley,
@@ -35,4 +35,4 @@ ByteCompile: TRUE
 License: GPL (>= 2)
 URL: https://github.com/ropenscilabs/ausElectR/tree/master/echidnaR
 VignetteBuilder: rmarkdown
-RoxygenNote: 5.0.1
+RoxygenNote: 5.0.1.9000
