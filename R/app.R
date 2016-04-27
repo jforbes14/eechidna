@@ -12,24 +12,10 @@
 #' }
 
 launchApp <- function() {
- # abs2011 <- NULL # to appease package check, but these also seem to break the app. what to do?
- # hexDat <- NULL
- # variable <- NULL
- # value <- NULL
- # ID <- NULL
- # Electorate <- NULL
- # State <- NULL
- # aec2013_fp <- NULL
- # BallotPosition <- NULL
- # PartyAb <- NULL
- # OrdinaryVotes <- NULL
- # formal <- NULL
- # total_formal <- NULL
-  data("abs2011", package = "eechidna") #,  envir = environment()
-  data("aec2013_fp", package = "eechidna")
-  data("hexDat", package = "eechidna")
   # a bit of data cleaning
-  longAbs <- tidyr::gather(abs2011, variable, value, -ID, -Electorate, -State)
+  longAbs <- tidyr::gather(
+    eechidna::abs2011, variable, value, -ID, -Electorate, -State
+  )
   longAbs$value <- as.numeric(longAbs$value)
   longAbs <- longAbs[!is.na(longAbs$value),]
   longAbs$variable <- factor(
@@ -43,19 +29,18 @@ launchApp <- function() {
   other <- longAbs[!isAge & !isReg, ]
   
   # election data: proportion of total votes for each party by electorate
-  byParty <- aec2013_fp %>% 
-    mutate(formal = BallotPosition != 999) %>% 
+  byParty <- eechidna::aec2013_fp %>% 
+    filter(BallotPosition != 999) %>% 
     group_by(Electorate, PartyAb) %>% 
-    summarize(total_formal = sum(OrdinaryVotes[formal], na.rm=TRUE),
-              prop_informal  = sum(OrdinaryVotes[!formal]/(sum(OrdinaryVotes, na.rm=TRUE) * 100))) %>%
+    summarize(total_formal = sum(OrdinaryVotes, na.rm = TRUE)) %>%
     # each electorate sums to not quite 100%, but pretty close
-    mutate(prop_total_of_electorate = total_formal / sum(total_formal))
+    mutate(prop = total_formal / sum(total_formal))
   
   # retrieve selected electorates
-  selector <- function() {
+  selector <- function(dat) {
     d <- data.frame(
-      Electorate = hexDat$Electorate,
-      fill = rep("black", nrow(hexDat)),
+      Electorate = dat$Electorate,
+      fill = rep("black", nrow(dat)),
       stringsAsFactors = FALSE
     )
     function(nms, color = "red") {
@@ -65,7 +50,7 @@ launchApp <- function() {
       d
     }
   }
-  selectDat <- selector()
+  selectDat <- selector(eechidna::hexDat)
   
   ui <- fluidPage(
     fluidRow(
@@ -78,7 +63,7 @@ launchApp <- function() {
       column(
         width = 6,
         selectizeInput(
-          "parties", "Select parties:", unique(aec2013_fp$PartyAb), 
+          "parties", "Select parties:", unique(eechidna::aec2013_fp$PartyAb), 
           selected = c("ALP", "GRN", "LP", "NP", "CLP", "LNQ"),
           multiple = TRUE
         )
@@ -118,14 +103,6 @@ launchApp <- function() {
   
   
   server <- function(input, output) {
-    # PartyAb <-  NULL # to appease package check, but also prevent package from working...
-    # prop_total_of_electorate <-  NULL
-    # fill <- NULL
-    # Electorate <- NULL
-    # value <- NULL
-    # hexDat <- NULL
-    # xcent <- NULL
-    # ycent <- NULL
     
     # build up the selection sequentially
     selectElect <- reactive({
@@ -159,7 +136,6 @@ launchApp <- function() {
       }
       d <- event_data("plotly_selected")
       if (!is.null(d)) {
-        print(d)
         isolate({
           selectDat(d$key, input$color)
         })
@@ -176,7 +152,7 @@ launchApp <- function() {
     output$byParty <- renderPlotly({
       byParty <- byParty[byParty$PartyAb %in% input$parties, ]
       d <- dplyr::left_join(byParty, selectElect(), by = "Electorate")
-      p <- ggplot(d, aes(x = PartyAb, y = prop_total_of_electorate, colour = fill, key = Electorate)) + 
+      p <- ggplot(d, aes(x = PartyAb, y = prop, colour = fill, key = Electorate)) + 
         geom_jitter(width = 0.25, alpha = 0.5) +
         scale_colour_identity() +
         theme_bw() +
@@ -219,7 +195,7 @@ launchApp <- function() {
     })
     
     output$map <- renderPlotly({
-      d <- dplyr::left_join(hexDat, selectElect(), by = "Electorate")
+      d <- dplyr::left_join(eechidna::hexDat, selectElect(), by = "Electorate")
       p <- ggplot(d, aes(xcent, ycent, text = Electorate, key = Electorate, fill = fill)) + 
         geom_hex(stat = "identity") + ggthemes::theme_map() +
         theme(legend.position = "none") + 
