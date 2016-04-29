@@ -3,6 +3,7 @@
 export(aec_carto_f)
 export(aec_carto_join_f)
 export(aec_extract_f)
+export(getElectorateShapes)
 export(launchApp)
 import(dplyr)
 import(ggplot2)
