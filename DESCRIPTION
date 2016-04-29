@@ -6,7 +6,7 @@ Description: Data from 2013 Australian Federal Election and 2011 Australian
     Census for each House of Representatives electorate, along with some tools
     for visualizing and analysing the data.
 Depends:
-    R (>= 3.2.4),
+    R (>= 3.2.3),
     stats,
     graphics
 Imports:
