@@ -1,7 +1,8 @@
 #' Shiny app for exploring census and electorate data
 #' 
 #' @import shiny
-#' @import plotly
+#' @import ggplot2
+#' @importFrom plotly ggplotly layout plotlyOutput event_data renderPlotly as.widget plotly_build
 #' @importFrom shinyjs useShinyjs runjs
 #' @import dplyr
 #' @import ggthemes
@@ -38,7 +39,7 @@ launchApp <- function() {
   other <- longAbs[!isAge & !isReg, ]
   
   # election data: proportion of total votes for each party by electorate
-  byParty <- aec2013_fp %>% 
+  byParty <- eechidna::aec2013_fp %>% 
     filter(BallotPosition != 999) %>% 
     group_by(Electorate, PartyAb) %>% 
     summarize(total_formal = sum(OrdinaryVotes, na.rm = TRUE)) %>%
