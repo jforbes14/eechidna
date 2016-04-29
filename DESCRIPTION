@@ -15,7 +15,8 @@ Imports:
     tidyr,
     shiny,
     plotly,
-    ggthemes
+    ggthemes,
+    shinyjs
 Suggests:
     testthat,
     knitr,
