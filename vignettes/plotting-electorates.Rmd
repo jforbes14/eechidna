@@ -67,8 +67,7 @@ cart.winners <- aec2013_fp_electorate %>% filter(Elected == "Y") %>%
 #Grouping different Lib/Nats togethers
 cart.winners$PartyNm <- as.character(cart.winners$PartyNm)
 coalition <- c("Country Liberals (NT)", "Liberal", "Liberal National Party of Queensland", "The Nationals")
-cart.winners.grouped <- mutate(cart.winners, PartyNm = ifelse(as.character(PartyNm) %in% coalition,
-                                                      "Liberal National Coalition", PartyNm))
+cart.winners.grouped <- mutate(cart.winners, PartyNm = ifelse(as.character(PartyNm) %in% coalition, "Liberal National Coalition", PartyNm))
 
 # Plot it
 ggplot(data=nat_map) +

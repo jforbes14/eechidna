@@ -1,8 +1,8 @@
 #' Shiny app for exploring census and electorate data
 #' 
-#' @import ggplot2
 #' @import shiny
-#' @importFrom plotly ggplotly layout plotlyOutput event_data renderPlotly as.widget 
+#' @import plotly
+#' @importFrom shinyjs useShinyjs runjs
 #' @import dplyr
 #' @import ggthemes
 #' @importFrom tidyr gather
@@ -13,8 +13,17 @@
 
 launchApp <- function() {
   # a bit of data cleaning
+  nat_data_cart <- eechidna::nat_data_cart
+  nat_data_cart$Electorate <- nat_data_cart$ELECT_DIV
+  abs2011 <- eechidna::abs2011
+  # some of these variables are heavily right-skewed and cause problems
+  # for the dotplot sizing
+  abs2011$Area <- NULL
+  abs2011$Buddhism <- NULL
+  abs2011$Islam <- NULL
+  abs2011$Judaism <- NULL
   longAbs <- tidyr::gather(
-    eechidna::abs2011, variable, value, -ID, -Electorate, -State
+    abs2011, variable, value, -ID, -Electorate, -State
   )
   longAbs$value <- as.numeric(longAbs$value)
   longAbs <- longAbs[!is.na(longAbs$value),]
@@ -29,73 +38,88 @@ launchApp <- function() {
   other <- longAbs[!isAge & !isReg, ]
   
   # election data: proportion of total votes for each party by electorate
-  byParty <- eechidna::aec2013_fp %>% 
+  byParty <- aec2013_fp %>% 
     filter(BallotPosition != 999) %>% 
     group_by(Electorate, PartyAb) %>% 
     summarize(total_formal = sum(OrdinaryVotes, na.rm = TRUE)) %>%
     # each electorate sums to not quite 100%, but pretty close
     mutate(prop = total_formal / sum(total_formal))
   
-  # retrieve selected electorates
-  selector <- function(dat) {
-    d <- data.frame(
-      Electorate = dat$Electorate,
-      fill = rep("black", nrow(dat)),
-      stringsAsFactors = FALSE
-    )
-    function(nms, color = "red") {
-      if (missing(nms)) return(d)
-      d[d$Electorate %in% nms, "fill"] <- color
-      d <<- d
-      d
-    }
+  # create a sensible ranking for PartyAb
+  m <- byParty %>%
+    group_by(PartyAb) %>%
+    summarise(m = mean(prop)) %>%
+    arrange(desc(m))
+  byParty$PartyAb <- factor(
+    byParty$PartyAb,
+    levels = as.data.frame(m)$PartyAb
+  )
+  
+  # there are multiple brushes in the UI, but they have common properties
+  brush_opts <- function(id, ...) {
+    brushOpts(id = id, direction = "x", ...)
   }
-  selectDat <- selector(eechidna::hexDat)
   
   ui <- fluidPage(
+    shinyjs::useShinyjs(),
     fluidRow(
       column(
-        width = 2,
-        selectInput(
-          "color", "Select a color:", choices = c("red", "blue", "yellow", "purple")
-        )
+        width = 1,
+        checkboxInput("show", "Show Controls")
       ),
       column(
-        width = 6,
-        selectizeInput(
-          "parties", "Select parties:", unique(eechidna::aec2013_fp$PartyAb), 
-          selected = c("ALP", "GRN", "LP", "NP", "CLP", "LNQ"),
-          multiple = TRUE
+        width = 1,
+        actionButton("clear", "Clear Selections")
+      )
+    ),
+    conditionalPanel(
+      "input.show",
+      fluidRow(
+        column(
+          width = 2,
+          checkboxInput("persist", "Persistant selections?", FALSE),
+          selectInput(
+            "color", "Selection color:", 
+            choices = c("red", "blue", "yellow", "purple")
+          )
+        ),
+        column(
+          width = 6,
+          selectizeInput(
+            "parties", "Select parties:", unique(eechidna::aec2013_fp$PartyAb), 
+            selected = c("ALP", "GRN", "LP", "NP", "CLP", "LNQ"),
+            multiple = TRUE
+          )
         )
       )
     ),
     fluidRow(
       column(
-        width = 6,
-        plotlyOutput("map")
+        width = 4,
+        plotlyOutput("map", width = "500px", height = "500px")
       ),
       column(
         width = 6,
-        plotlyOutput("byParty")
+        plotlyOutput("byParty", width = "100%", height = "500px")
       )
     ),
     fluidRow(
       column(
         width = 4,
         plotOutput(
-          "ages", height = 1000, brush = brushOpts("ageBrush", direction = "x")
+          "ages", height = 1500, brush = brush_opts("brushAge")
         )
       ),
       column(
         width = 4,
         plotOutput(
-          "religion", height = 800, brush = brushOpts("regBrush", direction = "x")
+          "densities", height = 2000, brush = brush_opts("brushDen")
         )
       ),
       column(
         width = 4,
         plotOutput(
-          "densities", height = 2000, brush = brushOpts("denBrush", direction = "x")
+          "religion", height = 450, brush = brush_opts("brushReligion")
         )
       )
     )
@@ -104,112 +128,157 @@ launchApp <- function() {
   
   server <- function(input, output) {
     
-    # build up the selection sequentially
-    selectElect <- reactive({
-      selectDat(unique(longAbs$Electorate), "black")
-      if (!is.null(input$ageBrush)) {
-        b <- input$ageBrush
-        idx <- (longAbs$variable %in% b$panelvar1) &
-          (b$xmin <= longAbs$value & longAbs$value <= b$xmax)
-        nms <- unique(longAbs[idx, "Electorate"])
-        isolate({
-          selectDat(nms, input$color)
-        })
+    # initiate selection data and *input brushes* as reactive values so we can
+    # "clear the world" - http://stackoverflow.com/questions/30588472/is-it-possible-to-clear-the-brushed-area-of-a-plot-in-shiny/36927826#36927826
+    rv <- reactiveValues(
+      data = data.frame(
+        Electorate = nat_data_cart$Electorate,
+        fill = rep("black", nrow(nat_data_cart)),
+        stringsAsFactors = FALSE
+      )
+    )
+    
+    # clear brush values and remove the div from the page
+    observeEvent(input$clear, {
+      rv$data$fill <- "black"
+      shinyjs::runjs("document.getElementById('ages_brush').remove()")
+      shinyjs::runjs("document.getElementById('densities_brush').remove()")
+      shinyjs::runjs("document.getElementById('densities_brush').remove()")
+    })
+    
+    observeEvent(input$brushAge, {
+      b <- input$brushAge
+      idx <- (b$xmin <= longAbs$value & longAbs$value <= b$xmax) &
+        (longAbs$variable %in% b$panelvar1)
+      selected <- rv$data$Electorate %in% unique(longAbs[idx, "Electorate"])
+      if (input$persist) {
+        rv$data$fill[selected] <- input$color
+      } else {
+        fill <- rv$data$fill
+        fill[rv$data$fill %in% input$color] <- "black"
+        fill[selected] <- input$color
+        rv$data$fill <- fill
       }
-      if (!is.null(input$denBrush)) {
-        b <- input$denBrush
-        idx <- (longAbs$variable %in% b$panelvar1) &
-          (b$xmin <= longAbs$value & longAbs$value <= b$xmax)
-        nms <- unique(longAbs[idx, "Electorate"])
-        isolate({
-          selectDat(nms, input$color)
-        })
+    })
+    
+    observeEvent(input$brushReligion, {
+      b <- input$brushReligion
+      idx <- (b$xmin <= longAbs$value & longAbs$value <= b$xmax) &
+        (longAbs$variable %in% b$panelvar1)
+      selected <- rv$data$Electorate %in% unique(longAbs[idx, "Electorate"])
+      if (input$persist) {
+        rv$data$fill[selected] <- input$color
+      } else {
+        fill <- rv$data$fill
+        fill[rv$data$fill %in% input$color] <- "black"
+        fill[selected] <- input$color
+        rv$data$fill <- fill
       }
-      if (!is.null(input$regBrush)) {
-        b <- input$regBrush
-        idx <- (longAbs$variable %in% b$panelvar1) &
-          (b$xmin <= longAbs$value & longAbs$value <= b$xmax)
-        nms <- unique(longAbs[idx, "Electorate"])
-        isolate({
-          selectDat(nms, input$color)
-        })
+    })
+    
+    observeEvent(input$brushDen, {
+      b <- input$brushDen
+      idx <- (b$xmin <= longAbs$value & longAbs$value <= b$xmax) &
+        (longAbs$variable %in% b$panelvar1)
+      selected <- rv$data$Electorate %in% unique(longAbs[idx, "Electorate"])
+      if (input$persist) {
+        rv$data$fill[selected] <- input$color
+      } else {
+        fill <- rv$data$fill
+        fill[rv$data$fill %in% input$color] <- "black"
+        fill[selected] <- input$color
+        rv$data$fill <- fill
       }
-      d <- event_data("plotly_selected")
-      if (!is.null(d)) {
-        isolate({
-          selectDat(d$key, input$color)
-        })
+    })
+    
+    observeEvent(event_data("plotly_selected"), {
+      selected <- rv$data$Electorate %in% event_data("plotly_selected")$key
+      if (input$persist) {
+        rv$data$fill[selected] <- input$color
+      } else {
+        fill <- rv$data$fill
+        fill[rv$data$fill %in% input$color] <- "black"
+        fill[selected] <- input$color
+        rv$data$fill <- fill
       }
-      d2 <- event_data("plotly_click")
-      if (!is.null(d2)) {
-        isolate({
-          selectDat(d2$key, input$color)
-        })
+    })
+    
+    observeEvent(event_data("plotly_click"), {
+      selected <- rv$data$Electorate %in% event_data("plotly_click")$key
+      if (input$persist) {
+        rv$data$fill[selected] <- input$color
+      } else {
+        fill <- rv$data$fill
+        fill[rv$data$fill %in% input$color] <- "black"
+        fill[selected] <- input$color
+        rv$data$fill <- fill
       }
-      selectDat()
     })
     
     output$byParty <- renderPlotly({
       byParty <- byParty[byParty$PartyAb %in% input$parties, ]
-      d <- dplyr::left_join(byParty, selectElect(), by = "Electorate")
-      p <- ggplot(d, aes(x = PartyAb, y = prop, colour = fill, key = Electorate)) + 
+      dat <- dplyr::left_join(byParty, rv$data, by = "Electorate")
+      p <- ggplot(dat, aes(x = PartyAb, y = prop, colour = fill, 
+                           key = Electorate, text = Electorate)) + 
         geom_jitter(width = 0.25, alpha = 0.5) +
         scale_colour_identity() +
         theme_bw() +
         theme(legend.position = "none") + 
         labs(x = NULL, y = NULL)
-      ggplotly(p, tooltip = "key") %>% layout(dragmode = "select")
+      ggplotly(p, tooltip = "text") %>% layout(dragmode = "select")
     })
     
     output$ages <- renderPlot({
-      d <- dplyr::left_join(ages, selectElect(), by = "Electorate")
-      ggplot(d, aes(value, fill = fill)) + 
-        geom_dotplot(binwidth = 0.15, dotsize = 1.9) +
-        facet_wrap(~ variable, ncol = 1) + 
+      dat <- dplyr::left_join(ages, rv$data, by = "Electorate")
+      ggplot(dat, aes(value, fill = fill)) +
+        geom_dotplot(binwidth = 0.25, dotsize = 1.2) +
+        facet_wrap(~ variable, ncol = 1) +
         scale_fill_identity() +
-        labs(x = NULL, y = NULL) + 
+        labs(x = NULL, y = NULL) +
         theme(legend.position = "none") +
-        theme_bw() 
+        theme_bw()
     })
-    
-    output$religion <- renderPlot({
-      d <- dplyr::left_join(religion, selectElect(), by = "Electorate")
-      ggplot(d, aes(value, colour = fill)) + 
-        geom_dotplot(dotsize = 0.1) +
-        scale_colour_identity() +
-        facet_wrap(~variable, ncol = 1) +
-        labs(x = NULL, y = NULL) + 
-        theme(legend.position = "none") +
-        theme_bw() 
-    })
-    
+
     output$densities <- renderPlot({
-      d <- dplyr::left_join(other, selectElect(), by = "Electorate")
-      ggplot(d, aes(value, colour = fill)) + 
-        geom_dotplot(dotsize = 0.1) +
-        scale_colour_identity() +
-        facet_wrap(~variable, scales = "free", ncol = 1) +
-        labs(x = NULL, y = NULL) + 
-        theme(legend.position = "none") +
-        theme_bw() 
-    })
-    
-    output$map <- renderPlotly({
-      d <- dplyr::left_join(eechidna::hexDat, selectElect(), by = "Electorate")
-      p <- ggplot(d, aes(xcent, ycent, text = Electorate, key = Electorate, fill = fill)) + 
-        geom_hex(stat = "identity") + ggthemes::theme_map() +
-        theme(legend.position = "none") + 
+      dat <- dplyr::left_join(other, rv$data, by = "Electorate")
+      ggplot(dat, aes(value, fill = fill)) +
+        geom_dotplot(dotsize = 0.3) +
         scale_fill_identity() +
-        lims(x = c(-80, 8), y = c(-40, 50))
-      ggplotly(p, tooltip = "text") %>% layout(dragmode = "lasso")
+        facet_wrap(~variable, scales = "free", ncol = 1) +
+        labs(x = NULL, y = NULL) +
+        theme(legend.position = "none") +
+        theme_bw()
+    })
+
+    output$religion <- renderPlot({
+      dat <- dplyr::left_join(religion, rv$data, by = "Electorate")
+      ggplot(dat, aes(value, fill = fill)) +
+        geom_dotplot(dotsize = 0.2) +
+        scale_fill_identity() +
+        facet_wrap(~variable, ncol = 1) +
+        labs(x = NULL, y = NULL) +
+        theme(legend.position = "none") +
+        theme_bw()
+    })
+
+    output$map <- renderPlotly({
+      dat <- dplyr::left_join(nat_data_cart, rv$data, by = "Electorate")
+      pMap <- ggplot() +
+        geom_polygon(data = eechidna::nat_map,
+                     aes(x = long, y = lat, group = group, order = order),
+                     fill="grey90", colour="white") +
+        geom_point(data = dat,
+                   aes(x, y, text = Electorate, key = Electorate, colour = fill)) +
+        ggthemes::theme_map() +
+        theme(legend.position = "none") +
+        scale_color_identity()
+      l <- plotly_build(ggplotly(pMap, tooltip = "text"))
+      l$data[[1]]$hoverinfo <- "none"
+      l$layout$dragmode <- "select"
+      l
     })
     
   }
   
   shinyApp(ui, server)
 }
-
-
-
-
-
