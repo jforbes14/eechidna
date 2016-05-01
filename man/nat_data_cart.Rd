@@ -5,7 +5,7 @@
 \alias{nat_data_cart}
 \title{This is the same as nat_data, but with a few more cols. 
 We can probably replace nat_dat with this one}
-\format{An object of class \code{data.frame} with 150 rows and 15 columns.}
+\format{An object of class \code{data.frame} with 153 rows and 10 columns.}
 \usage{
 nat_data_cart
 }

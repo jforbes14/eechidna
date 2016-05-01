@@ -325,12 +325,12 @@ aec_carto_f <-function(aec_data_sub, polygon.vertex=6, name.text=TRUE,
 #' c(138.6, -34.9), # Adelaide,
 #' c(115.9, -32.0)) # Perth
 #' expand <- list(c(2,3.8), c(2,3), c(2.6,4.1), c(4,3), c(12,6))
-#' aec_carto <- purrr::map2(.x=cities, .y=expand,
+#' nat_carto <- purrr::map2(.x=cities, .y=expand,
 #' .f=aec_extract_f, aec_data=nat_data) %>%
 #'   purrr::map_df(aec_carto_f) %>%
 #'     mutate(region=as.integer(as.character(region))) %>%
 #'       rename(id=region)
-#' aec_cart_join <- aec_carto_join_f(nat_data, aec_carto)
+#' nat_data_cart <- aec_carto_join_f(nat_data, nat_carto)
 #' # Map theme
 #' theme_map <- theme_bw()
 #' theme_map$line <- element_blank()
@@ -343,12 +343,10 @@ aec_carto_f <-function(aec_data_sub, polygon.vertex=6, name.text=TRUE,
 #' ggplot(data=nat_map) +
 #'   geom_polygon(aes(x=long, y=lat, group=group, order=order),
 #'   fill="grey90", colour="white") +
-#'     geom_point(data=aec_cart_join, aes(x=x, y=y), size=2, alpha=0.4,
+#'     geom_point(data=nat_data_cart, aes(x=x, y=y), size=2, alpha=0.4,
 #'                  colour="#572d2c") +
 #'     geom_text(data=aec_cart_join, aes(x=x, y=y, label=id), size=0.5) +
 #'       coord_equal() + theme_map
-#'       
-#' nat_data_cart <- merge(nat_data, aec_carto, by="id", all=TRUE)     
 #' }   
 aec_carto_join_f <- function(aec_data, aec_carto) {
   aec_carto_join <- merge(aec_data, aec_carto, by="id", all=TRUE)
