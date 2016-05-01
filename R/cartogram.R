@@ -345,7 +345,7 @@ aec_carto_f <-function(aec_data_sub, polygon.vertex=6, name.text=TRUE,
 #'   fill="grey90", colour="white") +
 #'     geom_point(data=nat_data_cart, aes(x=x, y=y), size=2, alpha=0.4,
 #'                  colour="#572d2c") +
-#'     geom_text(data=aec_cart_join, aes(x=x, y=y, label=id), size=0.5) +
+#'     geom_text(data=nat_data_cart, aes(x=x, y=y, label=id), size=0.5) +
 #'       coord_equal() + theme_map
 #' }   
 aec_carto_join_f <- function(aec_data, aec_carto) {
