@@ -24,7 +24,7 @@ map.winners <- aec2013_fp_electorate %>% filter(Elected == "Y") %>%
   select(Electorate, PartyNm) %>% 
   merge(nat_map, by.x="Electorate", by.y="ELECT_DIV")
 
-#Grouping different Lib/Nats togethers
+# Grouping different Lib/Nats togethers
 map.winners$PartyNm <- as.character(map.winners$PartyNm)
 coalition <- c("Country Liberals (NT)", "Liberal", "Liberal National Party of Queensland", "The Nationals")
 map.winners.grouped <- mutate(map.winners, PartyNm = ifelse(as.character(PartyNm) %in% coalition,

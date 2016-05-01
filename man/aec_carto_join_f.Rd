@@ -45,11 +45,10 @@ theme_map$panel.border <- element_rect(colour = "grey90", size=1, fill=NA)
 ggplot(data=nat_map) +
   geom_polygon(aes(x=long, y=lat, group=group, order=order),
   fill="grey90", colour="white") +
-    geom_point(data=aec_cart_join, aes(x=x, y=y), size=2, alpha=0.4,
+    geom_point(data=nat_data_cart, aes(x=x, y=y), size=2, alpha=0.4,
                  colour="#572d2c") +
-    geom_text(data=aec_cart_join, aes(x=x, y=y, label=id), size=0.5) +
+    geom_text(data=nat_data_cart, aes(x=x, y=y, label=id), size=0.5) +
       coord_equal() + theme_map
-      
 }   
 }
 

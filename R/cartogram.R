@@ -349,7 +349,7 @@ aec_carto_f <-function(aec_data_sub, polygon.vertex=6, name.text=TRUE,
 #'       coord_equal() + theme_map
 #' }   
 aec_carto_join_f <- function(aec_data, aec_carto) {
-  aec_carto_join <- merge(aec_data, aec_carto, by="id", all=TRUE)
+  aec_carto_join <- merge(aec_data, aec_carto, by="id", all.x=TRUE)
 
   # Make corto centers of remote districts same as actual lat/long
   aec_carto_join$x[is.na(aec_carto_join$x)] <-
