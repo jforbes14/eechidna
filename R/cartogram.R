@@ -36,7 +36,7 @@ aec_extract_f <- function(aec_data, ctr=c(151.2, -33.8),
 ##' complete_color('red',5)
 ##' complete_color(c('red','blue'),5)
 ##' complete_color(c('red','blue','green','yellow','pink','grey'),5)
-##' }S
+##' }
 complete_color = function(cl,targetlen){
   l = length(cl)
   if (l==0) return()
@@ -124,7 +124,7 @@ circle = function(xvec,yvec,rvec,vertex=100,border=1,col=NULL,add=TRUE, square=F
 ##' @param ... other things
 
 ##' 
-dorling = function(name, centroidx, centroidy, density, nbr=NULL, shared.border=NULL, color=NULL, tolerance=0.1, dist.ratio=1.2, iteration=9999, polygon.vertex=100, animation=TRUE, sleep.time=0.3, nbredge=ifelse(is.null(nbr),FALSE,TRUE), name.text=TRUE, ggplot2=FALSE, ...){
+dorling = function(name, centroidx, centroidy, density, nbr=NULL, shared.border=NULL, color=NULL, tolerance=0.1, dist.ratio=1.2, iteration=9999, polygon.vertex=100, animation=FALSE, sleep.time=0.3, nbredge=ifelse(is.null(nbr),FALSE,TRUE), name.text=TRUE, ggplot2=FALSE, ...){
   n=length(name)
   stopifnot(n==length(centroidx), n==length(centroidy), n==length(density), is.numeric(iteration))
   
@@ -294,6 +294,7 @@ aec_carto_f <-function(aec_data_sub, polygon.vertex=6, name.text=TRUE,
                        dist.ratio=dist.ratio, iteration=100,
                        xlab="", ylab="", ...) {
   #aec_data_sub <- aec_extract(aec_data)
+  purrr::when(is.null(aec_data_sub$POPULATION), aec_data_sub$POPULATION <- 1000)
   aec_data_dor <- dorling(aec_data_sub$id, aec_data_sub$long_c,
                           aec_data_sub$lat_c, aec_data_sub$POPULATION,
                           polygon.vertex=polygon.vertex,
@@ -314,6 +315,8 @@ aec_carto_f <-function(aec_data_sub, polygon.vertex=6, name.text=TRUE,
 #'
 #' @examples
 #' \dontrun{
+#' library(dplyr)
+#' library(ggplot2)
 #' data(nat_map)
 #' data(nat_data)
 #' cities <- list(c(151.2, -33.8), # Sydney
@@ -321,21 +324,32 @@ aec_carto_f <-function(aec_data_sub, polygon.vertex=6, name.text=TRUE,
 #' c(145.0, -37.8), # Melbourne
 #' c(138.6, -34.9), # Adelaide,
 #' c(115.9, -32.0)) # Perth
-#' expand <- list(c(2,3), c(2,3), c(2.5,4), c(3,5), c(5,8))
+#' expand <- list(c(2,3.8), c(2,3), c(2.6,4.1), c(4,3), c(12,6))
 #' aec_carto <- purrr::map2(.x=cities, .y=expand,
 #' .f=aec_extract_f, aec_data=nat_data) %>%
 #'   purrr::map_df(aec_carto_f) %>%
 #'     mutate(region=as.integer(as.character(region))) %>%
 #'       rename(id=region)
-#'       aec_cart_join <- aec_carto_join_f(nat_data, aec_carto)
+#' aec_cart_join <- aec_carto_join_f(nat_data, aec_carto)
+#' # Map theme
+#' theme_map <- theme_bw()
+#' theme_map$line <- element_blank()
+#' theme_map$strip.text <- element_blank()
+#' theme_map$axis.text <- element_blank()
+#' theme_map$plot.title <- element_blank()
+#' theme_map$axis.title <- element_blank()
+#' theme_map$panel.border <- element_rect(colour = "grey90", size=1, fill=NA)
+#' 
 #' ggplot(data=nat_map) +
 #'   geom_polygon(aes(x=long, y=lat, group=group, order=order),
 #'   fill="grey90", colour="white") +
 #'     geom_point(data=aec_cart_join, aes(x=x, y=y), size=2, alpha=0.4,
 #'                  colour="#572d2c") +
 #'     geom_text(data=aec_cart_join, aes(x=x, y=y, label=id), size=0.5) +
-#'       coord_equal()
-#'       }
+#'       coord_equal() + theme_map
+#'       
+#' nat_data_cart <- merge(nat_data, aec_carto, by="id", all=TRUE)     
+#' }   
 aec_carto_join_f <- function(aec_data, aec_carto) {
   aec_carto_join <- merge(aec_data, aec_carto, by="id", all=TRUE)
 

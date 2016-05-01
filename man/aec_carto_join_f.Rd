@@ -17,6 +17,7 @@ and make any of these that were not made equal to the original centroids
 }
 \examples{
 \dontrun{
+library(dplyr)
 data(nat_map)
 data(nat_data)
 cities <- list(c(151.2, -33.8), # Sydney
@@ -30,7 +31,7 @@ aec_carto <- purrr::map2(.x=cities, .y=expand,
   purrr::map_df(aec_carto_f) \%>\%
     mutate(region=as.integer(as.character(region))) \%>\%
       rename(id=region)
-      aec_cart_join <- aec_carto_join_f(nat_data, aec_carto)
+aec_cart_join <- aec_carto_join_f(nat_data, aec_carto)
 ggplot(data=nat_map) +
   geom_polygon(aes(x=long, y=lat, group=group, order=order),
   fill="grey90", colour="white") +
