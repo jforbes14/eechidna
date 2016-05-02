@@ -151,11 +151,10 @@ launchApp <- function() {
       shinyjs::runjs("document.getElementById('densities_brush').remove()")
     })
     
-    observeEvent(input$brushAge, {
-      b <- input$brushAge
-      idx <- (b$xmin <= longAbs$value & longAbs$value <= b$xmax) &
-        (longAbs$variable %in% b$panelvar1)
-      selected <- rv$data$Electorate %in% unique(longAbs[idx, "Electorate"])
+    # reusable function for "telling the world" about the selection
+    # it should modify the reactive value _once_ since shiny will send messages
+    # on every modification
+    updateRV <- function(selected) {
       if (input$persist) {
         rv$data$fill[selected] <- input$color
       } else {
@@ -164,6 +163,14 @@ launchApp <- function() {
         fill[selected] <- input$color
         rv$data$fill <- fill
       }
+    }
+    
+    observeEvent(input$brushAge, {
+      b <- input$brushAge
+      idx <- (b$xmin <= longAbs$value & longAbs$value <= b$xmax) &
+        (longAbs$variable %in% b$panelvar1)
+      selected <- rv$data$Electorate %in% unique(longAbs[idx, "Electorate"])
+      updateRV(selected)
     })
     
     observeEvent(input$brushReligion, {
@@ -171,14 +178,7 @@ launchApp <- function() {
       idx <- (b$xmin <= longAbs$value & longAbs$value <= b$xmax) &
         (longAbs$variable %in% b$panelvar1)
       selected <- rv$data$Electorate %in% unique(longAbs[idx, "Electorate"])
-      if (input$persist) {
-        rv$data$fill[selected] <- input$color
-      } else {
-        fill <- rv$data$fill
-        fill[rv$data$fill %in% input$color] <- "black"
-        fill[selected] <- input$color
-        rv$data$fill <- fill
-      }
+      updateRV(selected)
     })
     
     observeEvent(input$brushDen, {
@@ -186,38 +186,17 @@ launchApp <- function() {
       idx <- (b$xmin <= longAbs$value & longAbs$value <= b$xmax) &
         (longAbs$variable %in% b$panelvar1)
       selected <- rv$data$Electorate %in% unique(longAbs[idx, "Electorate"])
-      if (input$persist) {
-        rv$data$fill[selected] <- input$color
-      } else {
-        fill <- rv$data$fill
-        fill[rv$data$fill %in% input$color] <- "black"
-        fill[selected] <- input$color
-        rv$data$fill <- fill
-      }
+      updateRV(selected)
     })
     
     observeEvent(event_data("plotly_selected"), {
       selected <- rv$data$Electorate %in% event_data("plotly_selected")$key
-      if (input$persist) {
-        rv$data$fill[selected] <- input$color
-      } else {
-        fill <- rv$data$fill
-        fill[rv$data$fill %in% input$color] <- "black"
-        fill[selected] <- input$color
-        rv$data$fill <- fill
-      }
+      updateRV(selected)
     })
     
     observeEvent(event_data("plotly_click"), {
       selected <- rv$data$Electorate %in% event_data("plotly_click")$key
-      if (input$persist) {
-        rv$data$fill[selected] <- input$color
-      } else {
-        fill <- rv$data$fill
-        fill[rv$data$fill %in% input$color] <- "black"
-        fill[selected] <- input$color
-        rv$data$fill <- fill
-      }
+      updateRV(selected)
     })
     
     output$winProps <- renderPlotly({
