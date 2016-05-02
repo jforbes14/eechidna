@@ -24,7 +24,7 @@ map.winners <- aec2013_fp_electorate %>% filter(Elected == "Y") %>%
   select(Electorate, PartyNm) %>% 
   merge(nat_map, by.x="Electorate", by.y="ELECT_DIV")
 
-#Grouping different Lib/Nats togethers
+# Grouping different Lib/Nats togethers
 map.winners$PartyNm <- as.character(map.winners$PartyNm)
 coalition <- c("Country Liberals (NT)", "Liberal", "Liberal National Party of Queensland", "The Nationals")
 map.winners.grouped <- mutate(map.winners, PartyNm = ifelse(as.character(PartyNm) %in% coalition,
@@ -33,7 +33,7 @@ map.winners.grouped <- map.winners.grouped %>% arrange(group, order)
 
 # Colour cells to match that parties colours
 # Order = Australian Labor Party, Independent, Katters, Lib/Nats Coalition, Palmer, The Greens
-partycolours = c("#FF0000", "#000000", "#550000", "#0000FF", "#FF9900", "#00FF00")
+partycolours = c("#FF0033", "#000000", "#CC3300", "#0066CC", "#FFFF00", "#009900")
 
 # Make it look like a map
 theme_map <- theme_bw()

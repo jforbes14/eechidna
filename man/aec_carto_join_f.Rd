@@ -17,6 +17,8 @@ and make any of these that were not made equal to the original centroids
 }
 \examples{
 \dontrun{
+library(dplyr)
+library(ggplot2)
 data(nat_map)
 data(nat_data)
 cities <- list(c(151.2, -33.8), # Sydney
@@ -24,20 +26,29 @@ c(153.0, -27.5), # Brisbane
 c(145.0, -37.8), # Melbourne
 c(138.6, -34.9), # Adelaide,
 c(115.9, -32.0)) # Perth
-expand <- list(c(2,3), c(2,3), c(2.5,4), c(3,5), c(5,8))
-aec_carto <- purrr::map2(.x=cities, .y=expand,
+expand <- list(c(2,3.8), c(2,3), c(2.6,4.1), c(4,3), c(12,6))
+nat_carto <- purrr::map2(.x=cities, .y=expand,
 .f=aec_extract_f, aec_data=nat_data) \%>\%
   purrr::map_df(aec_carto_f) \%>\%
     mutate(region=as.integer(as.character(region))) \%>\%
       rename(id=region)
-      aec_cart_join <- aec_carto_join_f(nat_data, aec_carto)
+nat_data_cart <- aec_carto_join_f(nat_data, nat_carto)
+# Map theme
+theme_map <- theme_bw()
+theme_map$line <- element_blank()
+theme_map$strip.text <- element_blank()
+theme_map$axis.text <- element_blank()
+theme_map$plot.title <- element_blank()
+theme_map$axis.title <- element_blank()
+theme_map$panel.border <- element_rect(colour = "grey90", size=1, fill=NA)
+
 ggplot(data=nat_map) +
   geom_polygon(aes(x=long, y=lat, group=group, order=order),
   fill="grey90", colour="white") +
-    geom_point(data=aec_cart_join, aes(x=x, y=y), size=2, alpha=0.4,
+    geom_point(data=nat_data_cart, aes(x=x, y=y), size=2, alpha=0.4,
                  colour="#572d2c") +
-    geom_text(data=aec_cart_join, aes(x=x, y=y, label=id), size=0.5) +
-      coord_equal()
-      }
+    geom_text(data=nat_data_cart, aes(x=x, y=y, label=id), size=0.5) +
+      coord_equal() + theme_map
+}   
 }
 
