@@ -104,11 +104,11 @@ launchApp <- function() {
     fluidRow(
       column(
         width = 4,
-        plotlyOutput("voteProps")
+        plotlyOutput("winProps")
       ),
       column(
         width = 4,
-        plotlyOutput("winProps")
+        plotlyOutput("voteProps")
       ),
       column(
         width = 4,
