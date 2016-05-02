@@ -39,22 +39,22 @@ launchApp <- function() {
   other <- longAbs[!isAge & !isReg, ]
   
   # election data: proportion of total votes for each party by electorate
-  byParty <- eechidna::aec2013_fp %>% 
-    filter(BallotPosition != 999) %>% 
-    group_by(Electorate, PartyAb) %>% 
-    summarize(total_formal = sum(OrdinaryVotes, na.rm = TRUE)) %>%
-    # each electorate sums to not quite 100%, but pretty close
-    mutate(prop = total_formal / sum(total_formal))
+  aec13 <- as.data.frame(eechidna::aec2013_fp_electorate)
+  
+  voteProps <- aec13 %>%
+    group_by(Electorate, PartyAb) %>%
+    summarise(n = sum(Total_OrdinaryVotes_in_electorate)) %>%
+    mutate(prop = n / sum(n))
   
   # create a sensible ranking for PartyAb
-  m <- byParty %>%
+  m <- voteProps %>%
     group_by(PartyAb) %>%
     summarise(m = mean(prop)) %>%
-    arrange(desc(m))
-  byParty$PartyAb <- factor(
-    byParty$PartyAb,
-    levels = as.data.frame(m)$PartyAb
-  )
+    arrange(m)
+  
+  lvls <- as.data.frame(m)$PartyAb
+  aec13$PartyAb <- factor(aec13$PartyAb, levels = lvls)
+  voteProps$PartyAb <- factor(voteProps$PartyAb, levels = lvls)
   
   # there are multiple brushes in the UI, but they have common properties
   brush_opts <- function(id, ...) {
@@ -97,11 +97,15 @@ launchApp <- function() {
     fluidRow(
       column(
         width = 4,
-        plotlyOutput("map", width = "500px", height = "500px")
+        plotlyOutput("voteProps")
       ),
       column(
-        width = 6,
-        plotlyOutput("byParty", width = "100%", height = "500px")
+        width = 4,
+        plotlyOutput("winProps")
+      ),
+      column(
+        width = 4,
+        plotlyOutput("map")
       )
     ),
     fluidRow(
@@ -216,16 +220,30 @@ launchApp <- function() {
       }
     })
     
-    output$byParty <- renderPlotly({
-      byParty <- byParty[byParty$PartyAb %in% input$parties, ]
-      dat <- dplyr::left_join(byParty, rv$data, by = "Electorate")
+    output$winProps <- renderPlotly({
+      # total seats by party affliation
+      d <- aec13[aec13$PartyAb %in% input$parties, ]
+      dat <- left_join(d, rv$data, by = "Electorate")
+      wins <- dat %>%
+        group_by(PartyAb, fill) %>%
+        summarise(nseats = sum(ifelse(Elected == "Y", 1, 0)))
+      p <- ggplot(wins, aes(PartyAb, nseats, fill = fill)) + 
+        geom_bar(stat = "identity", position = "stack") +
+        scale_fill_identity() + theme_bw() + 
+        theme(legend.position = "none") + coord_flip() +
+        xlab(NULL) + ylab("Number of electorates")
+      ggplotly(p, tooltip = "y", source = "B")
+    })
+    
+    output$voteProps <- renderPlotly({
+      voteProps <- voteProps[voteProps$PartyAb %in% input$parties, ]
+      dat <- dplyr::left_join(voteProps, rv$data, by = "Electorate")
       p <- ggplot(dat, aes(x = PartyAb, y = prop, colour = fill, 
                            key = Electorate, text = Electorate)) + 
         geom_jitter(width = 0.25, alpha = 0.5) +
-        scale_colour_identity() +
-        theme_bw() +
-        theme(legend.position = "none") + 
-        labs(x = NULL, y = NULL)
+        scale_colour_identity() + theme_bw() +
+        theme(legend.position = "none") + coord_flip() +
+        xlab(NULL) + ylab("Proportion of votes")
       ggplotly(p, tooltip = "text") %>% layout(dragmode = "select")
     })
     
@@ -264,7 +282,7 @@ launchApp <- function() {
 
     output$map <- renderPlotly({
       dat <- dplyr::left_join(nat_data_cart, rv$data, by = "Electorate")
-      pMap <- ggplot() +
+      p <- ggplot() +
         geom_polygon(data = eechidna::nat_map,
                      aes(x = long, y = lat, group = group, order = order),
                      fill="grey90", colour="white") +
@@ -273,9 +291,13 @@ launchApp <- function() {
         ggthemes::theme_map() +
         theme(legend.position = "none") +
         scale_color_identity()
-      l <- plotly_build(ggplotly(pMap, tooltip = "text"))
+      l <- plotly_build(ggplotly(p, tooltip = "text"))
       l$data[[1]]$hoverinfo <- "none"
       l$layout$dragmode <- "select"
+      l$layout$autosize <- FALSE
+      l$layout$height <- 400
+      l$layout$width <- 400
+      l$layout$margin <- list(t = 0, b = 0, r = 0, l = 0)
       l
     })
     
