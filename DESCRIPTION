@@ -6,15 +6,13 @@ Description: Data from 2013 Australian Federal Election and 2011 Australian
     Census for each House of Representatives electorate, along with some tools
     for visualizing and analysing the data.
 Depends:
-    R (>= 3.2.3),
-    stats,
-    graphics
+    R (>= 3.2.3)
 Imports:
     dplyr,
     ggplot2 (>= 2.0.0),
     tidyr,
     shiny,
-    plotly,
+    plotly (>= 3.5.2),
     ggthemes,
     shinyjs
 Suggests:

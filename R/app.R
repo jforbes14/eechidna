@@ -38,9 +38,16 @@ launchApp <- function() {
   religion <- longAbs[isReg, ]
   other <- longAbs[!isAge & !isReg, ]
   
-  # election data: proportion of total votes for each party by electorate
+  # 1st preference votes for candidates for the House for each electorate
   aec13 <- as.data.frame(eechidna::aec2013_fp_electorate)
   
+  # by default, we show parties that won at least 1 electorate
+  relevantParties <- aec13 %>% 
+    group_by(PartyAb) %>% 
+    summarise(n = sum(ifelse(Elected == "Y", 1, 0))) %>% 
+    filter(n > 0)
+  
+  # proportion of first preference votes for each party by electorate
   voteProps <- aec13 %>%
     group_by(Electorate, PartyAb) %>%
     summarise(n = sum(Total_OrdinaryVotes_in_electorate)) %>%
@@ -88,7 +95,7 @@ launchApp <- function() {
           width = 6,
           selectizeInput(
             "parties", "Select parties:", unique(eechidna::aec2013_fp$PartyAb), 
-            selected = c("ALP", "GRN", "LP", "NP", "CLP", "LNQ"),
+            selected = relevantParties$PartyAb,
             multiple = TRUE
           )
         )
@@ -195,23 +202,32 @@ launchApp <- function() {
     })
     
     observeEvent(event_data("plotly_click"), {
-      selected <- rv$data$Electorate %in% event_data("plotly_click")$key
+      k <- event_data("plotly_click")$key
+      if (any(k %in% unique(aec13$PartyAb))) {
+        # map the party selection back to electorates
+        d <- aec13 %>% filter(Elected == "Y")
+        d <- d[match(rv$data$Electorate, d$Electorate), ]
+        selected <- d$PartyAb %in% k
+      } else {
+        selected <- rv$data$Electorate %in% k
+      }
       updateRV(selected)
-    })
+  })
     
     output$winProps <- renderPlotly({
       # total seats by party affliation
       d <- aec13[aec13$PartyAb %in% input$parties, ]
       dat <- left_join(d, rv$data, by = "Electorate")
       wins <- dat %>%
-        group_by(PartyAb, fill) %>%
+        group_by(PartyAb, PartyNm, fill) %>%
         summarise(nseats = sum(ifelse(Elected == "Y", 1, 0)))
-      p <- ggplot(wins, aes(PartyAb, nseats, fill = fill)) + 
+      p <- ggplot(wins, aes(PartyAb, nseats, 
+                            fill = fill, text = PartyNm, key = PartyAb)) + 
         geom_bar(stat = "identity", position = "stack") +
         scale_fill_identity() + theme_bw() + 
         theme(legend.position = "none") + coord_flip() +
         xlab(NULL) + ylab("Number of electorates")
-      ggplotly(p, tooltip = "y", source = "B")
+      ggplotly(p, tooltip = "text")
     })
     
     output$voteProps <- renderPlotly({
