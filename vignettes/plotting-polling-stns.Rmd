@@ -2,45 +2,32 @@
 title: "Plotting Australia's Polling Stations"
 author: "Di Cook"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output: 
+    rmarkdown::html_vignette:
 vignette: >
   %\VignetteIndexEntry{Vignette Title}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
-This vignette dscribes how to make a map of the Australian election results. It requires merging polygons of the electoral regions, with election results using the electorate id's or unique names. The `nat_map` contains the electorate polygons and `aec2013_fp_electorate` contains the results of the 2013 Federal election.
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(fig.width = 6,
+                      fig.height = 4,
+                      fig.align='center',
+                      dev = "png", cache=FALSE)
+```
 
-```{r load-read-merge, message=FALSE, error = TRUE, warning=FALSE, echo=FALSE, tidy=TRUE}
+This vignette dscribes how to show the polling stations on a map of the Australian electorates. The polling station locations for the 2013 election can be downloaded from [http://results.aec.gov.au/17496/Website/GeneralDownloadsMenu-17496-csv.htm](http://results.aec.gov.au/17496/Website/GeneralDownloadsMenu-17496-csv.htm). This data is a reduced set of information. (The data sometimes needs to be cleaned a little in order to read properly into R: (1) One polling place has instructions for getting in that include `6" step` which messes up the text read, (2) Two polling places have `"F"` and `"B"` in the instructions to get in that messes with the text reading. The data provide with the vignette has been cleaned.)
+
+```{r load-read, message=FALSE, error = TRUE, warning=FALSE, echo=FALSE, tidy=TRUE}
 library(eechidna)
 library(dplyr)
 library(ggplot2)
-data(nat_data_cart)
-data(nat_map)
-data(aec2013_fp_electorate)
-map.winners <- aec2013_fp_electorate %>% filter(Elected == "Y") %>% 
-  select(Electorate, PartyNm) %>% 
-  merge(nat_map, by.x="Electorate", by.y="ELECT_DIV")
+library(readr)
+stns <- read_csv("GeneralPollingPlaces2013.csv")
 ```
 
-There are state-specific pseudonyms for the Liberal-National Party coalition, and for illustration purposes these are grouped into one category we will call "Liberal National Coalition". These political groups are set colours that roughly match their party colours.
-
-```{r group, message=FALSE, error = TRUE, warning=FALSE, echo=TRUE, tidy=TRUE}
-# Grouping different Lib/Nats togethers
-map.winners$PartyNm <- as.character(map.winners$PartyNm)
-coalition <- c("Country Liberals (NT)", "Liberal", 
-               "Liberal National Party of Queensland", "The Nationals")
-map.winners.grouped <- mutate(map.winners, 
-    PartyNm = ifelse(as.character(PartyNm) %in% coalition,
-       "Liberal National Coalition", PartyNm))
-map.winners.grouped <- map.winners.grouped %>% arrange(group, order)
-
-# Colour cells to match that parties colours
-# Order = Australian Labor Party, Independent, Katters, Lib/Nats Coalition, Palmer, The Greens
-partycolours = c("#FF0033", "#000000", "#CC3300", "#0066CC", "#FFFF00", "#009900")
-```
-
-```{r fig.width=7, fig.height=6, echo=TRUE, warning=FALSE, message=FALSE, error=FALSE, tidy=TRUE}
+```{r mapit, fig.width=7, fig.height=4, message=FALSE, error = TRUE, warning=FALSE, echo=TRUE, tidy=TRUE}
 # Make it look like a map
 theme_map <- theme_bw()
 theme_map$line <- element_blank()
@@ -50,36 +37,32 @@ theme_map$plot.title <- element_blank()
 theme_map$axis.title <- element_blank()
 theme_map$panel.border <- element_rect(colour = "white", size=1, fill=NA)
 
-ggplot(data=map.winners.grouped) + 
-  geom_polygon(aes(x=long, y=lat, group=group, order=order, fill=PartyNm)) +
-  scale_fill_manual(name="Politcal Party", values=partycolours) +
-  theme_map + coord_equal() + theme(legend.position="bottom")
-```
-
-However, the Australian electoral map is not conducive to chloropleth map, because most of the population concentrate in the five big cities, Sydney, Melbourne, Brisbane, Adelaide and Perth, which means that there are lot of very geographical tiny regions that contribute substantially to the house of representative composition.  A better approach would be to use a cartogram to display the election results, which would maintain the geographic location but make the sizes of the electorate polygons aprroximately equal. This is very hard to perfect for Australia because the size differential between electorates is huge, resulting in a cartogram where all sense of geography is demolished. 
-
-A compromise is to use a non-contiguous, dorling cartogram, and represent each electorate with a circle, approximately in the geographic center of each electorate, with an underlying map. The major population centers need to have their center locations ballooned to make this feasible visually. This is achieved by extracting the electorates for each of the population centers, exploding the geographic center locations using the dorling algorithm, and then pasting them back into the landscale of all the electorates, using the `aec_extract_f`, `aec_carto_f` and the `aec_carto_join_f` functions in the package. The result is saved into the `nat_data_cart` dataset distributed with the package. This data is used to create the display of electoral results below.
-
-```{r fig.width=7, fig.height=6, echo=TRUE, warning=FALSE, message=FALSE, error=FALSE}
-# Load election results
-cart.winners <- aec2013_fp_electorate %>% filter(Elected == "Y") %>% 
-  select(Electorate, PartyNm) %>% 
-  merge(nat_data_cart, by.x="Electorate", by.y="ELECT_DIV")
-
-# Grouping different Lib/Nats togethers
-cart.winners$PartyNm <- as.character(cart.winners$PartyNm)
-coalition <- c("Country Liberals (NT)", "Liberal", "Liberal National Party of Queensland",
-               "The Nationals")
-cart.winners.grouped <- mutate(cart.winners, 
-  PartyNm = ifelse(as.character(PartyNm) %in% coalition, 
-                   "Liberal National Coalition", PartyNm))
-
-# Plot it
+data(nat_map)
 ggplot(data=nat_map) +
   geom_polygon(aes(x=long, y=lat, group=group, order=order),
-               fill="grey90", colour="white") +
-  geom_point(data=cart.winners.grouped, aes(x=x, y=y, colour=PartyNm), size=2, alpha=0.8) +
-  scale_colour_manual(name="Politcal Party", values=partycolours) +
+               fill="grey90", colour="white") + 
+  geom_point(data=stns, aes(x=Longitude, y=Latitude), colour="red", size=1, alpha=0.3) +
+  xlim(c(112,157)) + ylim(c(-44,-11)) +
+  theme_map + coord_equal() 
+```
+
+## Incorporating other information
+
+Election results are provided at the resolution of polling place. We can use this information to color the points. The two files need to be merged. Both have id's for the polling place, that can be used to match the records. The two party preferred votes are given in `aec2013_2pp` data, only for the Australian Labor Party and the Liberal/National Coalition. From these columns the winner needs to be calculated based on the higher percentage. This is used to colour the points on the polling places. 
+
+```{r addresults, fig.width=7, fig.height=5, message=FALSE, error = TRUE, warning=FALSE, echo=FALSE, tidy=TRUE}
+data(aec2013_2pp)
+all <- merge(stns, aec2013_2pp, by.x="PollingPlaceID", by.y="PollingPlaceID")
+# Find winner
+all$winner <- apply(all[,c(42,44)], 1, which.max)
+all$winner <- ifelse(all$winner==1, "ALP", "LNC")
+ggplot(data=nat_map) +
+  geom_polygon(aes(x=long, y=lat, group=group, order=order),
+               fill="grey90", colour="white") + 
+  geom_point(data=all, aes(x=Longitude.x, y=Latitude.x, colour=winner), size=1, alpha=0.3) +
+  scale_color_manual("Party", values=c("ALP"="#FF0033", "LNC"="#0066CC")) + 
+  xlim(c(112,157)) + ylim(c(-44,-11)) +
   theme_map + coord_equal() + theme(legend.position="bottom")
 ```
 
+This gives a richer look at the party preferences across the country. You can see that although the big rural electorates vote the LNC overall some polling places would elect the ALP, e.g. western NSW around Broken Hill. This data would look far more interesting if the data also contained the minority parties, because there must be some polling places where the majority vote would be for a minor party, since there are some minor partt representatives in the House.  
