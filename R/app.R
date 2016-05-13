@@ -248,9 +248,9 @@ launchApp <- function() {
       dat <- dplyr::left_join(voteProps, rv$data, by = "Electorate")
       p <- ggplot(dat, aes(x = PartyAb, y = prop, colour = fill, 
                            key = Electorate, text = Electorate)) + 
-        #geom_jitter(width = 0.25, alpha = 0.5) +
-        geom_line(aes(group = Electorate), alpha = 0.5) +
-        geom_point(alpha = 0.5, size = 0.001) +
+        geom_jitter(width = 0.25, alpha = 0.5) +
+        #geom_line(aes(group = Electorate), alpha = 0.5) +
+        #geom_point(alpha = 0.5, size = 0.001) +
         scale_colour_identity() + theme_bw() +
         theme(legend.position = "none") + coord_flip() +
         xlab(NULL) + ylab("Proportion of votes")

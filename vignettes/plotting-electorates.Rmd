@@ -2,14 +2,22 @@
 title: "Mapping Australia's Electorates"
 author: "Nathaniel Tomasetti, Di Cook, Heike Hofmann"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output: 
+    rmarkdown::html_vignette:
 vignette: >
   %\VignetteIndexEntry{Vignette Title}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
-This vignette dscribes how to make a map of the Australian election results. It requires merging polygons of the electoral regions, with election results using the electorate id's or unique names. The `nat_map` contains the electorate polygons and `aec2013_fp_electorate` contains the results of the 2013 Federal election.
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(fig.width = 6,
+                      fig.height = 4,
+                      fig.align='center',
+                      dev = "png", cache=FALSE)
+```
+
+This vignette describes how to make a map of the Australian election results. It requires merging polygons of the electoral regions, with election results using the electorate id's or unique names. The `nat_map` contains the electorate polygons and `aec2013_fp_electorate` contains the results of the 2013 Federal election.
 
 ```{r load-read-merge, message=FALSE, error = TRUE, warning=FALSE, echo=FALSE, tidy=TRUE}
 library(eechidna)
@@ -79,7 +87,7 @@ ggplot(data=nat_map) +
   geom_polygon(aes(x=long, y=lat, group=group, order=order),
                fill="grey90", colour="white") +
   geom_point(data=cart.winners.grouped, aes(x=x, y=y, colour=PartyNm), size=2, alpha=0.8) +
-  scale_colour_manual(name="Politcal Party", values=partycolours) +
+  scale_colour_manual(name="Political Party", values=partycolours) +
   theme_map + coord_equal() + theme(legend.position="bottom")
 ```
 

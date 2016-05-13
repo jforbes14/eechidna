@@ -31,7 +31,7 @@ knitr::opts_chunk$set(fig.width = 6,
 
 This vignette documents how to access the data from the 2013 Federal Election (House of Representatives (first preferences only). In this vignette we show a few typical methods to explore the data, inspired by [Peter Ellis's](https://github.com/ellisp/) work on NZ election data. 
 
-## 2013 Federal Election House of Representatives data
+# 2013 Federal Election House of Representatives data
 
 In the `eechidna` package we have two election datasets. One is called `aec2013`, and each row represents a particular candidate at a particular polling place. We can and can inspect this data like this:
 
@@ -154,4 +154,40 @@ proportions <- aec2013_fp %>%
 library(GGally)
 ggpairs(proportions, columns = 2:ncol(proportions)) + theme_bw()
 
+```
+
+# Senate results
+
+A quick look at the senate results for 2013, using barchart by overall composition of the senate, and by state. 
+
+```{r senate, echo=TRUE, tidy=TRUE, warning=FALSE, error=FALSE, message=FALSE, fig.width=5, fig.height=3}
+senate <- read.csv("SenateSenatorsElected2013.csv", stringsAsFactors = FALSE)
+coalition <- c("Country Liberals (NT)", "Liberal", 
+               "Liberal National Party of Queensland", "The Nationals")
+labor <- c("Australian Labor Party", "Australian Labor Party (Northern Territory) Branch", "Labor")
+greens <- c("The Greens", "Australian Greens", "The Greens (WA)")
+senate <- senate %>% 
+  mutate(PartyNm = ifelse(as.character(PartyNm) %in% coalition,
+       "Liberal National Coalition", PartyNm))
+senate <- senate %>% 
+  mutate(PartyNm = ifelse(as.character(PartyNm) %in% labor,
+       "Australian Labor Party", PartyNm))
+senate <- senate %>% 
+  mutate(PartyNm = ifelse(as.character(PartyNm) %in% greens,
+       "Australian Greens", PartyNm))
+senate$PartyNm <- factor(senate$PartyNm, levels=names(sort(table(senate$PartyNm), decreasing=T)))
+# Order = Liberal National Coalition, Australian Labor Party, The Greens, Palmer, motoring, sports, family first,  Lib Dems, Nick Xenophon
+partycolours = c("#0066CC", "#FF0033", "#009900", "#FFFF00", "#00008B", "#0000FF", "#87CEFA", "#C71585", "#FF4500")
+
+ggplot(data=senate, aes(x=PartyNm, fill=PartyNm)) + geom_bar() +
+  xlab("") + ylab("") +
+  scale_fill_manual(name="Party", values=partycolours) + 
+  coord_flip() + theme(legend.position="None")
+```
+
+```{r bystate, echo=TRUE, tidy=TRUE, warning=FALSE, error=FALSE, message=FALSE, fig.width=7, fig.height=3}
+senate$StateAb <- factor(senate$StateAb, levels=c("QLD", "NSW", "WA", "VIC", "SA", "TAS", "ACT", "NT"))
+ggplot(data=senate, aes(x=StateAb, fill=PartyNm)) + geom_bar() +
+  xlab("") + ylab("") +
+  scale_fill_manual(name="Party", values=partycolours) 
 ```
