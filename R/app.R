@@ -76,8 +76,8 @@ launchApp <- function(
     group_by(Electorate) %>% 
     summarise(
       difference = abs(diff(TotalVotes) / sum(TotalVotes)),
-      parties = paste(PartyAb[order(TotalVotes)], collapse = " over "),
-      candidates = paste(FullName[order(TotalVotes)], collapse = " over ")
+      parties = paste(PartyAb[order(TotalVotes, decreasing = TRUE)], collapse = " over "),
+      candidates = paste(FullName[order(TotalVotes, decreasing = TRUE)], collapse = " over ")
     ) %>%
     arrange(difference) %>%
     mutate(Electorate = factor(Electorate, levels = Electorate)) %>%
