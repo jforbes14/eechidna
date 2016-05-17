@@ -326,7 +326,7 @@ census_and_election %>%
   
 We can see that the r-squared values are highest for OtherLanguageHome, Age55_64, and Age25_34. This suggests that an increase or descrease in one of those variables has a greater effect on the percentage of Labor votes than most of the other census variables.
 
-In the plots below, we 
+We can get some more insights by plotting some of these relationships. In the plots below, we can see the census variables that have a statistically significant relationship with the percentage of Labor votes. There seems to be a positive relationship voting Labor and having a Bachelor degree, having internet access, being unemployed and not owning a home. We see EnglishOnly as a negatively correlated variable, meaning that increases in the proportion of households that speak English only correlate with decreases in the percentage of the Labor vote in that electorate. In general, more educated and multicultural electorates tend to vote more for Labor. 
 
 ```{r}
 # model that includes all census variables
@@ -353,19 +353,7 @@ census_and_election %>%
   geom_smooth(method = "lm") +
   facet_wrap( ~ variable, scales = "free") +
   theme_bw()
-
-
-
-census_variables <- names(abs2011)[-c(1:3)]
-
-r2s <- apply(census_and_election[, census_variables], 
-             2, 
-             function(x) summary(lm(x ~ census_and_election$Average_Australian_Labor_Party_Percentage_in_electorate))$r.squared)
-
-sort(r2s)
 ```
-
-
 
 
 # Senate results
