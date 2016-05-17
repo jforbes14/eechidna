@@ -97,7 +97,11 @@ launchApp <- function() {
           checkboxInput("persist", "Persistant selections?", FALSE),
           selectInput(
             "color", "Selection color:", 
-            choices = c("red", "blue", "yellow", "purple")
+            choices = c(
+              "forest" = "#1b9e77", "pink" = "#e7298a", "yellow" = "#e6ab02",
+              "green" = "#66a61e", "violet" = "#7570b3", "orange" = "#d95f02", 
+              "blue" = "#3690c0"
+            )
           )
         ),
         column(
@@ -286,7 +290,7 @@ launchApp <- function() {
     output$densities <- renderPlot({
       dat <- dplyr::left_join(other, rv$data, by = "Electorate")
       ggplot(dat, aes(value, fill = fill)) +
-        geom_dotplot(dotsize = 0.3) +
+        geom_dotplot(dotsize = 0.5) +
         scale_fill_identity() +
         facet_wrap(~variable, scales = "free", ncol = 1) +
         labs(x = NULL, y = NULL) +
@@ -297,7 +301,7 @@ launchApp <- function() {
     output$religion <- renderPlot({
       dat <- dplyr::left_join(religion, rv$data, by = "Electorate")
       ggplot(dat, aes(value, fill = fill)) +
-        geom_dotplot(dotsize = 0.2) +
+        geom_dotplot(dotsize = 0.5) +
         scale_fill_identity() +
         facet_wrap(~variable, ncol = 1) +
         labs(x = NULL, y = NULL) +
