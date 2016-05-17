@@ -48,6 +48,7 @@ We can access and explore each of these using common methods in R, for example:
 
 ```{r load-read-polling, message=FALSE, error = FALSE}
 library(eechidna)
+library(plyr)
 library(dplyr)
 library(knitr)
 # inspect the data frame
@@ -315,8 +316,15 @@ census_and_election %>%
   map(~ lm(value ~ Average_Australian_Labor_Party_Percentage_in_electorate, data = .)) %>%
   map(summary) %>%
   map_dbl("r.squared") %>% 
-  sort
+  data.frame(Census_variable=names(.), 
+             r_squared =.,
+             row.names=NULL) %>% 
+  arrange(desc(r_squared)) %>% 
+  head
+```
   
+We can see that the r-squared values are highest for OtherLanguageHome, Age55_64, and Age25_34. Thi
+
 
 # model that includes all census variables
 all_vars <- census_and_election %>% 
@@ -336,8 +344,7 @@ census_and_election %>%
   gather(variable, 
          value, 
          -Average_Australian_Labor_Party_Percentage_in_electorate) %>% 
-  ggplot(aes(Average_Australian_Labor_Party_Percentage_in_electorate, 
-                                value)) +
+  ggplot(aes(value, Average_Australian_Labor_Party_Percentage_in_electorate)) +
   geom_point() +
   geom_smooth(method = "lm") +
   facet_wrap( ~ variable, scales = "free")
@@ -353,30 +360,13 @@ r2s <- apply(census_and_election[, census_variables],
 sort(r2s)
 
 
-Rsqall = colwise(Rsq)(census_and_election[, census_variables])
-Rsqall
-
-names(Rsqall)[which.max(Rsqall)]
-
-  census_and_election %>% 
-    gather_(key = census_variables, value =  'variables', -'Electorate')
-
 
 
 
 
 ```
 
-library(purrr)
 
-mtcars %>%
-  split(.$cyl) %>%
-  map(~ lm(mpg ~ wt, data = .)) %>%
-  map(summary) %>%
-  map_dbl("r.squared")
-
-
-```
 
 
 # Senate results
