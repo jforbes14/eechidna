@@ -63,6 +63,15 @@ launchApp <- function() {
   aec13$PartyAb <- factor(aec13$PartyAb, levels = lvls)
   voteProps$PartyAb <- factor(voteProps$PartyAb, levels = lvls)
   
+  # 2 party preferred data
+  aec13pp <- data.frame(eechidna::aec2013_2pp_electorate)
+  aec13pp <- aec13pp %>% 
+    mutate(difference = Average_Australian_Labor_Party_Percentage_in_electorate - 
+             Average_Liberal_National_Coalition_Percentage_in_electorate) %>%
+    select(Electorate, difference) %>%
+    arrange(abs(difference)) %>%
+    mutate(Electorate = factor(Electorate, levels = Electorate))
+  
   # there are multiple brushes in the UI, but they have common properties
   brush_opts <- function(id, ...) {
     brushOpts(id = id, direction = "x", resetOnNew = TRUE, ...)
@@ -103,11 +112,15 @@ launchApp <- function() {
     ),
     fluidRow(
       column(
-        width = 4,
+        width = 2,
         plotlyOutput("winProps")
       ),
       column(
-        width = 4,
+        width = 3,
+        plotlyOutput("pp")
+      ),
+      column(
+        width = 3,
         plotlyOutput("voteProps")
       ),
       column(
@@ -235,12 +248,27 @@ launchApp <- function() {
       dat <- dplyr::left_join(voteProps, rv$data, by = "Electorate")
       p <- ggplot(dat, aes(x = PartyAb, y = prop, colour = fill, 
                            key = Electorate, text = Electorate)) + 
-        #geom_jitter(width = 0.25, alpha = 0.5) +
-        geom_line(aes(group = Electorate), alpha = 0.5) +
-        geom_point(alpha = 0.5, size = 0.001) +
+        geom_jitter(width = 0.25, alpha = 0.5) +
+        #geom_line(aes(group = Electorate), alpha = 0.5) +
+        #geom_point(alpha = 0.5, size = 0.001) +
         scale_colour_identity() + theme_bw() +
         theme(legend.position = "none") + coord_flip() +
         xlab(NULL) + ylab("Proportion of votes")
+      ggplotly(p, tooltip = "text") %>% layout(dragmode = "select")
+    })
+    
+    output$pp <- renderPlotly({
+      dat <- dplyr::left_join(aec13pp, rv$data, by = "Electorate")
+      dat$Electorate <- factor(dat$Electorate, levels = levels(aec13pp$Electorate))
+      p <- ggplot(dat, aes(difference, Electorate, colour = fill,
+                      key = Electorate, text = Electorate)) + 
+        scale_colour_identity() + theme_bw() +
+        theme(legend.position = "none") +
+        geom_point() + ylab(NULL) + 
+        xlab(" <- Coalition   Labor ->") + 
+        theme(axis.text.y = element_blank(), 
+              axis.ticks.y = element_line(size = 0),
+              panel.grid.major.y = element_blank())
       ggplotly(p, tooltip = "text") %>% layout(dragmode = "select")
     })
     
