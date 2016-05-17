@@ -10,6 +10,19 @@
 #' @param expand how large a chunk to cut out
 #' @param ... other arguments
 #'
+#' @examples 
+#' \dontrun{
+#' library(dplyr)
+#' library(ggplot2)
+#' data(nat_map)
+#' data(nat_data)
+#' adelaide <- aec_extract_f(nat_data, ctr=c(138.6, -34.9), expand=c(2,3))
+#' ggplot(data=nat_map) + 
+#'   geom_polygon(aes(x=long, y=lat, group=group, order=order),
+#'     fill="grey90", colour="white") +
+#'   geom_point(data=adelaide, aes(x=long_c, y=lat_c), size=2, alpha=0.4,
+#'   colour="#572d2c") + coord_equal()
+#' }
 
 aec_extract_f <- function(aec_data, ctr=c(151.2, -33.8),
                           expand=c(3,4.5), ...) {
@@ -124,7 +137,7 @@ circle = function(xvec,yvec,rvec,vertex=100,border=1,col=NULL,add=TRUE, square=F
 ##' @param ... other things
 
 ##' 
-dorling = function(name, centroidx, centroidy, density, nbr=NULL, shared.border=NULL, color=NULL, tolerance=0.1, dist.ratio=1.2, iteration=9999, polygon.vertex=100, animation=FALSE, sleep.time=0.3, nbredge=ifelse(is.null(nbr),FALSE,TRUE), name.text=TRUE, ggplot2=FALSE, ...){
+dorling <- function(name, centroidx, centroidy, density, nbr=NULL, shared.border=NULL, color=NULL, tolerance=0.1, dist.ratio=1.2, iteration=9999, polygon.vertex=100, animation=FALSE, sleep.time=0.3, nbredge=ifelse(is.null(nbr),FALSE,TRUE), name.text=TRUE, ggplot2=FALSE, ...){
   n=length(name)
   stopifnot(n==length(centroidx), n==length(centroidy), n==length(density), is.numeric(iteration))
   

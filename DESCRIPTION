@@ -18,7 +18,10 @@ Imports:
 Suggests:
     testthat,
     knitr,
-    rmarkdown
+    rmarkdown,
+    maptools,
+    purrr,
+    sp
 Author: Di Cook,
     Heike Hofmann,
     Rob Hyndman,
