@@ -217,9 +217,9 @@ fairfax %>%
 
 We see that the majority of ordinary votes of first preferences in Fairfax actually went to Ted O'Brien, not to Clive Palmer. Palmer's win is due to the preference flow from minor conservative parties, details of this are here: <http://www.tallyroom.com.au/19908>
 
+# How did each electorate vote in each state?
 
 We can look at the proportion of voters for a particular party in each electorate, grouped by each state. This plot was inspired by Peter Ellis's work on the NZ election data. 
-
 
 ```{r plot_prop_particular_party, fig.height = 12, fig.width=10}
 # summarise and compute proportion of votes for a particular party
@@ -293,53 +293,79 @@ census_and_election <- left_join(aec2013_2pp_electorate,
                                  by = c("Electorate" = "Electorate"))
 ```
 
-Now we can easily explore some relationships between the census data and the two party preferring voting patterns. For example, what census variable mostly strongly correlates with the percentage that vote Labor? The table below shows the top few variables that explain the percentage of Labor votes.  
+Now we can easily explore some relationships between the census data and the two party preferring voting patterns. For example, what census variable mostly strongly correlates with the percentage that vote Labor? The first step in these kinds of explorations is always to visualise the data:
+
+```{r}
+# subset only the columns we want for the model
+census_and_election_subset <-  
+  census_and_election %>% 
+  ungroup %>% 
+  select(Electorate, 
+         Average_Australian_Labor_Party_Percentage_in_electorate,
+         Population:NotOwned)  %>% 
+  rename(ALP_perc = Average_Australian_Labor_Party_Percentage_in_electorate)
+
+library(corrplot)
+M <- cor(census_and_election_subset[, c(2:ncol(census_and_election_subset))], 
+         use = "pairwise.complete.obs")
+corrplot.mixed(M, 
+               lower="ellipse", 
+               upper="number", 
+               tl.pos = "lt",
+               tl.cex = 0.5, 
+               number.cex= 0.5)
+
+
+
+```
+
+It's a little hard to read because we have so many variables. But we can spot some potentially interesting correlations, as well as some obvious ones. 
+
+The table below gives an overall summary of the model containing all the census variables. We see that the p-value is very low, indicating that we have some interactions that are probably not due to chance alone. 
 
 ```{r explore}
 library(broom)
 library(purrr)
 library(tidyr)
 
+options(scipen = 10) # for more readable numbers
 census_variables <- names(abs2011)[-c(1:3)]
 
-census_and_election %>% 
-  ungroup %>% 
-  select(Electorate, 
-         Average_Australian_Labor_Party_Percentage_in_electorate,
-         Population:NotOwned) %>% 
-  gather(variable, 
-         value, 
-         Population:NotOwned,
-         -Average_Australian_Labor_Party_Percentage_in_electorate, 
-         -Electorate) %>% 
-  split(.$variable) %>%
-  map(~ lm(value ~ Average_Australian_Labor_Party_Percentage_in_electorate, data = .)) %>%
-  map(summary) %>%
-  map_dbl("adj.r.squared") %>% 
-  data.frame(Census_variable = names(.), 
-             r_squared = round(., 2),
-             row.names = NULL) %>% 
-  arrange(desc(r_squared)) %>% 
-  head %>% 
-  kable
-```
-  
-We can see that the r-squared values are highest for OtherLanguageHome, Age55_64, and Age25_34. This suggests that an increase or descrease in one of those variables has a greater effect on the percentage of Labor votes than most of the other census variables.
-
-We can get some more insights by plotting some of these relationships. In the plots below, we can see the census variables that have a statistically significant relationship with the percentage of Labor votes. There seems to be a positive relationship voting Labor and having a Bachelor degree, having internet access, being unemployed and not owning a home. We see EnglishOnly as a negatively correlated variable, meaning that increases in the proportion of households that speak English only correlate with decreases in the percentage of the Labor vote in that electorate. In general, more educated and multicultural electorates tend to vote more for Labor. 
-
-```{r}
-# model that includes all census variables
-all_vars <- census_and_election %>% 
+# compute the multiple regressions
+mutliple_regression_model <- 
+  census_and_election %>% 
   ungroup %>% 
   select(
          Average_Australian_Labor_Party_Percentage_in_electorate,
          Population:NotOwned) %>% 
   lm(Average_Australian_Labor_Party_Percentage_in_electorate ~ ., 
-     data = . ) %>% 
+     data = . )
+
+mutliple_regression_model %>% 
+  glance %>% 
+  kable
+```
+
+The table below shows the variables that have a significant effect on the percentage of Labor votes across all electorates: 
+
+```{r}
+# find the variables with a significant effect
+mutliple_regression_model %>% 
   tidy %>% 
   filter(p.value < 0.05) %>% 
-  arrange(p.value)
+  arrange(p.value) %>% 
+  kable
+```
+
+
+In the plots below, we can see these census variables that have a statistically significant relationship with the percentage of Labor votes. There seems to be a positive relationship voting Labor and having a Bachelor degree, having internet access, being unemployed and not owning a home. We see EnglishOnly as a negatively correlated variable, meaning that increases in the proportion of households that speak English only correlate with decreases in the percentage of the Labor vote in that electorate. In general, more educated and multicultural electorates tend to vote more for Labor. 
+
+```{r}
+# model that includes all census variables
+all_vars <- mutliple_regression_model %>% 
+  tidy %>% 
+  filter(p.value < 0.05) %>% 
+  arrange(p.value) 
 
 census_and_election %>% 
   ungroup %>% 
