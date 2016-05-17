@@ -26,10 +26,15 @@ getElectorateShapes <- function(shapeFile, keep=0.05) {
 
   # shapeFile contains the path to the shp file:
   sF <- maptools::readShapeSpatial(shapeFile)
-  # require(rmapshaper)
-  # devtools::install_github("ateucher/rmapshaper")`.
   
-  sFsmall <- rmapshaper::ms_simplify(sF, keep=keep) # use instead of thinnedSpatialPoly
+  if (system.file(package = "rmapshaper") == "") {
+    stop("You need the rmapshaper package to use this function.\n",
+         "It is not yet available from CRAN, but you can install with:\n",
+         "devtools::install_github('ateucher/rmapshaper')", call. = FALSE)
+  }
+  
+  # use instead of thinnedSpatialPoly
+  sFsmall <- get("ms_simplify", envir = asNamespace("rmapshaper"))(sF, keep=keep)
   
   nat_data <- sF@data
   nat_data$id <- row.names(nat_data)
@@ -38,14 +43,13 @@ getElectorateShapes <- function(shapeFile, keep=0.05) {
   nat_map$piece <- paste("p",nat_map$piece,sep=".")
   
   # get centroids
-  polys <- as(sF, "SpatialPolygons")
+  polys <- methods::as(sF, "SpatialPolygons")
   
-  library(dplyr)
   centroid <- function(i, polys) {
     ctr <- sp::Polygon(polys[i])@labpt
     data.frame(long_c=ctr[1], lat_c=ctr[2])
   }
-  centroids <- seq_along(polys) %>% purrr::map_df(centroid, polys=polys)
+  centroids <-  purrr::map_df(seq_along(polys), centroid, polys=polys)
   
   nat_data <- data.frame(nat_data, centroids)
   
