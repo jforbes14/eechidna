@@ -13,6 +13,7 @@
 #' }
 
 launchApp <- function() {
+  
   # a bit of data cleaning
   nat_data_cart <- eechidna::nat_data_cart
   nat_data_cart$Electorate <- nat_data_cart$ELECT_DIV
