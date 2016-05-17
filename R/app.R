@@ -1,9 +1,11 @@
 #' Shiny app for exploring census and electorate data
 #' 
 #' @param age Age variables to show (by default, all of them are shown)
-#' @param religion
-#' @param other 
-#' 
+#' @param religion Religion variables to show (by default, all of them are shown)
+#' @param other Other census variables to show (by default, all of them are shown)
+#' @param palette a named character vector of selection colors. The vector names
+#' are used as the display in the drop-down control.
+#' @author Carson Sievert
 #' @export
 #' @examples \dontrun{
 #' launchApp(

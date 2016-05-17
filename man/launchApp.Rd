@@ -4,16 +4,39 @@
 \alias{launchApp}
 \title{Shiny app for exploring census and electorate data}
 \usage{
-launchApp(ageVars = c("Age00_04", "Age05_14", "Age15_19", "Age20_24",
-  "Age25_34", "Age35_44", "Age45_54", "Age55_64", "Age65_74", "Age75_84",
-  "Age85plus"))
+launchApp(age = c("Age00_04", "Age05_14", "Age15_19", "Age20_24", "Age25_34",
+  "Age35_44", "Age45_54", "Age55_64", "Age65_74", "Age75_84", "Age85plus"),
+  religion = c("Christianity", "Catholic", "Buddhism", "Islam", "Judaism",
+  "NoReligion"), other = c("Population", "MedianIncome", "Unemployed",
+  "Bachelor", "Postgraduate", "BornOverseas", "Indigenous", "EnglishOnly",
+  "OtherLanguageHome", "Married", "DeFacto", "FamilyRatio", "Internet",
+  "NotOwned"), palette = c(forest = "#1b9e77", pink = "#f0027f", yellow =
+  "#e6ab02", green = "#66a61e", violet = "#7570b3", orange = "#d95f02", blue =
+  "#3690c0"))
+}
+\arguments{
+\item{age}{Age variables to show (by default, all of them are shown)}
+
+\item{religion}{Religion variables to show (by default, all of them are shown)}
+
+\item{other}{Other census variables to show (by default, all of them are shown)}
+
+\item{palette}{a named character vector of selection colors. The vector names
+are used as the display in the drop-down control.}
 }
 \description{
 Shiny app for exploring census and electorate data
 }
 \examples{
 \dontrun{
-launchApp()
+launchApp(
+  age = c("Age20_24", "Age85plus"),
+  religion = c("Christianity", "Catholic", "NoReligion"),
+  other = c("Unemployed", "Population", "MedianIncome")
+)
 }
+}
+\author{
+Carson Sievert
 }
 
