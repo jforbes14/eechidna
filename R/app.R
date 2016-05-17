@@ -1,29 +1,33 @@
 #' Shiny app for exploring census and electorate data
 #' 
-#' @import shiny
-#' @import ggplot2
-#' @importFrom plotly ggplotly layout plotlyOutput event_data renderPlotly as.widget plotly_build
-#' @importFrom shinyjs useShinyjs runjs
-#' @import dplyr
-#' @import ggthemes
-#' @importFrom tidyr gather
+#' @param age Age variables to show (by default, all of them are shown)
+#' @param religion
+#' @param other 
+#' 
 #' @export
 #' @examples \dontrun{
-#' launchApp()
+#' launchApp(
+#'   age = c("Age20_24", "Age85plus"),
+#'   religion = c("Christianity", "Catholic", "NoReligion"),
+#'   other = c("Unemployed", "Population", "MedianIncome")
+#' )
 #' }
 
-launchApp <- function() {
-  
+launchApp <- function(
+  age = c("Age00_04", "Age05_14", "Age15_19", "Age20_24", "Age25_34", 
+              "Age35_44", "Age45_54", "Age55_64", "Age65_74",  "Age75_84",  
+              "Age85plus"),
+  religion = c("Christianity", "Catholic", "Buddhism", "Islam", "Judaism", "NoReligion"),
+  other = c("Population", "MedianIncome", "Unemployed", "Bachelor", "Postgraduate", "BornOverseas",
+            "Indigenous", "EnglishOnly", "OtherLanguageHome", "Married", 
+            "DeFacto", "FamilyRatio", "Internet", "NotOwned"),
+  palette = c("forest" = "#1b9e77", "pink" = "#f0027f", "yellow" = "#e6ab02",
+    "green" = "#66a61e", "violet" = "#7570b3", "orange" = "#d95f02", "blue" = "#3690c0")
+  ) {
   # a bit of data cleaning
   nat_data_cart <- eechidna::nat_data_cart
   nat_data_cart$Electorate <- nat_data_cart$ELECT_DIV
-  abs2011 <- eechidna::abs2011
-  # some of these variables are heavily right-skewed and cause problems
-  # for the dotplot sizing
-  abs2011$Area <- NULL
-  abs2011$Buddhism <- NULL
-  abs2011$Islam <- NULL
-  abs2011$Judaism <- NULL
+  abs2011 <- eechidna::abs2011[c("ID", "Electorate", "State", age, religion, other)]
   longAbs <- tidyr::gather(
     abs2011, variable, value, -ID, -Electorate, -State
   )
@@ -35,7 +39,7 @@ launchApp <- function() {
   )
   isAge <- grepl("^Age", longAbs$variable)
   ages <- longAbs[isAge, ]
-  isReg <- longAbs$variable %in% c("Christianity", "Catholic", "Buddhism", "Islam", "Judaism", "NoReligion")
+  isReg <- longAbs$variable %in% religion
   religion <- longAbs[isReg, ]
   other <- longAbs[!isAge & !isReg, ]
   
@@ -96,14 +100,7 @@ launchApp <- function() {
         column(
           width = 2,
           checkboxInput("persist", "Persistant selections?", FALSE),
-          selectInput(
-            "color", "Selection color:", 
-            choices = c(
-              "forest" = "#1b9e77", "pink" = "#e7298a", "yellow" = "#e6ab02",
-              "green" = "#66a61e", "violet" = "#7570b3", "orange" = "#d95f02", 
-              "blue" = "#3690c0"
-            )
-          )
+          selectInput("color", "Selection color:", choices = palette)
         ),
         column(
           width = 6,
@@ -137,19 +134,19 @@ launchApp <- function() {
       column(
         width = 4,
         plotOutput(
-          "ages", height = 1500, brush = brush_opts("brushAge")
+          "ages", height = 150 * length(age), brush = brush_opts("brushAge")
         )
       ),
       column(
         width = 4,
         plotOutput(
-          "densities", height = 2000, brush = brush_opts("brushDen")
+          "densities", height = 100 * length(other), brush = brush_opts("brushDen")
         )
       ),
       column(
         width = 4,
         plotOutput(
-          "religion", height = 450, brush = brush_opts("brushReligion")
+          "religion", height = 100 * length(religion), brush = brush_opts("brushReligion")
         )
       )
     )
@@ -163,7 +160,7 @@ launchApp <- function() {
     rv <- reactiveValues(
       data = data.frame(
         Electorate = nat_data_cart$Electorate,
-        fill = rep("black", nrow(nat_data_cart)),
+        fill = factor(rep("black", nrow(nat_data_cart)), levels = c("black", as.character(palette))),
         stringsAsFactors = FALSE
       )
     )
@@ -185,6 +182,7 @@ launchApp <- function() {
       } else {
         fill <- rv$data$fill
         fill[rv$data$fill %in% input$color] <- "black"
+        print(input$color)
         fill[selected] <- input$color
         rv$data$fill <- fill
       }
@@ -253,9 +251,9 @@ launchApp <- function() {
       dat <- dplyr::left_join(voteProps, rv$data, by = "Electorate")
       p <- ggplot(dat, aes(x = PartyAb, y = prop, colour = fill, 
                            key = Electorate, text = Electorate)) + 
-        geom_jitter(width = 0.25, alpha = 0.5) +
-        #geom_line(aes(group = Electorate), alpha = 0.5) +
-        #geom_point(alpha = 0.5, size = 0.001) +
+        #geom_jitter(width = 0.25, alpha = 0.5) +
+        geom_line(aes(group = Electorate), alpha = 0.5) +
+        geom_point(alpha = 0.5, size = 0.001) +
         scale_colour_identity() + theme_bw() +
         theme(legend.position = "none") + coord_flip() +
         xlab(NULL) + ylab("Proportion of votes")
@@ -272,7 +270,7 @@ launchApp <- function() {
         geom_point() + ylab(NULL) + 
         xlab(" <- Coalition   Labor ->") + 
         theme(axis.text.y = element_blank(), 
-              axis.ticks.y = element_line(size = 0),
+              axis.ticks.y = element_blank(),
               panel.grid.major.y = element_blank())
       ggplotly(p, tooltip = "text") %>% layout(dragmode = "select")
     })
@@ -280,7 +278,7 @@ launchApp <- function() {
     output$ages <- renderPlot({
       dat <- dplyr::left_join(ages, rv$data, by = "Electorate")
       ggplot(dat, aes(value, fill = fill)) +
-        geom_dotplot(binwidth = 0.25, dotsize = 1.2) +
+        geom_dotplot(binwidth = 0.25, dotsize = 1.2, alpha = 0.4) +
         facet_wrap(~ variable, ncol = 1) +
         scale_fill_identity() +
         labs(x = NULL, y = NULL) +

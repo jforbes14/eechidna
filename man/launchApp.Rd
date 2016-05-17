@@ -4,7 +4,9 @@
 \alias{launchApp}
 \title{Shiny app for exploring census and electorate data}
 \usage{
-launchApp()
+launchApp(ageVars = c("Age00_04", "Age05_14", "Age15_19", "Age20_24",
+  "Age25_34", "Age35_44", "Age45_54", "Age55_64", "Age65_74", "Age75_84",
+  "Age85plus"))
 }
 \description{
 Shiny app for exploring census and electorate data
