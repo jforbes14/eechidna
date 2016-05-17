@@ -43,7 +43,7 @@ getElectorateShapes <- function(shapeFile, keep=0.05) {
   nat_map$piece <- paste("p",nat_map$piece,sep=".")
   
   # get centroids
-  polys <- as(sF, "SpatialPolygons")
+  polys <- methods::as(sF, "SpatialPolygons")
   
   centroid <- function(i, polys) {
     ctr <- sp::Polygon(polys[i])@labpt
