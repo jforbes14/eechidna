@@ -32,7 +32,9 @@ ggplot(data=nat_map) +
   geom_polygon(aes(x=long, y=lat, group=group, order=order),
     fill="grey90", colour="white") +
   geom_point(data=adelaide, aes(x=long_c, y=lat_c), size=2, alpha=0.4,
-  colour="#572d2c") + coord_equal()
+    colour="#f0027f") + 
+  xlim(c(136, 142)) + ylim(-36, -33) +
+  coord_equal()
 }
 }
 

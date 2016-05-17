@@ -21,7 +21,9 @@
 #'   geom_polygon(aes(x=long, y=lat, group=group, order=order),
 #'     fill="grey90", colour="white") +
 #'   geom_point(data=adelaide, aes(x=long_c, y=lat_c), size=2, alpha=0.4,
-#'   colour="#572d2c") + coord_equal()
+#'     colour="#f0027f") + 
+#'   xlim(c(136, 142)) + ylim(-36, -33) +
+#'   coord_equal()
 #' }
 
 aec_extract_f <- function(aec_data, ctr=c(151.2, -33.8),
@@ -128,7 +130,7 @@ circle = function(xvec,yvec,rvec,vertex=100,border=1,col=NULL,add=TRUE, square=F
 ##' @param tolerance Tolerant value for the sum of overlapped radii.
 ##' @param dist.ratio The threshold to determine whether an attract force is added. It is applied to the ratio of the distance between two centroids and the sum of the two radii.
 ##' @param iteration The limit of the number of iterations. Default to be 9999.
-##' @param polygon.vertex The number of vertice of the circle. Default to be 100. If polygon.vertex=4 then diamands applies. If polygon.vertex=6, then hexagon applies.
+##' @param polygon.vertex The number of vertice of the circle. Default to be 100. If polygon.vertex=4 then diamonds applies. If polygon.vertex=6, then hexagon applies.
 ##' @param animation Whether to show the movements of centroids.
 ##' @param sleep.time Only works when animation=TRUE.
 ##' @param nbredge whether to draw the lines between neighbor regions.
@@ -296,13 +298,40 @@ dorling <- function(name, centroidx, centroidy, density, nbr=NULL, shared.border
 #' @export
 #' @param aec_data_sub subset of data with centroids of electoral divisions
 #' @param ... arguments to dorling function
-#' @param polygon.vertex x
-#' @param name.text x
-#' @param dist.ratio x
-#' @param iteration x
-#' @param xlab x
-#' @param ylab x
-#'
+#' @param polygon.vertex The number of vertice of the circle. Default to be 100. If polygon.vertex=4 then diamonds applies. If polygon.vertex=6, then hexagon applies.
+#' @param name.text whether to print the region names on the circles or polygons.
+#' @param dist.ratio The threshold to determine whether an attract force is added. It is applied to the ratio of the distance between two centroids and the sum of the two radii.
+#' @param iteration The limit of the number of iterations. Default to be 9999.
+#' @param xlab Label for dorling x axis, intermediate drawing
+#' @param ylab Label for dorling y axis, intermediate drawing
+#' @examples 
+#' \dontrun{
+#' library(dplyr)
+#' library(ggplot2)
+#' data(nat_map)
+#' data(nat_data)
+#' adelaide <- aec_extract_f(nat_data, ctr=c(138.6, -34.9), expand=c(2,3))
+#' adelaide_carto <- aec_carto_f(adelaide) %>% rename(id=region)
+#' ggplot(data=nat_map) + 
+#'   geom_path(aes(x=long, y=lat, group=group, order=order),
+#'                  colour="grey50") +
+#'   geom_point(data=adelaide_carto, aes(x=x, y=y), size=4, alpha=0.4,
+#'         colour="#f0027f") + 
+#'         xlim(c(136, 140)) + ylim(-36, -33) +
+#'         coord_equal()
+#' adelaide_all <- merge(adelaide, adelaide_carto, by="id")
+#' ggplot(data=nat_map) + 
+#'   geom_path(aes(x=long, y=lat, group=group, order=order),
+#'                  colour="grey50") +
+#'   geom_point(data=adelaide_all, aes(x=long_c, y=lat_c), size=2, alpha=0.4,
+#'               colour="#f0027f") + 
+#'   geom_point(data=adelaide_all, aes(x=x, y=y), size=2, alpha=0.4,
+#'                              colour="#f0027f") + 
+#'   geom_segment(data=adelaide_all,
+#'        aes(x=long_c, xend=x, y=lat_c, yend=y), colour="#f0027f") +
+#'   xlim(c(136, 140)) + ylim(-37, -33) +
+#'   coord_equal()
+#' }
 aec_carto_f <-function(aec_data_sub, polygon.vertex=6, name.text=TRUE,
                        dist.ratio=dist.ratio, iteration=100,
                        xlab="", ylab="", ...) {
