@@ -14,7 +14,8 @@ Imports:
     shiny,
     plotly (>= 3.5.2),
     ggthemes,
-    shinyjs
+    shinyjs,
+    methods
 Suggests:
     testthat,
     knitr,
