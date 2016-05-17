@@ -293,7 +293,7 @@ census_and_election <- left_join(aec2013_2pp_electorate,
                                  by = c("Electorate" = "Electorate"))
 ```
 
-Now we can easily explore some relationships between the census data and the two party preferring voting patterns. For example, what census variable mostly strongly correlates with the percentage that vote Labor?
+Now we can easily explore some relationships between the census data and the two party preferring voting patterns. For example, what census variable mostly strongly correlates with the percentage that vote Labor? The table below shows the top few variables that explain the percentage of Labor votes.  
 
 ```{r explore}
 library(broom)
@@ -316,9 +316,9 @@ census_and_election %>%
   map(~ lm(value ~ Average_Australian_Labor_Party_Percentage_in_electorate, data = .)) %>%
   map(summary) %>%
   map_dbl("adj.r.squared") %>% 
-  data.frame(Census_variable= names(.), 
+  data.frame(Census_variable = names(.), 
              r_squared = round(., 2),
-             row.names= NULL) %>% 
+             row.names = NULL) %>% 
   arrange(desc(r_squared)) %>% 
   head %>% 
   kable
