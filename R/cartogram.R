@@ -94,7 +94,7 @@ circle = function(xvec,yvec,rvec,vertex=100,border=1,col=NULL,add=TRUE, square=F
   for (i in 1:n){
     xv <- cos(angles) * rvec[i] + xvec[i]
     yv <- sin(angles) * rvec[i] + yvec[i]
-    polygon(xv, yv, border = border[i], col = col[i])
+    graphics::polygon(xv, yv, border = border[i], col = col[i])
   }
 }
 
