@@ -315,24 +315,28 @@ census_and_election %>%
   split(.$variable) %>%
   map(~ lm(value ~ Average_Australian_Labor_Party_Percentage_in_electorate, data = .)) %>%
   map(summary) %>%
-  map_dbl("r.squared") %>% 
-  data.frame(Census_variable=names(.), 
-             r_squared =.,
-             row.names=NULL) %>% 
+  map_dbl("adj.r.squared") %>% 
+  data.frame(Census_variable= names(.), 
+             r_squared = round(., 2),
+             row.names= NULL) %>% 
   arrange(desc(r_squared)) %>% 
-  head
+  head %>% 
+  kable
 ```
   
-We can see that the r-squared values are highest for OtherLanguageHome, Age55_64, and Age25_34. Thi
+We can see that the r-squared values are highest for OtherLanguageHome, Age55_64, and Age25_34. This suggests that an increase or descrease in one of those variables has a greater effect on the percentage of Labor votes than most of the other census variables.
 
+In the plots below, we 
 
+```{r}
 # model that includes all census variables
 all_vars <- census_and_election %>% 
   ungroup %>% 
   select(
          Average_Australian_Labor_Party_Percentage_in_electorate,
          Population:NotOwned) %>% 
-  lm(Average_Australian_Labor_Party_Percentage_in_electorate ~ ., data = . ) %>% 
+  lm(Average_Australian_Labor_Party_Percentage_in_electorate ~ ., 
+     data = . ) %>% 
   tidy %>% 
   filter(p.value < 0.05) %>% 
   arrange(p.value)
@@ -347,7 +351,8 @@ census_and_election %>%
   ggplot(aes(value, Average_Australian_Labor_Party_Percentage_in_electorate)) +
   geom_point() +
   geom_smooth(method = "lm") +
-  facet_wrap( ~ variable, scales = "free")
+  facet_wrap( ~ variable, scales = "free") +
+  theme_bw()
 
 
 
@@ -358,12 +363,6 @@ r2s <- apply(census_and_election[, census_variables],
              function(x) summary(lm(x ~ census_and_election$Average_Australian_Labor_Party_Percentage_in_electorate))$r.squared)
 
 sort(r2s)
-
-
-
-
-
-
 ```
 
 

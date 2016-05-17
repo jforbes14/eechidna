@@ -3,8 +3,7 @@
 utils::globalVariables(
   c("variable", "value", "ID", "Electorate", "State", "BallotPosition",
     "PartyAb", "OrdinaryVotes", "formal", "total_formal", "fill", "prop",
-    "xcent", "ycent", "x", "y", "group", "lat", "long", 'plot','polygon',
-    'dist','points','segments','text', 'Elected')
+    "xcent", "ycent", "x", "y", "group", "lat", "long", 'Elected')
 )
 
 
