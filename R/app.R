@@ -40,9 +40,9 @@ launchApp <- function(
     levels = unique(longAbs$variable)
   )
   isAge <- grepl("^Age", longAbs$variable)
-  ages <- longAbs[isAge, ]
+  ageDat <- longAbs[isAge, ]
   isReg <- longAbs$variable %in% religion
-  religion <- longAbs[isReg, ]
+  religionDat <- longAbs[isReg, ]
   other <- longAbs[!isAge & !isReg, ]
   
   # 1st preference votes for candidates for the House for each electorate
@@ -132,6 +132,7 @@ launchApp <- function(
         plotlyOutput("map")
       )
     ),
+    
     fluidRow(
       column(
         width = 4,
@@ -142,13 +143,13 @@ launchApp <- function(
       column(
         width = 4,
         plotOutput(
-          "densities", height = 100 * length(other), brush = brush_opts("brushDen")
+          "religion", height = 150 * length(religion), brush = brush_opts("brushReligion")
         )
       ),
       column(
         width = 4,
         plotOutput(
-          "religion", height = 100 * length(religion), brush = brush_opts("brushReligion")
+          "densities", height = 150 * length(other), brush = brush_opts("brushDen")
         )
       )
     )
@@ -254,7 +255,7 @@ launchApp <- function(
       p <- ggplot(dat, aes(x = PartyAb, y = prop, colour = fill, 
                            key = Electorate, text = Electorate)) + 
         #geom_jitter(width = 0.25, alpha = 0.5) +
-        geom_line(aes(group = Electorate), alpha = 0.5) +
+        geom_line(aes(group = Electorate), alpha = 0.2) +
         geom_point(alpha = 0.5, size = 0.001) +
         scale_colour_identity() + theme_bw() +
         theme(legend.position = "none") + coord_flip() +
@@ -269,7 +270,7 @@ launchApp <- function(
                       key = Electorate, text = Electorate)) + 
         scale_colour_identity() + theme_bw() +
         theme(legend.position = "none") +
-        geom_point() + ylab(NULL) + 
+        geom_point(alpha = 0.5) + ylab(NULL) + 
         xlab(" <- Coalition   Labor ->") + 
         theme(axis.text.y = element_blank(), 
               axis.ticks.y = element_blank(),
@@ -278,9 +279,9 @@ launchApp <- function(
     })
     
     output$ages <- renderPlot({
-      dat <- dplyr::left_join(ages, rv$data, by = "Electorate")
+      dat <- dplyr::left_join(ageDat, rv$data, by = "Electorate")
       ggplot(dat, aes(value, fill = fill)) +
-        geom_dotplot(binwidth = 0.25, dotsize = 1.2, alpha = 0.4) +
+        geom_dotplot(binwidth = 0.25, dotsize = 1.2, alpha = 0.5) +
         facet_wrap(~ variable, ncol = 1) +
         scale_fill_identity() +
         labs(x = NULL, y = NULL) +
@@ -291,7 +292,7 @@ launchApp <- function(
     output$densities <- renderPlot({
       dat <- dplyr::left_join(other, rv$data, by = "Electorate")
       ggplot(dat, aes(value, fill = fill)) +
-        geom_dotplot(dotsize = 0.5) +
+        geom_dotplot(dotsize = 0.5, alpha = 0.5) +
         scale_fill_identity() +
         facet_wrap(~variable, scales = "free", ncol = 1) +
         labs(x = NULL, y = NULL) +
@@ -300,9 +301,9 @@ launchApp <- function(
     })
 
     output$religion <- renderPlot({
-      dat <- dplyr::left_join(religion, rv$data, by = "Electorate")
+      dat <- dplyr::left_join(religionDat, rv$data, by = "Electorate")
       ggplot(dat, aes(value, fill = fill)) +
-        geom_dotplot(dotsize = 0.5) +
+        geom_dotplot(dotsize = 0.5, alpha = 0.5) +
         scale_fill_identity() +
         facet_wrap(~variable, ncol = 1) +
         labs(x = NULL, y = NULL) +
@@ -316,7 +317,7 @@ launchApp <- function(
         geom_polygon(data = eechidna::nat_map,
                      aes(x = long, y = lat, group = group, order = order),
                      fill="grey90", colour="white") +
-        geom_point(data = dat,
+        geom_point(data = dat, alpha = 0.5,
                    aes(x, y, text = Electorate, key = Electorate, colour = fill)) +
         ggthemes::theme_map() +
         theme(legend.position = "none") +
