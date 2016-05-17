@@ -71,13 +71,17 @@ launchApp <- function(
   voteProps$PartyAb <- factor(voteProps$PartyAb, levels = lvls)
   
   # 2 party preferred data
-  aec13pp <- data.frame(eechidna::aec2013_2pp_electorate)
-  aec13pp <- aec13pp %>% 
-    mutate(difference = Average_Australian_Labor_Party_Percentage_in_electorate - 
-             Average_Liberal_National_Coalition_Percentage_in_electorate) %>%
-    select(Electorate, difference) %>%
-    arrange(abs(difference)) %>%
-    mutate(Electorate = factor(Electorate, levels = Electorate))
+  aec13pp <- aec2013_2cp_electorate %>% 
+    mutate(FullName = paste(GivenNm, Surname)) %>%
+    group_by(Electorate) %>% 
+    summarise(
+      difference = abs(diff(TotalVotes) / sum(TotalVotes)),
+      parties = paste(PartyAb[order(TotalVotes)], collapse = " over "),
+      candidates = paste(FullName[order(TotalVotes)], collapse = " over ")
+    ) %>%
+    arrange(difference) %>%
+    mutate(Electorate = factor(Electorate, levels = Electorate)) %>%
+    mutate(tooltip = paste0(Electorate, "<br />", parties, "<br />", candidates))
   
   # there are multiple brushes in the UI, but they have common properties
   brush_opts <- function(id, ...) {
@@ -259,7 +263,7 @@ launchApp <- function(
         geom_point(alpha = 0.5, size = 0.001) +
         scale_colour_identity() + theme_bw() +
         theme(legend.position = "none") + coord_flip() +
-        xlab(NULL) + ylab("Proportion of votes")
+        xlab(NULL) + ylab("Proportion of 1st preferences")
       ggplotly(p, tooltip = "text") %>% layout(dragmode = "select")
     })
     
@@ -267,11 +271,11 @@ launchApp <- function(
       dat <- dplyr::left_join(aec13pp, rv$data, by = "Electorate")
       dat$Electorate <- factor(dat$Electorate, levels = levels(aec13pp$Electorate))
       p <- ggplot(dat, aes(difference, Electorate, colour = fill,
-                      key = Electorate, text = Electorate)) + 
+                      key = Electorate, text = tooltip)) + 
         scale_colour_identity() + theme_bw() +
         theme(legend.position = "none") +
         geom_point(alpha = 0.5) + ylab(NULL) + 
-        xlab(" <- Coalition   Labor ->") + 
+        xlab("Absolute difference in vote totals") + 
         theme(axis.text.y = element_blank(), 
               axis.ticks.y = element_blank(),
               panel.grid.major.y = element_blank())
