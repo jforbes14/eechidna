@@ -10,17 +10,17 @@ aec_carto_f(aec_data_sub, polygon.vertex = 6, name.text = TRUE,
 \arguments{
 \item{aec_data_sub}{subset of data with centroids of electoral divisions}
 
-\item{polygon.vertex}{x}
+\item{polygon.vertex}{The number of vertice of the circle. Default to be 100. If polygon.vertex=4 then diamonds applies. If polygon.vertex=6, then hexagon applies.}
 
-\item{name.text}{x}
+\item{name.text}{whether to print the region names on the circles or polygons.}
 
-\item{dist.ratio}{x}
+\item{dist.ratio}{The threshold to determine whether an attract force is added. It is applied to the ratio of the distance between two centroids and the sum of the two radii.}
 
-\item{iteration}{x}
+\item{iteration}{The limit of the number of iterations. Default to be 9999.}
 
-\item{xlab}{x}
+\item{xlab}{Label for dorling x axis, intermediate drawing}
 
-\item{ylab}{x}
+\item{ylab}{Label for dorling y axis, intermediate drawing}
 
 \item{...}{arguments to dorling function}
 }
@@ -28,5 +28,34 @@ aec_carto_f(aec_data_sub, polygon.vertex = 6, name.text = TRUE,
 The dorling algorithm creates a non-contiguous cartogram by
 shifting circles to alleviate overlap, while roughly maintaining
 geographic proximity.
+}
+\examples{
+\dontrun{
+library(dplyr)
+library(ggplot2)
+data(nat_map)
+data(nat_data)
+adelaide <- aec_extract_f(nat_data, ctr=c(138.6, -34.9), expand=c(2,3))
+adelaide_carto <- aec_carto_f(adelaide) \%>\% rename(id=region)
+ggplot(data=nat_map) + 
+  geom_path(aes(x=long, y=lat, group=group, order=order),
+                 colour="grey50") +
+  geom_point(data=adelaide_carto, aes(x=x, y=y), size=4, alpha=0.4,
+        colour="#f0027f") + 
+        xlim(c(136, 140)) + ylim(-36, -33) +
+        coord_equal()
+adelaide_all <- merge(adelaide, adelaide_carto, by="id")
+ggplot(data=nat_map) + 
+  geom_path(aes(x=long, y=lat, group=group, order=order),
+                 colour="grey50") +
+  geom_point(data=adelaide_all, aes(x=long_c, y=lat_c), size=2, alpha=0.4,
+              colour="#f0027f") + 
+  geom_point(data=adelaide_all, aes(x=x, y=y), size=2, alpha=0.4,
+                             colour="#f0027f") + 
+  geom_segment(data=adelaide_all,
+       aes(x=long_c, xend=x, y=lat_c, yend=y), colour="#f0027f") +
+  xlim(c(136, 140)) + ylim(-37, -33) +
+  coord_equal()
+}
 }
 

@@ -31,7 +31,7 @@ dorling(name, centroidx, centroidy, density, nbr = NULL,
 
 \item{iteration}{The limit of the number of iterations. Default to be 9999.}
 
-\item{polygon.vertex}{The number of vertice of the circle. Default to be 100. If polygon.vertex=4 then diamands applies. If polygon.vertex=6, then hexagon applies.}
+\item{polygon.vertex}{The number of vertice of the circle. Default to be 100. If polygon.vertex=4 then diamonds applies. If polygon.vertex=6, then hexagon applies.}
 
 \item{animation}{Whether to show the movements of centroids.}
 
