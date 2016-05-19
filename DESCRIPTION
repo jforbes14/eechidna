@@ -22,7 +22,9 @@ Suggests:
     rmarkdown,
     maptools,
     purrr,
-    sp
+    sp,
+    GGally,
+    corrplot
 Author: Di Cook,
     Heike Hofmann,
     Rob Hyndman,
@@ -37,6 +39,6 @@ LazyData: true
 ByteCompile: TRUE
 License: GPL (>= 2)
 URL: https://github.com/ropenscilabs/eechidna
-VignetteBuilder: rmarkdown
+VignetteBuilder: knitr
 RoxygenNote: 5.0.1
 
