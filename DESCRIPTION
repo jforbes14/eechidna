@@ -22,7 +22,9 @@ Suggests:
     rmarkdown,
     maptools,
     purrr,
-    sp
+    sp,
+    GGally,
+    corrplot
 Author: Di Cook,
     Heike Hofmann,
     Rob Hyndman,
