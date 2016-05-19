@@ -43,7 +43,7 @@ launchApp <- function(
   ageDat <- longAbs[isAge, ]
   isReg <- longAbs$variable %in% religion
   religionDat <- longAbs[isReg, ]
-  other <- longAbs[!isAge & !isReg, ]
+  otherDat <- longAbs[!isAge & !isReg, ]
   
   # 1st preference votes for candidates for the House for each electorate
   aec13 <- as.data.frame(eechidna::aec2013_fp_electorate)
@@ -294,7 +294,7 @@ launchApp <- function(
     })
 
     output$densities <- renderPlot({
-      dat <- dplyr::left_join(other, rv$data, by = "Electorate")
+      dat <- dplyr::left_join(otherDat, rv$data, by = "Electorate")
       ggplot(dat, aes(value, fill = fill)) +
         geom_dotplot(dotsize = 0.5, alpha = 0.5) +
         scale_fill_identity() +
