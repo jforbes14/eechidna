@@ -23,8 +23,7 @@ launchApp <- function(
   other = c("Population", "MedianIncome", "Unemployed", "Bachelor", "Postgraduate", "BornOverseas",
             "Indigenous", "EnglishOnly", "OtherLanguageHome", "Married", 
             "DeFacto", "FamilyRatio", "Internet", "NotOwned"),
-  palette = c("forest" = "#1b9e77", "pink" = "#f0027f", "yellow" = "#e6ab02",
-    "green" = "#66a61e", "violet" = "#7570b3", "orange" = "#d95f02", "blue" = "#3690c0")
+  palette = c('#1B9E77', '#F0027F', '#E6AB02', '#66A61E', '#7570B3', '#D95F02', '#3690C0')
   ) {
   # a bit of data cleaning
   nat_data_cart <- eechidna::nat_data_cart
@@ -106,7 +105,7 @@ launchApp <- function(
         column(
           width = 2,
           checkboxInput("persist", "Persistant selections?", FALSE),
-          selectInput("color", "Selection color:", choices = palette)
+          shinyjs::colourInput("color", "Selection color:", palette = "limited", allowedCols = palette)
         ),
         column(
           width = 6,
@@ -167,7 +166,7 @@ launchApp <- function(
     rv <- reactiveValues(
       data = data.frame(
         Electorate = nat_data_cart$Electorate,
-        fill = factor(rep("black", nrow(nat_data_cart)), levels = c("black", as.character(palette))),
+        fill = factor(rep("black", nrow(nat_data_cart)), levels = c("black", palette)),
         stringsAsFactors = FALSE
       )
     )
@@ -184,6 +183,7 @@ launchApp <- function(
     # it should modify the reactive value _once_ since shiny will send messages
     # on every modification
     updateRV <- function(selected) {
+      print(input$color)
       if (input$persist) {
         rv$data$fill[selected] <- input$color
       } else {
