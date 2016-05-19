@@ -7,7 +7,7 @@ output:
         toc: true
 vignette: >
   %\VignetteIndexEntry{Exploring the 2011 Census data}
-  %\VignetteEngine{knitr::knitr}
+  %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
 ---
 
