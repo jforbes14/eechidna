@@ -10,9 +10,8 @@ launchApp(age = c("Age00_04", "Age05_14", "Age15_19", "Age20_24", "Age25_34",
   "NoReligion"), other = c("Population", "MedianIncome", "Unemployed",
   "Bachelor", "Postgraduate", "BornOverseas", "Indigenous", "EnglishOnly",
   "OtherLanguageHome", "Married", "DeFacto", "FamilyRatio", "Internet",
-  "NotOwned"), palette = c(forest = "#1b9e77", pink = "#f0027f", yellow =
-  "#e6ab02", green = "#66a61e", violet = "#7570b3", orange = "#d95f02", blue =
-  "#3690c0"))
+  "NotOwned"), palette = c("#1B9E77", "#F0027F", "#E6AB02", "#66A61E",
+  "#7570B3", "#D95F02", "#3690C0"))
 }
 \arguments{
 \item{age}{Age variables to show (by default, all of them are shown)}

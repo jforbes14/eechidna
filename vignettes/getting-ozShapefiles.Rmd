@@ -7,7 +7,7 @@ output:
         toc: true
 vignette: >
   %\VignetteIndexEntry{Getting Oz Electorate shapefiles into shape}
-  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEngine{knitr::knitr}
   \usepackage[utf8]{inputenc}
 ---
 
