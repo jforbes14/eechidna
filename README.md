@@ -3,7 +3,7 @@
 eechidna
 ========
 
-[![Travis-CI Build Status](https://travis-ci.org/ropenscilabs/eechidna.svg?branch=master)](https://travis-ci.org/ropenscilabs/eechidna)
+[![Travis-CI Build Status](https://travis-ci.org/ropenscilabs/eechidna.svg?branch=master)](https://travis-ci.org/ropenscilabs/eechidna) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ropenscilabs/eechidna?branch=master&svg=true)](https://ci.appveyor.com/project/ropenscilabs/eechidna)
 
 Exploring Election and Census Highly Informative Data Nationally for Australia
 ------------------------------------------------------------------------------
@@ -40,6 +40,11 @@ Feedback, contributing, etc.
 ----------------------------
 
 Please open and issue if you find something that doesn't work as expected or have questions or suggestions. Note that this project is released with a [Guide to Contributing](CONTRIBUTING.md) and a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
+
+Acknoweldgements
+----------------
+
+Thanks to Xiaoyue Cheng for her [cartogram](https://github.com/chxy/cartogram) package which supplies the Dorling algorithm for this package. Thanks also to Andy Teucher for his [rmapshaper](https://github.com/ateucher/rmapshaper) package which has some key functions for working with shapefiles.
 
 ------------------------------------------------------------------------
 
