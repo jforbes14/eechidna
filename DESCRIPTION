@@ -24,7 +24,11 @@ Suggests:
     purrr,
     sp,
     GGally,
-    corrplot
+    corrplot,
+    broom,
+    plyr,
+    scales,
+    readr
 Author: Di Cook,
     Heike Hofmann,
     Rob Hyndman,

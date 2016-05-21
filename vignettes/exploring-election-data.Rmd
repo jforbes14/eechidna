@@ -111,7 +111,7 @@ The table above shows a different perspective, with the Labor Party recieving th
 
 And we can plot the ordinary vote count like so:
 
-```{r plot_total_votes_for_parties,  fig.height = 6}
+```{r plot_total_votes_for_parties,  fig.height = 6, eval = FALSE}
 ggplot(total_votes_for_parties, 
        aes(reorder(PartyNm, total_votes), 
            total_votes)) +
@@ -166,7 +166,7 @@ In the above table (which shows just the first ten rows for convienience) we see
 
 ## Which candidate won with the smallest number of votes?
 
-```{r who_won_least_votes_prop}
+```{r who_won_least_votes_prop, eval = FALSE}
 who_won_least_votes_prop <- 
  aec2013_fp %>% 
    filter(CandidateID != 999) %>% # keep only the winners
@@ -220,7 +220,7 @@ We see that the majority of ordinary votes of first preferences in Fairfax actua
 
 We can look at the proportion of voters for a particular party in each electorate, grouped by each state. This plot was inspired by Peter Ellis's work on the NZ election data. 
 
-```{r plot_prop_particular_party, fig.height = 12, fig.width=10}
+```{r plot_prop_particular_party, fig.height = 12, fig.width=10, eval = FALSE}
 # summarise and compute proportion of votes for a particular party
 p <- aec2013_fp %>%
     filter(CandidateID != 999) %>% # exclude informal votes
@@ -294,7 +294,7 @@ census_and_election <- left_join(aec2013_2pp_electorate,
 
 Now we can easily explore some relationships between the census data and the two party preferring voting patterns. For example, what census variable mostly strongly correlates with the percentage that vote Labor? The first step in these kinds of explorations is always to visualise the data:
 
-```{r}
+```{r eval=FALSE}
 # subset only the columns we want for the model
 census_and_election_subset <-  
   census_and_election %>% 
@@ -416,3 +416,4 @@ ggplot(data=senate, aes(x=StateAb, fill=PartyNm)) + geom_bar() +
   xlab("") + ylab("") +
   scale_fill_manual(name="Party", values=partycolours) 
 ```
+

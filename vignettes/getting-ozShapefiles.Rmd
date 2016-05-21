@@ -11,6 +11,15 @@ vignette: >
   \usepackage[utf8]{inputenc}
 ---
 
+
+```{r setup, echo=FALSE}
+library(knitr)
+opts_chunk$set(eval = FALSE,
+               warning = FALSE,
+               message = FALSE)
+
+```
+
 The Australian Electorate Commission publishes the boundaries of the electorates on their website at [http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm](http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm).
 
 Once the files (preferably the national files) are downloaded, unzip the file (it will build a folder with a set of files). We want to read the shapes contained in the `shp` file into R.
