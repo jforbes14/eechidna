@@ -24,7 +24,14 @@ library(plyr)
 library(dplyr)
 library(ggplot2)
 library(readr)
+
 stns <- read_csv("GeneralPollingPlaces2013.csv")
+
+# could also get polling locations from aec2013_2pp
+# stns <- aec2013_2pp %>% 
+#   group_by(PollingPlaceID) %>% 
+#   select(Latitude, Longitude) %>% 
+#   slice(1)
 ```
 
 ```{r mapit, fig.width=7, fig.height=4, message=FALSE, error = TRUE, warning=FALSE, echo=TRUE, tidy=TRUE}
