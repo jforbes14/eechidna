@@ -22,7 +22,6 @@ cartogram we need to extract out the cities, expand these
 with dorling independently. This function does the extraction.
 }
 \examples{
-\dontrun{
 library(dplyr)
 library(ggplot2)
 data(nat_map)
@@ -35,6 +34,5 @@ ggplot(data=nat_map) +
     colour="#f0027f") + 
   xlim(c(136, 142)) + ylim(-36, -33) +
   coord_equal()
-}
 }
 

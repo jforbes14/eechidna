@@ -30,7 +30,6 @@ shifting circles to alleviate overlap, while roughly maintaining
 geographic proximity.
 }
 \examples{
-\dontrun{
 library(dplyr)
 library(ggplot2)
 data(nat_map)
@@ -56,6 +55,7 @@ ggplot(data=nat_map) +
        aes(x=long_c, xend=x, y=lat_c, yend=y), colour="#f0027f") +
   xlim(c(136, 140)) + ylim(-37, -33) +
   coord_equal()
-}
+
+
 }
 

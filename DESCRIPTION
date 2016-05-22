@@ -32,15 +32,16 @@ Suggests:
     scales,
     readr,
     gridExtra
-Author: Di Cook,
-    Heike Hofmann,
-    Rob Hyndman,
-    Thomas Lumley,
-    Ben Marwick,
-    Carson Sievert,
-    Nicholas Tierney,
-    Nathaniel Tomasetti,
-    Fang Zhou.
+Authors@R: c(person("Di", "Cook",       role = c("aut")),
+		         person("Heike", "Hofmann", role = c("aut")),
+	           person("Rob", "Hyndman",   role = c("aut")),
+		         person("Thomas", "Lumley", role = c("aut")),
+		         person("Ben", "Marwick",   role = c("aut", "cre"), email = "benmarwick@gmail.com"),
+		         person("Carson", "Sievert", role = c("aut")),
+		         person("Nicholas", "Tierney", role = c("aut")),
+		         person("Nathaniel", "Tomasetti", role = c("aut")),
+		         person("Fang", "Zhou", role = c("aut")),
+		         person("Commonwealth of Australia", "AEC", role = c("cph")))
 Maintainer: Ben Marwick <benmarwick@gmail.com>
 LazyData: true
 ByteCompile: TRUE

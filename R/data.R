@@ -294,12 +294,14 @@
 #' }
 #' @examples 
 #' 
-#'  data(nat_data)
+#' data(nat_data)
 #' nat_map$region <- nat_map$ELECT_DIV
 #' data(abs2011)
 #' abs2011$region <- abs2011$Electorate
+#' both <- intersect(unique(abs2011$region), unique(nat_map$region))
 #' data(nat_data)
 #' library(ggplot2)
+#' library(ggthemes)
 #' ggplot(aes(map_id=region), data=subset(abs2011, region %in% both)) +
 #'   geom_map(aes(fill=MedianIncome), map=subset(nat_map, region %in% both)) +
 #'   expand_limits(x=nat_map$long, y=nat_map$lat) + 

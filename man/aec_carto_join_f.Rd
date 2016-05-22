@@ -16,7 +16,6 @@ Add the cartogram locations as new variables to original data
 and make any of these that were not made equal to the original centroids
 }
 \examples{
-\dontrun{
 library(dplyr)
 library(ggplot2)
 data(nat_map)
@@ -49,6 +48,6 @@ ggplot(data=nat_map) +
                  colour="#572d2c") +
     geom_text(data=nat_data_cart, aes(x=x, y=y, label=id), size=0.5) +
       coord_equal() + theme_map
-}   
+ 
 }
 
