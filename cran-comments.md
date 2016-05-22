@@ -31,5 +31,5 @@ I've updated DESCRIPTION to use the Authors@R format
 
 > 3. Also, this is too huge: Size of tarball: 28698012 bytes is > 5MB (max size for a CRAN package)
 
-I've removed the shapefile in the vignettes folder, which was not necessary for any of the core functions. 
+I've removed the 35 MB shapefile in the vignettes folder, which was not necessary for any of the core functions. 
   
