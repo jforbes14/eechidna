@@ -11,7 +11,6 @@
 #' @param ... other arguments
 #'
 #' @examples 
-#' \dontrun{
 #' library(dplyr)
 #' library(ggplot2)
 #' data(nat_map)
@@ -24,7 +23,7 @@
 #'     colour="#f0027f") + 
 #'   xlim(c(136, 142)) + ylim(-36, -33) +
 #'   coord_equal()
-#' }
+
 
 aec_extract_f <- function(aec_data, ctr=c(151.2, -33.8),
                           expand=c(3,4.5), ...) {
@@ -305,7 +304,6 @@ dorling <- function(name, centroidx, centroidy, density, nbr=NULL, shared.border
 #' @param xlab Label for dorling x axis, intermediate drawing
 #' @param ylab Label for dorling y axis, intermediate drawing
 #' @examples 
-#' \dontrun{
 #' library(dplyr)
 #' library(ggplot2)
 #' data(nat_map)
@@ -331,7 +329,8 @@ dorling <- function(name, centroidx, centroidy, density, nbr=NULL, shared.border
 #'        aes(x=long_c, xend=x, y=lat_c, yend=y), colour="#f0027f") +
 #'   xlim(c(136, 140)) + ylim(-37, -33) +
 #'   coord_equal()
-#' }
+#' 
+#' 
 aec_carto_f <-function(aec_data_sub, polygon.vertex=6, name.text=TRUE,
                        dist.ratio=dist.ratio, iteration=100,
                        xlab="", ylab="", ...) {
@@ -356,7 +355,6 @@ aec_carto_f <-function(aec_data_sub, polygon.vertex=6, name.text=TRUE,
 #' @param aec_carto centers
 #'
 #' @examples
-#' \dontrun{
 #' library(dplyr)
 #' library(ggplot2)
 #' data(nat_map)
@@ -389,7 +387,7 @@ aec_carto_f <-function(aec_data_sub, polygon.vertex=6, name.text=TRUE,
 #'                  colour="#572d2c") +
 #'     geom_text(data=nat_data_cart, aes(x=x, y=y, label=id), size=0.5) +
 #'       coord_equal() + theme_map
-#' }   
+#'  
 aec_carto_join_f <- function(aec_data, aec_carto) {
   aec_carto_join <- merge(aec_data, aec_carto, by="id", all.x=TRUE)
 

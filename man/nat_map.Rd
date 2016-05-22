@@ -15,12 +15,12 @@ The data were obtained from the Australian Electoral Commission, and downloaded
 from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
 }
 \examples{
-\dontrun{
+
 data(nat_map)
 # choropleth map with Census data
 nat_map$region <- nat_map$ELECT_DIV
 data(abs2011)
-abs2011$region <- abs2011$Name
+abs2011$region <- abs2011$Electorate
 library(ggplot2)
 library(ggthemes)
 both <- intersect(unique(abs2011$region), unique(nat_map$region))
@@ -28,7 +28,7 @@ ggplot(aes(map_id=region), data=subset(abs2011, region \%in\% both)) +
   geom_map(aes(fill=MedianIncome), map=subset(nat_map, region \%in\% both)) +
   expand_limits(x=nat_map$long, y=nat_map$lat) + 
   theme_map()
-}
+
 }
 \keyword{datasets}
 
