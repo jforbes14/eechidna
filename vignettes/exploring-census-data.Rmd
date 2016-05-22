@@ -1,5 +1,5 @@
 ---
-title: "Using eechidna: 2011 Census data"
+title: "Exploring the 2011 Census data"
 author: "Nicholas Tierney and Rob J Hyndman"
 date: "`r Sys.Date()`"
 output: 

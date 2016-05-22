@@ -1,5 +1,5 @@
 ---
-title: "Using echidnaR: 2013 Election data"
+title: "Exploring the 2013 Election data"
 author: "Ben Marwick, Di Cook, Heike Hofmann, Rob Hyndman,Carson Sievert, Nicholas Tierney, Fang Zhou"
 date: "`r Sys.Date()`"
 output: 
