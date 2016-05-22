@@ -28,7 +28,8 @@ Suggests:
     broom,
     plyr,
     scales,
-    readr
+    readr,
+    gridExtra
 Author: Di Cook,
     Heike Hofmann,
     Rob Hyndman,

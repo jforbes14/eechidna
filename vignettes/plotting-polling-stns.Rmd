@@ -20,6 +20,7 @@ This vignette dscribes how to show the polling stations on a map of the Australi
 
 ```{r load-read, message=FALSE, error = TRUE, warning=FALSE, echo=FALSE, tidy=TRUE}
 library(eechidna)
+library(plyr)
 library(dplyr)
 library(ggplot2)
 library(readr)
