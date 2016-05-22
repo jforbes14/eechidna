@@ -5,3 +5,4 @@
 ^\.Rproj\.user$
 ^appveyor\.yml$
 ^cran-comments\.md$
+^README_video_screenshot\.png$

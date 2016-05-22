@@ -18,14 +18,17 @@ How to install
 You can install the package from github using `devtools`, like this:
 
 ``` r
-devtools::install_github("ropenscilabs/eechidna")
+devtools::install_github("ropenscilabs/eechidna", 
+                         build_vignettes = TRUE)
 library(eechidna)
 ```
 
 How to use
 ----------
 
-The most accessible and impressive part of this package is a highly interactive web app for exploring the election and census data together. This app uses the shiny framework, and can be run locally on your computer with the command `eechidna::launchApp()`. There is a video demo of the app here: <https://vimeo.com/167367369>
+The most accessible and impressive part of this package is a highly interactive web app for exploring the election and census data together. This app uses the shiny framework, and can be run locally on your computer with the command `eechidna::launchApp()`. There is a video demo of the app here: <https://vimeo.com/167367369>, here's a screenshot:
+
+![](README_video_screenshot.png)
 
 In addition to the app, the package consists of several datasets, including the 2011 Australian Census, the 2013 Australian Federal Election (House of Representatives), and shapefiles for all Australian electoral districts.
 
