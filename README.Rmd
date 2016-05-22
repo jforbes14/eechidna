@@ -27,17 +27,26 @@ This package was developed during the [rOpenSci auunconf event](http://auunconf.
 You can install the package from github using `devtools`, like this:
 
 ```{r eval = FALSE}
-devtools::install_github("ropenscilabs/eechidna")
+devtools::install_github("ropenscilabs/eechidna", 
+                         build_vignettes = TRUE)
 library(eechidna)
 ```
 
 ## How to use
 
-In brief, the package consists of several datasets, including the 2011 Australian Census, the 2013 Australian Federal Election (House of Representatives), and shapefiles for all Australian electoral districts. 
+The most accessible and impressive part of this package is a highly interactive web app for exploring the election and census data together. This app uses the shiny framework, and can be run locally on your computer with the command `eechidna::launchApp()`. There is a video demo of the app here: <https://vimeo.com/167367369>
 
-We have a few vignettes that show the structure of the datasets included with this package, and demonstrate several methods for exploring it using R. 
+In addition to the app, the package consists of several datasets, including the 2011 Australian Census, the 2013 Australian Federal Election (House of Representatives), and shapefiles for all Australian electoral districts. 
 
-We also have a shiny app that can be run locally with `eechidna::launchApp()`
+We have two vignettes that show how to access these data in the package, and demonstrate how to analyse the data using R:  
+
+- 'Exploring the 2013 Election data'     
+- 'Exploring the 2011 Census data'   
+
+There are also two vignettes that demonstrate how to use the spatial data to make maps. Mapping election data for Australia is not trivial because of the extreme variation in electorate size. In these vignettes we show some methods for effectively visualising election data in Australia:
+
+- 'Mapping Australia's Electorates'     
+- 'Plotting Australia's Polling Stations'      
 
 ## License
 
@@ -49,7 +58,7 @@ Please open and issue if you find something that doesn't work as expected or hav
 
 ## Acknoweldgements 
 
-Thanks to Xiaoyue Cheng for her [cartogram](https://github.com/chxy/cartogram) package which supplies the Dorling algorithm for this package. Thanks also to Andy Teucher for his [rmapshaper](https://github.com/ateucher/rmapshaper) package which has some key functions for working with shapefiles.  
+Thanks to Xiaoyue Cheng for her [cartogram](https://github.com/chxy/cartogram) package which supplies the Dorling algorithm for this package. Thanks also to Andy Teucher for his [rmapshaper](https://github.com/ateucher/rmapshaper) package which has some key functions for working with shapefiles. Thanks to Scott Chamberlain and Yihui Xie for help with troubleshooting. 
 
 ---
 [![ropensci_footer](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
