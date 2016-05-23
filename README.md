@@ -3,7 +3,7 @@
 eechidna
 ========
 
-[![Travis-CI Build Status](https://travis-ci.org/ropenscilabs/eechidna.svg?branch=master)](https://travis-ci.org/ropenscilabs/eechidna) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ropenscilabs/eechidna?branch=master&svg=true)](https://ci.appveyor.com/project/ropenscilabs/eechidna)
+[![Travis-CI Build Status](https://travis-ci.org/ropenscilabs/eechidna.svg?branch=master)](https://travis-ci.org/ropenscilabs/eechidna) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ropenscilabs/eechidna?branch=master&svg=true)](https://ci.appveyor.com/project/ropenscilabs/eechidna) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/eechidna)](http://cran.r-project.org/package=eechidna) [![](http://cranlogs.r-pkg.org/badges/grand-total/eechidna)](http://cran.rstudio.com/web/packages/eechidna/index.html) <!-- badges from https://github.com/metacran/cranlogs.app -->
 
 Exploring Election and Census Highly Informative Data Nationally for Australia
 ------------------------------------------------------------------------------
@@ -15,7 +15,13 @@ This package was developed during the [rOpenSci auunconf event](http://auunconf.
 How to install
 --------------
 
-You can install the package from github using `devtools`, like this:
+You can install the latest release of the package from CRAN like this
+
+``` r
+install.packages("eechidna")
+```
+
+Or you can install the development version from github, which may have some changes that are not yet on CRAN, using `devtools`, like this:
 
 ``` r
 devtools::install_github("ropenscilabs/eechidna", 
@@ -34,13 +40,14 @@ In addition to the app, the package consists of several datasets, including the 
 
 We have two vignettes that show how to access these data in the package, and demonstrate how to analyse the data using R:
 
--   'Exploring the 2013 Election data'
--   'Exploring the 2011 Census data'
+-   [Exploring the 2013 Election data](https://cran.r-project.org/web/packages/eechidna/vignettes/exploring-census-data.html)
+-   [Exploring the 2011 Census data](https://cran.r-project.org/web/packages/eechidna/vignettes/exploring-election-data.html)
 
 There are also two vignettes that demonstrate how to use the spatial data to make maps. Mapping election data for Australia is not trivial because of the extreme variation in electorate size. In these vignettes we show some methods for effectively visualising election data in Australia:
 
--   'Mapping Australia's Electorates'
--   'Plotting Australia's Polling Stations'
+-   [Mapping Australia's Electorates](https://cran.r-project.org/web/packages/eechidna/vignettes/plotting-electorates.html)
+-   [Plotting Australia's Polling Stations](https://cran.r-project.org/web/packages/eechidna/vignettes/plotting-polling-stns.html)
+-   [Getting Oz Electorate shapefiles into shape](https://cran.r-project.org/web/packages/eechidna/vignettes/getting-ozShapefiles.html)
 
 License
 -------
