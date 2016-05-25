@@ -3,7 +3,7 @@
 eechidna
 ========
 
-[![Travis-CI Build Status](https://travis-ci.org/ropenscilabs/eechidna.svg?branch=master)](https://travis-ci.org/ropenscilabs/eechidna) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ropenscilabs/eechidna?branch=master&svg=true)](https://ci.appveyor.com/project/ropenscilabs/eechidna) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/eechidna)](http://cran.r-project.org/package=eechidna) [![](http://cranlogs.r-pkg.org/badges/grand-total/eechidna)](http://cran.rstudio.com/web/packages/eechidna/index.html) <!-- badges from https://github.com/metacran/cranlogs.app -->
+[![Travis-CI Build Status](https://travis-ci.org/ropenscilabs/eechidna.svg?branch=master)](https://travis-ci.org/ropenscilabs/eechidna) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ropenscilabs/eechidna?branch=master&svg=true)](https://ci.appveyor.com/project/ropenscilabs/eechidna) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/eechidna)](http://cran.r-project.org/package=eechidna) [![](http://cranlogs.r-pkg.org/badges/grand-total/eechidna)](http://cran.rstudio.com/web/packages/eechidna/index.html)
 
 Exploring Election and Census Highly Informative Data Nationally for Australia
 ------------------------------------------------------------------------------
@@ -40,8 +40,8 @@ In addition to the app, the package consists of several datasets, including the 
 
 We have two vignettes that show how to access these data in the package, and demonstrate how to analyse the data using R:
 
--   [Exploring the 2013 Election data](https://cran.r-project.org/web/packages/eechidna/vignettes/exploring-census-data.html)
--   [Exploring the 2011 Census data](https://cran.r-project.org/web/packages/eechidna/vignettes/exploring-election-data.html)
+-   [Exploring the 2013 Election data](https://cran.r-project.org/web/packages/eechidna/vignettes/exploring-election-data.html)
+-   \[Exploring the 2011 Census data\] (<https://cran.r-project.org/web/packages/eechidna/vignettes/exploring-census-data.html>)
 
 There are also two vignettes that demonstrate how to use the spatial data to make maps. Mapping election data for Australia is not trivial because of the extreme variation in electorate size. In these vignettes we show some methods for effectively visualising election data in Australia:
 
