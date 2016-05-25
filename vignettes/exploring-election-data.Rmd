@@ -110,9 +110,9 @@ total_votes_for_parties %>%
   kable
 ```
 
-The table above shows a different perspective, with the Labor Party recieving the most ordinary votes. Even thought the Labor party won the most votes, the Liberal party did better after the preferences were assigned, and won the election. The preference flow can make a big difference to the results of the election.
+The table above shows a similar result, with the Liberal Party recieving the most ordinary votes. 
 
-And we can plot the ordinary vote count like so:
+We can plot the ordinary vote count like so:
 
 ```{r plot_total_votes_for_parties,  fig.height = 6}
 ggplot(total_votes_for_parties, 
