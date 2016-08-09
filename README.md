@@ -41,7 +41,7 @@ In addition to the app, the package consists of several datasets, including the 
 We have two vignettes that show how to access these data in the package, and demonstrate how to analyse the data using R:
 
 -   [Exploring the 2013 Election data](https://cran.r-project.org/web/packages/eechidna/vignettes/exploring-election-data.html)
--   \[Exploring the 2011 Census data\] (<https://cran.r-project.org/web/packages/eechidna/vignettes/exploring-census-data.html>)
+-   [Exploring the 2011 Census data](https://cran.r-project.org/web/packages/eechidna/vignettes/exploring-census-data.html)
 
 There are also two vignettes that demonstrate how to use the spatial data to make maps. Mapping election data for Australia is not trivial because of the extreme variation in electorate size. In these vignettes we show some methods for effectively visualising election data in Australia:
 
