@@ -11,10 +11,10 @@ Depends:
     R (>= 3.2.3)
 Imports:
     dplyr,
-    ggplot2 (>= 2.0.0),
+    ggplot2,
     tidyr,
     shiny,
-    plotly (>= 3.5.2),
+    plotly (>= 4.5.5),
     ggthemes,
     shinyjs,
     methods

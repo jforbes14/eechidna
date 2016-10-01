@@ -327,12 +327,12 @@ launchApp <- function(
         theme(legend.position = "none") +
         scale_color_identity()
       l <- plotly_build(ggplotly(p, tooltip = "text"))
-      l$data[[1]]$hoverinfo <- "none"
-      l$layout$dragmode <- "select"
-      l$layout$autosize <- FALSE
-      l$layout$height <- 400
-      l$layout$width <- 400
-      l$layout$margin <- list(t = 0, b = 0, r = 0, l = 0)
+      l$x$data[[1]]$hoverinfo <- "none"
+      l$x$layout$dragmode <- "select"
+      l$x$layout$autosize <- FALSE
+      l$x$layout$height <- 400
+      l$x$layout$width <- 400
+      l$x$layout$margin <- list(t = 0, b = 0, r = 0, l = 0)
       l
     })
     
