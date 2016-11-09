@@ -25,24 +25,6 @@ launchApp <- function(
             "DeFacto", "FamilyRatio", "Internet", "NotOwned"),
   palette = c('#1B9E77', '#F0027F', '#E6AB02', '#66A61E', '#7570B3', '#D95F02', '#3690C0')
   ) {
-  # a bit of data cleaning
-  nat_data_cart <- eechidna::nat_data_cart
-  nat_data_cart$Electorate <- nat_data_cart$ELECT_DIV
-  abs2011 <- eechidna::abs2011[c("ID", "Electorate", "State", age, religion, other)]
-  longAbs <- tidyr::gather(
-    abs2011, variable, value, -ID, -Electorate, -State
-  )
-  longAbs$value <- as.numeric(longAbs$value)
-  longAbs <- longAbs[!is.na(longAbs$value),]
-  longAbs$variable <- factor(
-    longAbs$variable, 
-    levels = unique(longAbs$variable)
-  )
-  isAge <- grepl("^Age", longAbs$variable)
-  ageDat <- longAbs[isAge, ]
-  isReg <- longAbs$variable %in% religion
-  religionDat <- longAbs[isReg, ]
-  otherDat <- longAbs[!isAge & !isReg, ]
   
   # 1st preference votes for candidates for the House for each electorate
   aec13 <- as.data.frame(eechidna::aec2013_fp_electorate)
@@ -81,6 +63,29 @@ launchApp <- function(
     arrange(difference) %>%
     mutate(Electorate = factor(Electorate, levels = Electorate)) %>%
     mutate(tooltip = paste0(Electorate, "<br />", parties, "<br />", candidates))
+  
+  
+  # a bit of data cleaning
+  nat_data_cart <- eechidna::nat_data_cart
+  nat_data_cart$Electorate <- nat_data_cart$ELECT_DIV
+  abs2011 <- eechidna::abs2011[c("ID", "Electorate", "State", age, religion, other)]
+  abs2011 <- dplyr::semi_join(abs2011, aec13, by = "Electorate")
+  longAbs <- tidyr::gather(
+    abs2011, variable, value, -ID, -Electorate, -State
+  )
+  longAbs$value <- as.numeric(longAbs$value)
+  longAbs <- longAbs[!is.na(longAbs$value),]
+  longAbs$variable <- factor(
+    longAbs$variable, 
+    levels = unique(longAbs$variable)
+  )
+  isAge <- grepl("^Age", longAbs$variable)
+  ageDat <- longAbs[isAge, ]
+  isReg <- longAbs$variable %in% religion
+  religionDat <- longAbs[isReg, ]
+  otherDat <- longAbs[!isAge & !isReg, ]
+  
+  
   
   # there are multiple brushes in the UI, but they have common properties
   brush_opts <- function(id, ...) {
@@ -285,8 +290,8 @@ launchApp <- function(
     output$ages <- renderPlot({
       dat <- dplyr::left_join(ageDat, rv$data, by = "Electorate")
       ggplot(dat, aes(value, fill = fill)) +
-        geom_dotplot(binwidth = 0.25, dotsize = 1.2, alpha = 0.5) +
-        facet_wrap(~ variable, ncol = 1) +
+        geom_density(alpha = 0.3) +
+        facet_wrap(~ variable, scales = "free_y", ncol = 1) +
         scale_fill_identity() +
         labs(x = NULL, y = NULL) +
         theme(legend.position = "none") +
@@ -296,7 +301,7 @@ launchApp <- function(
     output$densities <- renderPlot({
       dat <- dplyr::left_join(otherDat, rv$data, by = "Electorate")
       ggplot(dat, aes(value, fill = fill)) +
-        geom_dotplot(dotsize = 0.5, alpha = 0.5) +
+        geom_density(alpha = 0.3) +
         scale_fill_identity() +
         facet_wrap(~variable, scales = "free", ncol = 1) +
         labs(x = NULL, y = NULL) +
@@ -307,9 +312,9 @@ launchApp <- function(
     output$religion <- renderPlot({
       dat <- dplyr::left_join(religionDat, rv$data, by = "Electorate")
       ggplot(dat, aes(value, fill = fill)) +
-        geom_dotplot(dotsize = 0.5, alpha = 0.5) +
+        geom_density(alpha = 0.3) +
         scale_fill_identity() +
-        facet_wrap(~variable, ncol = 1) +
+        facet_wrap(~variable, scales = "free_y", ncol = 1) +
         labs(x = NULL, y = NULL) +
         theme(legend.position = "none") +
         theme_bw()
@@ -326,14 +331,8 @@ launchApp <- function(
         ggthemes::theme_map() +
         theme(legend.position = "none") +
         scale_color_identity()
-      l <- plotly_build(ggplotly(p, tooltip = "text"))
-      l$x$data[[1]]$hoverinfo <- "none"
-      l$x$layout$dragmode <- "select"
-      l$x$layout$autosize <- FALSE
-      l$x$layout$height <- 400
-      l$x$layout$width <- 400
-      l$x$layout$margin <- list(t = 0, b = 0, r = 0, l = 0)
-      l
+      
+      p %>% ggplotly(tooltip = "text") %>% style(hoverinfo = "none", traces = 1)
     })
     
   }
