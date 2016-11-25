@@ -1,6 +1,6 @@
 #' @import shiny
 #' @import ggplot2
-#' @importFrom plotly ggplotly layout plotlyOutput event_data renderPlotly as.widget plotly_build
+#' @importFrom plotly ggplotly layout plotlyOutput event_data renderPlotly style
 #' @importFrom shinyjs useShinyjs runjs
 #' @import dplyr
 #' @import ggthemes

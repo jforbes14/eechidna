@@ -1,18 +1,30 @@
 #' Shiny app for exploring census and electorate data
 #' 
-#' @param age Age variables to show (by default, all of them are shown)
-#' @param religion Religion variables to show (by default, all of them are shown)
-#' @param other Other census variables to show (by default, all of them are shown)
+#' @param age Age variables to show. Variable(s) should match column names from
+#' \link{abs2011}. By default, all variables are shown.
+#' @param religion Religion variables to show. Variable(s) should match column 
+#' names from \link{abs2011}. By default, all variables are shown.
+#' @param other Other census variables to show. Variable(s) should match column 
+#' names from \link{abs2011}. By default, all variables are shown.
 #' @param palette a named character vector of selection colors. The vector names
 #' are used as the display in the drop-down control.
 #' @author Carson Sievert
 #' @export
 #' @examples \dontrun{
+#' # for comparing labor/liberal
 #' launchApp(
-#'   age = c("Age20_24", "Age85plus"),
+#'   age = c("Age20_24", "Age25_34", "Age55_64"),
 #'   religion = c("Christianity", "Catholic", "NoReligion"),
-#'   other = c("Unemployed", "Population", "MedianIncome")
+#'   other = c("Population", "MedianIncome", "Unemployed")
 #' )
+#' 
+#' # for inspecting highly contested areas
+#' launchApp(
+#'   age = c("Age20_24", "Age25_34", "Age35_44"),
+#'   religion = c("Christianity", "Catholic", "NoReligion"),
+#'   other = c("Population", "MedianIncome", "NotOwned")
+#' )
+#' 
 #' }
 
 launchApp <- function(
@@ -109,7 +121,7 @@ launchApp <- function(
       fluidRow(
         column(
           width = 2,
-          checkboxInput("persist", "Persistant selections?", FALSE),
+          checkboxInput("persist", "Persistant selections?", TRUE),
           shinyjs::colourInput("color", "Selection color:", palette = "limited", allowedCols = palette)
         ),
         column(
@@ -188,13 +200,11 @@ launchApp <- function(
     # it should modify the reactive value _once_ since shiny will send messages
     # on every modification
     updateRV <- function(selected) {
-      print(input$color)
       if (input$persist) {
         rv$data$fill[selected] <- input$color
       } else {
         fill <- rv$data$fill
         fill[rv$data$fill %in% input$color] <- "black"
-        print(input$color)
         fill[selected] <- input$color
         rv$data$fill <- fill
       }
@@ -288,36 +298,58 @@ launchApp <- function(
     })
     
     output$ages <- renderPlot({
-      dat <- dplyr::left_join(ageDat, rv$data, by = "Electorate")
+      dat <- left_join(ageDat, rv$data, by = "Electorate")
+      means <- summarise(group_by(dat, variable, fill), m = mean(value))
+      dat <- left_join(dat, means, by = c("variable", "fill"))
       ggplot(dat, aes(value, fill = fill)) +
         geom_density(alpha = 0.3) +
+        geom_vline(aes(xintercept = m, colour = fill)) +
         facet_wrap(~ variable, scales = "free_y", ncol = 1) +
-        scale_fill_identity() +
+        scale_fill_identity() + scale_colour_identity() +
         labs(x = NULL, y = NULL) +
-        theme(legend.position = "none") +
-        theme_bw()
+        theme_bw() +
+        theme(
+          legend.position = "none", 
+          axis.text = element_text(size = 16),
+          strip.text = element_text(size = 16)
+        )
     })
 
     output$densities <- renderPlot({
       dat <- dplyr::left_join(otherDat, rv$data, by = "Electorate")
+      means <- summarise(group_by(dat, variable, fill), m = mean(value))
+      dat <- left_join(dat, means, by = c("variable", "fill"))
       ggplot(dat, aes(value, fill = fill)) +
         geom_density(alpha = 0.3) +
-        scale_fill_identity() +
+        geom_vline(aes(xintercept = m, colour = fill)) +
+        scale_fill_identity() + scale_colour_identity() +
         facet_wrap(~variable, scales = "free", ncol = 1) +
         labs(x = NULL, y = NULL) +
-        theme(legend.position = "none") +
-        theme_bw()
+        theme_bw() +
+        theme(
+          legend.position = "none", 
+          axis.text = element_text(size = 16),
+          strip.text = element_text(size = 16)
+        )
+        
     })
 
     output$religion <- renderPlot({
       dat <- dplyr::left_join(religionDat, rv$data, by = "Electorate")
+      means <- summarise(group_by(dat, variable, fill), m = mean(value))
+      dat <- left_join(dat, means, by = c("variable", "fill"))
       ggplot(dat, aes(value, fill = fill)) +
         geom_density(alpha = 0.3) +
-        scale_fill_identity() +
+        geom_vline(aes(xintercept = m, colour = fill)) +
+        scale_fill_identity() + scale_colour_identity() +
         facet_wrap(~variable, scales = "free_y", ncol = 1) +
         labs(x = NULL, y = NULL) +
-        theme(legend.position = "none") +
-        theme_bw()
+        theme_bw() +
+        theme(
+          legend.position = "none", 
+          axis.text = element_text(size = 16),
+          strip.text = element_text(size = 16)
+        )
     })
 
     output$map <- renderPlotly({

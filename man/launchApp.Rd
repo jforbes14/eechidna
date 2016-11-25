@@ -14,11 +14,14 @@ launchApp(age = c("Age00_04", "Age05_14", "Age15_19", "Age20_24", "Age25_34",
   "#7570B3", "#D95F02", "#3690C0"))
 }
 \arguments{
-\item{age}{Age variables to show (by default, all of them are shown)}
+\item{age}{Age variables to show. Variable(s) should match column names from
+\link{abs2011}. By default, all variables are shown.}
 
-\item{religion}{Religion variables to show (by default, all of them are shown)}
+\item{religion}{Religion variables to show. Variable(s) should match column 
+names from \link{abs2011}. By default, all variables are shown.}
 
-\item{other}{Other census variables to show (by default, all of them are shown)}
+\item{other}{Other census variables to show. Variable(s) should match column 
+names from \link{abs2011}. By default, all variables are shown.}
 
 \item{palette}{a named character vector of selection colors. The vector names
 are used as the display in the drop-down control.}
@@ -28,11 +31,20 @@ Shiny app for exploring census and electorate data
 }
 \examples{
 \dontrun{
+# for comparing labor/liberal
 launchApp(
-  age = c("Age20_24", "Age85plus"),
+  age = c("Age20_24", "Age25_34", "Age55_64"),
   religion = c("Christianity", "Catholic", "NoReligion"),
-  other = c("Unemployed", "Population", "MedianIncome")
+  other = c("Population", "MedianIncome", "Unemployed")
 )
+
+# for inspecting highly contested areas
+launchApp(
+  age = c("Age20_24", "Age25_34", "Age35_44"),
+  religion = c("Christianity", "Catholic", "NoReligion"),
+  other = c("Population", "MedianIncome", "NotOwned")
+)
+
 }
 }
 \author{
