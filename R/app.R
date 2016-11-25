@@ -364,7 +364,9 @@ launchApp <- function(
         theme(legend.position = "none") +
         scale_color_identity()
       
-      p %>% ggplotly(tooltip = "text") %>% style(hoverinfo = "none", traces = 1)
+      mapRatio <- with(eechidna::nat_map, diff(range(long)) / diff(range(lat)))
+      p %>% ggplotly(tooltip = "text", height = 400, width = 400 * mapRatio) %>% 
+        style(hoverinfo = "none", traces = 1)
     })
     
   }
