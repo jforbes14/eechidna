@@ -40,9 +40,9 @@ launchApp(
 
 # for inspecting highly contested areas
 launchApp(
-  age = c("Age20_24", "Age25_34", "Age35_44"),
+  age = c("Age25_34"),
   religion = c("Christianity", "Catholic", "NoReligion"),
-  other = c("Population", "MedianIncome", "NotOwned")
+  other = c("NotOwned", "Indigenous", "Population")
 )
 
 }

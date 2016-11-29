@@ -20,9 +20,9 @@
 #' 
 #' # for inspecting highly contested areas
 #' launchApp(
-#'   age = c("Age20_24", "Age25_34", "Age35_44"),
+#'   age = c("Age25_34"),
 #'   religion = c("Christianity", "Catholic", "NoReligion"),
-#'   other = c("Population", "MedianIncome", "NotOwned")
+#'   other = c("NotOwned", "Indigenous", "Population")
 #' )
 #' 
 #' }
@@ -265,7 +265,9 @@ launchApp <- function(
         scale_fill_identity() + theme_bw() + 
         theme(legend.position = "none") + coord_flip() +
         xlab(NULL) + ylab("Number of electorates")
-      ggplotly(p, tooltip = "text")
+      ggplotly(p, tooltip = "text") %>% 
+        #layout(hovermode = "x") %>% 
+        config(collaborate = F, cloud = F, displaylogo = F)
     })
     
     output$voteProps <- renderPlotly({
