@@ -1,6 +1,6 @@
 ---
 title: "Getting Oz Electorate shapefiles into shape"
-author: "Heike Hofmann"
+author: "Heike Hofmann, Di Cook"
 date: "`r Sys.Date()`"
 output: 
     rmarkdown::html_vignette:
@@ -23,7 +23,8 @@ opts_chunk$set(eval = FALSE,
 The Australian Electorate Commission publishes the boundaries of the electorates on their website at [http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm](http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm).
 
 Once the files (preferably the national files) are downloaded, unzip the file (it will build a folder with a set of files). We want to read the shapes contained in the `shp` file into R.
-```{r, message=FALSE}
+
+```{r, eval=FALSE, echo=FALSE}
 library(maptools)
 
 # shapeFile contains the path to the shp file:
@@ -31,11 +32,19 @@ shapeFile <- "national-esri-16122011/COM20111216_ELB_region.shp"
 sF <- readShapeSpatial(shapeFile)
 class(sF)
 ```
+
+For the 2016 election, the national electorate boundaries are given in mapinfo format ([http://www.aec.gov.au/Electorates/gis/files/nt-midmif-07022017.zip](http://www.aec.gov.au/Electorates/gis/files/nt-midmif-07022017.zip)). The `rgdal` library can be used to read this format:
+
+```{r, message=FALSE}
+library(rgdal)
+sF <- readOGR(dsn="national-midmif-09052016/COM_ELB.TAB", layer="COM_ELB")
+```
+
 `sF` is a spatial data frame containing all of the polygons. 
 We use the `rmapshaper` package available from ateucher's github page to thin the polygons while preserving the geography:
 
 ```{r, message=FALSE}
-require(rmapshaper)
+library(rmapshaper)
 ```
 If the library is not available, install it from github using 
 `devtools::install_github("ateucher/rmapshaper")`.
@@ -79,9 +88,11 @@ We need to make sure that `group` and `piece` are kept as factor variables - if 
 nat_map$group <- paste("g",nat_map$group,sep=".")
 nat_map$piece <- paste("p",nat_map$piece,sep=".")
 ```
+
 The map data is ready to be exported to a file:
-```{r}
-write.csv(nat_map, "National-map-2013.csv", row.names=FALSE)
+
+```{r eval=FALSE}
+write.csv(nat_map, "National-map-2016.csv", row.names=FALSE)
 ```
 
 ###Getting centroids 
@@ -114,18 +125,23 @@ centroids <- seq_along(polys) %>% purrr::map_df(centroid, polys=polys)
 head(centroids)
 ```
 The centroids come in the same order as the data (luckily) and we just extend the data set for the electorates by this information, and finally export:
+
 ```{r, message=FALSE, warning=FALSE}
 nat_data <- data.frame(nat_data, centroids)
-write.csv(nat_data, "National-data-2013.csv", row.names=FALSE)
+```
+
+```{r, eval=FALSE}
+write.csv(nat_data, "National-data-2016.csv", row.names=FALSE)
 ```
 
 
-Finally, just to check the data, a map of the Australian electorates colored by their size as given in the data (variable `AREA_SQKM`):
+Finally, just to check the data, a map of the Australian electorates colored by their size as given in the data (variable `Area_SqKm`):
+
 ```{r, message=FALSE, warning=FALSE}
 library(ggplot2)
 library(ggthemes)
 ggplot(aes(map_id=id), data=nat_data) +
-  geom_map(aes(fill=AREA_SQKM), map=nat_map) +
+  geom_map(aes(fill=Area_SqKm), map=nat_map) +
   expand_limits(x=nat_map$long, y=nat_map$lat) + 
   theme_map()
 ```
