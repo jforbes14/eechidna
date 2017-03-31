@@ -4,10 +4,14 @@
 \alias{getElectorateShapes}
 \title{Extract shapefiles (of Australian electorates) from shp file}
 \usage{
-getElectorateShapes(shapeFile, keep = 0.05)
+getElectorateShapes(shapeFile, mapinfo = TRUE, layer = NULL, keep = 0.05)
 }
 \arguments{
 \item{shapeFile}{path to the shp file}
+
+\item{mapinfo}{Is the data mapInfo format, rather than ESRI? default=TRUE}
+
+\item{layer}{If the format is mapInfo, the layer name also needs to be provided, default is NULL}
 
 \item{keep}{percent of polygon points to keep, the default is set to 5\%.}
 }
@@ -23,15 +27,14 @@ The function will take several minutes to complete.
 }
 \examples{
 \dontrun{
-url <- "national-esri-16122011/COM20111216_ELB_region.shp"
-electorates <- getElectorateShapes(url)
+fl <- "vignettes/national-midmif-09052016/COM_ELB.TAB"
+electorates <- getElectorateShapes(shapeFile = fl, layer="COM_ELB")
 library(ggplot2)
 ggplot(data=electorates$data) + 
-   geom_map(aes(fill=AREA_SQKM, map_id=id), map=electorates$map) + 
+   geom_map(aes(fill=Area_SqKm, map_id=id), map=electorates$map) + 
    expand_limits(
      x=range(electorates$map$long), 
      y=range(electorates$map$lat)
    )
 }
 }
-

@@ -1,12 +1,12 @@
 ---
-title: "Exploring the 2013 Election data"
+title: "Exploring the 2016 Election data"
 author: "Ben Marwick, Di Cook, Heike Hofmann, Rob Hyndman,Carson Sievert, Nicholas Tierney, Fang Zhou"
 date: "`r Sys.Date()`"
 output: 
     rmarkdown::html_vignette:
         toc: true
 vignette: >
-  %\VignetteIndexEntry{Exploring the 2013 Election data}
+  %\VignetteIndexEntry{Exploring the 2016 Election data}
   %\VignetteEngine{knitr::rmarkdown}
   %\usepackage[utf8]{inputenc}
 ---
@@ -26,22 +26,22 @@ opts_chunk$set(fig.width = 6,
 
 # Introduction
 
-`eechidna` (Electoral Commission Handling Intelligent Data Nationally for Australia) is an R package that makes it easy to look at the data from the 2011 Australian Census, and the 2013 Federal Election.
+`eechidna` (Electoral Commission Handling Intelligent Data Nationally for Australia) is an R package that makes it easy to look at the data from the 2011 Australian Census, and the 2016 Federal Election.
 
-This vignette documents how to access the data from the 2013 Federal Election (House of Representatives (first preferences and two party preferred). We obtained these data from http://results.aec.gov.au/ . This package incorporates data that is copyright Commonwealth of Australia (Australian Electoral Commission) 2013. 
+This vignette documents how to access the data from the 2016 Federal Election (House of Representatives (first preferences and two party preferred). We obtained these data from http://results.aec.gov.au/ . This package incorporates data that is copyright Commonwealth of Australia (Australian Electoral Commission) 2016. 
 
 In this vignette we show a few typical methods to explore the data, inspired by [Peter Ellis's](https://github.com/ellisp/) work on NZ election data. 
 
-# 2013 Federal Election House of Representatives data
+# 2016 Federal Election House of Representatives data
 
 In the `eechidna` package we have four election datasets, summarised here:
 
 Data object name        | Description
 ----------------------- | ------------------------------------------------------------
-aec2013_fp              | first preference votes for candidates at each polling place
-aec2013_fp_electorate   | first preference votes for candidates at each electorate
-aec2013_2pp             | two party preferred votes for candidates at each polling place
-aec2013_2pp_electorate  | two party preferred votes for candidates at each electorate
+aec2016_fp              | first preference votes for candidates at each polling place
+aec2016_fp_electorate   | first preference votes for candidates at each electorate
+aec2016_2pp             | two party preferred votes for candidates at each polling place
+aec2016_2pp_electorate  | two party preferred votes for candidates at each electorate
 
 We can access and explore each of these using common methods in R, for example:
 
@@ -54,19 +54,19 @@ library(knitr)
 library(broom)
 library(tidyr)
 # inspect the data frame
-glimpse(aec2013_fp)
+glimpse(aec2016_fp)
 # show the first few rows
-head(aec2013_fp) %>% kable
+head(aec2016_fp) %>% kable
 ```
 
-We can see that the data contains `r formatC(nrow(aec2013_fp), big.mark=",", drop0trailing=TRUE, format="f")` rows and `r ncol(aec2013_fp)` columns. Each of the four data objects can be accessed and inspected in this way. Note that some parties have slightly different names in different states. For example there is 'The Nationals' and the 'National Party'. We've simplified the data by renaming some of the parties to the varient of the name that won the most votes. 
+We can see that the data contains `r formatC(nrow(aec2016_fp), big.mark=",", drop0trailing=TRUE, format="f")` rows and `r ncol(aec2016_fp)` columns. Each of the four data objects can be accessed and inspected in this way. Note that some parties have slightly different names in different states. For example there is 'The Nationals' and the 'National Party'. We've simplified the data by renaming some of the parties to the varient of the name that won the most votes. 
 
 # Which party won the election? 
 
 We can summarise the data to discover some basic details about the election. Let's start by reproducing the overall result of the election by finding out which party won the most electorates according to the two party preferred votes:
 
 ```{r who_won}
-who_won <- aec2013_2pp_electorate %>% 
+who_won <- aec2016_2pp_electorate %>% 
   group_by(PartyNm) %>% 
   tally() %>% 
   arrange(desc(n)) 
@@ -97,7 +97,7 @@ This result above matches the official AEC result, showing the Liberal party win
 An alternative way to evaluate the outcome of the election is by counting the number of ordinary first preference votes for each party (not including postal votes, preference flows, etc.). Here we can find the total number of ordinary votes for each party:
 
 ```{r total_votes_for_parties}
-total_votes_for_parties <- aec2013_fp %>% 
+total_votes_for_parties <- aec2016_fp %>% 
   select(PartyNm, OrdinaryVotes) %>% 
   group_by(PartyNm) %>% 
   summarise(total_votes = sum(OrdinaryVotes, rm.na = TRUE)) %>% 
@@ -133,7 +133,7 @@ There are a few ways we can answer this question. We can see who received the hi
 
 ```{r who_most-votes}
 who_most_votes <- 
-aec2013_fp %>% 
+aec2016_fp %>% 
   filter(CandidateID != 999) %>% #exclude informal votes
   mutate(candidate_full_name = paste0(GivenNm, " ", Surname, " (", CandidateID, ")")) %>% 
   group_by(candidate_full_name) %>% 
@@ -152,7 +152,7 @@ But this is a crude measure of how successful a candidate was in the election, b
 
 ```{r who_highest_proportion-votes}
 who_most_votes_prop <- 
-aec2013_fp %>% 
+aec2016_fp %>% 
   filter(CandidateID != 999) %>% #exclude informal votes
   mutate(candidate_full_name = 
            paste0(GivenNm, " ", Surname, " (", CandidateID, ")")) %>% 
@@ -170,13 +170,13 @@ who_most_votes_prop %>%
   kable
 ```
 
-In the above table (which shows just the first ten rows for convienience) we see that Alex Hawke received the highest proportion of the vote in any electorate, as well as a few more familiar names doing very well in their electorates. We can see that taking about 65% of the vote in an electorate counts as a huge win. But what is the smallest winning margin that occured in the 2013 election? Let's find the candidates who won their electorate by the slimmest advantage over their competitors. 
+In the above table (which shows just the first ten rows for convienience) we see that Alex Hawke received the highest proportion of the vote in any electorate, as well as a few more familiar names doing very well in their electorates. We can see that taking about 65% of the vote in an electorate counts as a huge win. But what is the smallest winning margin that occured in the 2016 election? Let's find the candidates who won their electorate by the slimmest advantage over their competitors. 
 
 ## Which candidate won with the smallest number of votes?
 
 ```{r who_won_least_votes_prop}
 who_won_least_votes_prop <- 
- aec2013_fp %>% 
+ aec2016_fp %>% 
    filter(CandidateID != 999) %>% # keep only the winners
    mutate(candidate_full_name = 
             paste0(GivenNm, " ", Surname, " (", CandidateID, ")")) %>% 
@@ -184,7 +184,7 @@ who_won_least_votes_prop <-
    summarise(sum_votes = sum(OrdinaryVotes)) %>% 
    mutate(prop_votes = round(sum_votes / sum(sum_votes), 2)) %>% 
    ungroup %>% 
-   left_join(aec2013_2pp_electorate %>% 
+   left_join(aec2016_2pp_electorate %>% 
                mutate(candidate_full_name = 
             paste0(GivenNm, " ", Surname, " (", CandidateID, ")")), "candidate_full_name") %>% 
    filter(Elected == "Y") %>% 
@@ -205,7 +205,7 @@ The table above shows that Clive Palmer won his electorate by the smallest margi
 
 ```{r fairfax}
 fairfax <- 
-aec2013_fp %>% 
+aec2016_fp %>% 
   filter(CandidateID != 999) %>% # exclude informal votes
   filter(Electorate == "Fairfax") %>% 
   mutate(candidate_full_name = 
@@ -235,7 +235,7 @@ We can look at the proportion of voters for a particular party in each electorat
 
 ```{r plot_prop_particular_party, fig.height = 12, fig.width=10}
 # summarise and compute proportion of votes for a particular party
-p <- aec2013_fp %>%
+p <- aec2016_fp %>%
     filter(CandidateID != 999) %>% # exclude informal votes
   group_by(Electorate, State) %>%
   summarise(
@@ -274,7 +274,7 @@ We can also see how party votes are correlated, for example here we can see a st
 
 ```{r plot_prop_by_particular_party, fig.height = 6}
 # Comparing party and candidate votes of several parties -------
-proportions <- aec2013_fp %>%
+proportions <- aec2016_fp %>%
   filter(CandidateID != 999) %>% # exclude informal votes
   group_by(Electorate) %>%
   summarise(Prop_Labour = sum(OrdinaryVotes[PartyNm == "Australian Labor Party"]) / sum(OrdinaryVotes),
@@ -300,7 +300,7 @@ One of our motivations for creating this package was to make it easy to explore 
 Here's how we join the two datasets together, the common variable is the Electorate:
 
 ```{r join_census_and_election}
-census_and_election <- left_join(aec2013_2pp_electorate, 
+census_and_election <- left_join(aec2016_2pp_electorate, 
                                  abs2011,
                                  by = c("Electorate" = "Electorate"))
 ```
@@ -392,11 +392,11 @@ census_and_election %>%
 
 # Senate results
 
-A quick look at the senate results for 2013, using barchart by overall composition of the senate, and by state. 
+A quick look at the senate results for 2016, using barchart by overall composition of the senate, and by state. 
 
 ```{r senate, echo=TRUE, tidy=TRUE, warning=FALSE, error=FALSE, message=FALSE, fig.width=5, fig.height=3}
 senate <-
-  read.csv("SenateSenatorsElected2013.csv", stringsAsFactors = FALSE)
+  read.csv("SenateSenatorsElected2016.csv", stringsAsFactors = FALSE)
 
   coalition <- c(
   "Country Liberals (NT)",
