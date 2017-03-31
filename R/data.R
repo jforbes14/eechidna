@@ -278,24 +278,24 @@
 #' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
 # "nat_map_small"
 
-#' Map of Australian Electorate from 2013
+#' Map of Australian Electorate from 2016
 #'
-#' A dataset containing the map of the all 150 Australian electorates using the 2013 boundaries of the 
+#' A dataset containing the map of the all 150 Australian electorates using the 2016 boundaries of the 
 #' electorates (and downsampled to a 5\% file to allow fast plotting).
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
 #' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
 #' @examples 
 #' 
-#' data(nat_map)
+#' data(nat_map_2016)
 #' # choropleth map with Census data
-#' nat_map$region <- nat_map$ELECT_DIV
+#' nat_map_2016$region <- nat_map_2016$ELECT_DIV
 #' data(abs2011)
 #' abs2011$region <- abs2011$Electorate
 #' library(ggplot2)
 #' library(ggthemes)
-#' both <- intersect(unique(abs2011$region), unique(nat_map$region))
+#' both <- intersect(unique(abs2011$region), unique(nat_map_2016$region))
 #' ggplot(aes(map_id=region), data=subset(abs2011, region %in% both)) +
-#'   geom_map(aes(fill=MedianIncome), map=subset(nat_map, region %in% both)) +
+#'   geom_map(aes(fill=MedianIncome), map=subset(nat_map_2016, region %in% both)) +
 #'   expand_limits(x=nat_map$long, y=nat_map$lat) + 
 #'   theme_map()
 #' 
