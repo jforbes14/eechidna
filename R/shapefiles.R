@@ -4,6 +4,8 @@
 #' The map and data corresponding to the shapefiles of the 2013 Australian electorates (available at \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}) are part of this package as nat_map.rda and nat_data.rda in the data folder.
 #' The function will take several minutes to complete.
 #' @param shapeFile path to the shp file
+#' @param mapinfo Is the data mapInfo format, rather than ESRI? default=TRUE
+#' @param layer If the format is mapInfo, the layer name also needs to be provided, default is NULL
 #' @param keep percent of polygon points to keep, the default is set to 5\%.
 #' @return list with two data frames: map and data; `map` is a data set with geographic latitude and longitude, and a grouping variable to define each entity.
 #' The `data` data set consists of demographic or geographic information for each electorate, such as size in square kilometers or corresponding state.
@@ -11,21 +13,24 @@
 #' @export
 #' @examples 
 #' \dontrun{
-#' url <- "national-esri-16122011/COM20111216_ELB_region.shp"
-#' electorates <- getElectorateShapes(url)
+#' fl <- "vignettes/national-midmif-09052016/COM_ELB.TAB"
+#' electorates <- getElectorateShapes(shapeFile = fl, layer="COM_ELB")
 #' library(ggplot2)
 #' ggplot(data=electorates$data) + 
-#'    geom_map(aes(fill=AREA_SQKM, map_id=id), map=electorates$map) + 
+#'    geom_map(aes(fill=Area_SqKm, map_id=id), map=electorates$map) + 
 #'    expand_limits(
 #'      x=range(electorates$map$long), 
 #'      y=range(electorates$map$lat)
 #'    )
 #' }
  
-getElectorateShapes <- function(shapeFile, keep=0.05) {
+getElectorateShapes <- function(shapeFile, mapinfo=TRUE, layer=NULL, keep=0.05) {
 
   # shapeFile contains the path to the shp file:
-  sF <- maptools::readShapeSpatial(shapeFile)
+  if (mapinfo)
+    rgdal::readOGR(dsn=shapeFile, layer=layer)
+  else
+    sF <- maptools::readShapeSpatial(shapeFile)
   
   if (system.file(package = "rmapshaper") == "") {
     stop("You need the rmapshaper package to use this function.\n",
