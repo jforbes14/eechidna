@@ -287,19 +287,16 @@
 #' @examples 
 #' 
 #' data(nat_map_2016)
-#' # choropleth map with Census data
-#' nat_map_2016$region <- nat_map_2016$ELECT_DIV
-#' data(abs2011)
-#' abs2011$region <- abs2011$Electorate
+#' data(nat_data_2016)
+#' # choropleth map with area of electorate
 #' library(ggplot2)
 #' library(ggthemes)
-#' both <- intersect(unique(abs2011$region), unique(nat_map_2016$region))
-#' ggplot(aes(map_id=region), data=subset(abs2011, region %in% both)) +
-#'   geom_map(aes(fill=MedianIncome), map=subset(nat_map_2016, region %in% both)) +
-#'   expand_limits(x=nat_map$long, y=nat_map$lat) + 
+#' ggplot(aes(map_id=Elect_div), data=nat_data_2016) +
+#'   geom_map(aes(fill=Area_SqKm), map=nat_map_2016) +
+#'   expand_limits(x=nat_map_2016$long, y=nat_map_2016$lat) + 
 #'   theme_map()
 #' 
-"nat_map_2017"
+"nat_map_2016"
 
 #' Data of the Australian Electorate from 2013
 #'
@@ -331,6 +328,37 @@
 #'   theme_map()
 #'   
 "nat_data"
+
+#' Data of the Australian Electorate from 2016
+#'
+#' A dataset containing some demographic information for each of the 150 Australian electorates.
+#' The data were obtained from the Australian Electoral Commission, and downloaded 
+#' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
+#' The data is published 
+#' @format A data frame with 150 rows with the following variables:
+#' \itemize{
+#'     \item id: numeric identifier that links the electorate with the corresponding polygon in `nat_map`.
+#'     \item Elect_div: Electorate division name   
+#'     \item State: abbreviation of the state name
+#'     \item Numccds: AEC variable that might be filled with meaning or a description down the road
+#'     \item Area_SqKm: combined square kilometers of each electorate
+#'     \item id Numerical id for electorate
+#'     \item long_c Centroid longitude
+#'     \item lat_c Centroid latitude
+#' }
+#' @examples 
+#' 
+#' data(nat_data_2016)
+#' data(nat_map_2016)
+#' library(ggplot2)
+#' library(ggthemes)
+#' ggplot(aes(map_id=Elect_div), data=nat_data_2016) +
+#'   geom_map(map=nat_map_2016) +
+#'   geom_point(data=nat_data_2016, aes(x=long_c, y=lat_c)) +
+#'   expand_limits(x=nat_map_2016$long_c, y=nat_map_2016$lat_c) + 
+#'   theme_map()
+#'   
+"nat_data_2016"
 
 
 
