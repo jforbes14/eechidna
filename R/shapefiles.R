@@ -60,16 +60,17 @@ getElectorateShapes <- function(shapeFile, mapinfo=TRUE, layer=NULL, keep=0.05) 
   list(map=nat_map, data=nat_data)
 }
 
-#' Download a shapefile from the aec website
+#' Download electorate shapefiles
 #' @param url url of aec website
 #' @param exdir relative path of folder where shapefile should be downloaded to 
+#' @param debug boolean for dev people to debug this thing!
 #' @return object of class SpatialPolygonsDataFrame
 #' @export
 #' @examples 
 #' \dontrun{
 #' x <- download_ShapeFile(exdir = "Shapefiles")
 #' # user input 21
-#' sFsmall <- rmapshaper::ms_simplify(x, keep=0.05) # use instead of thinnedSpatialPoly
+#' sFsmall <- rmapshaper::ms_simplify(x, keep=0.01) # use instead of thinnedSpatialPoly
 #' plot(sFsmall)
 #' 
 #' # Download NSW state electorates
@@ -79,51 +80,38 @@ getElectorateShapes <- function(shapeFile, mapinfo=TRUE, layer=NULL, keep=0.05) 
 #' x <- download_ShapeFile(exdir = "temp", url = "http://boundaries.wa.gov.au/electoral-boundaries/11-march-2017-state-general-election-boundaries")
 #' }
 
-download_ShapeFile <- function(url = "http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm", exdir = "temp"){
+download_ShapeFile <- function(url = "http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm", exdir = "temp", debug = FALSE){
   
   dir.create(exdir)
   stem = paste(dirname(url), "/", sep = "")
-  print(stem)
   
   fl <- xml2::read_html(url) %>% rvest::html_nodes("a") %>% rvest::html_attr("href")
   
   real_files <- fl[grep("*.zip", fl)]
   vector_for_user <- basename(real_files)
   
-  # vector_for_url <- real_files
-  # vector_for_user <- sub("*.zip", "", vector_for_url)
-  # vector_for_user <- gsub(glob2rx("*/*"), "", vector_for_user)
-  # 
-  # vector_for_user <- basename(real_files)
-  
-  print(vector_for_user)
-  
   dataframe_for_user <- data.frame(file = vector_for_user)
   
   print(dataframe_for_user)
   cat("Write number for file to download \n")
-  #cat(paste(print.data.frame(dataframe_for_user)), "\n")
+
   which_file <- readline()
   which_file <- which_file %>% as.numeric()
-  #print(which_file)
   
   if(grepl(glob2rx("*www.*"), real_files[which_file], ignore.case = TRUE)){
     file_url <- real_files[which_file]
   } else {
     file_url <- paste(stem, real_files[which_file], sep = "")
   }
-  #file_url <- real_files[which_file]
-  
-  #file_url <- paste(stem, vector_for_url[which_file], sep = "")
-  #print(file_url)
-  
-  #destfile <- paste(exdir, "/", vector_for_user[which_file], ".zip", sep = "")
-  #destfile <- paste(exdir, "/", vector_for_user[which_file], sep = "")
+
   destfile <- paste(exdir, "/", vector_for_user[which_file], sep = "")
+  
+  if(debug){
   print("destfile")
   print(destfile)
   print("file_url")
   print(file_url)
+  }
 
   #print(paste(exdir, "/", vector_for_user[which_file], ".zip", sep = ""))
   
@@ -136,21 +124,19 @@ download_ShapeFile <- function(url = "http://www.aec.gov.au/Electorates/gis/gis_
   #unzip_dir <- paste(exdir, "/", vector_for_user[which_file], ".zip", sep = "")
   unzip_dir <- paste(exdir, "/", vector_for_user[which_file], sep = "")
   unzip_dir <- sub("*.zip", "", unzip_dir, ignore.case = TRUE)
-  print("unzip_dir")
-  print(unzip_dir)
+  
+  if(debug){
+    print("unzip_dir")
+    print(unzip_dir)
+  }
   
   suppressWarnings(dir.create(unzip_dir))
   
   unzip(destfile, exdir = unzip_dir)
   
-  print(unzip_dir)
-  print(list.files(unzip_dir))
-  
   method <- which_shape_format(
     paste(c(unzip_dir, list.files(unzip_dir)), collapse = " ")
   )
-  
-  print(method)
   
   filename <- findFile(method, unzip_dir)
   if(length(filename) > 1){
@@ -194,11 +180,7 @@ findFile <- function(method, unzip_dir){
     select(extension) %>% 
     glob2rx()
   
-  print(extension)
-  
   filename <- file_loc[grep(extension, file_loc, ignore.case = TRUE)]
-  
-  print(filename)
 
   return(filename)
 }
