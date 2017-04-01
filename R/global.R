@@ -11,4 +11,6 @@ utils::globalVariables(
     "Average_Liberal_National_Coalition_Percentage_in_electorate",
     "Total_OrdinaryVotes_in_electorate", "aec2013_2cp_electorate",
     "GivenNm", "Surname", "TotalVotes", "FullName", "parties", 
-    "candidates","tooltip"))
+    "candidates","tooltip", "Elect_div", "Numccds", "Area_SqKm", 
+    "long_c", "lat_c", "config", "glob2rx","download.file","unzip",
+    "ogrListLayers"))

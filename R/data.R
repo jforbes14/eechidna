@@ -287,7 +287,7 @@
 #' # choropleth map with area of electorate
 #' library(ggplot2)
 #' library(ggthemes)
-#' ggplot(aes(map_id=Elect_div), data=nat_data_2016) +
+#' ggplot(aes(map_id=id), data=nat_data_2016) +
 #'   geom_map(aes(fill=Area_SqKm), map=nat_map_2016) +
 #'   expand_limits(x=nat_map_2016$long, y=nat_map_2016$lat) + 
 #'   theme_map()
@@ -348,22 +348,27 @@
 #' data(nat_map_2016)
 #' library(ggplot2)
 #' library(ggthemes)
-#' ggplot(aes(map_id=Elect_div), data=nat_data_2016) +
+#' ggplot(aes(map_id=id), data=nat_data_2016) +
 #'   geom_map(map=nat_map_2016) +
-#'   geom_point(data=nat_data_2016, aes(x=long_c, y=lat_c)) +
-#'   expand_limits(x=nat_map_2016$long_c, y=nat_map_2016$lat_c) + 
+#'   geom_point(data=nat_data_2016, aes(x=long_c, y=lat_c), inherit.aes=FALSE) +
+#'   expand_limits(x=nat_map_2016$long, y=nat_map_2016$lat) + 
 #'   theme_map()
 #'   
 "nat_data_2016"
 
-
-
-#' This is the same as nat_data, but with a few more cols. 
-#' We can probably replace nat_dat with this one
+#' This is the same as nat_data, except that it has 
+#' spatial centroids of electorates spread out using the 
+#' Dorling cartogram. 
 #'
 #'
 "nat_data_cart"
 
+#' This is the same as nat_data_2016, except that it has 
+#' spatial centroids of electorates spread out using the 
+#' Dorling cartogram. 
+#'
+#'
+"nat_data_2016_cart"
 
 #' Electorate hexagon data in a tidy form
 #' @seealso Thomas Lumley

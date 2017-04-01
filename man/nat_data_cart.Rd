@@ -3,15 +3,17 @@
 \docType{data}
 \name{nat_data_cart}
 \alias{nat_data_cart}
-\title{This is the same as nat_data, but with a few more cols. 
-We can probably replace nat_dat with this one}
+\title{This is the same as nat_data, except that it has 
+spatial centroids of electorates spread out using the 
+Dorling cartogram.}
 \format{An object of class \code{data.frame} with 150 rows and 10 columns.}
 \usage{
 nat_data_cart
 }
 \description{
-This is the same as nat_data, but with a few more cols. 
-We can probably replace nat_dat with this one
+This is the same as nat_data, except that it has 
+spatial centroids of electorates spread out using the 
+Dorling cartogram.
 }
 \keyword{datasets}
 

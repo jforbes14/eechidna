@@ -1,26 +1,27 @@
 Package: eechidna
-Version: 0.1.0.9000
+Version: 1.0
 Title: Exploring Election and Census Highly Informative Data Nationally for
     Australia
-Description: Data from the 2013 Australian Federal Election (House of
+Description: Data from the 2013 and 2016 Australian Federal Election (House of
     Representatives) and the 2011 Australian Census. Includes tools for
     visualizing and analysing the data. This package incorporates
     data that is copyright Commonwealth of Australia (Australian
     Electoral Commission) 2016.
 Depends:
-    R (>= 3.2.3)
+    R (>= 3.3.3)
 Imports:
     dplyr,
     ggplot2,
     tidyr,
     shiny,
-    plotly (>= 4.5.5),
+    plotly (>= 4.5.6),
     ggthemes,
     shinyjs,
     methods, 
     rvest, 
     xml2, 
-    rmapshaper
+    rmapshaper,
+    rgdal
 Suggests:
     testthat,
     knitr,
@@ -36,13 +37,17 @@ Suggests:
     readr,
     gridExtra, 
 Authors@R: c(person("Di", "Cook",       role = c("aut")),
+		         person("Anthony", "Ebert", role = c("aut")),
 		         person("Heike", "Hofmann", role = c("aut")),
 	           person("Rob", "Hyndman",   role = c("aut")),
 		         person("Thomas", "Lumley", role = c("aut")),
 		         person("Ben", "Marwick",   role = c("aut", "cre"), email = "benmarwick@gmail.com"),
 		         person("Carson", "Sievert", role = c("aut")),
+		         person("Mingzhu", "Sun", role = c("aut")),
+		         person("Dilini", "Talagala", role = c("aut")),
 		         person("Nicholas", "Tierney", role = c("aut")),
 		         person("Nathaniel", "Tomasetti", role = c("aut")),
+		         person("Earo", "Wang", role = c("aut")),
 		         person("Fang", "Zhou", role = c("aut")),
 		         person("Commonwealth of Australia", "AEC", role = c("cph")))
 Maintainer: Ben Marwick <benmarwick@gmail.com>
