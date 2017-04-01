@@ -130,6 +130,8 @@ download_ShapeFile <- function(url = "http://www.aec.gov.au/Electorates/gis/gis_
   
   #unzip_dir <- paste(exdir, "/", vector_for_user[which_file], ".zip", sep = "")
   unzip_dir <- paste(exdir, "/", vector_for_user[which_file], sep = "")
+  unzip_dir <- sub("*.zip", "", unzip_dir, ignore.case = TRUE)
+  print("unzip_dir")
   print(unzip_dir)
   
   suppressWarnings(dir.create(unzip_dir))
