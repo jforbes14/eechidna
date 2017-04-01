@@ -60,100 +60,110 @@ getElectorateShapes <- function(shapeFile, mapinfo=TRUE, layer=NULL, keep=0.05) 
   list(map=nat_map, data=nat_data)
 }
 
-#' Download a shapefile from the aec website
+#' Download electorate shapefiles
 #' @param url url of aec website
-#' @param stem base directory url of aec website
 #' @param exdir relative path of folder where shapefile should be downloaded to 
+#' @param debug boolean for dev people to debug this thing!
 #' @return object of class SpatialPolygonsDataFrame
 #' @export
 #' @examples 
 #' \dontrun{
 #' x <- download_ShapeFile(exdir = "Shapefiles")
 #' # user input 21
-#' sFsmall <- rmapshaper::ms_simplify(x, keep=0.05) # use instead of thinnedSpatialPoly
+#' sFsmall <- rmapshaper::ms_simplify(x, keep=0.01) # use instead of thinnedSpatialPoly
 #' plot(sFsmall)
+#' 
+#' # Download NSW state electorates
+#' x <- download_ShapeFile(exdir = "temp", url = "http://www.elections.nsw.gov.au/about_elections/electoral_boundaries/electoral_maps/gda94_geographical_midmif_files")
+#' 
+#' # Download WA state electorates
+#' x <- download_ShapeFile(exdir = "temp", url = "http://boundaries.wa.gov.au/electoral-boundaries/11-march-2017-state-general-election-boundaries")
 #' }
 
-download_ShapeFile <- function(url = "http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm", exdir = ".", stem = "http://www.aec.gov.au/Electorates/gis/"){
+download_ShapeFile <- function(url = "http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm", exdir = "temp", debug = FALSE){
   
   dir.create(exdir)
+  stem = paste(dirname(url), "/", sep = "")
   
   pg <- xml2::read_html(url)
   fl <- pg %>% rvest::html_nodes("a") %>% rvest::html_attr("href")
   vector_for_url<- fl[grep("*.zip", fl)]
   
-  vector_for_user <- sub("*.zip", "", vector_for_url)
-  vector_for_user <- gsub(glob2rx("*/*"), "", vector_for_user)
+  real_files <- fl[grep("*.zip", fl)]
+  vector_for_user <- basename(real_files)
   
-  # for(i in 1:5){
-  #   vector_for_user <- sub("^[^/]*", "", vector_for_user)
-  # }
-  # vector_for_user <- sub("/*", "", vector_for_user)
   dataframe_for_user <- data.frame(file = vector_for_user)
   
   print(dataframe_for_user)
   cat("Write number for file to download \n")
-  #cat(paste(print.data.frame(dataframe_for_user)), "\n")
+
   which_file <- readline()
   which_file <- which_file %>% as.numeric()
-  #print(which_file)
   
-  file_url <- paste(stem, vector_for_url[which_file], sep = "")
-  #print(file_url)
+  if(grepl(glob2rx("*www.*"), real_files[which_file], ignore.case = TRUE)){
+    file_url <- real_files[which_file]
+  } else {
+    file_url <- paste(stem, real_files[which_file], sep = "")
+  }
+
+  destfile <- paste(exdir, "/", vector_for_user[which_file], sep = "")
   
-  destfile <- paste(exdir, "/", vector_for_user[which_file], ".zip", sep = "")
-  
+  if(debug){
+  print("destfile")
+  print(destfile)
+  print("file_url")
+  print(file_url)
+  }
+
   #print(paste(exdir, "/", vector_for_user[which_file], ".zip", sep = ""))
   
   download.file(
     url = file_url,
-    destfile = destfile
+    destfile = destfile, 
+    cacheOK = FALSE
   )
   
+  #unzip_dir <- paste(exdir, "/", vector_for_user[which_file], ".zip", sep = "")
   unzip_dir <- paste(exdir, "/", vector_for_user[which_file], sep = "")
+  unzip_dir <- sub("*.zip", "", unzip_dir, ignore.case = TRUE)
   
-  dir.create(unzip_dir)
+  if(debug){
+    print("unzip_dir")
+    print(unzip_dir)
+  }
+  
+  suppressWarnings(dir.create(unzip_dir))
   
   unzip(destfile, exdir = unzip_dir)
   
-  if(grepl(glob2rx("*esri*"), ignore.case = TRUE, unzip_dir)){
-    method = "ESRI"
-  }
-  
-  if(grepl(glob2rx("*mif*"), ignore.case = TRUE, unzip_dir) | grepl(glob2rx("*tab*"), ignore.case = TRUE, unzip_dir)){
-    method = "MapInfo"
-  }
+  method <- which_shape_format(
+    paste(c(unzip_dir, list.files(unzip_dir)), collapse = " ")
+  )
   
   filename <- findFile(method, unzip_dir)
   if(length(filename) > 1){
     filename <- filename[readline(prompt = cat(print(filename), "\n")) %>% as.numeric() %>% as.numeric]
   }
   
-  MID <- grepl(glob2rx("*.MID*"), filename)
-  if(MID){method = MID}
-  
-  #print(filename)
-  #print(paste(unzip_dir, "/", filename, sep = ""))
-  
   output <- readShapeSpatial_format(filename = paste(unzip_dir, "/", filename, sep = ""), method)
   
-  
+  return(output)
 }
 
 
 
-readShapeSpatial_format <- function(filename, method = "ESRI"){
+readShapeSpatial_format <- function(filename, method = "esri"){
   
-  if(method == "ESRI"){
+  if(method == "esri"){
     return(maptools::readShapeSpatial(filename))
   }
   
-  if(method == "MapInfo"){
-    return(rgdal::readOGR(dsn=filename, layer="COM_ELB"))
+  if(method == "tab"){
+    return(rgdal::readOGR(dsn=filename, layer= rgdal::ogrListLayers(filename)[[1]]))
   }
   
-  if(method == "MID"){
-    return(rgdal::readOGR(dsn=filename, layer = ogrListLayers(filename)[[1]]))
+  if(method == "mif"){
+    return(rgdal::readOGR(dsn=filename, layer = rgdal::ogrListLayers(filename)[[1]]))
   }
   
 }
@@ -162,19 +172,41 @@ readShapeSpatial_format <- function(filename, method = "ESRI"){
 findFile <- function(method, unzip_dir){
   file_loc <- list.files(unzip_dir, recursive = TRUE)
   
-  if(method == "ESRI"){
-    filename <- file_loc[grep(glob2rx("*.shp*"), file_loc)]
-  }
-  if(method == "MapInfo"){
-    filename <- file_loc[grep(glob2rx("*.TAB*"), file_loc)]
-    if(length(filename) == 0){
-      filename <- file_loc[grep(glob2rx("*.MID*"), file_loc)]
-    }
-  }
+  strings_to_check <- data_frame(
+    format = c("esri", "mif", "tab"), 
+    extension = c("*.shp", "*.tab", "*.mid")
+  )
+  
+  extension = strings_to_check %>% 
+    filter(format == method) %>% 
+    select(extension) %>% 
+    glob2rx()
+  
+  filename <- file_loc[grep(extension, file_loc, ignore.case = TRUE)]
+
   return(filename)
 }
 
-
+which_shape_format <- function(dir){
+  
+  method <- NA
+  
+  strings_to_check <- data_frame(
+    strings = glob2rx(c("*esri*", "*mif*", "*tab*", "*.shp*")), 
+    format = c("esri", "mif", "tab", "esri")
+  )
+  
+  method <- lapply(1:length(strings_to_check$strings), FUN = function(i, ...){
+    if(grepl(strings_to_check$strings[i], ignore.case = TRUE, dir)){
+      method <- strings_to_check$format[i]
+    }
+  })
+  
+  method <- unlist(method)[1]
+  
+  return(method)
+}
+  
 
 
 

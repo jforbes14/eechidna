@@ -2,31 +2,37 @@
 % Please edit documentation in R/shapefiles.R
 \name{download_ShapeFile}
 \alias{download_ShapeFile}
-\title{Download a shapefile from the aec website}
+\title{Download electorate shapefiles}
 \usage{
 
   download_ShapeFile(url = "http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm",
-  exdir = ".", stem = "http://www.aec.gov.au/Electorates/gis/")
+  exdir = "temp", debug = FALSE)
 }
 \arguments{
 \item{url}{url of aec website}
 
 \item{exdir}{relative path of folder where shapefile should be downloaded to}
 
-\item{stem}{base directory url of aec website}
+\item{debug}{boolean for dev people to debug this thing!}
 }
 \value{
 object of class SpatialPolygonsDataFrame
 }
 \description{
-Download a shapefile from the aec website
+Download electorate shapefiles
 }
 \examples{
 \dontrun{
 x <- download_ShapeFile(exdir = "Shapefiles")
 # user input 21
-sFsmall <- rmapshaper::ms_simplify(x, keep=0.05) # use instead of thinnedSpatialPoly
+sFsmall <- rmapshaper::ms_simplify(x, keep=0.01) # use instead of thinnedSpatialPoly
 plot(sFsmall)
+
+# Download NSW state electorates
+x <- download_ShapeFile(exdir = "temp", url = "http://www.elections.nsw.gov.au/about_elections/electoral_boundaries/electoral_maps/gda94_geographical_midmif_files")
+
+# Download WA state electorates
+x <- download_ShapeFile(exdir = "temp", url = "http://boundaries.wa.gov.au/electoral-boundaries/11-march-2017-state-general-election-boundaries")
 }
 }
 

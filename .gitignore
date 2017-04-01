@@ -3,6 +3,7 @@ inst/doc
 README.html
 .Rhistory
 /Shapefiles/*
+/temp/*
 *.DS_Store
 *.html
 /vignettes/*.R
