@@ -356,14 +356,19 @@
 #'   
 "nat_data_2016"
 
-
-
-#' This is the same as nat_data, but with a few more cols. 
-#' We can probably replace nat_dat with this one
+#' This is the same as nat_data, except that it has 
+#' spatial centroids of electorates spread out using the 
+#' Dorling cartogram. 
 #'
 #'
 "nat_data_cart"
 
+#' This is the same as nat_data_2016, except that it has 
+#' spatial centroids of electorates spread out using the 
+#' Dorling cartogram. 
+#'
+#'
+"nat_data_2016_cart"
 
 #' Electorate hexagon data in a tidy form
 #' @seealso Thomas Lumley

@@ -18,8 +18,8 @@ and make any of these that were not made equal to the original centroids
 \examples{
 library(dplyr)
 library(ggplot2)
-data(nat_map)
-data(nat_data)
+data(nat_map_2016)
+data(nat_data_2016)
 cities <- list(c(151.2, -33.8), # Sydney
 c(153.0, -27.5), # Brisbane
 c(145.0, -37.8), # Melbourne
@@ -33,21 +33,14 @@ nat_carto <- purrr::map2(.x=cities, .y=expand,
       rename(id=region)
 nat_data_cart <- aec_carto_join_f(nat_data, nat_carto)
 # Map theme
-theme_map <- theme_bw()
-theme_map$line <- element_blank()
-theme_map$strip.text <- element_blank()
-theme_map$axis.text <- element_blank()
-theme_map$plot.title <- element_blank()
-theme_map$axis.title <- element_blank()
-theme_map$panel.border <- element_rect(colour = "grey90", size=1, fill=NA)
+library(ggthemes)
 
-ggplot(data=nat_map) +
-  geom_polygon(aes(x=long, y=lat, group=group, order=order),
-  fill="grey90", colour="white") +
+ggplot(data=nat_data_2016, aes(map_id=id)) +
+  geom_map(map = nat_map_2016, fill="grey90", colour="white") +
     geom_point(data=nat_data_cart, aes(x=x, y=y), size=2, alpha=0.4,
-                 colour="#572d2c") +
-    geom_text(data=nat_data_cart, aes(x=x, y=y, label=id), size=0.5) +
-      coord_equal() + theme_map
+                 colour="#572d2c", inherit.aes=FALSE) +
+    expand_limits(x=nat_map_2016$long, y=nat_map_2016$lat) +
+    theme_map() + coord_equal()
  
 }
 
