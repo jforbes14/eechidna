@@ -79,7 +79,7 @@ download_ShapeFile <- function(url = "http://www.aec.gov.au/Electorates/gis/gis_
   dir.create(exdir)
   
   pg <- xml2::read_html(url)
-  fl <- pg %>% html_nodes("a") %>% html_attr("href")
+  fl <- pg %>% rvest::html_nodes("a") %>% rvest::html_attr("href")
   vector_for_url<- fl[grep("*.zip", fl)]
   
   vector_for_user <- sub("*.zip", "", vector_for_url)
