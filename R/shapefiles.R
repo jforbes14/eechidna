@@ -62,7 +62,6 @@ getElectorateShapes <- function(shapeFile, mapinfo=TRUE, layer=NULL, keep=0.05) 
 
 #' Download a shapefile from the aec website
 #' @param url url of aec website
-#' @param stem base directory url of aec website
 #' @param exdir relative path of folder where shapefile should be downloaded to 
 #' @return object of class SpatialPolygonsDataFrame
 #' @export
@@ -72,9 +71,15 @@ getElectorateShapes <- function(shapeFile, mapinfo=TRUE, layer=NULL, keep=0.05) 
 #' # user input 21
 #' sFsmall <- rmapshaper::ms_simplify(x, keep=0.05) # use instead of thinnedSpatialPoly
 #' plot(sFsmall)
+#' 
+#' # Download NSW state electorates
+#' x <- download_ShapeFile(exdir = "temp", url = "http://www.elections.nsw.gov.au/about_elections/electoral_boundaries/electoral_maps/gda94_geographical_midmif_files")
+#' 
+#' # Download WA state electorates
+#' x <- download_ShapeFile(exdir = "temp", url = "http://boundaries.wa.gov.au/electoral-boundaries/11-march-2017-state-general-election-boundaries")
 #' }
 
-download_ShapeFile <- function(url = "http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm", exdir = "temp", stem = "http://www.aec.gov.au/Electorates/gis/"){
+download_ShapeFile <- function(url = "http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm", exdir = "temp"){
   
   dir.create(exdir)
   stem = paste(dirname(url), "/", sep = "")
