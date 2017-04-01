@@ -28,7 +28,7 @@ data(nat_data_2016)
 # choropleth map with area of electorate
 library(ggplot2)
 library(ggthemes)
-ggplot(aes(map_id=Elect_div), data=nat_data_2016) +
+ggplot(aes(map_id=id), data=nat_data_2016) +
   geom_map(aes(fill=Area_SqKm), map=nat_map_2016) +
   expand_limits(x=nat_map_2016$long, y=nat_map_2016$lat) + 
   theme_map()

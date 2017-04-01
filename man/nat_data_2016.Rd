@@ -30,10 +30,10 @@ data(nat_data_2016)
 data(nat_map_2016)
 library(ggplot2)
 library(ggthemes)
-ggplot(aes(map_id=Elect_div), data=nat_data_2016) +
+ggplot(aes(map_id=id), data=nat_data_2016) +
   geom_map(map=nat_map_2016) +
-  geom_point(data=nat_data_2016, aes(x=long_c, y=lat_c)) +
-  expand_limits(x=nat_map_2016$long_c, y=nat_map_2016$lat_c) + 
+  geom_point(data=nat_data_2016, aes(x=long_c, y=lat_c), inherit.aes=FALSE) +
+  expand_limits(x=nat_map_2016$long, y=nat_map_2016$lat) + 
   theme_map()
   
 }
