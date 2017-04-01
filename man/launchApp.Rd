@@ -50,4 +50,3 @@ launchApp(
 \author{
 Carson Sievert
 }
-

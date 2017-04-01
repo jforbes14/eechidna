@@ -14,7 +14,7 @@
 #' @examples 
 #' \dontrun{
 #' fl <- "vignettes/national-midmif-09052016/COM_ELB.TAB"
-#' electorates <- getElectorateShapes(shapeFile = fl, layer="COM_ELB")
+#' electorates <- getElectorateShapes(shapeFile = fl, layer="COM_ELB", keep=0.01)
 #' library(ggplot2)
 #' ggplot(data=electorates$data) + 
 #'    geom_map(aes(fill=Area_SqKm, map_id=id), map=electorates$map) + 
@@ -32,20 +32,18 @@ getElectorateShapes <- function(shapeFile, mapinfo=TRUE, layer=NULL, keep=0.05) 
   else
     sF <- maptools::readShapeSpatial(shapeFile)
   
-  if (system.file(package = "rmapshaper") == "") {
-    stop("You need the rmapshaper package to use this function.\n",
-         "It is not yet available from CRAN, but you can install with:\n",
-         "devtools::install_github('ateucher/rmapshaper')", call. = FALSE)
-  }
-  
   # use instead of thinnedSpatialPoly
-  sFsmall <- get("ms_simplify", envir = asNamespace("rmapshaper"))(sF, keep=keep)
+  sFsmall <- rmapshaper::ms_simplify(sF, keep=keep)
   
   nat_data <- sF@data
   nat_data$id <- row.names(nat_data)
   nat_map <- ggplot2::fortify(sFsmall)
   nat_map$group <- paste("g",nat_map$group,sep=".")
   nat_map$piece <- paste("p",nat_map$piece,sep=".")
+
+  nms <- sFsmall@data %>% dplyr::select(Elect_div, State)
+  nms$id <- as.character(1:150)
+  nat_map <- dplyr::left_join(nat_map, nms, by="id")
   
   # get centroids
   polys <- methods::as(sF, "SpatialPolygons")
@@ -57,6 +55,7 @@ getElectorateShapes <- function(shapeFile, mapinfo=TRUE, layer=NULL, keep=0.05) 
   centroids <-  purrr::map_df(seq_along(polys), centroid, polys=polys)
   
   nat_data <- data.frame(nat_data, centroids)
+  nat_data <- nat_data %>% select(Elect_div, State, Numccds, Area_SqKm, id, long_c, lat_c)
   
   list(map=nat_map, data=nat_data)
 }

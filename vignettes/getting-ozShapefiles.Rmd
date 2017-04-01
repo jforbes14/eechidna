@@ -80,13 +80,20 @@ The `fortify` function in the `ggplot2` package extracts the polygons into a dat
 ```{r}
 nat_map <- ggplot2::fortify(sFsmall)
 head(nat_map)
-
 ```
 
 We need to make sure that `group` and `piece` are kept as factor variables - if they are allowed to be converted to numeric values, it messes things up, because as factor levels `9` and `9.0` are distinct, whereas they are not when interpreted as numbers ...
 ```{r}
 nat_map$group <- paste("g",nat_map$group,sep=".")
 nat_map$piece <- paste("p",nat_map$piece,sep=".")
+```
+
+It is useful to have the electorate name and state attached to the map.
+
+```{r}
+nms <- sFsmall@data %>% select(Elect_div, State)
+nms$id <- as.character(1:150)
+nat_map <- left_join(nat_map, nms, by="id")
 ```
 
 The map data is ready to be exported to a file:
