@@ -28,7 +28,7 @@ The function will take several minutes to complete.
 \examples{
 \dontrun{
 fl <- "vignettes/national-midmif-09052016/COM_ELB.TAB"
-electorates <- getElectorateShapes(shapeFile = fl, layer="COM_ELB")
+electorates <- getElectorateShapes(shapeFile = fl, layer="COM_ELB", keep=0.01)
 library(ggplot2)
 ggplot(data=electorates$data) + 
    geom_map(aes(fill=Area_SqKm, map_id=id), map=electorates$map) + 
@@ -38,3 +38,4 @@ ggplot(data=electorates$data) +
    )
 }
 }
+

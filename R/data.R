@@ -45,8 +45,6 @@
 #' }
 "abs2011"    
 
-
-
 #' 2013 General election data for first preference votes for candidates for the House of Representatives for each polling place
 #' 
 #' A dataset containing first preference vote counts, candidate names, polling place locations,
@@ -85,9 +83,7 @@
 #'     \item Longitude:
 #'     \item uid:.
 #'     }
-"aec2013_fp"   
-
-
+"aec2013_fp"
 
 #' 2013 General election data for first preference votes for candidates for the House of Representative for each electorate
 #' 

@@ -2,11 +2,11 @@ Package: eechidna
 Version: 0.1.0.9000
 Title: Exploring Election and Census Highly Informative Data Nationally for
     Australia
-Description: Data from the 2013 Australian Federal Election (House of 
-    Representatives) and the 2011 Australian Census. Includes tools for 
-    visualizing and analysing the data. This package incorporates 
-    data that is copyright Commonwealth of Australia (Australian 
-    Electoral Commission) 2016. 
+Description: Data from the 2013 Australian Federal Election (House of
+    Representatives) and the 2011 Australian Census. Includes tools for
+    visualizing and analysing the data. This package incorporates
+    data that is copyright Commonwealth of Australia (Australian
+    Electoral Commission) 2016.
 Depends:
     R (>= 3.2.3)
 Imports:
@@ -48,4 +48,4 @@ ByteCompile: TRUE
 License: GPL (>= 2)
 URL: https://github.com/ropenscilabs/eechidna
 VignetteBuilder: knitr
-RoxygenNote: 6.0.1
+RoxygenNote: 5.0.1

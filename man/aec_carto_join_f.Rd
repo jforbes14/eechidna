@@ -50,3 +50,4 @@ ggplot(data=nat_map) +
       coord_equal() + theme_map
  
 }
+
