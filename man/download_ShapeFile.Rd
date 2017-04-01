@@ -6,7 +6,8 @@
 \usage{
 
   download_ShapeFile(url = "http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm",
-  exdir = ".", stem = "http://www.aec.gov.au/Electorates/gis/")
+  exdir = "temp", stem = "http://www.aec.gov.au/Electorates/gis/",
+  keep = FALSE)
 }
 \arguments{
 \item{url}{url of aec website}
