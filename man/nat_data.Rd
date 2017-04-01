@@ -3,7 +3,7 @@
 \docType{data}
 \name{nat_data}
 \alias{nat_data}
-\title{(Very small) Map of Australian Electorate from 2013}
+\title{Data of the Australian Electorate from 2013}
 \format{A data frame with 150 rows with the following variables:
 \itemize{
     \item id: numeric identifier that links the electorate with the corresponding polygon in `nat_map`.
@@ -16,13 +16,6 @@
 nat_data
 }
 \description{
-A dataset containing the map of the all 150 Australian electorates using the 2013 boundaries of the 
-electorates (and downsampled to a 0.5\% file to allow fast plotting).
-The data were obtained from the Australian Electoral Commission, and downloaded 
-from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
-Data of the Australian Electorate from 2013
-}
-\details{
 A dataset containing some demographic information for each of the 150 Australian electorates.
 The data were obtained from the Australian Electoral Commission, and downloaded 
 from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
@@ -45,3 +38,4 @@ ggplot(aes(map_id=region), data=subset(abs2011, region \%in\% both)) +
   
 }
 \keyword{datasets}
+
