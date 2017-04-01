@@ -5,6 +5,7 @@ senate <- senate %>%
   mutate(
     PartyNm = case_when(
       .$PartyNm == "Australian Labor Party (Northern Territory) Branch" ~ "Australian Labor Party",
+      .$PartyNm == "Labor" ~ "Australian Labor Party",
       .$PartyNm == "Country Labor" ~ "Australian Labor Party",
       .$PartyNm == "National Party" ~ "The Nationals",
       .$PartyNm == "Liberal National Party of Queensland" ~ "Liberal",
@@ -25,6 +26,7 @@ election_results_df <- election_results_df %>%
   mutate(
     PartyNm = case_when(
       .$PartyNm == "Australian Labor Party (Northern Territory) Branch" ~ "Australian Labor Party",
+      .$PartyNm == "Labor" ~ "Australian Labor Party",
       .$PartyNm == "Country Labor" ~ "Australian Labor Party",
       .$PartyNm == "National Party" ~ "The Nationals",
       .$PartyNm == "Liberal National Party of Queensland" ~ "Liberal",
@@ -52,6 +54,7 @@ aec_first_pref <- aec_first_pref %>%
   mutate(
     PartyNm = case_when(
       .$PartyNm == "Australian Labor Party (Northern Territory) Branch" ~ "Australian Labor Party",
+      .$PartyNm == "Labor" ~ "Australian Labor Party",
       .$PartyNm == "Country Labor" ~ "Australian Labor Party",
       .$PartyNm == "National Party" ~ "The Nationals",
       .$PartyNm == "Liberal National Party of Queensland" ~ "Liberal",
@@ -67,6 +70,7 @@ aec_winners <- aec_winners %>%
   mutate(
     PartyNm = case_when(
       .$PartyNm == "Australian Labor Party (Northern Territory) Branch" ~ "Australian Labor Party",
+      .$PartyNm == "Labor" ~ "Australian Labor Party",
       .$PartyNm == "Country Labor" ~ "Australian Labor Party",
       .$PartyNm == "National Party" ~ "The Nationals",
       .$PartyNm == "Liberal National Party of Queensland" ~ "Liberal",
@@ -86,6 +90,7 @@ aec_2candidates_polling_place <- aec_2candidates_polling_place %>%
   mutate(
     PartyNm = case_when(
       .$PartyNm == "Australian Labor Party (Northern Territory) Branch" ~ "Australian Labor Party",
+      .$PartyNm == "Labor" ~ "Australian Labor Party",
       .$PartyNm == "Country Labor" ~ "Australian Labor Party",
       .$PartyNm == "National Party" ~ "The Nationals",
       .$PartyNm == "Liberal National Party of Queensland" ~ "Liberal",

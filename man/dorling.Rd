@@ -49,3 +49,4 @@ dorling(name, centroidx, centroidy, density, nbr = NULL,
 From https://github.com/chxy/cartogram/blob/master/R/dorling.R
 Not exported here, but needed for aec_carto_f
 }
+
