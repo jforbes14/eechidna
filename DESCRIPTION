@@ -17,7 +17,10 @@ Imports:
     plotly (>= 4.5.5),
     ggthemes,
     shinyjs,
-    methods
+    methods, 
+    rvest, 
+    xml2, 
+    rmapshaper
 Suggests:
     testthat,
     knitr,
@@ -31,7 +34,7 @@ Suggests:
     plyr,
     scales,
     readr,
-    gridExtra
+    gridExtra, 
 Authors@R: c(person("Di", "Cook",       role = c("aut")),
 		         person("Heike", "Hofmann", role = c("aut")),
 	           person("Rob", "Hyndman",   role = c("aut")),
