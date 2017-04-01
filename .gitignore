@@ -2,3 +2,8 @@ inst/doc
 .Rproj.user
 README.html
 .Rhistory
+/Shapefiles/*
+*.DS_Store
+*.html
+/vignettes/*.R
+/vignettes/getting-ozShapefiles_cache/
