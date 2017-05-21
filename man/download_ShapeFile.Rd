@@ -35,4 +35,3 @@ x <- download_ShapeFile(exdir = "temp", url = "http://www.elections.nsw.gov.au/a
 x <- download_ShapeFile(exdir = "temp", url = "http://boundaries.wa.gov.au/electoral-boundaries/11-march-2017-state-general-election-boundaries")
 }
 }
-

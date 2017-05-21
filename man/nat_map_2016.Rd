@@ -35,4 +35,3 @@ ggplot(aes(map_id=id), data=nat_data_2016) +
 
 }
 \keyword{datasets}
-

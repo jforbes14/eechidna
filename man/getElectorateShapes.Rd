@@ -38,4 +38,3 @@ ggplot(data=electorates$data) +
    )
 }
 }
-

@@ -53,6 +53,7 @@ library(purrr)
 library(knitr)
 library(broom)
 library(tidyr)
+library(purrrlyr)
 # inspect the data frame
 glimpse(aec2013_fp)
 # show the first few rows
@@ -148,7 +149,7 @@ who_most_votes %>%
   kable
 ```
 
-But this is a crude measure of how successful a candidate was in the election, because electorates with more people will result in more votes for the winner, even if the victory is only by a tiny margin. So let's see remove the effect of the population size in the electorates by finding out who won the highest proportion of votes in their electorate. 
+But this is a crude measure of how successful a candidate was in the election, because electorates with more people will result in more votes for the winner, even if the victory is only by a tiny margin. So let's remove the effect of the population size in the electorates by finding out who won the highest proportion of votes in their electorate. 
 
 ```{r who_highest_proportion-votes}
 who_most_votes_prop <- 

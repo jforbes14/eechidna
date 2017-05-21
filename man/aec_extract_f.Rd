@@ -35,4 +35,3 @@ ggplot(data=nat_map) +
   xlim(c(136, 142)) + ylim(-36, -33) +
   coord_equal()
 }
-

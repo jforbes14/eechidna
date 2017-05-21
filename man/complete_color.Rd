@@ -25,4 +25,3 @@ complete_color(c('red','blue'),5)
 complete_color(c('red','blue','green','yellow','pink','grey'),5)
 }
 }
-

@@ -1,4 +1,33 @@
 ## Test environments
+* local Windows 7 install, R 3.4.0
+* ubuntu 12.04 (on travis-ci), R 3.2.3
+* win-builder (devel and release)
+
+## R CMD check results
+
+0 errors | 0 warnings | 2 notes
+
+* This is a minor update
+
+## Reverse dependencies
+
+There are no reverse dependencies.
+
+---
+
+* I have not run R CMD check on the downstream dependencies.
+
+## CRAN submission notes
+
+* We have two notes
+-- installed package size 6.3 Mb: these are the data files that are integral to the pkg
+-- Rd line widths: example lines wider than 100 characters: these are due to URLs
+
+
+
+
+---------------------------------------------------------------------------------
+## Test environments
 * local Windows 7 install, R 3.2.3
 * ubuntu 12.04 (on travis-ci), R 3.2.3
 * win-builder (devel and release)

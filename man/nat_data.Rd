@@ -38,4 +38,3 @@ ggplot(aes(map_id=region), data=subset(abs2011, region \%in\% both)) +
   
 }
 \keyword{datasets}
-

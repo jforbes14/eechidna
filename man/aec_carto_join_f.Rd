@@ -43,4 +43,3 @@ ggplot(data=nat_data_2016, aes(map_id=id)) +
     theme_map() + coord_equal()
  
 }
-

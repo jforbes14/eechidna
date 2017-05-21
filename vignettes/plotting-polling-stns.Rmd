@@ -16,7 +16,7 @@ knitr::opts_chunk$set(fig.width = 6,
                       dev = "png", cache=FALSE)
 ```
 
-This vignette dscribes how to show the polling stations on a map of the Australian electorates. The polling station locations for the 2013 election can be downloaded from [http://results.aec.gov.au/17496/Website/GeneralDownloadsMenu-17496-csv.htm](http://results.aec.gov.au/17496/Website/GeneralDownloadsMenu-17496-csv.htm). This data is a reduced set of information. (The data sometimes needs to be cleaned a little in order to read properly into R: (1) One polling place has instructions for getting in that include `6" step` which messes up the text read, (2) Two polling places have `"F"` and `"B"` in the instructions to get in that messes with the text reading. The data provide with the vignette has been cleaned.)
+This vignette dscribes how to show the polling stations on a map of the Australian electorates. The polling station locations for the 2013 election can be downloaded from [http://results.aec.gov.au/17496/Website/GeneralDownloadsMenu-17496-csv.htm](http://results.aec.gov.au/17496/Website/GeneralDownloadsMenu-17496-csv.htm). This data is a reduced set of information. (The data sometimes needs to be cleaned a little in order to read properly into R: (1) One polling place has instructions for getting in that include `6" step` which messes up the text read, (2) Two polling places have `"F"` and `"B"` in the instructions to get in that messes with the text reading. The data provided with the vignette has been cleaned.)
 
 ```{r message=FALSE, error = TRUE, warning=FALSE, echo=FALSE, tidy=TRUE}
 library(eechidna)
