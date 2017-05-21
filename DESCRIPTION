@@ -1,5 +1,5 @@
 Package: eechidna
-Version: 1.0
+Version: 1.1
 Title: Exploring Election and Census Highly Informative Data Nationally for
     Australia
 Description: Data from the 2013 and 2016 Australian Federal Election (House of
@@ -8,7 +8,7 @@ Description: Data from the 2013 and 2016 Australian Federal Election (House of
     data that is copyright Commonwealth of Australia (Australian
     Electoral Commission) 2016.
 Depends:
-    R (>= 3.3.3)
+    R (>= 3.4.0)
 Imports:
     dplyr,
     ggplot2,

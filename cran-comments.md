@@ -1,13 +1,11 @@
 ## Test environments
 * local Windows 7 install, R 3.4.0
-* ubuntu 12.04 (on travis-ci), R 3.2.3
-* win-builder (devel and release)
+* Debian Linux, R-devel, GCC (on r-hub.io), R 3.4.0
+* win-builder (devel and release) R Under development (unstable) (2017-05-20 r72708)
 
 ## R CMD check results
 
 0 errors | 0 warnings | 2 notes
-
-* This is a minor update
 
 ## Reverse dependencies
 
@@ -19,11 +17,11 @@ There are no reverse dependencies.
 
 ## CRAN submission notes
 
+* This is a minor update in response to an email from Kurt Hornik on 21 May 2017 alerting us to warnings emitted from CRAN builds. The warnings come from the function `dmap` having been moved from the purrr package to the new purrrlyer package. We've now fixed this and the warnings have gone from our tests. 
+
 * We have two notes
 -- installed package size 6.3 Mb: these are the data files that are integral to the pkg
 -- Rd line widths: example lines wider than 100 characters: these are due to URLs
-
-
 
 
 ---------------------------------------------------------------------------------
