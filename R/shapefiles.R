@@ -74,10 +74,17 @@ getElectorateShapes <- function(shapeFile, mapinfo=TRUE, layer=NULL, keep=0.05) 
 #' plot(sFsmall)
 #' 
 #' # Download NSW state electorates
-#' x <- download_ShapeFile(exdir = "temp", url = "http://www.elections.nsw.gov.au/about_elections/electoral_boundaries/electoral_maps/gda94_geographical_midmif_files")
+#' # the URLs are split to avoid CRAN notes about long line widths
+#' url <- paste0("http://www.elections.nsw.gov.au/", 
+#' "about_elections/electoral_boundaries/",
+#' "electoral_maps/gda94_geographical_midmif_files")
+#' x <- download_ShapeFile(exdir = "temp", url = url)
 #' 
 #' # Download WA state electorates
-#' x <- download_ShapeFile(exdir = "temp", url = "http://boundaries.wa.gov.au/electoral-boundaries/11-march-2017-state-general-election-boundaries")
+#' url <- paste0("http://boundaries.wa.gov.au/",
+#' "electoral-boundaries/,"
+#' "11-march-2017-state-general-election-boundaries")
+#' x <- download_ShapeFile(exdir = "temp", url = url)
 #' }
 
 download_ShapeFile <- function(url = "http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm", exdir = "temp", debug = FALSE){
