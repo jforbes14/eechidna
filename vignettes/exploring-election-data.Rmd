@@ -154,21 +154,18 @@ But this is a crude measure of how successful a candidate was in the election, b
 ```{r who_highest_proportion-votes}
 who_most_votes_prop <- 
 aec2013_fp %>% 
-  filter(CandidateID != 999) %>% #exclude informal votes
-  mutate(candidate_full_name = 
-           paste0(GivenNm, " ", Surname, " (", CandidateID, ")")) %>% 
-  group_by(Electorate, candidate_full_name) %>% 
-  summarise(sum_votes = sum(OrdinaryVotes))  %>% 
-  mutate(prop_votes = round(sum_votes / sum(sum_votes), 3),
-         sum_votes = prettyNum(sum_votes, ",")) %>% 
-  ungroup %>% 
-  arrange(desc(prop_votes))
-
-# inspect
-who_most_votes_prop %>% 
-  data.frame %>% 
-  head %>% 
-  kable
+  dplyr::filter(CandidateID != 999) %>%  #exclude informal votes
+  dplyr::mutate(candidate_full_name = 
+                  paste0(GivenNm, " ", Surname, " (", CandidateID, ")"))  %>% 
+  dplyr::group_by(Electorate, candidate_full_name) %>% 
+  dplyr::summarise(sum_votes = sum(OrdinaryVotes)) %>% 
+  dplyr::mutate(prop_votes = round(sum_votes / sum(sum_votes), 3),
+                sum_votes = as.character(prettyNum(sum_votes, ","))) %>% 
+  dplyr::ungroup() %>% 
+  dplyr::arrange(dplyr::desc(prop_votes)) %>% 
+  head() %>% 
+  knitr::kable()
+```
 ```
 
 In the above table (which shows just the first ten rows for convienience) we see that Alex Hawke received the highest proportion of the vote in any electorate, as well as a few more familiar names doing very well in their electorates. We can see that taking about 65% of the vote in an electorate counts as a huge win. But what is the smallest winning margin that occured in the 2013 election? Let's find the candidates who won their electorate by the slimmest advantage over their competitors. 

@@ -150,24 +150,21 @@ who_most_votes %>%
 
 But this is a crude measure of how successful a candidate was in the election, because electorates with more people will result in more votes for the winner, even if the victory is only by a tiny margin. So let's see remove the effect of the population size in the electorates by finding out who won the highest proportion of votes in their electorate. 
 
-```{r who_highest_proportion-votes}
+```{r who_highest_proportion-votes, eval = FALSE}
 who_most_votes_prop <- 
 aec2016_fp %>% 
-  filter(CandidateID != 999) %>% #exclude informal votes
-  mutate(candidate_full_name = 
+  dplyr::filter(CandidateID != 999) %>% #exclude informal votes
+  dplyr::mutate(candidate_full_name = 
            paste0(GivenNm, " ", Surname, " (", CandidateID, ")")) %>% 
-  group_by(Electorate, candidate_full_name) %>% 
-  summarise(sum_votes = sum(OrdinaryVotes))  %>% 
-  mutate(prop_votes = round(sum_votes / sum(sum_votes), 3),
+  dplyr::group_by(Electorate, candidate_full_name) %>% 
+  dplyr::summarise(sum_votes = sum(OrdinaryVotes))  %>% 
+  dplyr::mutate(prop_votes = round(sum_votes / sum(sum_votes), 3),
          sum_votes = prettyNum(sum_votes, ",")) %>% 
-  ungroup %>% 
-  arrange(desc(prop_votes))
+  dplyr::ungroup() %>% 
+  dplyr::arrange(desc(prop_votes))
 
 # inspect
-who_most_votes_prop %>% 
-  data.frame %>% 
-  head %>% 
-  kable
+kable(head(who_most_votes_prop)) 
 ```
 
 In the above table (which shows just the first ten rows for convienience) we see that Alex Hawke received the highest proportion of the vote in any electorate, as well as a few more familiar names doing very well in their electorates. We can see that taking about 65% of the vote in an electorate counts as a huge win. But what is the smallest winning margin that occured in the 2016 election? Let's find the candidates who won their electorate by the slimmest advantage over their competitors. 
@@ -186,7 +183,10 @@ who_won_least_votes_prop <-
    ungroup %>% 
    left_join(aec2016_2pp_electorate %>% 
                mutate(candidate_full_name = 
-            paste0(GivenNm, " ", Surname, " (", CandidateID, ")")), "candidate_full_name") %>% 
+            paste0(GivenNm, " ", 
+                   Surname, " (", 
+                   CandidateID, ")")), 
+            "candidate_full_name") %>% 
    filter(Elected == "Y") %>% 
    select(Electorate.x, 
           candidate_full_name, 

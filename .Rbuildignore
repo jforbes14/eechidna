@@ -1,4 +1,5 @@
 ^.*\.md$
+!NEWS\.md$
 ^README\.Rmd$
 ^\.travis\.yml$
 ^.*\.Rproj$

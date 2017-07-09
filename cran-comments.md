@@ -3,6 +3,32 @@
 * Debian Linux, R-devel, GCC (on r-hub.io), R 3.4.0
 * win-builder (devel and release) R Under development (unstable) (2017-05-20 r72708)
 
+3 July 2017
+
+CRAN reports:
+
+##
+https://cran.r-project.org/web/checks/check_results_eechidna.html
+
+Quitting from lines 155-172 (exploring-election-data.Rmd) 
+    Error: processing vignette ‘exploring-election-data.Rmd’ failed with diagnostics:
+    Value of SET_STRING_ELT() must be a 'CHARSXP' not a 'character'
+    Execution halted 
+##
+
+I can't reliably reproduce this. Fifty runs of `devtools::check()` gives failed builds 29/50, build with warning 1/21, and 20 builds with no warning. Similar results with smaller scale testing on `devtools::build_win()` and `rhub::check_for_cran()`. Not sure what to do.
+
+The locus of the problem is in these lines, in the chunk at lines 155-172 of exploring-election-data.Rmd: 
+
+```
+dplyr::mutate(prop_votes = round(sum_votes / sum(sum_votes), 3),
+              sum_votes = as.character(prettyNum(sum_votes, ","))) %>% 
+dplyr::ungroup() %>% 
+dplyr::arrange(dplyr::desc(prop_votes))
+```
+
+---
+
 ## R CMD check results
 
 0 errors | 0 warnings | 1 note
