@@ -38,6 +38,13 @@ devtools::install_github("ropenscilabs/eechidna",
 library(eechidna)
 ```
 
+If you are using Linux, you may need some additional libraries for the mapping functions, you can get these with this line:
+
+```
+apt-get install libgdal-dev libgeos-dev -y
+```
+
+
 ## How to use
 
 The most accessible and impressive part of this package is a highly interactive web app for exploring the election and census data together. This app uses the shiny framework, and can be run locally on your computer with the command `eechidna::launchApp()`. There is a video demo of the app here: <https://vimeo.com/167367369>, here's a screenshot:
