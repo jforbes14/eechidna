@@ -41,13 +41,13 @@ sF <- readOGR(dsn="national-midmif-09052016/COM_ELB.TAB", layer="COM_ELB")
 ```
 
 `sF` is a spatial data frame containing all of the polygons. 
-We use the `rmapshaper` package available from ateucher's github page to thin the polygons while preserving the geography:
+We use the `rmapshaper` package to thin the polygons while preserving the geography:
 
 ```{r, message=FALSE}
 library(rmapshaper)
 ```
-If the library is not available, install it from github using 
-`devtools::install_github("ateucher/rmapshaper")`.
+If the library is not available, install it from CRAN using 
+`install.packages("rmapshaper")`.
 
 ```{r, message=FALSE}
 sFsmall <- ms_simplify(sF, keep=0.05) # use instead of thinnedSpatialPoly
