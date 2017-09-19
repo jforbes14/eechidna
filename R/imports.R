@@ -1,7 +1,7 @@
 #' @import shiny
 #' @import ggplot2
 #' @importFrom plotly ggplotly layout plotlyOutput event_data renderPlotly style
-#' @importFrom shinyjs useShinyjs runjs
+#' @importFrom colourpicker colourInput
 #' @import dplyr
 #' @import ggthemes
 #' @importFrom tidyr gather

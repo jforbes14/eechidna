@@ -40,10 +40,12 @@ launchApp(
 
 # for inspecting highly contested areas
 launchApp(
-  age = c("Age25_34"),
+  age = c("Age25_34", "Age35_44", "Age55_64"),
   religion = c("Christianity", "Catholic", "NoReligion"),
   other = c("NotOwned", "Indigenous", "Population")
 )
+
+launchApp()
 
 }
 }

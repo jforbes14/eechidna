@@ -20,10 +20,12 @@
 #' 
 #' # for inspecting highly contested areas
 #' launchApp(
-#'   age = c("Age25_34"),
+#'   age = c("Age25_34", "Age35_44", "Age55_64"),
 #'   religion = c("Christianity", "Catholic", "NoReligion"),
 #'   other = c("NotOwned", "Indigenous", "Population")
 #' )
+#' 
+#' launchApp()
 #' 
 #' }
 
@@ -105,7 +107,6 @@ launchApp <- function(
   }
   
   ui <- fluidPage(
-    shinyjs::useShinyjs(),
     fluidRow(
       column(
         width = 1,
@@ -122,7 +123,7 @@ launchApp <- function(
         column(
           width = 2,
           checkboxInput("persist", "Persistant selections?", TRUE),
-          shinyjs::colourInput("color", "Selection color:", palette = "limited", allowedCols = palette)
+          colourpicker::colourInput("color", "Selection color:", palette = "limited", allowedCols = palette)
         ),
         column(
           width = 6,
@@ -176,7 +177,7 @@ launchApp <- function(
   )
   
   
-  server <- function(input, output) {
+  server <- function(input, output, session) {
     
     # initiate selection data and *input brushes* as reactive values so we can
     # "clear the world" - http://stackoverflow.com/questions/30588472/is-it-possible-to-clear-the-brushed-area-of-a-plot-in-shiny/36927826#36927826
@@ -191,9 +192,6 @@ launchApp <- function(
     # clear brush values and remove the div from the page
     observeEvent(input$clear, {
       rv$data$fill <- "black"
-      shinyjs::runjs("document.getElementById('ages_brush').remove()")
-      shinyjs::runjs("document.getElementById('densities_brush').remove()")
-      shinyjs::runjs("document.getElementById('densities_brush').remove()")
     })
     
     # reusable function for "telling the world" about the selection
@@ -259,6 +257,7 @@ launchApp <- function(
       wins <- dat %>%
         group_by(PartyAb, PartyNm, fill) %>%
         summarise(nseats = sum(ifelse(Elected == "Y", 1, 0)))
+      
       p <- ggplot(wins, aes(PartyAb, nseats, 
                             fill = fill, text = PartyNm, key = PartyAb)) + 
         geom_bar(stat = "identity", position = "stack") +
@@ -267,7 +266,7 @@ launchApp <- function(
         xlab(NULL) + ylab("Number of electorates")
       ggplotly(p, tooltip = "text") %>% 
         #layout(hovermode = "x") %>% 
-        config(collaborate = F, cloud = F, displaylogo = F)
+        plotly::config(collaborate = F, cloud = F, displaylogo = F)
     })
     
     output$voteProps <- renderPlotly({
