@@ -271,7 +271,7 @@ launchApp <- function(
     
     output$voteProps <- renderPlotly({
       voteProps <- voteProps[voteProps$PartyAb %in% input$parties, ]
-      dat <- dplyr::left_join(voteProps, rv$data, by = "Electorate")
+      dat <- dplyr::left_join(voteProps, rv$data, by = "Electorate") %>% dplyr::ungroup()
       p <- ggplot(dat, aes(x = PartyAb, y = prop, colour = fill, 
                            key = Electorate, text = Electorate)) + 
         #geom_jitter(width = 0.25, alpha = 0.5) +
