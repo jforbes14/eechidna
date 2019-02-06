@@ -4,7 +4,8 @@
 \alias{getElectorateShapes}
 \title{Extract shapefiles (of Australian electorates) from shp file}
 \usage{
-getElectorateShapes(shapeFile, mapinfo = TRUE, layer = NULL, keep = 0.05)
+getElectorateShapes(shapeFile, mapinfo = TRUE, layer = NULL,
+  keep = 0.05)
 }
 \arguments{
 \item{shapeFile}{path to the shp file}
@@ -31,7 +32,7 @@ fl <- "vignettes/national-midmif-09052016/COM_ELB.TAB"
 electorates <- getElectorateShapes(shapeFile = fl, layer="COM_ELB", keep=0.01)
 library(ggplot2)
 ggplot(data=electorates$data) + 
-   geom_map(aes(fill=Area_SqKm, map_id=id), map=electorates$map) + 
+   geom_map(aes(fill=area_sqkm, map_id=id), map=electorates$map) + 
    expand_limits(
      x=range(electorates$map$long), 
      y=range(electorates$map$lat)
