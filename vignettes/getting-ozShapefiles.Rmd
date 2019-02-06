@@ -20,27 +20,55 @@ opts_chunk$set(eval = FALSE,
 
 ```
 
-The Australian Electorate Commission publishes the boundaries of the electorates on their website at [http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm](http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm).
+The Australian Electorate Commission publishes the boundaries of the electorates on their website at [http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm](http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm) (back to 2010). Electoral boundaries for 2001 are sourced from the Australian Government at [https://data.gov.au/](https://data.gov.au/dataset/ds-dga-0b939a62-e53e-4616-add5-77f909b58ddd/details?q=asgc%202001). The 2004 and 2007 electoral boundaries are available from the Australian Bureau of Statistics [http://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument](http://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument).
 
-Once the files (preferably the national files) are downloaded, unzip the file (it will build a folder with a set of files). We want to read the shapes contained in the `shp` file into R.
+Once the files (preferably the national files) are downloaded, unzip the file (it will build a folder with a set of files). We want to read the shapes contained in the `shp`, `TAB`, or `MIF` file into R. The `rgdal` library can be used to do this.
+
+The function `getElectorateShapes` extracts a list from the shapefile, consisting of a `dataframe` containing coordinates of each polygon and a `dataframe` with data associated with each polygon (electorate). These can be used directly with `ggplot` graphics.
+
+```{r, message=FALSE, warning=FALSE}
+# shapeFile contains the path to the shp file:
+shapeFile <- "national-midmif-09052016/COM_ELB.TAB"
+sF <- getElectorateShapes(shapeFile)
+```
+
+Here we have a map of the Australian electorates colored by their size as given in the data (variable `area_sqkm`):
+
+```{r, message=FALSE, warning=FALSE}
+library(ggplot2)
+library(ggthemes)
+
+nat_map <- sF$map
+nat_data <- sF$data
+
+ggplot(aes(map_id=id), data=nat_data) +
+  geom_map(aes(fill=area_sqkm), map=nat_map) +
+  expand_limits(x=nat_map$long, y=nat_map$lat) + 
+  theme_map()
+```
+
+The `getElectorateShapes` function works for the Australian electoral boundaries between 2001 and 2016, but may need some tweaking for other maps (including future electoral maps). Each step of this function is detailed below, with the running example of the Australian electoral boundaries for 2016.
+
+## Steps
+
+For the 2016 election, the national electorate boundaries are given in MapInfo format.
 
 ```{r, eval=FALSE, echo=FALSE}
-library(maptools)
+library(rgdal)
 
 # shapeFile contains the path to the shp file:
-shapeFile <- "national-esri-16122011/COM20111216_ELB_region.shp"
-sF <- readShapeSpatial(shapeFile)
+shapeFile <- "national-midmif-09052016/COM_ELB.TAB"
+
+sF <- readOGR(dsn=shapeFile)
 class(sF)
 ```
 
-For the 2016 election, the national electorate boundaries are given in mapinfo format ([http://www.aec.gov.au/Electorates/gis/files/nt-midmif-07022017.zip](http://www.aec.gov.au/Electorates/gis/files/nt-midmif-07022017.zip)). The `rgdal` library can be used to read this format:
+`sF` is a spatial data frame containing all of the polygons. First, for convenience, lets change all variable names in the assocated data set to lower case.
 
-```{r, message=FALSE}
-library(rgdal)
-sF <- readOGR(dsn="national-midmif-09052016/COM_ELB.TAB", layer="COM_ELB")
+```{r, message = FALSE}
+names(sF@data) <- tolower(names(sF@data))
 ```
 
-`sF` is a spatial data frame containing all of the polygons. 
 We use the `rmapshaper` package to thin the polygons while preserving the geography:
 
 ```{r, message=FALSE}
@@ -91,7 +119,7 @@ nat_map$piece <- paste("p",nat_map$piece,sep=".")
 It is useful to have the electorate name and state attached to the map.
 
 ```{r}
-nms <- sFsmall@data %>% select(Elect_div, State)
+nms <- sFsmall@data %>% select(elect_div, state)
 nms$id <- as.character(1:150)
 nat_map <- left_join(nat_map, nms, by="id")
 ```
@@ -141,14 +169,13 @@ nat_data <- data.frame(nat_data, centroids)
 write.csv(nat_data, "National-data-2016.csv", row.names=FALSE)
 ```
 
-
-Finally, just to check the data, a map of the Australian electorates colored by their size as given in the data (variable `Area_SqKm`):
+Finally, just to check the data, a map of the Australian electorates colored by their size as given in the data (variable `area_sqkm`):
 
 ```{r, message=FALSE, warning=FALSE}
 library(ggplot2)
 library(ggthemes)
 ggplot(aes(map_id=id), data=nat_data) +
-  geom_map(aes(fill=Area_SqKm), map=nat_map) +
+  geom_map(aes(fill=area_sqkm), map=nat_map) +
   expand_limits(x=nat_map$long, y=nat_map$lat) + 
   theme_map()
 ```
