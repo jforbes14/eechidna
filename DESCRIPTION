@@ -37,6 +37,7 @@ Suggests:
     scales,
     readr,
     gridExtra
+Encoding: UTF-8
 Authors@R: c(person("Di", "Cook",       role = c("aut")),
 		         person("Anthony", "Ebert", role = c("aut")),
 		         person("Heike", "Hofmann", role = c("aut")),
@@ -57,4 +58,4 @@ ByteCompile: TRUE
 License: GPL (>= 2)
 URL: https://github.com/ropenscilabs/eechidna
 VignetteBuilder: knitr
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
