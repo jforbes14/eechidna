@@ -17,7 +17,7 @@
 #' electorates <- getElectorateShapes(shapeFile = fl, layer="COM_ELB", keep=0.01)
 #' library(ggplot2)
 #' ggplot(data=electorates$data) + 
-#'    geom_map(aes(fill=Area_SqKm, map_id=id), map=electorates$map) + 
+#'    geom_map(aes(fill=area_sqkm, map_id=id), map=electorates$map) + 
 #'    expand_limits(
 #'      x=range(electorates$map$long), 
 #'      y=range(electorates$map$lat)
@@ -27,10 +27,36 @@
 getElectorateShapes <- function(shapeFile, mapinfo=TRUE, layer=NULL, keep=0.05) {
 
   # shapeFile contains the path to the shp file:
-  if (mapinfo)
-    rgdal::readOGR(dsn=shapeFile, layer=layer)
-  else
-    sF <- maptools::readShapeSpatial(shapeFile)
+  # geopackage (.gpkg) is to be treated differently so an if else statement is used
+  
+  if (substr(shapeFile, nchar(shapeFile) - 3, nchar(shapeFile)) != "gpkg") {
+    sF <- rgdal::readOGR(dsn=shapeFile)
+  } else {
+    layers <- tolower(rgdal::ogrListLayers(shapeFile))
+    index <- grep("commonwealth", layers)
+    if (length(index) > 1) {
+      print("Warning: Multiple layers with the name 'commonwealth electoral division'. Taking the first by default.")
+    }
+    sF <- rgdal::readOGR(dsn=shapeFile, layer = layers[index[1]])
+  }
+  
+  # change colnames to lower case and rename
+  names(sF@data) <- tolower(names(sF@data))
+  colnm <- names(sF@data)
+  
+  if (!"elect_div" %in% colnm) {
+    
+    if ("ced_name" %in% colnm) {
+    names(sF@data)[grep("ced_name", colnm)] <- "elect_div"
+    }
+
+    if (sum(grepl("ste_name", colnm)) > 0) {
+    names(sF@data)[grep("ste_name", colnm)] <- "state"
+    } else {
+    names(sF@data)[grep("name", colnm)] <- "elect_div"
+    names(sF@data)[grep("state", colnm)] <- "state"
+    } 
+  }
   
   # use instead of thinnedSpatialPoly
   sFsmall <- rmapshaper::ms_simplify(sF, keep=keep)
@@ -40,8 +66,13 @@ getElectorateShapes <- function(shapeFile, mapinfo=TRUE, layer=NULL, keep=0.05) 
   nat_map <- ggplot2::fortify(sFsmall)
   nat_map$group <- paste("g",nat_map$group,sep=".")
   nat_map$piece <- paste("p",nat_map$piece,sep=".")
-
-  nms <- sFsmall@data %>% dplyr::select(Elect_div, State)
+  
+  if ("state" %in% names(sF@data)) {
+    nms <- sFsmall@data %>% dplyr::select(elect_div, state)
+  } else {
+    nms <- sFsmall@data %>% dplyr::select(elect_div)
+  }
+  
   nms$id <- as.character(1:150)
   nat_map <- dplyr::left_join(nat_map, nms, by="id")
   
@@ -55,7 +86,10 @@ getElectorateShapes <- function(shapeFile, mapinfo=TRUE, layer=NULL, keep=0.05) 
   centroids <-  purrr::map_df(seq_along(polys), centroid, polys=polys)
   
   nat_data <- data.frame(nat_data, centroids)
-  nat_data <- nat_data %>% select(Elect_div, State, Numccds, Area_SqKm, id, long_c, lat_c)
+  
+  # keep relevant variables
+  keep_index <- which(names(nat_data) %in% c("elect_div", "state", "numccds", "area_sqkm", "id", "long_c", "lat_c"))
+  nat_data <- nat_data[, keep_index]
   
   list(map=nat_map, data=nat_data)
 }
