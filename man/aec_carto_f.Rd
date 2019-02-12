@@ -2,10 +2,11 @@
 % Please edit documentation in R/cartogram.R
 \name{aec_carto_f}
 \alias{aec_carto_f}
-\title{aec_carto_f - run dorling ondata centers}
+\title{aec_carto_f - run dorling on data centers}
 \usage{
 aec_carto_f(aec_data_sub, polygon.vertex = 6, name.text = TRUE,
-  dist.ratio = dist.ratio, iteration = 100, xlab = "", ylab = "", ...)
+  dist.ratio = dist.ratio, iteration = 100, xlab = "", ylab = "",
+  ...)
 }
 \arguments{
 \item{aec_data_sub}{subset of data with centroids of electoral divisions}

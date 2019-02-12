@@ -9,9 +9,9 @@ aec_extract_f(aec_data, ctr = c(151.2, -33.8), expand = c(3, 4.5), ...)
 \arguments{
 \item{aec_data}{data with centroids of electoral divisions}
 
-\item{ctr}{centroids of subset}
+\item{ctr}{centroids of subset (default is centroid of North Sydney)}
 
-\item{expand}{how large a chunk to cut out}
+\item{expand}{how large a chunk to cut out (longitude, latitude)}
 
 \item{...}{other arguments}
 }

@@ -7,7 +7,7 @@
 complete_color(cl, targetlen)
 }
 \arguments{
-\item{cl}{a vector}
+\item{cl}{a vector of colors}
 
 \item{targetlen}{the target length}
 }
