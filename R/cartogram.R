@@ -6,8 +6,8 @@
 #' with dorling independently. This function does the extraction.
 #' @export
 #' @param aec_data data with centroids of electoral divisions
-#' @param ctr centroids of subset
-#' @param expand how large a chunk to cut out
+#' @param ctr centroids of subset (default is centroid of North Sydney)
+#' @param expand how large a chunk to cut out (longitude, latitude)
 #' @param ... other arguments
 #'
 #' @examples 
@@ -42,7 +42,7 @@ aec_extract_f <- function(aec_data, ctr=c(151.2, -33.8),
 ##' From https://github.com/chxy/cartogram/blob/master/R/dorling.R
 ##' Not exported here, but needed for aec_carto_f
 ##' 
-##' @param cl a vector
+##' @param cl a vector of colors
 ##' @param targetlen the target length
 ##' @return a vector of completed cl with length n
 ##' @examples
@@ -289,7 +289,7 @@ dorling <- function(name, centroidx, centroidy, density, nbr=NULL, shared.border
 }
 
 
-#' aec_carto_f - run dorling ondata centers
+#' aec_carto_f - run dorling on data centers
 #'
 #' The dorling algorithm creates a non-contiguous cartogram by
 #' shifting circles to alleviate overlap, while roughly maintaining
@@ -393,3 +393,83 @@ aec_carto_join_f <- function(aec_data, aec_carto) {
   return(aec_carto_join)
 }
 
+#' aec_add_carto_f - computes and binds the cartogram coordinates to original data
+#'
+#' Add the cartogram locations as new variables to original data
+#' and make any of these that were not made equal to the original centroids.
+#' This is simply all of the Australian electoral cartogram steps in one hit.
+#' @export
+#' @param nat_data subset of data with centroids of electoral divisions
+#'
+#' @examples
+#' library(dplyr)
+#' library(ggplot2)
+#' data(nat_map_2016)
+#' data(nat_data_2016)
+#' nat_data_cart <- aec_add_carto_f(nat_data)
+#' # Map theme
+#' library(ggthemes)
+#' 
+#' ggplot(data=nat_data_2016, aes(map_id=id)) +
+#'   geom_map(map = nat_map_2016, fill="grey90", colour="white") +
+#'     geom_point(data=nat_data_cart, aes(x=x, y=y), size=2, alpha=0.4,
+#'                  colour="#572d2c", inherit.aes=FALSE) +
+#'     expand_limits(x=nat_map_2016$long, y=nat_map_2016$lat) +
+#'     theme_map() + coord_equal()
+#' 
+
+aec_add_carto_f <- function(nat_data) {
+  
+  # fixed locations of main Australian cities
+  cities <- list(c(151.2, -33.8), # Sydney
+    c(153.0, -27.5), # Brisbane
+    c(145.0, -37.8), # Melbourne
+    c(138.6, -34.9), # Adelaide,
+    c(115.9, -32.0)) # Perth
+  
+  # parameters of expansion
+  expand <- list(c(2,3.8), c(2,3), c(2.6,4.1), c(4,3), c(12,6))
+  
+  # clusters in major cities
+  sydney <- aec_extract_f(nat_data, ctr=nat_data %>% 
+      filter(elect_div == "Sydney") %>% 
+      select(long_c, lat_c) %>% unlist %>% unname, expand = c(2,3.8))
+  sydney_carto <- aec_carto_f(sydney) %>% rename(id=region)
+  sydney_all <- merge(sydney, sydney_carto, by="id")
+  
+  brisbane <- aec_extract_f(nat_data, ctr=nat_data %>% 
+      filter(elect_div == "Brisbane") %>% 
+      select(long_c, lat_c) %>% unlist %>% unname, expand = c(2,3))
+  brisbane_carto <- aec_carto_f(brisbane) %>% rename(id=region)
+  brisbane_all <- merge(brisbane, brisbane_carto, by="id")
+  
+  melbourne <- aec_extract_f(nat_data, ctr=nat_data %>% 
+      filter(elect_div == "Melbourne") %>% 
+      select(long_c, lat_c) %>% unlist %>% unname, expand = c(2.6,4.1))
+  melbourne_carto <- aec_carto_f(melbourne) %>% rename(id=region)
+  adelaide_all <- merge(adelaide, adelaide_carto, by="id")
+  
+  adelaide <- aec_extract_f(nat_data, ctr=nat_data %>% 
+      filter(elect_div == "Adelaide") %>% 
+      select(long_c, lat_c) %>% unlist %>% unname, expand = c(4,3))
+  adelaide_carto <- aec_carto_f(adelaide) %>% rename(id=region)
+  adelaide_all <- merge(adelaide, adelaide_carto, by="id")
+  
+  perth <- aec_extract_f(nat_data, ctr=nat_data %>% 
+      filter(elect_div == "Perth") %>% 
+      select(long_c, lat_c) %>% unlist %>% unname, expand = c(12,6))
+  perth_carto <- aec_carto_f(perth) %>% rename(id=region)
+  perth_all <- merge(perth, perth_carto, by="id")
+  
+  # compute cartogram
+  
+  nat_carto <- purrr::map2(.x=cities, .y=expand, .f=aec_extract_f, aec_data=nat_data) %>%
+    purrr::map_df(aec_carto_f) %>%
+    mutate(region=as.integer(as.character(region))) %>%
+    rename(id=region)
+  
+  # join
+  
+  nat_data_cart <- aec_carto_join_f(nat_data, nat_carto)
+  
+}
