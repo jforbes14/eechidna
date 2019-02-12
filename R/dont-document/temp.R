@@ -2,6 +2,18 @@
 
 # -------------------------------------
 
+# Make all character fields upper case
+chr_upper <- function(df) {
+  fc_cols <- sapply(df, class) == 'factor'
+  df[, fc_cols] <- lapply(df[, fc_cols], as.character)
+  
+  ch_cols <- sapply(df, class) == 'character'
+  df[, ch_cols] <- lapply(df[, ch_cols], toupper)
+  return(df)
+}
+
+# -------------------------------------
+
 # Shapefiles
 
 #shapeFile_esri <- "/Users/Jeremy/Documents/R/eechidna/Shapefiles/national-esri-16122011/COM20111216_ELB_region.shp"
@@ -37,12 +49,18 @@ sF_16 <- getElectorateShapes(shapeFile_16, keep = 0.01)
 
 # Separate map and data
 
-nat_map01 <- sF_01$map
-nat_map04 <- sF_04$map
-nat_map07 <- sF_07$map
-nat_map10 <- sF_10$map
-nat_map13 <- sF_13$map
-nat_map16 <- sF_16$map
+nat_map01 <- sF_01$map %>% 
+  chr_upper()
+nat_map04 <- sF_04$map %>% 
+  chr_upper()
+nat_map07 <- sF_07$map %>% 
+  chr_upper()
+nat_map10 <- sF_10$map %>% 
+  chr_upper()
+nat_map13 <- sF_13$map %>% 
+  chr_upper()
+nat_map16 <- sF_16$map %>% 
+  chr_upper()
 
 # Save
 
@@ -74,23 +92,23 @@ aec_add_carto_f <- function(nat_data) {
   
   # clusters in major cities
   sydney <- aec_extract_f(nat_data, ctr=nat_data %>% filter(elect_div == "Sydney") %>% select(long_c, lat_c) %>% unlist %>% unname, expand = c(2,3.8))
-  sydney_carto <- aec_carto_f(sydney) %>% rename(id=region)
+  sydney_carto <- aec_carto_f(sydney) %>% dplyr::rename(id=region)
   sydney_all <- merge(sydney, sydney_carto, by="id")
   
   brisbane <- aec_extract_f(nat_data, ctr=nat_data %>% filter(elect_div == "Brisbane") %>% select(long_c, lat_c) %>% unlist %>% unname, expand = c(2,3))
-  brisbane_carto <- aec_carto_f(brisbane) %>% rename(id=region)
+  brisbane_carto <- aec_carto_f(brisbane) %>% dplyr::rename(id=region)
   brisbane_all <- merge(brisbane, brisbane_carto, by="id")
   
   melbourne <- aec_extract_f(nat_data, ctr=nat_data %>% filter(elect_div == "Melbourne") %>% select(long_c, lat_c) %>% unlist %>% unname, expand = c(2.6,4.1))
-  melbourne_carto <- aec_carto_f(melbourne) %>% rename(id=region)
+  melbourne_carto <- aec_carto_f(melbourne) %>% dplyr::rename(id=region)
   melbourne_all <- merge(melbourne, melbourne_carto, by="id")
   
   adelaide <- aec_extract_f(nat_data, ctr=nat_data %>% filter(elect_div == "Adelaide") %>% select(long_c, lat_c) %>% unlist %>% unname, expand = c(4,3))
-  adelaide_carto <- aec_carto_f(adelaide) %>% rename(id=region)
+  adelaide_carto <- aec_carto_f(adelaide) %>% dplyr::rename(id=region)
   adelaide_all <- merge(adelaide, adelaide_carto, by="id")
   
   perth <- aec_extract_f(nat_data, ctr=nat_data %>% filter(elect_div == "Perth") %>% select(long_c, lat_c) %>% unlist %>% unname, expand = c(12,6))
-  perth_carto <- aec_carto_f(perth) %>% rename(id=region)
+  perth_carto <- aec_carto_f(perth) %>% dplyr::rename(id=region)
   perth_all <- merge(perth, perth_carto, by="id")
   
   # compute cartogram
@@ -98,7 +116,7 @@ aec_add_carto_f <- function(nat_data) {
   nat_carto <- suppressWarnings(purrr::map2(.x=cities, .y=expand, .f=aec_extract_f, aec_data=nat_data) %>%
     purrr::map_df(aec_carto_f) %>%
     mutate(region=as.integer(as.character(region))) %>%
-    rename(id=region))
+    dplyr::rename(id=region))
     
   
   # join
@@ -110,12 +128,18 @@ aec_add_carto_f <- function(nat_data) {
 
 # Each election
 
-nat_data01 <- aec_add_carto_f(sF_01$data)
-nat_data04 <- aec_add_carto_f(sF_04$data)
-nat_data07 <- aec_add_carto_f(sF_07$data)
-nat_data10 <- aec_add_carto_f(sF_10$data)
-nat_data13 <- aec_add_carto_f(sF_13$data)
-nat_data16 <- aec_add_carto_f(sF_16$data)
+nat_data01 <- aec_add_carto_f(sF_01$data) %>% 
+  chr_upper()
+nat_data04 <- aec_add_carto_f(sF_04$data) %>% 
+  chr_upper()
+nat_data07 <- aec_add_carto_f(sF_07$data) %>% 
+  chr_upper()
+nat_data10 <- aec_add_carto_f(sF_10$data) %>% 
+  chr_upper()
+nat_data13 <- aec_add_carto_f(sF_13$data) %>% 
+  chr_upper()
+nat_data16 <- aec_add_carto_f(sF_16$data) %>% 
+  chr_upper()
 
 # Save
 
