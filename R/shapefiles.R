@@ -46,7 +46,7 @@ getElectorateShapes <- function(shapeFile, mapinfo=TRUE, layer=NULL, keep=0.05) 
   
   if (!"elect_div" %in% colnm) {
     
-    if ("ced_name" %in% colnm) {
+    if (sum(grepl("ced_name", colnm)) > 0) {
     names(sF@data)[grep("ced_name", colnm)] <- "elect_div"
     }
 
