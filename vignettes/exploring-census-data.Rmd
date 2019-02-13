@@ -29,18 +29,18 @@ This vignette documents how to access the data from the 2011 Census. We show a f
 
 ## 2011 Census data
 
-The data is loaded as `abs2011` when you load `eechidna`. Let's look take a brief glimpse of the data.
+The data is loaded as `abs2016` when you load `eechidna`. Let's look take a brief glimpse of the data.
 
 ```{r load-read, message=FALSE, error = FALSE}
 library(eechidna)
 library(plyr)
 library(dplyr)
 
-glimpse(abs2011)
+glimpse(abs2016)
 
 ```
 
-Here we see that we have 150 observations and 35 variables.
+Here we see that we have 150 observations and 86 variables.
 
 Each observation is data pertaining to a particular federal electorate as described by http://www.aec.gov.au/profiles/.
 
@@ -48,60 +48,14 @@ Each column is now described here:
 
 ```{r make-data-dictionary, include = FALSE}
 
-data_dictionary <- data_frame(
-  Variable = c(
-    "ID",
-    "Electorate",
-    "State",
-    "Population",
-    "Area",
-    "MedianIncome",
-    "Unemployed",
-    "Bachelor",
-    "Postgraduate",
-    "Christianity",
-    "Catholic",
-    "Buddhism",
-    "Islam",
-    "Judaism",
-    "NoReligion",
-    "Age00_04",
-    "Age05_14",
-    "Age15_19",
-    "Age20_24",
-    "Age25_34",
-    "Age35_44",
-    "Age45_54",
-    "Age55_64",
-    "Age65_74",
-    "Age75_84",
-    "Age85plus",
-    "BornOverseas",
-    "Indigenous",
-    "EnglishOnly",
-    "OtherLanguageHome",
-    "Married",
-    "DeFacto",
-    "FamilyRatio",
-    "Internet", 
-    "NotOwned"
-    ), 
+data_dictionary <- tibble(
+  Variable = names(abs2016), 
   Details = c(
     "Commonwealth Electoral District identifier",
     "Name of electorate",
     "State containing electorate",
     "Total population of electorate",
-    "Area of electorate in square kilometres",
-    "Median income of people within electorate",
-    "Percentage of people unemployed",
-    "Percentage of people whose highest qualification is a Bachelor degree",
-    "Percentage of people whose highest qualification is a postgraduate degree",
-    "Percentage of people affiliated with the Christian religion (of all denominations)",
-    "Percentage of people affiliated with the Catholic denomimation.",
-    "Percentage of people affiliated with the Buddhist religion.",
-    "Percentage of people affiliated with the Islam religion.",
-    "Percentage of people affiliated with the Jewish religion. ",
-    "Percentage of people with no religion.",
+    "Area of electorate division in square kilometres",
     "Percentage of people aged 0-4.",
     "Percentage of people aged 5-9.",
     "Percentage of people aged 15-19.",
@@ -113,16 +67,77 @@ data_dictionary <- data_frame(
     "Percentage of people aged 65-74.",
     "Percentage of people aged 75-84.",
     "Percentage of people aged 85 or higher.",
-    "Percentage of people born outside Australia.",
+    "Percentage of people who are Australian Citizens",
     "Percentage of people who are Indigenous",
-    "Percentage of people who speak only English",
     "Percentage of people who speak a language other than English at home",
+    "Percentage of people who speak only English",
+    "Average number of people in a household",
+    "Median weekly household income (in $)",
+    "Median weekly family income (in $)",
+    "Median weekly rental payment amount (of those who rent, in $)",
+    "Median mortgage loan repayment amount (of mortgage payments, in $)",
+    "Median age",
+    "Median weekly personal income (in $)",
     "Percentage of people who are married",
     "Percentage of people who are in a de facto marriage",
-    "Total number of families to total number of people (times 100)",
-    "Percentage of people with home internet",
-    "Percentage of dwellings not owned (either outright or with a mortgage)")
-) # close data_frame
+    "Percentage of people who did not answer the question relating to birthplace",
+    "Percentage of people born in the United Kingdom",
+    "Percentage of people born in the Middle East",
+    "Percentage of people born in South Eastern Europe",
+    "Percentage of people born in Asia",
+    "Rate of nonresponse for questions relating to language spoken at home",
+    "Percentage of people affiliated with the Christian religion (of all denominations)",
+    "Percentage of people affiliated with the Anglican denomimation",
+    "Percentage of people affiliated with the Catholic denomimation",
+    "Percentage of people affiliated with the Buddhist religion",
+    "Percentage of people affiliated with the Islamic religion",
+    "Percentage of people affiliated with the Jewish religion",
+    "Percentage of people affiliated with a denomination of the Christian religion other than Anglican or Catholic",
+    "Percentage of people with no religion",
+    "Rate of nonresponse for questions relating to religion",
+    "Percentage of people affiliated with a religion other than Christianity, Buddhism, Islam and Judaism",
+    "Percentage of people who are currently studying",
+    "Percentage of people who have completed high school",
+    "Rate of nonresponse for questions relating to high school completion",
+    "Rate of nonresponse for questions relating to personal income",
+    "Percentage of people who work as a volunteer",
+    "Rate of nonresponse for questions relating to working as a volunteer",
+    "Average number of people per family",
+    "Percentage of households made up of a couple with no children",
+    "Percentage of households made up of a couple with children",
+    "Percentage of households made up of one parent with children",
+    "Percentage of people who did not answer the question relating to family income",
+    "Percentage of people who did not answer the question relating to houshold income",
+    "Percentage of households occupied by a single person",
+    "Rate of nonresponse for questions relating to tenure",
+    "Percentage of dwellings that are owned outright",
+    "Percentage of dwellings that are on a mortgage",
+    "Percentage of dwellings that are being rented",
+    "Percentage of dwellings that are owned by the government, and rented out to tenants",
+    "Rate of nonresponse for questions relating to rental costs",
+    "Percentage of people with access to the internet",
+    "Rate of nonresponse for questions relating to internal access",
+    "Unemployment rate",
+    "Labor force participation rate",
+    "Percentage of people who live at a different address to what they did 5 years ago",
+    "Percentage of people who have completed a Bachelor degree",
+    "Percentage of people who have completed a postgraduate degree",
+    "Percentage of people who have completed a diploma or certificate",
+    "Rate of nonresponse for questions relating to University",
+    "Percentage of employed persons who work in extractive industries (includes mining, gas, water, agriculture, waste, electricity)",
+    "Percentage of employed persons who work in construction or manufacturing related industries",
+    "Percentage of employed persons who work in wholesale trade, retail trade, transport, post or warehousing related industries",
+    "Percentage of employed persons who work in finance or insurance related industries",
+    "Percentage of employed persons who work in education and training, healthcare, wocial work, community, arts and recreation",
+    "Percentage of employed persons who work in management, administration, clerical duties and sales",
+    "Percentage of employed persons who work as a professional",
+    "Percentage of employed persons who specialise in a trade",
+    "Percentage of employed persons who work as a laborer",
+    "Percentage of people who receive emuneration outside of Australia, out of the total population plus overseas visitors",
+    "Percentage of people who used interent in the last week [2001 only]",
+    "Rate of nonresponse for questions relating to internet use [2001 only]",
+    "Percentage of people who were born overseas")
+    ) # close data_frame
 ```
 
 ```{r display-data-dictionary, echo = FALSE}
@@ -139,7 +154,7 @@ So let's just look at some nice and simple plots using `ggplot2`.
 
 library(ggplot2)
 
-ggplot(data = abs2011,
+ggplot(data = abs2016,
        aes(x = Unemployed)) + 
   geom_density(fill = "salmon", 
                bw = "SJ",
@@ -155,7 +170,7 @@ ggplot(data = abs2011,
 
 ```{r}
 
-ggplot(data = abs2011,
+ggplot(data = abs2016,
        aes(x = reorder(State, -Unemployed),
            y = Unemployed,
            colour = State)) + 
@@ -173,7 +188,7 @@ ggplot(data = abs2011,
 
 ```{r}
 
-ggplot(data = abs2011,
+ggplot(data = abs2016,
        aes(x = Age00_04)) +
    geom_density(fill = "steelblue",
                bw = "SJ",
@@ -188,7 +203,7 @@ ggplot(data = abs2011,
 
 ```{r}
 
-ggplot(data = abs2011,
+ggplot(data = abs2016,
        aes(x = reorder(State, -Age00_04),
            y = Age00_04,
            colour = State)) +
@@ -207,12 +222,12 @@ However, there are many age groups. To look at all of them at once, we can gathe
 
 library(tidyr)
 
-abs2011 %>%
+abs2016 %>%
   select(starts_with("Age"), 
-         Electorate) %>%
+         DivisionNm) %>%
   gather(key = "Age",
          value = "Percent_in_electorate",
-         -Electorate) %>% 
+         -DivisionNm) %>% 
   ggplot(data = .,
          aes(x = reorder(Age, - Percent_in_electorate),
              y = Percent_in_electorate,
@@ -227,12 +242,12 @@ abs2011 %>%
 
 ```
 
-## Income
+## Personal Income
 
 ```{r}
 
-ggplot(data = abs2011,
-       aes(x = MedianIncome)) + 
+ggplot(data = abs2016,
+       aes(x = MedianPersonalIncome)) + 
   geom_density(fill = "salmon",
                bw = "SJ",
                colour = NA) + 
@@ -246,9 +261,9 @@ ggplot(data = abs2011,
 
 ```{r}
 
-ggplot(data = abs2011,
-       aes(x = reorder(State, -MedianIncome),
-           y = MedianIncome,
+ggplot(data = abs2016,
+       aes(x = reorder(State, -MedianPersonalIncome),
+           y = MedianPersonalIncome,
            colour = State)) + 
   geom_boxplot() + 
   theme_minimal() + 
@@ -261,9 +276,9 @@ If you're intersted in getting a sense of the distribution of the data, you can 
 
 ```{r}
 
-ggplot(data = abs2011,
-       aes(x = reorder(State, -MedianIncome),
-           y = MedianIncome,
+ggplot(data = abs2016,
+       aes(x = reorder(State, -MedianPersonalIncome),
+           y = MedianPersonalIncome,
            colour = State)) + 
   geom_boxplot() + 
   geom_jitter(alpha = 0.35, 
@@ -281,7 +296,7 @@ ggplot(data = abs2011,
 
 ```{r}
 
-ggplot(data = abs2011,
+ggplot(data = abs2016,
        aes(x = Bachelor)) +
   geom_density(fill = "salmon",
                bw = "SJ",
@@ -298,7 +313,7 @@ ggplot(data = abs2011,
 
 ```{r}
 
-ggplot(data = abs2011,
+ggplot(data = abs2016,
        aes(x = reorder(State, -Bachelor),
            y = Bachelor,
            colour = State)) +
@@ -313,9 +328,9 @@ ggplot(data = abs2011,
 
 ```{r}
 
-ggplot(data = abs2011,
+ggplot(data = abs2016,
        aes(x = Bachelor,
-           y = MedianIncome)) + 
+           y = MedianPersonalIncome)) + 
   geom_point(colour = "steelblue",
              alpha = 0.75) + 
   theme_minimal()
@@ -328,7 +343,7 @@ ggplot(data = abs2011,
 
 ```{r}
 
-ggplot(data = abs2011,
+ggplot(data = abs2016,
        aes(x = reorder(State, -Postgraduate),
            y = Postgraduate,
            colour = State)) +
@@ -343,9 +358,9 @@ ggplot(data = abs2011,
 
 ```{r}
 
-ggplot(data = abs2011,
+ggplot(data = abs2016,
        aes(x = Postgraduate,
-           y = MedianIncome)) + 
+           y = MedianPersonalIncome)) + 
   geom_point(colour = "steelblue",
              alpha = 0.75) + 
   theme_minimal()
@@ -356,16 +371,16 @@ ggplot(data = abs2011,
 
 ```{r}
 
-abs2011 %>%
+abs2016 %>%
   select(Postgraduate,
          Bachelor,
-         MedianIncome) %>% 
+         MedianPersonalIncome) %>% 
   gather(key = "Education",
          value = "Prop_Educated",
-         -MedianIncome) %>%
+         -MedianPersonalIncome) %>%
 ggplot(data = ,
        aes(x = Prop_Educated,
-           y = MedianIncome,
+           y = MedianPersonalIncome,
            colour = Education)) + 
   geom_point() + 
   geom_smooth() +
@@ -382,7 +397,7 @@ Let's look at all of the religions
 
 ```{r}
 
-abs2011 %>%
+abs2016 %>%
   select(Christianity,
          Catholic,
          Buddhism,
@@ -409,7 +424,7 @@ abs2011 %>%
 
 ```{r}
 
-ggplot(data = abs2011,
+ggplot(data = abs2016,
        aes(x = reorder(State, -Christianity),
            y = Christianity,
            colour = State)) + 
@@ -423,12 +438,12 @@ ggplot(data = abs2011,
 
 ```
 
-## Internet
+## Internet access
 
 ```{r}
 
-ggplot(data = abs2011,
-       aes(x = Internet)) +
+ggplot(data = abs2016,
+       aes(x = InternetAccess)) +
   geom_density(fill = "steelblue",
                bw = "SJ",
                colour = NA) + 
@@ -440,13 +455,13 @@ ggplot(data = abs2011,
 ```
 
 
-## Internet by state
+## Internet access by state
 
 ```{r}
 
-ggplot(data = abs2011,
-       aes(x = reorder(State, -Internet),
-           y = Internet,
+ggplot(data = abs2016,
+       aes(x = reorder(State, -InternetAccess),
+           y = InternetAccess,
            colour = State)) + 
   geom_boxplot() +
   theme_minimal() +
