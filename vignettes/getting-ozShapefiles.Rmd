@@ -28,7 +28,8 @@ The function `getElectorateShapes` extracts a list from the shapefile, consistin
 
 ```{r, message=FALSE, warning=FALSE}
 # shapeFile contains the path to the shp file:
-shapeFile <- "national-midmif-09052016/COM_ELB.TAB"
+#shapeFile <- "national-midmif-09052016/COM_ELB.TAB"
+shapeFile <- "/Users/Jeremy/Documents/R/eechidna/Shapefiles/national-midmif-09052016/COM_ELB.TAB"
 sF <- getElectorateShapes(shapeFile)
 ```
 
@@ -57,7 +58,8 @@ For the 2016 election, the national electorate boundaries are given in MapInfo f
 library(rgdal)
 
 # shapeFile contains the path to the shp file:
-shapeFile <- "national-midmif-09052016/COM_ELB.TAB"
+#shapeFile <- "national-midmif-09052016/COM_ELB.TAB"
+shapeFile <- "/Users/Jeremy/Documents/R/eechidna/Shapefiles/national-midmif-09052016/COM_ELB.TAB"
 
 sF <- readOGR(dsn=shapeFile)
 class(sF)
@@ -99,7 +101,7 @@ The row names of the data file are identifiers corresponding to the polygons - w
 ```{r, message=FALSE}
 nat_data$id <- row.names(nat_data)
 ```
-In the currently published version of the 2013 electorate boundaries, the `data` data frame has variable `ELECT_DIV` of the electorates' names, and variable `STATE`, which is an abbreviation of the state name. It might be convenient to merge this information (or at least the state abbreviation) into the polygons (see below).
+In the currently published version of the 2016 electorate boundaries, the `data` data frame has variable `elect_div` of the electorates' names, and variable `state`, which is an abbreviation of the state name. It might be convenient to merge this information (or at least the state abbreviation) into the polygons (see below).
 We are almost ready to export this data  into a file, but we still want include geographic centers in the data (see also below).
 
 ### Extracting the polygon information 
