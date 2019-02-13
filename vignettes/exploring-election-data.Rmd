@@ -26,9 +26,9 @@ opts_chunk$set(fig.width = 6,
 
 # Introduction
 
-`eechidna` (Electoral Commission Handling Intelligent Data Nationally for Australia) is an R package that makes it easy to look at the data from Australian Censuses and Federal Elections from 2001 to 2016.
+`eechidna` (Exploring Election and Census Highly Informative Data Nationally for Australia) is an R package that makes it easy to look at the data from Australian Censuses and Federal Elections from 2001 to 2016.
 
-This vignette documents how to access the data from the 2016 Federal Election (House of Representatives: first preferences, two party preferred and two candidate preferred votes). We obtained these data from http://results.aec.gov.au/ . This package incorporates data that is copyright Commonwealth of Australia (Australian Electoral Commission). 
+This vignette documents how to access the data from the 2016 Federal Election (House of Representatives: first preferences, two party preferred and two candidate preferred votes). We obtained these data from http://results.aec.gov.au/. This package incorporates data that is copyright Commonwealth of Australia (Australian Electoral Commission). 
 
 In this vignette we show a few typical methods to explore the data, inspired by [Peter Ellis's](https://github.com/ellisp/) work on NZ election data. 
 
@@ -39,13 +39,13 @@ In the `eechidna` package we have six datasets for each election, summarised her
 Data object name        | Description
 ----------------------- | ------------------------------------------------------------
 fp_pp16                 | first preference votes for candidates at each polling place
-fp_elec16               | first preference votes for candidates at each electorate
+fp16               | first preference votes for candidates at each electorate
 tpp_pp16                | two party preferred votes for candidates at each polling place
-tpp_elec16              | two party preferred votes for candidates at each electorate
+tpp16              | two party preferred votes for candidates at each electorate
 tcp_pp16                | two candidate preferred votes for candidates at each polling place
-tcp_elec16              | two condidate preferred votes for candidates at each electorate
+tcp16              | two condidate preferred votes for candidates at each electorate
 
-The suffix `16` corresponds with the 2016 federal election, so objects for other elections will have an equivalent suffix, e.g. `fp_elec07` contains first preference votes for candidates at each electorate in the 2007 federal election.
+The suffix `16` corresponds with the 2016 federal election, so objects for other elections will have an equivalent suffix, e.g. `fp07` contains first preference votes for candidates in each electorate from the 2007 federal election.
 
 We can access and explore each of these using common methods in R, for example:
 
@@ -58,13 +58,19 @@ library(knitr)
 library(broom)
 library(tidyr)
 library(purrrlyr)
+
+load("/Users/Jeremy/Documents/R/eechidna/data/fp16.rda")
+load("/Users/Jeremy/Documents/R/eechidna/data/tpp16.rda")
+load("/Users/Jeremy/Documents/R/eechidna/data/tcp16.rda")
+load("/Users/Jeremy/Documents/R/eechidna/data/abs2016.rda")
+
 # inspect the data frame
 glimpse(fp16)
 # show the first few rows
 head(fp16) %>% kable
 ```
 
-We can see that the data contains `r formatC(nrow(fp16), big.mark=",", drop0trailing=TRUE, format="f")` rows and `r ncol(fp16)` columns. Each of the four data objects can be accessed and inspected in this way. Note that some parties have slightly different names in different states. For example there is 'The Nationals' and the 'National Party'. We've simplified the data by renaming some of the parties to the varient of the name that won the most votes. 
+We can see that the data contains `r formatC(nrow(fp16), big.mark=",", drop0trailing=TRUE, format="f")` rows and `r ncol(fp16)` columns. Each of the six data objects can be accessed and inspected in this way. Note that some parties have slightly different names in different states. For example there is 'The Nationals' and the 'National Party'. We've simplified the data by renaming some of the parties to the varient of the name that won the most votes. 
 
 # Which party won the election? 
 
@@ -104,9 +110,9 @@ An alternative way to evaluate the outcome of the election is by counting the nu
 
 ```{r total_votes_for_parties}
 total_votes_for_parties <- fp16 %>% 
-  select(PartyNm, Count) %>% 
+  select(PartyNm, OrdinaryVotes) %>% 
   group_by(PartyNm) %>% 
-  summarise(total_votes = sum(Count, rm.na = TRUE)) %>% 
+  dplyr::summarise(total_votes = sum(OrdinaryVotes, rm.na = TRUE)) %>% 
   ungroup() %>%
   arrange(desc(total_votes))
 
@@ -142,7 +148,7 @@ who_most_votes <- fp16 %>%
   filter(CandidateID != 999) %>% #exclude informal votes
   mutate(candidate_full_name = paste0(GivenNm, " ", Surname, " (", CandidateID, ")")) %>% 
   group_by(candidate_full_name) %>% 
-  summarise(total_votes_for_candidate = sum(Count, rm.na = TRUE)) %>% 
+  dplyr::summarise(total_votes_for_candidate = sum(OrdinaryVotes, rm.na = TRUE)) %>% 
   arrange(desc(total_votes_for_candidate))
 # inspect
 who_most_votes %>% 
@@ -153,97 +159,72 @@ who_most_votes %>%
   kable
 ```
 
-But this is a crude measure of how successful a candidate was in the election, because electorates with more people will result in more votes for the winner, even if the victory is only by a tiny margin. So let's remove the effect of the population size in the electorates by finding out who won the highest proportion of votes in their electorate. 
+But this is a crude measure of how successful a candidate was in the election, because electorates with more people will result in more votes for the winner, even if the victory is only by a tiny margin. So let's remove the effect of the population size in the electorates by finding out who won the highest proportion of first preference votes in their electorate. 
 
 ```{r who_highest_proportion-votes}
 who_most_votes_prop <- fp16 %>% 
   filter(CandidateID != 999) %>% #exclude informal votes
   mutate(candidate_full_name = paste0(GivenNm, " ", Surname, " (", CandidateID, ")")) %>% 
   group_by(candidate_full_name) %>% 
-  summarise(total_votes_for_candidate = sum(Percent, rm.na = TRUE)) %>% 
-  arrange(desc(total_votes_for_candidate))
+  dplyr::summarise(total_votes_for_candidate = sum(Percent, rm.na = TRUE)) %>% 
+  arrange(desc(total_votes_for_candidate)) %>% 
+  dplyr::rename(percent_votes_for_candidate = total_votes_for_candidate)
 # inspect
 who_most_votes_prop %>% 
-  mutate(total_votes_for_candidate = 
-           prettyNum(total_votes_for_candidate, 
+  mutate(percent_votes_for_candidate = 
+           prettyNum(percent_votes_for_candidate, 
                      big.mark = ","))  %>% 
   head %>% 
   kable
-
-who_most_votes_prop <-  fp16 %>% 
-  dplyr::filter(CandidateID != 999) %>%  #exclude informal votes
-  dplyr::mutate(candidate_full_name = 
-                  paste0(GivenNm, " ", Surname, " (", CandidateID, ")"))  %>% 
-  dplyr::group_by(DivisionNm, candidate_full_name) %>% 
-  dplyr::summarise(sum_votes = sum(Count)) %>% 
-  dplyr::mutate(prop_votes = round(sum_votes / sum(sum_votes), 3),
-                sum_votes = as.character(prettyNum(sum_votes, ","))) %>% 
-  dplyr::ungroup() %>% 
-  dplyr::arrange(dplyr::desc(prop_votes)) %>% 
-  head() %>% 
-  knitr::kable()
 ```
 
-In the above table (which shows just the first ten rows for convienience) we see that Alex Hawke received the highest proportion of the vote in any electorate, as well as a few more familiar names doing very well in their electorates. We can see that taking about 65% of the vote in an electorate counts as a huge win. But what is the smallest winning margin that occured in the 2013 election? Let's find the candidates who won their electorate by the slimmest advantage over their competitors. 
+In the above table (which shows just the first ten rows for convienience) we see that Julie Bishop received the highest proportion of first preference votes in any electorate, as well as a few more familiar names doing very well in their electorates. We can see that taking about 65% of the first preference vote in an electorate counts as a huge win. But what about who won with the least amount of first preference votes?
 
-## Which candidate won with the smallest number of votes?
-
-*HERE*
+## Which candidate won with the smallest percentage of votes?
 
 ```{r who_won_least_votes_prop}
-who_won_least_votes_prop <- 
- fp16 %>% 
-   filter(CandidateID != 999) %>% # keep only the winners
-   mutate(candidate_full_name = 
-            paste0(GivenNm, " ", Surname, " (", CandidateID, ")")) %>% 
-   group_by(DivisionNm, candidate_full_name) %>% 
-   summarise(sum_votes = sum(Count)) %>% 
-   mutate(prop_votes = round(sum_votes / sum(sum_votes), 2)) %>% 
-   ungroup %>% 
-   left_join(aec2013_2pp_electorate %>% 
-               mutate(candidate_full_name = 
-            paste0(GivenNm, " ", Surname, " (", CandidateID, ")")), "candidate_full_name") %>% 
-   filter(Elected == "Y") %>% 
-   select(Electorate.x, 
-          candidate_full_name, 
-          prop_votes, 
-          PartyNm) %>% 
-   arrange(prop_votes)
+who_won_least_votes_prop <- fp16 %>% 
+  filter(Elected == "Y") %>% 
+  arrange(Percent) %>% 
+  mutate(candidate_full_name = paste0(GivenNm, " ", Surname, " (", CandidateID, ")")) %>% 
+  select(candidate_full_name, PartyNm, DivisionNm, Percent)
+
+who_won_least_votes_prop %>% head %>% kable
+```
+
+Michael Danby won Melbourne Ports with just 27% of first preference votes.
+
+How about the smallest winning margin that occured in the 2016 election? Let's find the candidates who won their electorate by the slimmest advantage over their competitors, meaning the smallest difference between two candidate preferred votes.
+
+## Which candidate won by the smallest margin?
+
+```{r who_won_smallest_margin}
+who_won_smallest_margin <- tcp16 %>% 
+  filter(Elected == "Y") %>% 
+  mutate(percent_margin = 2*(Percent - 50), vote_margin = round(percent_margin * OrdinaryVotes / Percent)) %>% 
+  arrange(Percent) %>% 
+  mutate(candidate_full_name = paste0(GivenNm, " ", Surname, " (", CandidateID, ")")) %>% 
+  select(candidate_full_name, PartyNm, DivisionNm, Percent, OrdinaryVotes, percent_margin, vote_margin)
 
 # have a look
-who_won_least_votes_prop %>%
+who_won_smallest_margin %>%
  head %>%
  kable
 ```
 
-The table above shows that Clive Palmer won his electorate by the smallest margin, just 27% of the ordinary votes. Bob Katter also won with a very small margin, 29% of the first preferences. Let's see the distribution of votes in Fairfax to see a bit more detail:
+We see that Labor candidate for Herbert, Cathy O'Toole, managed to secure the seat by a margin of only 35 votes - equating to 0.04% of total votes. Let's see the distribution of first preference votes in Herbert for a bit more detail.
 
+```{r herbert_fp}
+herbert_fp <- fp16 %>% 
+  filter(DivisionNm == "HERBERT") %>% 
+  arrange(-Percent) %>% 
+  mutate(candidate_full_name = paste0(GivenNm, " ", Surname, " (", CandidateID, ")")) %>% 
+  select(candidate_full_name, PartyNm, DivisionNm, Percent, OrdinaryVotes)
 
-```{r fairfax}
-fairfax <- 
-fp16 %>% 
-  filter(CandidateID != 999) %>% # exclude informal votes
-  filter(Electorate == "Fairfax") %>% 
-  mutate(candidate_full_name = 
-           paste0(GivenNm, " ", 
-                  Surname, 
-                  " (", 
-                  CandidateID, 
-                  ")")) %>% 
-  group_by(Electorate, candidate_full_name) %>% 
-  summarise(sum_votes = sum(Count)) %>% 
-  mutate(prop_votes = round(sum_votes / sum(sum_votes), 2),
-         sum_votes = prettyNum(sum_votes, big.mark = ",")) %>% 
-  ungroup %>% 
-  arrange(desc(prop_votes))
-
-# inspect
-fairfax %>% 
-  head %>% 
-  kable
+herbert_fp %>% kable
 ```
 
-We see that the majority of ordinary votes of first preferences in Fairfax actually went to Ted O'Brien, not to Clive Palmer. Palmer's win is due to the preference flow from minor conservative parties, details of this are here: <http://www.tallyroom.com.au/19908>
+We see that the greatest proportion of first preferences in Herbert actually went to Ewen Jones (Liberal), not to Cathy O'Toole. The win is due to preference flow from minor parties to Labor.
 
 # How did each electorate vote in each state?
 
@@ -252,29 +233,27 @@ We can look at the proportion of voters for a particular party in each electorat
 ```{r plot_prop_particular_party, fig.height = 12, fig.width=10}
 # summarise and compute proportion of votes for a particular party
 p <- fp16 %>%
-    filter(CandidateID != 999) %>% # exclude informal votes
-  group_by(Electorate, State) %>%
-  summarise(
-    TotalVotes = sum(Count),
-    ProportionLabor = round(sum(Count[PartyNm == "Australian Labor Party"]) / TotalVotes, 3)) %>%
+  group_by(DivisionNm, StateAb) %>%
+  dplyr::summarise(TotalVotes = sum(OrdinaryVotes), 
+    ProportionLabor = round(sum(OrdinaryVotes[PartyNm == "AUSTRALIAN LABOR PARTY"]) / TotalVotes, 3)) %>%
   filter(TotalVotes != 0) %>% 
   arrange(desc(ProportionLabor)) %>% 
-  group_by(State) %>% 
+  group_by(StateAb) %>% 
   # send the data to the plotting function
   do(plots=ggplot(data = .) + 
        aes(x = ProportionLabor, 
-           y = reorder(Electorate, ProportionLabor), 
+           y = reorder(DivisionNm, ProportionLabor), 
            size = TotalVotes, 
-           label = State) +
+           label = StateAb) +
        geom_point() +
-       ylab("Electorate") +
-       labs(title = .$State) + 
+       ylab("DivisionNm") +
+       labs(title = .$StateAb) + 
        scale_x_continuous("Proportion voting Labor Party", 
                           label = percent) +
        scale_size("Number of\nvotes cast", 
                   label = comma)  +
        theme_bw() +
-       theme(text = element_text(size=10)))
+       theme(text = element_text(size=8)))
 
 # draw the plots
 library(gridExtra)
@@ -292,15 +271,12 @@ We can also see how party votes are correlated, for example here we can see a st
 # Comparing party and candidate votes of several parties -------
 proportions <- fp16 %>%
   filter(CandidateID != 999) %>% # exclude informal votes
-  group_by(Electorate) %>%
-  summarise(Prop_Labour = sum(Count[PartyNm == "Australian Labor Party"]) / sum(Count),
+  group_by(DivisionNm) %>%
+  dplyr::summarise(Prop_Labour = sum(OrdinaryVotes[PartyNm == "AUSTRALIAN LABOR PARTY"]) / sum(OrdinaryVotes),
             Prop_Coalition = sum(
-              Count[PartyNm == "Liberal"],
-              Count[PartyNm == " Country Liberal Party"],
-              Count[PartyNm == "The Nationals"],
-              Count[PartyNm == "Country Liberals (NT)"]
-              ) / sum(Count),
-            Prop_Greens = sum(Count[PartyNm == "The Greens"]) / sum(Count)) 
+              OrdinaryVotes[PartyNm == "LIBERAL"]
+              ) / sum(OrdinaryVotes),
+            Prop_Greens = sum(OrdinaryVotes[PartyNm == "THE GREENS"]) / sum(OrdinaryVotes)) 
 
 # make a scatterplot matrix
 library(GGally)
@@ -309,29 +285,29 @@ ggpairs(proportions, columns = 2:ncol(proportions)) + theme_bw()
 ```
 
 
-# How do election results correlate with census data?
+# How do election results correlate with Census data?
 
-One of our motivations for creating this package was to make it easy to explore relationships between political views and socio-economic conditions across Australia. With a few simple R functions, we can join the census data to the election data and build models to explore relationships. 
+One of our motivations for creating this package was to make it easy to explore relationships between political views and socio-economic conditions across Australia. With a few simple R functions, we can join the Census data to the election data and build models to explore relationships. 
 
-Here's how we join the two datasets together, the common variable is the Electorate:
+Here's how we join the two datasets together, the common variable is the DivisionNm:
 
 ```{r join_census_and_election}
-census_and_election <- left_join(aec2013_2pp_electorate, 
-                                 abs2011,
-                                 by = c("Electorate" = "Electorate"))
+census_and_election <- left_join(tpp16, 
+                                 abs2016,
+                                 by = c("DivisionNm" = "DivisionNm"))
 ```
 
-Now we can easily explore some relationships between the census data and the two party preferring voting patterns. For example, what census variable mostly strongly correlates with the percentage that vote Labor? The first step in these kinds of explorations is always to visualise the data:
+Now we can easily explore some relationships between the Census data and the two party preferred voting patterns. For example, what Census variable mostly strongly correlates with the percentage that vote Labor? The first step in these kinds of explorations is always to visualise the data:
 
 ```{r}
 # subset only the columns we want for the model
 census_and_election_subset <-  
   census_and_election %>% 
   ungroup %>% 
-  select(Electorate, 
-         Average_Australian_Labor_Party_Percentage_in_electorate,
-         Population:NotOwned)  %>% 
-  rename(ALP_perc = Average_Australian_Labor_Party_Percentage_in_electorate)
+  select(DivisionNm, 
+         ALP_Percent,
+         Population:BornElsewhere) %>% 
+  select(-c(ends_with("NS"), State, EmuneratedElsewhere, InternetUse, starts_with("Age")))
 
 library(corrplot)
 M <- cor(census_and_election_subset[, c(2:ncol(census_and_election_subset))], 
@@ -347,33 +323,32 @@ corrplot.mixed(M,
 
 It's a little hard to read because we have so many variables. But we can spot some potentially interesting correlations, as well as some obvious ones. 
 
-The table below gives an overall summary of the model containing all the census variables. We see that the p-value is very low, indicating that we have some interactions that are probably not due to chance alone. 
+The table below gives an overall summary of the model containing all the Census variables. We see that the p-value is very low, indicating that we have some relationships that are probably not due to chance alone. 
 
 ```{r explore}
 options(scipen = 10) # for more readable numbers
-census_variables <- names(abs2011)[-c(1:3)]
 
 # compute the multiple regressions
-mutliple_regression_model <- 
+multiple_regression_model <- 
   census_and_election %>% 
   ungroup %>% 
-  select(
-         Average_Australian_Labor_Party_Percentage_in_electorate,
-         Population:NotOwned) %>% 
-  lm(Average_Australian_Labor_Party_Percentage_in_electorate ~ ., 
-     data = . )
+  select(ALP_Percent,
+         Population:BornElsewhere) %>% 
+  select(-c(ends_with("NS"), State, EmuneratedElsewhere, InternetUse, starts_with("Age"))) %>% 
+  lm(ALP_Percent ~ ., 
+     data = .)
 
-mutliple_regression_model %>% 
+multiple_regression_model %>% 
   glance %>% 
   dmap(round, 3) %>% 
   kable
 ```
 
-The table below shows the variables that have a significant effect on the percentage of Labor votes across all electorates: 
+The table below shows the variables that have a significant effect on the percentage of Labor votes across all electorates:
 
 ```{r}
 # find the variables with a significant effect
-mutliple_regression_model %>% 
+multiple_regression_model %>% 
   tidy %>% 
   filter(p.value < 0.05) %>% 
   dmap_if(is.numeric, round, 3) %>% 
@@ -381,28 +356,27 @@ mutliple_regression_model %>%
   kable
 ```
 
-
-In the plots below, we can see these census variables that have a statistically significant relationship with the percentage of Labor votes. There seems to be a positive relationship voting Labor and having a Bachelor degree, having internet access, being unemployed and not owning a home. We see EnglishOnly as a negatively correlated variable, meaning that increases in the proportion of households that speak English only correlate with decreases in the percentage of the Labor vote in that electorate. In general, more educated and multicultural electorates tend to vote more for Labor. 
+In the plots below, we can see the Census variables that have a statistically significant relationship with the percentage of Labor votes. There seems to be a positive relationship between voting Labor and defacto relationships, postgraduate degrees and public housing tenants. Labour force participation and proportion of workers in extractive jobs (e.g. mining, gas, agriculture), and median personal income are a negatively correlated variables, meaning that increases in the proportion of workers in extractive jobs and increases in median personal income correlate with decreases in the percentage of the Labor vote in that electorate.
 
 ```{r}
-# model that includes all census variables
-all_vars <- mutliple_regression_model %>% 
+# model that includes all Census variables
+all_vars <- multiple_regression_model %>% 
   tidy %>% 
-  filter(p.value < 0.05) %>% 
+  filter(p.value < 0.05, term != "(Intercept)") %>% 
   arrange(p.value) 
 
 census_and_election %>% 
   ungroup %>% 
   select_(.dots = all_vars$term,
-          "Average_Australian_Labor_Party_Percentage_in_electorate")  %>% 
+          "ALP_Percent")  %>% 
   gather(variable, 
          value, 
-         -Average_Australian_Labor_Party_Percentage_in_electorate) %>% 
-  ggplot(aes(value, Average_Australian_Labor_Party_Percentage_in_electorate)) +
-  geom_point() +
+         -ALP_Percent) %>% 
+  ggplot(aes(value, ALP_Percent)) +
+  geom_point(size = 0.5) +
   geom_smooth(method = "lm") +
   facet_wrap( ~ variable, scales = "free") +
-  theme_bw()
+  theme_bw() + theme(text = element_text(size = 8))
 ```
 
 
