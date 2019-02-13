@@ -47,14 +47,43 @@ sF_16 <- getElectorateShapes(shapeFile_16, keep = 0.01)
 
 # ------------------------------------
 
+# Relabel states appropriately with abbreviations
+
+state_label <- function(df) {
+  new <- df
+  
+  if("1" %in% levels(factor(new$state))) {
+    new <- new %>% 
+      mutate(state = recode_factor(state, `1` = "NSW", `2` = "VIC", `3` = "QLD", `4` = "SA", `5` = "WA", 
+        `6` = "TAS", `7` = "NT", `8` = "ACT", "OTHER TERR" = "ACT"))
+  }
+  
+  if("VICTORIA" %in% levels(factor(new$state))) {
+    new <- new %>%
+      mutate(state = recode_factor(factor(state), "NEW SOUTH WALES" = "NSW", "VICTORIA" = "VIC", 
+        "QUEENSLAND" = "QLD", "SOUTH AUSTRALIA" = "SA", "WESTERN AUSTRALIA" = "WA", 
+        "TASMANIA" = "TAS", "NORTHERN TERRITORY" = "NT", "AUSTRALIAN CAPITAL TERRITORY" = "ACT", 
+        "OTHER TERRITORIES" = "ACT", "OTHER TERR" = "ACT"))
+  }
+  
+  if("OTHER TERR" %in% levels(factor(new$state))) {
+    new <- new %>%
+      mutate(state = recode_factor(factor(state), "OTHER TERR" = "ACT"))
+  }
+
+  return(new)
+}
+
+# ------------------------------------
+
 # Separate map and data
 
 nat_map01 <- sF_01$map %>% 
-  chr_upper()
+  chr_upper() %>% state_label()
 nat_map04 <- sF_04$map %>% 
-  chr_upper()
+  chr_upper() %>% state_label()
 nat_map07 <- sF_07$map %>% 
-  chr_upper()
+  chr_upper() %>% state_label()
 nat_map10 <- sF_10$map %>% 
   chr_upper()
 nat_map13 <- sF_13$map %>% 
@@ -129,11 +158,11 @@ aec_add_carto_f <- function(nat_data) {
 # Each election
 
 nat_data01 <- aec_add_carto_f(sF_01$data) %>% 
-  chr_upper()
+  chr_upper() %>% state_label()
 nat_data04 <- aec_add_carto_f(sF_04$data) %>% 
-  chr_upper()
+  chr_upper() %>% state_label()
 nat_data07 <- aec_add_carto_f(sF_07$data) %>% 
-  chr_upper()
+  chr_upper() %>% state_label()
 nat_data10 <- aec_add_carto_f(sF_10$data) %>% 
   chr_upper()
 nat_data13 <- aec_add_carto_f(sF_13$data) %>% 
