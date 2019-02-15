@@ -7,12 +7,15 @@
 #' @param aec_sF shapefile with boundaries at election time
 #' @param abs_sF shapefile with boundaries at census time
 #' @param area_thres threshold for which mapping is sufficient (default is 99.5%)
-#'
+#' @return data frame detailing how much Census divisions intersect with each 
+#' electoral division at the time of the election.
+#' 
 #' @examples 
-#' aec_sF_2013 <- get_electorate_shapefile(path_to_aec_shapefile)
-#' abs_sF_2016 <- get_electorate_shapefile(path_to_abs_shapefile)
+#' \dontrun{
+#' aec_sF_2013 <- loadShapeFile(path_to_aec_shapefile)
+#' abs_sF_2016 <- loadShapeFile(path_to_abs_shapefile)
 #' mapping_df <- mapping_fn(aec_sF = aec_sF_2013, abs_sF = abs_sF_2016, area_thres = 0.995)
-
+#' }
 
 mapping_fn <- function(aec_sF, abs_sF, area_thres = 0.995) {
   
@@ -86,81 +89,4 @@ mapping_fn <- function(aec_sF, abs_sF, area_thres = 0.995) {
   
   return(Mapping_df)
 }
-
-# ------------------------------------------------------------------------------------
-# ------------------------------------------------------------------------------------
-get_electorate_shapefile <- function(path_to_shapeFile) {
-  if (substr(path_to_shapeFile, nchar(path_to_shapeFile) - 3, nchar(path_to_shapeFile)) != "gpkg") {
-    sF <- rgdal::readOGR(dsn=path_to_shapeFile)
-  } else {
-    layers <- tolower(rgdal::ogrListLayers(path_to_shapeFile))
-    index <- grep("commonwealth", layers)
-    if (length(index) > 1) {
-      print("Warning: Multiple layers with the name 'commonwealth electoral division'. Taking the first by default.")
-    }
-    sF <- rgdal::readOGR(dsn=path_to_shapeFile, layer = layers[index[1]])
-  }
-  
-  # change colnames to lower case and rename
-  names(sF@data) <- tolower(names(sF@data))
-  colnm <- names(sF@data)
-  
-  if (!"elect_div" %in% colnm) {
-    
-    if (sum(grepl("ced_name", colnm)) > 0) {
-      names(sF@data)[grep("ced_name", colnm)] <- "elect_div"
-    }
-    
-    if (sum(grepl("ste_name", colnm)) > 0) {
-      names(sF@data)[grep("ste_name", colnm)] <- "state"
-    } else {
-      names(sF@data)[grep("name", colnm)] <- "elect_div"
-      names(sF@data)[grep("state", colnm)] <- "state"
-    } 
-  }
-  
-  # Make all character fields upper case
-  chr_upper <- function(df) {
-    fc_cols <- sapply(df, class) == 'factor'
-    df[, fc_cols] <- lapply(df[, fc_cols], as.character)
-    
-    ch_cols <- sapply(df, class) == 'character'
-    df[, ch_cols] <- lapply(df[, ch_cols], toupper)
-    return(df)
-  }
-  
-  # get centroids
-  if (!"lat_c" %in% names(sF@data)) {
-    polys <- methods::as(sF, "SpatialPolygons")
-    
-    centroid <- function(i, polys) {
-      ctr <- sp::Polygon(polys[i])@labpt
-      data.frame(long_c=ctr[1], lat_c=ctr[2])
-    }
-    centroids <-  purrr::map_df(seq_along(polys), centroid, polys=polys)
-    
-    sF@data <- data.frame(sF@data, centroids)
-  }
-  
-  sF@data <- chr_upper(sF@data)
-  
-  # Simplify to make sure polygons are valid
-  polys_sF <- gSimplify(sF, tol = 0.0001)
-  
-  # Ensure all polygons are valid
-  #new_sF <- sF %>% subset(elect_div == "")
-  #for (i in 1:nrow(sF@data)) {
-  #  temp <- sF %>% subset(elect_div == sF@data$elect_div[i])
-  #  if (!gIsValid(temp)) {
-  #    temp <- gBuffer(temp, byid = TRUE, width = 0)
-  #  }
-  #  new_sF <- raster::bind(new_sF, temp)
-  #}
-  
-  out <- SpatialPolygonsDataFrame(polys_sF, sF@data)
-  
-  return(out)
-}
-
-
 
