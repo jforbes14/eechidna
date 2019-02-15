@@ -1,43 +1,33 @@
-#' Extract shapefiles (of Australian electorates) from shp file
+#' Load shapefile into R as a SpatialDataFrame, extract polygon information, thin
+#' polygon, fix any problematic polygons, and format variable names.
+#' "nat_map" and "nat_data" objects for every Australian federal election between 
+#' 2001-2016 can be readily loaded from the package for analysis. 
 #' 
-#' Extract polygon information and demographics for each of Australia's electorates. 
-#' The map and data corresponding to the shapefiles of the 2013 Australian electorates (available at \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}) are part of this package as nat_map.rda and nat_data.rda in the data folder.
 #' The function will take several minutes to complete.
-#' @param shapeFile path to the shp file
-#' @param mapinfo Is the data mapInfo format, rather than ESRI? default=TRUE
-#' @param layer If the format is mapInfo, the layer name also needs to be provided, default is NULL
-#' @param keep percent of polygon points to keep, the default is set to 5\%.
-#' @return list with two data frames: map and data; `map` is a data set with geographic latitude and longitude, and a grouping variable to define each entity.
-#' The `data` data set consists of demographic or geographic information for each electorate, such as size in square kilometers or corresponding state.
-#' Additionally, geographic latitude and longitude of the electorate's centroid are added.
+#' 
+#' @param path_to_shapefile path to object in local machine
+#' @param tolerance numerical tolerance value to be used by the Douglas-Peuker algorithm
+#' @return object of class SpatialPolygonsDataFrame
 #' @export
 #' @examples 
 #' \dontrun{
 #' fl <- "vignettes/national-midmif-09052016/COM_ELB.TAB"
-#' electorates <- getElectorateShapes(shapeFile = fl, layer="COM_ELB", keep=0.01)
-#' library(ggplot2)
-#' ggplot(data=electorates$data) + 
-#'    geom_map(aes(fill=area_sqkm, map_id=id), map=electorates$map) + 
-#'    expand_limits(
-#'      x=range(electorates$map$long), 
-#'      y=range(electorates$map$lat)
-#'    )
+#' sF_2016 <- loadShapeFile("local/path/to/shapefile.shp")
 #' }
- 
-getElectorateShapes <- function(shapeFile, mapinfo=TRUE, layer=NULL, keep=0.05) {
 
-  # shapeFile contains the path to the shp file:
+loadShapeFile <- function(path_to_shapeFile, tolerance = 0.0001) {
+  
   # geopackage (.gpkg) is to be treated differently so an if else statement is used
   
-  if (substr(shapeFile, nchar(shapeFile) - 3, nchar(shapeFile)) != "gpkg") {
-    sF <- rgdal::readOGR(dsn=shapeFile)
+  if (substr(path_to_shapeFile, nchar(path_to_shapeFile) - 3, nchar(path_to_shapeFile)) != "gpkg") {
+    sF <- rgdal::readOGR(dsn=path_to_shapeFile)
   } else {
-    layers <- tolower(rgdal::ogrListLayers(shapeFile))
+    layers <- tolower(rgdal::ogrListLayers(path_to_shapeFile))
     index <- grep("commonwealth", layers)
     if (length(index) > 1) {
       print("Warning: Multiple layers with the name 'commonwealth electoral division'. Taking the first by default.")
     }
-    sF <- rgdal::readOGR(dsn=shapeFile, layer = layers[index[1]])
+    sF <- rgdal::readOGR(dsn=path_to_shapeFile, layer = layers[index[1]])
   }
   
   # change colnames to lower case and rename
@@ -47,20 +37,95 @@ getElectorateShapes <- function(shapeFile, mapinfo=TRUE, layer=NULL, keep=0.05) 
   if (!"elect_div" %in% colnm) {
     
     if (sum(grepl("ced_name", colnm)) > 0) {
-    names(sF@data)[grep("ced_name", colnm)] <- "elect_div"
+      names(sF@data)[grep("ced_name", colnm)] <- "elect_div"
     }
-
+    
     if (sum(grepl("ste_name", colnm)) > 0) {
-    names(sF@data)[grep("ste_name", colnm)] <- "state"
+      names(sF@data)[grep("ste_name", colnm)] <- "state"
     } else {
-    names(sF@data)[grep("name", colnm)] <- "elect_div"
-    names(sF@data)[grep("state", colnm)] <- "state"
+      names(sF@data)[grep("name", colnm)] <- "elect_div"
+      names(sF@data)[grep("state", colnm)] <- "state"
     } 
   }
   
-  # use instead of thinnedSpatialPoly
-  sFsmall <- rmapshaper::ms_simplify(sF, keep=keep)
+  # Make all character fields upper case
+  chr_upper <- function(df) {
+    fc_cols <- sapply(df, class) == 'factor'
+    df[, fc_cols] <- lapply(df[, fc_cols], as.character)
+    
+    ch_cols <- sapply(df, class) == 'character'
+    df[, ch_cols] <- lapply(df[, ch_cols], toupper)
+    return(df)
+  }
   
+  # get centroids
+  if (!"lat_c" %in% names(sF@data)) {
+    polys <- methods::as(sF, "SpatialPolygons")
+    
+    centroid <- function(i, polys) {
+      ctr <- sp::Polygon(polys[i])@labpt
+      data.frame(long_c=ctr[1], lat_c=ctr[2])
+    }
+    centroids <-  purrr::map_df(seq_along(polys), centroid, polys=polys)
+    
+    sF@data <- data.frame(sF@data, centroids)
+  }
+  
+  sF@data <- chr_upper(sF@data)
+  
+  # Simplify to make sure polygons are valid
+  polys_sF <- gSimplify(sF, tol = tolerance)
+  
+  # Ensure all polygons are valid
+  #new_sF <- sF %>% subset(elect_div == "")
+  #for (i in 1:nrow(sF@data)) {
+  #  temp <- sF %>% subset(elect_div == sF@data$elect_div[i])
+  #  if (!gIsValid(temp)) {
+  #    temp <- gBuffer(temp, byid = TRUE, width = 0)
+  #  }
+  #  new_sF <- raster::bind(new_sF, temp)
+  #}
+  
+  out <- SpatialPolygonsDataFrame(polys_sF, sF@data)
+  
+  return(out)
+}
+
+#' Extract shapefiles (of Australian electorates) from shp file
+#' 
+#' Extract polygon information and demographics for each of Australia's electorates. 
+#' The map and data corresponding to the shapefiles of the 2013 Australian electorates (available at \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}) are part of this package as nat_map.rda and nat_data.rda in the data folder.
+#' The function will take several minutes to complete.
+#' @param sF Shapefile object loaded to environment using loadShapeFile
+#' @param shapeFile Path to the shp file (only if shapefile has not already loaded)
+#' @param mapinfo Is the data mapInfo format, rather than ESRI? default=TRUE
+#' @param layer If the format is mapInfo, the layer name also needs to be provided, default is NULL
+#' @param tolerance Numerical tolerance value to be used by the Douglas-Peuker algorithm (only if shapefile has not already loaded)
+#' @return list with two data frames: map and data; `map` is a data set with geographic latitude and longitude, and a grouping variable to define each entity.
+#' The `data` data set consists of demographic or geographic information for each electorate, such as size in square kilometers or corresponding state.
+#' Additionally, geographic latitude and longitude of the electorate's centroid are added.
+#' @export
+#' @examples 
+#' \dontrun{
+#' fl <- "vignettes/national-midmif-09052016/COM_ELB.TAB"
+#' map_and_data16 <- getElectorateShapes(path_to_shapefile = fl)
+#' }
+#' \dontrun {
+#' map_and_data16 <- getElectorateShapes(sF = sF_2016)
+#' }
+
+getElectorateShapes <- function(path_to_shapeFile = NULL, sF = NULL, mapinfo=TRUE, layer=NULL, tolerance=0.0001) {
+
+  if (is.null(sF)) {
+    if (!is.null(path_to_shapeFile)) {
+      sF <- loadShapeFile(path_to_shapeFile = path_to_shapeFile, tolerance = tolerance)
+    } else {
+      print("Enter path to shapefile or loaded shapefile from function loadShapeFile")
+      break
+    }
+  }
+  
+  # Extract data and map to be ggplot friendly
   nat_data <- sF@data
   nat_data$id <- row.names(nat_data)
   nat_map <- ggplot2::fortify(sFsmall)
@@ -93,162 +158,5 @@ getElectorateShapes <- function(shapeFile, mapinfo=TRUE, layer=NULL, keep=0.05) 
   
   list(map=nat_map, data=nat_data)
 }
-
-#' Download electorate shapefiles
-#' @param url url of aec website
-#' @param exdir relative path of folder where shapefile should be downloaded to 
-#' @param debug boolean for dev people to debug this thing!
-#' @return object of class SpatialPolygonsDataFrame
-#' @export
-#' @examples 
-#' \dontrun{
-#' x <- download_ShapeFile(exdir = "Shapefiles")
-#' # user input 21
-#' sFsmall <- rmapshaper::ms_simplify(x, keep=0.01) # use instead of thinnedSpatialPoly
-#' plot(sFsmall)
-#' 
-#' # Download NSW state electorates
-#' # the URLs are split to avoid CRAN notes about long line widths
-#' url <- paste0("http://www.elections.nsw.gov.au/", 
-#' "about_elections/electoral_boundaries/",
-#' "electoral_maps/gda94_geographical_midmif_files")
-#' x <- download_ShapeFile(exdir = "temp", url = url)
-#' 
-#' # Download WA state electorates
-#' url <- paste0("http://boundaries.wa.gov.au/",
-#' "electoral-boundaries/,"
-#' "11-march-2017-state-general-election-boundaries")
-#' x <- download_ShapeFile(exdir = "temp", url = url)
-#' }
-
-download_ShapeFile <- function(url = "http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm", exdir = "temp", debug = FALSE){
-  
-  dir.create(exdir)
-  stem = paste(dirname(url), "/", sep = "")
-  
-  pg <- xml2::read_html(url)
-  fl <- pg %>% rvest::html_nodes("a") %>% rvest::html_attr("href")
-  vector_for_url<- fl[grep("*.zip", fl)]
-  
-  real_files <- fl[grep("*.zip", fl)]
-  vector_for_user <- basename(real_files)
-  
-  dataframe_for_user <- data.frame(file = vector_for_user)
-  
-  print(dataframe_for_user)
-  cat("Write number for file to download \n")
-
-  which_file <- readline()
-  which_file <- which_file %>% as.numeric()
-  
-  if(grepl(glob2rx("*www.*"), real_files[which_file], ignore.case = TRUE)){
-    file_url <- real_files[which_file]
-  } else {
-    file_url <- paste(stem, real_files[which_file], sep = "")
-  }
-
-  destfile <- paste(exdir, "/", vector_for_user[which_file], sep = "")
-  
-  if(debug){
-  print("destfile")
-  print(destfile)
-  print("file_url")
-  print(file_url)
-  }
-
-  #print(paste(exdir, "/", vector_for_user[which_file], ".zip", sep = ""))
-  
-  download.file(
-    url = file_url,
-    destfile = destfile, 
-    cacheOK = FALSE
-  )
-  
-  #unzip_dir <- paste(exdir, "/", vector_for_user[which_file], ".zip", sep = "")
-  unzip_dir <- paste(exdir, "/", vector_for_user[which_file], sep = "")
-  unzip_dir <- sub("*.zip", "", unzip_dir, ignore.case = TRUE)
-  
-  if(debug){
-    print("unzip_dir")
-    print(unzip_dir)
-  }
-  
-  suppressWarnings(dir.create(unzip_dir))
-  
-  unzip(destfile, exdir = unzip_dir)
-  
-  method <- which_shape_format(
-    paste(c(unzip_dir, list.files(unzip_dir)), collapse = " ")
-  )
-  
-  filename <- findFile(method, unzip_dir)
-  if(length(filename) > 1){
-    filename <- filename[readline(prompt = cat(print(filename), "\n")) %>% as.numeric() %>% as.numeric]
-  }
-  
-  output <- readShapeSpatial_format(filename = paste(unzip_dir, "/", filename, sep = ""), method)
-  
-  return(output)
-}
-
-
-
-readShapeSpatial_format <- function(filename, method = "esri"){
-  
-  if(method == "esri"){
-    return(maptools::readShapeSpatial(filename))
-  }
-  
-  if(method == "tab"){
-    return(rgdal::readOGR(dsn=filename, layer= rgdal::ogrListLayers(filename)[[1]]))
-  }
-  
-  if(method == "mif"){
-    return(rgdal::readOGR(dsn=filename, layer = rgdal::ogrListLayers(filename)[[1]]))
-  }
-  
-}
-
-
-findFile <- function(method, unzip_dir){
-  file_loc <- list.files(unzip_dir, recursive = TRUE)
-  
-  strings_to_check <- data_frame(
-    format = c("esri", "mif", "tab"), 
-    extension = c("*.shp", "*.tab", "*.mid")
-  )
-  
-  extension = strings_to_check %>% 
-    filter(format == method) %>% 
-    select(extension) %>% 
-    glob2rx()
-  
-  filename <- file_loc[grep(extension, file_loc, ignore.case = TRUE)]
-
-  return(filename)
-}
-
-which_shape_format <- function(dir){
-  
-  method <- NA
-  
-  strings_to_check <- data_frame(
-    strings = glob2rx(c("*esri*", "*mif*", "*tab*", "*.shp*")), 
-    format = c("esri", "mif", "tab", "esri")
-  )
-  
-  method <- lapply(1:length(strings_to_check$strings), FUN = function(i, ...){
-    if(grepl(strings_to_check$strings[i], ignore.case = TRUE, dir)){
-      method <- strings_to_check$format[i]
-    }
-  })
-  
-  method <- unlist(method)[1]
-  
-  return(method)
-}
-  
-
-
 
 
