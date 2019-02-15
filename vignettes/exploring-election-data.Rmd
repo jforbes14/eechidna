@@ -19,7 +19,8 @@ opts_chunk$set(fig.width = 6,
                       fig.align='center',
                       dev = "png",
                       warning = FALSE,
-                      message = FALSE)
+                      message = FALSE,
+                      cache = TRUE)
 
 ```
 
@@ -307,7 +308,7 @@ census_and_election_subset <-
   select(DivisionNm, 
          ALP_Percent,
          Population:BornElsewhere) %>% 
-  select(-c(ends_with("NS"), State, EmuneratedElsewhere, InternetUse, starts_with("Age")))
+  select(-c(ends_with("NS"), EmuneratedElsewhere, InternetUse, starts_with("Age")))
 
 library(corrplot)
 M <- cor(census_and_election_subset[, c(2:ncol(census_and_election_subset))], 
@@ -334,7 +335,7 @@ multiple_regression_model <-
   ungroup %>% 
   select(ALP_Percent,
          Population:BornElsewhere) %>% 
-  select(-c(ends_with("NS"), State, EmuneratedElsewhere, InternetUse, starts_with("Age"))) %>% 
+  select(-c(ends_with("NS"), EmuneratedElsewhere, InternetUse, starts_with("Age"))) %>% 
   lm(ALP_Percent ~ ., 
      data = .)
 

@@ -16,7 +16,8 @@ vignette: >
 library(knitr)
 opts_chunk$set(eval = FALSE,
                warning = FALSE,
-               message = FALSE)
+               message = FALSE,
+  cache = TRUE)
 
 ```
 

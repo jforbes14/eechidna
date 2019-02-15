@@ -17,7 +17,8 @@ vignette: >
 knitr::opts_chunk$set(fig.width = 6,
                       fig.height = 4,
                       fig.align='center',
-                      dev = "png")
+                      dev = "png",
+                      cache = TRUE)
 
 ```
 
@@ -36,6 +37,7 @@ library(eechidna)
 library(plyr)
 library(dplyr)
 
+load("/Users/Jeremy/Documents/R/eechidna/data/abs2016.rda")
 glimpse(abs2016)
 
 ```
@@ -120,9 +122,8 @@ data_dictionary <- tibble(
     "Unemployment rate",
     "Labor force participation rate",
     "Percentage of people who live at a different address to what they did 5 years ago",
-    "Percentage of people who have completed a Bachelor degree",
-    "Percentage of people who have completed a postgraduate degree",
-    "Percentage of people who have completed a diploma or certificate",
+    "Percentage of people who have completed a Bachelor degree or above",
+    "Percentage of people who have completed a diploma or certificate (not including graduate diploma)",
     "Rate of nonresponse for questions relating to University",
     "Percentage of employed persons who work in extractive industries (includes mining, gas, water, agriculture, waste, electricity)",
     "Percentage of employed persons who work in construction or manufacturing related industries",
@@ -292,18 +293,18 @@ ggplot(data = abs2016,
 
 ## Education
 
-##### Bachelor
+##### Bachelor and above
 
 ```{r}
 
 ggplot(data = abs2016,
-       aes(x = Bachelor)) +
+       aes(x = BachelorAbv)) +
   geom_density(fill = "salmon",
                bw = "SJ",
                colour = NA) + 
   geom_rug(colour = "salmon") + 
   theme_minimal() + 
-  labs(x = "% of electorate with a Bachelor degree") +
+  labs(x = "% of electorate with a Bachelor degree or above") +
   xlim(0, 30)
            
 
@@ -314,8 +315,8 @@ ggplot(data = abs2016,
 ```{r}
 
 ggplot(data = abs2016,
-       aes(x = reorder(State, -Bachelor),
-           y = Bachelor,
+       aes(x = reorder(State, -BachelorAbv),
+           y = BachelorAbv,
            colour = State)) +
   geom_boxplot() +
   theme_minimal() +
@@ -324,12 +325,12 @@ ggplot(data = abs2016,
 
 ```
 
-##### Bachelor and income
+##### BachelorAbv and income
 
 ```{r}
 
 ggplot(data = abs2016,
-       aes(x = Bachelor,
+       aes(x = BachelorAbv,
            y = MedianPersonalIncome)) + 
   geom_point(colour = "steelblue",
              alpha = 0.75) + 
@@ -338,14 +339,14 @@ ggplot(data = abs2016,
 ```
 
 
-## Postgraduate
+## Diploma and Certificate
 
 
 ```{r}
 
 ggplot(data = abs2016,
-       aes(x = reorder(State, -Postgraduate),
-           y = Postgraduate,
+       aes(x = reorder(State, -DipCert),
+           y = DipCert,
            colour = State)) +
   geom_boxplot() +
   theme_minimal() +
@@ -354,12 +355,12 @@ ggplot(data = abs2016,
 
 ```
 
-##### Postgraduate and income
+##### DipCert and income
 
 ```{r}
 
 ggplot(data = abs2016,
-       aes(x = Postgraduate,
+       aes(x = DipCert,
            y = MedianPersonalIncome)) + 
   geom_point(colour = "steelblue",
              alpha = 0.75) + 
@@ -367,13 +368,13 @@ ggplot(data = abs2016,
   
 ```
 
-##### Comparing income across Bachelors and postgraduate
+##### Comparing income across Bachelor (and above) and Diploma/Certificate
 
 ```{r}
 
 abs2016 %>%
-  select(Postgraduate,
-         Bachelor,
+  select(DipCert,
+         BachelorAbv,
          MedianPersonalIncome) %>% 
   gather(key = "Education",
          value = "Prop_Educated",

@@ -13,7 +13,7 @@ vignette: >
 knitr::opts_chunk$set(fig.width = 6,
                       fig.height = 4,
                       fig.align='center',
-                      dev = "png", cache=FALSE)
+                      dev = "png", cache=TRUE)
 ```
 
 This vignette demonstrates how to plot the polling booths on a map of the Australian electorates. The polling booth locations for each federal election (from 2004 to 2016) can be downloaded from [http://results.aec.gov.au/](http://results.aec.gov.au/). Coordinates for 2004 polling booths are obtained by matching polling booth ID and name with later elections, and 2001 are sourced from *David Barry*. Around 600 polling booths are missing coordinates in each election, so these are left as `NA`. (It is possible to assign postcode coordinates to `NA` locations that have post codes, and an example of how to do this is provided.)

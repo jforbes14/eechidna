@@ -13,7 +13,7 @@ vignette: >
 knitr::opts_chunk$set(fig.width = 6,
                       fig.height = 4,
                       fig.align='center',
-                      dev = "png", cache=FALSE)
+                      dev = "png", cache=TRUE)
 ```
 
 This vignette describes how to make a map of the Australian election results. It requires merging polygons of the electoral regions, with election results using the electorate id's or unique names. The `nat_map16` contains the electorate polygons and `fp16` contains the results of the 2016 Federal election.
@@ -33,6 +33,16 @@ data(fp16)
 map.winners <- fp16 %>% filter(Elected == "Y") %>% 
   select(DivisionNm, PartyNm) %>% 
   merge(nat_map16, by.x="DivisionNm", by.y="elect_div")
+
+# Function to make all character fields upper case
+chr_upper <- function(df) {
+  fc_cols <- sapply(df, class) == 'factor'
+  df[, fc_cols] <- lapply(df[, fc_cols], as.character)
+  
+  ch_cols <- sapply(df, class) == 'character'
+  df[, ch_cols] <- lapply(df[, ch_cols], toupper)
+  return(df)
+}
 ```
 
 There are state-specific pseudonyms for the Liberal-National Party coalition, and for illustration purposes these are grouped into one category we will call "Liberal National Coalition". These political groups are set colours that roughly match their party colours.
