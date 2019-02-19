@@ -8,7 +8,7 @@
 #' @importFrom graphics text segments points polygon plot
 #' @importFrom stats dist
 #' @importFrom methods as
-#' @import rgeos
+#' @importFrom rgeos gArea gIntersects gSimplify gIntersection
 #' @importFrom rgdal readOGR
 #' @importFrom rgdal ogrListLayers
 #' @importFrom sp Polygon
