@@ -85,7 +85,7 @@ mapping_fn <- function(aec_sF, abs_sF, area_thres = 0.995) {
   ### Adding percentage of Census and Electorate intersections
   Mapping_df <- Mapping_df %>%
     mutate(Percent_Elec_Composition = Intersect_area/AEC_division_area,
-      Percent_ABS_division_Composition = Intersect_area/ABS_division_area)
+      Percent_Census_Composition = Intersect_area/ABS_division_area)
   
   return(Mapping_df)
 }
