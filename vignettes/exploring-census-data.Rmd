@@ -1,12 +1,12 @@
 ---
-title: "Exploring the 2011 Census data"
+title: "Exploring the 2016 Census data"
 author: "Nicholas Tierney and Rob J Hyndman"
 date: "`r Sys.Date()`"
 output: 
     rmarkdown::html_vignette:
         toc: true
 vignette: >
-  %\VignetteIndexEntry{Exploring the 2011 Census data}
+  %\VignetteIndexEntry{Exploring the 2016 Census data}
   %\VignetteEngine{knitr::rmarkdown}
   %\usepackage[utf8]{inputenc}
 ---
@@ -24,11 +24,11 @@ knitr::opts_chunk$set(fig.width = 6,
 
 # Introduction
 
-`eechidna` (Exploring Election and Census Highly Informative Data Nationally for Australia) is an R package that makes it easy to look at the data from the 2011 Australian Census, and the 2013 Federal Election.
+`eechidna` (Exploring Election and Census Highly Informative Data Nationally for Australia) is an R package that makes it easy to look at the data from the 2016 Australian Census, and the 2016 Federal Election.
 
-This vignette documents how to access the data from the 2011 Census. We show a few typical methods to explore the data.
+This vignette documents how to access the data from the 2016 Census. We show a few typical methods to explore the data.
 
-## 2011 Census data
+## 2016 Census data
 
 The data is loaded as `abs2016` when you load `eechidna`. Let's look take a brief glimpse of the data.
 
