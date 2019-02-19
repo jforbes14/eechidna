@@ -1,11 +1,11 @@
 #' Shiny app for exploring census and electorate data
 #' 
 #' @param age Age variables to show. Variable(s) should match column names from
-#' \link{abs2011}. By default, all variables are shown.
+#' \link{abs2016}. By default, all variables are shown.
 #' @param religion Religion variables to show. Variable(s) should match column 
-#' names from \link{abs2011}. By default, all variables are shown.
+#' names from \link{abs2016}. By default, all variables are shown.
 #' @param other Other census variables to show. Variable(s) should match column 
-#' names from \link{abs2011}. By default, all variables are shown.
+#' names from \link{abs2016}. By default, all variables are shown.
 #' @param palette a named character vector of selection colors. The vector names
 #' are used as the display in the drop-down control.
 #' @author Carson Sievert
@@ -34,25 +34,25 @@ launchApp <- function(
               "Age35_44", "Age45_54", "Age55_64", "Age65_74",  "Age75_84",  
               "Age85plus"),
   religion = c("Christianity", "Catholic", "Buddhism", "Islam", "Judaism", "NoReligion"),
-  other = c("Population", "MedianIncome", "Unemployed", "Bachelor", "Postgraduate", "BornOverseas",
+  other = c("Population", "MedianPersonalIncome", "Unemployed", "BachelorAbv",
             "Indigenous", "EnglishOnly", "OtherLanguageHome", "Married", 
-            "DeFacto", "FamilyRatio", "Internet", "NotOwned"),
+            "DeFacto", "FamilyRatio"),
   palette = c('#1B9E77', '#F0027F', '#E6AB02', '#66A61E', '#7570B3', '#D95F02', '#3690C0')
   ) {
   
   # 1st preference votes for candidates for the House for each electorate
-  aec13 <- as.data.frame(eechidna::aec2013_fp_electorate)
+  aec16 <- as.data.frame(eechidna::fp16)
   
   # by default, we show parties that won at least 1 electorate
-  relevantParties <- aec13 %>% 
+  relevantParties <- aec16 %>% 
     group_by(PartyAb) %>% 
     summarise(n = sum(ifelse(Elected == "Y", 1, 0))) %>% 
     filter(n > 0)
   
   # proportion of first preference votes for each party by electorate
-  voteProps <- aec13 %>%
-    group_by(Electorate, PartyAb) %>%
-    summarise(n = sum(Total_OrdinaryVotes_in_electorate)) %>%
+  voteProps <- aec16 %>%
+    group_by(DivisionNm, PartyAb) %>%
+    summarise(n = sum(OrdinaryVotes)) %>%
     mutate(prop = n / sum(n))
   
   # create a sensible ranking for PartyAb
@@ -62,30 +62,30 @@ launchApp <- function(
     arrange(m)
   
   lvls <- as.data.frame(m)$PartyAb
-  aec13$PartyAb <- factor(aec13$PartyAb, levels = lvls)
+  aec16$PartyAb <- factor(aec16$PartyAb, levels = lvls)
   voteProps$PartyAb <- factor(voteProps$PartyAb, levels = lvls)
   
   # 2 party preferred data
-  aec13pp <- aec2013_2cp_electorate %>% 
+  aec16pp <- tcp13 %>% 
     mutate(FullName = paste(GivenNm, Surname)) %>%
-    group_by(Electorate) %>% 
+    group_by(DivisionNm) %>% 
     summarise(
-      difference = abs(diff(TotalVotes) / sum(TotalVotes)),
-      parties = paste(PartyAb[order(TotalVotes, decreasing = TRUE)], collapse = " over "),
-      candidates = paste(FullName[order(TotalVotes, decreasing = TRUE)], collapse = " over ")
+      difference = abs(diff(OrdinaryVotes) / sum(OrdinaryVotes)),
+      parties = paste(PartyAb[order(OrdinaryVotes, decreasing = TRUE)], collapse = " over "),
+      candidates = paste(FullName[order(OrdinaryVotes, decreasing = TRUE)], collapse = " over ")
     ) %>%
     arrange(difference) %>%
-    mutate(Electorate = factor(Electorate, levels = Electorate)) %>%
-    mutate(tooltip = paste0(Electorate, "<br />", parties, "<br />", candidates))
+    mutate(DivisionNm = factor(DivisionNm, levels = DivisionNm)) %>%
+    mutate(tooltip = paste0(DivisionNm, "<br />", parties, "<br />", candidates))
   
   
   # a bit of data cleaning
-  nat_data_cart <- eechidna::nat_data_cart
-  nat_data_cart$Electorate <- nat_data_cart$ELECT_DIV
-  abs2011 <- eechidna::abs2011[c("ID", "Electorate", "State", age, religion, other)]
-  abs2011 <- dplyr::semi_join(abs2011, aec13, by = "Electorate")
+  nat_data16 <- eechidna::nat_data16
+  nat_data16$DivisionNm <- nat_data16$elect_div
+  abs2016 <- eechidna::abs2016[c("ID", "DivisionNm", "State", age, religion, other)]
+  abs2016 <- dplyr::semi_join(abs2016, aec16, by = "DivisionNm")
   longAbs <- tidyr::gather(
-    abs2011, variable, value, -ID, -Electorate, -State
+    abs2016, variable, value, -ID, -DivisionNm, -State
   )
   longAbs$value <- as.numeric(longAbs$value)
   longAbs <- longAbs[!is.na(longAbs$value),]
@@ -128,7 +128,7 @@ launchApp <- function(
         column(
           width = 6,
           selectizeInput(
-            "parties", "Select parties:", unique(eechidna::aec2013_fp$PartyAb), 
+            "parties", "Select parties:", unique(eechidna::fp16), 
             selected = relevantParties$PartyAb,
             multiple = TRUE
           )
@@ -183,8 +183,8 @@ launchApp <- function(
     # "clear the world" - http://stackoverflow.com/questions/30588472/is-it-possible-to-clear-the-brushed-area-of-a-plot-in-shiny/36927826#36927826
     rv <- reactiveValues(
       data = data.frame(
-        Electorate = nat_data_cart$Electorate,
-        fill = factor(rep("black", nrow(nat_data_cart)), levels = c("black", palette)),
+        DivisionNm = nat_data16$DivisionNm,
+        fill = factor(rep("black", nrow(nat_data16)), levels = c("black", palette)),
         stringsAsFactors = FALSE
       )
     )
@@ -212,7 +212,7 @@ launchApp <- function(
       b <- input$brushAge
       idx <- (b$xmin <= longAbs$value & longAbs$value <= b$xmax) &
         (longAbs$variable %in% b$panelvar1)
-      selected <- rv$data$Electorate %in% unique(longAbs[idx, "Electorate"])
+      selected <- rv$data$DivisionNm %in% unique(longAbs[idx, "DivisionNm"])
       updateRV(selected)
     })
     
@@ -220,7 +220,7 @@ launchApp <- function(
       b <- input$brushReligion
       idx <- (b$xmin <= longAbs$value & longAbs$value <= b$xmax) &
         (longAbs$variable %in% b$panelvar1)
-      selected <- rv$data$Electorate %in% unique(longAbs[idx, "Electorate"])
+      selected <- rv$data$DivisionNm %in% unique(longAbs[idx, "DivisionNm"])
       updateRV(selected)
     })
     
@@ -228,32 +228,32 @@ launchApp <- function(
       b <- input$brushDen
       idx <- (b$xmin <= longAbs$value & longAbs$value <= b$xmax) &
         (longAbs$variable %in% b$panelvar1)
-      selected <- rv$data$Electorate %in% unique(longAbs[idx, "Electorate"])
+      selected <- rv$data$DivisionNm %in% unique(longAbs[idx, "DivisionNm"])
       updateRV(selected)
     })
     
     observeEvent(event_data("plotly_selected"), {
-      selected <- rv$data$Electorate %in% event_data("plotly_selected")$key
+      selected <- rv$data$DivisionNm %in% event_data("plotly_selected")$key
       updateRV(selected)
     })
     
     observeEvent(event_data("plotly_click"), {
       k <- event_data("plotly_click")$key
-      if (any(k %in% unique(aec13$PartyAb))) {
-        # map the party selection back to electorates
-        d <- aec13 %>% filter(Elected == "Y")
-        d <- d[match(rv$data$Electorate, d$Electorate), ]
+      if (any(k %in% unique(aec16$PartyAb))) {
+        # map the party selection back to DivisionNms
+        d <- aec16 %>% filter(Elected == "Y")
+        d <- d[match(rv$data$DivisionNm, d$DivisionNm), ]
         selected <- d$PartyAb %in% k
       } else {
-        selected <- rv$data$Electorate %in% k
+        selected <- rv$data$DivisionNm %in% k
       }
       updateRV(selected)
   })
     
     output$winProps <- renderPlotly({
       # total seats by party affliation
-      d <- aec13[aec13$PartyAb %in% input$parties, ]
-      dat <- left_join(d, rv$data, by = "Electorate")
+      d <- aec16[aec16$PartyAb %in% input$parties, ]
+      dat <- left_join(d, rv$data, by = "DivisionNm")
       wins <- dat %>%
         group_by(PartyAb, PartyNm, fill) %>%
         summarise(nseats = sum(ifelse(Elected == "Y", 1, 0)))
@@ -271,11 +271,11 @@ launchApp <- function(
     
     output$voteProps <- renderPlotly({
       voteProps <- voteProps[voteProps$PartyAb %in% input$parties, ]
-      dat <- dplyr::left_join(voteProps, rv$data, by = "Electorate") %>% dplyr::ungroup()
+      dat <- dplyr::left_join(voteProps, rv$data, by = "DivisionNm") %>% dplyr::ungroup()
       p <- ggplot(dat, aes(x = PartyAb, y = prop, colour = fill, 
-                           key = Electorate, text = Electorate)) + 
+                           key = DivisionNm, text = DivisionNm)) + 
         #geom_jitter(width = 0.25, alpha = 0.5) +
-        geom_line(aes(group = Electorate), alpha = 0.2) +
+        geom_line(aes(group = DivisionNm), alpha = 0.2) +
         geom_point(alpha = 0.5, size = 0.001) +
         scale_colour_identity() + theme_bw() +
         theme(legend.position = "none") + coord_flip() +
@@ -284,10 +284,10 @@ launchApp <- function(
     })
     
     output$pp <- renderPlotly({
-      dat <- dplyr::left_join(aec13pp, rv$data, by = "Electorate")
-      dat$Electorate <- factor(dat$Electorate, levels = levels(aec13pp$Electorate))
-      p <- ggplot(dat, aes(difference, Electorate, colour = fill,
-                      key = Electorate, text = tooltip)) + 
+      dat <- dplyr::left_join(aec16pp, rv$data, by = "DivisionNm")
+      dat$DivisionNm <- factor(dat$DivisionNm, levels = levels(aec16pp$DivisionNm))
+      p <- ggplot(dat, aes(difference, DivisionNm, colour = fill,
+                      key = DivisionNm, text = tooltip)) + 
         scale_colour_identity() + theme_bw() +
         theme(legend.position = "none") +
         geom_point(alpha = 0.5) + ylab(NULL) + 
@@ -299,7 +299,7 @@ launchApp <- function(
     })
     
     output$ages <- renderPlot({
-      dat <- left_join(ageDat, rv$data, by = "Electorate")
+      dat <- left_join(ageDat, rv$data, by = "DivisionNm")
       means <- summarise(group_by(dat, variable, fill), m = mean(value))
       dat <- left_join(dat, means, by = c("variable", "fill"))
       ggplot(dat, aes(value, fill = fill)) +
@@ -317,7 +317,7 @@ launchApp <- function(
     })
 
     output$densities <- renderPlot({
-      dat <- dplyr::left_join(otherDat, rv$data, by = "Electorate")
+      dat <- dplyr::left_join(otherDat, rv$data, by = "DivisionNm")
       means <- summarise(group_by(dat, variable, fill), m = mean(value))
       dat <- left_join(dat, means, by = c("variable", "fill"))
       ggplot(dat, aes(value, fill = fill)) +
@@ -336,7 +336,7 @@ launchApp <- function(
     })
 
     output$religion <- renderPlot({
-      dat <- dplyr::left_join(religionDat, rv$data, by = "Electorate")
+      dat <- dplyr::left_join(religionDat, rv$data, by = "DivisionNm")
       means <- summarise(group_by(dat, variable, fill), m = mean(value))
       dat <- left_join(dat, means, by = c("variable", "fill"))
       ggplot(dat, aes(value, fill = fill)) +
@@ -354,18 +354,18 @@ launchApp <- function(
     })
 
     output$map <- renderPlotly({
-      dat <- dplyr::left_join(nat_data_cart, rv$data, by = "Electorate")
+      dat <- dplyr::left_join(nat_data16, rv$data, by = "DivisionNm")
       p <- ggplot() +
-        geom_polygon(data = eechidna::nat_map,
+        geom_polygon(data = eechidna::nat_map16,
                      aes(x = long, y = lat, group = group, order = order),
                      fill="grey90", colour="white") +
         geom_point(data = dat, alpha = 0.5,
-                   aes(x, y, text = Electorate, key = Electorate, colour = fill)) +
+                   aes(x, y, text = DivisionNm, key = DivisionNm, colour = fill)) +
         ggthemes::theme_map() +
         theme(legend.position = "none") +
         scale_color_identity()
       
-      mapRatio <- with(eechidna::nat_map, diff(range(long)) / diff(range(lat)))
+      mapRatio <- with(eechidna::nat_map16, diff(range(long)) / diff(range(lat)))
       p %>% ggplotly(tooltip = "text", height = 400, width = 400 * mapRatio) %>% 
         style(hoverinfo = "none", traces = 1)
     })
