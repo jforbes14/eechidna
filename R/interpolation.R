@@ -90,3 +90,73 @@ mapping_fn <- function(aec_sF, abs_sF, area_thres = 0.995) {
   return(Mapping_df)
 }
 
+#' Function to compute weighted average of Census information
+#' using imputed populations as weights
+#' 
+#' @export
+#' @param mapping_df data frame detailing how much Census divisions intersect with each 
+#' electoral division at the time of the election.
+#' @param abs_df data frame holding Census information from Census year
+#' @return data frame with imputed Census data for electoral boundaries at the time of 
+#' the Census
+#' 
+#' @examples 
+#' \dontrun{
+#' data(abs2016)
+#' aec_sF_2013 <- loadShapeFile(path_to_aec_shapefile)
+#' abs_sF_2016 <- loadShapeFile(path_to_abs_shapefile)
+#' mapping_2016 <- mapping_fn(aec_sF = aec_sF_2013, abs_sF = abs_sF_2016)
+#' imputed_data_2016 <- weighted_avg_census(mapping_df = mapping_2016, abs_df = abs2016)
+
+weighted_avg_census <- function(mapping_df, abs_df) {
+  mapping_df <- mapping_df %>% 
+    arrange(as.character(AEC_division), as.character(ABS_division))
+  
+  abs_df <- abs_df %>% 
+    arrange(as.character(DivisionNm))
+  
+  divs <- unique(mapping_df$AEC_division)
+  
+  for (i in 1:nrow(out_df)) {
+    # Election division
+    div <- divs[i]
+    
+    # Mapping for the division
+    mapping <- mapping_df %>% 
+      filter(AEC_division == div)
+    
+    # Census info from the relevant divisions
+    census_divs <- abs_df %>% 
+      filter(DivisionNm %in% mapping$ABS_division) %>% 
+      select(-c(ends_with("NS"), Area, ID, State)) %>% 
+      left_join(mapping, by = c("DivisionNm" = "ABS_division")) %>% 
+      # add imputed population
+      mutate(imputed_population = Percent_ABS_division_Composition*Population)
+    
+    # Net imputed population
+    census_divs <- census_divs %>% 
+      mutate(total_pop = sum(census_divs$imputed_population),
+        weight = imputed_population/total_pop)
+    
+    # Weighted average
+    imputed_profile <- (census_divs %>% 
+        select(c(Age00_04:BornElsewhere)) *
+        census_divs$weight) %>% 
+      colSums() %>% 
+      t() %>% 
+      data.frame() 
+    
+    imputed_profile <- imputed_profile %>% 
+    select(noquote(order(colnames(imputed_profile)))) %>% 
+      mutate(DivisionNm = div)
+    
+    if (i == 1) {
+      keep_imputed_profiles <- imputed_profile
+    } else {
+      keep_imputed_profiles <- bind_rows(keep_imputed_profiles, imputed_profile)
+    }
+    
+  }
+  
+  return(keep_imputed_profiles)
+}
