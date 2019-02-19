@@ -35,15 +35,17 @@ load("/Users/Jeremy/Documents/R/eechidna/data/abs2016.rda")
 
 # Introduction
 
-A Census is conducted every five years by the Australian Bureau of Statistics. In the years 2001 and 2016, both a federal election and Census occurred, but in the other election years (2004, 2007, 2010 and 2013), Census data from neighbouring years must be used in any modelling. This vignette documents how to impute Census data for the desired election year, which involves interpolating between the neighbouring Censuses.
+A Census is conducted every five years by the Australian Bureau of Statistics. In the years 2001 and 2016 both a federal election and Census occurred, but in the other election years (2004, 2007, 2010 and 2013) there is no Census to directly match, so Census data from neighbouring years must be used in any modelling. This vignette documents how to impute Census data for the desired election year, which involves interpolating between the neighbouring Censuses.
 
-For our analysis, we will impute Census data for the electoral divisions in the 2013 federal election. Maps are obtained from *****.
+We impute Census data for the electoral divisions in the 2013 federal election. Maps of 2013 and 2016 electoral divisions are obtained from the Australian Electoral Commission [http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm](http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm), and the map of divisions in place at the time of the 2011 Census is from the Australian Bureau of Statistics [https://datapacks.censusdata.abs.gov.au/datapacks/](https://datapacks.censusdata.abs.gov.au/datapacks/).
 
 ## Changing electoral division boundaries
 
-The Australian Electoral Commission shifts the electoral boundaries regularly, so the electoral divisions in place in the 2013 election may not match those in 2016. To obtain Census information for each electoral division, we cannot directly interpolate between neighbouring Censuses. 
+The Australian Electoral Commission shifts the electoral boundaries regularly, so the electoral divisions in place in the 2013 election may not match those in 2016, nor those in 2011. To obtain Census information for each electoral division, we cannot directly interpolate between neighbouring Censuses. 
 
-We use a spatio-temporal algorithm that estimates the socio-demographic composition of each electorate had its boundary been in place at the time of the two nearest Censuses, one before and one after, and then to linearly interpolate between these time points. To illustrate this algorithm, we consider the example of the Hume electoral division in the 2013 federal election.
+We use a spatio-temporal algorithm that estimates Census information about each electorate, at the time of the election of interest. Since no Census occurs on the desired election year, we have to superimpose the electoral boundaries onto the neighbouring Censuses, and estimate Census characteristics in each of those years. By then linearly interpolate between these time points, we get an estimate for the election year of interest. 
+
+To illustrate this algorithm, consider the example of the Hume electoral division in the 2013 federal election.
 
 ## Hume in the 2013 election
 
@@ -121,7 +123,7 @@ We have now estimated 2016 Census information for the electoral boundaries of in
 
 ```{r census-2011, eval = F}
 # Mapping
-sF_11 <- loadShapeFile("/Users/Jeremy/Documents/R/eechidna/Shapefiles/2011_CED_shape/CED_2011_AUST.shp")
+sF_11 <- loadShapeFile("/Users/Jeremy/Documents/R/eechidna/data-raw/Shapefiles/2011_CED_shape/CED_2011_AUST.shp")
 mapping_2011 <- mapping_fn(aec_sF = sF_13, abs_sF = sF_11)
 
 # Weighted average
