@@ -8,5 +8,13 @@
 #' @importFrom graphics text segments points polygon plot
 #' @importFrom stats dist
 #' @importFrom methods as
+#' @import rgeos
+#' @importFrom rgdal readOGR
+#' @importFrom rgdal ogrListLayers
+#' @importFrom sp Polygon
+#' @importFrom methods as
+#' @importFrom purrr map_df
+#' 
+#' @export 
 #' 
 NULL
