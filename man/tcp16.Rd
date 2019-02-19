@@ -3,7 +3,8 @@
 \docType{data}
 \name{tcp16}
 \alias{tcp16}
-\title{2016 General election data for two candidate preferred votes for candidates for the House of Representative for each electorate}
+\title{2016 General election data for two candidate preferred votes for candidates for the 
+House of Representative for each electorate}
 \format{A data frame with the following variables:
 \itemize{
     \item StateAb: Abbreviation for state name    
@@ -24,7 +25,8 @@
 tcp16
 }
 \description{
-A dataset containing two candidate preferred vote counts, and other results for the House of Representatives from the 2016 Australian federal election. Includes the count of votes for
+A dataset containing two candidate preferred vote counts, and other results for the 
+House of Representatives from the 2016 Australian federal election. Includes the count of votes for
 the leading two candidates in the electorate after distribution of preferences.
 The data were obtained from the Australian Electoral Commission, and downloaded 
 from \url{http://results.aec.gov.au/20499/Website/HouseDownloadsMenu-20499-csv.htm} and 

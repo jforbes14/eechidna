@@ -3,8 +3,7 @@
 \docType{data}
 \name{nat_map16}
 \alias{nat_map16}
-\title{--------------------------------------------------------------------------------------------------
-Map of Australian Electorates from 2016}
+\title{Map of Australian Electorates from 2016}
 \format{An object of class \code{data.frame} with 48897 rows and 9 columns.}
 \usage{
 nat_map16

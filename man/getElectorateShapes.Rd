@@ -4,17 +4,19 @@
 \alias{getElectorateShapes}
 \title{Extract shapefiles (of Australian electorates) from shp file}
 \usage{
-getElectorateShapes(shapeFile, mapinfo = TRUE, layer = NULL,
-  keep = 0.05)
+getElectorateShapes(path_to_shapeFile = NULL, sF = NULL,
+  mapinfo = TRUE, layer = NULL, tolerance = 1e-04)
 }
 \arguments{
-\item{shapeFile}{path to the shp file}
+\item{sF}{Shapefile object loaded to environment using loadShapeFile}
 
 \item{mapinfo}{Is the data mapInfo format, rather than ESRI? default=TRUE}
 
 \item{layer}{If the format is mapInfo, the layer name also needs to be provided, default is NULL}
 
-\item{keep}{percent of polygon points to keep, the default is set to 5\%.}
+\item{tolerance}{Numerical tolerance value to be used by the Douglas-Peuker algorithm (only if shapefile has not already loaded)}
+
+\item{shapeFile}{Path to the shp file (only if shapefile has not already loaded)}
 }
 \value{
 list with two data frames: map and data; `map` is a data set with geographic latitude and longitude, and a grouping variable to define each entity.
@@ -29,13 +31,9 @@ The function will take several minutes to complete.
 \examples{
 \dontrun{
 fl <- "vignettes/national-midmif-09052016/COM_ELB.TAB"
-electorates <- getElectorateShapes(shapeFile = fl, layer="COM_ELB", keep=0.01)
-library(ggplot2)
-ggplot(data=electorates$data) + 
-   geom_map(aes(fill=area_sqkm, map_id=id), map=electorates$map) + 
-   expand_limits(
-     x=range(electorates$map$long), 
-     y=range(electorates$map$lat)
-   )
+map_and_data16 <- getElectorateShapes(path_to_shapefile = fl)
+}
+\dontrun {
+map_and_data16 <- getElectorateShapes(sF = sF_2016)
 }
 }

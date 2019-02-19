@@ -3,7 +3,8 @@
 \docType{data}
 \name{tcp_pp13}
 \alias{tcp_pp13}
-\title{2013 General election data for two candidate preferred votes for the House of Representatives for each polling place}
+\title{2013 General election data for two candidate preferred votes for the House of 
+Representatives for each polling place}
 \format{A data frame with the following variables:
 \itemize{
     \item StateAb: Abbreviation for state name    
@@ -30,8 +31,9 @@ tcp_pp13
 }
 \description{
 A dataset containing two candidate preferred vote counts,  polling place locations,
-and other results for the House of Representatives from the 2013 Australian federal election. Includes the count of votes for
-the leading two candidates in the electorate after distribution of preferences for each polling place.
+and other results for the House of Representatives from the 2013 Australian 
+federal election. Includes the count of votes for the leading two candidates in the 
+electorate after distribution of preferences for each polling place.
 The data were obtained from the Australian Electoral Commission, and downloaded 
 from \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm} and 
 \url{http://www.aec.gov.au/elections/federal_elections/2013/downloads.htm}.

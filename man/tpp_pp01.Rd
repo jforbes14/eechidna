@@ -9,13 +9,14 @@
     \item StateAb: Abbreviation for state name 
     \item DivisionNm:  Electoral division name 
     \item PollingPlace: Polling place name  
-    \item Latitude: Coordinates        
-    \item Longitude: Coordinates  
-    \item TotalVotes: Total number of votes cast   
     \item LNP_Votes: Count of two party preferred vote in favour of the Liberal National coalition
     \item LNP_Percent: Percentage of two party preferred vote in favour of the Liberal National coalition   
     \item ALP_Votes: Count of two party preferred vote in favour of the Labor party
     \item ALP_Percent: Percentage of two party preferred vote in favour of the Labor party
+    \item TotalVotes: Total number of votes cast   
+    \item Swing: Percentage point change in ALP percentage two party preferred vote from the previous election   
+    \item Latitude: Coordinates        
+    \item Longitude: Coordinates    
     }}
 \usage{
 tpp_pp01

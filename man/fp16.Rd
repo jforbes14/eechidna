@@ -3,7 +3,8 @@
 \docType{data}
 \name{fp16}
 \alias{fp16}
-\title{2016 General election data for first preference votes for candidates for the House of Representative for each electorate}
+\title{2016 General election data for first preference votes for candidates for the House of 
+Representatives for each electorate}
 \format{A data frame with the following variables:
 \itemize{
     \item StateAb: Abbreviation for state name    

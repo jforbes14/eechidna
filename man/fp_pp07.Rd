@@ -3,8 +3,7 @@
 \docType{data}
 \name{fp_pp07}
 \alias{fp_pp07}
-\title{--------------------------------------------------------------------------------------------------
-2007 General election data for first preference votes for candidates for the House of Representatives for each polling place}
+\title{2007 General election data for first preference votes for candidates for the House of Representatives for each polling place}
 \format{A data frame with the following variables:
 \itemize{
     \item StateAb: Abbreviation for state name    

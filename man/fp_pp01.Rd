@@ -3,22 +3,20 @@
 \docType{data}
 \name{fp_pp01}
 \alias{fp_pp01}
-\title{--------------------------------------------------------------------------------------------------
-2001 General election data for first preference votes for candidates for the House of Representatives for each polling place}
+\title{2001 General election data for first preference votes for candidates for the House of Representatives for each polling place}
 \format{A data frame with the following variables:
 \itemize{
-    \item StateAb: Abbreviation for state name     
+    \item StateAb: Abbreviation for state name  
     \item DivisionNm:  Electoral division name   
-    \item PollingPlace: Polling place name  
+    \item PollingPlace: Polling place name     
+    \item Surname: Candidate surname          
+    \item GivenNm: Candidate given name            
+    \item BallotPosition: Candidate's position on the ballot         
+    \item PartyAb: Abbreviation for political party name    
+    \item Elected: Whether the candidate was elected (Y/N)  
+    \item OrdinaryVotes: Number of ordinary votes cast at the polling place for the candidate  
     \item Latitude: Coordinates        
     \item Longitude: Coordinates
-    \item TotalVotes: Total number of votes submitted at polling booth
-    \item ALP: Percentage of votes for the Labor party
-    \item GRN: Percentage of votes for the Greens
-    \item ON: Percentage of votes for One Nation
-    \item IND: Percentage of votes for independent candidates
-    \item LNP: Percentage of votes for the Liberal National Coalition  
-    \item Other: Percentage of votes for other parties
     }}
 \usage{
 fp_pp01

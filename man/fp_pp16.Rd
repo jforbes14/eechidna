@@ -3,8 +3,8 @@
 \docType{data}
 \name{fp_pp16}
 \alias{fp_pp16}
-\title{--------------------------------------------------------------------------------------------------
-2016 General election data for first preference votes for candidates for the House of Representatives for each polling place}
+\title{2016 General election data for first preference votes for candidates for the House of 
+Representatives for each polling place}
 \format{A data frame with the following variables:
 \itemize{
     \item StateAb: Abbreviation for state name    
@@ -31,8 +31,7 @@ fp_pp16
 }
 \description{
 A dataset containing first preference vote counts, candidate names, polling place locations,
-and other results for the
-House of Representatives from the 2016 Australian federal election. 
+and other results for the House of Representatives from the 2016 Australian federal election. 
 The data were obtained from the Australian Electoral Commission, and downloaded 
 from \url{http://results.aec.gov.au/20499/Website/HouseDownloadsMenu-20499-csv.htm} and 
 \url{http://www.aec.gov.au/elections/federal_elections/2016/downloads.htm}.

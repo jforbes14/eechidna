@@ -3,7 +3,8 @@
 \docType{data}
 \name{tcp_pp16}
 \alias{tcp_pp16}
-\title{2016 General election data for two candidate preferred votes for the House of Representatives for each polling place}
+\title{2016 General election data for two candidate preferred votes for the House of 
+Representatives for each polling place}
 \format{A data frame with the following variables:
 \itemize{
     \item StateAb: Abbreviation for state name    
@@ -29,9 +30,10 @@
 tcp_pp16
 }
 \description{
-A dataset containing two candidate preferred vote counts,  polling place locations,
-and other results for the House of Representatives from the 2016 Australian federal election. Includes the count of votes for
-the leading two candidates in the electorate after distribution of preferences for each polling place.
+A dataset containing two candidate preferred vote counts, polling place locations,
+and other results for the House of Representatives from the 2016 Australian 
+federal election. Includes the count of votes for the leading two candidates 
+in the electorate after distribution of preferences for each polling place.
 The data were obtained from the Australian Electoral Commission, and downloaded 
 from \url{http://results.aec.gov.au/20499/Website/HouseDownloadsMenu-20499-csv.htm} and 
 \url{http://www.aec.gov.au/elections/federal_elections/2016/downloads.htm}.
