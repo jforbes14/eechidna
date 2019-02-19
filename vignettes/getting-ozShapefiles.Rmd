@@ -30,7 +30,7 @@ The function `getElectorateShapes` extracts a list from the shapefile, consistin
 ```{r, message=FALSE, warning=FALSE}
 # shapeFile contains the path to the shp file:
 #shapeFile <- "national-midmif-09052016/COM_ELB.TAB"
-shapeFile <- "/Users/Jeremy/Documents/R/eechidna/Shapefiles/national-midmif-09052016/COM_ELB.TAB"
+shapeFile <- "/Users/Jeremy/Documents/R/eechidna/data-raw/Shapefiles/national-midmif-09052016/COM_ELB.TAB"
 sF <- getElectorateShapes(shapeFile)
 ```
 
@@ -60,7 +60,7 @@ library(rgdal)
 
 # shapeFile contains the path to the shp file:
 #shapeFile <- "national-midmif-09052016/COM_ELB.TAB"
-shapeFile <- "/Users/Jeremy/Documents/R/eechidna/Shapefiles/national-midmif-09052016/COM_ELB.TAB"
+shapeFile <- "/Users/Jeremy/Documents/R/eechidna/data-raw/Shapefiles/national-midmif-09052016/COM_ELB.TAB"
 
 sF <- readOGR(dsn=shapeFile)
 class(sF)
