@@ -23,8 +23,14 @@ opts_chunk$set(fig.width = 6,
 library(tidyverse)
 library(ggthemes)
 #data(nat_map13)
+#data(nat_map16)
+#data(abs2011)
+#data(abs2016)
 load("/Users/Jeremy/Documents/R/eechidna/data/nat_map13.rda")
 load("/Users/Jeremy/Documents/R/eechidna/data/nat_map16.rda")
+load("/Users/Jeremy/Documents/R/eechidna/data/abs2011.rda")
+load("/Users/Jeremy/Documents/R/eechidna/data/abs2016.rda")
+
 ```
 
 # Introduction
@@ -33,13 +39,13 @@ A Census is conducted every five years by the Australian Bureau of Statistics. I
 
 For our analysis, we will impute Census data for the electoral divisions in the 2013 federal election. Maps are obtained from *****.
 
-# Changing electoral division boundaries
+## Changing electoral division boundaries
 
 The Australian Electoral Commission shifts the electoral boundaries regularly, so the electoral divisions in place in the 2013 election may not match those in 2016. To obtain Census information for each electoral division, we cannot directly interpolate between neighbouring Censuses. 
 
 We use a spatio-temporal algorithm that estimates the socio-demographic composition of each electorate had its boundary been in place at the time of the two nearest Censuses, one before and one after, and then to linearly interpolate between these time points. To illustrate this algorithm, we consider the example of the Hume electoral division in the 2013 federal election.
 
-**Example: Hume in the 2013 election.**
+## Hume in the 2013 election
 
 To illustrate the spatio-temporal algorithm detailed above, consider the imputation of a socio-demographic variable for the electorate of Hume in New South Wales (NSW), at the time of the 2013 federal election. Figure \@ref(fig:hume13) shows this region amongst other NSW electorates.
 
@@ -92,35 +98,51 @@ Gilmore                   | 0.03%      | 150436                 | 49
 
 This is done for each of the 2013 electoral divisions using the `mapping_fn` function. Note that shapefiles need to be loaded through `loadShapeFile` to be in the right format to be a passed through `mapping_fn`.
 
+## All electorates in the 2013 election
+
 `aec_sF` is the shapefile containing the polygons associated with electoral boundaries for which Census information is to be imputed, and `abs_sF` contains polygons that match those in place at the time of the Census. 
 
 ```{r mapping, eval = F}
 sF_13 <- loadShapeFile("./Shapefiles/national-midmif-16122011/COM20111216_ELB.MIF")
 sF_16 <- loadShapeFile("./Shapefiles/national-midmif-09052016/COM_ELB.TAB")
 
-intersections_df <- mapping_fn(aec_sF = sF_13, abs_sF = sF_16)
+mapping_2016 <- mapping_fn(aec_sF = sF_13, abs_sF = sF_16)
 ```
 
 The resultant object is a `data.frame` which contains information about the intersecting areas, and the variable `Percent_Census_Composition` is the percentage of the Census division population that will be attributed to the electoral division.
 
 The next step is to estimate Census data with a weighted average of these intersecting populations, for each electoral division. This is done using `weighted_avg`.
 
-```{r weighted_avg}
-# function
-# print Hume AusCitizen
+```{r weighted-avg-2016, eval = F}
+imputed_data_2016 <- weighted_avg_census(mapping_df = mapping_2016, abs_df = abs2016)
 ```
 
 We have now estimated 2016 Census information for the electoral boundaries of interest (2013 election). The steps above are repeated with the 2011 Census.
 
-```{r}
-# intersections 2
-# weighted avg 2
+```{r census-2011, eval = F}
+# Mapping
+sF_11 <- loadShapeFile("/Users/Jeremy/Documents/R/eechidna/Shapefiles/2011_CED_shape/CED_2011_AUST.shp")
+mapping_2011 <- mapping_fn(aec_sF = sF_13, abs_sF = sF_11)
+
+# Weighted average
+imputed_data_2011 <- weighted_avg_census(mapping_df = mapping_2011, abs_df = abs2011)
 ```
 
-Then we can linearly interpolate between time points to arrive at our final 2013 estimate.
+Then we can linearly interpolate between 2011 and 2016 to arrive at our final estimate of Census data for the electorates in place at the 2013 federal election.
 
-```{r}
-# linearly interpolate
+```{r, eval = F}
+# Linearly interpolate
+abs2013 <- (2/5)*imputed_data_2016 + (3/5)*imputed_data_2011
+
+# Maintain division names
+abs2013$DivisionNm <- imputed_data_2016$DivisionNm
+
+glimpse(abs2013)
+```
+
+```{r, echo = F}
+load("/Users/Jeremy/Documents/R/eechidna/data/abs2013.rda")
+head(abs2013) %>% kable
 ```
 
 
