@@ -1,10 +1,8 @@
-#' --------------------------------------------------------------------------------------------------
-
-#' 2016 General election data for first preference votes for candidates for the House of Representatives for each polling place
+#' 2016 General election data for first preference votes for candidates for the House of 
+#' Representatives for each polling place
 #' 
 #' A dataset containing first preference vote counts, candidate names, polling place locations,
-#' and other results for the
-#' House of Representatives from the 2016 Australian federal election. 
+#' and other results for the House of Representatives from the 2016 Australian federal election. 
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
 #' from \url{http://results.aec.gov.au/20499/Website/HouseDownloadsMenu-20499-csv.htm} and 
 #' \url{http://www.aec.gov.au/elections/federal_elections/2016/downloads.htm}.
@@ -32,7 +30,8 @@
 #'     }
 "fp_pp16"
 
-#' 2016 General election data for first preference votes for candidates for the House of Representative for each electorate
+#' 2016 General election data for first preference votes for candidates for the House of 
+#' Representatives for each electorate
 #' 
 #' A dataset containing first preference vote counts, candidate names, and other results for the
 #' House of Representatives from the 2016 Australian federal election. 
@@ -58,11 +57,13 @@
 #'     }
 "fp16"
 
-#' 2016 General election data for two party preferred votes for the House of Representatives for each polling place
+#' 2016 General election data for two party preferred votes for the House of 
+#' Representatives for each polling place
 #' 
-#' A dataset containing two party preferred vote counts, winning candidate names, polling place locations,
-#' and other results for the House of Representatives from the 2016 Australian federal election. Includes the count of votes for
-#' the Australian Labor Party and the count of votes for the Liberal-National Coalition for each polling place.
+#' A dataset containing two party preferred vote counts, winning candidate names, 
+#' polling place locations, and other results for the House of Representatives from 
+#' the 2016 Australian federal election. Includes the count of votes for the Australian 
+#' Labor Party and the count of votes for the Liberal-National Coalition for each polling place.
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
 #' from \url{http://results.aec.gov.au/20499/Website/HouseDownloadsMenu-20499-csv.htm} and 
 #' \url{http://www.aec.gov.au/elections/federal_elections/2016/downloads.htm}.
@@ -86,10 +87,13 @@
 #'     }
 "tpp_pp16"
 
-#' 2016 General election data for two party preferred votes for candidates for the House of Representative for each electorate
+#' 2016 General election data for two party preferred votes for candidates for the House of 
+#' Representative for each electorate
 #' 
-#' A dataset containing two party preferred vote counts, winning candidate names, and other results for the House of Representatives from the 2016 Australian federal election. Includes the count of votes for
-#' the Australian Labor Party and the count of votes for the Liberal-National Coalition for each polling place.
+#' A dataset containing two party preferred vote counts, winning candidate names, and other 
+#' results for the House of Representatives from the 2016 Australian federal election. 
+#' Includes the count of votes for the Australian Labor Party and the count of votes for 
+#' the Liberal-National Coalition for each polling place.
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
 #' from \url{http://results.aec.gov.au/20499/Website/HouseDownloadsMenu-20499-csv.htm} and 
 #' \url{http://www.aec.gov.au/elections/federal_elections/2016/downloads.htm}.
@@ -108,11 +112,13 @@
 #'     }
 "tpp16"
 
-#' 2016 General election data for two candidate preferred votes for the House of Representatives for each polling place
+#' 2016 General election data for two candidate preferred votes for the House of 
+#' Representatives for each polling place
 #' 
-#' A dataset containing two candidate preferred vote counts,  polling place locations,
-#' and other results for the House of Representatives from the 2016 Australian federal election. Includes the count of votes for
-#' the leading two candidates in the electorate after distribution of preferences for each polling place.
+#' A dataset containing two candidate preferred vote counts, polling place locations,
+#' and other results for the House of Representatives from the 2016 Australian 
+#' federal election. Includes the count of votes for the leading two candidates 
+#' in the electorate after distribution of preferences for each polling place.
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
 #' from \url{http://results.aec.gov.au/20499/Website/HouseDownloadsMenu-20499-csv.htm} and 
 #' \url{http://www.aec.gov.au/elections/federal_elections/2016/downloads.htm}.
@@ -140,9 +146,11 @@
 #'     }
 "tcp_pp16"
 
-#' 2016 General election data for two candidate preferred votes for candidates for the House of Representative for each electorate
+#' 2016 General election data for two candidate preferred votes for candidates for the 
+#' House of Representative for each electorate
 #' 
-#' A dataset containing two candidate preferred vote counts, and other results for the House of Representatives from the 2016 Australian federal election. Includes the count of votes for
+#' A dataset containing two candidate preferred vote counts, and other results for the 
+#' House of Representatives from the 2016 Australian federal election. Includes the count of votes for
 #' the leading two candidates in the electorate after distribution of preferences.
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
 #' from \url{http://results.aec.gov.au/20499/Website/HouseDownloadsMenu-20499-csv.htm} and 
@@ -166,9 +174,8 @@
 #'     }
 "tcp16"
 
-#' --------------------------------------------------------------------------------------------------
-
-#' 2013 General election data for first preference votes for candidates for the House of Representatives for each polling place
+#' 2013 General election data for first preference votes for candidates for the 
+#' House of Representatives for each polling place
 #' 
 #' A dataset containing first preference vote counts, candidate names, polling place locations,
 #' and other results for the
@@ -200,7 +207,8 @@
 #'     }
 "fp_pp13"
 
-#' 2013 General election data for first preference votes for candidates for the House of Representative for each electorate
+#' 2013 General election data for first preference votes for candidates for the 
+#' House of Representative for each electorate
 #' 
 #' A dataset containing first preference vote counts, candidate names, and other results for the
 #' House of Representatives from the 2013 Australian federal election. 
@@ -226,11 +234,14 @@
 #'     }
 "fp13"
 
-#' 2013 General election data for two party preferred votes for the House of Representatives for each polling place
+#' 2013 General election data for two party preferred votes for the House of 
+#' Representatives for each polling place
 #' 
-#' A dataset containing two party preferred vote counts, winning candidate names, polling place locations,
-#' and other results for the House of Representatives from the 2013 Australian federal election. Includes the count of votes for
-#' the Australian Labor Party and the count of votes for the Liberal-National Coalition for each polling place.
+#' A dataset containing two party preferred vote counts, winning candidate names, 
+#' polling place locations, and other results for the House of Representatives from 
+#' the 2013 Australian federal election. Includes the count of votes for
+#' the Australian Labor Party and the count of votes for the Liberal-National Coalition 
+#' for each polling place.
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
 #' from \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm} and 
 #' \url{http://www.aec.gov.au/elections/federal_elections/2013/downloads.htm}.
@@ -254,10 +265,13 @@
 #'     }
 "tpp_pp13"
 
-#' 2013 General election data for two party preferred votes for candidates for the House of Representative for each electorate
+#' 2013 General election data for two party preferred votes for candidates for the 
+#' House of Representative for each electorate
 #' 
-#' A dataset containing two party preferred vote counts, winning candidate names, and other results for the House of Representatives from the 2013 Australian federal election. Includes the count of votes for
-#' the Australian Labor Party and the count of votes for the Liberal-National Coalition for each polling place.
+#' A dataset containing two party preferred vote counts, winning candidate names, 
+#' and other results for the House of Representatives from the 2013 Australian federal 
+#' election. Includes the count of votes for the Australian Labor Party and the count 
+#' of votes for the Liberal-National Coalition for each polling place.
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
 #' from \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm} and 
 #' \url{http://www.aec.gov.au/elections/federal_elections/2013/downloads.htm}.
@@ -276,11 +290,13 @@
 #'     }
 "tpp13"
 
-#' 2013 General election data for two candidate preferred votes for the House of Representatives for each polling place
+#' 2013 General election data for two candidate preferred votes for the House of 
+#' Representatives for each polling place
 #' 
 #' A dataset containing two candidate preferred vote counts,  polling place locations,
-#' and other results for the House of Representatives from the 2013 Australian federal election. Includes the count of votes for
-#' the leading two candidates in the electorate after distribution of preferences for each polling place.
+#' and other results for the House of Representatives from the 2013 Australian 
+#' federal election. Includes the count of votes for the leading two candidates in the 
+#' electorate after distribution of preferences for each polling place.
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
 #' from \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm} and 
 #' \url{http://www.aec.gov.au/elections/federal_elections/2013/downloads.htm}.
@@ -308,9 +324,11 @@
 #'     }
 "tcp_pp13"
 
-#' 2013 General election data for two candidate preferred votes for candidates for the House of Representative for each electorate
+#' 2013 General election data for two candidate preferred votes for candidates for the 
+#' House of Representative for each electorate
 #' 
-#' A dataset containing two candidate preferred vote counts, and other results for the House of Representatives from the 2013 Australian federal election. Includes the count of votes for
+#' A dataset containing two candidate preferred vote counts, and other results for the 
+#' House of Representatives from the 2013 Australian federal election. Includes the count of votes for
 #' the leading two candidates in the electorate after distribution of preferences.
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
 #' from \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm} and 
@@ -334,13 +352,11 @@
 #'     }
 "tcp13"
 
-#' --------------------------------------------------------------------------------------------------
-
-#' 2010 General election data for first preference votes for candidates for the House of Representatives for each polling place
+#' 2010 General election data for first preference votes for candidates for the 
+#' House of Representatives for each polling place
 #' 
 #' A dataset containing first preference vote counts, candidate names, polling place locations,
-#' and other results for the
-#' House of Representatives from the 2010 Australian federal election. 
+#' and other results for the House of Representatives from the 2010 Australian federal election. 
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
 #' from \url{http://results.aec.gov.au/15508/Website/HouseDownloadsMenu-15508-csv.htm} and 
 #' \url{http://www.aec.gov.au/elections/federal_elections/2010/downloads.htm}.
@@ -368,7 +384,8 @@
 #'     }
 "fp_pp10"
 
-#' 2010 General election data for first preference votes for candidates for the House of Representative for each electorate
+#' 2010 General election data for first preference votes for candidates for the House of 
+#' Representative for each electorate
 #' 
 #' A dataset containing first preference vote counts, candidate names, and other results for the
 #' House of Representatives from the 2010 Australian federal election. 
@@ -394,11 +411,13 @@
 #'     }
 "fp10"
 
-#' 2010 General election data for two party preferred votes for the House of Representatives for each polling place
+#' 2010 General election data for two party preferred votes for the House of Representatives 
+#' for each polling place
 #' 
 #' A dataset containing two party preferred vote counts, winning candidate names, polling place locations,
-#' and other results for the House of Representatives from the 2010 Australian federal election. Includes the count of votes for
-#' the Australian Labor Party and the count of votes for the Liberal-National Coalition for each polling place.
+#' and other results for the House of Representatives from the 2010 Australian federal election. 
+#' Includes the count of votes for the Australian Labor Party and the count of votes for the
+#' Liberal-National Coalition for each polling place.
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
 #' from \url{http://results.aec.gov.au/15508/Website/HouseDownloadsMenu-15508-csv.htm} and 
 #' \url{http://www.aec.gov.au/elections/federal_elections/2010/downloads.htm}.
@@ -501,8 +520,6 @@
 #'     \item Percent: Percentage of ordinary votes cast for the candidate    
 #'     }
 "tcp10"
-
-#' --------------------------------------------------------------------------------------------------
 
 #' 2007 General election data for first preference votes for candidates for the House of Representatives for each polling place
 #' 
@@ -670,8 +687,6 @@
 #'     }
 "tcp07"
 
-#' --------------------------------------------------------------------------------------------------
-
 #' 2004 General election data for first preference votes for candidates for the House of Representatives for each polling place
 #' 
 #' A dataset containing first preference vote counts, candidate names, polling place locations,
@@ -834,8 +849,6 @@
 #'     }
 "tcp04"
 
-#' --------------------------------------------------------------------------------------------------
-
 #' 2001 General election data for first preference votes for candidates for the House of Representatives for each polling place
 #' 
 #' A dataset containing first preference vote counts, candidate names, polling place locations,
@@ -919,8 +932,6 @@
 #'     \item Swing: Percentage point change in ordinary votes for the party from the previous election      
 #'     }
 "tcp01"
-
-#' --------------------------------------------------------------------------------------------------
 
 #' Map of Australian Electorates from 2016
 #'
@@ -1122,8 +1133,6 @@
 #'     \item radius: variable used in the construction of cartogram points
 #' }
 "nat_data01"
-
-#' --------------------------------------------------------------------------------------------------
 
 #' 2016 Census data on all 150 electorates
 #'
@@ -1516,8 +1525,6 @@
 #'   \item BornElsewhere: Percentage of people who were born overseas 
 #' }
 "abs2001"  
-
-#' --------------------------------------------------------------------------------------------------
 
 #' Imputed Census data for the electorates in place at time of the 2013 Federal election
 #'
