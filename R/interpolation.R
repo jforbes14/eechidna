@@ -3,12 +3,12 @@
 #' This is to be used in interpolating Census information for electoral
 #' divisions in a year that a Census did not occur.
 #' 
-#' @export
 #' @param aec_sF shapefile with boundaries at election time
 #' @param abs_sF shapefile with boundaries at census time
 #' @param area_thres threshold for which mapping is sufficient (default is 99.5%)
 #' @return data frame detailing how much Census divisions intersect with each 
 #' electoral division at the time of the election.
+#' @export
 #' 
 #' @examples 
 #' \dontrun{
@@ -93,12 +93,12 @@ mapping_fn <- function(aec_sF, abs_sF, area_thres = 0.995) {
 #' Function to compute weighted average of Census information
 #' using imputed populations as weights
 #' 
-#' @export
 #' @param mapping_df data frame detailing how much Census divisions intersect with each 
 #' electoral division at the time of the election.
 #' @param abs_df data frame holding Census information from Census year
 #' @return data frame with imputed Census data for electoral boundaries at the time of 
 #' the Census
+#' @export
 #' 
 #' @examples 
 #' \dontrun{
@@ -107,6 +107,7 @@ mapping_fn <- function(aec_sF, abs_sF, area_thres = 0.995) {
 #' abs_sF_2016 <- loadShapeFile(path_to_abs_shapefile)
 #' mapping_2016 <- mapping_fn(aec_sF = aec_sF_2013, abs_sF = abs_sF_2016)
 #' imputed_data_2016 <- weighted_avg_census(mapping_df = mapping_2016, abs_df = abs2016)
+#' }
 
 weighted_avg_census <- function(mapping_df, abs_df) {
   mapping_df <- mapping_df %>% 
