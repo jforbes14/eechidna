@@ -35,23 +35,21 @@ load("/Users/Jeremy/Documents/R/eechidna/data/abs2016.rda")
 
 # Introduction
 
-A Census is conducted every five years by the Australian Bureau of Statistics. In the years 2001 and 2016 both a federal election and Census occurred, but in the other election years (2004, 2007, 2010 and 2013) there is no Census to directly match, so Census data from neighbouring years must be used in any modelling. This vignette documents how to impute Census data for the desired election year, which involves interpolating between the neighbouring Censuses.
+A Census is conducted every five years by the Australian Bureau of Statistics. In the years 2001 and 2016 both a federal election and Census occur, but in the other election years (2004, 2007, 2010 and 2013) there is no Census to directly match, so Census data from neighbouring years must be used in any modelling. This vignette documents how to impute Census data for the desired election year, which involves interpolating between the neighbouring Censuses.
 
 We impute Census data for the electoral divisions in the 2013 federal election. Maps of 2013 and 2016 electoral divisions are obtained from the Australian Electoral Commission [http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm](http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm), and the map of divisions in place at the time of the 2011 Census is from the Australian Bureau of Statistics [https://datapacks.censusdata.abs.gov.au/datapacks/](https://datapacks.censusdata.abs.gov.au/datapacks/).
 
 ## Changing electoral division boundaries
 
-The Australian Electoral Commission shifts the electoral boundaries regularly, so the electoral divisions in place in the 2013 election may not match those in 2016, nor those in 2011. To obtain Census information for each electoral division, we cannot directly interpolate between neighbouring Censuses. 
+The Australian Electoral Commission shifts the electoral boundaries regularly, so the electoral divisions in place in the 2013 election may not match those in 2016, nor those in 2011. This means that obtaining Census information for a particular electoral division, we are not necessarily able to directly interpolate between the electoral Census profiles in neighbouring Censuses. 
 
-We use a spatio-temporal algorithm that estimates Census information about each electorate, at the time of the election of interest. Since no Census occurs on the desired election year, we have to superimpose the electoral boundaries onto the neighbouring Censuses, and estimate Census characteristics in each of those years. By then linearly interpolate between these time points, we get an estimate for the election year of interest. 
+To account for these boundary shifts, we use a spatio-temporal algorithm to estimate Census information about each electorate, at the time of the election of interest. Electoral boundaries are superimposed onto each of the neighbouring Censuses, in order to estimate Census characteristics for each of those years. By linearly interpolating between these time points, we get an estimate for the election year of interest. 
 
 To illustrate this algorithm, consider the example of the Hume electoral division in the 2013 federal election.
 
 ## Hume in the 2013 election
 
-To illustrate the spatio-temporal algorithm detailed above, consider the imputation of a socio-demographic variable for the electorate of Hume in New South Wales (NSW), at the time of the 2013 federal election. Figure \@ref(fig:hume13) shows this region amongst other NSW electorates.
-
-Below is a map of electoral boundaries in New South Wales (Hume shaded in purple) at the time of the 2013 federal election.
+To illustrate the spatio-temporal algorithm, consider the imputation of a socio-demographic variable for the electorate of Hume in New South Wales (NSW), at the time of the 2013 federal election. The figure below shows this region amongst other NSW electorates.
 
 ```{r hume13, fig.cap = "Some of the electoral boundaries in NSW for 2013, with the electoral boundary for Hume, shown in purple."}
 hume_area13 <- nat_map13 %>% 
@@ -84,7 +82,7 @@ ggplot(data=hume_area16) +
 
 Our aim is to impute Census information for this purple region.
 
-There are many divisions in 2016 that intersect with the 2013 Hume (purple) region, these include the divisions of Riverina, Eden-Monaro and Hume, along with smaller intersecting areas with Fenner, Calare, Gilmore and Whitlam.
+There are many divisions in 2016 that intersect with the purple region (Hume boundary for 2013), these include the divisions of Riverina, Eden-Monaro and Hume, along with smaller intersecting areas with Fenner, Calare, Gilmore and Whitlam.
 
 For each 2016 division that intersects with the purple region, we calculate the percentage of its area is consumed by the purple. The population in this region can then be estimated by assuming evenly distributed populations over the space.
 
@@ -98,7 +96,7 @@ Calare                    | 0.39%      | 161298                 | 633
 Fenner                    | 0.33%      | 202955                 | 683
 Gilmore                   | 0.03%      | 150436                 | 49
 
-This is done for each of the 2013 electoral divisions using the `mapping_fn` function. Note that shapefiles need to be loaded through `loadShapeFile` to be in the right format to be a passed through `mapping_fn`.
+This is done for each of the 2013 electoral divisions using the `mapping_fn` function, which computes the composition of the electoral divisions in terms of the divisions in place at Census time. Note that shapefiles need to be loaded through `loadShapeFile` to be in the right format to be passed through `mapping_fn`. Populations and other Census data is estimated using `weighted_avg_census`.
 
 ## All electorates in the 2013 election
 
@@ -113,7 +111,7 @@ mapping_2016 <- mapping_fn(aec_sF = sF_13, abs_sF = sF_16)
 
 The resultant object is a `data.frame` which contains information about the intersecting areas, and the variable `Percent_Census_Composition` is the percentage of the Census division population that will be attributed to the electoral division.
 
-The next step is to estimate Census data with a weighted average of these intersecting populations, for each electoral division. This is done using `weighted_avg`.
+The next step is to estimate Census data with a weighted average of these intersecting populations, for each electoral division. This is done using `weighted_avg_census`.
 
 ```{r weighted-avg-2016, eval = F}
 imputed_data_2016 <- weighted_avg_census(mapping_df = mapping_2016, abs_df = abs2016)
@@ -139,7 +137,7 @@ abs2013 <- (2/5)*imputed_data_2016 + (3/5)*imputed_data_2011
 # Maintain division names
 abs2013$DivisionNm <- imputed_data_2016$DivisionNm
 
-glimpse(abs2013)
+head(abs2013) %>% kable
 ```
 
 ```{r, echo = F}
