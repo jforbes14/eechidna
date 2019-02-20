@@ -15,14 +15,14 @@
 #' launchApp(
 #'   age = c("Age20_24", "Age25_34", "Age55_64"),
 #'   religion = c("Christianity", "Catholic", "NoReligion"),
-#'   other = c("Population", "MedianIncome", "Unemployed")
+#'   other = c("Population", "MedianPersonalIncome", "Unemployed")
 #' )
 #' 
 #' # for inspecting highly contested areas
 #' launchApp(
 #'   age = c("Age25_34", "Age35_44", "Age55_64"),
 #'   religion = c("Christianity", "Catholic", "NoReligion"),
-#'   other = c("NotOwned", "Indigenous", "Population")
+#'   other = c("Owned", "Indigenous", "Population")
 #' )
 #' 
 #' launchApp()
@@ -36,7 +36,7 @@ launchApp <- function(
   religion = c("Christianity", "Catholic", "Buddhism", "Islam", "Judaism", "NoReligion"),
   other = c("Population", "MedianPersonalIncome", "Unemployed", "BachelorAbv",
             "Indigenous", "EnglishOnly", "OtherLanguageHome", "Married", 
-            "DeFacto", "FamilyRatio"),
+            "DeFacto", "FamilyRatio", "Owned"),
   palette = c('#1B9E77', '#F0027F', '#E6AB02', '#66A61E', '#7570B3', '#D95F02', '#3690C0')
   ) {
   
