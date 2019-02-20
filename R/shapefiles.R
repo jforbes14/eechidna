@@ -15,7 +15,7 @@
 #' sF_2016 <- loadShapeFile("local/path/to/shapefile.shp")
 #' }
 
-loadShapeFile <- function(path_to_shapeFile, tolerance = 0.0001) {
+loadShapeFile <- function(path_to_shapeFile, tolerance = 0.005) {
   
   # geopackage (.gpkg) is to be treated differently so an if else statement is used
   
@@ -107,14 +107,11 @@ loadShapeFile <- function(path_to_shapeFile, tolerance = 0.0001) {
 #' @export
 #' @examples 
 #' \dontrun{
-#' fl <- "vignettes/national-midmif-09052016/COM_ELB.TAB"
+#' fl <- "PATH-ON-YOUR-COMPUTER/national-midmif-09052016/COM_ELB.TAB"
 #' map_and_data16 <- getElectorateShapes(path_to_shapefile = fl)
 #' }
-#' \dontrun {
-#' map_and_data16 <- getElectorateShapes(sF = sF_2016)
-#' }
 
-getElectorateShapes <- function(path_to_shapeFile = NULL, sF = NULL, mapinfo=TRUE, layer=NULL, tolerance=0.0001) {
+getElectorateShapes <- function(path_to_shapeFile = NULL, sF = NULL, mapinfo=TRUE, layer=NULL, tolerance=0.005) {
 
   if (is.null(sF)) {
     if (!is.null(path_to_shapeFile)) {
@@ -128,14 +125,14 @@ getElectorateShapes <- function(path_to_shapeFile = NULL, sF = NULL, mapinfo=TRU
   # Extract data and map to be ggplot friendly
   nat_data <- sF@data
   nat_data$id <- row.names(nat_data)
-  nat_map <- ggplot2::fortify(sFsmall)
+  nat_map <- ggplot2::fortify(sF)
   nat_map$group <- paste("g",nat_map$group,sep=".")
   nat_map$piece <- paste("p",nat_map$piece,sep=".")
   
   if ("state" %in% names(sF@data)) {
-    nms <- sFsmall@data %>% dplyr::select(elect_div, state)
+    nms <- dplyr::select(sF@data, elect_div, state)
   } else {
-    nms <- sFsmall@data %>% dplyr::select(elect_div)
+    nms <- dplyr::select(sF@data, elect_div)
   }
   
   nms$id <- as.character(1:150)
@@ -156,7 +153,48 @@ getElectorateShapes <- function(path_to_shapeFile = NULL, sF = NULL, mapinfo=TRU
   keep_index <- which(names(nat_data) %in% c("elect_div", "state", "numccds", "area_sqkm", "id", "long_c", "lat_c"))
   nat_data <- nat_data[, keep_index]
   
-  list(map=nat_map, data=nat_data)
+  # Function: Fix state labels
+  state_label <- function(df) {
+    new <- df
+    
+    if("1" %in% levels(factor(new$state))) {
+      new <- new %>% 
+        mutate(state = recode_factor(state, `1` = "NSW", `2` = "VIC", `3` = "QLD", `4` = "SA", `5` = "WA", 
+          `6` = "TAS", `7` = "NT", `8` = "ACT", "OTHER TERR" = "ACT"))
+    }
+    
+    if("VICTORIA" %in% levels(factor(new$state))) {
+      new <- new %>%
+        mutate(state = recode_factor(factor(state), "NEW SOUTH WALES" = "NSW", "VICTORIA" = "VIC", 
+          "QUEENSLAND" = "QLD", "SOUTH AUSTRALIA" = "SA", "WESTERN AUSTRALIA" = "WA", 
+          "TASMANIA" = "TAS", "NORTHERN TERRITORY" = "NT", "AUSTRALIAN CAPITAL TERRITORY" = "ACT", 
+          "OTHER TERRITORIES" = "ACT", "OTHER TERR" = "ACT"))
+    }
+    
+    if("OTHER TERR" %in% levels(factor(new$state))) {
+      new <- new %>%
+        mutate(state = recode_factor(factor(state), "OTHER TERR" = "ACT"))
+    }
+    
+    return(new)
+  }
+  
+  # Function: characters upper case
+  chr_upper <- function(df) {
+    fc_cols <- sapply(df, class) == 'factor'
+    df[, fc_cols] <- lapply(df[, fc_cols], as.character)
+    
+    ch_cols <- sapply(df, class) == 'character'
+    df[, ch_cols] <- lapply(df[, ch_cols], toupper)
+    return(df)
+  }
+  
+  # Apply along with cartogram
+  nat_map <- nat_map %>% 
+    chr_upper() %>% state_label()
+  nat_data <- aec_add_carto_f(nat_data) %>% 
+    chr_upper() %>% state_label()
+  
+  # Out
+  return(list(map=nat_map, data=nat_data))
 }
-
-

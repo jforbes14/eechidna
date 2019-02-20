@@ -5,7 +5,7 @@
 \title{Extract shapefiles (of Australian electorates) from shp file}
 \usage{
 getElectorateShapes(path_to_shapeFile = NULL, sF = NULL,
-  mapinfo = TRUE, layer = NULL, tolerance = 1e-04)
+  mapinfo = TRUE, layer = NULL, tolerance = 0.005)
 }
 \arguments{
 \item{sF}{Shapefile object loaded to environment using loadShapeFile}
@@ -30,10 +30,7 @@ The function will take several minutes to complete.
 }
 \examples{
 \dontrun{
-fl <- "vignettes/national-midmif-09052016/COM_ELB.TAB"
+fl <- "PATH-ON-YOUR-COMPUTER/national-midmif-09052016/COM_ELB.TAB"
 map_and_data16 <- getElectorateShapes(path_to_shapefile = fl)
-}
-\dontrun {
-map_and_data16 <- getElectorateShapes(sF = sF_2016)
 }
 }

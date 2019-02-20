@@ -306,11 +306,11 @@ dorling <- function(name, centroidx, centroidy, density, nbr=NULL, shared.border
 #' @examples 
 #' library(dplyr)
 #' library(ggplot2)
-#' data(nat_map)
-#' data(nat_data)
-#' adelaide <- aec_extract_f(nat_data, ctr=c(138.6, -34.9), expand=c(2,3))
+#' data(nat_map16)
+#' data(nat_data16)
+#' adelaide <- aec_extract_f(nat_data16, ctr=c(138.6, -34.9), expand=c(2,3))
 #' adelaide_carto <- aec_carto_f(adelaide) %>% rename(id=region)
-#' ggplot(data=nat_map) + 
+#' ggplot(data=nat_map16) + 
 #'   geom_path(aes(x=long, y=lat, group=group, order=order),
 #'                  colour="grey50") +
 #'   geom_point(data=adelaide_carto, aes(x=x, y=y), size=4, alpha=0.4,
@@ -334,7 +334,6 @@ dorling <- function(name, centroidx, centroidy, density, nbr=NULL, shared.border
 aec_carto_f <-function(aec_data_sub, polygon.vertex=6, name.text=TRUE,
                        dist.ratio=dist.ratio, iteration=100,
                        xlab="", ylab="", ...) {
-  #aec_data_sub <- aec_extract(aec_data)
   purrr::when(is.null(aec_data_sub$POPULATION), aec_data_sub$POPULATION <- 1000)
   aec_data_dor <- dorling(aec_data_sub$id, aec_data_sub$long_c,
                           aec_data_sub$lat_c, aec_data_sub$POPULATION,
@@ -398,9 +397,8 @@ aec_carto_join_f <- function(aec_data, aec_carto) {
 #' Add the cartogram locations as new variables to original data
 #' and make any of these that were not made equal to the original centroids.
 #' This is simply all of the Australian electoral cartogram steps in one hit.
-#' @export
 #' @param nat_data subset of data with centroids of electoral divisions
-#'
+#' @export
 #' @examples
 #' library(dplyr)
 #' library(ggplot2)
@@ -431,42 +429,33 @@ aec_add_carto_f <- function(nat_data) {
   expand <- list(c(2,3.8), c(2,3), c(2.6,4.1), c(4,3), c(12,6))
   
   # clusters in major cities
-  sydney <- aec_extract_f(nat_data, ctr=nat_data %>% 
-      filter(elect_div == "Sydney") %>% 
-      select(long_c, lat_c) %>% unlist %>% unname, expand = c(2,3.8))
-  sydney_carto <- aec_carto_f(sydney) %>% rename(id=region)
+  sydney <- aec_extract_f(nat_data, ctr=nat_data %>% filter(elect_div == "SYDNEY") %>% select(long_c, lat_c) %>% unlist %>% unname, expand = c(2,3.8))
+  sydney_carto <- aec_carto_f(sydney) %>% dplyr::rename(id=region)
   sydney_all <- merge(sydney, sydney_carto, by="id")
   
-  brisbane <- aec_extract_f(nat_data, ctr=nat_data %>% 
-      filter(elect_div == "Brisbane") %>% 
-      select(long_c, lat_c) %>% unlist %>% unname, expand = c(2,3))
-  brisbane_carto <- aec_carto_f(brisbane) %>% rename(id=region)
+  brisbane <- aec_extract_f(nat_data, ctr=nat_data %>% filter(elect_div == "BRISBANE") %>% select(long_c, lat_c) %>% unlist %>% unname, expand = c(2,3))
+  brisbane_carto <- aec_carto_f(brisbane) %>% dplyr::rename(id=region)
   brisbane_all <- merge(brisbane, brisbane_carto, by="id")
   
-  melbourne <- aec_extract_f(nat_data, ctr=nat_data %>% 
-      filter(elect_div == "Melbourne") %>% 
-      select(long_c, lat_c) %>% unlist %>% unname, expand = c(2.6,4.1))
-  melbourne_carto <- aec_carto_f(melbourne) %>% rename(id=region)
+  melbourne <- aec_extract_f(nat_data, ctr=nat_data %>% filter(elect_div == "MELBOURNE") %>% select(long_c, lat_c) %>% unlist %>% unname, expand = c(2.6,4.1))
+  melbourne_carto <- aec_carto_f(melbourne) %>% dplyr::rename(id=region)
+  melbourne_all <- merge(melbourne, melbourne_carto, by="id")
+  
+  adelaide <- aec_extract_f(nat_data, ctr=nat_data %>% filter(elect_div == "ADELAIDE") %>% select(long_c, lat_c) %>% unlist %>% unname, expand = c(4,3))
+  adelaide_carto <- aec_carto_f(adelaide) %>% dplyr::rename(id=region)
   adelaide_all <- merge(adelaide, adelaide_carto, by="id")
   
-  adelaide <- aec_extract_f(nat_data, ctr=nat_data %>% 
-      filter(elect_div == "Adelaide") %>% 
-      select(long_c, lat_c) %>% unlist %>% unname, expand = c(4,3))
-  adelaide_carto <- aec_carto_f(adelaide) %>% rename(id=region)
-  adelaide_all <- merge(adelaide, adelaide_carto, by="id")
-  
-  perth <- aec_extract_f(nat_data, ctr=nat_data %>% 
-      filter(elect_div == "Perth") %>% 
-      select(long_c, lat_c) %>% unlist %>% unname, expand = c(12,6))
-  perth_carto <- aec_carto_f(perth) %>% rename(id=region)
+  perth <- aec_extract_f(nat_data, ctr=nat_data %>% filter(elect_div == "PERTH") %>% select(long_c, lat_c) %>% unlist %>% unname, expand = c(12,6))
+  perth_carto <- aec_carto_f(perth) %>% dplyr::rename(id=region)
   perth_all <- merge(perth, perth_carto, by="id")
   
   # compute cartogram
   
-  nat_carto <- purrr::map2(.x=cities, .y=expand, .f=aec_extract_f, aec_data=nat_data) %>%
-    purrr::map_df(aec_carto_f) %>%
-    mutate(region=as.integer(as.character(region))) %>%
-    rename(id=region)
+  nat_carto <- suppressWarnings(purrr::map2(.x=cities, .y=expand, .f=aec_extract_f, aec_data=nat_data) %>%
+      purrr::map_df(aec_carto_f) %>%
+      mutate(region=as.integer(as.character(region))) %>%
+      dplyr::rename(id=region))
+  
   
   # join
   

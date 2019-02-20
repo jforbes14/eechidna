@@ -33,11 +33,11 @@ geographic proximity.
 \examples{
 library(dplyr)
 library(ggplot2)
-data(nat_map)
-data(nat_data)
-adelaide <- aec_extract_f(nat_data, ctr=c(138.6, -34.9), expand=c(2,3))
+data(nat_map16)
+data(nat_data16)
+adelaide <- aec_extract_f(nat_data16, ctr=c(138.6, -34.9), expand=c(2,3))
 adelaide_carto <- aec_carto_f(adelaide) \%>\% rename(id=region)
-ggplot(data=nat_map) + 
+ggplot(data=nat_map16) + 
   geom_path(aes(x=long, y=lat, group=group, order=order),
                  colour="grey50") +
   geom_point(data=adelaide_carto, aes(x=x, y=y), size=4, alpha=0.4,
