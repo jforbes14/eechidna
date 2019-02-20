@@ -126,7 +126,7 @@ circle = function(xvec,yvec,rvec,vertex=100,border=1,col=NULL,add=TRUE, square=F
 ##' @param nbr A list of the neighbors of every region. Each element is a vector of all the neighbor names of a region. If nbr=NULL, then it is assumed that no region has any neighbors. If nbr is not NULL, then names should be given to all the elements of the list, for matching the neighbors with the host region name, otherwise the parameter "name" (a character vector) will be used as the element names of nbr. Besides, any values in nbr that are not in "name" will be removed. The length of nbr could be different from the length of "name", but any element in nbr whose name is not in "name" will be removed too.
 ##' @param shared.border A matrix of the counts of shared borders, typically generated from the function \code{border_summary_length()}. It is used to scale the attract force.
 ##' @param color a vector of color to fill in the circles or polygons. Auto-completed if the length does not match with name.
-##' @param tolerance Tolerant value for the sum of overlapped radii.
+##' @param tolerance_rad Tolerant value for the sum of overlapped radii.
 ##' @param dist.ratio The threshold to determine whether an attract force is added. It is applied to the ratio of the distance between two centroids and the sum of the two radii.
 ##' @param iteration The limit of the number of iterations. Default to be 9999.
 ##' @param polygon.vertex The number of vertice of the circle. Default to be 100. If polygon.vertex=4 then diamonds applies. If polygon.vertex=6, then hexagon applies.
@@ -138,7 +138,7 @@ circle = function(xvec,yvec,rvec,vertex=100,border=1,col=NULL,add=TRUE, square=F
 ##' @param ... other things
 
 ##' 
-dorling <- function(name, centroidx, centroidy, density, nbr=NULL, shared.border=NULL, color=NULL, tolerance=0.1, dist.ratio=1.2, iteration=9999, polygon.vertex=100, animation=FALSE, sleep.time=0.3, nbredge=ifelse(is.null(nbr),FALSE,TRUE), name.text=TRUE, ggplot2=FALSE, ...){
+dorling <- function(name, centroidx, centroidy, density, nbr=NULL, shared.border=NULL, color=NULL, tolerance_rad=0.1, dist.ratio=1.2, iteration=9999, polygon.vertex=100, animation=FALSE, sleep.time=0.3, nbredge=ifelse(is.null(nbr),FALSE,TRUE), name.text=TRUE, ggplot2=FALSE, ...){
   n=length(name)
   stopifnot(n==length(centroidx), n==length(centroidy), n==length(density), is.numeric(iteration))
   
@@ -190,7 +190,7 @@ dorling <- function(name, centroidx, centroidy, density, nbr=NULL, shared.border
   s=0
   err=circleDist-crtDist
   
-  while (sum(sapply(err,max,0))>tolerance) {
+  while (sum(sapply(err,max,0))>tolerance_rad) {
     s = s + 1
     if (!is.null(iteration) && s>iteration) {
       warning("Reach the largest iteration limit.")
