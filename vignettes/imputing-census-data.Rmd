@@ -19,17 +19,14 @@ opts_chunk$set(fig.width = 6,
                       dev = "png",
                       warning = FALSE,
                       message = FALSE,
-                      cache = TRUE)
+                      cache = F)
 library(tidyverse)
 library(ggthemes)
-#data(nat_map13)
-#data(nat_map16)
-#data(abs2011)
-#data(abs2016)
-load("/Users/Jeremy/Documents/R/eechidna/data/nat_map13.rda")
-load("/Users/Jeremy/Documents/R/eechidna/data/nat_map16.rda")
-load("/Users/Jeremy/Documents/R/eechidna/data/abs2011.rda")
-load("/Users/Jeremy/Documents/R/eechidna/data/abs2016.rda")
+library(eechidna)
+data(nat_map13)
+data(nat_map16)
+data(abs2011)
+data(abs2016)
 
 ```
 
