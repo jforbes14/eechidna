@@ -17,8 +17,7 @@ vignette: >
 knitr::opts_chunk$set(fig.width = 6,
                       fig.height = 4,
                       fig.align='center',
-                      dev = "png",
-                      cache = TRUE)
+                      dev = "png")
 
 ```
 
@@ -37,7 +36,7 @@ library(eechidna)
 library(plyr)
 library(dplyr)
 
-load("/Users/Jeremy/Documents/R/eechidna/data/abs2016.rda")
+data(abs2016)
 glimpse(abs2016)
 
 ```

@@ -13,7 +13,7 @@ vignette: >
 knitr::opts_chunk$set(fig.width = 6,
                       fig.height = 4,
                       fig.align='center',
-                      dev = "png", cache=TRUE)
+                      dev = "png")
 ```
 
 This vignette describes how to make a map of the Australian election results. It requires merging polygons of the electoral regions, with election results using the electorate id's or unique names. The `nat_map16` contains the electorate polygons and `fp16` contains the results of the 2016 Federal election.
@@ -24,12 +24,9 @@ library(plyr)
 library(dplyr)
 library(ggplot2)
 
-data(nat_data16)
-#load("/Users/Jeremy/Documents/R/eechidna/data/my/nat_data16.rda")
-data(nat_map16)
-#load("/Users/Jeremy/Documents/R/eechidna/data/my/nat_map16.rda")
-data(fp16)
-#load("/Users/Jeremy/Documents/R/eechidna/data/fp16.rda")
+data("nat_data16")
+data("nat_map16")
+data("fp16")
 map.winners <- fp16 %>% filter(Elected == "Y") %>% 
   select(DivisionNm, PartyNm) %>% 
   merge(nat_map16, by.x="DivisionNm", by.y="elect_div")

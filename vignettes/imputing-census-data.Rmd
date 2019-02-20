@@ -30,13 +30,11 @@ data(abs2016)
 
 ```
 
-# Introduction
+## Introduction
 
 A Census is conducted every five years by the Australian Bureau of Statistics. In the years 2001 and 2016 both a federal election and Census occur, but in the other election years (2004, 2007, 2010 and 2013) there is no Census to directly match, so Census data from neighbouring years must be used in any modelling. This vignette documents how to impute Census data for the desired election year, which involves interpolating between the neighbouring Censuses.
 
 We impute Census data for the electoral divisions in the 2013 federal election. Maps of 2013 and 2016 electoral divisions are obtained from the Australian Electoral Commission [http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm](http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm), and the map of divisions in place at the time of the 2011 Census is from the Australian Bureau of Statistics [https://datapacks.censusdata.abs.gov.au/datapacks/](https://datapacks.censusdata.abs.gov.au/datapacks/).
-
-## Changing electoral division boundaries
 
 The Australian Electoral Commission shifts the electoral boundaries regularly, so the electoral divisions in place in the 2013 election may not match those in 2016, nor those in 2011. This means that obtaining Census information for a particular electoral division, we are not necessarily able to directly interpolate between the electoral Census profiles in neighbouring Censuses. 
 
@@ -44,7 +42,7 @@ To account for these boundary shifts, we use a spatio-temporal algorithm to esti
 
 To illustrate this algorithm, consider the example of the Hume electoral division in the 2013 federal election.
 
-## Hume in the 2013 election
+## Example: Hume in the 2013 election
 
 To illustrate the spatio-temporal algorithm, consider the imputation of a socio-demographic variable for the electorate of Hume in New South Wales (NSW), at the time of the 2013 federal election. The figure below shows this region amongst other NSW electorates.
 
@@ -95,7 +93,7 @@ Gilmore                   | 0.03%      | 150436                 | 49
 
 This is done for each of the 2013 electoral divisions using the `mapping_fn` function, which computes the composition of the electoral divisions in terms of the divisions in place at Census time. Note that shapefiles need to be loaded through `loadShapeFile` to be in the right format to be passed through `mapping_fn`. Populations and other Census data is estimated using `weighted_avg_census`.
 
-## All electorates in the 2013 election
+## Applying function to all electorates in the 2013 election
 
 `aec_sF` is the shapefile containing the polygons associated with electoral boundaries for which Census information is to be imputed, and `abs_sF` contains polygons that match those in place at the time of the Census. 
 
@@ -138,8 +136,12 @@ head(abs2013) %>% kable
 ```
 
 ```{r, echo = F}
-load("/Users/Jeremy/Documents/R/eechidna/data/abs2013.rda")
+data("abs2013")
 head(abs2013) %>% kable
 ```
+
+## Summary
+
+We have demonstrated how to use the functions needed to impute Census information for 2004, 2007, 2010 and 2013 elections. For future elections, the same functions can be used, and rather than interpolating over time, simply use the previous Census, until another Census is made available. 
 
 

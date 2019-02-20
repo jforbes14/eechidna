@@ -12,12 +12,15 @@ vignette: >
 ---
 
 
-```{r setup, echo=FALSE}
+```{r setup, echo=FALSE, include = FALSE}
 library(knitr)
-opts_chunk$set(eval = FALSE,
-               warning = FALSE,
+library(tidyverse)
+opts_chunk$set(warning = FALSE,
                message = FALSE,
-  cache = TRUE)
+               fig.width = 6,
+               fig.height = 4,
+               fig.align='center',
+               dev = "png")
 
 ```
 
@@ -25,23 +28,30 @@ The Australian Electorate Commission publishes the boundaries of the electorates
 
 Once the files (preferably the national files) are downloaded, unzip the file (it will build a folder with a set of files). We want to read the shapes contained in the `shp`, `TAB`, or `MIF` file into R. The `rgdal` library can be used to do this.
 
-The function `getElectorateShapes` extracts a list from the shapefile, consisting of a `dataframe` containing coordinates of each polygon and a `dataframe` with data associated with each polygon (electorate). These can be used directly with `ggplot` graphics.
+The function `getElectorateShapes` extracts a list from the shapefile, consisting of a `dataframe` containing coordinates of each polygon and a `dataframe` with data associated with each polygon (electorate). These can be used directly with `ggplot` graphics. Alternatively, the `loadShapeFile` function imports the shapefile as a `SpatialPolygonsDataFrame`.
 
-```{r, message=FALSE, warning=FALSE}
+```{r, message=FALSE, warning=FALSE, eval = F}
 # shapeFile contains the path to the shp file:
-#shapeFile <- "national-midmif-09052016/COM_ELB.TAB"
-shapeFile <- "/Users/Jeremy/Documents/R/eechidna/data-raw/Shapefiles/national-midmif-09052016/COM_ELB.TAB"
+shapeFile <- "/PATH-ON-YOUR-COMPUTER/national-midmif-09052016/COM_ELB.TAB"
 sF <- getElectorateShapes(shapeFile)
+
+nat_map <- sF$map
+nat_data <- sF$data
+```
+
+```{r, echo = F}
+library(eechidna)
+data("nat_map16")
+data("nat_data16")
+nat_map <- nat_map16
+nat_data <- nat_data16
 ```
 
 Here we have a map of the Australian electorates colored by their size as given in the data (variable `area_sqkm`):
 
-```{r, message=FALSE, warning=FALSE}
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=6}
 library(ggplot2)
 library(ggthemes)
-
-nat_map <- sF$map
-nat_data <- sF$data
 
 ggplot(aes(map_id=id), data=nat_data) +
   geom_map(aes(fill=area_sqkm), map=nat_map) +
@@ -55,82 +65,86 @@ The `getElectorateShapes` function works for the Australian electoral boundaries
 
 For the 2016 election, the national electorate boundaries are given in MapInfo format.
 
-```{r, eval=FALSE, echo=FALSE}
+```{r eval=FALSE, echo=FALSE}
+library(tidyverse)
 library(rgdal)
 
 # shapeFile contains the path to the shp file:
-#shapeFile <- "national-midmif-09052016/COM_ELB.TAB"
-shapeFile <- "/Users/Jeremy/Documents/R/eechidna/data-raw/Shapefiles/national-midmif-09052016/COM_ELB.TAB"
+shapeFile <- "/PATH-TO-YOUR-COMPUTER/national-midmif-09052016/COM_ELB.TAB"
 
 sF <- readOGR(dsn=shapeFile)
-class(sF)
 ```
+
+```{r echo = F}
+data("sF_16")
+sF <- sF_16
+```
+
 
 `sF` is a spatial data frame containing all of the polygons. First, for convenience, lets change all variable names in the assocated data set to lower case.
 
-```{r, message = FALSE}
+```{r, eval=FALSE, message = FALSE}
 names(sF@data) <- tolower(names(sF@data))
 ```
 
-We use the `rmapshaper` package to thin the polygons while preserving the geography:
+We now use `rgeos` to thin the polygons and ensure that there are no holes while preserving the geography:
 
-```{r, message=FALSE}
-library(rmapshaper)
-```
-If the library is not available, install it from CRAN using 
-`install.packages("rmapshaper")`.
-
-```{r, message=FALSE}
-sFsmall <- ms_simplify(sF, keep=0.05) # use instead of thinnedSpatialPoly
-```
-`keep` indicates the percentage of points we want to keep in the polygons. 5% makes the electorate boundary still quite recognizable, but reduce the overall size of the map considerably, making it faster to plot.
-
-We can use base graphics to plot this map:
-```{r, cache=TRUE, message=FALSE}
-plot(sFsmall)
+```{r eval=FALSE, message=FALSE}
+library(rgeos)
 ```
 
+```{r, eval=FALSE, message=FALSE}
+sF <- gSimplify(sF, tol = 0.005)
+```
+`tol` is the numerical tolerance value to be used by the Douglas-Peuker algorithm. A larger value thins the polygons by more, reducing the number of points. Doing this helps reduce the overall size of the map considerably, making it faster to plot.
 
 ### Extracting the electorate information 
 
 A spatial polygons data frame consists of both a data set with information on each of the entities (in this case, electorates), and a set of polygons for each electorate (sometimes multiple polygons are needed, e.g. if the electorate has islands). We want to extract both of these parts.
-```{r, message=FALSE}
+
+```{r echo=FALSE}
+sF@data <- dplyr::select(sF@data, -c(long_c, lat_c))
+```
+
+
+```{r message=FALSE}
 nat_data <- sF@data
 head(nat_data)
 ```
+
 The row names of the data file are identifiers corresponding to the polygons - we want to make them a separate variable:
 ```{r, message=FALSE}
 nat_data$id <- row.names(nat_data)
 ```
 In the currently published version of the 2016 electorate boundaries, the `data` data frame has variable `elect_div` of the electorates' names, and variable `state`, which is an abbreviation of the state name. It might be convenient to merge this information (or at least the state abbreviation) into the polygons (see below).
-We are almost ready to export this data  into a file, but we still want include geographic centers in the data (see also below).
+
+We are almost ready to export this data into a file, but we still want include geographic centers in the data (see also below).
 
 ### Extracting the polygon information 
 
 The `fortify` function in the `ggplot2` package extracts the polygons into a data frame. 
-```{r}
-nat_map <- ggplot2::fortify(sFsmall)
-head(nat_map)
+```{r eval=F}
+nat_map <- ggplot2::fortify(sF)
 ```
 
 We need to make sure that `group` and `piece` are kept as factor variables - if they are allowed to be converted to numeric values, it messes things up, because as factor levels `9` and `9.0` are distinct, whereas they are not when interpreted as numbers ...
-```{r}
+```{r eval=F}
 nat_map$group <- paste("g",nat_map$group,sep=".")
 nat_map$piece <- paste("p",nat_map$piece,sep=".")
 ```
 
 It is useful to have the electorate name and state attached to the map.
 
-```{r}
-nms <- sFsmall@data %>% select(elect_div, state)
+```{r eval=F}
+nms <- sF@data %>% select(elect_div, state)
 nms$id <- as.character(1:150)
 nat_map <- left_join(nat_map, nms, by="id")
 ```
 
 The map data is ready to be exported to a file:
 
-```{r eval=FALSE}
-write.csv(nat_map, "National-map-2016.csv", row.names=FALSE)
+```{r}
+head(nat_map)
 ```
 
 ###Getting centroids 
@@ -149,17 +163,18 @@ slotNames(polys)
 We are interested further into the polygon aspect of this object:
 
 ```{r}
-Polygon(polys[1])
+sp::Polygon(polys[1])
 ```
 From this, we want to extract the `labpt` component, because those are the centroids we are interested in. We will wrap this into a little function called `centroid` to help us with that:
 
 ```{r, message=FALSE, warning=FALSE}
-library(dplyr)
 centroid <- function(i, polys) {
-  ctr <- Polygon(polys[i])@labpt
+  ctr <- sp::Polygon(polys[i])@labpt
   data.frame(long_c=ctr[1], lat_c=ctr[2])
 }
+
 centroids <- seq_along(polys) %>% purrr::map_df(centroid, polys=polys)
+
 head(centroids)
 ```
 The centroids come in the same order as the data (luckily) and we just extend the data set for the electorates by this information, and finally export:
@@ -174,9 +189,7 @@ write.csv(nat_data, "National-data-2016.csv", row.names=FALSE)
 
 Finally, just to check the data, a map of the Australian electorates colored by their size as given in the data (variable `area_sqkm`):
 
-```{r, message=FALSE, warning=FALSE}
-library(ggplot2)
-library(ggthemes)
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=6}
 ggplot(aes(map_id=id), data=nat_data) +
   geom_map(aes(fill=area_sqkm), map=nat_map) +
   expand_limits(x=nat_map$long, y=nat_map$lat) + 

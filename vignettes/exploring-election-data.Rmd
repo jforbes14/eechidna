@@ -1,5 +1,5 @@
 ---
-title: "Exploring the 2013 Election data"
+title: "Exploring the 2016 Election data"
 author: "Ben Marwick, Di Cook, Heike Hofmann, Rob Hyndman,Carson Sievert, Nicholas Tierney, Fang Zhou"
 date: "`r Sys.Date()`"
 output: 
@@ -19,8 +19,7 @@ opts_chunk$set(fig.width = 6,
                       fig.align='center',
                       dev = "png",
                       warning = FALSE,
-                      message = FALSE,
-                      cache = TRUE)
+                      message = FALSE)
 
 ```
 
@@ -60,10 +59,10 @@ library(broom)
 library(tidyr)
 library(purrrlyr)
 
-load("/Users/Jeremy/Documents/R/eechidna/data/fp16.rda")
-load("/Users/Jeremy/Documents/R/eechidna/data/tpp16.rda")
-load("/Users/Jeremy/Documents/R/eechidna/data/tcp16.rda")
-load("/Users/Jeremy/Documents/R/eechidna/data/abs2016.rda")
+data(fp16)
+data(fpp16)
+data(tcp16)
+data(abs2016)
 
 # inspect the data frame
 glimpse(fp16)

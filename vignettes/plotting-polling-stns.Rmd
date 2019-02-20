@@ -13,7 +13,7 @@ vignette: >
 knitr::opts_chunk$set(fig.width = 6,
                       fig.height = 4,
                       fig.align='center',
-                      dev = "png", cache=TRUE)
+                      dev = "png")
 ```
 
 This vignette demonstrates how to plot the polling booths on a map of the Australian electorates. The polling booth locations for each federal election (from 2004 to 2016) can be downloaded from [http://results.aec.gov.au/](http://results.aec.gov.au/). Coordinates for 2004 polling booths are obtained by matching polling booth ID and name with later elections, and 2001 are sourced from *David Barry*. Around 600 polling booths are missing coordinates in each election, so these are left as `NA`. (It is possible to assign postcode coordinates to `NA` locations that have post codes, and an example of how to do this is provided.)
@@ -32,11 +32,11 @@ stns <- read_csv("http://results.aec.gov.au/20499/Website/Downloads/GeneralPolli
 
 ```{r mapit, fig.width=7, fig.height=4, message=FALSE, error = TRUE, warning=FALSE, echo=TRUE, tidy=TRUE}
 library(ggthemes)
+data("nat_map16")
+data("nat_data16")
 
-data(nat_map_2016)
-data(nat_data_2016)
-ggplot(data=nat_data_2016, aes(map_id=id)) +
-  geom_map(map=nat_map_2016, fill="grey90", colour="white") + 
+ggplot(data=nat_data16, aes(map_id=id)) +
+  geom_map(map=nat_map16, fill="grey90", colour="white") + 
   geom_point(data=stns, aes(x=Longitude, y=Latitude), colour="red", size=1, alpha=0.3, inherit.aes=FALSE) +
   xlim(c(112,157)) + ylim(c(-44,-11)) +
   theme_map() + coord_equal()
@@ -49,14 +49,14 @@ Election results are provided at the resolution of polling place. We can use thi
 This gives a richer look at the party preferences across the country. You can see that although the big rural electorates vote for LNP overall, some polling places would elect the ALP, e.g. western NSW around Broken Hill. This data would look far more interesting if the data also contained the minority parties, because there must be some polling places where the majority vote would be for a minor party, since there are some minor party representatives in the House.  
 
 ```{r tpp_map, fig.width=7, fig.height=5, message=FALSE, error = TRUE, warning=FALSE, echo=FALSE, tidy=TRUE}
-load("/Users/Jeremy/Documents/R/Data/Clean/tpp_pp16.rda")
+data("tpp_pp16")
 
 # Find winner
 tpp_pp16 <- tpp_pp16 %>% 
   mutate(winner = ifelse(ALP_Percent >= 50, "ALP", "LNP"))
 
-ggplot(data=nat_data_2016, aes(map_id=id)) +
-  geom_map(map=nat_map_2016, fill="grey90", colour="white") + 
+ggplot(data=nat_data16, aes(map_id=id)) +
+  geom_map(map=nat_map16, fill="grey90", colour="white") + 
   geom_point(data=tpp_pp16, aes(x=Longitude, y=Latitude, colour=winner), size=1, alpha=0.3, inherit.aes=FALSE) +
   scale_color_manual("Party", values=c("LNP"="#80b1d3", "ALP"="#fb8072")) + 
   xlim(c(112,157)) + ylim(c(-44,-11)) +
@@ -66,42 +66,21 @@ ggplot(data=nat_data_2016, aes(map_id=id)) +
 The two candidate preferred vote in `tcp_pp16` is a measure of preference between the two candidates who received the most votes through the division of preferences, where the winner has the higher percentage.
 
 ```{r tcp_map, fig.width=7, fig.height=5, message=FALSE, error = TRUE, warning=FALSE, echo=FALSE, tidy=TRUE}
-#data(aec2016_2pp)
-load("/Users/Jeremy/Documents/R/Data/Clean/tcp_pp16.rda")
+data("tcp_pp16")
 
 # Find winner
-tcp_pp16$winner = colnames(tcp_pp16[, 6:11])[apply(tcp_pp16[, 6:11],1,which.max)]
+winners <- tcp_pp16 %>% 
+  left_join(tcp_pp16 %>% group_by(PollingPlaceID) %>% summarise(TotalVotes = sum(OrdinaryVotes)), by = "PollingPlaceID") %>% 
+  filter(OrdinaryVotes/TotalVotes > 0.5)
 
 # Plot
-ggplot(data=nat_data_2016, aes(map_id=id)) +
-  geom_map(map=nat_map_2016, fill="grey90", colour="white") + 
-  geom_point(data=tcp_pp16, aes(x=Longitude, y=Latitude, colour=winner), size=1, alpha=0.6, inherit.aes=FALSE) +
-  scale_color_manual("Party", values=c("LNP"="#80b1d3", "ALP"="#fb8072", "GRN" = "#33a02c", "IND" = "#beaed4", "ON" = "#fdc086", "Other" = "#ffff99")) + 
+ggplot(data=nat_data16, aes(map_id=id)) +
+  geom_map(map=nat_map16, fill="grey90", colour="white") + 
+  geom_point(data=winners, aes(x=Longitude, y=Latitude, colour=PartyAb), size=1, alpha=0.6, inherit.aes=FALSE) +
+  scale_color_manual("Party", values=c("LNP"="#80b1d3", "ALP"="#fb8072", "GRN" = "#33a02c", "XEN" = "#beaed4", "ON" = "#fdc086", "KAP" = "#ffff99", "IND" = "grey25")) + 
   xlim(c(112,157)) + ylim(c(-44,-11)) +
   theme_map() + coord_equal() + theme(legend.position="bottom")
 ```
 
 This map shows which party had the most support at each polling booth, and we see that support for minor parties are clustered in different regiond. An independent candidate has lots of support in the electorate of Indi (rural Victoria), One Nation party is backed by parts of rural Queesland, and other parties are popular in northern Queenaland and around Adelaide. Again we see the cities strongly support Labor.
-
-
-## Filling `NA` using post codes
-
-The coordinates associated with Australian post codes are obtained from [http://www.corra.com.au/australian-postcode-location-data/](http://www.corra.com.au/australian-postcode-location-data/), and can be used to fill in missing locations for polling booths. Australian post codes do not change much, so this data from 2013 should be adequate to fill in the blanks for each election. (Note that many polling booths are even missing a post code.)
-
-```{r, eval = FALSE}
-# http://www.corra.com.au/downloads/Australian_Post_Codes_Lat_Lon.zip
-
-postcodes <- read_csv("/Users/Jeremy/Documents/R/Data/Raw/Australian_Post_Codes_Lat_Lon.csv")
-
-postcodes <- postcodes[match(unique(postcodes$postcode), postcodes$postcode),] %>% 
-  dplyr::rename(Latitude = lat, Longitude = lon, PremisesPostCode = postcode)
-
-add <- left_join(tcp_pp16 %>% filter(is.na(Longitude)) %>% 
-    select(-c(Longitude, Latitude)),
-  postcodes %>% select(PremisesPostCode, Latitude, Longitude), by = "PremisesPostCode")
-
-# Now combine into (almost) complete dataset
-
-tcp_pp16_filled <- bind_rows(tcp_pp16 %>% filter(!is.na(Latitude)), add)
-```
 
