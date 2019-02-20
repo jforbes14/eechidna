@@ -4,7 +4,7 @@
 \name{nat_map04}
 \alias{nat_map04}
 \title{Map of Australian Electorates from 2004}
-\format{An object of class \code{data.frame} with 31443 rows and 9 columns.}
+\format{An object of class \code{data.frame} with 39424 rows and 9 columns.}
 \usage{
 nat_map04
 }

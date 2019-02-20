@@ -7,7 +7,7 @@ polygon, fix any problematic polygons, and format variable names.
 "nat_map" and "nat_data" objects for every Australian federal election between 
 2001-2016 can be readily loaded from the package for analysis.}
 \usage{
-loadShapeFile(path_to_shapeFile, tolerance = 1e-04)
+loadShapeFile(path_to_shapeFile, tolerance = 0.005)
 }
 \arguments{
 \item{tolerance}{numerical tolerance value to be used by the Douglas-Peuker algorithm}
