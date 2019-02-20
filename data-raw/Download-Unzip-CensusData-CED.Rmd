@@ -1,0 +1,150 @@
+---
+title: "Download and Unzip ABS Census Data"
+author: "Jeremy Forbes"
+date: "06/03/2018"
+output: html_document
+---
+
+This markdown, when run, downloads the requires Commonwealth Electoral Division community profiles for 2001 and 2006. It then unzips the downloaded files and places them in the folders to be accessed by the Census-to-Dataframe file.
+
+Profiles are split into separate folders for ABS2001 and ABS2006, of which have folders for the Zipped and Unzipped files.
+
+#Download Census data for each CED, 2001
+
+CED List
+```{r CED_list_2001}
+CED_list_2001 <- read.csv("/Users/Jeremy/Documents/R/Data/Raw-Supplement/CED_Definitions/CED2001.csv")
+CED_no_2001 <- CED_list_2001$CED
+```
+
+Loop over each CED for 2001
+```{r all_2001, eval = FALSE}
+url_p1 = "http://www.censusdata.abs.gov.au/CensusOutput/copsub2006.NSF/All%20docs%20by%20catNo/2001~Community%20Profile~CED"
+url_p2 = "/$File/BCP_CED"
+url_p3 = ".zip?OpenElement"
+
+for (i in 1:length(CED_no_2001)) {
+  CED <- toString(CED_no_2001[i])
+  url_temp <- paste0(url_p1, CED, url_p2, CED, url_p3)
+  dest_temp = paste0("/Users/Jeremy/Documents/R/Data/Raw/ABS2001/Zipped/CED", CED, ".zip") #set destination directory
+  download.file(url_temp, dest_temp, quiet = TRUE)
+}
+```
+
+Unzip abs 2001
+```{r unzip_abs2001, eval = FALSE}
+zip_p1 <- "/Users/Jeremy/Documents/R/Data/Raw/ABS2001/Zipped/CED"
+zip_p2 <- ".zip"
+
+for (i in 1:length(CED_no_2001)) {
+  CED <- toString(CED_no_2001[i])
+  zip_temp <- paste0(zip_p1, CED, zip_p2)
+  unzip(zip_temp, exdir = "/Users/Jeremy/Documents/R/Data/Raw/ABS2001/Unzipped", overwrite = TRUE) #set destination directory
+}
+```
+
+
+#Download Census data for each CED, 2006 - using 2004 boundaries
+
+
+CED list 2006
+```{r CED_list_2006}
+CED_list_2006 <- read.csv("/Users/Jeremy/Documents/R/Data/Raw-Supplement/CED_Definitions/CED2006.csv")
+CED_no_2006 <- CED_list_2006$CED
+
+CED_list_full <- read.csv("/Users/Jeremy/Documents/R/Data/Raw-Supplement/CED_Definitions/CED2006_07.csv")
+CED_no_2006_07 <- CED_list_full$CED
+```
+
+
+Loop over each CED for 2006
+```{r all_2006, eval = FALSE}
+url_p1 = "http://www.censusdata.abs.gov.au/CensusOutput/copsub2006.NSF/All%20docs%20by%20catNo/2006~Community%20Profile~CED"
+url_p2 = "/$File/BCP_CED"
+url_p3 = ".zip?OpenElement"
+
+for (i in 1:length(CED_no_2006)) {
+  CED <- toString(CED_no_2006[i])
+  url_temp <- paste0(url_p1, CED, url_p2, CED, url_p3)
+  dest_temp = paste0("/Users/Jeremy/Documents/R/Data/Raw/ABS2006/Zipped/CED2004/CED", CED, ".zip") #set destination directory
+  download.file(url_temp, dest_temp, quiet = TRUE)
+}
+```
+
+Unzip abs 2006
+```{r unzip_abs2006, eval = FALSE}
+zip_p1 <- "/Users/Jeremy/Documents/R/Data/Raw/ABS2006/Zipped/CED2004/CED"
+zip_p2 <- ".zip"
+
+for (i in 1:length(CED_no_2006)) {
+  CED <- toString(CED_no_2006[i])
+  zip_temp <- paste0(zip_p1, CED, zip_p2)
+  unzip(zip_temp, exdir = "/Users/Jeremy/Documents/R/Data/Raw/ABS2006/Unzipped/CED2004", overwrite = TRUE) #set destination directory
+}
+```
+
+
+#Download Census data for each CED, 2006 - using 2007 boundaries
+
+Loop over each CED for 2006 (Boundaries '07)
+
+
+```{r all_2006, eval = FALSE}
+url_p1 = "http://www.censusdata.abs.gov.au/CensusOutput/copsub2006.NSF/All%20docs%20by%20catNo/2006~Community%20Profile~CED07"
+url_p2 = "/$File/BCP_CED07"
+url_p3 = ".zip?OpenElement"
+
+CED_no_2006_e07 = c(0)
+for (i in 100:1000) {
+  CED <- toString(i)
+  url_temp <- paste0(url_p1, CED, url_p2, CED, url_p3)
+  dest_temp = paste0("/Users/Jeremy/Documents/R/Data/Raw/ABS2006/Zipped/CED2007/CED", CED, ".zip") #set destination directory
+  if (url.exists(url_temp) == TRUE) {download.file(url_temp, dest_temp, quiet = TRUE)} else {}
+}
+
+```
+
+Unzip
+```{r unzip_abs2006, eval = FALSE}
+# Get IDs
+CED_no_2006_e07 <- list.files("/Users/Jeremy/Documents/R/Data/Raw/ABS2006/Zipped/CED2007") %>%
+  substr(4,6)
+
+# Unzip
+zip_p1 <- "/Users/Jeremy/Documents/R/Data/Raw/ABS2006/Zipped/CED2007/CED"
+zip_p2 <- ".zip"
+
+for (i in 1:length(CED_no_2006_e07)) {
+  CED <- toString(CED_no_2006_e07[i])
+  zip_temp <- paste0(zip_p1, CED, zip_p2)
+  unzip(zip_temp, exdir = "/Users/Jeremy/Documents/R/Data/Raw/ABS2006/Unzipped/CED2007", overwrite = TRUE) #set destination directory
+}
+```
+
+Trim file names
+```{r}
+# Trimming file names
+temp <- list.files("/Users/Jeremy/Documents/R/Data/Raw/ABS2006/Unzipped/CED2007") 
+
+for (i in 1:length(temp)) {
+  file_name <- paste0("/Users/Jeremy/Documents/R/Data/Raw/ABS2006/Unzipped/CED2007/", temp[i])
+  file.rename(from = file_name,
+              to = gsub(" ", "", file_name))
+}
+
+remove(temp)
+```
+
+
+```{r}
+CED_name_2006_e07 <- list.files("/Users/Jeremy/Documents/R/Data/Raw/ABS2006/Unzipped/CED2007")
+
+CED_list_2006_e07 <- data.frame(CED = CED_no_2006_e07, Electorate = 0, State = 0)
+
+for (i in 1:length(CED_name_2006_e07)) {
+  CED_list_2006_e07$Electorate[i] = substr(strsplit(strsplit(CED_name_2006_e07[i], 'CED')[[1]][1], 'BCP-')[[1]][2],1,nchar(strsplit(strsplit(CED_name_2006_e07[i], 'CED')[[1]][1], 'BCP-')[[1]][2]) - 1)
+  CED_list_2006_e07$State[i] = substr(strsplit(strsplit(CED_name_2006_e07[i], '07' )[[1]][2], 'Com')[[1]][1], 3, nchar(strsplit(strsplit(CED_name_2006_e07[i], '07' )[[1]][2], 'Com')[[1]][1]) - 1)
+}
+```
+
+
