@@ -1,18 +1,5 @@
 # This file creates shapefiles, nat_map and nat_data
 library(eechidna)
-library(tidyverse)
-
-# -------------------------------------
-
-# Make all character fields upper case
-chr_upper <- function(df) {
-  fc_cols <- sapply(df, class) == 'factor'
-  df[, fc_cols] <- lapply(df[, fc_cols], as.character)
-  
-  ch_cols <- sapply(df, class) == 'character'
-  df[, ch_cols] <- lapply(df[, ch_cols], toupper)
-  return(df)
-}
 
 # -------------------------------------
 
@@ -46,70 +33,38 @@ sF_10_fortified <- getElectorateShapes(shapeFile_10)
 sF_13_fortified <- getElectorateShapes(shapeFile_13)
 sF_16_fortified <- getElectorateShapes(shapeFile_16)
 
-temp <- getElectorateShapes(shapeFile_01)
-
-
-# ------------------------------------
-
-# Relabel states appropriately with abbreviations
-
-state_label <- function(df) {
-  new <- df
-  
-  if("1" %in% levels(factor(new$state))) {
-    new <- new %>% 
-      mutate(state = recode_factor(state, `1` = "NSW", `2` = "VIC", `3` = "QLD", `4` = "SA", `5` = "WA", 
-        `6` = "TAS", `7` = "NT", `8` = "ACT", "OTHER TERR" = "ACT"))
-  }
-  
-  if("VICTORIA" %in% levels(factor(new$state))) {
-    new <- new %>%
-      mutate(state = recode_factor(factor(state), "NEW SOUTH WALES" = "NSW", "VICTORIA" = "VIC", 
-        "QUEENSLAND" = "QLD", "SOUTH AUSTRALIA" = "SA", "WESTERN AUSTRALIA" = "WA", 
-        "TASMANIA" = "TAS", "NORTHERN TERRITORY" = "NT", "AUSTRALIAN CAPITAL TERRITORY" = "ACT", 
-        "OTHER TERRITORIES" = "ACT", "OTHER TERR" = "ACT"))
-  }
-  
-  if("OTHER TERR" %in% levels(factor(new$state))) {
-    new <- new %>%
-      mutate(state = recode_factor(factor(state), "OTHER TERR" = "ACT"))
-  }
-  
-  return(new)
-}
-
 # ------------------------------------
 
 # Separate map and data
 
-nat_map01 <- sF_01_fortified$map %>% 
-  chr_upper() %>% state_label()
-nat_map04 <- sF_04_fortified$map %>% 
-  chr_upper() %>% state_label()
-nat_map07 <- sF_07_fortified$map %>% 
-  chr_upper() %>% state_label()
-nat_map10 <- sF_10_fortified$map %>% 
-  chr_upper()
-nat_map13 <- sF_13_fortified$map %>% 
-  chr_upper()
-nat_map16 <- sF_16_fortified$map %>% 
-  chr_upper()
+nat_map01 <- sF_01_fortified$map
+
+nat_map04 <- sF_04_fortified$map
+
+nat_map07 <- sF_07_fortified$map
+
+nat_map10 <- sF_10_fortified$map
+
+nat_map13 <- sF_13_fortified$map
+
+nat_map16 <- sF_16_fortified$map
+
 
 
 # Now add cartogram for each year
 
-nat_data01 <- aec_add_carto_f(sF_01_fortified$data) %>% 
-  chr_upper() %>% state_label()
-nat_data04 <- aec_add_carto_f(sF_04_fortified$data) %>% 
-  chr_upper() %>% state_label()
-nat_data07 <- aec_add_carto_f(sF_07_fortified$data) %>% 
-  chr_upper() %>% state_label()
-nat_data10 <- aec_add_carto_f(sF_10_fortified$data) %>% 
-  chr_upper()
-nat_data13 <- aec_add_carto_f(sF_13_fortified$data) %>% 
-  chr_upper()
-nat_data16 <- aec_add_carto_f(sF_16_fortified$data) %>% 
-  chr_upper()
+nat_data01 <- sF_01_fortified$data
+
+nat_data04 <- sF_04_fortified$data
+
+nat_data07 <- sF_07_fortified$data
+
+nat_data10 <- sF_10_fortified$data
+
+nat_data13 <- sF_13_fortified$data
+
+nat_data16 <- sF_16_fortified$data
+
 
 # Save
 
