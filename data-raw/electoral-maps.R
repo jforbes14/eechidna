@@ -8,13 +8,13 @@ library(tidyverse)
 
 # Enter your path to shapefile
 
-shapeFile_01 <- "/Users/Jeremy/Documents/R/eechidna-removed-docs/Shapefiles/asgc2001.gpkg"
-shapeFile_04 <- "/Users/Jeremy/Documents/R/eechidna-removed-docs/Shapefiles/2923030001ced04aaust/CED04aAUST_region.shp"
-shapeFile_07 <- "/Users/Jeremy/Documents/R/eechidna-removed-docs/Shapefiles/2923030001ced07aaust/CED07aAUST_region.shp"
-shapeFile_10 <- "/Users/Jeremy/Documents/R/eechidna-removed-docs/Shapefiles/national-esri-2010/COM_ELB_2010_region.shp"
-shapeFile_11 <- "/Users/Jeremy/Documents/R/eechidna-removed-docs/Shapefiles/2011_CED_shape/CED_2011_AUST.shp"
-shapeFile_13 <- "/Users/Jeremy/Documents/R/eechidna-removed-docs/Shapefiles/national-midmif-16122011/COM20111216_ELB.MIF"
-shapeFile_16 <- "/Users/Jeremy/Documents/R/eechidna-removed-docs/Shapefiles/national-midmif-09052016/COM_ELB.TAB"
+shapeFile_01 <- "data-raw/Shapefiles/asgc2001.gpkg"
+shapeFile_04 <- "data-raw/Shapefiles/2923030001ced04aaust/CED04aAUST_region.shp"
+shapeFile_07 <- "data-raw/Shapefiles/2923030001ced07aaust/CED07aAUST_region.shp"
+shapeFile_10 <- "data-raw/Shapefiles/national-esri-2010/COM_ELB_2010_region.shp"
+shapeFile_11 <- "data-raw/Shapefiles/2011_CED_shape/CED_2011_AUST.shp"
+shapeFile_13 <- "data-raw/Shapefiles/national-midmif-16122011/COM20111216_ELB.MIF"
+shapeFile_16 <- "data-raw/Shapefiles/national-midmif-09052016/COM_ELB.TAB"
 
 # Load in shape file using loadShapeFile function
 
