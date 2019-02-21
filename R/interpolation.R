@@ -118,7 +118,7 @@ weighted_avg_census <- function(mapping_df, abs_df) {
   
   divs <- unique(mapping_df$AEC_division)
   
-  for (i in 1:nrow(out_df)) {
+  for (i in 1:length(divs)) {
     # Election division
     div <- divs[i]
     
@@ -132,7 +132,7 @@ weighted_avg_census <- function(mapping_df, abs_df) {
       select(-c(ends_with("NS"), Area, ID, State)) %>% 
       left_join(mapping, by = c("DivisionNm" = "ABS_division")) %>% 
       # add imputed population
-      mutate(imputed_population = Percent_ABS_division_Composition*Population)
+      mutate(imputed_population = Percent_Census_Composition*Population)
     
     # Net imputed population
     census_divs <- census_divs %>% 
@@ -141,7 +141,7 @@ weighted_avg_census <- function(mapping_df, abs_df) {
     
     # Weighted average
     imputed_profile <- (census_divs %>% 
-        select(c(Age00_04:BornElsewhere)) *
+        select(c(Age00_04:Volunteer)) *
         census_divs$weight) %>% 
       colSums() %>% 
       t() %>% 
