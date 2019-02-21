@@ -1,30 +1,45 @@
 # This file creates shapefiles, nat_map and nat_data
 library(eechidna)
+library(tidyverse)
 
 # -------------------------------------
 
 # Shapefiles
 
+# Enter your path to shapefile
+
 shapeFile_01 <- "/Users/Jeremy/Documents/R/eechidna-removed-docs/Shapefiles/asgc2001.gpkg"
 shapeFile_04 <- "/Users/Jeremy/Documents/R/eechidna-removed-docs/Shapefiles/2923030001ced04aaust/CED04aAUST_region.shp"
 shapeFile_07 <- "/Users/Jeremy/Documents/R/eechidna-removed-docs/Shapefiles/2923030001ced07aaust/CED07aAUST_region.shp"
 shapeFile_10 <- "/Users/Jeremy/Documents/R/eechidna-removed-docs/Shapefiles/national-esri-2010/COM_ELB_2010_region.shp"
+shapeFile_11 <- "/Users/Jeremy/Documents/R/eechidna-removed-docs/Shapefiles/2011_CED_shape/CED_2011_AUST.shp"
 shapeFile_13 <- "/Users/Jeremy/Documents/R/eechidna-removed-docs/Shapefiles/national-midmif-16122011/COM20111216_ELB.MIF"
 shapeFile_16 <- "/Users/Jeremy/Documents/R/eechidna-removed-docs/Shapefiles/national-midmif-09052016/COM_ELB.TAB"
+
+# Load in shape file using loadShapeFile function
 
 sF_01 <- loadShapeFile(shapeFile_01)
 sF_04 <- loadShapeFile(shapeFile_04)
 sF_07 <- loadShapeFile(shapeFile_07)
 sF_10 <- loadShapeFile(shapeFile_10)
+sF_11 <- loadShapeFile(shapeFile_11)
 sF_13 <- loadShapeFile(shapeFile_13)
 sF_16 <- loadShapeFile(shapeFile_16)
+
+# Save
 
 save(sF_01, file = "data/sF_01.rda")
 save(sF_04, file = "data/sF_04.rda")
 save(sF_07, file = "data/sF_07.rda")
 save(sF_10, file = "data/sF_10.rda")
+save(sF_11, file = "data/sF_11.rda")
 save(sF_13, file = "data/sF_13.rda")
 save(sF_16, file = "data/sF_16.rda")
+
+# ------------------------------------
+
+# Transform into separate map and data data frames
+# Compatible with ggplot2
 
 sF_01_fortified <- getElectorateShapes(shapeFile_01)
 sF_04_fortified <- getElectorateShapes(shapeFile_04)
@@ -33,7 +48,6 @@ sF_10_fortified <- getElectorateShapes(shapeFile_10)
 sF_13_fortified <- getElectorateShapes(shapeFile_13)
 sF_16_fortified <- getElectorateShapes(shapeFile_16)
 
-# ------------------------------------
 
 # Separate map and data
 
