@@ -8,35 +8,33 @@
 library(tidyverse)
 library(readxl)
 
-setwd("/Users/Jeremy/Documents/R/Data/Raw")
-
-B1_Main<- read_csv("./2011_BCP_CED_for_AUST_short-header/2011Census_B01_AUST_CED_short.csv")
-B02_Medians <- read_csv("./2011_BCP_CED_for_AUST_short-header/2011Census_B02_AUST_CED_short.csv")
-B06_Marriage <- read_csv("./2011_BCP_CED_for_AUST_short-header/2011Census_B06_AUST_CED_short.csv")
-B09_BornOverseas <- read_csv("./2011_BCP_CED_for_AUST_short-header/2011Census_B09_AUST_CED_short.csv")
-B13_LanguageHome <- read_csv("./2011_BCP_CED_for_AUST_short-header/2011Census_B13_AUST_CED_short.csv")
-B14_Religion <- read_csv("./2011_BCP_CED_for_AUST_short-header/2011Census_B14_AUST_CED_short.csv")
-B15_Study <- read_csv("./2011_BCP_CED_for_AUST_short-header/2011Census_B15_AUST_CED_short.csv")
-B16A_HighSchool <- read_csv("./2011_BCP_CED_for_AUST_short-header/2011Census_B16A_AUST_CED_short.csv")
-B16B_HighSchool <- read_csv("./2011_BCP_CED_for_AUST_short-header/2011Census_B16B_AUST_CED_short.csv")
-B17B_Income <- read_csv("./2011_BCP_CED_for_AUST_short-header/2011Census_B17B_AUST_CED_short.csv")
-B19_Volunteer <- read_csv("./2011_BCP_CED_for_AUST_short-header/2011Census_B19_AUST_CED_short.csv")
-B25_Family <- read_csv("./2011_BCP_CED_for_AUST_short-header/2011Census_B25_AUST_CED_short.csv")
-B26_FamilyIncome <- read_csv("./2011_BCP_CED_for_AUST_short-header/2011Census_B26_AUST_CED_short.csv")
-B28_HouseholdIncome <- read_csv("./2011_BCP_CED_for_AUST_short-header/2011Census_B28_AUST_CED_short.csv")
-B30_NumberInHouse <- read_csv("./2011_BCP_CED_for_AUST_short-header/2011Census_B30_AUST_CED_short.csv")
-B32_Tenure <- read_csv("./2011_BCP_CED_for_AUST_short-header/2011Census_B32_AUST_CED_short.csv")
-B34_Rent <- read_csv("./2011_BCP_CED_for_AUST_short-header/2011Census_B34_AUST_CED_short.csv")
-B35_Internet <- read_csv("./2011_BCP_CED_for_AUST_short-header/2011Census_B35_AUST_CED_short.csv")
-B37_Employ <- read_csv("./2011_BCP_CED_for_AUST_short-header/2011Census_B37_AUST_CED_short.csv")
-B39_Address <- read_csv("./2011_BCP_CED_for_AUST_short-header/2011Census_B39_AUST_CED_short.csv")
-B40B_Uni <- read_csv("./2011_BCP_CED_for_AUST_short-header/2011Census_B40B_AUST_CED_short.csv")
-B43C_Industry <- read_csv("./2011_BCP_CED_for_AUST_short-header/2011Census_B43C_AUST_CED_short.csv")
-B43D_Industry <- read_csv("./2011_BCP_CED_for_AUST_short-header/2011Census_B43D_AUST_CED_short.csv")
-B45B_Occupation <- read_csv("./2011_BCP_CED_for_AUST_short-header/2011Census_B45B_AUST_CED_short.csv")
+B1_Main<- read_csv("data-raw/2011_BCP_CED_for_AUST_short-header/2011Census_B01_AUST_CED_short.csv")
+B02_Medians <- read_csv("data-raw/2011_BCP_CED_for_AUST_short-header/2011Census_B02_AUST_CED_short.csv")
+B06_Marriage <- read_csv("data-raw/2011_BCP_CED_for_AUST_short-header/2011Census_B06_AUST_CED_short.csv")
+B09_BornOverseas <- read_csv("data-raw/2011_BCP_CED_for_AUST_short-header/2011Census_B09_AUST_CED_short.csv")
+B13_LanguageHome <- read_csv("data-raw/2011_BCP_CED_for_AUST_short-header/2011Census_B13_AUST_CED_short.csv")
+B14_Religion <- read_csv("data-raw/2011_BCP_CED_for_AUST_short-header/2011Census_B14_AUST_CED_short.csv")
+B15_Study <- read_csv("data-raw/2011_BCP_CED_for_AUST_short-header/2011Census_B15_AUST_CED_short.csv")
+B16A_HighSchool <- read_csv("data-raw/2011_BCP_CED_for_AUST_short-header/2011Census_B16A_AUST_CED_short.csv")
+B16B_HighSchool <- read_csv("data-raw/2011_BCP_CED_for_AUST_short-header/2011Census_B16B_AUST_CED_short.csv")
+B17B_Income <- read_csv("data-raw/2011_BCP_CED_for_AUST_short-header/2011Census_B17B_AUST_CED_short.csv")
+B19_Volunteer <- read_csv("data-raw/2011_BCP_CED_for_AUST_short-header/2011Census_B19_AUST_CED_short.csv")
+B25_Family <- read_csv("data-raw/2011_BCP_CED_for_AUST_short-header/2011Census_B25_AUST_CED_short.csv")
+B26_FamilyIncome <- read_csv("data-raw/2011_BCP_CED_for_AUST_short-header/2011Census_B26_AUST_CED_short.csv")
+B28_HouseholdIncome <- read_csv("data-raw/2011_BCP_CED_for_AUST_short-header/2011Census_B28_AUST_CED_short.csv")
+B30_NumberInHouse <- read_csv("data-raw/2011_BCP_CED_for_AUST_short-header/2011Census_B30_AUST_CED_short.csv")
+B32_Tenure <- read_csv("data-raw/2011_BCP_CED_for_AUST_short-header/2011Census_B32_AUST_CED_short.csv")
+B34_Rent <- read_csv("data-raw/2011_BCP_CED_for_AUST_short-header/2011Census_B34_AUST_CED_short.csv")
+B35_Internet <- read_csv("data-raw/2011_BCP_CED_for_AUST_short-header/2011Census_B35_AUST_CED_short.csv")
+B37_Employ <- read_csv("data-raw/2011_BCP_CED_for_AUST_short-header/2011Census_B37_AUST_CED_short.csv")
+B39_Address <- read_csv("data-raw/2011_BCP_CED_for_AUST_short-header/2011Census_B39_AUST_CED_short.csv")
+B40B_Uni <- read_csv("data-raw/2011_BCP_CED_for_AUST_short-header/2011Census_B40B_AUST_CED_short.csv")
+B43C_Industry <- read_csv("data-raw/2011_BCP_CED_for_AUST_short-header/2011Census_B43C_AUST_CED_short.csv")
+B43D_Industry <- read_csv("data-raw/2011_BCP_CED_for_AUST_short-header/2011Census_B43D_AUST_CED_short.csv")
+B45B_Occupation <- read_csv("data-raw/2011_BCP_CED_for_AUST_short-header/2011Census_B45B_AUST_CED_short.csv")
 
 
-CED <- read_csv("/Users/Jeremy/Documents/R/Data/Raw-Supplement/tidy_CED11.csv")
+CED <- read_csv("data-raw/supplement/tidy_CED11.csv")
 
 new_2011 <- B1_Main %>% mutate(
   ID = CED$CED,
@@ -184,7 +182,6 @@ rows_select <- as.numeric(CED$Area.sqkm) != 0
 
 abs2011 <- new_2011[rows_select ,c(110:124,126:ncol(new_2011))]
 
-abs2011$Electorate <- toupper(abs2011$Electorate)
 
 # inflation
 inflation_rates <- c(1.151, 1.330, 1.461)
@@ -195,20 +192,19 @@ abs2011 <- abs2011 %>%
          MedianPersonalIncome = MedianPersonalIncome/inflation_rates[2],
          MedianRent = MedianRent/inflation_rates[2])
 
-# Order electorate alphabetically
-abs2011 <- abs2011 %>% 
-  arrange(Electorate)
-
 # Change BornOverseas to BornElsewhere
 abs2011 <- abs2011 %>%
   mutate(BornElsewhere = BornOverseas - Born_MidEast - Born_SE_Europe - Born_UK) %>% 
   select(-BornOverseas) 
 
-# Rename Electorate Column to match election data
+# Order electorate alphabetically, rename electorate column to match election data and reorder columns
+
 abs2011 <- abs2011 %>% 
   rename(DivisionNm = Electorate) %>% 
+  arrange(DivisionNm) %>% 
+  mutate(DivisionNm = toupper(DivisionNm)) %>% 
+  select(noquote(order(colnames(abs2011)))) %>% 
   select(ID, DivisionNm, State, Population, Area, everything())
 
-
 # Save
-save(abs2011, file = "/Users/Jeremy/Documents/R/Data/Clean/abs2011.rda")
+save(abs2011, file = "data/abs2011.rda")
