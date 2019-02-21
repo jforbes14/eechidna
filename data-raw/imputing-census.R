@@ -77,7 +77,7 @@ abs2010 <- (1/5)*(select(census_aec10_06, -DivisionNm)) + (4/5)*(select(census_a
 abs2010$DivisionNm <- census_aec10_11$DivisionNm
 
 # Save
-save(abs2010, file = "abs2010.rda")
+save(abs2010, file = "data/abs2010.rda")
 
 # ------------------------------------------------------------------------------------------------------
 
@@ -109,7 +109,7 @@ abs2007 <- (4/5)*(select(census_aec07_06, -DivisionNm)) + (1/5)*(select(census_a
 abs2007$DivisionNm <- census_aec07_11$DivisionNm
 
 # Save
-save(abs2007, file = "abs2007.rda")
+save(abs2007, file = "data/abs2007.rda")
 
 # ------------------------------------------------------------------------------------------------------
 
