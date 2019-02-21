@@ -6,6 +6,8 @@
 # -------------------------------------
 
 library(tidyverse)
+# Latest version of ggmap from github
+# install_github("https://github.com/dkahle/ggmap/")
 library(ggmap)
 
 # -------------------------------------
@@ -273,8 +275,8 @@ fp_pp04 <- read_csv("https://results.aec.gov.au/12246/results/Downloads/HouseSta
 
 # Get locations of polling places (extract address from first preferences)
 
-votes <- read_delim("/Users/Jeremy/Downloads/aec-2001-election-statistics/data/import/hppdop.txt", delim = ";")
-candidates <- read_delim("/Users/Jeremy/Downloads/aec-2001-election-statistics/data/import/hcands.txt", delim = ";")
+votes <- read_delim("data-raw/results_pollingplace_2001/hppdop.txt", delim = ";")
+candidates <- read_delim("data-raw/results_pollingplace_2001/hcands.txt", delim = ";")
 
 all <- left_join(votes, candidates, by = c("State", "Division", "Ballot Position"))
 
@@ -345,11 +347,13 @@ special_place <- add7 %>% filter(is.na(Longitude)) %>% select(-c(Longitude, Lati
 
 # ------------------------------------------------------------------------------------------
 
-# Load up the ggmap library (latest version from github)
+# Google Maps API to get the remaining polling place locations
+# You need to have an API from a Google cloud account (can get 12 month trial for free)
+# https://cloud.google.com/maps-platform/
+# Ensure you have the latest ggmap version from github
 
-# Google API
-# Run GoogleAPI.R
-# register_google(key = "xxx")
+# Enter your 
+register_google(key = "YOUR-API-KEY-GOES-HERE")
 
 # Search for geocodes
 # This is imperfect - the remaining 930 polling places may not be accurate
@@ -384,7 +388,7 @@ fp_pp01 <- firstpref %>%
 
 # Two party preferred
 
-tpp_pp01 <- read_delim("/Users/Jeremy/Downloads/aec-2001-election-statistics/data/import/htppbypp.txt", delim = ";") %>% 
+tpp_pp01 <- read_delim("data-raw/results_pollingplace_2001/htppbypp.txt", delim = ";") %>% 
   mutate(DivisionNm = toupper(Division), 
     PollingPlace = gsub("\\s*\\([^\\)]+\\)", "", as.character(`Polling Place`) %>% toupper())) %>% 
   select(-c(Division, `Polling Place`)) %>% 
@@ -436,26 +440,26 @@ tpp_pp04 <- tpp_pp04 %>%
   left_join(pollplace_04 %>% select(PollingPlaceID, PremisesPostCode, Latitude, Longitude), by = "PollingPlaceID")
 
 # Save
-save(fp_pp16, file = "/Users/Jeremy/Documents/R/Data/Clean/fp_pp16.rda")
-save(tcp_pp16, file = "/Users/Jeremy/Documents/R/Data/Clean/tcp_pp16.rda")
-save(tpp_pp16, file = "/Users/Jeremy/Documents/R/Data/Clean/tpp_pp16.rda")
+save(fp_pp16, file = "data/fp_pp16.rda")
+save(tcp_pp16, file = "data/tcp_pp16.rda")
+save(tpp_pp16, file = "data/tpp_pp16.rda")
 
-save(fp_pp13, file = "/Users/Jeremy/Documents/R/Data/Clean/fp_pp13.rda")
-save(tcp_pp13, file = "/Users/Jeremy/Documents/R/Data/Clean/tcp_pp13.rda")
-save(tpp_pp13, file = "/Users/Jeremy/Documents/R/Data/Clean/tpp_pp13.rda")
+save(fp_pp13, file = "data/fp_pp13.rda")
+save(tcp_pp13, file = "data/tcp_pp13.rda")
+save(tpp_pp13, file = "data/tpp_pp13.rda")
 
-save(fp_pp10, file = "/Users/Jeremy/Documents/R/Data/Clean/fp_pp10.rda")
-save(tcp_pp10, file = "/Users/Jeremy/Documents/R/Data/Clean/tcp_pp10.rda")
-save(tpp_pp10, file = "/Users/Jeremy/Documents/R/Data/Clean/tpp_pp10.rda")
+save(fp_pp10, file = "data/fp_pp10.rda")
+save(tcp_pp10, file = "data/tcp_pp10.rda")
+save(tpp_pp10, file = "data/tpp_pp10.rda")
 
-save(fp_pp07, file = "/Users/Jeremy/Documents/R/Data/Clean/fp_pp07.rda")
-save(tcp_pp07, file = "/Users/Jeremy/Documents/R/Data/Clean/tcp_pp07.rda")
-save(tpp_pp07, file = "/Users/Jeremy/Documents/R/Data/Clean/tpp_pp07.rda")
+save(fp_pp07, file = "data/fp_pp07.rda")
+save(tcp_pp07, file = "data/tcp_pp07.rda")
+save(tpp_pp07, file = "data/tpp_pp07.rda")
 
-save(fp_pp04, file = "/Users/Jeremy/Documents/R/Data/Clean/fp_pp04.rda")
-save(tcp_pp04, file = "/Users/Jeremy/Documents/R/Data/Clean/tcp_pp04.rda")
-save(tpp_pp04, file = "/Users/Jeremy/Documents/R/Data/Clean/tpp_pp04.rda")
+save(fp_pp04, file = "data/fp_pp04.rda")
+save(tcp_pp04, file = "data/tcp_pp04.rda")
+save(tpp_pp04, file = "data/tpp_pp04.rda")
 
-save(fp_pp01, file = "/Users/Jeremy/Documents/R/Data/Clean/fp_pp01.rda")
-save(tpp_pp01, file = "/Users/Jeremy/Documents/R/Data/Clean/tpp_pp01.rda")
+save(fp_pp01, file = "data/fp_pp01.rda")
+save(tpp_pp01, file = "data/tpp_pp01.rda")
 
