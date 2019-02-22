@@ -3,19 +3,12 @@
 \docType{data}
 \name{nat_map07}
 \alias{nat_map07}
-\title{Map of Australian Electorates from 2010}
+\title{Map of Australian Electorates from 2007}
 \format{An object of class \code{data.frame} with 40432 rows and 9 columns.}
 \usage{
 nat_map07
-
-nat_map07
 }
 \description{
-A dataset containing the map of the all 150 Australian electorates using the 2010 boundaries of the 
-electorates (and downsampled to a 5\% file to allow fast plotting).
-The data were obtained from the Australian Electoral Commission, and downloaded 
-from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
-
 A dataset containing the map of the all 150 Australian electorates using the 2007 boundaries of the 
 electorates (and downsampled to a 5\% file to allow fast plotting).
 The data were obtained from the Australian Electoral Commission, and downloaded 

@@ -964,7 +964,7 @@
 #'
 #' A large SpatialPolygonsDataFrame containing the polygons and associated data for each of the 150 Australian electorates in the 2007 federal election.
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}.
+#' from \url{http://www.abs.gov.au/AUSSTATS/abs@@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}.
 #' @examples 
 #' 
 "sF_07"
@@ -973,7 +973,7 @@
 #'
 #' A large SpatialPolygonsDataFrame containing the polygons and associated data for each of the 150 Australian electorates in the 2004 federal election.
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}.
+#' from \url{http://www.abs.gov.au/AUSSTATS/abs@@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}.
 #' @examples 
 #' 
 "sF_04"
@@ -982,7 +982,7 @@
 #'
 #' A large SpatialPolygonsDataFrame containing the polygons and associated data for each of the 150 Australian electorates in the 2001 federal election.
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{https://data.gov.au/dataset/ds-dga-0b939a62-e53e-4616-add5-77f909b58ddd/details?q=asgc%202001}.
+#' from \url{https://data.gov.au/dataset/ds-dga-0b939a62-e53e-4616-add5-77f909b58ddd/details?q=asgc\%202001}.
 #' @examples 
 #' 
 "sF_01"
@@ -1033,7 +1033,7 @@
 #' A dataset containing the map of the all 150 Australian electorates using the 2007 boundaries of the 
 #' electorates (and downsampled to a 5\% file to allow fast plotting).
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}.
+#' from \url{http://www.abs.gov.au/AUSSTATS/abs@@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}.
 #' 
 "nat_map07"
 
@@ -1042,7 +1042,7 @@
 #' A dataset containing the map of the all 150 Australian electorates using the 2004 boundaries of the 
 #' electorates (and downsampled to a 5\% file to allow fast plotting).
 #' The data were obtained from the Australian Bureau of Statistics, and downloaded 
-#' from \url{http://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}.
+#' from \url{http://www.abs.gov.au/AUSSTATS/abs@@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}.
 #' 
 "nat_map04"
 
@@ -1051,7 +1051,7 @@
 #' A dataset containing the map of the all 150 Australian electorates using the 2001 boundaries of the 
 #' electorates (and downsampled to a 5\% file to allow fast plotting).
 #' The data were obtained from the Australian Government, and downloaded 
-#' from \url{https://data.gov.au/dataset/ds-dga-0b939a62-e53e-4616-add5-77f909b58ddd/details?q=asgc%202001}.
+#' from \url{https://data.gov.au/dataset/ds-dga-0b939a62-e53e-4616-add5-77f909b58ddd/details?q=asgc\%202001}.
 #' 
 "nat_map01"
 
@@ -1135,7 +1135,7 @@
 #'
 #' A dataset containing some demographic information for each of the 150 Australian electorates.
 #' The data were obtained from the Australian Bureau of Statistics, and downloaded 
-#' from \url{http://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}.
+#' from \url{http://www.abs.gov.au/AUSSTATS/abs@@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}.
 #' The data is published 
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
@@ -1154,7 +1154,7 @@
 #'
 #' A dataset containing some demographic information for each of the 150 Australian electorates.
 #' The data were obtained from the Australian Bureau of Statistics, and downloaded 
-#' from \url{http://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}.
+#' from \url{http://www.abs.gov.au/AUSSTATS/abs@@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}.
 #' The data is published 
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
@@ -1173,7 +1173,7 @@
 #'
 #' A dataset containing some demographic information for each of the 150 Australian electorates.
 #' The data were obtained from the Australian Government, and downloaded 
-#' from \url{https://data.gov.au/dataset/ds-dga-0b939a62-e53e-4616-add5-77f909b58ddd/details?q=asgc%202001}.
+#' from \url{https://data.gov.au/dataset/ds-dga-0b939a62-e53e-4616-add5-77f909b58ddd/details?q=asgc\%202001}.
 #' The data is published 
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{

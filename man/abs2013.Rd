@@ -7,9 +7,6 @@
 \format{A data frame with 150 rows with the following variables:
 \itemize{
   \item DivisionNm: Name of electorate
-  \item State: State containing electorate
-  \item Population: Total population of electorate
-  \item Area: Area of electorate division in square kilometres
   \item Age00_04: Percentage of people aged 0-4.
   \item Age05_14: Percentage of people aged 5-9.
   \item Age15_19: Percentage of people aged 15-19.
@@ -21,63 +18,62 @@
   \item Age65_74: Percentage of people aged 65-74.
   \item Age75_84: Percentage of people aged 75-84.
   \item Age85plus: Percentage of people aged 85 or higher.
+  \item Anglican: Percentage of people affiliated with the Anglican denomimation
   \item AusCitizen: Percentage of people who are Australian Citizens
-  \item Indigenous: Percentage of people who are Indigenous
-  \item OtherLanguageHome: Percentage of people who speak a language other than English at home
-  \item EnglishOnly: Percentage of people who speak only English
-  \item AverageHouseholdSize: Average number of people in a household
-  \item MedianHouseholdIncome: Median weekly household income (in $)
-  \item MedianFamilyIncome: Median weekly family income (in $)
-  \item MedianRent: Median weekly rental payment amount (of those who rent, in $)
-  \item MedianLoanPay: Median mortgage loan repayment amount (of mortgage payments, in $)
-  \item MedianAge: Median age
-  \item MedianPersonalIncome: Median weekly personal income (in $)
-  \item Married: Percentage of people who are married
-  \item DeFacto: Percentage of people who are in a de facto marriage
-  \item Born_UK: Percentage of people born in the United Kingdom
+  \item AverageHouseholdSize: Average number of people in a household 
+  \item BachelorAbv: Percentage of people who have completed a Bachelor degree or above
+  \item Born_Asia: Percentage of people born in Asia
   \item Born_MidEast: Percentage of people born in the Middle East
   \item Born_SE_Europe: Percentage of people born in South Eastern Europe
-  \item Born_Asia: Percentage of people born in Asia
-  \item Christianity: Percentage of people affiliated with the Christian religion (of all denominations)
-  \item Anglican: Percentage of people affiliated with the Anglican denomimation
-  \item Catholic: Percentage of people affiliated with the Catholic denomimation
+  \item Born_UK: Percentage of people born in the United Kingdom
+  \item BornElsewhere: Percentage of people who were born overseas, outside of Asia, Middle East, South Eastern Europe and the UK
   \item Buddhism: Percentage of people affiliated with the Buddhist religion
-  \item Islam: Percentage of people affiliated with the Islamic religion
-  \item Judaism: Percentage of people affiliated with the Jewish religion
-  \item OtherChrist: Percentage of people affiliated with a denomination of the Christian religion other than Anglican or Catholic
-  \item NoReligion: Percentage of people with no religion
-  \item Other_NonChrist: Percentage of people affiliated with a religion other than Christianity, Buddhism, Islam and Judaism
-  \item CurrentlyStudying: Percentage of people who are currently studying
-  \item HighSchool: Percentage of people who have completed high school
-  \item Volunteer: Percentage of people who work as a volunteer
-  \item FamilyRatio: Average number of people per family
+  \item Catholic: Percentage of people affiliated with the Catholic denomimation
+  \item Christianity: Percentage of people affiliated with the Christian religion (of all denominations)
   \item Couple_NoChild_House: Percentage of households made up of a couple with no children
   \item Couple_WChild_House: Percentage of households made up of a couple with children
-  \item OneParent_House: Percentage of households made up of one parent with children
-  \item SP_House: Percentage of households occupied by a single person
-  \item Owned: Percentage of dwellings that are owned outright
-  \item Mortgage: Percentage of dwellings that are on a mortgage
-  \item Renting: Percentage of dwellings that are being rented
-  \item PublicHousing: Percentage of dwellings that are owned by the government, and rented out to tenants
-  \item InternetAccess: Percentage of people with access to the internet
-  \item Unemployed: Unemployment rate
-  \item LFParticipation: Labor force participation rate
+  \item CurrentlyStudying: Percentage of people who are currently studying
+  \item DeFacto: Percentage of people who are in a de facto marriage
   \item DiffAddress: Percentage of people who live at a different address to what they did 5 years ago
-  \item Bachelor: Percentage of people who have completed a Bachelor degree
-  \item Postgraduate: Percentage of people who have completed a postgraduate degree
   \item DipCert: Percentage of people who have completed a diploma or certificate
-  \item Extractive: Percentage of employed persons who work in extractive industries (includes mining, gas, water, agriculture, waste, electricity)
-  \item Transformative: Percentage of employed persons who work in construction or manufacturing related industries
   \item Distributive: Percentage of employed persons who work in wholesale trade, retail trade, transport, post or warehousing related industries
-  \item Finance: Percentage of employed persons who work in finance or insurance related industries
-  \item SocialServ: Percentage of employed persons who work in education and training, healthcare, wocial work, community, arts and recreation
-  \item ManagerAdminClericalSales: Percentage of employed persons who work in management, administration, clerical duties and sales
-  \item Professional: Percentage of employed persons who work as a professional
-  \item Tradesperson: Percentage of employed persons who specialise in a trade
-  \item Laborer: Percentage of employed persons who work as a laborer
   \item EmuneratedElsewhere: Percentage of people who receive emuneration outside of Australia, out of the total population plus overseas visitors
+  \item EnglishOnly: Percentage of people who speak only English
+  \item Extractive: Percentage of employed persons who work in extractive industries (includes mining, gas, water, agriculture, waste, electricity)
+  \item FamilyRatio: Average number of people per family
+  \item Finance: Percentage of employed persons who work in finance or insurance related industries
+  \item HighSchool: Percentage of people who have completed high school
+  \item Indigenous: Percentage of people who are Indigenous
+  \item InternetAccess: Percentage of people with access to the internet
   \item InternetUse: Percentage of people who used interent in the last week (2001 only)
-  \item BornElsewhere: Percentage of people who were born overseas 
+  \item Islam: Percentage of people affiliated with the Islamic religion
+  \item Judaism: Percentage of people affiliated with the Jewish religion
+  \item Laborer: Percentage of employed persons who work as a laborer
+  \item LFParticipation: Labor force participation rate
+  \item ManagerAdminClericalSales: Percentage of employed persons who work in management, administration, clerical duties and sales
+  \item Married: Percentage of people who are married
+  \item MedianAge: Median age
+  \item MedianFamilyIncome: Median weekly family income (in $)
+  \item MedianHouseholdIncome: Median weekly household income (in $)
+  \item MedianLoanPay: Median mortgage loan repayment amount (of mortgage payments, in $)
+  \item MedianPersonalIncome: Median weekly personal income (in $)
+  \item MedianRent: Median weekly rental payment amount (of those who rent, in $)
+  \item Mortgage: Percentage of dwellings that are on a mortgage
+  \item NoReligion: Percentage of people with no religion
+  \item OneParent_House: Percentage of households made up of one parent with children
+  \item Other_NonChrist: Percentage of people affiliated with a religion other than Christianity, Buddhism, Islam and Judaism
+  \item OtherChrist: Percentage of people affiliated with a denomination of the Christian religion other than Anglican or Catholic
+  \item OtherLanguageHome: Percentage of people who speak a language other than English at home
+  \item Owned: Percentage of dwellings that are owned outright
+  \item Professional: Percentage of employed persons who work as a professional
+  \item PublicHousing: Percentage of dwellings that are owned by the government, and rented out to tenants
+  \item Renting: Percentage of dwellings that are being rented
+  \item SocialServ: Percentage of employed persons who work in education and training, healthcare, wocial work, community, arts and recreation
+  \item SP_House: Percentage of households occupied by a single person
+  \item Tradesperson: Percentage of employed persons who specialise in a trade
+  \item Transformative: Percentage of employed persons who work in construction or manufacturing related industries
+  \item Unemployed: Unemployment rate
+  \item Volunteer: Percentage of people who work as a volunteer
 }}
 \usage{
 abs2013

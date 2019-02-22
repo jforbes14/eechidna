@@ -9,6 +9,9 @@
 nat_map01
 }
 \description{
-Map of Australian Electorates from 2001
+A dataset containing the map of the all 150 Australian electorates using the 2001 boundaries of the 
+electorates (and downsampled to a 5\% file to allow fast plotting).
+The data were obtained from the Australian Government, and downloaded 
+from \url{https://data.gov.au/dataset/ds-dga-0b939a62-e53e-4616-add5-77f909b58ddd/details?q=asgc\%202001}.
 }
 \keyword{datasets}
