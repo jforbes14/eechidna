@@ -37,7 +37,7 @@ mapping_fn <- function(aec_sF, abs_sF, area_thres = 0.995) {
     div_poly <- aec_sF %>% subset(as.character(elect_div) == as.character(div_name))
     div_lat_c <- div_poly$lat_c
     div_long_c <- div_poly$long_c
-    div_area <- suppressWarnings(gArea(div_poly))
+    div_area <- suppressWarnings(rgeos::gArea(div_poly))
     
     # Ordering Census divisions by distance to electoral division
     comp <- abs_sF@data %>%
@@ -54,9 +54,9 @@ mapping_fn <- function(aec_sF, abs_sF, area_thres = 0.995) {
     for (j in 1:length(cens_names)) {
       cens_poly <- abs_sF %>% subset(elect_div == cens_names[j])
       
-      if (gIntersects(div_poly, cens_poly)) { # Only if polygons intersect
-        poly_intersect <- gIntersection(div_poly, cens_poly)
-        cens_mapped$Intersect_area[j] = suppressWarnings(gArea(poly_intersect))
+      if (rgeos::gIntersects(div_poly, cens_poly)) { # Only if polygons intersect
+        poly_intersect <- rgeos::gIntersection(div_poly, cens_poly)
+        cens_mapped$Intersect_area[j] = suppressWarnings(rgeos::gArea(poly_intersect))
       }
       
       # break if sum of intersection areas is over threshold (area_thres)
@@ -75,7 +75,7 @@ mapping_fn <- function(aec_sF, abs_sF, area_thres = 0.995) {
   cens_area <- data.frame(ABS_division = abs_sF$elect_div, ABS_division_area = 0)
   
   for (i in 1:nrow(cens_area)) {
-    cens_area$ABS_division_area[i] = gArea(abs_sF %>% subset(elect_div == cens_area[i,1]))
+    cens_area$ABS_division_area[i] = rgeos::gArea(abs_sF %>% subset(elect_div == cens_area[i,1]))
   }
   
   for (i in 1:nrow(Mapping_df)) {

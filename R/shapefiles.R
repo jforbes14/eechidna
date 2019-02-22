@@ -74,19 +74,19 @@ loadShapeFile <- function(path_to_shapeFile, tolerance = 0.005) {
   sF@data <- chr_upper(sF@data)
   
   # Simplify to make sure polygons are valid
-  polys_sF <- gSimplify(sF, tol = tolerance)
+  polys_sF <- rgeos::gSimplify(sF, tol = tolerance)
   
   # Ensure all polygons are valid
   #new_sF <- sF %>% subset(elect_div == "")
   #for (i in 1:nrow(sF@data)) {
   #  temp <- sF %>% subset(elect_div == sF@data$elect_div[i])
-  #  if (!gIsValid(temp)) {
-  #    temp <- gBuffer(temp, byid = TRUE, width = 0)
+  #  if (!rgeos::gIsValid(temp)) {
+  #    temp <- rgeos::gBuffer(temp, byid = TRUE, width = 0)
   #  }
   #  new_sF <- raster::bind(new_sF, temp)
   #}
   
-  out <- SpatialPolygonsDataFrame(polys_sF, sF@data)
+  out <- sp::SpatialPolygonsDataFrame(polys_sF, sF@data)
   
   return(out)
 }
