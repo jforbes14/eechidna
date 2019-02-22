@@ -12,7 +12,6 @@
 #' @importFrom purrr when map2 map_df
 #' @importFrom tidyr gather
 #' @importFrom colourpicker colourInput
-#' @importForm rgdal ogrListLayers readOGR
+#' @importFrom rgdal ogrListLayers readOGR
 #' @importFrom methods as
-#' 
 NULL
