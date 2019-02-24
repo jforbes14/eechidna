@@ -5,7 +5,7 @@
 #' 
 #' The function will take several minutes to complete.
 #' 
-#' @param path_to_shapefile path to object in local machine
+#' @param path_to_shapeFile path to object in local machine
 #' @param tolerance numerical tolerance value to be used by the Douglas-Peuker algorithm
 #' @return object of class SpatialPolygonsDataFrame
 #' @export
@@ -96,8 +96,8 @@ loadShapeFile <- function(path_to_shapeFile, tolerance = 0.005) {
 #' Extract polygon information and demographics for each of Australia's electorates. 
 #' The map and data corresponding to the shapefiles of the 2013 Australian electorates (available at \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}) are part of this package as nat_map.rda and nat_data.rda in the data folder.
 #' The function will take several minutes to complete.
+#' @param path_to_shapeFile path to object in local machine (only if shapefile has not already loaded)
 #' @param sF Shapefile object loaded to environment using loadShapeFile
-#' @param shapeFile Path to the shp file (only if shapefile has not already loaded)
 #' @param mapinfo Is the data mapInfo format, rather than ESRI? default=TRUE
 #' @param layer If the format is mapInfo, the layer name also needs to be provided, default is NULL
 #' @param tolerance Numerical tolerance value to be used by the Douglas-Peuker algorithm (only if shapefile has not already loaded)
@@ -192,7 +192,7 @@ getElectorateShapes <- function(path_to_shapeFile = NULL, sF = NULL, mapinfo=TRU
   # Apply along with cartogram
   nat_map <- nat_map %>% 
     chr_upper() %>% state_label()
-  nat_data <- aec_add_carto_f(nat_data) %>% 
+  nat_data <- nat_data %>% 
     chr_upper() %>% state_label()
   
   # Out
