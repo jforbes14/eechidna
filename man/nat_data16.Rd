@@ -30,6 +30,7 @@ The data is published
 
 library(eechidna)
 library(tidyverse)
+library(ggthemes)
 data(nat_map16)
 data(fp16)
 winners <- fp16 \%>\% filter(Elected == "Y")
