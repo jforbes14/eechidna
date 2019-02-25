@@ -45,7 +45,7 @@ ggplot(data=nat_map16) +
         xlim(c(136, 140)) + ylim(-36, -33) +
         coord_equal()
 adelaide_all <- merge(adelaide, adelaide_carto, by="id")
-ggplot(data=nat_map) + 
+ggplot(data=nat_map16) + 
   geom_path(aes(x=long, y=lat, group=group, order=order),
                  colour="grey50") +
   geom_point(data=adelaide_all, aes(x=long_c, y=lat_c), size=2, alpha=0.4,

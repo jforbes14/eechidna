@@ -10,7 +10,6 @@ nat_map16
 }
 \description{
 A dataset containing the map of the all 150 Australian electorates using the 2016 boundaries of the 
-electorates (and downsampled to a 5\% file to allow fast plotting).
 The data were obtained from the Australian Electoral Commission, and downloaded 
 from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
 }

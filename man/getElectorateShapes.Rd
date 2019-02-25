@@ -8,6 +8,8 @@ getElectorateShapes(path_to_shapeFile = NULL, sF = NULL,
   mapinfo = TRUE, layer = NULL, tolerance = 0.005)
 }
 \arguments{
+\item{path_to_shapeFile}{path to object in local machine (only if shapefile has not already loaded)}
+
 \item{sF}{Shapefile object loaded to environment using loadShapeFile}
 
 \item{mapinfo}{Is the data mapInfo format, rather than ESRI? default=TRUE}
@@ -15,8 +17,6 @@ getElectorateShapes(path_to_shapeFile = NULL, sF = NULL,
 \item{layer}{If the format is mapInfo, the layer name also needs to be provided, default is NULL}
 
 \item{tolerance}{Numerical tolerance value to be used by the Douglas-Peuker algorithm (only if shapefile has not already loaded)}
-
-\item{shapeFile}{Path to the shp file (only if shapefile has not already loaded)}
 }
 \value{
 list with two data frames: map and data; `map` is a data set with geographic latitude and longitude, and a grouping variable to define each entity.

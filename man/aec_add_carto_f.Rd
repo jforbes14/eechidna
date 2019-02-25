@@ -15,19 +15,20 @@ and make any of these that were not made equal to the original centroids.
 This is simply all of the Australian electoral cartogram steps in one hit.
 }
 \examples{
+library(eechidna)
 library(dplyr)
 library(ggplot2)
-data(nat_map_2016)
-data(nat_data_2016)
-nat_data_cart <- aec_add_carto_f(nat_data)
+data(nat_map16)
+data(nat_data16)
+nat_data_cart <- aec_add_carto_f(nat_data16)
 # Map theme
 library(ggthemes)
 
-ggplot(data=nat_data_2016, aes(map_id=id)) +
-  geom_map(map = nat_map_2016, fill="grey90", colour="white") +
-    geom_point(data=nat_data_cart, aes(x=x, y=y), size=2, alpha=0.4,
+ggplot(data=nat_data_cart, aes(map_id=id)) +
+  geom_map(map = nat_map16, fill="grey90", colour="white") +
+    geom_point(aes(x=x, y=y), size=2, alpha=0.4,
                  colour="#572d2c", inherit.aes=FALSE) +
-    expand_limits(x=nat_map_2016$long, y=nat_map_2016$lat) +
+    expand_limits(x=nat_map16$long, y=nat_map16$lat) +
     theme_map() + coord_equal()
 
 }

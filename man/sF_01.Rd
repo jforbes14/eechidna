@@ -13,7 +13,4 @@ A large SpatialPolygonsDataFrame containing the polygons and associated data for
 The data were obtained from the Australian Electoral Commission, and downloaded 
 from \url{https://data.gov.au/dataset/ds-dga-0b939a62-e53e-4616-add5-77f909b58ddd/details?q=asgc\%202001}.
 }
-\examples{
-
-}
 \keyword{datasets}

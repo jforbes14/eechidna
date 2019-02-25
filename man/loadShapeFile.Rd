@@ -10,9 +10,9 @@ polygon, fix any problematic polygons, and format variable names.
 loadShapeFile(path_to_shapeFile, tolerance = 0.005)
 }
 \arguments{
-\item{tolerance}{numerical tolerance value to be used by the Douglas-Peuker algorithm}
+\item{path_to_shapeFile}{path to object in local machine}
 
-\item{path_to_shapefile}{path to object in local machine}
+\item{tolerance}{numerical tolerance value to be used by the Douglas-Peuker algorithm}
 }
 \value{
 object of class SpatialPolygonsDataFrame

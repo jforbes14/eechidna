@@ -5,7 +5,7 @@
 \title{Produce a Pseudo-Dorling Cartogram.}
 \usage{
 dorling(name, centroidx, centroidy, density, nbr = NULL,
-  shared.border = NULL, color = NULL, tolerance_rad = 0.1,
+  shared.border = NULL, color = NULL, tolerance = 0.1,
   dist.ratio = 1.2, iteration = 9999, polygon.vertex = 100,
   animation = FALSE, sleep.time = 0.3, nbredge = ifelse(is.null(nbr),
   FALSE, TRUE), name.text = TRUE, ggplot2 = FALSE, ...)
@@ -25,7 +25,7 @@ dorling(name, centroidx, centroidy, density, nbr = NULL,
 
 \item{color}{a vector of color to fill in the circles or polygons. Auto-completed if the length does not match with name.}
 
-\item{tolerance_rad}{Tolerant value for the sum of overlapped radii.}
+\item{tolerance}{Tolerant value for the sum of overlapped radii.}
 
 \item{dist.ratio}{The threshold to determine whether an attract force is added. It is applied to the ratio of the distance between two centroids and the sum of the two radii.}
 

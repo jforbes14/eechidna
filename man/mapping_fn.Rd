@@ -14,7 +14,7 @@ mapping_fn(aec_sF, abs_sF, area_thres = 0.995)
 
 \item{abs_sF}{shapefile with boundaries at census time}
 
-\item{area_thres}{threshold for which mapping is sufficient (default is 99.5%)}
+\item{area_thres}{threshold for which mapping is sufficient (default is 99.5\%)}
 }
 \value{
 data frame detailing how much Census divisions intersect with each 

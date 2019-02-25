@@ -9,9 +9,9 @@ aec_extract_f(aec_data, ctr = c(151.2, -33.8), expand = c(3, 4.5), ...)
 \arguments{
 \item{aec_data}{data with centroids of electoral divisions}
 
-\item{ctr}{centroids of subset (default is centroid of North Sydney)}
+\item{ctr}{centroids of subset}
 
-\item{expand}{how large a chunk to cut out (longitude, latitude)}
+\item{expand}{how large a chunk to cut out}
 
 \item{...}{other arguments}
 }
@@ -24,10 +24,10 @@ with dorling independently. This function does the extraction.
 \examples{
 library(dplyr)
 library(ggplot2)
-data(nat_map)
-data(nat_data)
-adelaide <- aec_extract_f(nat_data, ctr=c(138.6, -34.9), expand=c(2,3))
-ggplot(data=nat_map) + 
+data(nat_map16)
+data(nat_data16)
+adelaide <- aec_extract_f(nat_data16, ctr=c(138.6, -34.9), expand=c(2,3))
+ggplot(data=nat_map16) + 
   geom_polygon(aes(x=long, y=lat, group=group, order=order),
     fill="grey90", colour="white") +
   geom_point(data=adelaide, aes(x=long_c, y=lat_c), size=2, alpha=0.4,
