@@ -1025,12 +1025,12 @@
 #' # choropleth map with Census data
 #' nat_map16$region <- nat_map16$elect_div
 #' data(abs2016)
-#' abs2016$region <- abs2016$Electorate
+#' abs2016$region <- abs2016$DivisionNm
 #' library(ggplot2)
 #' library(ggthemes)
 #' both <- intersect(unique(abs2016$region), unique(nat_map16$region))
 #' ggplot(aes(map_id=region), data=subset(abs2016, region %in% both)) +
-#'   geom_map(aes(fill=MedianIncome), map=subset(nat_map16, region %in% both)) +
+#'   geom_map(aes(fill=MedianPersonalIncome), map=subset(nat_map16, region %in% both)) +
 #'   expand_limits(x=nat_map16$long, y=nat_map16$lat) + 
 #'   theme_map()
 #' 
@@ -1110,11 +1110,15 @@
 #' data(nat_data16)
 #' nat_data16$DivisionNm <- toupper(nat_data16$elect_div)
 #' nat_data16 <- nat_data16 %>% left_join(winners, by = "DivisionNm")
+#' 
+#' # Plot
+#' partycolours = c("#FF0033", "#000000", "#CC3300", "#0066CC", "#FFFF00", "#009900")
+#' 
 #' ggplot(data=nat_map16) + 
-#' geom_polygon(aes(x=long, y=lat, group=group, order=order), fill="grey90", colour="white") +
+#' geom_polygon(aes(x=long, y=lat, group=group), fill="grey90", colour="white") +
 #' geom_point(data=nat_data16, aes(x=x, y=y, colour=PartyNm), size=1.5, alpha=0.8) +
 #' scale_colour_manual(name="Political Party", values=partycolours) +
-#' theme_map + coord_equal() + theme(legend.position="bottom")
+#' theme_map() + coord_equal() + theme(legend.position="bottom")
 "nat_data16"
 
 #' Data of the Australian Electorates from 2013
