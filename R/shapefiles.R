@@ -195,8 +195,7 @@ getElectorateShapes <- function(path_to_shapeFile = NULL, sF = NULL, mapinfo=TRU
   nat_data <- nat_data %>% 
     chr_upper() %>% state_label() %>% 
     aec_add_carto_f() %>% 
-    select(-radius) %>% 
-    rename("carto_x" = "x", "carto_y" = "y")
+    select(-radius)
   
   # Out
   return(list(map=nat_map, data=nat_data))
