@@ -2,7 +2,8 @@
 % Please edit documentation in R/shapefiles.R
 \name{getElectorateShapes}
 \alias{getElectorateShapes}
-\title{Extract shapefiles (of Australian electorates) from shp file}
+\title{Extract shapefiles (of Australian electorates) from raw file into fortified
+map and data components.}
 \usage{
 getElectorateShapes(path_to_shapeFile = NULL, sF = NULL,
   mapinfo = TRUE, layer = NULL, tolerance = 0.005)

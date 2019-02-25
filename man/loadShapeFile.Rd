@@ -2,10 +2,7 @@
 % Please edit documentation in R/shapefiles.R
 \name{loadShapeFile}
 \alias{loadShapeFile}
-\title{Load shapefile into R as a SpatialDataFrame, extract polygon information, thin
-polygon, fix any problematic polygons, and format variable names.
-"nat_map" and "nat_data" objects for every Australian federal election between 
-2001-2016 can be readily loaded from the package for analysis.}
+\title{Load shapefile of Australia into R}
 \usage{
 loadShapeFile(path_to_shapeFile, tolerance = 0.005)
 }
@@ -18,11 +15,17 @@ loadShapeFile(path_to_shapeFile, tolerance = 0.005)
 object of class SpatialPolygonsDataFrame
 }
 \description{
+Load shapefile into R as a SpatialDataFrame, extract polygon information, thin
+polygon, fix any problematic polygons, and format variable names.
+"nat_map" and "nat_data" objects for every Australian federal election between 
+2001-2016 can be readily loaded from the package for analysis.
+}
+\details{
 The function will take several minutes to complete.
 }
 \examples{
 \dontrun{
-fl <- "vignettes/national-midmif-09052016/COM_ELB.TAB"
+fl <- "data-raw/national-midmif-09052016/COM_ELB.TAB"
 sF_2016 <- loadShapeFile("local/path/to/shapefile.shp")
 }
 }
