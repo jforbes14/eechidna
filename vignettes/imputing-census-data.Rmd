@@ -20,9 +20,10 @@ opts_chunk$set(fig.width = 6,
                       warning = FALSE,
                       message = FALSE,
                       cache = F)
-library(tidyverse)
-library(ggthemes)
 library(eechidna)
+library(dplyr)
+library(ggthemes)
+library(ggplot2)
 data("nat_map13")
 data("nat_map16")
 data("abs2011")

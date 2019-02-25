@@ -306,7 +306,7 @@ census_and_election_subset <-
   ungroup %>% 
   select(DivisionNm, 
          ALP_Percent,
-         Population:BornElsewhere) %>% 
+         Population:Volunteer_NS) %>% 
   select(-c(ends_with("NS"), EmuneratedElsewhere, InternetUse, starts_with("Age")))
 
 library(corrplot)
@@ -333,7 +333,7 @@ multiple_regression_model <-
   census_and_election %>% 
   ungroup %>% 
   select(ALP_Percent,
-         Population:BornElsewhere) %>% 
+         Population:Volunteer_NS) %>% 
   select(-c(ends_with("NS"), EmuneratedElsewhere, InternetUse, starts_with("Age"))) %>% 
   lm(ALP_Percent ~ ., 
      data = .)
