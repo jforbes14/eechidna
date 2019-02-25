@@ -793,6 +793,30 @@
 #'     }
 "tpp04"
 
+#' 2001 General election data for two party preferred votes for candidates for the House of Representative for each electorate where Labor and Liberal parties were the two most popular parties.
+#' 
+#' A dataset containing two party preferred vote counts, winning candidate names, and other results for 
+#' the House of Representatives from the 2001 Australian federal election. Includes the count of votes for
+#' the Australian Labor Party and the count of votes for the Liberal-National Coalition for each electorate.
+#' Only available for the 141 electorates for which the two most preferred candidates were from the Labor
+#' and Liberal parties.
+#' The data were obtained from the Australian Electoral Commission, and downloaded 
+#' from \url{http://results.aec.gov.au/12246/results/HouseDownloadsMenu-12246-csv.htm} and 
+#' \url{http://www.aec.gov.au/elections/federal_elections/2004/downloads.htm}.
+#' 
+#' @format A data frame with the following variables:
+#' \itemize{
+#'     \item DivisionNm:  Electoral division name   
+#'     \item StateAb: Abbreviation for state name  
+#'     \item Surname: Candidate surname
+#'     \item GivenNm: Candidate given name
+#'     \item Elected: Whether candidate was elected (Y/N)
+#'     \item Percent: Percentage of votes in favour (\%)         
+#'     \item PartyAb: Abbreviation for political party name   
+#'     \item Swing: Percentage point change in two party preferred vote from the previous election      
+#'     }
+"tpp01"
+
 #' 2004 General election data for two candidate preferred votes for the House of Representatives for each polling place
 #' 
 #' A dataset containing two candidate preferred vote counts,  polling place locations,
@@ -938,7 +962,6 @@
 #' A large SpatialPolygonsDataFrame containing the polygons and associated data for each of the 150 Australian electorates in the 2016 federal election.
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
 #' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
-#' @examples 
 #' 
 "sF_16"
 
@@ -947,16 +970,22 @@
 #' A large SpatialPolygonsDataFrame containing the polygons and associated data for each of the 150 Australian electorates in the 2013 federal election.
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
 #' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
-#' @examples 
 #' 
 "sF_13"
+
+#' Shapefile containing Australian Electorates in place during 2011
+#'
+#' A large SpatialPolygonsDataFrame containing the polygons and associated data for each of the 150 Australian electorates at the time of the 2011 Census.
+#' The data were obtained from the Australian Bureau of Statistics, and downloaded 
+#' from \url{https://datapacks.censusdata.abs.gov.au/datapacks/}.
+#' 
+"sF_11"
 
 #' Shapefile containing Australian Electorates from 2010
 #'
 #' A large SpatialPolygonsDataFrame containing the polygons and associated data for each of the 150 Australian electorates in the 2010 federal election.
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
 #' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
-#' @examples 
 #' 
 "sF_10"
 
@@ -965,7 +994,6 @@
 #' A large SpatialPolygonsDataFrame containing the polygons and associated data for each of the 150 Australian electorates in the 2007 federal election.
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
 #' from \url{http://www.abs.gov.au/AUSSTATS/abs@@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}.
-#' @examples 
 #' 
 "sF_07"
 
@@ -974,7 +1002,6 @@
 #' A large SpatialPolygonsDataFrame containing the polygons and associated data for each of the 150 Australian electorates in the 2004 federal election.
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
 #' from \url{http://www.abs.gov.au/AUSSTATS/abs@@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}.
-#' @examples 
 #' 
 "sF_04"
 
@@ -983,14 +1010,12 @@
 #' A large SpatialPolygonsDataFrame containing the polygons and associated data for each of the 150 Australian electorates in the 2001 federal election.
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
 #' from \url{https://data.gov.au/dataset/ds-dga-0b939a62-e53e-4616-add5-77f909b58ddd/details?q=asgc\%202001}.
-#' @examples 
 #' 
 "sF_01"
 
 #' Map of Australian Electorates from 2016
 #'
 #' A dataset containing the map of the all 150 Australian electorates using the 2016 boundaries of the 
-#' electorates (and downsampled to a 5\% file to allow fast plotting).
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
 #' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
 #' @examples 
@@ -1382,7 +1407,7 @@
 #' }
 "abs2011" 
 
-#' 2006 Census data on all 150 electorates
+#' 2006 Census data on all 150 electorates (2004 boundaries)
 #'
 #' A dataset containing demographic and other information about each electorate.
 #' The data were obtained from the Australian Bureau of Statistics, and downloaded 
@@ -1478,6 +1503,103 @@
 #'   \item Volunteer_NS: Rate of nonresponse for questions relating to working as a volunteer
 #' }
 "abs2006"  
+
+#' 2006 Census data on all 150 electorates (2007 boundaries)
+#'
+#' A dataset containing demographic and other information about each electorate.
+#' The data were obtained from the Australian Bureau of Statistics, and downloaded 
+#' from \url{https://www.censusdata.abs.gov.au/datapacks/}.
+#' Electorate boundaries match those in place at the time of the 2007 Federal election.
+#'
+#' @format A data frame with 150 rows with the following variables:
+#' \itemize{
+#'   \item ID:Commonwealth Electoral District identifier
+#'   \item DivisionNm: Name of electorate
+#'   \item State: State containing electorate
+#'   \item Population: Total population of electorate
+#'   \item Area: Area of electorate division in square kilometres
+#'   \item Age00_04: Percentage of people aged 0-4.
+#'   \item Age05_14: Percentage of people aged 5-9.
+#'   \item Age15_19: Percentage of people aged 15-19.
+#'   \item Age20_24: Percentage of people aged 20-24.
+#'   \item Age25_34: Percentage of people aged 25-34.
+#'   \item Age35_44: Percentage of people aged 35-44.
+#'   \item Age45_54: Percentage of people aged 45-54.
+#'   \item Age55_64: Percentage of people aged 55-64.
+#'   \item Age65_74: Percentage of people aged 65-74.
+#'   \item Age75_84: Percentage of people aged 75-84.
+#'   \item Age85plus: Percentage of people aged 85 or higher.
+#'   \item Anglican: Percentage of people affiliated with the Anglican denomimation
+#'   \item AusCitizen: Percentage of people who are Australian Citizens
+#'   \item AverageHouseholdSize: Average number of people in a household 
+#'   \item BachelorAbv: Percentage of people who have completed a Bachelor degree or above
+#'   \item Born_Asia: Percentage of people born in Asia
+#'   \item Born_MidEast: Percentage of people born in the Middle East
+#'   \item Born_SE_Europe: Percentage of people born in South Eastern Europe
+#'   \item Born_UK: Percentage of people born in the United Kingdom
+#'   \item BornElsewhere: Percentage of people who were born overseas, outside of Asia, Middle East, South Eastern Europe and the UK
+#'   \item BornOverseas_NS: Percentage of people who did not answer the question relating to birthplace
+#'   \item Buddhism: Percentage of people affiliated with the Buddhist religion
+#'   \item Catholic: Percentage of people affiliated with the Catholic denomimation
+#'   \item Christianity: Percentage of people affiliated with the Christian religion (of all denominations)
+#'   \item Couple_NoChild_House: Percentage of households made up of a couple with no children
+#'   \item Couple_WChild_House: Percentage of households made up of a couple with children
+#'   \item CurrentlyStudying: Percentage of people who are currently studying
+#'   \item DeFacto: Percentage of people who are in a de facto marriage
+#'   \item DiffAddress: Percentage of people who live at a different address to what they did 5 years ago
+#'   \item DipCert: Percentage of people who have completed a diploma or certificate
+#'   \item Distributive: Percentage of employed persons who work in wholesale trade, retail trade, transport, post or warehousing related industries
+#'   \item EmuneratedElsewhere: Percentage of people who receive emuneration outside of Australia, out of the total population plus overseas visitors
+#'   \item EnglishOnly: Percentage of people who speak only English
+#'   \item Extractive: Percentage of employed persons who work in extractive industries (includes mining, gas, water, agriculture, waste, electricity)
+#'   \item FamilyIncome_NS: Percentage of people who did not answer the question relating to family income
+#'   \item FamilyRatio: Average number of people per family
+#'   \item Finance: Percentage of employed persons who work in finance or insurance related industries
+#'   \item HighSchool: Percentage of people who have completed high school
+#'   \item HighSchool_NS: Rate of nonresponse for questions relating to high school completion
+#'   \item HouseholdIncome_NS: Percentage of people who did not answer the question relating to houshold income
+#'   \item Indigenous: Percentage of people who are Indigenous
+#'   \item InternetAccess: Percentage of people with access to the internet
+#'   \item InternetAccess_NS: Rate of nonresponse for questions relating to internal access
+#'   \item InternetUse: Percentage of people who used interent in the last week (2001 only)
+#'   \item InternetUse_NS: Rate of nonresponse for questions relating to internet use (2001 only)
+#'   \item Islam: Percentage of people affiliated with the Islamic religion
+#'   \item Judaism: Percentage of people affiliated with the Jewish religion
+#'   \item Laborer: Percentage of employed persons who work as a laborer
+#'   \item Language_NS: Rate of nonresponse for questions relating to language spoken at home
+#'   \item LFParticipation: Labor force participation rate
+#'   \item ManagerAdminClericalSales: Percentage of employed persons who work in management, administration, clerical duties and sales
+#'   \item Married: Percentage of people who are married
+#'   \item MedianAge: Median age
+#'   \item MedianFamilyIncome: Median weekly family income (in $)
+#'   \item MedianHouseholdIncome: Median weekly household income (in $)
+#'   \item MedianLoanPay: Median mortgage loan repayment amount (of mortgage payments, in $)
+#'   \item MedianPersonalIncome: Median weekly personal income (in $)
+#'   \item MedianRent: Median weekly rental payment amount (of those who rent, in $)
+#'   \item Mortgage: Percentage of dwellings that are on a mortgage
+#'   \item NoReligion: Percentage of people with no religion
+#'   \item OneParent_House: Percentage of households made up of one parent with children
+#'   \item Other_NonChrist: Percentage of people affiliated with a religion other than Christianity, Buddhism, Islam and Judaism
+#'   \item OtherChrist: Percentage of people affiliated with a denomination of the Christian religion other than Anglican or Catholic
+#'   \item OtherLanguageHome: Percentage of people who speak a language other than English at home
+#'   \item Owned: Percentage of dwellings that are owned outright
+#'   \item PersonalIncome_NS: Rate of nonresponse for questions relating to personal income
+#'   \item Professional: Percentage of employed persons who work as a professional
+#'   \item PublicHousing: Percentage of dwellings that are owned by the government, and rented out to tenants
+#'   \item Religion_NS: Rate of nonresponse for questions relating to religion
+#'   \item Rent_NS: Rate of nonresponse for questions relating to rental costs
+#'   \item Renting: Percentage of dwellings that are being rented
+#'   \item SocialServ: Percentage of employed persons who work in education and training, healthcare, wocial work, community, arts and recreation
+#'   \item SP_House: Percentage of households occupied by a single person
+#'   \item Tenure_NS: Rate of nonresponse for questions relating to tenure
+#'   \item Tradesperson: Percentage of employed persons who specialise in a trade
+#'   \item Transformative: Percentage of employed persons who work in construction or manufacturing related industries
+#'   \item Unemployed: Unemployment rate
+#'   \item University_NS: Rate of nonresponse for questions relating to University
+#'   \item Volunteer: Percentage of people who work as a volunteer
+#'   \item Volunteer_NS: Rate of nonresponse for questions relating to working as a volunteer
+#' }
+"abs2006_e07"  
 
 #' 2001 Census data on all 150 electorates
 #'
