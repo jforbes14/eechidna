@@ -10,7 +10,6 @@
 #' @importFrom graphics text segments points polygon plot
 #' @importFrom stats dist
 #' @importFrom purrr when map2 map_df
-#' @importFrom tidyr gather
 #' @importFrom colourpicker colourInput
 #' @importFrom rgdal ogrListLayers readOGR
 #' @importFrom methods as
