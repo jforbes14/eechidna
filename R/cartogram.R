@@ -15,6 +15,7 @@
 #' library(ggplot2)
 #' data(nat_map16)
 #' data(nat_data16)
+#' nat_data16 <- nat_data16 %>% select(-c(x,y)) # remove existing cartogram coordinates
 #' adelaide <- aec_extract_f(nat_data16, ctr=c(138.6, -34.9), expand=c(2,3))
 #' ggplot(data=nat_map16) + 
 #'   geom_polygon(aes(x=long, y=lat, group=group, order=order),
@@ -308,6 +309,7 @@ dorling <- function(name, centroidx, centroidy, density, nbr=NULL, shared.border
 #' library(ggplot2)
 #' data(nat_map16)
 #' data(nat_data16)
+#' nat_data16 <- nat_data16 %>% select(-c(x,y)) # remove existing cartogram coordinates
 #' adelaide <- aec_extract_f(nat_data16, ctr=c(138.6, -34.9), expand=c(2,3))
 #' adelaide_carto <- aec_carto_f(adelaide) %>% rename(id=region)
 #' ggplot(data=nat_map16) + 
@@ -359,6 +361,7 @@ aec_carto_f <-function(aec_data_sub, polygon.vertex=6, name.text=TRUE,
 #' library(ggplot2)
 #' data(nat_map16)
 #' data(nat_data16)
+#' nat_data16 <- nat_data16 %>% select(-c(x,y)) # remove existing cartogram coordinates
 #' cities <- list(c(151.2, -33.8), # Sydney
 #' c(153.0, -27.5), # Brisbane
 #' c(145.0, -37.8), # Melbourne
@@ -410,6 +413,7 @@ aec_carto_join_f <- function(aec_data, aec_carto) {
 #' library(ggplot2)
 #' data(nat_map16)
 #' data(nat_data16)
+#' nat_data16 <- nat_data16 %>% select(-c(x,y)) # remove existing cartogram coordinates
 #' nat_data_cart <- aec_add_carto_f(nat_data16)
 #' # Map theme
 #' library(ggthemes)

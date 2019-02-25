@@ -20,6 +20,7 @@ library(dplyr)
 library(ggplot2)
 data(nat_map16)
 data(nat_data16)
+nat_data16 <- nat_data16 \%>\% select(-c(x,y)) # remove existing cartogram coordinates
 nat_data_cart <- aec_add_carto_f(nat_data16)
 # Map theme
 library(ggthemes)
