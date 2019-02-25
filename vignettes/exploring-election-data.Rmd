@@ -52,11 +52,10 @@ We can access and explore each of these using common methods in R, for example:
 ```{r load-read-polling, message=FALSE, error = FALSE}
 library(eechidna)
 library(plyr)
-library(dplyr)
+library(tidyverse)
 library(purrr)
 library(knitr)
 library(broom)
-library(tidyr)
 library(purrrlyr)
 
 data(fp16)
@@ -88,7 +87,6 @@ who_won %>%
   kable()
 
 # plot
-library(ggplot2)
 library(scales)
 ggplot(who_won, 
        aes(reorder(PartyNm, n), 

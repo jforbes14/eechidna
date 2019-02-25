@@ -23,8 +23,7 @@ This vignette demonstrates how to plot the polling booths on a map of the Austra
 ```{r message=FALSE, error = TRUE, warning=FALSE, echo=FALSE, tidy=TRUE}
 library(eechidna)
 library(plyr)
-library(dplyr)
-library(ggplot2)
+library(tidyverse)
 library(readr)
 
 stns <- read_csv("http://results.aec.gov.au/20499/Website/Downloads/GeneralPollingPlacesDownload-20499.csv", skip=1)
