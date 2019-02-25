@@ -1,3 +1,5 @@
+#' Load shapefile of Australia into R
+#' 
 #' Load shapefile into R as a SpatialDataFrame, extract polygon information, thin
 #' polygon, fix any problematic polygons, and format variable names.
 #' "nat_map" and "nat_data" objects for every Australian federal election between 
@@ -11,7 +13,7 @@
 #' @export
 #' @examples 
 #' \dontrun{
-#' fl <- "vignettes/national-midmif-09052016/COM_ELB.TAB"
+#' fl <- "data-raw/national-midmif-09052016/COM_ELB.TAB"
 #' sF_2016 <- loadShapeFile("local/path/to/shapefile.shp")
 #' }
 
@@ -91,7 +93,8 @@ loadShapeFile <- function(path_to_shapeFile, tolerance = 0.005) {
   return(out)
 }
 
-#' Extract shapefiles (of Australian electorates) from shp file
+#' Extract shapefiles (of Australian electorates) from raw file into fortified
+#' map and data components.
 #' 
 #' Extract polygon information and demographics for each of Australia's electorates. 
 #' The map and data corresponding to the shapefiles of the 2013 Australian electorates (available at \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}) are part of this package as nat_map.rda and nat_data.rda in the data folder.

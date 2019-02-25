@@ -1,3 +1,6 @@
+#' Compute areas of intersection between each election boundary and those in
+#' the Census of interest.
+#' 
 #' At the time of an election, compute how much each electoral division
 #' intersects with the divisions in place at the time of the Census.
 #' This is to be used in interpolating Census information for electoral
