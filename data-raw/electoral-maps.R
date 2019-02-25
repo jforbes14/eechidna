@@ -63,10 +63,6 @@ nat_map13 <- sF_13_fortified$map
 
 nat_map16 <- sF_16_fortified$map
 
-
-
-# Now add cartogram for each year
-
 nat_data01 <- sF_01_fortified$data
 
 nat_data04 <- sF_04_fortified$data
