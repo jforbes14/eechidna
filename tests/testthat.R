@@ -1,4 +1,4 @@
 library(testthat)
-library(TestPackage)
+library(eechidna)
 
-test_check("TestPackage")
+test_check("eechidna")
