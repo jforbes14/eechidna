@@ -15,6 +15,7 @@ from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
 }
 \examples{
 
+library(eechidna)
 data(nat_map16)
 # choropleth map with Census data
 nat_map16$region <- nat_map16$elect_div
