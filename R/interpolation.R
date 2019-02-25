@@ -5,11 +5,10 @@
 #' 
 #' @param aec_sF shapefile with boundaries at election time
 #' @param abs_sF shapefile with boundaries at census time
-#' @param area_thres threshold for which mapping is sufficient (default is 99.5%)
+#' @param area_thres threshold for which mapping is sufficient (default is 99.5\%)
 #' @return data frame detailing how much Census divisions intersect with each 
 #' electoral division at the time of the election.
 #' @export
-#' 
 #' @examples 
 #' \dontrun{
 #' aec_sF_2013 <- loadShapeFile(path_to_aec_shapefile)
@@ -60,7 +59,9 @@ mapping_fn <- function(aec_sF, abs_sF, area_thres = 0.995) {
       }
       
       # break if sum of intersection areas is over threshold (area_thres)
-      if ( (sum(cens_mapped$Intersect_area[1:j])/div_area) > area_thres ) break
+      if ( (sum(cens_mapped$Intersect_area[1:j])/div_area) > area_thres ) {
+        break
+        }
       
     } 
     
