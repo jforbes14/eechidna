@@ -212,20 +212,17 @@ tcp01 <- tcp01 %>%
 #--- TWO PARTY PREFERRED ---#
 # Preferences distribution only to Labor (ALP) and Coalition (LP, NP, LNQ, CLP)
 # A distribution of preferences where, by convention, comparisons are made between the ALP and the leading Liberal/National candidates. In seats where the final two candidates are not from the ALP and the Liberal or National parties, a two party preferred count may be conducted to find the result of preference flows to the ALP and the Liberal/National candidates.
-# The full data set is NOT available, so TPP is only calculated for the electorates who had ALP/LNP candidates in their two
-# candidate preferred.
 
-## Filtering TCP to get those with ALP and LNP only.
-in_tpp <- tcp01 %>% 
-  filter(PartyAb %in% c("ALP", "CLR", "CLP", "LP", "NP")) %>% 
-  count(DivisionNm)
+tpp01 <- read_csv("data-raw/HouseTppByDivision2001.csv")[-(1:17), ] %>% 
+  rename("DivisionNm" = "House of Representatives: Election 2001 - National", "ALP_Votes" = "X2", "ALP_Percent" = "X3", "LNP_Votes" = "X4", "LNP_Percent" = "X5", "TotalVotes" = "X6", "Swing" = "X7") %>% 
+  filter(!is.na(DivisionNm), !DivisionNm %in% c("Division", "State Total", "Territory Total")) %>% 
+  select(-X8) %>% 
+  mutate(StateAb = c(rep("NSW", 51), rep("VIC", 38), rep("QLD", 28), rep("WA", 16), rep("SA", 13), rep("TAS", 6), rep("ACT", 3), rep("NT", 3)),
+    LNP_Votes = as.numeric(LNP_Votes), LNP_Percent = as.numeric(LNP_Percent), ALP_Votes = as.numeric(ALP_Votes), ALP_Percent = as.numeric(ALP_Percent), TotalVotes = as.numeric(TotalVotes), Swing = as.numeric(Swing)) %>% 
+  filter(!is.na(ALP_Votes)) %>% 
+  select(DivisionNm, StateAb, LNP_Votes, LNP_Percent, ALP_Votes, ALP_Percent, TotalVotes, Swing)
 
-tpp01 <- tcp01 %>% 
-  filter(DivisionNm %in% in_tpp$DivisionNm) %>% 
-  mutate(PartyFixed = ifelse(PartyAb %in% c("ALP", "CLR"), "ALP", "LNP")) %>% 
-  select(-PartyAb) %>% 
-  rename(PartyAb = PartyFixed) %>% 
-  filter(PartyAb == "LNP", !is.na(Swing))
+
 
 #---- RELABEL PARTY NAMES ----
 
@@ -235,7 +232,7 @@ tpp01 <- tcp01 %>%
 
 fp01 <- fp01 %>% reabbrev_parties() %>% chr_upper()
 tcp01 <- tcp01 %>% reabbrev_parties() %>% chr_upper()
-tpp01 <- tpp01 %>% reabbrev_parties() %>% chr_upper()
+tpp01 <- tpp01 %>% chr_upper()
 
 
 #---- SAVE ----
