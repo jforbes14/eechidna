@@ -85,6 +85,6 @@ ggplot(data=nat_map16) +
                fill="grey90", colour="white") +
   geom_point(data=cart.winners, aes(x=x, y=y, colour=PartyNm), size=1.5, alpha=0.8) +
   scale_colour_manual(name="Political Party", values=partycolours) +
-  theme_map + coord_equal() + theme(legend.position="bottom")
+  theme_map() + coord_equal() + theme(legend.position="bottom")
 ```
 
