@@ -490,7 +490,8 @@ fp_nocord_filled <- left_join(fp_nocord, all_cord, by = c("PollingPlace", "State
 
 fp_pp <- fp_pp_all %>% 
   filter(!is.na(Latitude)) %>% 
-  bind_rows(fp_nocord_filled)
+  bind_rows(fp_nocord_filled) %>% 
+  ungroup()
 
 
 # Two candidate preferences
@@ -505,13 +506,15 @@ tcp_pp_all <- dplyr::bind_rows(
 tcp_nocord <- tcp_pp_all %>% 
   filter(is.na(Latitude)) %>%
   mutate(PollingPlace = toupper(PollingPlace)) %>% 
-  select(-c(Latitude, Longitude))
+  select(-c(Latitude, Longitude)) %>% 
+  ungroup()
 
 tcp_nocord_filled <- left_join(tcp_nocord, all_cord, by = c("PollingPlace", "StateAb"))
 
 tcp_pp <- tcp_pp_all %>% 
   filter(!is.na(Latitude)) %>% 
-  bind_rows(tcp_nocord_filled)
+  bind_rows(tcp_nocord_filled) %>% 
+  ungroup()
 
 
 # --------------------------------------------------------------------------------
