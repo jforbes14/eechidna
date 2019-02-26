@@ -38,14 +38,15 @@ In the `eechidna` package we have six datasets for each election, summarised her
 
 Data object name        | Description
 ----------------------- | ------------------------------------------------------------
-fp_pp16                 | first preference votes for candidates at each polling place
-fp16               | first preference votes for candidates at each electorate
-tpp_pp16                | two party preferred votes for candidates at each polling place
-tpp16              | two party preferred votes for candidates at each electorate
-tcp_pp16                | two candidate preferred votes for candidates at each polling place
-tcp16              | two condidate preferred votes for candidates at each electorate
+fp_pp                   | first preference votes for candidates at each polling place
+fp16                    | first preference votes for candidates at each electorate (2016)
+tpp_pp                  | two party preferred votes for candidates at each polling place
+tpp16                   | two party preferred votes for candidates at each electorate (2016)
+tcp_pp                  | two candidate preferred votes for candidates at each polling place
+tcp16                   | two condidate preferred votes for candidates at each electorate (2016)
 
 The suffix `16` corresponds with the 2016 federal election, so objects for other elections will have an equivalent suffix, e.g. `fp07` contains first preference votes for candidates in each electorate from the 2007 federal election.
+The `pp` suffix stands for polling place (polling booth), and these data sets contain votes from all six elections. The variable `year` represents the election year, so an individual years' polling booth data can be easily obtained using `dplyr::filter`.
 
 We can access and explore each of these using common methods in R, for example:
 

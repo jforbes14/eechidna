@@ -48,7 +48,8 @@ Election results are provided at the resolution of polling place. We can use thi
 This gives a richer look at the party preferences across the country. You can see that although the big rural electorates vote for LNP overall, some polling places would elect the ALP, e.g. western NSW around Broken Hill. This data would look far more interesting if the data also contained the minority parties, because there must be some polling places where the majority vote would be for a minor party, since there are some minor party representatives in the House.  
 
 ```{r tpp_map, fig.width=7, fig.height=5, message=FALSE, error = TRUE, warning=FALSE, echo=FALSE, tidy=TRUE}
-data("tpp_pp16")
+tpp_pp <- twoparty_pollingbooth_download()
+tpp_pp16 <- tpp_pp %>% filter(year == 2016)
 
 # Find winner
 tpp_pp16 <- tpp_pp16 %>% 
@@ -65,11 +66,12 @@ ggplot(data=nat_data16, aes(map_id=id)) +
 The two candidate preferred vote in `tcp_pp16` is a measure of preference between the two candidates who received the most votes through the division of preferences, where the winner has the higher percentage.
 
 ```{r tcp_map, fig.width=7, fig.height=5, message=FALSE, error = TRUE, warning=FALSE, echo=FALSE, tidy=TRUE}
-data("tcp_pp16")
+tcp_pp <- twocand_pollingbooth_download()
+tcp_pp16 <- tcp_pp %>% filter(year == 2016)
 
 # Find winner
 winners <- tcp_pp16 %>% 
-  left_join(tcp_pp16 %>% group_by(PollingPlaceID) %>% summarise(TotalVotes = sum(OrdinaryVotes)), by = "PollingPlaceID") %>% 
+  left_join(tcp_pp16 %>% dplyr::group_by(PollingPlace, DivisionNm) %>% summarise(TotalVotes = sum(OrdinaryVotes)), by = c("PollingPlace", "DivisionNm")) %>% 
   filter(OrdinaryVotes/TotalVotes > 0.5)
 
 # Plot
