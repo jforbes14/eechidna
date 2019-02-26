@@ -77,8 +77,8 @@ sF <- readOGR(dsn=shapeFile)
 ```
 
 ```{r echo = F}
-data("sF_16")
-sF <- sF_16
+library(eechidna)
+sF <- sF_download(2016)
 ```
 
 
