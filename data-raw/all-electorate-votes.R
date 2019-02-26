@@ -204,7 +204,9 @@ for (i in 1:nrow(tcp01)) {
   }
 }
 
-
+# Make Percent and Swing numeric
+tcp01 <- tcp01 %>% 
+  mutate(Percent = as.numeric(Percent), Swing = as.numeric(Swing))
 
 
 #--- TWO PARTY PREFERRED ---#
