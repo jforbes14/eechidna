@@ -24,6 +24,5 @@ Download SpatialPolygonsDataFrame containing polygons of Australian federal elec
 }
 \examples{
 sF_16 <- sF_download(year = 2016)
-plot(sF_16)
 
 }
