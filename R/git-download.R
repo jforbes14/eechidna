@@ -12,7 +12,6 @@
 #' 
 #' @examples
 #' sF_16 <- sF_download(year = 2016)
-#' plot(sF_16)
 #' 
 #' @export
 sF_download <- function(year, ...){
