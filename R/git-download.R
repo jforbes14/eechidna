@@ -3,8 +3,10 @@
 #' @param year Desired year, must be one of 2001, 2004, 2007, 2010, 2011, 2013, 2016
 #' @param ... Additional arguments passed to `download.file`
 #'
-#' Downloads and returns a SpatialPolygonsDataFrame containing polygons of the 150 Australian 
-#' federal electorates in the year specified.
+#' Downloads and returns a large SpatialPolygonsDataFrame containing the polygons 
+#' and associated data for each of the 150 Australian electorates in the 2001 federal election. 
+#' This object is obtained using the `sF_download` function. The data were obtained from the 
+#' Australian Electoral Commission and the Australian Bureau of Statistics.
 #'
 #' @return A SpatialPolygonsDataFrame containing polygons of the 150 Australian federal electorates
 #' 
@@ -74,10 +76,42 @@ sF_download <- function(year, ...){
 #' 
 #' @param ... Additional arguments passed to `download.file`
 #'
-#' Downloads and returns a data frame containing first preference votes from each polling booth
-#' in each of the six Australian federal elections between 2001 and 2016.
+#' Downloads and returns first preference votes for candidates in the House of 
+#' Representatives, for each polling both, in the six Australian Federal elections 
+#' between 2001 and 2016. 
 #'
 #' @return A data frame containing first preference votes
+#' 
+#' A dataset containing first preference vote counts, candidate names, polling place locations,
+#' and other results for the House of Representatives from the 2001, 2004, 2007, 2010,
+#' 2013 and 2016 Australian federal elections. This data set is obtained using the 
+#' `firstpref_pollingbooth_download` function. The data were obtained from the Australian Electoral 
+#' Commission.
+#' 
+#' @format A data frame with the following variables:
+#' \itemize{
+#'     \item StateAb: Abbreviation for state name    
+#'     \item DivisionID: Electoral division ID    
+#'     \item DivisionNm:  Electoral division name   
+#'     \item PollingPlaceID: Polling place ID  
+#'     \item PollingPlace: Polling place name     
+#'     \item CandidateID: Candidate ID       
+#'     \item Surname: Candidate surname          
+#'     \item GivenNm: Candidate given name            
+#'     \item BallotPosition: Candidate's position on the ballot    
+#'     \item Elected: Whether the candidate was elected (Y/N)           
+#'     \item HistoricElected: Whether the candidate is the incumbent member  
+#'     \item PartyAb: Abbreviation for political party name           
+#'     \item PartyNm: Political party name           
+#'     \item OrdinaryVotes: Number of ordinary votes cast at the polling place
+#'     for the candidate     
+#'     \item Swing: Percentage point change in ordinary votes for the party 
+#'     from the previous election
+#'     \item PremisesPostCode: Post code of polling booth  
+#'     \item Latitude: Coordinates        
+#'     \item Longitude: Coordinates
+#'     \item year: Election year
+#'     }
 #' 
 #' @examples
 #' fp_pp <- firstpref_pollingbooth_download()
@@ -98,10 +132,43 @@ firstpref_pollingbooth_download <- function(...){
 #' 
 #' @param ... Additional arguments passed to `download.file`
 #'
-#' Downloads and returns a data frame containing two party preferred votes from each 
-#' polling booth in each of the six Australian federal elections between 2001 and 2016.
+#' Downloads and returns the wo party preferred votes for candidates in the House of 
+#' Representatives, for each polling both, in the six Australian Federal elections between
+#' 2001 and 2016. 
 #'
 #' @return A data frame containing two party preference votes
+#' 
+#' A dataset containing two party preferred vote counts, winning candidate names, 
+#' polling place locations, and other results for the House of Representatives from 
+#' each of the 2001, 2004, 2007, 2010, 2013 and 2016 Australian federal elections.
+#' Includes the count of votes for the Australian Labor Party and the count of votes 
+#' for the Liberal-National Coalition for each polling place. This data set is obtained 
+#' using the `twoparty_pollingbooth_download` function. The data were obtained from the 
+#' Australian Electoral Commission.
+#' 
+#' @format A data frame with the following variables:
+#' \itemize{
+#'     \item StateAb: Abbreviation for state name    
+#'     \item DivisionID: Electoral division ID    
+#'     \item DivisionNm:  Electoral division name   
+#'     \item PollingPlaceID: Polling place ID  
+#'     \item PollingPlace: Polling place name  
+#'     \item LNP_Votes: Count of two party preferred vote in favour of the 
+#'     Liberal National coalition
+#'     \item LNP_Percent: Percentage of two party preferred vote in favour 
+#'     of the Liberal National coalition   
+#'     \item ALP_Votes: Count of two party preferred vote in favour of the 
+#'     Labor party
+#'     \item ALP_Percent: Percentage of two party preferred vote in favour 
+#'     of the Labor party     
+#'     \item TotalVotes: Total number of votes cast     
+#'     \item Swing: Percentage point change in two party preferred vote from 
+#'     the previous election     
+#'     \item PremisesPostCode: Post code of polling booth  
+#'     \item Latitude: Coordinates        
+#'     \item Longitude: Coordinates
+#'     \item year: Election year
+#'     }
 #' 
 #' @examples
 #' tpp_pp <- twoparty_pollingbooth_download()
@@ -122,11 +189,45 @@ twoparty_pollingbooth_download <- function(...){
 #' 
 #' @param ... Additional arguments passed to `download.file`
 #'
-#' Downloads and returns a data frame containing two candidate preference votes from each polling booth
-#' in each of the five Australian federal elections between 2004 and 2016. Note that 2001 is unavailable.
+#' Downloads and returns the two candidate preferred votes for candidates in the House of 
+#' Representatives, for each polling both, in the five Australian Federal elections between
+#' 2004 and 2016. 
 #'
 #' @return A data frame containing two candidate preference votes
 #' 
+#' A dataset containing two candidate preferred vote counts, polling place locations,
+#' and other results for the House of Representatives from each of the 2004, 
+#' 2007, 2010, 2013 and 2016 Australian federal elections. Includes the count of votes
+#' for the leading two candidates in the electorate after distribution of preferences 
+#' for each polling place. Note that 2001 two candidate preferred vote is not available
+#' in this package. This data set is obtained using the `twocand_pollingbooth_download` function.
+#' The data were obtained from the Australian Electoral Commission,
+#' 
+#' @format A data frame with the following variables:
+#' \itemize{
+#'     \item StateAb: Abbreviation for state name    
+#'     \item DivisionID: Electoral division ID    
+#'     \item DivisionNm:  Electoral division name   
+#'     \item PollingPlaceID: Polling place ID  
+#'     \item PollingPlace: Polling place name     
+#'     \item CandidateID: Candidate ID       
+#'     \item Surname: Candidate surname          
+#'     \item GivenNm: Candidate given name            
+#'     \item BallotPosition: Candidate's position on the ballot    
+#'     \item Elected: Whether the candidate was elected (Y/N)           
+#'     \item HistoricElected: Whether the candidate is the incumbent member  
+#'     \item PartyAb: Abbreviation for political party name           
+#'     \item PartyNm: Political party name           
+#'     \item OrdinaryVotes: Number of ordinary votes cast at the polling place 
+#'     for the candidate     
+#'     \item Swing: Percentage point change in ordinary votes for the party 
+#'     from the previous election
+#'     \item PremisesPostCode: Post code of polling booth  
+#'     \item Latitude: Coordinates        
+#'     \item Longitude: Coordinates
+#'     \item year: Election year
+#'     }
+#'     
 #' @examples
 #' tcp_pp <- twocand_pollingbooth_download()
 #' library(dplyr)
