@@ -512,3 +512,11 @@ tcp_nocord_filled <- left_join(tcp_nocord, all_cord, by = c("PollingPlace", "Sta
 tcp_pp <- tcp_pp_all %>% 
   filter(!is.na(Latitude)) %>% 
   bind_rows(tcp_nocord_filled)
+
+
+# --------------------------------------------------------------------------------
+
+# Save
+save(fp_pp, file = "extra-data/fp_pp.rda")
+save(tcp_pp, file = "extra-data/tcp_pp.rda")
+save(tpp_pp, file = "extra-data/tpp_pp.rda")
