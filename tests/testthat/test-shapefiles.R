@@ -3,6 +3,7 @@
 test_that("loadShapeFile works properly", {
   setwd("/Users/Jeremy/Documents/R/eechidna")
   my_sF <- loadShapeFile("data-raw/Shapefiles/national-midmif-09052016/COM_ELB.TAB")
+  sF_16 <- sF_download(2016)
   
   expect_equal(names(my_sF), names(sF_16))
   expect_equal(object.size(my_sF), object.size(my_sF))
@@ -21,4 +22,6 @@ test_that("getElectroateShapes works properly", {
   expect_equal(names(my_sF_fortified$data), names(nat_data16))
   expect_equal(object.size(my_sF_fortified$data), object.size(nat_data16))
   expect_equal(typeof(my_sF_fortified$data), typeof(nat_data16))
+  
+  file.remove("Rplots.pdf")
 })

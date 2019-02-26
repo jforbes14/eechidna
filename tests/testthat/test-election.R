@@ -20,20 +20,11 @@ test_that("Division names are the same across vote types - electorate", {
 })
 
 test_that("Division names are the same across vote types - polling booth", {
-  expect_equal(tpp_pp16$DivisionNm %>% table %>% names, fp_pp16$DivisionNm %>% table %>% names)
-  expect_equal(tcp_pp16$DivisionNm %>% table %>% names, fp_pp16$DivisionNm %>% table %>% names)
+  fp_pp <- firstpref_pollingbooth_download()
+  tpp_pp <- twoparty_pollingbooth_download()
+  tcp_pp <- twocand_pollingbooth_download()
   
-  expect_equal(tpp_pp13$DivisionNm %>% table %>% names, fp_pp13$DivisionNm %>% table %>% names)
-  expect_equal(tcp_pp13$DivisionNm %>% table %>% names, fp_pp13$DivisionNm %>% table %>% names)
-  
-  expect_equal(tpp_pp10$DivisionNm %>% table %>% names, fp_pp10$DivisionNm %>% table %>% names)
-  expect_equal(tcp_pp10$DivisionNm %>% table %>% names, fp_pp10$DivisionNm %>% table %>% names)
-  
-  expect_equal(tpp_pp07$DivisionNm %>% table %>% names, fp_pp07$DivisionNm %>% table %>% names)
-  expect_equal(tcp_pp07$DivisionNm %>% table %>% names, fp_pp07$DivisionNm %>% table %>% names)
-  
-  expect_equal(tpp_pp04$DivisionNm %>% table %>% names, fp_pp04$DivisionNm %>% table %>% names)
-  expect_equal(tcp_pp04$DivisionNm %>% table %>% names, fp_pp04$DivisionNm %>% table %>% names)
-  
-  expect_equal(tpp_pp01$DivisionNm %>% table %>% names, fp_pp01$DivisionNm %>% table %>% names)
+  expect_equal(fp_pp %>% select(DivisionNm, year) %>% unique() %>% nrow(), 900)
+  expect_equal(tpp_pp %>% select(DivisionNm, year) %>% unique() %>% nrow(), 900)
+  expect_equal(tcp_pp %>% select(DivisionNm, year) %>% unique() %>% nrow(), 750)
 })

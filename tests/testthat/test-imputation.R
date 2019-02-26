@@ -2,6 +2,9 @@
 
 
 test_that("Mapping and weighted_avg_census functions", {
+  sF_11 <- sF_download(2011)
+  sF_13 <- sF_download(2013)
+  sF_16 <- sF_download(2016)
   cowan <- subset(sF_13, elect_div == "COWAN")
   
   map16 <- mapping_fn(cowan, sF_16)
