@@ -18,9 +18,9 @@ knitr::opts_chunk$set(
 
 ## Exploring Election and Census Highly Informative Data Nationally for Australia
 
-The R package *eechidna* provides data from the 2013 and 2016 Australian Federal Elections and 2011 Australian Census for each House of Representatives electorate, along with some tools for visualizing and analysing the data. 
+The R package *eechidna* provides data from the Australian Federal elections in 2001, 2004, 2007, 2010, 2013 and 2016, along with the Australian Census information for each House of Representatives electorate from the 2001, 2006, 2011 and 2016 Censuses, along with some tools for visualizing and analysing the data. 
 
-This package was developed during the [rOpenSci auunconf event](http://auunconf.ropensci.org/) in Brisbane, Queensland, during 21-22 April 2016, and updated during the 2017 rOpenSci auunconf event. [Peter Ellis'](https://github.com/ellisp/) work on the NZ electoral data was an important inspiration for this package.
+This package was developed during the [rOpenSci auunconf event](http://auunconf.ropensci.org/) in Brisbane, Queensland, during 21-22 April 2016. It has been updated during the 2017 rOpenSci auunconf event, and in March 2019 with the addition of election and Census information for the events between 2001 and 2011. [Peter Ellis'](https://github.com/ellisp/) work on the NZ electoral data was an important inspiration for this package.
 
 ## How to install
 
@@ -47,18 +47,16 @@ apt-get install libgdal-dev libgeos-dev -y
 
 ## How to use
 
-The most accessible and impressive part of this package is a highly interactive web app for exploring the election and census data together. This app uses the shiny framework, and can be run locally on your computer with the command `eechidna::launchApp()`. There is a video demo of the app here: <https://vimeo.com/167367369>, here's a screenshot:
+The package consists of several datasets, which includes Australian Census data at electorate level, Australian Federal election (House of Representatives) voting data from electorates and polling booths, and shapefiles for Australian electoral districts at various points in time. In addition to the data provided, `eechidna` includes a highly interactive web app for exploring the election and census data together. This app uses the shiny framework, and can be run locally on your computer with the command `eechidna::launchApp()`. There is a video demo of the app here: <https://vimeo.com/167367369>, here's a screenshot:
 
 ![](README_video_screenshot.png)
 
-In addition to the app, the package consists of several datasets, including the 2011 Australian Census, the 2013 and 2016 Australian Federal Elections (House of Representatives), and shapefiles for all Australian electoral districts. 
-
 We have two vignettes that show how to access these data in the package, and demonstrate how to analyse the data using R:  
 
-- [Exploring the 2013 Election data](https://cran.r-project.org/web/packages/eechidna/vignettes/exploring-election-data.html)      
-- [Exploring the 2011 Census data] (https://cran.r-project.org/web/packages/eechidna/vignettes/exploring-census-data.html) 
+- [Exploring election data](https://cran.r-project.org/web/packages/eechidna/vignettes/exploring-election-data.html)      
+- [Exploring Census data] (https://cran.r-project.org/web/packages/eechidna/vignettes/exploring-census-data.html) 
 
-There are also two vignettes that demonstrate how to use the spatial data to make maps. Mapping election data for Australia is not trivial because of the extreme variation in electorate size. In these vignettes we show some methods for effectively visualising election data in Australia:
+There are also three vignettes that demonstrate how to use the spatial data to make maps. Mapping election data for Australia is not trivial because of the extreme variation in electorate size. In these vignettes we show some methods for effectively visualising election data in Australia:
 
 - [Mapping Australia's Electorates](https://cran.r-project.org/web/packages/eechidna/vignettes/plotting-electorates.html)     
 - [Plotting Australia's Polling Stations](https://cran.r-project.org/web/packages/eechidna/vignettes/plotting-polling-stns.html)         
@@ -70,7 +68,7 @@ This package is free and open source software, licensed under GPL (>= 2).
 
 ## Feedback, contributing, etc.
 
-Please open and issue if you find something that doesn't work as expected or have questions or suggestions. Note that this project is released with a [Guide to Contributing](CONTRIBUTING.md) and a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
+Please open an issue if you find something that doesn't work as expected or have questions or suggestions. Note that this project is released with a [Guide to Contributing](CONTRIBUTING.md) and a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
 
 ## Acknoweldgements 
 
