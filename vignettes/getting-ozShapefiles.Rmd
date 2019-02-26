@@ -56,7 +56,7 @@ library(ggthemes)
 ggplot(aes(map_id=id), data=nat_data) +
   geom_map(aes(fill=area_sqkm), map=nat_map) +
   expand_limits(x=nat_map$long, y=nat_map$lat) + 
-  theme_map()
+  theme_map() + coord_equal()
 ```
 
 The `getElectorateShapes` function works for the Australian electoral boundaries between 2001 and 2016, but may need some tweaking for other maps (including future electoral maps). Each step of this function is detailed below, with the running example of the Australian electoral boundaries for 2016.
@@ -195,6 +195,6 @@ Finally, just to check the data, a map of the Australian electorates colored by 
 ggplot(aes(map_id=id), data=nat_data) +
   geom_map(aes(fill=area_sqkm), map=nat_map) +
   expand_limits(x=nat_map$long, y=nat_map$lat) + 
-  theme_map()
+  theme_map() + coord_equal()
 ```
 
