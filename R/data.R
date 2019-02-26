@@ -1,36 +1,4 @@
 #' 2016 General election data for first preference votes for candidates for the House of 
-#' Representatives for each polling place
-#' 
-#' A dataset containing first preference vote counts, candidate names, polling place locations,
-#' and other results for the House of Representatives from the 2016 Australian federal election. 
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://results.aec.gov.au/20499/Website/HouseDownloadsMenu-20499-csv.htm} and 
-#' \url{http://www.aec.gov.au/elections/federal_elections/2016/downloads.htm}.
-#' 
-#' @format A data frame with the following variables:
-#' \itemize{
-#'     \item StateAb: Abbreviation for state name    
-#'     \item DivisionID: Electoral division ID    
-#'     \item DivisionNm:  Electoral division name   
-#'     \item PollingPlaceID: Polling place ID  
-#'     \item PollingPlace: Polling place name     
-#'     \item CandidateID: Candidate ID       
-#'     \item Surname: Candidate surname          
-#'     \item GivenNm: Candidate given name            
-#'     \item BallotPosition: Candidate's position on the ballot    
-#'     \item Elected: Whether the candidate was elected (Y/N)           
-#'     \item HistoricElected: Whether the candidate is the incumbent member  
-#'     \item PartyAb: Abbreviation for political party name           
-#'     \item PartyNm: Political party name           
-#'     \item OrdinaryVotes: Number of ordinary votes cast at the polling place for the candidate     
-#'     \item Swing: Percentage point change in ordinary votes for the party from the previous election     
-#'     \item PremisesPostCode: Post code of polling booth  
-#'     \item Latitude: Coordinates        
-#'     \item Longitude: Coordinates
-#'     }
-"fp_pp16"
-
-#' 2016 General election data for first preference votes for candidates for the House of 
 #' Representatives for each electorate
 #' 
 #' A dataset containing first preference vote counts, candidate names, and other results for the
@@ -57,36 +25,6 @@
 #'     }
 "fp16"
 
-#' 2016 General election data for two party preferred votes for the House of 
-#' Representatives for each polling place
-#' 
-#' A dataset containing two party preferred vote counts, winning candidate names, 
-#' polling place locations, and other results for the House of Representatives from 
-#' the 2016 Australian federal election. Includes the count of votes for the Australian 
-#' Labor Party and the count of votes for the Liberal-National Coalition for each polling place.
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://results.aec.gov.au/20499/Website/HouseDownloadsMenu-20499-csv.htm} and 
-#' \url{http://www.aec.gov.au/elections/federal_elections/2016/downloads.htm}.
-#' 
-#' @format A data frame with the following variables:
-#' \itemize{
-#'     \item StateAb: Abbreviation for state name    
-#'     \item DivisionID: Electoral division ID    
-#'     \item DivisionNm:  Electoral division name   
-#'     \item PollingPlaceID: Polling place ID  
-#'     \item PollingPlace: Polling place name  
-#'     \item LNP_Votes: Count of two party preferred vote in favour of the Liberal National coalition
-#'     \item LNP_Percent: Percentage of two party preferred vote in favour of the Liberal National coalition   
-#'     \item ALP_Votes: Count of two party preferred vote in favour of the Labor party
-#'     \item ALP_Percent: Percentage of two party preferred vote in favour of the Labor party     
-#'     \item TotalVotes: Total number of votes cast     
-#'     \item Swing: Percentage point change in two party preferred vote from the previous election     
-#'     \item PremisesPostCode: Post code of polling booth  
-#'     \item Latitude: Coordinates        
-#'     \item Longitude: Coordinates
-#'     }
-"tpp_pp16"
-
 #' 2016 General election data for two party preferred votes for candidates for the House of 
 #' Representative for each electorate
 #' 
@@ -112,39 +50,6 @@
 #'     }
 "tpp16"
 
-#' 2016 General election data for two candidate preferred votes for the House of 
-#' Representatives for each polling place
-#' 
-#' A dataset containing two candidate preferred vote counts, polling place locations,
-#' and other results for the House of Representatives from the 2016 Australian 
-#' federal election. Includes the count of votes for the leading two candidates 
-#' in the electorate after distribution of preferences for each polling place.
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://results.aec.gov.au/20499/Website/HouseDownloadsMenu-20499-csv.htm} and 
-#' \url{http://www.aec.gov.au/elections/federal_elections/2016/downloads.htm}.
-#' 
-#' @format A data frame with the following variables:
-#' \itemize{
-#'     \item StateAb: Abbreviation for state name    
-#'     \item DivisionID: Electoral division ID    
-#'     \item DivisionNm:  Electoral division name   
-#'     \item PollingPlaceID: Polling place ID  
-#'     \item PollingPlace: Polling place name     
-#'     \item CandidateID: Candidate ID       
-#'     \item Surname: Candidate surname          
-#'     \item GivenNm: Candidate given name            
-#'     \item BallotPosition: Candidate's position on the ballot    
-#'     \item Elected: Whether the candidate was elected (Y/N)           
-#'     \item HistoricElected: Whether the candidate is the incumbent member  
-#'     \item PartyAb: Abbreviation for political party name           
-#'     \item PartyNm: Political party name           
-#'     \item OrdinaryVotes: Number of ordinary votes cast at the polling place for the candidate     
-#'     \item Swing: Percentage point change in ordinary votes for the party from the previous election     
-#'     \item PremisesPostCode: Post code of polling booth  
-#'     \item Latitude: Coordinates        
-#'     \item Longitude: Coordinates
-#'     }
-"tcp_pp16"
 
 #' 2016 General election data for two candidate preferred votes for candidates for the 
 #' House of Representative for each electorate
@@ -175,39 +80,6 @@
 "tcp16"
 
 #' 2013 General election data for first preference votes for candidates for the 
-#' House of Representatives for each polling place
-#' 
-#' A dataset containing first preference vote counts, candidate names, polling place locations,
-#' and other results for the
-#' House of Representatives from the 2013 Australian federal election. 
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm} and 
-#' \url{http://www.aec.gov.au/elections/federal_elections/2013/downloads.htm}.
-#' 
-#' @format A data frame with the following variables:
-#' \itemize{
-#'     \item StateAb: Abbreviation for state name    
-#'     \item DivisionID: Electoral division ID    
-#'     \item DivisionNm:  Electoral division name   
-#'     \item PollingPlaceID: Polling place ID  
-#'     \item PollingPlace: Polling place name     
-#'     \item CandidateID: Candidate ID       
-#'     \item Surname: Candidate surname          
-#'     \item GivenNm: Candidate given name            
-#'     \item BallotPosition: Candidate's position on the ballot    
-#'     \item Elected: Whether the candidate was elected (Y/N)           
-#'     \item HistoricElected: Whether the candidate is the incumbent member  
-#'     \item PartyAb: Abbreviation for political party name           
-#'     \item PartyNm: Political party name           
-#'     \item OrdinaryVotes: Number of ordinary votes cast at the polling place for the candidate     
-#'     \item Swing: Percentage point change in ordinary votes for the party from the previous election     
-#'     \item PremisesPostCode: Post code of polling booth  
-#'     \item Latitude: Coordinates        
-#'     \item Longitude: Coordinates
-#'     }
-"fp_pp13"
-
-#' 2013 General election data for first preference votes for candidates for the 
 #' House of Representative for each electorate
 #' 
 #' A dataset containing first preference vote counts, candidate names, and other results for the
@@ -233,37 +105,6 @@
 #'     \item Percent: Percentage of ordinary votes for the candidate     
 #'     }
 "fp13"
-
-#' 2013 General election data for two party preferred votes for the House of 
-#' Representatives for each polling place
-#' 
-#' A dataset containing two party preferred vote counts, winning candidate names, 
-#' polling place locations, and other results for the House of Representatives from 
-#' the 2013 Australian federal election. Includes the count of votes for
-#' the Australian Labor Party and the count of votes for the Liberal-National Coalition 
-#' for each polling place.
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm} and 
-#' \url{http://www.aec.gov.au/elections/federal_elections/2013/downloads.htm}.
-#' 
-#' @format A data frame with the following variables:
-#' \itemize{
-#'     \item StateAb: Abbreviation for state name    
-#'     \item DivisionID: Electoral division ID    
-#'     \item DivisionNm:  Electoral division name   
-#'     \item PollingPlaceID: Polling place ID  
-#'     \item PollingPlace: Polling place name  
-#'     \item LNP_Votes: Count of two party preferred vote in favour of the Liberal National coalition
-#'     \item LNP_Percent: Percentage of two party preferred vote in favour of the Liberal National coalition   
-#'     \item ALP_Votes: Count of two party preferred vote in favour of the Labor party
-#'     \item ALP_Percent: Percentage of two party preferred vote in favour of the Labor party     
-#'     \item TotalVotes: Total number of votes cast     
-#'     \item Swing: Percentage point change in two party preferred vote from the previous election     
-#'     \item PremisesPostCode: Post code of polling booth  
-#'     \item Latitude: Coordinates        
-#'     \item Longitude: Coordinates
-#'     }
-"tpp_pp13"
 
 #' 2013 General election data for two party preferred votes for candidates for the 
 #' House of Representative for each electorate
@@ -352,38 +193,6 @@
 #'     }
 "tcp13"
 
-#' 2010 General election data for first preference votes for candidates for the 
-#' House of Representatives for each polling place
-#' 
-#' A dataset containing first preference vote counts, candidate names, polling place locations,
-#' and other results for the House of Representatives from the 2010 Australian federal election. 
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://results.aec.gov.au/15508/Website/HouseDownloadsMenu-15508-csv.htm} and 
-#' \url{http://www.aec.gov.au/elections/federal_elections/2010/downloads.htm}.
-#' 
-#' @format A data frame with the following variables:
-#' \itemize{
-#'     \item StateAb: Abbreviation for state name    
-#'     \item DivisionID: Electoral division ID    
-#'     \item DivisionNm:  Electoral division name   
-#'     \item PollingPlaceID: Polling place ID  
-#'     \item PollingPlace: Polling place name     
-#'     \item CandidateID: Candidate ID       
-#'     \item Surname: Candidate surname          
-#'     \item GivenNm: Candidate given name            
-#'     \item BallotPosition: Candidate's position on the ballot    
-#'     \item Elected: Whether the candidate was elected (Y/N)           
-#'     \item HistoricElected: Whether the candidate is the incumbent member  
-#'     \item PartyAb: Abbreviation for political party name           
-#'     \item PartyNm: Political party name           
-#'     \item OrdinaryVotes: Number of ordinary votes cast at the polling place for the candidate     
-#'     \item Swing: Percentage point change in ordinary votes for the party from the previous election     
-#'     \item PremisesPostCode: Post code of polling booth  
-#'     \item Latitude: Coordinates        
-#'     \item Longitude: Coordinates
-#'     }
-"fp_pp10"
-
 #' 2010 General election data for first preference votes for candidates for the House of 
 #' Representative for each electorate
 #' 
@@ -410,36 +219,6 @@
 #'     \item Percent: Percentage of ordinary votes for the candidate     
 #'     }
 "fp10"
-
-#' 2010 General election data for two party preferred votes for the House of Representatives 
-#' for each polling place
-#' 
-#' A dataset containing two party preferred vote counts, winning candidate names, polling place locations,
-#' and other results for the House of Representatives from the 2010 Australian federal election. 
-#' Includes the count of votes for the Australian Labor Party and the count of votes for the
-#' Liberal-National Coalition for each polling place.
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://results.aec.gov.au/15508/Website/HouseDownloadsMenu-15508-csv.htm} and 
-#' \url{http://www.aec.gov.au/elections/federal_elections/2010/downloads.htm}.
-#' 
-#' @format A data frame with the following variables:
-#' \itemize{
-#'     \item StateAb: Abbreviation for state name    
-#'     \item DivisionID: Electoral division ID    
-#'     \item DivisionNm:  Electoral division name   
-#'     \item PollingPlaceID: Polling place ID  
-#'     \item PollingPlace: Polling place name  
-#'     \item LNP_Votes: Count of two party preferred vote in favour of the Liberal National coalition
-#'     \item LNP_Percent: Percentage of two party preferred vote in favour of the Liberal National coalition   
-#'     \item ALP_Votes: Count of two party preferred vote in favour of the Labor party
-#'     \item ALP_Percent: Percentage of two party preferred vote in favour of the Labor party     
-#'     \item TotalVotes: Total number of votes cast     
-#'     \item Swing: Percentage point change in two party preferred vote from the previous election     
-#'     \item PremisesPostCode: Post code of polling booth  
-#'     \item Latitude: Coordinates        
-#'     \item Longitude: Coordinates
-#'     }
-"tpp_pp10"
 
 #' 2010 General election data for two party preferred votes for candidates for the House of Representative for each electorate
 #' 
@@ -521,38 +300,6 @@
 #'     }
 "tcp10"
 
-#' 2007 General election data for first preference votes for candidates for the House of Representatives for each polling place
-#' 
-#' A dataset containing first preference vote counts, candidate names, polling place locations,
-#' and other results for the
-#' House of Representatives from the 2007 Australian federal election. 
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://results.aec.gov.au/13745/Website/HouseDownloadsMenu-13745-csv.htm} and 
-#' \url{http://www.aec.gov.au/elections/federal_elections/2007/downloads.htm}.
-#' 
-#' @format A data frame with the following variables:
-#' \itemize{
-#'     \item StateAb: Abbreviation for state name    
-#'     \item DivisionID: Electoral division ID    
-#'     \item DivisionNm:  Electoral division name   
-#'     \item PollingPlaceID: Polling place ID  
-#'     \item PollingPlace: Polling place name     
-#'     \item CandidateID: Candidate ID       
-#'     \item Surname: Candidate surname          
-#'     \item GivenNm: Candidate given name            
-#'     \item BallotPosition: Candidate's position on the ballot    
-#'     \item Elected: Whether the candidate was elected (Y/N)           
-#'     \item HistoricElected: Whether the candidate is the incumbent member  
-#'     \item PartyAb: Abbreviation for political party name           
-#'     \item PartyNm: Political party name           
-#'     \item OrdinaryVotes: Number of ordinary votes cast at the polling place for the candidate     
-#'     \item Swing: Percentage point change in ordinary votes for the party from the previous election     
-#'     \item PremisesPostCode: Post code of polling booth  
-#'     \item Latitude: Coordinates        
-#'     \item Longitude: Coordinates
-#'     }
-"fp_pp07"
-
 #' 2007 General election data for first preference votes for candidates for the House of Representative for each electorate
 #' 
 #' A dataset containing first preference vote counts, candidate names, and other results for the
@@ -578,34 +325,6 @@
 #'     \item Percent: Percentage of ordinary votes for the candidate     
 #'     }
 "fp07"
-
-#' 2007 General election data for two party preferred votes for the House of Representatives for each polling place
-#' 
-#' A dataset containing two party preferred vote counts, winning candidate names, polling place locations,
-#' and other results for the House of Representatives from the 2007 Australian federal election. Includes the count of votes for
-#' the Australian Labor Party and the count of votes for the Liberal-National Coalition for each polling place.
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://results.aec.gov.au/13745/Website/HouseDownloadsMenu-13745-csv.htm} and 
-#' \url{http://www.aec.gov.au/elections/federal_elections/2007/downloads.htm}.
-#' 
-#' @format A data frame with the following variables:
-#' \itemize{
-#'     \item StateAb: Abbreviation for state name    
-#'     \item DivisionID: Electoral division ID    
-#'     \item DivisionNm:  Electoral division name   
-#'     \item PollingPlaceID: Polling place ID  
-#'     \item PollingPlace: Polling place name  
-#'     \item LNP_Votes: Count of two party preferred vote in favour of the Liberal National coalition
-#'     \item LNP_Percent: Percentage of two party preferred vote in favour of the Liberal National coalition   
-#'     \item ALP_Votes: Count of two party preferred vote in favour of the Labor party
-#'     \item ALP_Percent: Percentage of two party preferred vote in favour of the Labor party     
-#'     \item TotalVotes: Total number of votes cast     
-#'     \item Swing: Percentage point change in two party preferred vote from the previous election     
-#'     \item PremisesPostCode: Post code of polling booth  
-#'     \item Latitude: Coordinates        
-#'     \item Longitude: Coordinates
-#'     }
-"tpp_pp07"
 
 #' 2007 General election data for two party preferred votes for candidates for the House of Representative for each electorate
 #' 
@@ -687,37 +406,6 @@
 #'     }
 "tcp07"
 
-#' 2004 General election data for first preference votes for candidates for the House of Representatives for each polling place
-#' 
-#' A dataset containing first preference vote counts, candidate names, polling place locations,
-#' and other results for the
-#' House of Representatives from the 2004 Australian federal election. 
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://results.aec.gov.au/12246/results/HouseDownloadsMenu-12246-csv.htm} and 
-#' \url{http://www.aec.gov.au/elections/federal_elections/2004/downloads.htm}.
-#' 
-#' @format A data frame with the following variables:
-#' \itemize{
-#'     \item StateAb: Abbreviation for state name    
-#'     \item DivisionID: Electoral division ID    
-#'     \item DivisionNm:  Electoral division name   
-#'     \item PollingPlaceID: Polling place ID  
-#'     \item PollingPlace: Polling place name     
-#'     \item CandidateID: Candidate ID       
-#'     \item Surname: Candidate surname          
-#'     \item GivenNm: Candidate given name            
-#'     \item BallotPosition: Candidate's position on the ballot         
-#'     \item PartyAb: Abbreviation for political party name           
-#'     \item PartyNm: Political party name           
-#'     \item Elected: Whether the candidate was elected (Y/N)  
-#'     \item OrdinaryVotes: Number of ordinary votes cast at the polling place for the candidate     
-#'     \item Swing: Percentage point change in ordinary votes for the party from the previous election     
-#'     \item PremisesPostCode: Post code of polling booth  
-#'     \item Latitude: Coordinates        
-#'     \item Longitude: Coordinates
-#'     }
-"fp_pp04"
-
 #' 2004 General election data for first preference votes for candidates for the House of Representative for each electorate
 #' 
 #' A dataset containing first preference vote counts, candidate names, and other results for the
@@ -742,34 +430,6 @@
 #'     \item Percent: Percentage of ordinary votes for the candidate     
 #'     }
 "fp04"
-
-#' 2004 General election data for two party preferred votes for the House of Representatives for each polling place
-#' 
-#' A dataset containing two party preferred vote counts, winning candidate names, polling place locations,
-#' and other results for the House of Representatives from the 2004 Australian federal election. Includes the count of votes for
-#' the Australian Labor Party and the count of votes for the Liberal-National Coalition for each polling place.
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://results.aec.gov.au/12246/results/HouseDownloadsMenu-12246-csv.htm} and 
-#' \url{http://www.aec.gov.au/elections/federal_elections/2004/downloads.htm}.
-#' 
-#' @format A data frame with the following variables:
-#' \itemize{
-#'     \item StateAb: Abbreviation for state name    
-#'     \item DivisionID: Electoral division ID    
-#'     \item DivisionNm:  Electoral division name   
-#'     \item PollingPlaceID: Polling place ID  
-#'     \item PollingPlace: Polling place name  
-#'     \item LNP_Votes: Count of two party preferred vote in favour of the Liberal National coalition
-#'     \item LNP_Percent: Percentage of two party preferred vote in favour of the Liberal National coalition   
-#'     \item ALP_Votes: Count of two party preferred vote in favour of the Labor party
-#'     \item ALP_Percent: Percentage of two party preferred vote in favour of the Labor party     
-#'     \item TotalVotes: Total number of votes cast     
-#'     \item Swing: Percentage point change in two party preferred vote from the previous election     
-#'     \item PremisesPostCode: Post code of polling booth  
-#'     \item Latitude: Coordinates        
-#'     \item Longitude: Coordinates
-#'     }
-"tpp_pp04"
 
 #' 2004 General election data for two party preferred votes for candidates for the House of Representative for each electorate
 #' 
@@ -817,37 +477,6 @@
 #'     }
 "tpp01"
 
-#' 2004 General election data for two candidate preferred votes for the House of Representatives for each polling place
-#' 
-#' A dataset containing two candidate preferred vote counts,  polling place locations,
-#' and other results for the House of Representatives from the 2004 Australian federal election. Includes the count of votes for
-#' the leading two candidates in the electorate after distribution of preferences for each polling place.
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://results.aec.gov.au/12246/results/HouseDownloadsMenu-12246-csv.htm} and 
-#' \url{http://www.aec.gov.au/elections/federal_elections/2004/downloads.htm}.
-#' 
-#' @format A data frame with the following variables:
-#' \itemize{
-#'     \item StateAb: Abbreviation for state name    
-#'     \item DivisionID: Electoral division ID    
-#'     \item DivisionNm:  Electoral division name   
-#'     \item PollingPlaceID: Polling place ID  
-#'     \item PollingPlace: Polling place name     
-#'     \item CandidateID: Candidate ID       
-#'     \item Surname: Candidate surname          
-#'     \item GivenNm: Candidate given name            
-#'     \item BallotPosition: Candidate's position on the ballot    
-#'     \item Elected: Whether the candidate was elected (Y/N)           
-#'     \item PartyAb: Abbreviation for political party name           
-#'     \item PartyNm: Political party name           
-#'     \item OrdinaryVotes: Number of ordinary votes cast at the polling place for the candidate     
-#'     \item Swing: Percentage point change in ordinary votes for the party from the previous election     
-#'     \item PremisesPostCode: Post code of polling booth  
-#'     \item Latitude: Coordinates        
-#'     \item Longitude: Coordinates
-#'     }
-"tcp_pp04"
-
 #' 2004 General election data for two candidate preferred votes for candidates for the House of Representative for each electorate
 #' 
 #' A dataset containing two candidate preferred vote counts, and other results for the House of Representatives from the 2004 Australian federal election. Includes the count of votes for
@@ -873,29 +502,6 @@
 #'     }
 "tcp04"
 
-#' 2001 General election data for first preference votes for candidates for the House of Representatives for each polling place
-#' 
-#' A dataset containing first preference vote counts, candidate names, polling place locations,
-#' and other results for the
-#' House of Representatives from the 2001 Australian federal election. 
-#' The data were obtained from the Australian Electoral Commission.
-#' 
-#' @format A data frame with the following variables:
-#' \itemize{
-#'     \item StateAb: Abbreviation for state name  
-#'     \item DivisionNm:  Electoral division name   
-#'     \item PollingPlace: Polling place name     
-#'     \item Surname: Candidate surname          
-#'     \item GivenNm: Candidate given name            
-#'     \item BallotPosition: Candidate's position on the ballot         
-#'     \item PartyAb: Abbreviation for political party name    
-#'     \item Elected: Whether the candidate was elected (Y/N)  
-#'     \item OrdinaryVotes: Number of ordinary votes cast at the polling place for the candidate  
-#'     \item Latitude: Coordinates        
-#'     \item Longitude: Coordinates
-#'     }
-"fp_pp01"
-
 #' 2001 General election data for first preference votes for candidates for the House of Representative for each electorate
 #' 
 #' A dataset containing first preference vote counts, candidate names, and other results for the
@@ -914,29 +520,6 @@
 #'     \item Percent: Percentage of ordinary votes for the candidate     
 #'     }
 "fp01"
-
-#' 2001 General election data for two party preferred votes for the House of Representatives for each polling place
-#' 
-#' A dataset containing two party preferred vote counts, winning candidate names, polling place locations,
-#' and other results for the House of Representatives from the 2001 Australian federal election. Includes the count of votes for
-#' the Australian Labor Party and the count of votes for the Liberal-National Coalition for each polling place.
-#' The data were obtained from the Australian Electoral Commission.
-#' 
-#' @format A data frame with the following variables:
-#' \itemize{
-#'     \item StateAb: Abbreviation for state name 
-#'     \item DivisionNm:  Electoral division name 
-#'     \item PollingPlace: Polling place name  
-#'     \item LNP_Votes: Count of two party preferred vote in favour of the Liberal National coalition
-#'     \item LNP_Percent: Percentage of two party preferred vote in favour of the Liberal National coalition   
-#'     \item ALP_Votes: Count of two party preferred vote in favour of the Labor party
-#'     \item ALP_Percent: Percentage of two party preferred vote in favour of the Labor party
-#'     \item TotalVotes: Total number of votes cast   
-#'     \item Swing: Percentage point change in ALP percentage two party preferred vote from the previous election   
-#'     \item Latitude: Coordinates        
-#'     \item Longitude: Coordinates    
-#'     }
-"tpp_pp01"
 
 #' 2001 General election data for two candidate preferred votes for candidates for the House of Representative for each electorate
 #' 
@@ -957,9 +540,150 @@
 #'     }
 "tcp01"
 
+#' First preference votes for candidates in the House of Representatives, 
+#' for each polling both, in the six Australian Federal elections between
+#' 2001 and 2016. 
+#' 
+#' A dataset containing first preference vote counts, candidate names, polling place locations,
+#' and other results for the House of Representatives from the 2001, 2004, 2007, 2010,
+#' 2013 and 2016 Australian federal elections. This data set is obtained using the 
+#' `firstpref_pollingbooth_download` function.
+#' The data were obtained from the Australian Electoral Commission, and downloaded: 
+#' 2016 from \url{http://results.aec.gov.au/20499/Website/HouseDownloadsMenu-20499-csv.htm} and 
+#' \url{http://www.aec.gov.au/elections/federal_elections/2016/downloads.htm}, 
+#' 2013 from \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm} and 
+#' \url{http://www.aec.gov.au/elections/federal_elections/2013/downloads.htm}.
+#' 2010 from \url{http://results.aec.gov.au/15508/Website/HouseDownloadsMenu-15508-csv.htm} and 
+#' \url{http://www.aec.gov.au/elections/federal_elections/2010/downloads.htm}.
+#' 2007 from \url{http://results.aec.gov.au/13745/Website/HouseDownloadsMenu-13745-csv.htm} and 
+#' \url{http://www.aec.gov.au/elections/federal_elections/2007/downloads.htm}.
+#' 2004 from \url{http://results.aec.gov.au/12246/results/HouseDownloadsMenu-12246-csv.htm} and 
+#' \url{http://www.aec.gov.au/elections/federal_elections/2004/downloads.htm}.
+#' 
+#' @format A data frame with the following variables:
+#' \itemize{
+#'     \item StateAb: Abbreviation for state name    
+#'     \item DivisionID: Electoral division ID    
+#'     \item DivisionNm:  Electoral division name   
+#'     \item PollingPlaceID: Polling place ID  
+#'     \item PollingPlace: Polling place name     
+#'     \item CandidateID: Candidate ID       
+#'     \item Surname: Candidate surname          
+#'     \item GivenNm: Candidate given name            
+#'     \item BallotPosition: Candidate's position on the ballot    
+#'     \item Elected: Whether the candidate was elected (Y/N)           
+#'     \item HistoricElected: Whether the candidate is the incumbent member  
+#'     \item PartyAb: Abbreviation for political party name           
+#'     \item PartyNm: Political party name           
+#'     \item OrdinaryVotes: Number of ordinary votes cast at the polling place
+#'     for the candidate     
+#'     \item Swing: Percentage point change in ordinary votes for the party 
+#'     from the previous election
+#'     \item PremisesPostCode: Post code of polling booth  
+#'     \item Latitude: Coordinates        
+#'     \item Longitude: Coordinates
+#'     \item year: Election year
+#'     }
+"fp_pp"
+
+#' Two party preferred votes for candidates in the House of Representatives, 
+#' for each polling both, in the six Australian Federal elections between
+#' 2001 and 2016. 
+#' 
+#' A dataset containing two party preferred vote counts, winning candidate names, 
+#' polling place locations, and other results for the House of Representatives from 
+#' each of the 2001, 2004, 2007, 2010, 2013 and 2016 Australian federal elections.
+#' Includes the count of votes for the Australian Labor Party and the count of votes 
+#' for the Liberal-National Coalition for each polling place. This data set is obtained 
+#' using the `twoparty_pollingbooth_download` function.
+#' The data were obtained from the Australian Electoral Commission, and downloaded: 
+#' 2016 from \url{http://results.aec.gov.au/20499/Website/HouseDownloadsMenu-20499-csv.htm} and 
+#' \url{http://www.aec.gov.au/elections/federal_elections/2016/downloads.htm}, 
+#' 2013 from \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm} and 
+#' \url{http://www.aec.gov.au/elections/federal_elections/2013/downloads.htm}.
+#' 2010 from \url{http://results.aec.gov.au/15508/Website/HouseDownloadsMenu-15508-csv.htm} and 
+#' \url{http://www.aec.gov.au/elections/federal_elections/2010/downloads.htm}.
+#' 2007 from \url{http://results.aec.gov.au/13745/Website/HouseDownloadsMenu-13745-csv.htm} and 
+#' \url{http://www.aec.gov.au/elections/federal_elections/2007/downloads.htm}.
+#' 2004 from \url{http://results.aec.gov.au/12246/results/HouseDownloadsMenu-12246-csv.htm} and 
+#' \url{http://www.aec.gov.au/elections/federal_elections/2004/downloads.htm}.
+#' 
+#' @format A data frame with the following variables:
+#' \itemize{
+#'     \item StateAb: Abbreviation for state name    
+#'     \item DivisionID: Electoral division ID    
+#'     \item DivisionNm:  Electoral division name   
+#'     \item PollingPlaceID: Polling place ID  
+#'     \item PollingPlace: Polling place name  
+#'     \item LNP_Votes: Count of two party preferred vote in favour of the 
+#'     Liberal National coalition
+#'     \item LNP_Percent: Percentage of two party preferred vote in favour 
+#'     of the Liberal National coalition   
+#'     \item ALP_Votes: Count of two party preferred vote in favour of the 
+#'     Labor party
+#'     \item ALP_Percent: Percentage of two party preferred vote in favour 
+#'     of the Labor party     
+#'     \item TotalVotes: Total number of votes cast     
+#'     \item Swing: Percentage point change in two party preferred vote from 
+#'     the previous election     
+#'     \item PremisesPostCode: Post code of polling booth  
+#'     \item Latitude: Coordinates        
+#'     \item Longitude: Coordinates
+#'     \item year: Election year
+#'     }
+"tpp_pp"
+
+#' Two candidate preferred votes for candidates in the House of Representatives, 
+#' for each polling both, in the five Australian Federal elections between
+#' 2004 and 2016. 
+#' 
+#' A dataset containing two candidate preferred vote counts, polling place locations,
+#' and other results for the House of Representatives from each of the 2004, 
+#' 2007, 2010, 2013 and 2016 Australian federal elections. Includes the count of votes
+#' for the leading two candidates in the electorate after distribution of preferences 
+#' for each polling place. Note that 2001 two candidate preferred vote is not available
+#' in this package. This data set is obtained using the `twocand_pollingbooth_download` function.
+#' The data were obtained from the Australian Electoral Commission, and downloaded: 
+#' 2016 from \url{http://results.aec.gov.au/20499/Website/HouseDownloadsMenu-20499-csv.htm} and 
+#' \url{http://www.aec.gov.au/elections/federal_elections/2016/downloads.htm}, 
+#' 2013 from \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm} and 
+#' \url{http://www.aec.gov.au/elections/federal_elections/2013/downloads.htm}.
+#' 2010 from \url{http://results.aec.gov.au/15508/Website/HouseDownloadsMenu-15508-csv.htm} and 
+#' \url{http://www.aec.gov.au/elections/federal_elections/2010/downloads.htm}.
+#' 2007 from \url{http://results.aec.gov.au/13745/Website/HouseDownloadsMenu-13745-csv.htm} and 
+#' \url{http://www.aec.gov.au/elections/federal_elections/2007/downloads.htm}.
+#' 2004 from \url{http://results.aec.gov.au/12246/results/HouseDownloadsMenu-12246-csv.htm} and 
+#' \url{http://www.aec.gov.au/elections/federal_elections/2004/downloads.htm}.
+#' 
+#' @format A data frame with the following variables:
+#' \itemize{
+#'     \item StateAb: Abbreviation for state name    
+#'     \item DivisionID: Electoral division ID    
+#'     \item DivisionNm:  Electoral division name   
+#'     \item PollingPlaceID: Polling place ID  
+#'     \item PollingPlace: Polling place name     
+#'     \item CandidateID: Candidate ID       
+#'     \item Surname: Candidate surname          
+#'     \item GivenNm: Candidate given name            
+#'     \item BallotPosition: Candidate's position on the ballot    
+#'     \item Elected: Whether the candidate was elected (Y/N)           
+#'     \item HistoricElected: Whether the candidate is the incumbent member  
+#'     \item PartyAb: Abbreviation for political party name           
+#'     \item PartyNm: Political party name           
+#'     \item OrdinaryVotes: Number of ordinary votes cast at the polling place 
+#'     for the candidate     
+#'     \item Swing: Percentage point change in ordinary votes for the party 
+#'     from the previous election
+#'     \item PremisesPostCode: Post code of polling booth  
+#'     \item Latitude: Coordinates        
+#'     \item Longitude: Coordinates
+#'     \item year: Election year
+#'     }
+"tcp_pp"
+
 #' Shapefile containing Australian Electorates from 2016
 #'
-#' A large SpatialPolygonsDataFrame containing the polygons and associated data for each of the 150 Australian electorates in the 2016 federal election.
+#' A large SpatialPolygonsDataFrame containing the polygons and associated data for each of the 150 Australian electorates in the 2016 federal election. This object is obtained using the `sF_download` function.
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
 #' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
 #' 
@@ -967,7 +691,7 @@
 
 #' Shapefile containing Australian Electorates from 2013
 #'
-#' A large SpatialPolygonsDataFrame containing the polygons and associated data for each of the 150 Australian electorates in the 2013 federal election.
+#' A large SpatialPolygonsDataFrame containing the polygons and associated data for each of the 150 Australian electorates in the 2013 federal election. This object is obtained using the `sF_download` function.
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
 #' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
 #' 
@@ -975,7 +699,7 @@
 
 #' Shapefile containing Australian Electorates in place during 2011
 #'
-#' A large SpatialPolygonsDataFrame containing the polygons and associated data for each of the 150 Australian electorates at the time of the 2011 Census.
+#' A large SpatialPolygonsDataFrame containing the polygons and associated data for each of the 150 Australian electorates at the time of the 2011 Census. This object is obtained using the `sF_download` function.
 #' The data were obtained from the Australian Bureau of Statistics, and downloaded 
 #' from \url{https://datapacks.censusdata.abs.gov.au/datapacks/}.
 #' 
@@ -983,7 +707,7 @@
 
 #' Shapefile containing Australian Electorates from 2010
 #'
-#' A large SpatialPolygonsDataFrame containing the polygons and associated data for each of the 150 Australian electorates in the 2010 federal election.
+#' A large SpatialPolygonsDataFrame containing the polygons and associated data for each of the 150 Australian electorates in the 2010 federal election. This object is obtained using the `sF_download` function.
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
 #' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
 #' 
@@ -991,7 +715,7 @@
 
 #' Shapefile containing Australian Electorates from 2007
 #'
-#' A large SpatialPolygonsDataFrame containing the polygons and associated data for each of the 150 Australian electorates in the 2007 federal election.
+#' A large SpatialPolygonsDataFrame containing the polygons and associated data for each of the 150 Australian electorates in the 2007 federal election. This object is obtained using the `sF_download` function.
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
 #' from \url{http://www.abs.gov.au/AUSSTATS/abs@@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}.
 #' 
@@ -999,7 +723,7 @@
 
 #' Shapefile containing Australian Electorates from 2004
 #'
-#' A large SpatialPolygonsDataFrame containing the polygons and associated data for each of the 150 Australian electorates in the 2004 federal election.
+#' A large SpatialPolygonsDataFrame containing the polygons and associated data for each of the 150 Australian electorates in the 2004 federal election. This object is obtained using the `sF_download` function.
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
 #' from \url{http://www.abs.gov.au/AUSSTATS/abs@@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}.
 #' 
@@ -1007,7 +731,7 @@
 
 #' Shapefile containing Australian Electorates from 2001
 #'
-#' A large SpatialPolygonsDataFrame containing the polygons and associated data for each of the 150 Australian electorates in the 2001 federal election.
+#' A large SpatialPolygonsDataFrame containing the polygons and associated data for each of the 150 Australian electorates in the 2001 federal election. This object is obtained using the `sF_download` function.
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
 #' from \url{https://data.gov.au/dataset/ds-dga-0b939a62-e53e-4616-add5-77f909b58ddd/details?q=asgc\%202001}.
 #' 
