@@ -275,7 +275,7 @@ fp_pp04 <- read_csv("https://results.aec.gov.au/12246/results/Downloads/HouseSta
 
 # Get locations of polling places (extract address from first preferences)
 
-votes <- read_delim("data-raw/results_pollingplace_2001/hppdop.txt", delim = ";")
+votes <- read_delim("data-raw/results_pollingplace_table(/hppdop.txt", delim = ";")
 candidates <- read_delim("data-raw/results_pollingplace_2001/hcands.txt", delim = ";")
 
 all <- left_join(votes, candidates, by = c("State", "Division", "Ballot Position"))
@@ -399,7 +399,6 @@ tpp_pp01 <- read_delim("data-raw/results_pollingplace_2001/htppbypp.txt", delim 
   select(StateAb, DivisionNm, PollingPlace, LNP_Votes, LNP_Percent, ALP_Votes, 
     ALP_Percent, TotalVotes, Swing, Latitude, Longitude)
 
-
 # -------------------------------------
 
 # Adding locations of polling places
@@ -439,27 +438,77 @@ tcp_pp04 <- tcp_pp04 %>%
 tpp_pp04 <- tpp_pp04 %>% 
   left_join(pollplace_04 %>% select(PollingPlaceID, PremisesPostCode, Latitude, Longitude), by = "PollingPlaceID")
 
-# Save
-save(fp_pp16, file = "data/fp_pp16.rda")
-save(tcp_pp16, file = "data/tcp_pp16.rda")
-save(tpp_pp16, file = "data/tpp_pp16.rda")
+# --------------------------------------------------------------------------------------------------
 
-save(fp_pp13, file = "data/fp_pp13.rda")
-save(tcp_pp13, file = "data/tcp_pp13.rda")
-save(tpp_pp13, file = "data/tpp_pp13.rda")
+# Still many NA coordinates, so for those that are NA, try to match PollingPlace (and State) with any from other years
 
-save(fp_pp10, file = "data/fp_pp10.rda")
-save(tcp_pp10, file = "data/tcp_pp10.rda")
-save(tpp_pp10, file = "data/tpp_pp10.rda")
+# Get polling places via two party preferred
+tpp_pp_all <- dplyr::bind_rows(tpp_pp01 %>% mutate(year = 2001),
+  tpp_pp04 %>% mutate(year = 2004),
+  tpp_pp07 %>% mutate(year = 2007),
+  tpp_pp10 %>% mutate(year = 2010),
+  tpp_pp13 %>% mutate(year = 2013),
+  tpp_pp16 %>% mutate(year = 2016)
+)
 
-save(fp_pp07, file = "data/fp_pp07.rda")
-save(tcp_pp07, file = "data/tcp_pp07.rda")
-save(tpp_pp07, file = "data/tpp_pp07.rda")
+# Add coordinates for any NA that have an address in a different year
+tpp_nocord <- tpp_pp_all %>% 
+  filter(is.na(Latitude)) %>%
+  mutate(PollingPlace = toupper(PollingPlace)) %>% 
+  select(-c(Latitude, Longitude))
 
-save(fp_pp04, file = "data/fp_pp04.rda")
-save(tcp_pp04, file = "data/tcp_pp04.rda")
-save(tpp_pp04, file = "data/tpp_pp04.rda")
+all_cord <- tpp_pp_all %>% 
+  filter(!is.na(Latitude)) %>% 
+  select(PollingPlace, StateAb, year, Latitude, Longitude) %>% 
+  mutate(PollingPlace = toupper(PollingPlace)) %>% 
+  group_by(PollingPlace, StateAb) %>% 
+  arrange(-year) %>% 
+  filter(row_number(year) == 1) %>% 
+  select(-year)
 
-save(fp_pp01, file = "data/fp_pp01.rda")
-save(tpp_pp01, file = "data/tpp_pp01.rda")
+tpp_nocord_filled <- left_join(tpp_nocord, all_cord, by = c("PollingPlace", "StateAb"))
 
+tpp_pp <- tpp_pp_all %>% 
+  filter(!is.na(Latitude)) %>% 
+  bind_rows(tpp_nocord_filled)
+
+# First preferences
+fp_pp_all <- dplyr::bind_rows(fp_pp01 %>% mutate(year = 2001),
+  fp_pp04 %>% mutate(year = 2004),
+  fp_pp07 %>% mutate(year = 2007),
+  fp_pp10 %>% mutate(year = 2010),
+  fp_pp13 %>% mutate(year = 2013),
+  fp_pp16 %>% mutate(year = 2016)
+)
+
+fp_nocord <- fp_pp_all %>% 
+  filter(is.na(Latitude)) %>%
+  mutate(PollingPlace = toupper(PollingPlace)) %>% 
+  select(-c(Latitude, Longitude))
+
+fp_nocord_filled <- left_join(fp_nocord, all_cord, by = c("PollingPlace", "StateAb"))
+
+fp_pp <- fp_pp_all %>% 
+  filter(!is.na(Latitude)) %>% 
+  bind_rows(fp_nocord_filled)
+
+
+# Two candidate preferences
+tcp_pp_all <- dplyr::bind_rows(
+  tcp_pp04 %>% mutate(year = 2004),
+  tcp_pp07 %>% mutate(year = 2007),
+  tcp_pp10 %>% mutate(year = 2010),
+  tcp_pp13 %>% mutate(year = 2013),
+  tcp_pp16 %>% mutate(year = 2016)
+)
+
+tcp_nocord <- tcp_pp_all %>% 
+  filter(is.na(Latitude)) %>%
+  mutate(PollingPlace = toupper(PollingPlace)) %>% 
+  select(-c(Latitude, Longitude))
+
+tcp_nocord_filled <- left_join(tcp_nocord, all_cord, by = c("PollingPlace", "StateAb"))
+
+tcp_pp <- tcp_pp_all %>% 
+  filter(!is.na(Latitude)) %>% 
+  bind_rows(tcp_nocord_filled)
