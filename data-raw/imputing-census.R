@@ -18,9 +18,9 @@ divname_warning <- function(census_aec_1, census_aec_2) {
 # Estimates use Census data aggregated at electorate level from 2011 and 2016
 
 # Load shapefiles and Census
-data("sF_11")
-data("sF_13")
-data("sF_16")
+sF_11 <- sF_download(2011)
+sF_13 <- sF_download(2013)
+sF_16 <- sF_download(2016)
 data("abs2011")
 data("abs2016")
 
@@ -53,8 +53,8 @@ save(abs2013, file = "data/abs2013.rda")
 # Note that 2006 Census is aggregated to electoral boundaries from the 2004 election, so we use this map
 
 # Load shapefiles and Census
-data("sF_04")
-data("sF_10")
+sF_04 <- sF_download(2004)
+sF_10 <- sF_download(2010)
 data("abs2006")
 
 # Begin with estimating Census information for electoral boundaries at time of 2016 Census
@@ -86,7 +86,7 @@ save(abs2010, file = "data/abs2010.rda")
 # The 2006 Census data aggregated to electoral boundaries from the 2007 election is also available. This means that we don't have to do any estimate for 2006, but still do for 2011.
 
 # Load shapefiles and Census
-data("sF_07")
+sF_11 <- sF_download(2007)
 data("abs2006_e07")
 
 # Census information for electoral boundaries at time of 2011 Census
@@ -118,14 +118,15 @@ save(abs2007, file = "data/abs2007.rda")
 # The 2006 Census data aggregated to electoral boundaries from the 2004 election is available. This means that we don't have to do any estimate for 2006, but still do for 2001.
 
 # Load shapefiles and Census
-data("sF_01")
+sF_01 <- sF_download(2001)
 data("abs2006")
 data("abs2001")
 
 # Census information for electoral boundaries at time of 2011 Census
 # Use default threshold parameter
 mapping_aec04_01 <- mapping_fn(aec_sF = sF_04, abs_sF = sF_01)
-census_aec04_01 <- weighted_avg_census(mapping_df = mapping_aec04_01, abs_df = abs2001)
+census_aec04_01 <- weighted_avg_census(mapping_df = mapping_aec04_01, abs_df = abs2001) %>% 
+  select(DivisionNm, everything())
 
 # 2004 Census information for the 2007 boundaries
 census_aec04_06 <- abs2006 %>% 
