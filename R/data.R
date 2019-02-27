@@ -355,30 +355,6 @@
 #'     }
 "tpp04"
 
-#' 2001 General election data for two party preferred votes for candidates for the House of Representative for each electorate where Labor and Liberal parties were the two most popular parties.
-#' 
-#' A dataset containing two party preferred vote counts, winning candidate names, and other results for 
-#' the House of Representatives from the 2001 Australian federal election. Includes the count of votes for
-#' the Australian Labor Party and the count of votes for the Liberal-National Coalition for each electorate.
-#' Only available for the 141 electorates for which the two most preferred candidates were from the Labor
-#' and Liberal parties.
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://results.aec.gov.au/12246/results/HouseDownloadsMenu-12246-csv.htm} and 
-#' \url{http://www.aec.gov.au/elections/federal_elections/2004/downloads.htm}.
-#' 
-#' @format A data frame with the following variables:
-#' \itemize{
-#'     \item DivisionNm:  Electoral division name   
-#'     \item StateAb: Abbreviation for state name  
-#'     \item Surname: Candidate surname
-#'     \item GivenNm: Candidate given name
-#'     \item Elected: Whether candidate was elected (Y/N)
-#'     \item Percent: Percentage of votes in favour (\%)         
-#'     \item PartyAb: Abbreviation for political party name   
-#'     \item Swing: Percentage point change in two party preferred vote from the previous election      
-#'     }
-"tpp01"
-
 #' 2004 General election data for two candidate preferred votes for candidates for the House of Representative for each electorate
 #' 
 #' A dataset containing two candidate preferred vote counts, and other results for the House of Representatives from the 2004 Australian federal election. Includes the count of votes for
@@ -408,7 +384,8 @@
 #' 
 #' A dataset containing first preference vote counts, candidate names, and other results for the
 #' House of Representatives from the 2001 Australian federal election. 
-#' The data were obtained from the Australian Electoral Commission.
+#' The data were obtained from the Australian Electoral Commission, and downloaded 
+#' from \url{https://www.aec.gov.au/About_AEC/Publications/statistics/files/aec-2001-election-statistics.zip}.
 #' 
 #' @format A data frame with the following variables:
 #' \itemize{
@@ -423,11 +400,33 @@
 #'     }
 "fp01"
 
+#' 2001 General election data for two party preferred votes for candidates for the House of Representative for each electorate where Labor and Liberal parties were the two most popular parties.
+#' 
+#' A dataset containing two party preferred vote counts, winning candidate names, and other results for 
+#' the House of Representatives from the 2001 Australian federal election. Includes the count of votes for
+#' the Australian Labor Party and the count of votes for the Liberal-National Coalition for each electorate.
+#' The data were obtained from the Australian Electoral Commission, and downloaded 
+#' from \url{https://www.aec.gov.au/About_AEC/Publications/statistics/files/aec-2001-election-statistics.zip}.
+#' 
+#' @format A data frame with the following variables:
+#' \itemize{ 
+#'     \item DivisionNm:  Electoral division name   
+#'     \item StateAb: Abbreviation for state name  
+#'     \item LNP_Votes: Count of two party preferred vote in favour of the Liberal National coalition
+#'     \item LNP_Percent: Percentage of two party preferred vote in favour of the Liberal National coalition   
+#'     \item ALP_Votes: Count of two party preferred vote in favour of the Labor party
+#'     \item ALP_Percent: Percentage of two party preferred vote in favour of the Labor party     
+#'     \item TotalVotes: Total number of votes cast     
+#'     \item Swing: Percentage point change in two party preferred vote from the previous election      
+#'     }
+"tpp01"
+
 #' 2001 General election data for two candidate preferred votes for candidates for the House of Representative for each electorate
 #' 
 #' A dataset containing two candidate preferred vote counts, and other results for the House of Representatives from the 2001 Australian federal election. Includes the count of votes for
 #' the leading two candidates in the electorate after distribution of preferences.
-#' The data were obtained from the Australian Electoral Commission.
+#' The data were obtained from the Australian Electoral Commission, and downloaded 
+#' from \url{https://www.aec.gov.au/About_AEC/Publications/statistics/files/aec-2001-election-statistics.zip}.
 #' 
 #' @format A data frame with the following variables:
 #' \itemize{
@@ -437,7 +436,8 @@
 #'     \item GivenNm: Candidate given name 
 #'     \item Elected: Whether the candidate was elected (Y/N)  
 #'     \item Percent: Percentage of ordinary votes cast for the candidate   
-#'     \item PartyAb: Abbreviation for political party name    
+#'     \item PartyAb: Abbreviation for political party name            
+#'     \item PartyNm: Political party name      
 #'     \item Swing: Percentage point change in ordinary votes for the party from the previous election      
 #'     }
 "tcp01"
