@@ -4,24 +4,26 @@
 \alias{launchApp}
 \title{Shiny app for exploring census and electorate data}
 \usage{
-launchApp(age = c("Age00_04", "Age05_14", "Age15_19", "Age20_24",
-  "Age25_34", "Age35_44", "Age45_54", "Age55_64", "Age65_74", "Age75_84",
-  "Age85plus"), religion = c("Christianity", "Catholic", "Buddhism",
-  "Islam", "Judaism", "NoReligion"), other = c("Population",
-  "MedianPersonalIncome", "Unemployed", "BachelorAbv", "Indigenous",
-  "EnglishOnly", "OtherLanguageHome", "Married", "DeFacto", "FamilyRatio",
-  "Owned"), palette = c("#1B9E77", "#F0027F", "#E6AB02", "#66A61E",
-  "#7570B3", "#D95F02", "#3690C0"))
+launchApp(election_year = 2016, age = c("Age00_04", "Age05_14",
+  "Age15_19", "Age20_24", "Age25_34", "Age35_44", "Age45_54", "Age55_64",
+  "Age65_74", "Age75_84", "Age85plus"), religion = c("Christianity",
+  "Catholic", "Buddhism", "Islam", "Judaism", "NoReligion"),
+  other = c("AusCitizen", "MedianPersonalIncome", "Unemployed",
+  "BachelorAbv", "Indigenous", "EnglishOnly", "OtherLanguageHome",
+  "Married", "DeFacto", "FamilyRatio", "Owned"), palette = c("#1B9E77",
+  "#F0027F", "#E6AB02", "#66A61E", "#7570B3", "#D95F02", "#3690C0"))
 }
 \arguments{
+\item{election_year}{Year of Federal election to be explored (2001, 2004, 2007, 2010, 2013 or 2016)}
+
 \item{age}{Age variables to show. Variable(s) should match column names from
-\link{abs2016}. By default, all variables are shown.}
+\link{abs_data}. By default, all variables are shown.}
 
 \item{religion}{Religion variables to show. Variable(s) should match column 
-names from \link{abs2016}. By default, all variables are shown.}
+names from \link{abs_data}. By default, all variables are shown.}
 
 \item{other}{Other census variables to show. Variable(s) should match column 
-names from \link{abs2016}. By default, all variables are shown.}
+names from \link{abs_data}. By default, all variables are shown.}
 
 \item{palette}{a named character vector of selection colors. The vector names
 are used as the display in the drop-down control.}
@@ -31,18 +33,23 @@ Shiny app for exploring census and electorate data
 }
 \examples{
 \dontrun{
+library(shiny)
+library(plotly)
+library(tidyverse)
 # for comparing labor/liberal
 launchApp(
+  election_year = 2016,
   age = c("Age20_24", "Age25_34", "Age55_64"),
   religion = c("Christianity", "Catholic", "NoReligion"),
-  other = c("Population", "MedianPersonalIncome", "Unemployed")
+  other = c("AusCitizen", "MedianPersonalIncome", "Unemployed")
 )
 
 # for inspecting highly contested areas
 launchApp(
+  election_year = 2016,
   age = c("Age25_34", "Age35_44", "Age55_64"),
   religion = c("Christianity", "Catholic", "NoReligion"),
-  other = c("Owned", "Indigenous", "Population")
+  other = c("Owned", "Indigenous", "AusCitizen")
 )
 
 launchApp()
