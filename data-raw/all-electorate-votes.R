@@ -11,12 +11,28 @@ relabel_parties <- function(df, PartyNm = PartyNm) {
   out <- df %>% 
     ungroup %>% 
     mutate(PartyNm = ifelse(
-      PartyNm %in% c("Australian Labor Party (Northern Territory) Branch",  "Labor"), "Australian Labor Party",
-      ifelse(PartyNm %in% c("Country Liberals (NT)", "Liberal National Party of Queensland", "The Nationals", "National Party"), "Liberal", 
-        ifelse(PartyNm %in% c("The Greens (WA)"), "The Greens", 
-          ifelse(PartyNm %in% c(""), "Informal", 
-            ifelse(is.na(PartyNm), "Independent", PartyNm
-            ))))))
+      PartyNm %in% c("AUSTRALIAN LABOR PARTY (NORTHERN TERRITORY) BRANCH",  "LABOR", "AUSTRALIAN LABOR PARTY (ACT BRANCH)", "AUSTRALIAN LABOR PARTY (ALP)", "COUNTRY LABOR"), "AUSTRALIAN LABOR PARTY",
+      ifelse(PartyNm %in% c("C.L.P.", "COUNTRY LIBERALS (NT)", "LIBERAL NATIONAL PARTY OF QUEENSLAND", "THE NATIONALS", "NATIONAL PARTY", "CLP-THE TERRITORY PARTY", "LIBERALS", "NATIONALS"), "LIBERAL", 
+        ifelse(PartyNm %in% c("THE GREENS (WA)", "AUSTRALIAN GREENS"), "THE GREENS", 
+          ifelse(PartyNm %in% c(""), "INFORMAL", 
+            ifelse(PartyNm %in% c("AUSTRALIAN DEMOCRATS"), "DEMOCRATS",
+              ifelse(PartyNm %in% c("NEW COUNTRY"), "NEW COUNTRY PARTY",
+                ifelse(PartyNm %in% c("ONE NATION WA", "PAULINE HANSON'S ONE NATION (NSW DIVISION)", "PAULINE HANSON'S ONE NATION"), "ONE NATION", 
+                  ifelse(PartyNm %in% c("SEX PARTY"), "AUSTRALIAN SEX PARTY", 
+                    ifelse(PartyNm %in% c("CHRISTIAN DEMOCRATIC PARTY (FRED NILE GROUP)", "CDP CHRISTIAN PARTY"), "CHRISTIAN DEMOCRATIC PARTY",
+                      ifelse(PartyNm %in% c("CITIZENS ELECTORAL COUNCIL OF AUSTRALIA"), "CITIZENS ELECTORAL COUNCIL",
+                        ifelse(PartyNm %in% c("AUSTRALIAN COUNTRY PARTY"), "COUNTRY ALLIANCE", 
+                          ifelse(PartyNm %in% c("DEMOCRATIC LABOUR PARTY (DLP)", "DLP DEMOCRATIC LABOUR PARTY", "D.L.P. - DEMOCRATIC LABOR PARTY"), "DEMOCRATIC LABOR PARTY",
+                            ifelse(PartyNm %in% c("FAMILY FIRST PARTY"), "FAMILY FIRST", 
+                              ifelse(PartyNm %in% c("SCIENCE PARTY"), "FUTURE PARTY",
+                                ifelse(PartyNm %in% c("HELP END MARIJUANA PROHIBITION"), "MARIJUANA (HEMP) PARTY",
+                                  ifelse(PartyNm %in% c("LDP", "LIBERAL DEMOCRATS (LDP)"), "LIBERAL DEMOCRATS",
+                                    ifelse(PartyNm %in% c("NON-CUSTODIAL PARENTS PARTY (EQUAL PARENTING)"), "NON-CUSTODIAL PARENTS PARTY",
+                                      ifelse(PartyNm %in% c("SENATOR ONLINE (INTERNET VOTING BILLS/ISSUES)", "ONLINE DIRECT DEMOCRACY - (EMPOWERING THE PEOPLE!)"), "SENATOR ONLINE",
+                                        ifelse(PartyNm %in% c("STABLE POPULATION PARTY"), "SUSTAINABLE AUSTRALIA",
+                                          ifelse(PartyNm %in% c("AUSTRALIAN VOICE"), "AUSTRALIAN VOICE PARTY",
+                                 ifelse(is.na(PartyNm), "INDEPENDENT", PartyNm
+            ))))))))))))))))))))))
   return(out)
 }
 
@@ -29,7 +45,7 @@ reabbrev_parties <- function(df, PartyNm = PartyNm) {
       ifelse(PartyAb %in% c("CLP", "LP", "LNP", "NP"), "LNP", 
         ifelse(PartyAb %in% c("GRN", "GWA", "TG"), "GRN", 
           ifelse(PartyAb %in% c("HAN","ON"), "ON",
-            ifelse(is.na(PartyAb), "INFL", 
+            ifelse(is.na(PartyAb), "IND", 
               PartyAb))))))
   return(out)
 }
@@ -43,6 +59,313 @@ chr_upper <- function(df) {
   df[, ch_cols] <- lapply(df[, ch_cols], toupper)
   return(df)
 }
+
+# ---------------------------------------------------------------------------------------------------------
+
+####################################################################################################
+# 2016
+####################################################################################################
+
+## Importing federal election results for 2016, and forming a dataframe for each vote count
+## Vote counts are: first preference, two candidate preferred (2cp) and two party preferred (2pp)
+
+#---- FIRST PREFERENCES ----
+pref16 <- read_csv("https://results.aec.gov.au/20499/Website/Downloads/HouseDopByDivisionDownload-20499.csv", skip = 1)
+
+fp16 <- pref16 %>% 
+  filter(CalculationType %in% c("Preference Count", "Preference Percent")) %>% 
+  group_by(StateAb, DivisionID, DivisionNm, CountNumber, BallotPosition, CandidateID, Surname, GivenNm, PartyAb, PartyNm, Elected, HistoricElected) %>% 
+  spread(key = CalculationType, value = CalculationValue) %>%
+  filter(CountNumber == 0) %>% 
+  ungroup() %>% 
+  select(-CountNumber) %>% #takes only % of first preference votes
+  rename(OrdinaryVotes = `Preference Count`, Percent = `Preference Percent`)
+
+
+#---- TWO CANDIDATE PREFERRED ----
+# Distribution of preferences to the two candidates who came first and second in the election
+# add here total votes as well
+tcp16 <- pref16 %>% 
+  group_by(DivisionID, PartyAb) %>%
+  filter(CountNumber == max(CountNumber), CalculationType %in% c("Preference Count", "Preference Percent")) %>%
+  arrange() %>%
+  filter(CalculationValue != 0) %>% 
+  spread(CalculationType, CalculationValue) %>% 
+  rename(OrdinaryVotes = `Preference Count`, Percent = `Preference Percent`) %>% 
+  select(-CountNumber)
+
+#---- TWO PARTY PREFERRED ----
+# Preferences distribution only to Labor (ALP) and Coalition (LP, NP, LNQ, CLP)
+# A distribution of preferences where, by convention, comparisons are made between the ALP and the leading Liberal/National candidates. In seats where the final two candidates are not from the ALP and the Liberal or National parties, a two party preferred count may be conducted to find the result of preference flows to the ALP and the Liberal/National candidates.
+
+tpp16 <- read_csv("https://results.aec.gov.au/20499/Website/Downloads/HouseTppByDivisionDownload-20499.csv", skip = 1) %>%
+  arrange(DivisionID) %>% 
+  rename(LNP_Votes = `Liberal/National Coalition Votes`, LNP_Percent = `Liberal/National Coalition Percentage`,
+    ALP_Votes = `Australian Labor Party Votes`, ALP_Percent = `Australian Labor Party Percentage`) %>% 
+  select(-PartyAb)
+
+
+# Apply
+
+fp16 <- fp16 %>% reabbrev_parties() %>% chr_upper() %>% relabel_parties()
+tcp16 <- tcp16 %>% reabbrev_parties() %>% chr_upper() %>% relabel_parties()
+tpp16 <- tpp16 %>% chr_upper()
+
+
+#---- SAVE ----
+save(fp16, file = "data/fp16.rda")
+save(tpp16, file = "data/tpp16.rda")
+save(tcp16, file = "data/tcp16.rda")
+
+# ---------------------------------------------------------------------------------------------------------
+
+####################################################################################################
+# 2013
+####################################################################################################
+
+## Importing federal election results for 2013, and forming a dataframe for each vote count
+## Vote counts are: first preference, two candidate preferred (2cp) and two party preferred (2pp)
+
+#--- FIRST PREFERENCES ---#
+
+pref13 <- read_csv("https://results.aec.gov.au/17496/Website/Downloads/HouseDopByDivisionDownload-17496.csv", skip = 1)
+
+fp13 <- pref13 %>% 
+  filter(CalculationType %in% c("Preference Count", "Preference Percent")) %>% 
+  group_by(StateAb, DivisionID, DivisionNm, CountNumber, BallotPosition, CandidateID, Surname, GivenNm, PartyAb, PartyNm, Elected, HistoricElected) %>% 
+  spread(key = CalculationType, value = CalculationValue) %>%
+  filter(CountNumber == 0) %>% 
+  ungroup() %>% 
+  select(-CountNumber) %>% #takes only % of first preference votes
+  rename(OrdinaryVotes = `Preference Count`, Percent = `Preference Percent`)
+
+
+#--- TWO CANDIDATE PREFERRED ---#
+# Distribution of preferences to the two candidates who came first and second in the election
+tcp13 <- pref13 %>% 
+  group_by(DivisionID, PartyAb) %>%
+  filter(CountNumber == max(CountNumber), CalculationType %in% c("Preference Count", "Preference Percent")) %>%
+  arrange() %>%
+  filter(CalculationValue != 0) %>% 
+  spread(CalculationType, CalculationValue) %>% 
+  rename(OrdinaryVotes = `Preference Count`, Percent = `Preference Percent`) %>% 
+  select(-CountNumber)
+
+
+#--- TWO PARTY PREFERRED ---#
+# Preferences distribution only to Labor (ALP) and Coalition (LP, NP, LNQ, CLP)
+# A distribution of preferences where, by convention, comparisons are made between the ALP and the leading Liberal/National candidates. In seats where the final two candidates are not from the ALP and the Liberal or National parties, a two party preferred count may be conducted to find the result of preference flows to the ALP and the Liberal/National candidates.
+
+tpp13 <- read_csv("https://results.aec.gov.au/17496/Website/Downloads/HouseTppByDivisionDownload-17496.csv", skip = 1) %>%
+  arrange(DivisionID) %>% 
+  rename(LNP_Votes = `Liberal/National Coalition Votes`, LNP_Percent = `Liberal/National Coalition Percentage`,
+    ALP_Votes = `Australian Labor Party Votes`, ALP_Percent = `Australian Labor Party Percentage`) %>% 
+  select(-PartyAb)
+
+
+#---- RELABEL PARTY NAMES ----
+
+# Apply
+
+fp13 <- fp13 %>% reabbrev_parties() %>% chr_upper() %>% relabel_parties()
+tcp13 <- tcp13 %>% reabbrev_parties() %>% chr_upper() %>% relabel_parties()
+tpp13 <- tpp13 %>% chr_upper()
+
+#---- SAVE ----
+save(fp13, file = "data/fp13.rda")
+save(tpp13, file = "data/tpp13.rda")
+save(tcp13, file = "data/tcp13.rda")
+
+
+# ---------------------------------------------------------------------------------------------------------
+
+####################################################################################################
+# 2010
+####################################################################################################
+
+## Importing federal election results for 2010, and forming a dataframe for each vote count
+## Vote counts are: first preference, two candidate preferred (2cp) and two party preferred (2pp)
+
+#--- FIRST PREFERENCES ---#
+
+pref10 <- read_csv("https://results.aec.gov.au/15508/Website/Downloads/HouseDopByDivisionDownload-15508.csv", skip = 1)
+
+fp10 <- pref10 %>% 
+  filter(CalculationType %in% c("Preference Count", "Preference Percent")) %>% 
+  group_by(StateAb, DivisionID, DivisionNm, CountNumber, BallotPosition, CandidateID, Surname, GivenNm, PartyAb, PartyNm, Elected, HistoricElected) %>% 
+  spread(key = CalculationType, value = CalculationValue) %>%
+  filter(CountNumber == 0) %>% 
+  ungroup() %>% 
+  select(-CountNumber) %>% #takes only % of first preference votes
+  rename(OrdinaryVotes = `Preference Count`, Percent = `Preference Percent`)
+
+
+#--- TWO CANDIDATE PREFERRED ---#
+# Distribution of preferences to the two candidates who came first and second in the election
+tcp10 <- pref10 %>% 
+  group_by(DivisionID, PartyAb) %>%
+  filter(CountNumber == max(CountNumber), CalculationType %in% c("Preference Count", "Preference Percent")) %>%
+  arrange() %>%
+  filter(CalculationValue != 0) %>% 
+  spread(CalculationType, CalculationValue) %>% 
+  rename(OrdinaryVotes = `Preference Count`, Percent = `Preference Percent`) %>% 
+  select(-CountNumber)
+
+
+#--- TWO PARTY PREFERRED ---#
+# Preferences distribution only to Labor (ALP) and Coalition (LP, NP, LNQ, CLP)
+# A distribution of preferences where, by convention, comparisons are made between the ALP and the leading Liberal/National candidates. In seats where the final two candidates are not from the ALP and the Liberal or National parties, a two party preferred count may be conducted to find the result of preference flows to the ALP and the Liberal/National candidates.
+
+tpp10 <- read_csv("https://results.aec.gov.au/15508/Website/Downloads/HouseTppByDivisionDownload-15508.csv", skip = 1) %>%
+  arrange(DivisionID) %>% 
+  rename(LNP_Votes = `Liberal/National Coalition Votes`, LNP_Percent = `Liberal/National Coalition Percentage`,
+    ALP_Votes = `Australian Labor Party Votes`, ALP_Percent = `Australian Labor Party Percentage`) %>% 
+  select(-PartyAb)
+
+
+#---- RELABEL PARTY NAMES ----
+
+# Apply
+
+fp10 <- fp10 %>% reabbrev_parties() %>% chr_upper() %>% relabel_parties()
+tcp10 <- tcp10 %>% reabbrev_parties() %>% chr_upper() %>% relabel_parties()
+tpp10 <- tpp10 %>% chr_upper()
+
+
+#---- SAVE ----
+save(fp10, file = "data/fp10.rda")
+save(tpp10, file = "data/tpp10.rda")
+save(tcp10, file = "data/tcp10.rda")
+
+
+# ---------------------------------------------------------------------------------------------------------
+
+####################################################################################################
+# 2007
+####################################################################################################
+
+## Importing federal election results for 2007, and forming a dataframe for each vote count
+## Vote counts are: first preference, two candidate preferred (2cp) and two party preferred (2pp)
+
+#--- FIRST PREFERENCES ---#
+
+pref07 <- read_csv("https://results.aec.gov.au/13745/Website/Downloads/HouseDopByDivisionDownload-13745.csv", skip = 1)
+
+fp07 <- pref07 %>% 
+  filter(CalculationType %in% c("Preference Count", "Preference Percent")) %>% 
+  group_by(StateAb, DivisionID, DivisionNm, CountNumber, BallotPosition, CandidateID, Surname, GivenNm, PartyAb, PartyNm, Elected, HistoricElected) %>% 
+  spread(key = CalculationType, value = CalculationValue) %>%
+  filter(CountNumber == 0) %>% 
+  ungroup() %>% 
+  select(-CountNumber) %>% #takes only % of first preference votes
+  rename(OrdinaryVotes = `Preference Count`, Percent = `Preference Percent`)
+
+
+#--- TWO CANDIDATE PREFERRED ---#
+# Distribution of preferences to the two candidates who came first and second in the election
+tcp07 <- pref07 %>% 
+  group_by(DivisionID, PartyAb) %>%
+  filter(CountNumber == max(CountNumber), CalculationType %in% c("Preference Count", "Preference Percent")) %>%
+  arrange() %>%
+  filter(CalculationValue != 0) %>% 
+  spread(CalculationType, CalculationValue) %>% 
+  rename(OrdinaryVotes = `Preference Count`, Percent = `Preference Percent`) %>% 
+  select(-CountNumber)
+
+
+#--- TWO PARTY PREFERRED ---#
+# Preferences distribution only to Labor (ALP) and Coalition (LP, NP, LNQ, CLP)
+# A distribution of preferences where, by convention, comparisons are made between the ALP and the leading Liberal/National candidates. In seats where the final two candidates are not from the ALP and the Liberal or National parties, a two party preferred count may be conducted to find the result of preference flows to the ALP and the Liberal/National candidates.
+
+tpp07 <- read_csv("https://results.aec.gov.au/13745/Website/Downloads/HouseTppByDivisionDownload-13745.csv", skip = 1) %>%
+  arrange(DivisionID) %>% 
+  rename(LNP_Votes = `Liberal/National Coalition Votes`, LNP_Percent = `Liberal/National Coalition Percentage`,
+    ALP_Votes = `Australian Labor Party Votes`, ALP_Percent = `Australian Labor Party Percentage`) %>% 
+  select(-PartyAb)
+
+
+#---- RELABEL PARTY NAMES ----
+
+# Apply
+
+fp07 <- fp07 %>% reabbrev_parties() %>% chr_upper() %>% relabel_parties()
+tcp07 <- tcp07 %>% reabbrev_parties() %>% chr_upper() %>% relabel_parties()
+tpp07 <- tpp07 %>% chr_upper()
+
+
+#---- SAVE ----
+save(fp07, file = "data/fp07.rda")
+save(tpp07, file = "data/tpp07.rda")
+save(tcp07, file = "data/tcp07.rda")
+
+
+# ---------------------------------------------------------------------------------------------------------
+
+####################################################################################################
+# 2004
+####################################################################################################
+
+## Importing federal election results for 2004, and forming a dataframe for each vote count
+## Vote counts are: first preference, two candidate preferred (2cp) and two party preferred (2pp)
+
+#--- FIRST PREFERENCES ---#
+
+pref04 <- read_csv("https://results.aec.gov.au/12246/results/Downloads/HouseDopByDivisionDownload-12246.csv", skip = 1)
+
+pref04 %>% 
+  group_by(DivisionNm) %>% 
+  filter(CountNumber == max(CountNumber)) %>% 
+  filter(CalculationType == "Preference Percent") 
+
+fp04 <- pref04 %>% 
+  filter(CalculationType %in% c("Preference Count", "Preference Percent")) %>% 
+  mutate(Elected = ifelse(is.na(SittingMemberFl), "N", "Y")) %>% 
+  select(-SittingMemberFl) %>% 
+  group_by(StateAb, DivisionID, DivisionNm, CountNumber, BallotPosition, CandidateID, Surname, GivenNm, PartyAb, PartyNm, Elected) %>% 
+  spread(key = CalculationType, value = CalculationValue) %>%
+  filter(CountNumber == 0) %>% 
+  ungroup() %>% 
+  select(-CountNumber) %>% #takes only % of first preference votes
+  rename(OrdinaryVotes = `Preference Count`, Percent = `Preference Percent`)
+
+
+#--- TWO CANDIDATE PREFERRED ---#
+# Distribution of preferences to the two candidates who came first and second in the election
+tcp04 <- pref04 %>% 
+  group_by(DivisionID, PartyAb) %>%
+  filter(CountNumber == max(CountNumber), CalculationType %in% c("Preference Count", "Preference Percent")) %>%
+  arrange() %>%
+  filter(CalculationValue != 0) %>% 
+  spread(CalculationType, CalculationValue) %>% 
+  rename(OrdinaryVotes = `Preference Count`, Percent = `Preference Percent`) %>% 
+  select(-CountNumber) %>% 
+  mutate(Elected = ifelse(is.na(SittingMemberFl), "N", "Y")) %>% 
+  select(-SittingMemberFl)
+
+
+#--- TWO PARTY PREFERRED ---#
+# Preferences distribution only to Labor (ALP) and Coalition (LP, NP, LNQ, CLP)
+# A distribution of preferences where, by convention, comparisons are made between the ALP and the leading Liberal/National candidates. In seats where the final two candidates are not from the ALP and the Liberal or National parties, a two party preferred count may be conducted to find the result of preference flows to the ALP and the Liberal/National candidates.
+
+tpp04 <- read_csv("https://results.aec.gov.au/12246/results/Downloads/HouseTppByDivisionDownload-12246.csv", skip = 1) %>%
+  arrange(DivisionID) %>% 
+  rename(LNP_Votes = `Liberal/National Coalition Votes`, LNP_Percent = `Liberal/National Coalition Percentage`,
+    ALP_Votes = `Australian Labor Party Votes`, ALP_Percent = `Australian Labor Party Percentage`) %>% 
+  select(-PartyAb)
+
+#---- RELABEL PARTY NAMES ----
+
+# Apply
+
+fp04 <- fp04 %>% reabbrev_parties() %>% chr_upper() %>% relabel_parties()
+tcp04 <- tcp04 %>% reabbrev_parties() %>% chr_upper() %>% relabel_parties()
+tpp04 <- tpp04 %>% chr_upper()
+
+#---- SAVE ----
+save(fp04, file = "data/fp04.rda")
+save(tpp04, file = "data/tpp04.rda")
+save(tcp04, file = "data/tcp04.rda")
+
 
 # ---------------------------------------------------------------------------------------------------------
 
@@ -142,6 +465,9 @@ fp01$PartyAb[is.na(fp01$PartyAb)] <- "IND"
 # Rename
 fp01 <- fp01 %>% rename(Percent = CalculationValue)
 
+# Add party names *HERE*
+#temp <- fp04 %>% select(PartyAb, PartyNm) %>% unique() %>% filter(PartyNm %in% c("AUSTRALIAN LABOR PARTY (ACT BRANCH)", "COUNTRY LABOR", "AUSTRALIAN LABOR PARTY (ALP)"))
+#temp2 <- fp01 %>% left_join(temp, by = "PartyAb")
 
 
 #--- TWO CANDIDATE PREFERRED ---#
@@ -223,11 +549,6 @@ tpp01 <- read_csv("data-raw/HouseTppByDivision2001.csv")[-(1:17), ] %>%
   select(DivisionNm, StateAb, LNP_Votes, LNP_Percent, ALP_Votes, ALP_Percent, TotalVotes, Swing)
 
 
-
-#---- RELABEL PARTY NAMES ----
-
-# Function in aec2016.R
-
 # Apply
 
 fp01 <- fp01 %>% reabbrev_parties() %>% chr_upper()
@@ -235,349 +556,19 @@ tcp01 <- tcp01 %>% reabbrev_parties() %>% chr_upper()
 tpp01 <- tpp01 %>% chr_upper()
 
 
+#---- ADD PARTY NAMES ----
+# Get all possible PartyNm and group
+allpartynms <- bind_rows(select(fp16, PartyAb, PartyNm), select(fp13, PartyAb, PartyNm), select(fp10, PartyAb, PartyNm), select(fp07, PartyAb, PartyNm), select(fp04, PartyAb, PartyNm)) %>% unique() %>% bind_rows(data.frame(PartyAb = c("CTA", "AFI", "UNI", "NGST", "TFP", "CLA"),
+  PartyNm = c("CHRISTIAN DEMOCRATIC PARTY", "AUSTRALIANS AGAINST FURTHER IMMIGRATION", "UNITY - SAY NO TO HANSON", "NO GOODS AND SERVICES TAX PARTY", "TASMANIA FIRST PARTY", "CURTIN LABOR ALLIANCE")))
+
+fp01 <- fp01 %>% left_join(allpartynms, by = "PartyAb")
+tcp01 <- tcp01 %>% left_join(allpartynms, by = "PartyAb")
+
 #---- SAVE ----
 save(fp01, file = "data/fp01.rda")
 save(tpp01, file = "data/tpp01.rda")
 save(tcp01, file = "data/tcp01.rda")
 
 
-# ---------------------------------------------------------------------------------------------------------
 
-####################################################################################################
-# 2004
-####################################################################################################
 
-## Importing federal election results for 2004, and forming a dataframe for each vote count
-## Vote counts are: first preference, two candidate preferred (2cp) and two party preferred (2pp)
-
-#--- FIRST PREFERENCES ---#
-
-pref04 <- read_csv("https://results.aec.gov.au/12246/results/Downloads/HouseDopByDivisionDownload-12246.csv", skip = 1)
-
-pref04 %>% 
-  group_by(DivisionNm) %>% 
-  filter(CountNumber == max(CountNumber)) %>% 
-  filter(CalculationType == "Preference Percent") 
-
-fp04 <- pref04 %>% 
-  filter(CalculationType %in% c("Preference Count", "Preference Percent")) %>% 
-  mutate(Elected = ifelse(is.na(SittingMemberFl), "N", "Y")) %>% 
-  select(-SittingMemberFl) %>% 
-  group_by(StateAb, DivisionID, DivisionNm, CountNumber, BallotPosition, CandidateID, Surname, GivenNm, PartyAb, PartyNm, Elected) %>% 
-  spread(key = CalculationType, value = CalculationValue) %>%
-  filter(CountNumber == 0) %>% 
-  ungroup() %>% 
-  select(-CountNumber) %>% #takes only % of first preference votes
-  rename(OrdinaryVotes = `Preference Count`, Percent = `Preference Percent`)
-
-
-#--- TWO CANDIDATE PREFERRED ---#
-# Distribution of preferences to the two candidates who came first and second in the election
-tcp04 <- pref04 %>% 
-  group_by(DivisionID, PartyAb) %>%
-  filter(CountNumber == max(CountNumber), CalculationType %in% c("Preference Count", "Preference Percent")) %>%
-  arrange() %>%
-  filter(CalculationValue != 0) %>% 
-  spread(CalculationType, CalculationValue) %>% 
-  rename(OrdinaryVotes = `Preference Count`, Percent = `Preference Percent`) %>% 
-  select(-CountNumber) %>% 
-  mutate(Elected = ifelse(is.na(SittingMemberFl), "N", "Y")) %>% 
-  select(-SittingMemberFl)
-
-
-#--- TWO PARTY PREFERRED ---#
-# Preferences distribution only to Labor (ALP) and Coalition (LP, NP, LNQ, CLP)
-# A distribution of preferences where, by convention, comparisons are made between the ALP and the leading Liberal/National candidates. In seats where the final two candidates are not from the ALP and the Liberal or National parties, a two party preferred count may be conducted to find the result of preference flows to the ALP and the Liberal/National candidates.
-
-tpp04 <- read_csv("https://results.aec.gov.au/12246/results/Downloads/HouseTppByDivisionDownload-12246.csv", skip = 1) %>%
-  arrange(DivisionID) %>% 
-  rename(LNP_Votes = `Liberal/National Coalition Votes`, LNP_Percent = `Liberal/National Coalition Percentage`,
-    ALP_Votes = `Australian Labor Party Votes`, ALP_Percent = `Australian Labor Party Percentage`) %>% 
-  select(-PartyAb)
-
-
-
-#---- MAKE ALL ELECTORATE NAMES UPPER CASE ----
-fp04$DivisionNm <- toupper(fp04$DivisionNm)
-tcp04$DivisionNm <- toupper(tcp04$DivisionNm)
-tpp04$DivisionNm <- toupper(tpp04$DivisionNm)
-
-
-#---- RELABEL PARTY NAMES ----
-
-# Apply
-
-fp04 <- fp04 %>% relabel_parties() %>% reabbrev_parties() %>% chr_upper()
-tcp04 <- tcp04 %>% relabel_parties() %>% reabbrev_parties() %>% chr_upper()
-tpp04 <- tpp04 %>% chr_upper()
-
-#---- SAVE ----
-save(fp04, file = "data/fp04.rda")
-save(tpp04, file = "data/tpp04.rda")
-save(tcp04, file = "data/tcp04.rda")
-
-# ---------------------------------------------------------------------------------------------------------
-
-####################################################################################################
-# 2007
-####################################################################################################
-
-## Importing federal election results for 2007, and forming a dataframe for each vote count
-## Vote counts are: first preference, two candidate preferred (2cp) and two party preferred (2pp)
-
-#--- FIRST PREFERENCES ---#
-
-pref07 <- read_csv("https://results.aec.gov.au/13745/Website/Downloads/HouseDopByDivisionDownload-13745.csv", skip = 1)
-
-fp07 <- pref07 %>% 
-  filter(CalculationType %in% c("Preference Count", "Preference Percent")) %>% 
-  group_by(StateAb, DivisionID, DivisionNm, CountNumber, BallotPosition, CandidateID, Surname, GivenNm, PartyAb, PartyNm, Elected, HistoricElected) %>% 
-  spread(key = CalculationType, value = CalculationValue) %>%
-  filter(CountNumber == 0) %>% 
-  ungroup() %>% 
-  select(-CountNumber) %>% #takes only % of first preference votes
-  rename(OrdinaryVotes = `Preference Count`, Percent = `Preference Percent`)
-
-
-#--- TWO CANDIDATE PREFERRED ---#
-# Distribution of preferences to the two candidates who came first and second in the election
-tcp07 <- pref07 %>% 
-  group_by(DivisionID, PartyAb) %>%
-  filter(CountNumber == max(CountNumber), CalculationType %in% c("Preference Count", "Preference Percent")) %>%
-  arrange() %>%
-  filter(CalculationValue != 0) %>% 
-  spread(CalculationType, CalculationValue) %>% 
-  rename(OrdinaryVotes = `Preference Count`, Percent = `Preference Percent`) %>% 
-  select(-CountNumber) %>% 
-  mutate(Elected = ifelse(is.na(SittingMemberFl), "N", "Y")) %>% 
-  select(-SittingMemberFl)
-
-
-#--- TWO PARTY PREFERRED ---#
-# Preferences distribution only to Labor (ALP) and Coalition (LP, NP, LNQ, CLP)
-# A distribution of preferences where, by convention, comparisons are made between the ALP and the leading Liberal/National candidates. In seats where the final two candidates are not from the ALP and the Liberal or National parties, a two party preferred count may be conducted to find the result of preference flows to the ALP and the Liberal/National candidates.
-
-tpp07 <- read_csv("https://results.aec.gov.au/13745/Website/Downloads/HouseTppByDivisionDownload-13745.csv", skip = 1) %>%
-  arrange(DivisionID) %>% 
-  rename(LNP_Votes = `Liberal/National Coalition Votes`, LNP_Percent = `Liberal/National Coalition Percentage`,
-    ALP_Votes = `Australian Labor Party Votes`, ALP_Percent = `Australian Labor Party Percentage`) %>% 
-  select(-PartyAb)
-
-#---- MAKE ALL ELECTORATE NAMES UPPER CASE ----
-fp07$DivisionNm <- toupper(fp07$DivisionNm)
-tcp07$DivisionNm <- toupper(tcp07$DivisionNm)
-tpp07$DivisionNm <- toupper(tpp07$DivisionNm)
-
-
-#---- RELABEL PARTY NAMES ----
-
-# Apply
-
-fp07 <- fp07 %>% relabel_parties() %>% reabbrev_parties() %>% chr_upper()
-tcp07 <- tcp07 %>% relabel_parties() %>% reabbrev_parties() %>% chr_upper()
-
-
-#---- SAVE ----
-save(fp07, file = "data/fp07.rda")
-save(tpp07, file = "data/tpp07.rda")
-save(tcp07, file = "data/tcp07.rda")
-
-
-
-# ---------------------------------------------------------------------------------------------------------
-
-####################################################################################################
-# 2010
-####################################################################################################
-
-## Importing federal election results for 2010, and forming a dataframe for each vote count
-## Vote counts are: first preference, two candidate preferred (2cp) and two party preferred (2pp)
-
-#--- FIRST PREFERENCES ---#
-
-pref10 <- read_csv("https://results.aec.gov.au/15508/Website/Downloads/HouseDopByDivisionDownload-15508.csv", skip = 1)
-
-fp10 <- pref10 %>% 
-  filter(CalculationType %in% c("Preference Count", "Preference Percent")) %>% 
-  group_by(StateAb, DivisionID, DivisionNm, CountNumber, BallotPosition, CandidateID, Surname, GivenNm, PartyAb, PartyNm, Elected, HistoricElected) %>% 
-  spread(key = CalculationType, value = CalculationValue) %>%
-  filter(CountNumber == 0) %>% 
-  ungroup() %>% 
-  select(-CountNumber) %>% #takes only % of first preference votes
-  rename(OrdinaryVotes = `Preference Count`, Percent = `Preference Percent`)
-
-
-#--- TWO CANDIDATE PREFERRED ---#
-# Distribution of preferences to the two candidates who came first and second in the election
-tcp10 <- pref10 %>% 
-  group_by(DivisionID, PartyAb) %>%
-  filter(CountNumber == max(CountNumber), CalculationType %in% c("Preference Count", "Preference Percent")) %>%
-  arrange() %>%
-  filter(CalculationValue != 0) %>% 
-  spread(CalculationType, CalculationValue) %>% 
-  rename(OrdinaryVotes = `Preference Count`, Percent = `Preference Percent`) %>% 
-  select(-CountNumber) %>% 
-  mutate(Elected = ifelse(is.na(SittingMemberFl), "N", "Y")) %>% 
-  select(-SittingMemberFl)
-
-
-#--- TWO PARTY PREFERRED ---#
-# Preferences distribution only to Labor (ALP) and Coalition (LP, NP, LNQ, CLP)
-# A distribution of preferences where, by convention, comparisons are made between the ALP and the leading Liberal/National candidates. In seats where the final two candidates are not from the ALP and the Liberal or National parties, a two party preferred count may be conducted to find the result of preference flows to the ALP and the Liberal/National candidates.
-
-tpp10 <- read_csv("https://results.aec.gov.au/15508/Website/Downloads/HouseTppByDivisionDownload-15508.csv", skip = 1) %>%
-  arrange(DivisionID) %>% 
-  rename(LNP_Votes = `Liberal/National Coalition Votes`, LNP_Percent = `Liberal/National Coalition Percentage`,
-    ALP_Votes = `Australian Labor Party Votes`, ALP_Percent = `Australian Labor Party Percentage`) %>% 
-  select(-PartyAb)
-
-
-#---- MAKE ALL ELECTORATE NAMES UPPER CASE ----
-fp10$DivisionNm <- toupper(fp10$DivisionNm)
-tcp10$DivisionNm <- toupper(tcp10$DivisionNm)
-tpp10$DivisionNm <- toupper(tpp10$DivisionNm)
-
-
-#---- RELABEL PARTY NAMES ----
-
-# Apply
-
-fp10 <- fp10 %>% relabel_parties() %>% reabbrev_parties() %>% chr_upper()
-tcp10 <- tcp10 %>% relabel_parties() %>% reabbrev_parties() %>% chr_upper()
-
-
-#---- SAVE ----
-save(fp10, file = "data/fp10.rda")
-save(tpp10, file = "data/tpp10.rda")
-save(tcp10, file = "data/tcp10.rda")
-
-
-# ---------------------------------------------------------------------------------------------------------
-
-####################################################################################################
-# 2013
-####################################################################################################
-
-## Importing federal election results for 2013, and forming a dataframe for each vote count
-## Vote counts are: first preference, two candidate preferred (2cp) and two party preferred (2pp)
-
-#--- FIRST PREFERENCES ---#
-
-pref13 <- read_csv("https://results.aec.gov.au/17496/Website/Downloads/HouseDopByDivisionDownload-17496.csv", skip = 1)
-
-fp13 <- pref13 %>% 
-  filter(CalculationType %in% c("Preference Count", "Preference Percent")) %>% 
-  group_by(StateAb, DivisionID, DivisionNm, CountNumber, BallotPosition, CandidateID, Surname, GivenNm, PartyAb, PartyNm, Elected, HistoricElected) %>% 
-  spread(key = CalculationType, value = CalculationValue) %>%
-  filter(CountNumber == 0) %>% 
-  ungroup() %>% 
-  select(-CountNumber) %>% #takes only % of first preference votes
-  rename(OrdinaryVotes = `Preference Count`, Percent = `Preference Percent`)
-
-
-#--- TWO CANDIDATE PREFERRED ---#
-# Distribution of preferences to the two candidates who came first and second in the election
-tcp13 <- pref13 %>% 
-  group_by(DivisionID, PartyAb) %>%
-  filter(CountNumber == max(CountNumber), CalculationType %in% c("Preference Count", "Preference Percent")) %>%
-  arrange() %>%
-  filter(CalculationValue != 0) %>% 
-  spread(CalculationType, CalculationValue) %>% 
-  rename(OrdinaryVotes = `Preference Count`, Percent = `Preference Percent`) %>% 
-  select(-CountNumber) %>% 
-  mutate(Elected = ifelse(is.na(SittingMemberFl), "N", "Y")) %>% 
-  select(-SittingMemberFl)
-
-
-#--- TWO PARTY PREFERRED ---#
-# Preferences distribution only to Labor (ALP) and Coalition (LP, NP, LNQ, CLP)
-# A distribution of preferences where, by convention, comparisons are made between the ALP and the leading Liberal/National candidates. In seats where the final two candidates are not from the ALP and the Liberal or National parties, a two party preferred count may be conducted to find the result of preference flows to the ALP and the Liberal/National candidates.
-
-tpp13 <- read_csv("https://results.aec.gov.au/17496/Website/Downloads/HouseTppByDivisionDownload-17496.csv", skip = 1) %>%
-  arrange(DivisionID) %>% 
-  rename(LNP_Votes = `Liberal/National Coalition Votes`, LNP_Percent = `Liberal/National Coalition Percentage`,
-    ALP_Votes = `Australian Labor Party Votes`, ALP_Percent = `Australian Labor Party Percentage`) %>% 
-  select(-PartyAb)
-
-
-#---- MAKE ALL ELECTORATE NAMES UPPER CASE ----
-fp13$DivisionNm <- toupper(fp13$DivisionNm)
-tcp13$DivisionNm <- toupper(tcp13$DivisionNm)
-tpp13$DivisionNm <- toupper(tpp13$DivisionNm)
-
-#---- RELABEL PARTY NAMES ----
-
-# Apply
-
-fp13 <- fp13 %>% relabel_parties() %>% reabbrev_parties() %>% chr_upper()
-tcp13 <- tcp13 %>% relabel_parties() %>% reabbrev_parties() %>% chr_upper()
-
-#---- SAVE ----
-save(fp13, file = "data/fp13.rda")
-save(tpp13, file = "data/tpp13.rda")
-save(tcp13, file = "data/tcp13.rda")
-
-
-# ---------------------------------------------------------------------------------------------------------
-
-####################################################################################################
-# 2016
-####################################################################################################
-
-## Importing federal election results for 2016, and forming a dataframe for each vote count
-## Vote counts are: first preference, two candidate preferred (2cp) and two party preferred (2pp)
-
-#---- FIRST PREFERENCES ----
-pref16 <- read_csv("https://results.aec.gov.au/20499/Website/Downloads/HouseDopByDivisionDownload-20499.csv", skip = 1)
-
-fp16 <- pref16 %>% 
-  filter(CalculationType %in% c("Preference Count", "Preference Percent")) %>% 
-  group_by(StateAb, DivisionID, DivisionNm, CountNumber, BallotPosition, CandidateID, Surname, GivenNm, PartyAb, PartyNm, Elected, HistoricElected) %>% 
-  spread(key = CalculationType, value = CalculationValue) %>%
-  filter(CountNumber == 0) %>% 
-  ungroup() %>% 
-  select(-CountNumber) %>% #takes only % of first preference votes
-  rename(OrdinaryVotes = `Preference Count`, Percent = `Preference Percent`)
-
-
-#---- TWO CANDIDATE PREFERRED ----
-# Distribution of preferences to the two candidates who came first and second in the election
-# add here total votes as well
-tcp16 <- pref16 %>% 
-  group_by(DivisionID, PartyAb) %>%
-  filter(CountNumber == max(CountNumber), CalculationType %in% c("Preference Count", "Preference Percent")) %>%
-  arrange() %>%
-  filter(CalculationValue != 0) %>% 
-  spread(CalculationType, CalculationValue) %>% 
-  rename(OrdinaryVotes = `Preference Count`, Percent = `Preference Percent`) %>% 
-  select(-CountNumber) %>% 
-  mutate(Elected = ifelse(is.na(SittingMemberFl), "N", "Y")) %>% 
-  select(-SittingMemberFl)
-
-
-#---- TWO PARTY PREFERRED ----
-# Preferences distribution only to Labor (ALP) and Coalition (LP, NP, LNQ, CLP)
-# A distribution of preferences where, by convention, comparisons are made between the ALP and the leading Liberal/National candidates. In seats where the final two candidates are not from the ALP and the Liberal or National parties, a two party preferred count may be conducted to find the result of preference flows to the ALP and the Liberal/National candidates.
-
-tpp16 <- read_csv("https://results.aec.gov.au/20499/Website/Downloads/HouseTppByDivisionDownload-20499.csv", skip = 1) %>%
-  arrange(DivisionID) %>% 
-  rename(LNP_Votes = `Liberal/National Coalition Votes`, LNP_Percent = `Liberal/National Coalition Percentage`,
-    ALP_Votes = `Australian Labor Party Votes`, ALP_Percent = `Australian Labor Party Percentage`) %>% 
-  select(-PartyAb)
-
-#---- MAKE ALL ELECTORATE NAMES UPPER CASE ----
-fp16$DivisionNm <- toupper(fp16$DivisionNm)
-tcp16$DivisionNm <- toupper(tcp16$DivisionNm)
-tpp16$DivisionNm <- toupper(tpp16$DivisionNm)
-
-
-# Apply
-
-fp16 <- fp16 %>% relabel_parties() %>% reabbrev_parties() %>% chr_upper()
-tcp16 <- tcp16 %>% relabel_parties() %>% reabbrev_parties() %>% chr_upper()
-
-
-#---- SAVE ----
-save(fp16, file = "data/fp16.rda")
-save(tpp16, file = "data/tpp16.rda")
-save(tcp16, file = "data/tcp16.rda")
