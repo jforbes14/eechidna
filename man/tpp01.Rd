@@ -5,14 +5,14 @@
 \alias{tpp01}
 \title{2001 General election data for two party preferred votes for candidates for the House of Representative for each electorate where Labor and Liberal parties were the two most popular parties.}
 \format{A data frame with the following variables:
-\itemize{
+\itemize{ 
     \item DivisionNm:  Electoral division name   
     \item StateAb: Abbreviation for state name  
-    \item Surname: Candidate surname
-    \item GivenNm: Candidate given name
-    \item Elected: Whether candidate was elected (Y/N)
-    \item Percent: Percentage of votes in favour (\%)         
-    \item PartyAb: Abbreviation for political party name   
+    \item LNP_Votes: Count of two party preferred vote in favour of the Liberal National coalition
+    \item LNP_Percent: Percentage of two party preferred vote in favour of the Liberal National coalition   
+    \item ALP_Votes: Count of two party preferred vote in favour of the Labor party
+    \item ALP_Percent: Percentage of two party preferred vote in favour of the Labor party     
+    \item TotalVotes: Total number of votes cast     
     \item Swing: Percentage point change in two party preferred vote from the previous election      
     }}
 \usage{
@@ -22,10 +22,7 @@ tpp01
 A dataset containing two party preferred vote counts, winning candidate names, and other results for 
 the House of Representatives from the 2001 Australian federal election. Includes the count of votes for
 the Australian Labor Party and the count of votes for the Liberal-National Coalition for each electorate.
-Only available for the 141 electorates for which the two most preferred candidates were from the Labor
-and Liberal parties.
 The data were obtained from the Australian Electoral Commission, and downloaded 
-from \url{http://results.aec.gov.au/12246/results/HouseDownloadsMenu-12246-csv.htm} and 
-\url{http://www.aec.gov.au/elections/federal_elections/2004/downloads.htm}.
+from \url{https://www.aec.gov.au/About_AEC/Publications/statistics/files/aec-2001-election-statistics.zip}.
 }
 \keyword{datasets}

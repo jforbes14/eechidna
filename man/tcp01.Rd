@@ -12,7 +12,8 @@
     \item GivenNm: Candidate given name 
     \item Elected: Whether the candidate was elected (Y/N)  
     \item Percent: Percentage of ordinary votes cast for the candidate   
-    \item PartyAb: Abbreviation for political party name    
+    \item PartyAb: Abbreviation for political party name            
+    \item PartyNm: Political party name      
     \item Swing: Percentage point change in ordinary votes for the party from the previous election      
     }}
 \usage{
@@ -21,6 +22,7 @@ tcp01
 \description{
 A dataset containing two candidate preferred vote counts, and other results for the House of Representatives from the 2001 Australian federal election. Includes the count of votes for
 the leading two candidates in the electorate after distribution of preferences.
-The data were obtained from the Australian Electoral Commission.
+The data were obtained from the Australian Electoral Commission, and downloaded 
+from \url{https://www.aec.gov.au/About_AEC/Publications/statistics/files/aec-2001-election-statistics.zip}.
 }
 \keyword{datasets}

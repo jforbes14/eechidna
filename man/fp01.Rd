@@ -21,6 +21,7 @@ fp01
 \description{
 A dataset containing first preference vote counts, candidate names, and other results for the
 House of Representatives from the 2001 Australian federal election. 
-The data were obtained from the Australian Electoral Commission.
+The data were obtained from the Australian Electoral Commission, and downloaded 
+from \url{https://www.aec.gov.au/About_AEC/Publications/statistics/files/aec-2001-election-statistics.zip}.
 }
 \keyword{datasets}
