@@ -27,8 +27,8 @@ data("nat_map13")
 data("nat_map16")
 data("abs2011")
 data("abs2016")
-data("sF_13")
-data("sF_16")
+sF_13 <- sF_download(2013)
+sF_16 <- sF_download(2016)
 
 ```
 
@@ -53,10 +53,10 @@ hume_area13 <- nat_map13 %>%
   filter(state %in% c("ACT","NSW"), long < 154)
 
 ggplot(data=hume_area13) +
-  geom_polygon(aes(x=long, y=lat, group=group, order=order, fill = elect_div == "HUME"),
+  geom_polygon(aes(x=long, y=lat, group=group, fill = elect_div == "HUME"),
                colour="grey50", alpha = 0.4) +
   scale_fill_manual(name="Boundary", values=c("white", "purple"), labels = c("Other 2013 Electorates", "Hume 2013")) +
-  theme_map()
+  theme_map() + coord_equal()
 ```
 
 The Censuses neighbouring the 2013 election are those in 2011 and 2016. By plotting the Hume boundary (purple) in the 2013 election over the divisions in 2016, we see that its boundary has changed. 
@@ -68,7 +68,7 @@ hume_area16 <- nat_map16 %>%
   bind_rows(hume_area13 %>% filter(elect_div == "HUME") %>% mutate(year = "2013"))
 
 ggplot(data=hume_area16) +
-  geom_polygon(aes(x=long, y=lat, group=group, order=order, fill = year == "2013", 
+  geom_polygon(aes(x=long, y=lat, group=group, fill = year == "2013", 
     alpha = year == "2013", colour=year == "2013")) +
   scale_fill_manual(name="Boundary", values=c("grey95", "purple"), labels = c("2016 Electorates", "Hume 2013")) +
   scale_alpha_manual(values=c(0, 0.4)) +
