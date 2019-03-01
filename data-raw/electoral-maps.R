@@ -28,13 +28,12 @@ sF_16 <- loadShapeFile(shapeFile_16)
 
 # Save
 
-save(sF_01, file = "data/sF_01.rda")
-save(sF_04, file = "data/sF_04.rda")
-save(sF_07, file = "data/sF_07.rda")
-save(sF_10, file = "data/sF_10.rda")
-save(sF_11, file = "data/sF_11.rda")
-save(sF_13, file = "data/sF_13.rda")
-save(sF_16, file = "data/sF_16.rda")
+save(sF_01, file = "extra-data/sF_01.rda", compress = "xz")
+save(sF_04, file = "extra-data/sF_04.rda", compress = "xz")
+save(sF_07, file = "extra-data/sF_07.rda", compress = "xz")
+save(sF_10, file = "extra-data/sF_10.rda", compress = "xz")
+save(sF_13, file = "extra-data/sF_13.rda", compress = "xz")
+save(sF_16, file = "extra-data/sF_16.rda", compress = "xz")
 
 # ------------------------------------
 
@@ -77,18 +76,16 @@ nat_data16 <- sF_16_fortified$data
 
 
 # Save
+usethis::use_data(nat_data01, overwrite = T, compress = "xz")
+usethis::use_data(nat_data04, overwrite = T, compress = "xz")
+usethis::use_data(nat_data07, overwrite = T, compress = "xz")
+usethis::use_data(nat_data10, overwrite = T, compress = "xz")
+usethis::use_data(nat_data13, overwrite = T, compress = "xz")
+usethis::use_data(nat_data16, overwrite = T, compress = "xz")
 
-save(nat_data01, file = "data/nat_data01.rda")
-save(nat_data04, file = "data/nat_data04.rda")
-save(nat_data07, file = "data/nat_data07.rda")
-save(nat_data10, file = "data/nat_data10.rda")
-save(nat_data13, file = "data/nat_data13.rda")
-save(nat_data16, file = "data/nat_data16.rda")
-
-save(nat_map01, file = "data/nat_map01.rda")
-save(nat_map04, file = "data/nat_map04.rda")
-save(nat_map07, file = "data/nat_map07.rda")
-save(nat_map10, file = "data/nat_map10.rda")
-save(nat_map13, file = "data/nat_map13.rda")
-save(nat_map16, file = "data/nat_map16.rda")
-
+usethis::use_data(nat_map01, overwrite = T, compress = "xz")
+usethis::use_data(nat_map04, overwrite = T, compress = "xz")
+usethis::use_data(nat_map07, overwrite = T, compress = "xz")
+usethis::use_data(nat_map10, overwrite = T, compress = "xz")
+usethis::use_data(nat_map13, overwrite = T, compress = "xz")
+usethis::use_data(nat_map16, overwrite = T, compress = "xz")

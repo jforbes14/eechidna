@@ -232,4 +232,4 @@ abs2016 <- abs2016%>%
 
 #Save
 
-save(abs2016, file = "data/abs2016.rda")
+usethis::use_data(abs2016, overwrite = T, compress = "xz")

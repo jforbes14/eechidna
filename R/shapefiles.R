@@ -13,8 +13,13 @@
 #' @export
 #' @examples 
 #' \dontrun{
-#' fl <- "data-raw/national-midmif-09052016/COM_ELB.TAB"
-#' sF_2016 <- load_shapefile("local/path/to/shapefile.shp")
+#' # Load electorate shapefile into R
+#' 
+#' # Path to your shapefile
+#' fl <- "local/path/to/shapefile.shp"
+#' 
+#' # Load
+#' my_sF <- load_shapefile(fl)
 #' }
 
 load_shapefile <- function(path_to_shapeFile, tolerance = 0.005) {
@@ -110,7 +115,11 @@ load_shapefile <- function(path_to_shapeFile, tolerance = 0.005) {
 #' @export
 #' @examples 
 #' \dontrun{
-#' fl <- "PATH-ON-YOUR-COMPUTER/national-midmif-09052016/COM_ELB.TAB"
+#' # Get electorate shapes in data.frame format
+#' 
+#' # Path to your shapefile
+#' fl <- "local/path/to/shapefile.shp"
+#' 
 #' map_and_data16 <- get_electorate_shapes(path_to_shapefile = fl)
 #' }
 

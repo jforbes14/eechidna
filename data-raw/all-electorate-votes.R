@@ -113,9 +113,10 @@ tpp16 <- tpp16 %>% chr_upper()
 
 
 #---- SAVE ----
-save(fp16, file = "data/fp16.rda")
-save(tpp16, file = "data/tpp16.rda")
-save(tcp16, file = "data/tcp16.rda")
+usethis::use_data(fp16, overwrite = T, compress = "xz")
+usethis::use_data(tcp16, overwrite = T, compress = "xz")
+usethis::use_data(tpp16, overwrite = T, compress = "xz")
+
 
 # ---------------------------------------------------------------------------------------------------------
 
@@ -172,9 +173,9 @@ tcp13 <- tcp13 %>% reabbrev_parties() %>% chr_upper() %>% relabel_parties()
 tpp13 <- tpp13 %>% chr_upper()
 
 #---- SAVE ----
-save(fp13, file = "data/fp13.rda")
-save(tpp13, file = "data/tpp13.rda")
-save(tcp13, file = "data/tcp13.rda")
+usethis::use_data(fp13, overwrite = T, compress = "xz")
+usethis::use_data(tcp13, overwrite = T, compress = "xz")
+usethis::use_data(tpp13, overwrite = T, compress = "xz")
 
 
 # ---------------------------------------------------------------------------------------------------------
@@ -233,9 +234,10 @@ tpp10 <- tpp10 %>% chr_upper()
 
 
 #---- SAVE ----
-save(fp10, file = "data/fp10.rda")
-save(tpp10, file = "data/tpp10.rda")
-save(tcp10, file = "data/tcp10.rda")
+usethis::use_data(fp10, overwrite = T, compress = "xz")
+usethis::use_data(tcp10, overwrite = T, compress = "xz")
+usethis::use_data(tpp10, overwrite = T, compress = "xz")
+
 
 
 # ---------------------------------------------------------------------------------------------------------
@@ -294,9 +296,10 @@ tpp07 <- tpp07 %>% chr_upper()
 
 
 #---- SAVE ----
-save(fp07, file = "data/fp07.rda")
-save(tpp07, file = "data/tpp07.rda")
-save(tcp07, file = "data/tcp07.rda")
+usethis::use_data(fp07, overwrite = T, compress = "xz")
+usethis::use_data(tcp07, overwrite = T, compress = "xz")
+usethis::use_data(tpp07, overwrite = T, compress = "xz")
+
 
 
 # ---------------------------------------------------------------------------------------------------------
@@ -362,9 +365,10 @@ tcp04 <- tcp04 %>% reabbrev_parties() %>% chr_upper() %>% relabel_parties()
 tpp04 <- tpp04 %>% chr_upper()
 
 #---- SAVE ----
-save(fp04, file = "data/fp04.rda")
-save(tpp04, file = "data/tpp04.rda")
-save(tcp04, file = "data/tcp04.rda")
+usethis::use_data(fp04, overwrite = T, compress = "xz")
+usethis::use_data(tcp04, overwrite = T, compress = "xz")
+usethis::use_data(tpp04, overwrite = T, compress = "xz")
+
 
 
 # ---------------------------------------------------------------------------------------------------------
@@ -565,10 +569,9 @@ fp01 <- fp01 %>% left_join(allpartynms, by = "PartyAb")
 tcp01 <- tcp01 %>% left_join(allpartynms, by = "PartyAb")
 
 #---- SAVE ----
-save(fp01, file = "data/fp01.rda")
-save(tpp01, file = "data/tpp01.rda")
-save(tcp01, file = "data/tcp01.rda")
-
+usethis::use_data(fp01, overwrite = T, compress = "xz")
+usethis::use_data(tcp01, overwrite = T, compress = "xz")
+usethis::use_data(tpp01, overwrite = T, compress = "xz")
 
 
 

@@ -44,7 +44,7 @@ abs2013 <- (2/5)*(select(census_aec13_16, -DivisionNm)) + (3/5)*(select(census_a
 abs2013$DivisionNm <- census_aec13_16$DivisionNm
 
 # Save
-save(abs2013, file = "data/abs2013.rda")
+usethis::use_data(abs2013, overwrite = T, compress = "xz")
 
 # ------------------------------------------------------------------------------------------------------
 
@@ -77,7 +77,7 @@ abs2010 <- (1/5)*(select(census_aec10_06, -DivisionNm)) + (4/5)*(select(census_a
 abs2010$DivisionNm <- census_aec10_11$DivisionNm
 
 # Save
-save(abs2010, file = "data/abs2010.rda")
+usethis::use_data(abs2010, overwrite = T, compress = "xz")
 
 # ------------------------------------------------------------------------------------------------------
 
@@ -109,7 +109,7 @@ abs2007 <- (4/5)*(select(census_aec07_06, -DivisionNm)) + (1/5)*(select(census_a
 abs2007$DivisionNm <- census_aec07_11$DivisionNm
 
 # Save
-save(abs2007, file = "data/abs2007.rda")
+usethis::use_data(abs2007, overwrite = T, compress = "xz")
 
 # ------------------------------------------------------------------------------------------------------
 
@@ -143,4 +143,4 @@ abs2004 <- (2/5)*(select(census_aec04_01, -DivisionNm)) + (3/5)*(select(census_a
 abs2004$DivisionNm <- census_aec04_01$DivisionNm
 
 # Save
-save(abs2004, file = "data/abs2004.rda")
+usethis::use_data(abs2004, overwrite = T, compress = "xz")

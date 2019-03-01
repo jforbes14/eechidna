@@ -207,4 +207,4 @@ abs2011 <- abs2011 %>%
   select(ID, DivisionNm, State, Population, Area, everything())
 
 # Save
-save(abs2011, file = "data/abs2011.rda")
+usethis::use_data(abs2011, overwrite = T, compress = "xz")

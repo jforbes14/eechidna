@@ -1644,8 +1644,8 @@ abs2006_e07 <- abs2006_e07 %>%
 
 # Save
 
-save(abs2001, file = "data/abs2001.rda")
-save(abs2006, file = "data/abs2006.rda")
-save(abs2006_e07, file = "data/abs2006_e07.rda")
+usethis::use_data(abs2001, overwrite = T, compress = "xz")
+usethis::use_data(abs2006, overwrite = T, compress = "xz")
+usethis::use_data(abs2006_e07, overwrite = T, compress = "xz")
 
 
