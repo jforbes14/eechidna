@@ -1,8 +1,8 @@
-#' 2016 General election data for first preference votes for candidates for the House of 
-#' Representatives for each electorate
+#' 2016 Australian Federal election data for first preference votes for candidates for the House of 
+#' Representatives for each electorate.
 #' 
-#' A dataset containing first preference vote counts, candidate names, and other results for the
-#' House of Representatives from the 2016 Australian federal election. 
+#' A dataset containing first preference vote counts, candidate names, and 
+#' other results for the House of Representatives from the 2016 Australian federal election. 
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
 #' from \url{http://results.aec.gov.au/20499/Website/HouseDownloadsMenu-20499-csv.htm} and 
 #' \url{http://www.aec.gov.au/elections/federal_elections/2016/downloads.htm}.
@@ -25,7 +25,7 @@
 #'     }
 "fp16"
 
-#' 2016 General election data for two party preferred votes for candidates for the House of 
+#' 2016 Australian Federal election data for two party preferred votes for candidates for the House of 
 #' Representative for each electorate
 #' 
 #' A dataset containing two party preferred vote counts, winning candidate names, and other 
@@ -51,7 +51,7 @@
 "tpp16"
 
 
-#' 2016 General election data for two candidate preferred votes for candidates for the 
+#' 2016 Australian Federal election data for two candidate preferred votes for candidates for the 
 #' House of Representative for each electorate
 #' 
 #' A dataset containing two candidate preferred vote counts, and other results for the 
@@ -79,7 +79,7 @@
 #'     }
 "tcp16"
 
-#' 2013 General election data for first preference votes for candidates for the 
+#' 2013 Australian Federal election data for first preference votes for candidates for the 
 #' House of Representative for each electorate
 #' 
 #' A dataset containing first preference vote counts, candidate names, and other results for the
@@ -106,7 +106,7 @@
 #'     }
 "fp13"
 
-#' 2013 General election data for two party preferred votes for candidates for the 
+#' 2013 Australian Federal election data for two party preferred votes for candidates for the 
 #' House of Representative for each electorate
 #' 
 #' A dataset containing two party preferred vote counts, winning candidate names, 
@@ -131,7 +131,7 @@
 #'     }
 "tpp13"
 
-#' 2013 General election data for two candidate preferred votes for candidates for the 
+#' 2013 Australian Federal election data for two candidate preferred votes for candidates for the 
 #' House of Representative for each electorate
 #' 
 #' A dataset containing two candidate preferred vote counts, and other results for the 
@@ -159,7 +159,7 @@
 #'     }
 "tcp13"
 
-#' 2010 General election data for first preference votes for candidates for the House of 
+#' 2010 Australian Federal election data for first preference votes for candidates for the House of 
 #' Representative for each electorate
 #' 
 #' A dataset containing first preference vote counts, candidate names, and other results for the
@@ -186,7 +186,7 @@
 #'     }
 "fp10"
 
-#' 2010 General election data for two party preferred votes for candidates for the House of Representative for each electorate
+#' 2010 Australian Federal election data for two party preferred votes for candidates for the House of Representative for each electorate
 #' 
 #' A dataset containing two party preferred vote counts, winning candidate names, and other results for the House of Representatives from the 2010 Australian federal election. Includes the count of votes for
 #' the Australian Labor Party and the count of votes for the Liberal-National Coalition for each polling place.
@@ -208,7 +208,7 @@
 #'     }
 "tpp10"
 
-#' 2010 General election data for two candidate preferred votes for candidates for the House of Representative for each electorate
+#' 2010 Australian Federal election data for two candidate preferred votes for candidates for the House of Representative for each electorate
 #' 
 #' A dataset containing two candidate preferred vote counts, and other results for the House of Representatives from the 2010 Australian federal election. Includes the count of votes for
 #' the leading two candidates in the electorate after distribution of preferences.
@@ -234,7 +234,7 @@
 #'     }
 "tcp10"
 
-#' 2007 General election data for first preference votes for candidates for the House of Representative for each electorate
+#' 2007 Australian Federal election data for first preference votes for candidates for the House of Representative for each electorate
 #' 
 #' A dataset containing first preference vote counts, candidate names, and other results for the
 #' House of Representatives from the 2007 Australian federal election. 
@@ -260,7 +260,7 @@
 #'     }
 "fp07"
 
-#' 2007 General election data for two party preferred votes for candidates for the House of Representative for each electorate
+#' 2007 Australian Federal election data for two party preferred votes for candidates for the House of Representative for each electorate
 #' 
 #' A dataset containing two party preferred vote counts, winning candidate names, and other results for the House of Representatives from the 2007 Australian federal election. Includes the count of votes for
 #' the Australian Labor Party and the count of votes for the Liberal-National Coalition for each polling place.
@@ -282,7 +282,7 @@
 #'     }
 "tpp07"
 
-#' 2007 General election data for two candidate preferred votes for candidates for the House of Representative for each electorate
+#' 2007 Australian Federal election data for two candidate preferred votes for candidates for the House of Representative for each electorate
 #' 
 #' A dataset containing two candidate preferred vote counts, and other results for the House of Representatives from the 2007 Australian federal election. Includes the count of votes for
 #' the leading two candidates in the electorate after distribution of preferences.
@@ -308,7 +308,7 @@
 #'     }
 "tcp07"
 
-#' 2004 General election data for first preference votes for candidates for the House of Representative for each electorate
+#' 2004 Australian Federal election data for first preference votes for candidates for the House of Representative for each electorate
 #' 
 #' A dataset containing first preference vote counts, candidate names, and other results for the
 #' House of Representatives from the 2004 Australian federal election. 
@@ -333,7 +333,7 @@
 #'     }
 "fp04"
 
-#' 2004 General election data for two party preferred votes for candidates for the House of Representative for each electorate
+#' 2004 Australian Federal election data for two party preferred votes for candidates for the House of Representative for each electorate
 #' 
 #' A dataset containing two party preferred vote counts, winning candidate names, and other results for the House of Representatives from the 2004 Australian federal election. Includes the count of votes for
 #' the Australian Labor Party and the count of votes for the Liberal-National Coalition for each polling place.
@@ -355,7 +355,7 @@
 #'     }
 "tpp04"
 
-#' 2004 General election data for two candidate preferred votes for candidates for the House of Representative for each electorate
+#' 2004 Australian Federal election data for two candidate preferred votes for candidates for the House of Representative for each electorate
 #' 
 #' A dataset containing two candidate preferred vote counts, and other results for the House of Representatives from the 2004 Australian federal election. Includes the count of votes for
 #' the leading two candidates in the electorate after distribution of preferences.
@@ -380,7 +380,7 @@
 #'     }
 "tcp04"
 
-#' 2001 General election data for first preference votes for candidates for the House of Representative for each electorate
+#' 2001 Australian Federal election data for first preference votes for candidates for the House of Representative for each electorate
 #' 
 #' A dataset containing first preference vote counts, candidate names, and other results for the
 #' House of Representatives from the 2001 Australian federal election. 
@@ -400,7 +400,7 @@
 #'     }
 "fp01"
 
-#' 2001 General election data for two party preferred votes for candidates for the House of Representative for each electorate where Labor and Liberal parties were the two most popular parties.
+#' 2001 Australian Federal election data for two party preferred votes for candidates for the House of Representative for each electorate where Labor and Liberal parties were the two most popular parties.
 #' 
 #' A dataset containing two party preferred vote counts, winning candidate names, and other results for 
 #' the House of Representatives from the 2001 Australian federal election. Includes the count of votes for
@@ -421,7 +421,7 @@
 #'     }
 "tpp01"
 
-#' 2001 General election data for two candidate preferred votes for candidates for the House of Representative for each electorate
+#' 2001 Australian Federal election data for two candidate preferred votes for candidates for the House of Representative for each electorate
 #' 
 #' A dataset containing two candidate preferred vote counts, and other results for the House of Representatives from the 2001 Australian federal election. Includes the count of votes for
 #' the leading two candidates in the electorate after distribution of preferences.
@@ -451,7 +451,7 @@
 #' 
 #' library(eechidna)
 #' data(nat_map16)
-#' # choropleth map with Census data
+#' # choropleth map with Australian Census data
 #' nat_map16$region <- nat_map16$elect_div
 #' data(abs2016)
 #' abs2016$region <- abs2016$DivisionNm
@@ -650,7 +650,7 @@
 #' }
 "nat_data01"
 
-#' 2016 Census data on all 150 electorates
+#' 2016 Australian Census data on all 150 electorates
 #'
 #' A dataset containing demographic and other information about each electorate.
 #' The data were obtained from the Australian Bureau of Statistics, and downloaded 
@@ -747,7 +747,7 @@
 #' }
 "abs2016"  
 
-#' 2011 Census data on all 150 electorates
+#' 2011 Australian Census data on all 150 electorates
 #'
 #' A dataset containing demographic and other information about each electorate.
 #' The data were obtained from the Australian Bureau of Statistics, and downloaded 
@@ -844,7 +844,7 @@
 #' }
 "abs2011" 
 
-#' 2006 Census data on all 150 electorates (2004 boundaries)
+#' 2006 Australian Census data on all 150 electorates (2004 boundaries)
 #'
 #' A dataset containing demographic and other information about each electorate.
 #' The data were obtained from the Australian Bureau of Statistics, and downloaded 
@@ -941,7 +941,7 @@
 #' }
 "abs2006"  
 
-#' 2006 Census data on all 150 electorates (2007 boundaries)
+#' 2006 Australian Census data on all 150 electorates (2007 boundaries)
 #'
 #' A dataset containing demographic and other information about each electorate.
 #' The data were obtained from the Australian Bureau of Statistics, and downloaded 
@@ -1038,7 +1038,7 @@
 #' }
 "abs2006_e07"  
 
-#' 2001 Census data on all 150 electorates
+#' 2001 Australian Census data on all 150 electorates
 #'
 #' A dataset containing demographic and other information about each electorate.
 #' The data were obtained from the Australian Bureau of Statistics, and downloaded 
@@ -1135,7 +1135,7 @@
 #' }
 "abs2001"  
 
-#' Imputed Census data for the electorates in place at time of the 2013 Federal election
+#' Imputed Australian Census data for the electorates in place at time of the 2013 Federal election
 #'
 #' A dataset containing estimated demographic and other information about each electorate.
 #' The data is imputed using Census information from 2011 and 2016. See the imputing-census-data
@@ -1214,7 +1214,7 @@
 #' }
 "abs2013"  
 
-#' Imputed Census data for the electorates in place at time of the 2010 Federal election
+#' Imputed Australian Census data for the electorates in place at time of the 2010 Federal election
 #'
 #' A dataset containing estimated demographic and other information about each electorate.
 #' The data is imputed using Census information from 2006 and 2011. See the imputing-census-data
@@ -1293,7 +1293,7 @@
 #' }
 "abs2010"  
 
-#' Imputed Census data for the electorates in place at time of the 2007 Federal election
+#' Imputed Australian Census data for the electorates in place at time of the 2007 Federal election
 #'
 #' A dataset containing estimated demographic and other information about each electorate.
 #' The data is imputed using Census information from 2006 and 2011. See the imputing-census-data
@@ -1372,7 +1372,7 @@
 #' }
 "abs2007"  
 
-#' Imputed Census data for the electorates in place at time of the 2004 Federal election
+#' Imputed Australian Census data for the electorates in place at time of the 2004 Federal election
 #'
 #' A dataset containing estimated demographic and other information about each electorate.
 #' The data is imputed using Census information from 2001 and 2006. See the imputing-census-data
