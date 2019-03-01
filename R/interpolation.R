@@ -14,7 +14,8 @@
 #' @export
 #' @examples 
 #' \dontrun{
-#' # Each 2013 electorate boundary's composition in terms of the boundaries in place for the 2016 Census
+#' # Each 2013 electorate boundary's composition in terms of the 
+#' # boundaries in place for the 2016 Census
 #' aec_sF_2013 <- loadShapeFile(path_to_aec_shapefile)
 #' abs_sF_2016 <- loadShapeFile(path_to_abs_shapefile)
 #' 
@@ -110,7 +111,8 @@ mapping_fn <- function(aec_sF, abs_sF, area_thres = 0.995) {
 #' \dontrun{
 #' data(abs2016)
 #' 
-#' # Each 2013 electorate boundary's composition in terms of the boundaries in place for the 2016 Census
+#' # Each 2013 electorate boundary's composition in terms of the 
+#' # boundaries in place for the 2016 Census
 #' aec_sF_2013 <- loadShapeFile(path_to_aec_shapefile)
 #' abs_sF_2016 <- loadShapeFile(path_to_abs_shapefile)
 #' mapping_2016 <- mapping_fn(aec_sF = aec_sF_2013, abs_sF = abs_sF_2016)
