@@ -14,10 +14,10 @@
 #' @examples 
 #' \dontrun{
 #' fl <- "data-raw/national-midmif-09052016/COM_ELB.TAB"
-#' sF_2016 <- loadShapeFile("local/path/to/shapefile.shp")
+#' sF_2016 <- load_shapefile("local/path/to/shapefile.shp")
 #' }
 
-loadShapeFile <- function(path_to_shapeFile, tolerance = 0.005) {
+load_shapefile <- function(path_to_shapeFile, tolerance = 0.005) {
   
   # geopackage (.gpkg) is to be treated differently so an if else statement is used
   
@@ -100,7 +100,7 @@ loadShapeFile <- function(path_to_shapeFile, tolerance = 0.005) {
 #' The map and data corresponding to the shapefiles of the 2013 Australian electorates (available at \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}) are part of this package as nat_map.rda and nat_data.rda in the data folder.
 #' The function will take several minutes to complete.
 #' @param path_to_shapeFile path to object in local machine (only if shapefile has not already loaded)
-#' @param sF Shapefile object loaded to environment using loadShapeFile
+#' @param sF Shapefile object loaded to environment using load_shapefile
 #' @param mapinfo Is the data mapInfo format, rather than ESRI? default=TRUE
 #' @param layer If the format is mapInfo, the layer name also needs to be provided, default is NULL
 #' @param tolerance Numerical tolerance value to be used by the Douglas-Peuker algorithm (only if shapefile has not already loaded)
@@ -111,17 +111,16 @@ loadShapeFile <- function(path_to_shapeFile, tolerance = 0.005) {
 #' @examples 
 #' \dontrun{
 #' fl <- "PATH-ON-YOUR-COMPUTER/national-midmif-09052016/COM_ELB.TAB"
-#' map_and_data16 <- getElectorateShapes(path_to_shapefile = fl)
+#' map_and_data16 <- get_electorate_shapes(path_to_shapefile = fl)
 #' }
 
-getElectorateShapes <- function(path_to_shapeFile = NULL, sF = NULL, mapinfo=TRUE, layer=NULL, tolerance=0.005) {
+get_electorate_shapes <- function(path_to_shapeFile = NULL, sF = NULL, mapinfo=TRUE, layer=NULL, tolerance=0.005) {
 
   if (is.null(sF)) {
     if (!is.null(path_to_shapeFile)) {
-      sF <- loadShapeFile(path_to_shapeFile = path_to_shapeFile, tolerance = tolerance)
+      sF <- load_shapefile(path_to_shapeFile = path_to_shapeFile, tolerance = tolerance)
     } else {
-      print("Enter path to shapefile or loaded shapefile from function loadShapeFile")
-      break
+      stop("Enter path to shapefile or loaded shapefile from function load_shapefile")
     }
   }
   
