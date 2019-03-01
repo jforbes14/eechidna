@@ -60,7 +60,7 @@ library(broom)
 library(purrrlyr)
 
 data(fp16)
-data(fpp16)
+data(tpp16)
 data(tcp16)
 data(abs2016)
 
