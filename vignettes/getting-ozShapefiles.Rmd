@@ -96,7 +96,8 @@ library(rgeos)
 ```
 
 ```{r, eval=FALSE, message=FALSE}
-sF <- gSimplify(sF, tol = 0.005)
+polys_sF <- gSimplify(sF, tol = 0.005)
+sF <- sp::SpatialPolygonsDataFrame(polys_sF, sF@data)
 ```
 `tol` is the numerical tolerance value to be used by the Douglas-Peuker algorithm. A larger value thins the polygons by more, reducing the number of points. Doing this helps reduce the overall size of the map considerably, making it faster to plot.
 
@@ -107,7 +108,6 @@ A spatial polygons data frame consists of both a data set with information on ea
 ```{r echo=FALSE}
 sF@data <- dplyr::select(sF@data, -c(long_c, lat_c))
 ```
-
 
 ```{r message=FALSE}
 nat_data <- sF@data
