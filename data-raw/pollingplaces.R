@@ -520,6 +520,6 @@ tcp_pp <- tcp_pp_all %>%
 # --------------------------------------------------------------------------------
 
 # Save
-save(fp_pp, file = "extra-data/fp_pp.rda")
-save(tcp_pp, file = "extra-data/tcp_pp.rda")
-save(tpp_pp, file = "extra-data/tpp_pp.rda")
+save(fp_pp, file = "extra-data/fp_pp.rda", compress = "xz")
+save(tcp_pp, file = "extra-data/tcp_pp.rda", compress = "xz")
+save(tpp_pp, file = "extra-data/tpp_pp.rda", compress = "xz")
