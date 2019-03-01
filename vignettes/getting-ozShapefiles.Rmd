@@ -1,6 +1,6 @@
 ---
 title: "Getting Oz Electorate shapefiles into shape"
-author: "Heike Hofmann, Di Cook"
+author: "Heike Hofmann, Di Cook and Jeremy Forbes"
 date: "`r Sys.Date()`"
 output: 
     rmarkdown::html_vignette:

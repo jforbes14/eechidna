@@ -1,6 +1,6 @@
 ---
 title: "Exploring the 2016 Election data"
-author: "Ben Marwick, Di Cook, Heike Hofmann, Rob Hyndman,Carson Sievert, Nicholas Tierney, Fang Zhou"
+author: "Ben Marwick, Di Cook, Heike Hofmann, Rob Hyndman, Carson Sievert, Nicholas Tierney, Fang Zhou and Jeremy Forbes"
 date: "`r Sys.Date()`"
 output: 
     rmarkdown::html_vignette:

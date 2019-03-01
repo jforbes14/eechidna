@@ -1,6 +1,6 @@
 ---
 title: "Mapping Australia's Electorates"
-author: "Nathaniel Tomasetti, Di Cook, Heike Hofmann"
+author: "Nathaniel Tomasetti, Di Cook, Heike Hofmann and Jeremy Forbes"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >

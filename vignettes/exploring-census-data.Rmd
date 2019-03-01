@@ -1,6 +1,6 @@
 ---
 title: "Exploring the 2016 Census data"
-author: "Nicholas Tierney and Rob J Hyndman"
+author: "Nicholas Tierney, Rob J Hyndman and Jeremy Forbes"
 date: "`r Sys.Date()`"
 output: 
     rmarkdown::html_vignette:

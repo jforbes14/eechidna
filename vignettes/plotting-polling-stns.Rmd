@@ -1,6 +1,6 @@
 ---
 title: "Plotting Australia's Polling Booths"
-author: "Di Cook"
+author: "Di Cook and Jeremy Forbes"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
