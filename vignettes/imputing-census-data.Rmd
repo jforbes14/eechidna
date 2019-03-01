@@ -93,15 +93,15 @@ Calare                    | 0.39%      | 161298                 | 633
 Fenner                    | 0.33%      | 202955                 | 683
 Gilmore                   | 0.03%      | 150436                 | 49
 
-This is done for each of the 2013 electoral divisions using the `mapping_fn` function, which computes the composition of the electoral divisions in terms of the divisions in place at Census time. Note that shapefiles need to be loaded through `loadShapeFile` to be in the right format to be passed through `mapping_fn`. Populations and other Census data is estimated using `weighted_avg_census`.
+This is done for each of the 2013 electoral divisions using the `mapping_fn` function, which computes the composition of the electoral divisions in terms of the divisions in place at Census time. Note that shapefiles need to be loaded through `load_shapefile` to be in the right format to be passed through `mapping_fn`. Populations and other Census data is estimated using `weighted_avg_census`.
 
 ## Applying function to all electorates in the 2013 election
 
 `aec_sF` is the shapefile containing the polygons associated with electoral boundaries for which Census information is to be imputed, and `abs_sF` contains polygons that match those in place at the time of the Census. 
 
 ```{r loadsF, eval = F}
-sF_13 <- loadShapeFile("path-to-your-shapefiles/national-midmif-16122011/COM20111216_ELB.MIF")
-sF_16 <- loadShapeFile("path-to-your-shapefiles/national-midmif-09052016/COM_ELB.TAB")
+sF_13 <- load_shapefile("path-to-your-shapefiles/national-midmif-16122011/COM20111216_ELB.MIF")
+sF_16 <- load_shapefile("path-to-your-shapefiles/national-midmif-09052016/COM_ELB.TAB")
 ```
 ```{r mapping, eval = F}
 mapping_2016 <- mapping_fn(aec_sF = sF_13, abs_sF = sF_16)
@@ -119,7 +119,7 @@ We have now estimated 2016 Census information for the electoral boundaries of in
 
 ```{r}
 # Load 2011 boundaries
-sF_11 <- loadShapeFile("/Users/Jeremy/Documents/R/eechidna/data-raw/Shapefiles/2011_CED_shape/CED_2011_AUST.shp")
+sF_11 <- load_shapefile("/Users/Jeremy/Documents/R/eechidna/data-raw/Shapefiles/2011_CED_shape/CED_2011_AUST.shp")
 ```
 
 ```{r census-2011, eval = F}
