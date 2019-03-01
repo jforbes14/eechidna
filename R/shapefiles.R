@@ -131,6 +131,10 @@ get_electorate_shapes <- function(path_to_shapeFile = NULL, sF = NULL, mapinfo=T
     } else {
       stop("Enter path to shapefile or loaded shapefile from function load_shapefile")
     }
+  } else {
+    # Simplify to make sure polygons are valid
+    polys_sF <- rgeos::gSimplify(sF, tol = tolerance)
+    out <- sp::SpatialPolygonsDataFrame(polys_sF, sF@data)
   }
   
   # Extract data and map to be ggplot friendly
