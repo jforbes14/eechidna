@@ -11,6 +11,7 @@
 
 \author{
     Di Cook, 
+    Jeremy Forbes,
     Heike Hofmann, 
     Rob Hyndman, 
     Thomas Lumley,
