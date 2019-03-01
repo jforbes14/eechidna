@@ -52,8 +52,10 @@ Download first preference voting data from each polling booth, from the six
 Australian Federal elections between 2001 and 2016.
 }
 \examples{
+\dontrun{
 fp_pp <- firstpref_pollingbooth_download()
 library(dplyr)
 fp_pp \%>\% filter(year == 2016) \%>\% arrange(-OrdinaryVotes) \%>\% head
+}
 
 }

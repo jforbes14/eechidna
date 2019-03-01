@@ -54,8 +54,10 @@ Download two candidate preference voting data from each polling booth, from the 
 Australian Federal elections between 2004 and 2016.
 }
 \examples{
+\dontrun{
 tcp_pp <- twocand_pollingbooth_download()
 library(dplyr)
 tcp_pp \%>\% filter(year == 2016) \%>\% arrange(-OrdinaryVotes) \%>\% head
+}
 
 }

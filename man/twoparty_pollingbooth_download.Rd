@@ -53,8 +53,10 @@ Download two party preference voting data from each polling booth, from the six
 Australian Federal elections between 2001 and 2016.
 }
 \examples{
+\dontrun{
 tpp_pp <- twoparty_pollingbooth_download()
 library(dplyr)
 tpp_pp \%>\% filter(year == 2016) \%>\% arrange(-LNP_Percent) \%>\% head
+}
 
 }

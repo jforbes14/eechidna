@@ -11,7 +11,12 @@
 #' @return A SpatialPolygonsDataFrame containing polygons of the 150 Australian federal electorates
 #' 
 #' @examples
+#' \dontrun{
 #' sF_16 <- sF_download(year = 2016)
+#' # Plot a map of the electorates
+#' library(sp)
+#' plot(sF_16)
+#' }
 #' 
 #' @export
 sF_download <- function(year, ...){
@@ -113,9 +118,11 @@ sF_download <- function(year, ...){
 #'     }
 #' 
 #' @examples
+#' \dontrun{
 #' fp_pp <- firstpref_pollingbooth_download()
 #' library(dplyr)
 #' fp_pp %>% filter(year == 2016) %>% arrange(-OrdinaryVotes) %>% head
+#' }
 #' 
 #' @export
 firstpref_pollingbooth_download <- function(...){
@@ -170,9 +177,11 @@ firstpref_pollingbooth_download <- function(...){
 #'     }
 #' 
 #' @examples
+#' \dontrun{
 #' tpp_pp <- twoparty_pollingbooth_download()
 #' library(dplyr)
 #' tpp_pp %>% filter(year == 2016) %>% arrange(-LNP_Percent) %>% head
+#' }
 #' 
 #' @export
 twoparty_pollingbooth_download <- function(...){
@@ -228,9 +237,11 @@ twoparty_pollingbooth_download <- function(...){
 #'     }
 #'     
 #' @examples
+#' \dontrun{
 #' tcp_pp <- twocand_pollingbooth_download()
 #' library(dplyr)
 #' tcp_pp %>% filter(year == 2016) %>% arrange(-OrdinaryVotes) %>% head
+#' }
 #' 
 #' @export
 twocand_pollingbooth_download <- function(...){

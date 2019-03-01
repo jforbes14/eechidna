@@ -25,7 +25,12 @@ The function will take several minutes to complete.
 }
 \examples{
 \dontrun{
-fl <- "data-raw/national-midmif-09052016/COM_ELB.TAB"
-sF_2016 <- load_shapefile("local/path/to/shapefile.shp")
+# Load electorate shapefile into R
+
+# Path to your shapefile
+fl <- "local/path/to/shapefile.shp"
+
+# Load
+my_sF <- load_shapefile(fl)
 }
 }

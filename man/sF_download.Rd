@@ -23,6 +23,11 @@ A SpatialPolygonsDataFrame containing polygons of the 150 Australian federal ele
 Download SpatialPolygonsDataFrame containing polygons of Australian federal electorates
 }
 \examples{
+\dontrun{
 sF_16 <- sF_download(year = 2016)
+# Plot a map of the electorates
+library(sp)
+plot(sF_16)
+}
 
 }

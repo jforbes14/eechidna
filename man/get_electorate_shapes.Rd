@@ -31,7 +31,11 @@ The function will take several minutes to complete.
 }
 \examples{
 \dontrun{
-fl <- "PATH-ON-YOUR-COMPUTER/national-midmif-09052016/COM_ELB.TAB"
+# Get electorate shapes in data.frame format
+
+# Path to your shapefile
+fl <- "local/path/to/shapefile.shp"
+
 map_and_data16 <- get_electorate_shapes(path_to_shapefile = fl)
 }
 }
