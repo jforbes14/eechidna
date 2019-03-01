@@ -16,15 +16,15 @@ shapeFile_11 <- "data-raw/Shapefiles/2011_CED_shape/CED_2011_AUST.shp"
 shapeFile_13 <- "data-raw/Shapefiles/national-midmif-16122011/COM20111216_ELB.MIF"
 shapeFile_16 <- "data-raw/Shapefiles/national-midmif-09052016/COM_ELB.TAB"
 
-# Load in shape file using loadShapeFile function
+# Load in shape file using load_shapefile function
 
-sF_01 <- loadShapeFile(shapeFile_01)
-sF_04 <- loadShapeFile(shapeFile_04)
-sF_07 <- loadShapeFile(shapeFile_07)
-sF_10 <- loadShapeFile(shapeFile_10)
-sF_11 <- loadShapeFile(shapeFile_11)
-sF_13 <- loadShapeFile(shapeFile_13)
-sF_16 <- loadShapeFile(shapeFile_16)
+sF_01 <- load_shapefile(shapeFile_01)
+sF_04 <- load_shapefile(shapeFile_04)
+sF_07 <- load_shapefile(shapeFile_07)
+sF_10 <- load_shapefile(shapeFile_10)
+sF_11 <- load_shapefile(shapeFile_11)
+sF_13 <- load_shapefile(shapeFile_13)
+sF_16 <- load_shapefile(shapeFile_16)
 
 # Save
 
@@ -40,12 +40,12 @@ save(sF_16, file = "extra-data/sF_16.rda", compress = "xz")
 # Transform into separate map and data data frames
 # Compatible with ggplot2
 
-sF_01_fortified <- getElectorateShapes(shapeFile_01)
-sF_04_fortified <- getElectorateShapes(shapeFile_04)
-sF_07_fortified <- getElectorateShapes(shapeFile_07)
-sF_10_fortified <- getElectorateShapes(shapeFile_10)
-sF_13_fortified <- getElectorateShapes(shapeFile_13)
-sF_16_fortified <- getElectorateShapes(shapeFile_16)
+sF_01_fortified <- get_electorate_shapes(shapeFile_01)
+sF_04_fortified <- get_electorate_shapes(shapeFile_04)
+sF_07_fortified <- get_electorate_shapes(shapeFile_07)
+sF_10_fortified <- get_electorate_shapes(shapeFile_10)
+sF_13_fortified <- get_electorate_shapes(shapeFile_13)
+sF_16_fortified <- get_electorate_shapes(shapeFile_16)
 
 
 # Separate map and data
