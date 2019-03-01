@@ -2,6 +2,7 @@
 #' @import shiny
 #' @import ggplot2
 #' @import ggthemes
+#' @import stringi
 #' @importFrom magrittr "%>%"
 #' @importFrom rgeos gArea gIntersects gSimplify gIntersection gIsValid gBuffer
 #' @importFrom plotly ggplotly layout plotlyOutput event_data renderPlotly style
