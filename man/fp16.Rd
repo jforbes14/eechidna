@@ -3,8 +3,8 @@
 \docType{data}
 \name{fp16}
 \alias{fp16}
-\title{2016 General election data for first preference votes for candidates for the House of 
-Representatives for each electorate}
+\title{2016 Australian Federal election data: First preference votes for candidates (House of 
+Representatives) in each electorate.}
 \format{A data frame with the following variables:
 \itemize{
     \item StateAb: Abbreviation for state name    
@@ -18,15 +18,15 @@ Representatives for each electorate}
     \item PartyNm: Political party name      
     \item Elected: Whether the candidate was elected (Y/N)           
     \item HistoricElected: Whether the candidate is the incumbent member  
-    \item OrdinaryVotes: Number of ordinary votes cast at the polling place for the candidate     
+    \item OrdinaryVotes: Number of ordinary votes cast at the electorate for the candidate     
     \item Percent: Percentage of ordinary votes for the candidate     
     }}
 \usage{
 fp16
 }
 \description{
-A dataset containing first preference vote counts, candidate names, and other results for the
-House of Representatives from the 2016 Australian federal election. 
+A dataset containing first preference vote counts, candidate names, and 
+other results for the House of Representatives from the 2016 Australian federal election. 
 The data were obtained from the Australian Electoral Commission, and downloaded 
 from \url{http://results.aec.gov.au/20499/Website/HouseDownloadsMenu-20499-csv.htm} and 
 \url{http://www.aec.gov.au/elections/federal_elections/2016/downloads.htm}.

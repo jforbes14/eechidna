@@ -17,7 +17,7 @@ from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
 
 library(eechidna)
 data(nat_map16)
-# choropleth map with Census data
+# choropleth map with Australian Census data
 nat_map16$region <- nat_map16$elect_div
 data(abs2016)
 abs2016$region <- abs2016$DivisionNm

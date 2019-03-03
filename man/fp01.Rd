@@ -3,7 +3,7 @@
 \docType{data}
 \name{fp01}
 \alias{fp01}
-\title{2001 General election data for first preference votes for candidates for the House of Representative for each electorate}
+\title{2001 Australian Federal election data: First preference votes for candidates (House of Representatives) in each electorate.}
 \format{A data frame with the following variables:
 \itemize{
     \item StateAb: Abbreviation for state name  

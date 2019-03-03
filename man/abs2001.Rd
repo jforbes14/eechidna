@@ -3,7 +3,7 @@
 \docType{data}
 \name{abs2001}
 \alias{abs2001}
-\title{2001 Census data on all 150 electorates}
+\title{2001 Australian Census data on all 150 electorates}
 \format{A data frame with 150 rows with the following variables:
 \itemize{
   \item ID:Commonwealth Electoral District identifier

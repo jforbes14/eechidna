@@ -3,7 +3,7 @@
 \docType{data}
 \name{tpp07}
 \alias{tpp07}
-\title{2007 General election data for two party preferred votes for candidates for the House of Representative for each electorate}
+\title{2007 Australian Federal election data: Two party preferred votes for candidates (House of Representatives) in each electorate.}
 \format{A data frame with the following variables:
 \itemize{
     \item DivisionID: Electoral division ID    
@@ -21,7 +21,7 @@ tpp07
 }
 \description{
 A dataset containing two party preferred vote counts, winning candidate names, and other results for the House of Representatives from the 2007 Australian federal election. Includes the count of votes for
-the Australian Labor Party and the count of votes for the Liberal-National Coalition for each polling place.
+the Australian Labor Party and the count of votes for the Liberal-National Coalition for each electorate.
 The data were obtained from the Australian Electoral Commission, and downloaded 
 from \url{http://results.aec.gov.au/13745/Website/HouseDownloadsMenu-13745-csv.htm} and 
 \url{http://www.aec.gov.au/elections/federal_elections/2007/downloads.htm}.

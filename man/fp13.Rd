@@ -3,8 +3,8 @@
 \docType{data}
 \name{fp13}
 \alias{fp13}
-\title{2013 General election data for first preference votes for candidates for the 
-House of Representative for each electorate}
+\title{2013 Australian Federal election data: First preference votes for candidates (House of 
+Representatives) in each electorate.}
 \format{A data frame with the following variables:
 \itemize{
     \item StateAb: Abbreviation for state name    
@@ -18,7 +18,7 @@ House of Representative for each electorate}
     \item PartyNm: Political party name      
     \item Elected: Whether the candidate was elected (Y/N)           
     \item HistoricElected: Whether the candidate is the incumbent member  
-    \item OrdinaryVotes: Number of ordinary votes cast at the polling place for the candidate     
+    \item OrdinaryVotes: Number of ordinary votes cast at the electorate for the candidate     
     \item Percent: Percentage of ordinary votes for the candidate     
     }}
 \usage{

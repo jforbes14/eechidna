@@ -3,7 +3,7 @@
 \docType{data}
 \name{abs2013}
 \alias{abs2013}
-\title{Imputed Census data for the electorates in place at time of the 2013 Federal election}
+\title{Imputed Australian Census data for the electorates in place at time of the 2013 Federal election}
 \format{A data frame with 150 rows with the following variables:
 \itemize{
   \item DivisionNm: Name of electorate
