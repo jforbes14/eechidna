@@ -3,7 +3,7 @@
 \docType{data}
 \name{tpp01}
 \alias{tpp01}
-\title{2001 General election data for two party preferred votes for candidates for the House of Representative for each electorate where Labor and Liberal parties were the two most popular parties.}
+\title{2001 Australian Federal election data: Two party preferred votes for candidates (House of Representatives) in each electorate. where Labor and Liberal parties were the two most popular parties.}
 \format{A data frame with the following variables:
 \itemize{ 
     \item DivisionNm:  Electoral division name   

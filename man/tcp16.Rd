@@ -3,8 +3,8 @@
 \docType{data}
 \name{tcp16}
 \alias{tcp16}
-\title{2016 General election data for two candidate preferred votes for candidates for the 
-House of Representative for each electorate}
+\title{2016 Australian Federal election data: Two candidate preferred votes for candidates
+(House of Representatives) in each electorate.}
 \format{A data frame with the following variables:
 \itemize{
     \item StateAb: Abbreviation for state name    

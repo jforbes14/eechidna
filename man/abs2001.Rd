@@ -3,7 +3,7 @@
 \docType{data}
 \name{abs2001}
 \alias{abs2001}
-\title{2001 Census data on all 150 electorates}
+\title{2001 Australian Census data on all 150 electorates}
 \format{A data frame with 150 rows with the following variables:
 \itemize{
   \item ID:Commonwealth Electoral District identifier
@@ -96,7 +96,8 @@
 abs2001
 }
 \description{
-A dataset containing demographic and other information about each electorate.
+A dataset containing demographic and other information about each electorate from the
+Australian Census of Population and Housing.
 The data were obtained from the Australian Bureau of Statistics, and downloaded 
 from \url{https://www.censusdata.abs.gov.au/datapacks/}.
 Electorate boundaries match those in place at the time of the 2001 Federal election.

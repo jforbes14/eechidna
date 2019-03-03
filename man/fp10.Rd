@@ -3,7 +3,7 @@
 \docType{data}
 \name{fp10}
 \alias{fp10}
-\title{2010 General election data for first preference votes for candidates for the House of 
+\title{2010 Australian Federal election data: First preference votes for candidates (House of House of 
 Representative for each electorate}
 \format{A data frame with the following variables:
 \itemize{
@@ -18,7 +18,7 @@ Representative for each electorate}
     \item PartyNm: Political party name      
     \item Elected: Whether the candidate was elected (Y/N)           
     \item HistoricElected: Whether the candidate is the incumbent member  
-    \item OrdinaryVotes: Number of ordinary votes cast at the polling place for the candidate     
+    \item OrdinaryVotes: Number of ordinary votes cast at the electorate for the candidate     
     \item Percent: Percentage of ordinary votes for the candidate     
     }}
 \usage{

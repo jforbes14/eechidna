@@ -3,8 +3,8 @@
 \docType{data}
 \name{tpp16}
 \alias{tpp16}
-\title{2016 General election data for two party preferred votes for candidates for the House of 
-Representative for each electorate}
+\title{2016 Australian Federal election data: Two party preferred votes for candidates (House of 
+Representative) in each electorate.}
 \format{A data frame with the following variables:
 \itemize{
     \item DivisionID: Electoral division ID    
@@ -24,7 +24,7 @@ tpp16
 A dataset containing two party preferred vote counts, winning candidate names, and other 
 results for the House of Representatives from the 2016 Australian federal election. 
 Includes the count of votes for the Australian Labor Party and the count of votes for 
-the Liberal-National Coalition for each polling place.
+the Liberal-National Coalition for each electorate.
 The data were obtained from the Australian Electoral Commission, and downloaded 
 from \url{http://results.aec.gov.au/20499/Website/HouseDownloadsMenu-20499-csv.htm} and 
 \url{http://www.aec.gov.au/elections/federal_elections/2016/downloads.htm}.
