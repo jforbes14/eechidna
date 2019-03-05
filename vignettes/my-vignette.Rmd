@@ -1,8 +1,14 @@
 ---
-title: "my-vignette"
+title: "Exploring Election and Census Highly Informative Data Nationally for Australia"
 author: "Jeremy Forbes"
-date: "05/03/2019"
-output: html_document
+date: "`r Sys.Date()`"
+output: 
+    rmarkdown::html_vignette:
+        toc: true
+vignette: >
+  %\VignetteIndexEntry{Exploring the 2013 Election data}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\usepackage[utf8]{inputenc}
 ---
 
 ```{r setup, include=FALSE}
@@ -11,15 +17,14 @@ knitr::opts_chunk$set(echo = TRUE, fig.align = "center")
 
 # Introduction
 
-`eechidna` (Exploring Election and Census Highly Informative Data Nationally for Australia) is an R package that makes it easy to look at the data from the Australian Federal elections and Censuses that occured between 2001 and 2016. This includes voting results for each polling booth and electoral division (electorate), Census information for each electorate and maps of the electorates that were in place at the time of each event. All data in this package is obtained from the [Australian Electoral Commission](https://results.aec.gov.au/), the [Australian Bureau of Statistics](http://www.abs.gov.au/websitedbs/D3310114.nsf/home/census) and the [Australian Government](https://data.gov.au/).
-
-An Australian Federal election typically takes place every three years, and a Census of Population and Housing is conducted every five years. In this package are data relating to each of the 2001, 2004, 2007, 2010, 2013 and 2016 elections, and the 2001, 2006, 2011 and 2016 Censuses. Election (voting) data is available for both electorates (of which there are 150) and polling booths (over 7000 locations). Census data is available for each electorate.
+`eechidna` (Exploring Election and Census Highly Informative Data Nationally for Australia) is an R package that makes it easy to look at the data from the Australian Federal elections and Censuses that occured between 2001 and 2016. An Australian Federal election typically takes place every three years (2001, 2004, 2007, 2010, 2013 and 2016), and a Census of Population and Housing is conducted every five years (2001, 2006, 2011, 2016). The data in this package includes voting results for each polling booth and electoral division (electorate), Census information for each electorate and maps of the electorates that were in place at the time of each event. All data in this package is obtained from the [Australian Electoral Commission](https://results.aec.gov.au/), the [Australian Bureau of Statistics](http://www.abs.gov.au/websitedbs/D3310114.nsf/home/census) and the [Australian Government](https://data.gov.au/).
 
 This vignette documents how to access these datasets, and shows a few typical methods to explore the data.
 
+
 # Election results
 
-There are three types of votes recorded. 
+For each of the six elections, three types of votes are recorded:
 - First preference votes: a tally of primary votes (as Australia has a preferential voting system). These datasets are labelled `fp` (e.g. `fp16` for 2016).
 - Two party preferred vote: a measure of preference between the two major parties - the Australian Labor Party (Labor) and the Liberal/National Coalition (Liberal). These are labelled `tpp` (e.g. `tpp16` for 2016).
 - Two candidate votes: a measure of preference between the two leading candidates in that electorate. These are labelled `tcp` (e.g. `tcp16` for 2016).
@@ -54,6 +59,8 @@ who_won <- tcp16 %>%
 who_won %>% 
   kable()
 ```
+
+We see that Liberal/National Coalition won with 76 seats, which is just enough to secure a majority in the House of Representatives.
 
 ### Which party received the most first preference votes?
 
@@ -152,7 +159,7 @@ ggplot(data = abs2016,
 
 ### Ageing population
 
-Australia's ageing population can be deduced from observing the distribution of median age across the four Censuses.
+Australia's ageing population is clearly seen from observing the distribution of median age across the four Censuses.
 
 ```{r}
 # Load
@@ -173,7 +180,7 @@ bind_rows(abs2016 %>% mutate(year = "2016"), abs2011 %>% mutate(year = "2011"), 
 
 # Maps of the Australian electoral divisions
 
-Electoral divisions change regularly, so many electorates represent different from one election to the next. A consequence of this is that the electorate Census data (for example, in 2011) may not align with those in place for any election. As a resource for addressing this problem, and also for plotting visualizations of Australia, a map of electorates for the years 2001, 2004, 2006, 2007, 2010, 2011, 2013 and 2016 are included. The `nat_map` objects (e.g. `nat_map16`) are data frames that contain the coordinates of each electoral polygon, and can be plotted using `ggplot2` graphics. The accompanying `nat_data` object (e.g. `nat_data16`) contains some information about each electoral polygon.
+Electoral divisions change regularly, so many electorates represent different regions from one election to the next. A consequence of this is that the electorate Census data (for example, in 2011) may not align with those in place for any election. As a resource for addressing this problem, and also for plotting visualizations of Australia, a map of electorates for the years 2001, 2004, 2006, 2007, 2010, 2011, 2013 and 2016 are included. The `nat_map` objects (e.g. `nat_map16`) are data frames that contain the coordinates of each electoral polygon, and can be plotted using `ggplot2` graphics. The accompanying `nat_data` object (e.g. `nat_data16`) contains some information about each electoral polygon.
 
 As an example, let's plot a map of electorates in the 2016 election.  
 
@@ -248,10 +255,15 @@ lmod <- data16 %>%
   lm(LNP_Percent ~ ., data = .)
 
 # See if the variables are jointly significant
+library(broom)
 lmod %>% 
   glance %>% 
   kable
+```
 
+We see that electoral socio-demographics from the Census are jointly significant in predicting the two party preferred vote. 
+
+```{r}
 # See which variables are individually significant
 lmod %>% 
   tidy %>% 
@@ -260,10 +272,14 @@ lmod %>%
   kable
 ```
 
+Many variables are individually significant too.
+
 ### Imputing Census data for the elections that do not have a Census that matches exactly
 
-The 2004, 2007, 2010 and 2013 elections do not have a Census that directly match. Instead of matching these elections with a Census in neighbouring years, we have imputed Census data to correspond with the both time of the election and the electorate boundaries in place. This was done using an areal interpolation method over space and linear interpolation over time, via the `mapping_fn` and `weighted_avg_census` functions in this package. Details of this procedure can be found [on the `eechidna` website](https://INSERT-EECHIDNA-WEBSITE.IO).
+The 2004, 2007, 2010 and 2013 elections do not have a Census that directly match. Instead of matching these elections with a Census in neighbouring years, we have imputed Census data to correspond with the both time of the election and the electorate boundaries in place. This was done using an areal interpolation method over space and linear interpolation over time, via the `mapping_fn` and `weighted_avg_census` functions in this package.
 
 The resultant (imputed) Census objects are `abs2004`, `abs2007`, `abs2010` and `abs2013`. They include all of the variables in the other Census objects, aside from population, area, state and question non-response. 
 
+# For more details on how the data in this package was obtained...
 
+Please see the vignettes on our [webpage](https://INSERT-EECHIDNA-WEBSITE.IO). These detail the procedures used to obtain the election data, Census data and electorate maps, as well as the Census imputation method.
