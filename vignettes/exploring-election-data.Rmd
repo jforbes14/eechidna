@@ -52,7 +52,6 @@ We can access and explore each of these using common methods in R, for example:
 
 ```{r load-read-polling, message=FALSE, error = FALSE}
 library(eechidna)
-library(plyr)
 library(tidyverse)
 library(purrr)
 library(knitr)
