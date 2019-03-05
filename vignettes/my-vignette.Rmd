@@ -38,7 +38,7 @@ data(tpp16)
 data(tcp16)
 ```
 
-## Which party won the election? 
+### Which party won the election? 
 
 The data can be summarized to reveal some basic details about the election. Start by reproducing the overall result of the election by finding out which party won the most electorates according to the two candidate preferred votes.
 
@@ -55,7 +55,7 @@ who_won %>%
   kable()
 ```
 
-## Which party received the most first preference votes?
+### Which party received the most first preference votes?
 
 An alternative way to evaluate the outcome of the election is by counting the number of ordinary first preference votes for each party (not including postal votes, preference flows, etc.). Here we can find the total number of ordinary votes for each party.
 
@@ -80,7 +80,7 @@ ggplot(total_votes_for_parties,
   theme(text = element_text(size=8))
 ```
 
-## Downloading and plotting the two party preferred vote
+### Downloading and plotting the two party preferred vote
 
 The function `twoparty_pollingbooth_download()` downloads the two party preferred vote for each polling booth in each of the six elections. Boxplots can be used to compare the distributions of this vote across the six elections.
 
@@ -118,7 +118,7 @@ abs2016 %>%
   kable
 ```
 
-## Income and unemployment by state
+### Income and unemployment by state
 
 We can visualize measures by splitting the electorates into their respective states to gain insight into how states compare with regards to income and unemployment.
 
@@ -150,7 +150,7 @@ ggplot(data = abs2016,
   labs(x = "State", y = "Median Personal Income ($)")
 ```
 
-## Ageing population
+### Ageing population
 
 Australia's ageing population can be deduced from observing the distribution of median age across the four Censuses.
 
@@ -188,7 +188,7 @@ ggplot(aes(map_id=id), data=nat_data16) +
   theme_map() + coord_equal()
 ```
 
-## Attaching election results
+### Attaching election results
 
 We can fill each electorate by the victorious party in the 2016 election.
 
@@ -227,8 +227,43 @@ cart.winners <- fp16 %>% filter(Elected == "Y") %>%
 ggplot(data=nat_map16) +
   geom_polygon(aes(x=long, y=lat, group=group),
                fill="grey90", colour="white") +
-  geom_point(data=cart.winners, aes(x=x, y=y, colour=PartyNm), alpha=0.8) +
+  geom_point(data=cart.winners, aes(x=x, y=y, colour=PartyNm), size = 0.75, alpha=0.8) +
   scale_colour_manual(name="Political Party", values=partycolours) +
   theme_map() + coord_equal() + theme(legend.position="bottom")
 ```
+
+# Modelling election results using Census data
+
+An interesting exercise is to see how we can model electorate voting outcomes as a function of Census information. In the years 2001 and 2016 both a Census and election occur. The Australian Bureau of Statistics aggregate Census information to electoral boundaries that exactly match those in the election for these years, so we can join this data together and fit some models.
+
+Let's look at modelling the two party preferred vote (in favour of the Liberal party).
+
+```{r}
+# Join
+data16 <- left_join(tpp16 %>% select(LNP_Percent, DivisionNm), abs2016, by = "DivisionNm")
+
+# Fit a model using all of the available population characteristics
+lmod <- data16 %>% 
+  select(-c(ends_with("NS"), Area, Population, DivisionNm, ID, State, EmuneratedElsewhere, InternetUse, Other_NonChrist, OtherChrist, EnglishOnly)) %>% 
+  lm(LNP_Percent ~ ., data = .)
+
+# See if the variables are jointly significant
+lmod %>% 
+  glance %>% 
+  kable
+
+# See which variables are individually significant
+lmod %>% 
+  tidy %>% 
+  filter(p.value < 0.05) %>% 
+  arrange(p.value) %>% 
+  kable
+```
+
+### Imputing Census data for the elections that do not have a Census that matches exactly
+
+The 2004, 2007, 2010 and 2013 elections do not have a Census that directly match. Instead of matching these elections with a Census in neighbouring years, we have imputed Census data to correspond with the both time of the election and the electorate boundaries in place. This was done using an areal interpolation method over space and linear interpolation over time, via the `mapping_fn` and `weighted_avg_census` functions in this package. Details of this procedure can be found [on the `eechidna` website](https://INSERT-EECHIDNA-WEBSITE.IO).
+
+The resultant (imputed) Census objects are `abs2004`, `abs2007`, `abs2010` and `abs2013`. They include all of the variables in the other Census objects, aside from population, area, state and question non-response. 
+
 
