@@ -66,7 +66,7 @@ theme_map$panel.border <- element_rect(colour = "white", size=1, fill=NA)
 ggplot(data=map.winners) + 
   geom_polygon(aes(x=long, y=lat, group=group, order=order, fill=PartyNm)) +
   scale_fill_manual(name="Political Party", values=partycolours) +
-  theme_map + coord_equal() + theme(legend.position="bottom")
+  theme_map() + coord_equal() + theme(legend.position="bottom")
 ```
 
 However, the Australian electoral map is not conducive to chloropleth map, because most of the population concentrate in the five big cities, Sydney, Melbourne, Brisbane, Adelaide and Perth, which means that there are lot of very geographical tiny regions that contribute substantially to the house of representative composition.  A better approach would be to use a cartogram to display the election results, which would maintain the geographic location but make the sizes of the electorate polygons approximately equal. This is very hard to perfect for Australia because the size differential between electorates is huge, resulting in a cartogram where all sense of geography is demolished. 
@@ -77,7 +77,7 @@ A compromise is to use a non-contiguous, dorling cartogram, and represent each e
 # Load election results
 cart.winners <- fp16 %>% filter(Elected == "Y") %>% 
   select(DivisionNm, PartyNm) %>% 
-  merge(nat_data16 %>% chr_upper(), by.x="DivisionNm", by.y="elect_div")
+  merge(nat_data16, by.x="DivisionNm", by.y="elect_div")
 
 # Plot it
 ggplot(data=nat_map16) +
