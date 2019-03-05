@@ -29,7 +29,7 @@ This vignette documents how to access the data from the 2016 Census. We show a f
 
 ## 2016 Census data
 
-The data is loaded as `abs2016` when you load `eechidna`. Let's look take a brief glimpse of the data.
+The data is loaded as `abs2016` when you load `eechidna`.
 
 ```{r load-read, message=FALSE, error = FALSE}
 library(eechidna)
@@ -37,7 +37,6 @@ library(plyr)
 library(tidyverse)
 
 data(abs2016)
-glimpse(abs2016)
 
 ```
 
@@ -45,7 +44,7 @@ Here we see that we have 150 observations and 86 variables.
 
 Each observation is data pertaining to a particular federal electorate as described by http://www.aec.gov.au/profiles/.
 
-Each column is now described here:
+Each variable is described here:
 
 ```{r make-data-dictionary, include = FALSE}
 
@@ -304,7 +303,7 @@ ggplot(data = abs2016,
   geom_rug(colour = "salmon") + 
   theme_minimal() + 
   labs(x = "% of electorate with a Bachelor degree or above") +
-  xlim(0, 30)
+  xlim(0, 55)
            
 
 ```
@@ -437,38 +436,4 @@ ggplot(data = abs2016,
            
 
 ```
-
-## Internet access
-
-```{r}
-
-ggplot(data = abs2016,
-       aes(x = InternetAccess)) +
-  geom_density(fill = "steelblue",
-               bw = "SJ",
-               colour = NA) + 
-  geom_rug(colour = "steelblue") + 
-  theme_minimal() + 
-  labs(x = "% of electorate with Internet") +
-  xlim(85, 100)
-
-```
-
-
-## Internet access by state
-
-```{r}
-
-ggplot(data = abs2016,
-       aes(x = reorder(State, -InternetAccess),
-           y = InternetAccess,
-           colour = State)) + 
-  geom_boxplot() +
-  theme_minimal() +
-  theme(legend.position = "none") +
-  coord_flip() + 
-  labs(x = "State")
-
-```
-
 
