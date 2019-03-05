@@ -1,12 +1,12 @@
 ---
-title: "Exploring Election and Census Highly Informative Data Nationally for Australia"
+title: "An Introduction to Exploring Election and Census Highly Informative Data Nationally for Australia"
 author: "Jeremy Forbes"
 date: "`r Sys.Date()`"
 output: 
     rmarkdown::html_vignette:
         toc: true
 vignette: >
-  %\VignetteIndexEntry{Exploring the 2013 Election data}
+  %\VignetteIndexEntry{An Introduction to Exploring Election and Census Highly Informative Data Nationally for Australia}
   %\VignetteEngine{knitr::rmarkdown}
   %\usepackage[utf8]{inputenc}
 ---
