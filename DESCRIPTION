@@ -41,7 +41,8 @@ Suggests:
     scales,
     readr,
     gridExtra,
-    tidyverse
+    tidyverse,
+    tibble
 Encoding: UTF-8
 Authors@R: c(person("Di", "Cook",       role = c("aut")),
 		         person("Anthony", "Ebert", role = c("aut")),
