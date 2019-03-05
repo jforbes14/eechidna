@@ -225,9 +225,10 @@ abs2016 <- abs2016 %>%
   mutate(BornElsewhere = BornOverseas - Born_MidEast - Born_SE_Europe - Born_UK) %>% 
   select(-BornOverseas) 
 
-abs2016 <- abs2016%>% 
+abs2016 <- abs2016 %>% 
   select(noquote(order(names(abs2016)))) %>% 
-  select(ID, DivisionNm, State, Population, Area, everything())
+  select(ID, DivisionNm, State, Population, Area, everything()) %>% 
+  mutate(ID = as.numeric(ID))
 
 
 #Save
