@@ -26,7 +26,7 @@ opts_chunk$set(fig.width = 6,
 
 # Introduction
 
-`eechidna` (Exploring Election and Census Highly Informative Data Nationally for Australia) is an R package that makes it easy to look at the data from Australian Censuses and Federal Elections from 2001 to 2016.
+`eechidna` (Exploring Election and Census Highly Informative Data Nationally for Australia) is an R package that makes it easy to look at the data from Australian Census and Federal Elections from 2001 to 2016.
 
 This vignette documents how to access the data from the 2016 Federal Election (House of Representatives: first preferences, two party preferred and two candidate preferred votes). We obtained these data from http://results.aec.gov.au/. This package incorporates data that is copyright Commonwealth of Australia (Australian Electoral Commission). 
 
@@ -308,19 +308,22 @@ census_and_election_subset <-
          Population:Volunteer_NS) %>% 
   select(-c(ends_with("NS"), EmuneratedElsewhere, InternetUse, starts_with("Age")))
 
-library(corrplot)
-M <- cor(census_and_election_subset[, c(2:ncol(census_and_election_subset))], 
-         use = "pairwise.complete.obs")
-corrplot.mixed(M, 
-               lower="ellipse", 
-               upper="number", 
-               tl.pos = "lt",
-               tl.cex = 0.5,
-               tl.col = "black",
-               number.cex= 0.5)
+
+# Plot
+library(tibble)
+correl_df <- cor(census_and_election_subset[, c(2:ncol(census_and_election_subset))], 
+         use = "pairwise.complete.obs") %>% 
+  as.data.frame() %>% 
+  select(ALP_Percent) %>% 
+  rownames_to_column(var = "Covariate") %>% 
+  rename("Correlation_with_ALP" = "ALP_Percent") %>% 
+  filter(Covariate != "ALP_Percent")
+
+ggplot(aes(x = Correlation_with_ALP, y = reorder(Covariate, Correlation_with_ALP)), data = correl_df) + geom_point()
+
 ```
 
-It's a little hard to read because we have so many variables. But we can spot some potentially interesting correlations, as well as some obvious ones. 
+We can spot some potentially interesting correlations, as well as some obvious ones. 
 
 The table below gives an overall summary of the model containing all the Census variables. We see that the p-value is very low, indicating that we have some relationships that are probably not due to chance alone. 
 
@@ -355,7 +358,7 @@ multiple_regression_model %>%
   kable
 ```
 
-In the plots below, we can see the Census variables that have a statistically significant relationship with the percentage of Labor votes. There seems to be a positive relationship between voting Labor and defacto relationships, postgraduate degrees and public housing tenants. Labour force participation and proportion of workers in extractive jobs (e.g. mining, gas, agriculture), and median personal income are a negatively correlated variables, meaning that increases in the proportion of workers in extractive jobs and increases in median personal income correlate with decreases in the percentage of the Labor vote in that electorate.
+In the plots below, we can see the Census variables that have a statistically significant relationship with the percentage of Labor votes. There seems to be a positive relationship between voting Labor and defacto relationships, university education and public housing tenants. Labour force participation and proportion of workers in extractive jobs (e.g. mining, gas, agriculture), and median personal income are a negatively correlated variables, meaning that increases in the proportion of workers in extractive jobs and increases in median personal income correlate with decreases in the percentage of the Labor vote in that electorate.
 
 ```{r}
 # model that includes all Census variables
