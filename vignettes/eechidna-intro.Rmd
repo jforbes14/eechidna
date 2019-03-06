@@ -35,7 +35,6 @@ Let's have a look at some of the results from the 2016 Federal election.
 
 ```{r echo = TRUE, message = FALSE}
 library(eechidna)
-library(tidyverse)
 
 # Load data
 data(fp16)
@@ -49,6 +48,7 @@ The data can be summarized to reveal some basic details about the election. Star
 
 ```{r who_won}
 library(knitr)
+library(dplyr)
 who_won <- tcp16 %>% 
   filter(Elected == "Y") %>% 
   group_by(PartyNm) %>% 
@@ -75,6 +75,7 @@ total_votes_for_parties <- fp16 %>%
   arrange(desc(total_votes))
 
 # Plot the total votes for each party
+library(ggplot2)
 ggplot(total_votes_for_parties, 
        aes(reorder(PartyNm, total_votes), 
            total_votes)) +

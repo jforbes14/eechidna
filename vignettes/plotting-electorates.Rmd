@@ -20,7 +20,6 @@ This vignette describes how to make a map of the Australian election results. It
 
 ```{r load-read-merge, message=FALSE, error = TRUE, warning=FALSE, echo=FALSE, tidy=TRUE}
 library(eechidna)
-library(plyr)
 library(tidyverse)
 
 data("nat_data16")
