@@ -22,7 +22,6 @@ This vignette demonstrates how to plot the polling booths on a map of the Austra
 
 ```{r message=FALSE, error = TRUE, warning=FALSE, echo=FALSE, tidy=TRUE}
 library(eechidna)
-library(plyr)
 library(tidyverse)
 library(readr)
 
