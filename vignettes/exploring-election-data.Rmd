@@ -1,16 +1,15 @@
 ---
-title: "Exploring the 2016 Election data"
+title: "Exploring the Election data: a case study of 2016"
 author: "Ben Marwick, Di Cook, Heike Hofmann, Rob Hyndman, Carson Sievert, Nicholas Tierney, Fang Zhou and Jeremy Forbes"
 date: "`r Sys.Date()`"
 output: 
     rmarkdown::html_vignette:
         toc: true
 vignette: >
-  %\VignetteIndexEntry{Exploring the 2013 Election data}
+  %\VignetteIndexEntry{Exploring the Election data: a case study of 2016}
   %\VignetteEngine{knitr::rmarkdown}
   %\usepackage[utf8]{inputenc}
 ---
-
 
 ```{r setup, echo=FALSE}
 library(knitr)
@@ -23,30 +22,27 @@ opts_chunk$set(fig.width = 6,
 
 ```
 
-
 # Introduction
 
 `eechidna` (Exploring Election and Census Highly Informative Data Nationally for Australia) is an R package that makes it easy to look at the data from Australian Census and Federal Elections from 2001 to 2016.
 
-This vignette documents how to access the data from the 2016 Federal Election (House of Representatives: first preferences, two party preferred and two candidate preferred votes). We obtained these data from http://results.aec.gov.au/. This package incorporates data that is copyright Commonwealth of Australia (Australian Electoral Commission). 
+This vignette documents how to access the data from the 2016 Federal Election (House of Representatives: first preferences, two party preferred and two candidate preferred votes). We obtained these data from http://results.aec.gov.au/. This package incorporates data that is copyright Commonwealth of Australia (Australian Electoral Commission).
 
 In this vignette we show a few typical methods to explore the data, inspired by [Peter Ellis's](https://github.com/ellisp/) work on NZ election data. 
 
 # 2016 Federal Election House of Representatives data
 
-In the `eechidna` package we have six datasets for each election, summarised here:
+### Electorates
+
+In the `eechidna` package we have three datasets for each election, summarised here:
 
 Data object name        | Description
 ----------------------- | ------------------------------------------------------------
-fp_pp                   | first preference votes for candidates at each polling place
 fp16                    | first preference votes for candidates at each electorate (2016)
-tpp_pp                  | two party preferred votes for candidates at each polling place
 tpp16                   | two party preferred votes for candidates at each electorate (2016)
-tcp_pp                  | two candidate preferred votes for candidates at each polling place
 tcp16                   | two condidate preferred votes for candidates at each electorate (2016)
 
 The suffix `16` corresponds with the 2016 federal election, so objects for other elections will have an equivalent suffix, e.g. `fp07` contains first preference votes for candidates in each electorate from the 2007 federal election.
-The `pp` suffix stands for polling place (polling booth), and these data sets contain votes from all six elections. The variable `year` represents the election year, so an individual years' polling booth data can be easily obtained using `dplyr::filter`.
 
 We can access and explore each of these using common methods in R, for example:
 
@@ -69,9 +65,15 @@ glimpse(fp16)
 head(fp16) %>% kable
 ```
 
-We can see that the data contains `r formatC(nrow(fp16), big.mark=",", drop0trailing=TRUE, format="f")` rows and `r ncol(fp16)` columns. Each of the six data objects can be accessed and inspected in this way. Note that some parties have slightly different names in different states. For example there is 'The Nationals' and the 'National Party'. We've simplified the data by renaming some of the parties to the varient of the name that won the most votes. 
+We can see that the data contains `r formatC(nrow(fp16), big.mark=",", drop0trailing=TRUE, format="f")` rows and `r ncol(fp16)` columns. Each of the six data objects can be accessed and inspected in this way. Note that some parties have slightly different names in different states. We've simplified the data by renaming some of the parties to the varient of the name that won the most votes. 
 
-# Which party won the election? 
+### Polling booths
+
+The same three voting measures are also available for each polling booth, of which there are over 7,000 in each election. These can be downloaded from github using the `firstpref_pollingbooth_download`, `twoparty_pollingbooth_download` and `twocand_pollingbooth_download` functions, which contain all results from 2001-2016 elections. In these datasets, the variable `year` represents the election year, so an individual years' polling booth data can be easily obtained using `filter` from the `dplyr` package.
+
+# Exploring the election results 
+
+### Which party won the election? 
 
 We can summarise the data to discover some basic details about the election. Let's start by reproducing the overall result of the election by finding out which party won the most electorates according to the two candidate preferred votes:
 
@@ -102,7 +104,7 @@ ggplot(who_won,
 
 This result above matches the official AEC result, showing the Liberal party winning the most electorates (76). 
 
-# Which party received the most ordinary votes?
+### Which party received the most ordinary votes?
 
 An alternative way to evaluate the outcome of the election is by counting the number of ordinary first preference votes for each party (not including postal votes, preference flows, etc.). Here we can find the total number of ordinary votes for each party:
 
@@ -137,7 +139,7 @@ ggplot(total_votes_for_parties,
   theme(text = element_text(size=10))
 ```
 
-# Which candidate did the best?
+### Which candidate did the best?
 
 There are a few ways we can answer this question. We can see who received the highest number of ordinary votes, like this:
 
@@ -178,7 +180,7 @@ who_most_votes_prop %>%
 
 In the above table (which shows just the first ten rows for convienience) we see that Julie Bishop received the highest proportion of first preference votes in any electorate, as well as a few more familiar names doing very well in their electorates. We can see that taking about 65% of the first preference vote in an electorate counts as a huge win. But what about who won with the least amount of first preference votes?
 
-## Which candidate won with the smallest percentage of votes?
+### Which candidate won with the smallest percentage of votes?
 
 ```{r who_won_least_votes_prop}
 who_won_least_votes_prop <- fp16 %>% 
@@ -194,7 +196,7 @@ Michael Danby won Melbourne Ports with just 27% of first preference votes.
 
 How about the smallest winning margin that occured in the 2016 election? Let's find the candidates who won their electorate by the slimmest advantage over their competitors, meaning the smallest difference between two candidate preferred votes.
 
-## Which candidate won by the smallest margin?
+### Which candidate won by the smallest margin?
 
 ```{r who_won_smallest_margin}
 who_won_smallest_margin <- tcp16 %>% 
@@ -224,7 +226,7 @@ herbert_fp %>% kable
 
 We see that the greatest proportion of first preferences in Herbert actually went to Ewen Jones (Liberal), not to Cathy O'Toole. The win is due to preference flow from minor parties to Labor.
 
-# How did each electorate vote in each state?
+### How did each electorate vote in each state?
 
 We can look at the proportion of voters for a particular party in each electorate, grouped by each state. This plot was inspired by Peter Ellis's work on the NZ election data. 
 
@@ -261,7 +263,7 @@ do.call("grid.arrange", c(p$plots, ncol=nCol))
 ```
 
 
-# How are party votes correlated? 
+### How are party votes correlated? 
 
 We can also see how party votes are correlated, for example here we can see a strong negative correlation between votes for Labor and votes for Liberal (this plot also inspired by Peter Ellis). Green and Labor have a slight negative correlation, and Green and Liberal have a slightly more negative correlation: 
 
@@ -379,91 +381,3 @@ census_and_election %>%
   facet_wrap( ~ variable, scales = "free") +
   theme_bw() + theme(text = element_text(size = 8))
 ```
-
-
-# Senate results
-
-A quick look at the senate results for 2013, using barchart by overall composition of the senate, and by state. 
-
-```{r senate, echo=TRUE, tidy=TRUE, warning=FALSE, error=FALSE, message=FALSE, fig.width=5, fig.height=3}
-library(readr)
-senate <-
-  read_csv("http://results.aec.gov.au/17496/Website/Downloads/SenateSenatorsElectedDownload-17496.csv", skip=1)
-
-  coalition <- c(
-  "Country Liberals (NT)",
-  "Liberal",
-  "Liberal National Party of Queensland",
-  "The Nationals"
-  )
-  
-  labor <-
-  c("Australian Labor Party",
-  "Australian Labor Party (Northern Territory) Branch",
-  "Labor")
-  
-  greens <- c("The Greens", "Australian Greens", "The Greens (WA)")
-  
-  senate <- senate %>%
-  mutate(PartyNm = ifelse(
-                   as.character(PartyNm) %in% coalition,
-                   "Liberal National Coalition",
-                   PartyNm
-  ))
-  
-  senate <- senate %>%
-                mutate(PartyNm = ifelse(
-                as.character(PartyNm) %in% labor,
-                "Australian Labor Party",
-                PartyNm
-  ))
-  
-  senate <- senate %>%
-               mutate(PartyNm = ifelse(as.character(PartyNm) %in% greens,
-               "Australian Greens", PartyNm))
-  
-  senate$PartyNm <-
-    factor(senate$PartyNm, 
-         levels = names(sort(table(senate$PartyNm), 
-                             decreasing =
-                              T)))
-  
-  # Order = Liberal National Coalition, Australian Labor Party, The Greens, Palmer, motoring, sports, family first,  Lib Dems, Nick Xenophon
-  partycolours = c(
-  "#0066CC",
-  "#FF0033",
-  "#009900",
-  "#FFFF00",
-  "#00008B",
-  "#0000FF",
-  "#87CEFA",
-  "#C71585",
-  "#FF4500"
-  )
-  
-  ggplot(data = senate, 
-         aes(x = PartyNm, 
-             fill = PartyNm)) + 
-    geom_bar() +
-  xlab("") + 
-    ylab("") +
-  scale_fill_manual(name = "Party", 
-                    values = partycolours) +
-  coord_flip() + 
-    theme(legend.position = "None")
-```
-
-```{r bystate, echo=TRUE, tidy=TRUE, warning=FALSE, error=FALSE, message=FALSE, fig.width=7, fig.height=3}
-senate$StateAb <- factor(senate$StateAb, 
-                         levels=c("QLD", "NSW", "WA", "VIC", "SA", "TAS", "ACT", "NT"))
-
-ggplot(data=senate, 
-       aes(x=StateAb, 
-           fill=PartyNm)) + 
-  geom_bar() +
-  xlab("") + 
-  ylab("") +
-  scale_fill_manual(name="Party", 
-                    values=partycolours) 
-```
-
