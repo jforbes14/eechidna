@@ -54,17 +54,9 @@ partycolours = c("#FF0033", "#000000", "#CC3300", "#0066CC", "#FFFF00", "#009900
 ```
 
 ```{r fig.width=7, fig.height=6, echo=TRUE, warning=FALSE, message=FALSE, error=FALSE, tidy=TRUE}
-# Make it look like a map
-theme_map <- theme_bw()
-theme_map$line <- element_blank()
-theme_map$strip.text <- element_blank()
-theme_map$axis.text <- element_blank()
-theme_map$plot.title <- element_blank()
-theme_map$axis.title <- element_blank()
-theme_map$panel.border <- element_rect(colour = "white", size=1, fill=NA)
-
+library(ggthemes)
 ggplot(data=map.winners) + 
-  geom_polygon(aes(x=long, y=lat, group=group, order=order, fill=PartyNm)) +
+  geom_polygon(aes(x=long, y=lat, group=group, fill=PartyNm)) +
   scale_fill_manual(name="Political Party", values=partycolours) +
   theme_map() + coord_equal() + theme(legend.position="bottom")
 ```
