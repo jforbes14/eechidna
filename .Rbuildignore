@@ -7,6 +7,9 @@
 ^.*\.md$
 !NEWS\.md$
 ^README\.Rmd$
+^README\.md$
+^CONDUCT\.md$
+^CONTRIBUTING\.md$
 ^\.travis\.yml$
 ^.*\.Rproj$
 ^\.Rproj\.user$
