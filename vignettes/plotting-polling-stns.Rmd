@@ -16,7 +16,7 @@ knitr::opts_chunk$set(fig.width = 6,
                       dev = "png")
 ```
 
-This vignette demonstrates how to plot the polling booths on a map of the Australian electorates. The polling booth locations for each federal election (from 2004 to 2016) can be downloaded from [http://results.aec.gov.au/](http://results.aec.gov.au/). Coordinates for 2004 polling booths are obtained by matching polling booth ID and name with later elections, and 2001 are sourced from *David Barry*. Around 600 polling booths are missing coordinates in each election, so these are left as `NA`. (It is possible to assign postcode coordinates to `NA` locations that have post codes, and an example of how to do this is provided.)
+This vignette demonstrates how to plot the polling booths on a map of the Australian electorates. The polling booth locations for each federal election (from 2001 to 2016) can be downloaded from [http://results.aec.gov.au/](http://results.aec.gov.au/). Coordinates for 2001 and 2004 polling booths are obtained by matching polling booth ID and name with later elections. Those without coordinates in 2004 were filled using [Google Maps API](https://cloud.google.com/maps-platform/), using the latest `ggmap` package from [github](https://github.com/dkahle/ggmap/).
 
 ## Polling booths in 2016
 
@@ -43,7 +43,7 @@ ggplot(data=nat_data16, aes(map_id=id)) +
 
 ## Incorporating other information
 
-Election results are provided at the resolution of polling place. We can use this information to color the points. The two files need to be merged. Both have a unique ID for the polling place that can be used to match the records. The two party preferred votes are given in `tpp_pp16` data, which is a measure of preference between only the Australian Labor Party (ALP) and the Liberal/National Coalition (LNP). From these columns the winner is to be calculated based on the higher percentage, and is used to colour the points on the polling places. 
+Election results are provided at the resolution of polling place, but must be downloaded using the functions `firstpref_pollingbooth_download`, `twoparty_pollingbooth_download` or `twocand_pollingbooth_download` (depending on the vote type). We can use this information to color the points. The two files need to be merged. Both have a unique ID for the polling place that can be used to match the records. The two party preferred vote, a measure of preference between only the Australian Labor Party (ALP) and the Liberal/National Coalition (LNP), is downloaded using `twoparty_pollingbooth_download`. The preferred party is the one with the higher percentage, and we use this to colour the points indicating polling places. 
 
 This gives a richer look at the party preferences across the country. You can see that although the big rural electorates vote for LNP overall, some polling places would elect the ALP, e.g. western NSW around Broken Hill. This data would look far more interesting if the data also contained the minority parties, because there must be some polling places where the majority vote would be for a minor party, since there are some minor party representatives in the House.  
 
@@ -63,7 +63,7 @@ ggplot(data=nat_data16, aes(map_id=id)) +
   theme_map() + coord_equal() + theme(legend.position="bottom")
 ```
 
-The two candidate preferred vote in `tcp_pp16` is a measure of preference between the two candidates who received the most votes through the division of preferences, where the winner has the higher percentage.
+The two candidate preferred vote (downloaded with `twocand_pollingbooth_download`) is a measure of preference between the two candidates who received the most votes through the division of preferences, where the winner has the higher percentage.
 
 ```{r tcp_map, fig.width=7, fig.height=5, message=FALSE, error = TRUE, warning=FALSE, echo=FALSE, tidy=TRUE}
 tcp_pp <- twocand_pollingbooth_download()
