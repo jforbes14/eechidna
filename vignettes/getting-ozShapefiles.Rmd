@@ -14,7 +14,6 @@ vignette: >
 
 ```{r setup, echo=FALSE, include = FALSE}
 library(knitr)
-library(tidyverse)
 opts_chunk$set(warning = FALSE,
                message = FALSE,
                fig.width = 6,
@@ -24,11 +23,13 @@ opts_chunk$set(warning = FALSE,
 
 ```
 
-The Australian Electorate Commission publishes the boundaries of the electorates on their website at [http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm](http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm) (back to 2010). Electoral boundaries for 2001 are sourced from the Australian Government at [https://data.gov.au/](https://data.gov.au/dataset/ds-dga-0b939a62-e53e-4616-add5-77f909b58ddd/details?q=asgc%202001). The 2004 and 2007 electoral boundaries are available from the Australian Bureau of Statistics [http://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument](http://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument).
+This vignette details the procedure used to obtain the maps of electoral boundaries for each of the Australian federal elections and Censuses. 
+
+The Australian Electorate Commission publishes the boundaries of the electorates on their website at [http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm](http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm) (2010-2016). Electoral boundaries for 2001 are sourced from the Australian Government at [https://data.gov.au/](https://data.gov.au/dataset/ds-dga-0b939a62-e53e-4616-add5-77f909b58ddd/details?q=asgc%202001). The 2004 and 2007 electoral boundaries are available from the Australian Bureau of Statistics [http://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument](http://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument).
 
 Once the files (preferably the national files) are downloaded, unzip the file (it will build a folder with a set of files). We want to read the shapes contained in the `shp`, `TAB`, or `MIF` file into R. The `rgdal` library can be used to do this.
 
-The function `get_electorate_shapes` extracts a list from the shapefile, consisting of a `dataframe` containing coordinates of each polygon and a `dataframe` with data associated with each polygon (electorate). These can be used directly with `ggplot` graphics. Alternatively, the `load_shapefile` function imports the shapefile as a `SpatialPolygonsDataFrame`.
+The function `get_electorate_shapes` in this package extracts a list from the shapefile, consisting of a `dataframe` containing coordinates of each polygon and a `dataframe` with data associated with each polygon (electorate). These can be used directly with `ggplot` graphics. Alternatively, the `load_shapefile` function (also from `eechidna`) imports the shapefile as a `SpatialPolygonsDataFrame`.
 
 ```{r, message=FALSE, warning=FALSE, eval = F}
 # shapeFile contains the path to the shp file:
@@ -67,7 +68,6 @@ For the 2016 election, the national electorate boundaries are given in MapInfo f
 
 ```{r eval=FALSE, echo=FALSE}
 library(dplyr)
-library(ggplot2)
 library(rgdal)
 
 # shapeFile contains the path to the shp file:
@@ -99,6 +99,7 @@ library(rgeos)
 polys_sF <- gSimplify(sF, tol = 0.005)
 sF <- sp::SpatialPolygonsDataFrame(polys_sF, sF@data)
 ```
+
 `tol` is the numerical tolerance value to be used by the Douglas-Peuker algorithm. A larger value thins the polygons by more, reducing the number of points. Doing this helps reduce the overall size of the map considerably, making it faster to plot.
 
 ### Extracting the electorate information 
@@ -170,6 +171,7 @@ sp::Polygon(polys[1])
 From this, we want to extract the `labpt` component, because those are the centroids we are interested in. We will wrap this into a little function called `centroid` to help us with that:
 
 ```{r, message=FALSE, warning=FALSE}
+library(purrr)
 centroid <- function(i, polys) {
   ctr <- sp::Polygon(polys[i])@labpt
   data.frame(long_c=ctr[1], lat_c=ctr[2])
