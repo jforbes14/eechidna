@@ -3,14 +3,9 @@
 
 # eechidna
 
-[![Travis-CI Build
-Status](https://travis-ci.org/ropenscilabs/eechidna.svg?branch=master)](https://travis-ci.org/ropenscilabs/eechidna)
-
-[![AppVeyor Build
-Status](https://ci.appveyor.com/api/projects/status/github/ropenscilabs/eechidna?branch=master&svg=true)](https://ci.appveyor.com/project/ropenscilabs/eechidna)
-
+[![Travis build
+status](https://travis-ci.org/jforbes14/eechidna.svg?branch=master)](https://travis-ci.org/jforbes14/eechidna)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/eechidna)](http://cran.r-project.org/package=eechidna)
-
 [![](http://cranlogs.r-pkg.org/badges/grand-total/eechidna)](http://cran.rstudio.com/web/packages/eechidna/index.html)
 
 ## Exploring Election and Census Highly Informative Data Nationally for Australia
@@ -67,14 +62,17 @@ We have many vignettes that show how to access these data in the
 package, and demonstrate how to analyse the data using R. These can be
 found in the *articles* tab at the top of this page.
 
-  - An introduction to eechidna: an overview of the package contents and
-    examples of how to use the data.
+  - [An introduction to eechidna](articles/eechidna-intro.html): an
+    overview of the package contents and examples of how to use the
+    data.
 
-  - Exploring election data: examples of wrangling data from the 2016
-    Federal election data to gain insights.
+  - [Exploring election data](articles/exploring-election-data.html):
+    examples of wrangling data from the 2016 Federal election data to
+    gain insights.
 
-  - Exploring Census data: visualizing 2016 Census data to analyse
-    patterns in electoral population characteristics.
+  - [Exploring Census data](articles/exploring-census-data.html):
+    visualizing 2016 Census data to analyse patterns in electoral
+    population characteristics.
 
 There are also three vignettes that demonstrate how to use the spatial
 data to make maps. Mapping election data for Australia is not trivial
@@ -83,20 +81,23 @@ we show some methods for effectively visualising election data in
 Australia. These too are found in the *articles* tab at the top of this
 page.
 
-  - Mapping federal electorates: how to plot a map of Australian federal
-    electorates, and how to better visualise electoral voting data using
-    a cartogram.
+  - [Mapping federal electorates](articles/plotting-electorates.html):
+    how to plot a map of Australian federal electorates, and how to
+    better visualise electoral voting data using a cartogram.
 
-  - Mapping polling booths: examples of how to plot the polling booth
-    locations and associated voting data.
+  - [Mapping polling booths](articles/plotting-polling-stns.html):
+    examples of how to plot the polling booth locations and associated
+    voting data.
 
-  - Getting Australian electoral maps: details the process to produce
-    useable electoral maps from the original shapefiles.
+  - [Getting Australian electoral
+    maps](articles/getting-ozShapefiles.html): details the process to
+    produce useable electoral maps from the original shapefiles.
 
 Additionally, there is a vignette on how we have imputed electoral
 Census data in election years for which a Census does not exactly align.
 
-  - Imputing Census data for non-Census years: details the procedure
+  - [Imputing Census data for non-Census
+    years](article/imputing-census-data.html): details the procedure
     used to impute Census data for 2004, 2007, 2010 and 2013.
 
 ## License
