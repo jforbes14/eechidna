@@ -1,6 +1,6 @@
 ---
 title: "Exploring the Election data: a case study of 2016"
-author: "Ben Marwick, Di Cook, Heike Hofmann, Rob Hyndman, Carson Sievert, Nicholas Tierney, Fang Zhou and Jeremy Forbes"
+author: "Ben Marwick, Di Cook, Jeremy Forbes, Heike Hofmann, Rob Hyndman, Carson Sievert, Nicholas Tierney and Fang Zhou"
 date: "`r Sys.Date()`"
 output: 
     rmarkdown::html_vignette:
@@ -285,7 +285,7 @@ ggpairs(proportions, columns = 2:ncol(proportions)) + theme_bw()
 ```
 
 
-# How do election results correlate with Census data?
+### How do election results correlate with Census data?
 
 One of our motivations for creating this package was to make it easy to explore relationships between political views and socio-economic conditions across Australia. With a few simple R functions, we can join the Census data to the election data and build models to explore relationships. 
 
