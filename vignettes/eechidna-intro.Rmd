@@ -92,7 +92,7 @@ ggplot(total_votes_for_parties,
 
 The function `twoparty_pollingbooth_download()` downloads the two party preferred vote for each polling booth in each of the six elections. Boxplots can be used to compare the distributions of this vote across the six elections.
 
-```{r message = F}
+```{r eval = F}
 # Download TPP for all elections
 tpp_pollingbooth <- twoparty_pollingbooth_download()
 
@@ -105,6 +105,11 @@ tpp_pollingbooth %>%
   guides(fill=F) +
   labs(x = "Year", y = "Two party preferred % in favour \nof the Liberal/National Coalition")
 ```
+
+```{r echo = F, message = F, out.width="600px"}
+knitr::include_graphics("fig/tpp_plot.png")
+```
+
 
 # Census data
 
@@ -283,4 +288,4 @@ The resultant (imputed) Census objects are `abs2004`, `abs2007`, `abs2010` and `
 
 # For more details on how the data in this package was obtained...
 
-Please see the vignettes on our [webpage](https://INSERT-EECHIDNA-WEBSITE.IO). These detail the procedures used to obtain the election data, Census data and electorate maps, as well as the Census imputation method.
+Please see the vignettes on our [webpage](https://jforbes14.github.io/eechidna/). These detail the procedures used to obtain the election data, Census data and electorate maps, as well as the Census imputation method.

@@ -98,7 +98,7 @@
       <h1>An Introduction to Exploring Election and Census Highly Informative Data Nationally for Australia</h1>
                         <h4 class="author">Jeremy Forbes</h4>
             
-            <h4 class="date">2019-03-06</h4>
+            <h4 class="date">2019-03-07</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/jforbes14/eechidna/blob/master/vignettes/eechidna-intro.Rmd"><code>vignettes/eechidna-intro.Rmd</code></a></small>
       <div class="hidden name"><code>eechidna-intro.Rmd</code></div>
@@ -222,7 +222,7 @@
 <a class="sourceLine" id="cb8-9" title="9"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span>() <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb8-10" title="10"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/guides.html">guides</a></span>(<span class="dt">fill=</span>F) <span class="op">+</span></a>
 <a class="sourceLine" id="cb8-11" title="11"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">x =</span> <span class="st">"Year"</span>, <span class="dt">y =</span> <span class="st">"Two party preferred % in favour </span><span class="ch">\n</span><span class="st">of the Liberal/National Coalition"</span>)</a></code></pre></div>
-<p><img src="eechidna-intro_files/figure-html/unnamed-chunk-2-1.png" width="700" style="display: block; margin: auto;"></p>
+<p><img src="fig/tpp_plot.png" width="600px" style="display: block; margin: auto;"></p>
 </div>
 </div>
 <div id="census-data" class="section level1">
@@ -335,7 +335,7 @@
 <a class="sourceLine" id="cb12-7" title="7">       <span class="dt">y =</span> <span class="st">"% Unemployment"</span>) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb12-8" title="8"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span>() <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb12-9" title="9"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">legend.position =</span> <span class="st">"none"</span>) </a></code></pre></div>
-<p><img src="eechidna-intro_files/figure-html/unnamed-chunk-4-1.png" width="700" style="display: block; margin: auto;"></p>
+<p><img src="eechidna-intro_files/figure-html/unnamed-chunk-5-1.png" width="700" style="display: block; margin: auto;"></p>
 <p>Adding <code>geom_jitter</code> gives us more details about a distribution.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="dt">data =</span> abs2016,</a>
 <a class="sourceLine" id="cb13-2" title="2">       <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/reorder.factor">reorder</a></span>(State, <span class="op">-</span>MedianPersonalIncome),</a>
@@ -348,7 +348,7 @@
 <a class="sourceLine" id="cb13-9" title="9"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span>() <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb13-10" title="10"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">legend.position =</span> <span class="st">"none"</span>) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb13-11" title="11"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">x =</span> <span class="st">"State"</span>, <span class="dt">y =</span> <span class="st">"Median Personal Income ($)"</span>)</a></code></pre></div>
-<p><img src="eechidna-intro_files/figure-html/unnamed-chunk-5-1.png" width="700" style="display: block; margin: auto;"></p>
+<p><img src="eechidna-intro_files/figure-html/unnamed-chunk-6-1.png" width="700" style="display: block; margin: auto;"></p>
 </div>
 <div id="ageing-population" class="section level3">
 <h3 class="hasAnchor">
@@ -369,7 +369,7 @@
 <a class="sourceLine" id="cb14-13" title="13"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span>()</a></code></pre></div>
 <pre><code>## Warning in bind_rows_(x, .id): binding character and factor vector,
 ## coercing into character vector</code></pre>
-<p><img src="eechidna-intro_files/figure-html/unnamed-chunk-6-1.png" width="700" style="display: block; margin: auto;"></p>
+<p><img src="eechidna-intro_files/figure-html/unnamed-chunk-7-1.png" width="700" style="display: block; margin: auto;"></p>
 </div>
 </div>
 <div id="maps-of-the-australian-electoral-divisions" class="section level1">
@@ -385,7 +385,7 @@
 <a class="sourceLine" id="cb16-6" title="6"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_map.html">geom_map</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">fill=</span>state), <span class="dt">map=</span>nat_map16, <span class="dt">col =</span> <span class="st">"grey50"</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb16-7" title="7"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/expand_limits.html">expand_limits</a></span>(<span class="dt">x=</span>nat_map16<span class="op">$</span>long, <span class="dt">y=</span>nat_map16<span class="op">$</span>lat) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb16-8" title="8"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_map">theme_map</a></span>() <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html">coord_equal</a></span>()</a></code></pre></div>
-<p><img src="eechidna-intro_files/figure-html/unnamed-chunk-7-1.png" width="700" style="display: block; margin: auto;"></p>
+<p><img src="eechidna-intro_files/figure-html/unnamed-chunk-8-1.png" width="700" style="display: block; margin: auto;"></p>
 <div id="attaching-election-results" class="section level3">
 <h3 class="hasAnchor">
 <a href="#attaching-election-results" class="anchor"></a>Attaching election results</h3>
@@ -408,7 +408,7 @@
 <a class="sourceLine" id="cb17-16" title="16"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_polygon.html">geom_polygon</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x=</span>long, <span class="dt">y=</span>lat, <span class="dt">group=</span>group, <span class="dt">fill=</span>PartyNm)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb17-17" title="17"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span>(<span class="dt">name=</span><span class="st">"Political Party"</span>, <span class="dt">values=</span>partycolours) <span class="op">+</span></a>
 <a class="sourceLine" id="cb17-18" title="18"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_map">theme_map</a></span>() <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html">coord_equal</a></span>() <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">legend.position=</span><span class="st">"bottom"</span>)</a></code></pre></div>
-<p><img src="eechidna-intro_files/figure-html/unnamed-chunk-8-1.png" width="700" style="display: block; margin: auto;"></p>
+<p><img src="eechidna-intro_files/figure-html/unnamed-chunk-9-1.png" width="700" style="display: block; margin: auto;"></p>
 <p>However, the Australian electoral map is not conducive to chloropleth map, because most of the population concentrate in the five big cities, Sydney, Melbourne, Brisbane, Adelaide and Perth, which means that there are lot of very geographical tiny regions that contribute substantially to the house of representative composition. An alternative is to plot a dorling cartogram, where each electorate is represented by a circle, approximately in the geographic center of each electorate, with an underlying map. The major population centers need to have their center locations ballooned to make this feasible visually. The coordinates corresponding for the dorling cartogram have been pre-processed and correspond with the variables <code>x</code> and <code>y</code> in the <code>nat_data</code> datasets distributed in this package. These can be reproduced using the <code>aec_add_carto_f</code> function in the package.</p>
 <p>A better approach would be to use a cartogram to display the election results, which maintains the geographic location but make the sizes of the electorate polygons approximately equal. This is very hard to perfect for Australia because the size differential between electorates is huge, resulting in a cartogram where all sense of geography is demolished. This data is used to create the display of electoral results below.</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="co"># Get winners</span></a>
@@ -423,7 +423,7 @@
 <a class="sourceLine" id="cb18-10" title="10"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>(<span class="dt">data=</span>cart.winners, <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x=</span>x, <span class="dt">y=</span>y, <span class="dt">colour=</span>PartyNm), <span class="dt">size =</span> <span class="fl">0.75</span>, <span class="dt">alpha=</span><span class="fl">0.8</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb18-11" title="11"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_colour_manual</a></span>(<span class="dt">name=</span><span class="st">"Political Party"</span>, <span class="dt">values=</span>partycolours) <span class="op">+</span></a>
 <a class="sourceLine" id="cb18-12" title="12"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_map">theme_map</a></span>() <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html">coord_equal</a></span>() <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">legend.position=</span><span class="st">"bottom"</span>)</a></code></pre></div>
-<p><img src="eechidna-intro_files/figure-html/unnamed-chunk-9-1.png" width="700" style="display: block; margin: auto;"></p>
+<p><img src="eechidna-intro_files/figure-html/unnamed-chunk-10-1.png" width="700" style="display: block; margin: auto;"></p>
 </div>
 </div>
 <div id="modelling-election-results-using-census-data" class="section level1">
@@ -613,7 +613,7 @@
 <div id="for-more-details-on-how-the-data-in-this-package-was-obtained" class="section level1">
 <h1 class="hasAnchor">
 <a href="#for-more-details-on-how-the-data-in-this-package-was-obtained" class="anchor"></a>For more details on how the data in this package was obtained…</h1>
-<p>Please see the vignettes on our <a href="https://INSERT-EECHIDNA-WEBSITE.IO">webpage</a>. These detail the procedures used to obtain the election data, Census data and electorate maps, as well as the Census imputation method.</p>
+<p>Please see the vignettes on our <a href="https://jforbes14.github.io/eechidna/">webpage</a>. These detail the procedures used to obtain the election data, Census data and electorate maps, as well as the Census imputation method.</p>
 </div>
   </div>
 
