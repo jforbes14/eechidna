@@ -1,3 +1,9 @@
+^vignettes/exploring-census-data\.Rmd$
+^vignettes/getting-ozShapefiles\.Rmd$
+^vignettes/exploring-election-data\.Rmd$
+^vignettes/imputing-census-data\.Rmd$
+^vignettes/plotting-electorates\.Rmd$
+^vignettes/plotting-polling-stns\.Rmd$
 ^.*\.md$
 !NEWS\.md$
 ^README\.Rmd$
@@ -8,5 +14,6 @@
 ^cran-comments\.md$
 ^README_video_screenshot\.png$
 ^data-raw$
+^docs$
 ^dont-document$
 ^extra-data$
