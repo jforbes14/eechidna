@@ -1,12 +1,12 @@
 ---
-title: "Exploring the 2016 Census data"
+title: "Exploring the Census data: A case study of 2016"
 author: "Nicholas Tierney, Rob J Hyndman and Jeremy Forbes"
 date: "`r Sys.Date()`"
 output: 
     rmarkdown::html_vignette:
         toc: true
 vignette: >
-  %\VignetteIndexEntry{Exploring the 2016 Census data}
+  %\VignetteIndexEntry{Exploring the Census data: A case study of 2016}
   %\VignetteEngine{knitr::rmarkdown}
   %\usepackage[utf8]{inputenc}
 ---
@@ -23,9 +23,9 @@ knitr::opts_chunk$set(fig.width = 6,
 
 # Introduction
 
-`eechidna` (Exploring Election and Census Highly Informative Data Nationally for Australia) is an R package that makes it easy to look at the data from the 2016 Australian Census, and the 2016 Federal Election.
+The `eechidna` (Exploring Election and Census Highly Informative Data Nationally for Australia) R package makes it easy to look at the Census (and election) data from the 2001, 2006, 2011 and 2016 Australian Censuses. 
 
-This vignette documents how to access the data from the 2016 Census. We show a few typical methods to explore the data.
+This vignette documents how to access the Census data, using the example of 2016, and shows a few typical methods that can be used to explore the data.
 
 ## 2016 Census data
 
@@ -33,10 +33,8 @@ The data is loaded as `abs2016` when you load `eechidna`.
 
 ```{r load-read, message=FALSE, error = FALSE}
 library(eechidna)
-library(tidyverse)
 
 data(abs2016)
-
 ```
 
 Here we see that we have 150 observations and 86 variables.
@@ -46,8 +44,7 @@ Each observation is data pertaining to a particular federal electorate as descri
 Each variable is described here:
 
 ```{r make-data-dictionary, include = FALSE}
-
-data_dictionary <- tibble(
+data_dictionary <- data.frame(
   Variable = names(abs2016), 
   Details = c(
     "Commonwealth Electoral District identifier",
@@ -141,7 +138,6 @@ data_dictionary <- tibble(
 ```{r display-data-dictionary, echo = FALSE}
 library(knitr)
 kable(data_dictionary)
-
 ```
 
 So let's just look at some nice and simple plots using `ggplot2`.
@@ -149,9 +145,7 @@ So let's just look at some nice and simple plots using `ggplot2`.
 ## Unemployment 
 
 ```{r}
-
 library(ggplot2)
-
 ggplot(data = abs2016,
        aes(x = Unemployed)) + 
   geom_density(fill = "salmon", 
@@ -160,14 +154,12 @@ ggplot(data = abs2016,
   geom_rug(colour = "salmon") +
   theme_minimal() +
   xlim(0, 12)
-
 ```
 
 
 ## Unemployment by state
 
 ```{r}
-
 ggplot(data = abs2016,
        aes(x = reorder(State, -Unemployed),
            y = Unemployed,
@@ -177,15 +169,11 @@ ggplot(data = abs2016,
        y = "% Unemployment") + 
   theme_minimal() + 
   theme(legend.position = "none") 
-  
-           
 ```
 
 ## Age
 
-
 ```{r}
-
 ggplot(data = abs2016,
        aes(x = Age00_04)) +
    geom_density(fill = "steelblue",
@@ -195,12 +183,10 @@ ggplot(data = abs2016,
   geom_rug(colour = "steelblue") + 
   theme_minimal() +
   labs(x = "% Aged between 0 and 4")
-
 ```
 
 
 ```{r}
-
 ggplot(data = abs2016,
        aes(x = reorder(State, -Age00_04),
            y = Age00_04,
@@ -211,15 +197,13 @@ ggplot(data = abs2016,
        y = "% Aged between 0 and 4") +
   theme(legend.position = "none") + 
   coord_flip()
-
 ```
 
 However, there are many age groups. To look at all of them at once, we can gather them into a dataframe ready for plotting using `tidyr`.
 
 ```{r}
-
 library(tidyr)
-
+library(dplyr)
 abs2016 %>%
   select(starts_with("Age"), 
          DivisionNm) %>%
@@ -236,14 +220,11 @@ abs2016 %>%
   theme(legend.position = "none") +
   labs(x = "Age Groups",
        y = "% in Electorate")
-
-
 ```
 
 ## Personal Income
 
 ```{r}
-
 ggplot(data = abs2016,
        aes(x = MedianPersonalIncome)) + 
   geom_density(fill = "salmon",
@@ -252,13 +233,11 @@ ggplot(data = abs2016,
   xlim(250,1100) +
   geom_rug(colour = "salmon") + 
   theme_minimal()
-  
 ```
 
 ## Income by State
 
 ```{r}
-
 ggplot(data = abs2016,
        aes(x = reorder(State, -MedianPersonalIncome),
            y = MedianPersonalIncome,
@@ -267,13 +246,11 @@ ggplot(data = abs2016,
   theme_minimal() + 
   theme(legend.position = "none") + 
   labs(x = "State")
-
 ```
 
 If you're intersted in getting a sense of the distribution of the data, you can add in the points to get a bit more of a sense on the distribution.
 
 ```{r}
-
 ggplot(data = abs2016,
        aes(x = reorder(State, -MedianPersonalIncome),
            y = MedianPersonalIncome,
@@ -285,7 +262,6 @@ ggplot(data = abs2016,
   theme_minimal() + 
   theme(legend.position = "none") + 
   labs(x = "State")
-
 ```
 
 ## Education
@@ -293,7 +269,6 @@ ggplot(data = abs2016,
 ##### Bachelor and above
 
 ```{r}
-
 ggplot(data = abs2016,
        aes(x = BachelorAbv)) +
   geom_density(fill = "salmon",
@@ -303,14 +278,11 @@ ggplot(data = abs2016,
   theme_minimal() + 
   labs(x = "% of electorate with a Bachelor degree or above") +
   xlim(0, 55)
-           
-
 ```
 
 ##### Bachelor by state
 
 ```{r}
-
 ggplot(data = abs2016,
        aes(x = reorder(State, -BachelorAbv),
            y = BachelorAbv,
@@ -319,28 +291,22 @@ ggplot(data = abs2016,
   theme_minimal() +
   labs(x = "State") + 
   theme(legend.position = "none")
-
 ```
 
 ##### BachelorAbv and income
 
 ```{r}
-
 ggplot(data = abs2016,
        aes(x = BachelorAbv,
            y = MedianPersonalIncome)) + 
   geom_point(colour = "steelblue",
              alpha = 0.75) + 
   theme_minimal()
-
 ```
-
 
 ## Diploma and Certificate
 
-
 ```{r}
-
 ggplot(data = abs2016,
        aes(x = reorder(State, -DipCert),
            y = DipCert,
@@ -349,13 +315,11 @@ ggplot(data = abs2016,
   theme_minimal() +
   labs(x = "State") + 
   theme(legend.position = "none")
-
 ```
 
-##### DipCert and income
+##### Diploma and Certificate and income
 
 ```{r}
-
 ggplot(data = abs2016,
        aes(x = DipCert,
            y = MedianPersonalIncome)) + 
@@ -368,7 +332,6 @@ ggplot(data = abs2016,
 ##### Comparing income across Bachelor (and above) and Diploma/Certificate
 
 ```{r}
-
 abs2016 %>%
   select(DipCert,
          BachelorAbv,
@@ -384,9 +347,6 @@ ggplot(data = ,
   geom_smooth() +
   theme_minimal() +
   scale_color_brewer(type = "qual", palette = "Set1")
-  # theme(legend.position = "bottom",
-  #       legend.direction = "vertical")
-
 ```
 
 ## Religion
@@ -394,7 +354,6 @@ ggplot(data = ,
 Let's look at all of the religions
 
 ```{r}
-
 abs2016 %>%
   select(Christianity,
          Catholic,
@@ -413,15 +372,11 @@ abs2016 %>%
   theme(legend.position = "none") +
   coord_flip() + 
   labs(x = "Religion")
-             
-
 ```
 
 ##### Christianity by State
 
-
 ```{r}
-
 ggplot(data = abs2016,
        aes(x = reorder(State, -Christianity),
            y = Christianity,
@@ -431,8 +386,5 @@ ggplot(data = abs2016,
   theme(legend.position = "none") +
   coord_flip() + 
   labs(x = "State")
-  
-           
-
 ```
 
