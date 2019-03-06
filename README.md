@@ -13,16 +13,6 @@ Status](https://ci.appveyor.com/api/projects/status/github/ropenscilabs/eechidna
 
 [![](http://cranlogs.r-pkg.org/badges/grand-total/eechidna)](http://cran.rstudio.com/web/packages/eechidna/index.html)
 
-``` r
-#[![Travis-CI Build Status](https://travis-ci.org/ropenscilabs/eechidna.svg?branch=master)](https://travis-ci.org/ropenscilabs/eechidna) 
-
-#[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ropenscilabs/eechidna?branch=master&svg=true)](https://ci.appveyor.com/project/ropenscilabs/eechidna) 
-
-#[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/eechidna)](http://cran.r-project.org/package=eechidna) 
-
-#[![](http://cranlogs.r-pkg.org/badges/grand-total/eechidna)](http://cran.rstudio.com/web/packages/eechidna/index.html)
-```
-
 ## Exploring Election and Census Highly Informative Data Nationally for Australia
 
 The R package *eechidna* provides data from the Australian Federal
@@ -77,8 +67,8 @@ We have many vignettes that show how to access these data in the
 package, and demonstrate how to analyse the data using R. These can be
 found in the *articles* tab at the top of this page.
 
-  - [An introduction to eechidna](eechidna-intro.html): an overview of
-    the package contents and examples of how to use the data.
+  - An introduction to eechidna: an overview of the package contents and
+    examples of how to use the data.
 
   - Exploring election data: examples of wrangling data from the 2016
     Federal election data to gain insights.
@@ -126,10 +116,9 @@ abide by its terms.
 
 Thanks to Xiaoyue Cheng for her
 [cartogram](https://github.com/chxy/cartogram) package which supplies
-the Dorling algorithm for this package. Thanks also to Andy Teucher for
-his [rmapshaper](https://github.com/ateucher/rmapshaper) package which
-has some key functions for working with shapefiles. Thanks to Scott
-Chamberlain and Yihui Xie for help with
+the Dorling algorithm for this package. Thanks also to Roger Bivand for
+his rgeos package which has some key functions for working with
+shapefiles. Thanks to Scott Chamberlain and Yihui Xie for help with
 troubleshooting.
 
 -----
