@@ -241,13 +241,33 @@ Electorate boundaries match those in place at the time of the 2001 Federal elect
 </ul>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>eechidna</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)</div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Attaching package: ‘dplyr’</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:testthat’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    matches</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:stats’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    filter, lag</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:base’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    intersect, setdiff, setequal, union</span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>abs2001</span>)
+<span class='no'>abs2001</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='no'>DivisionNm</span>, <span class='no'>MedianAge</span>, <span class='no'>Unemployed</span>, <span class='no'>NoReligion</span>, <span class='no'>MedianPersonalIncome</span>) <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>()</div><div class='output co'>#&gt;   DivisionNm MedianAge Unemployed NoReligion MedianPersonalIncome
+#&gt; 1   ADELAIDE        37   7.779892  19.673954                349.5
+#&gt; 2      ASTON        34   4.722118  18.054206                449.5
+#&gt; 3   BALLARAT        35   8.957760  18.771159                349.5
+#&gt; 4      BANKS        37   5.301010   9.693882                349.5
+#&gt; 5     BARKER        38   6.330406  21.711487                349.5
+#&gt; 6     BARTON        37   5.802002  10.540373                449.5</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       
       <li><a href="#format">Format</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

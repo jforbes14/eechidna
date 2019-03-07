@@ -220,13 +220,27 @@ vignette for more details.</p>
 </ul>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>eechidna</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>abs2013</span>)
+<span class='no'>abs2013</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='no'>DivisionNm</span>, <span class='no'>MedianAge</span>, <span class='no'>Unemployed</span>, <span class='no'>NoReligion</span>, <span class='no'>MedianPersonalIncome</span>) <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>()</div><div class='output co'>#&gt;   DivisionNm MedianAge Unemployed NoReligion MedianPersonalIncome
+#&gt; 1   ADELAIDE  36.03533   6.892935   30.84079             457.7773
+#&gt; 2      ASTON  38.95658   4.942055   27.13446             451.1648
+#&gt; 3   BALLARAT  38.81217   5.896356   31.20174             392.9592
+#&gt; 4      BANKS  37.74112   6.229408   21.11699             416.1158
+#&gt; 5     BARKER  42.20850   5.557175   30.30135             376.8047
+#&gt; 6     BARTON  36.47005   5.948481   18.10582             431.5335</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       
       <li><a href="#format">Format</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

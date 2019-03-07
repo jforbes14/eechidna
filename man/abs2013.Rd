@@ -83,4 +83,11 @@ A dataset containing estimated demographic and other information about each elec
 The data is imputed using Census information from 2011 and 2016. See the imputing-census-data
 vignette for more details.
 }
+\examples{
+library(eechidna)
+library(dplyr)
+data(abs2013)
+abs2013 \%>\% select(DivisionNm, MedianAge, Unemployed, NoReligion, MedianPersonalIncome) \%>\% head()
+
+}
 \keyword{datasets}

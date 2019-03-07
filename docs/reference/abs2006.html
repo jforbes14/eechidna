@@ -241,13 +241,27 @@ Electorate boundaries match those in place at the time of the 2004 Federal elect
 </ul>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>eechidna</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>abs2006</span>)
+<span class='no'>abs2006</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='no'>DivisionNm</span>, <span class='no'>MedianAge</span>, <span class='no'>Unemployed</span>, <span class='no'>NoReligion</span>, <span class='no'>MedianPersonalIncome</span>) <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>()</div><div class='output co'>#&gt;   DivisionNm MedianAge Unemployed NoReligion MedianPersonalIncome
+#&gt; 1   ADELAIDE        36       5.47   23.12976             429.1920
+#&gt; 2      ASTON        36       3.97   20.76709             440.4865
+#&gt; 3   BALLARAT        37       6.13   22.56230             350.9991
+#&gt; 4      BANKS        38       5.22   11.64256             398.7837
+#&gt; 5     BARKER        39       4.84   23.78113             360.5560
+#&gt; 6     BARTON        37       5.32   13.22319             417.0287</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       
       <li><a href="#format">Format</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

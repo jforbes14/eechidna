@@ -102,4 +102,11 @@ The data were obtained from the Australian Bureau of Statistics, and downloaded
 from \url{https://www.censusdata.abs.gov.au/datapacks/}.
 Electorate boundaries match those in place at the time of the 2011 Census.
 }
+\examples{
+library(eechidna)
+library(dplyr)
+data(abs2011)
+abs2011 \%>\% select(DivisionNm, MedianAge, Unemployed, NoReligion, MedianPersonalIncome) \%>\% head()
+
+}
 \keyword{datasets}

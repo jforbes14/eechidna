@@ -753,6 +753,13 @@
 #'   \item Volunteer: Percentage of people who work as a volunteer
 #'   \item Volunteer_NS: Rate of nonresponse for questions relating to working as a volunteer
 #' }
+#' 
+#' @examples 
+#' library(eechidna)
+#' library(dplyr)
+#' data(abs2016)
+#' abs2016 %>% select(DivisionNm, MedianAge, Unemployed, NoReligion, MedianPersonalIncome) %>% head()
+#' 
 "abs2016"  
 
 #' 2011 Australian Census data on all 150 electorates
@@ -851,6 +858,13 @@
 #'   \item Volunteer: Percentage of people who work as a volunteer
 #'   \item Volunteer_NS: Rate of nonresponse for questions relating to working as a volunteer
 #' }
+#' 
+#' @examples 
+#' library(eechidna)
+#' library(dplyr)
+#' data(abs2011)
+#' abs2011 %>% select(DivisionNm, MedianAge, Unemployed, NoReligion, MedianPersonalIncome) %>% head()
+#' 
 "abs2011" 
 
 #' 2006 Australian Census data on all 150 electorates (2004 boundaries)
@@ -949,7 +963,14 @@
 #'   \item Volunteer: Percentage of people who work as a volunteer
 #'   \item Volunteer_NS: Rate of nonresponse for questions relating to working as a volunteer
 #' }
-"abs2006"  
+#' 
+#' @examples
+#' library(eechidna)
+#' library(dplyr) 
+#' data(abs2006)
+#' abs2006 %>% select(DivisionNm, MedianAge, Unemployed, NoReligion, MedianPersonalIncome) %>% head()
+#' 
+"abs2006" 
 
 #' 2006 Australian Census data on all 150 electorates (2007 boundaries)
 #'
@@ -1047,6 +1068,13 @@
 #'   \item Volunteer: Percentage of people who work as a volunteer
 #'   \item Volunteer_NS: Rate of nonresponse for questions relating to working as a volunteer
 #' }
+#'
+#' @examples 
+#' library(eechidna)
+#' library(dplyr)
+#' data(abs2006_e07)
+#' abs2006_e07 %>% select(DivisionNm, MedianAge, Unemployed, NoReligion, MedianPersonalIncome) %>% head()
+#'
 "abs2006_e07"  
 
 #' 2001 Australian Census data on all 150 electorates
@@ -1145,6 +1173,12 @@
 #'   \item Volunteer: Percentage of people who work as a volunteer
 #'   \item Volunteer_NS: Rate of nonresponse for questions relating to working as a volunteer 
 #' }
+#' @examples 
+#' library(eechidna)
+#' library(dplyr)
+#' data(abs2001)
+#' abs2001 %>% select(DivisionNm, MedianAge, Unemployed, NoReligion, MedianPersonalIncome) %>% head()
+#'
 "abs2001"  
 
 #' Imputed Australian Census data for the electorates in place at time of the 2013 Federal election
@@ -1224,6 +1258,13 @@
 #'   \item Unemployed: Unemployment rate
 #'   \item Volunteer: Percentage of people who work as a volunteer
 #' }
+#' 
+#' @examples 
+#' library(eechidna)
+#' library(dplyr)
+#' data(abs2013)
+#' abs2013 %>% select(DivisionNm, MedianAge, Unemployed, NoReligion, MedianPersonalIncome) %>% head()
+#'
 "abs2013"  
 
 #' Imputed Australian Census data for the electorates in place at time of the 2010 Federal election
@@ -1303,6 +1344,12 @@
 #'   \item Unemployed: Unemployment rate
 #'   \item Volunteer: Percentage of people who work as a volunteer
 #' }
+#' @examples 
+#' library(eechidna)
+#' library(dplyr)
+#' data(abs2010)
+#' abs2010 %>% select(DivisionNm, MedianAge, Unemployed, NoReligion, MedianPersonalIncome) %>% head()
+#'
 "abs2010"  
 
 #' Imputed Australian Census data for the electorates in place at time of the 2007 Federal election
@@ -1382,6 +1429,13 @@
 #'   \item Unemployed: Unemployment rate
 #'   \item Volunteer: Percentage of people who work as a volunteer
 #' }
+#' 
+#' @examples 
+#' library(eechidna)
+#' library(dplyr)
+#' data(abs2007)
+#' abs2007 %>% select(DivisionNm, MedianAge, Unemployed, NoReligion, MedianPersonalIncome) %>% head()
+#'
 "abs2007"  
 
 #' Imputed Australian Census data for the electorates in place at time of the 2004 Federal election
@@ -1461,5 +1515,12 @@
 #'   \item Unemployed: Unemployment rate
 #'   \item Volunteer: Percentage of people who work as a volunteer
 #' }
+#' 
+#' @examples 
+#' library(eechidna)
+#' library(dplyr)
+#' data(abs2004)
+#' abs2004 %>% select(DivisionNm, MedianAge, Unemployed, NoReligion, MedianPersonalIncome) %>% head()
+#'
 "abs2004"  
 
