@@ -1,0 +1,169 @@
+"","CED","Electorate","State","Area.sqkm"
+"1","101","Banks","NSW",44.6388
+"2","102","Barton","NSW",40.3341
+"3","103","Bennelong","NSW",58.6107
+"4","104","Berowra","NSW",745.688
+"5","105","Blaxland","NSW",60.7705
+"6","106","Bradfield","NSW",96.8595
+"7","107","Calare","NSW",30672.6
+"8","108","Charlton","NSW",575.626
+"9","109","Chifley","NSW",136.141
+"10","110","Cook","NSW",68.0838
+"11","111","Cowper","NSW",8557.82
+"12","112","Cunningham","NSW",1186.88
+"13","113","Dobell","NSW",713.159
+"14","114","Eden-Monaro","NSW",29412.33
+"15","115","Farrer","NSW",249551.66
+"16","116","Fowler","NSW",72.1554
+"17","117","Gilmore","NSW",4917.16
+"18","118","Grayndler","NSW",31.6708
+"19","119","Greenway","NSW",83.282
+"20","120","Hughes","NSW",172.732
+"21","121","Hume","NSW",34563.57
+"22","122","Hunter","NSW",19092.84
+"23","123","Kingsford Smith","NSW",57.6591
+"24","124","Lindsay","NSW",349.105
+"25","125","Lyne","NSW",11683.71
+"26","126","Macarthur","NSW",737.768
+"27","127","Mackellar","NSW",212.293
+"28","128","Macquarie","NSW",3616.07
+"29","129","McMahon","NSW",158.918
+"30","130","Mitchell","NSW",98.4419
+"31","131","New England","NSW",58967.34
+"32","132","Newcastle","NSW",309.707
+"33","133","North Sydney","NSW",44.087
+"34","134","Page","NSW",16189.11
+"35","135","Parkes","NSW",256860.42
+"36","136","Parramatta","NSW",55.7041
+"37","137","Paterson","NSW",6547.12
+"38","138","Reid","NSW",56.2396
+"39","139","Richmond","NSW",2771.26
+"40","140","Riverina","NSW",58754.29
+"41","141","Robertson","NSW",890.395
+"42","142","Shortland","NSW",187.922
+"43","143","Sydney","NSW",44.7628
+"44","144","Throsby","NSW",1082.96
+"45","145","Warringah","NSW",53.5672
+"46","146","Watson","NSW",41.7548
+"47","147","Wentworth","NSW",29.9057
+"48","148","Werriwa","NSW",153.659
+"49","194","No Usual Address (NSW)",NA,0
+"50","197","Migratory - Offshore - Shipping (NSW)",NA,0
+"51","201","Aston","Vic",99.8284
+"52","202","Ballarat","Vic",4627.34
+"53","203","Batman","Vic",53.4711
+"54","204","Bendigo","Vic",7584.81
+"55","205","Bruce","Vic",68.116
+"56","206","Calwell","Vic",503.829
+"57","207","Casey","Vic",406.444
+"58","208","Chisholm","Vic",60.758
+"59","209","Corangamite","Vic",7561.57
+"60","210","Corio","Vic",816.771
+"61","211","Deakin","Vic",61.4455
+"62","212","Dunkley","Vic",149.966
+"63","213","Flinders","Vic",1952.54
+"64","214","Gellibrand","Vic",91.2396
+"65","215","Gippsland","Vic",33059.86
+"66","216","Goldstein","Vic",48.8627
+"67","217","Gorton","Vic",141.971
+"68","218","Higgins","Vic",38.7885
+"69","219","Holt","Vic",168.191
+"70","220","Hotham","Vic",79.7429
+"71","221","Indi","Vic",28281.68
+"72","222","Isaacs","Vic",151.072
+"73","223","Jagajaga","Vic",84.3602
+"74","224","Kooyong","Vic",49.2708
+"75","225","La Trobe","Vic",555.318
+"76","226","Lalor","Vic",1013.54
+"77","227","Mallee","Vic",71145.41
+"78","228","Maribyrnong","Vic",71.9765
+"79","229","Mcewen","Vic",10616.8
+"80","230","Mcmillan","Vic",8347.59
+"81","231","Melbourne","Vic",53.6824
+"82","232","Melbourne Ports","Vic",43.6207
+"83","233","Menzies","Vic",120.925
+"84","234","Murray","Vic",15697.19
+"85","235","Scullin","Vic",90.6761
+"86","236","Wannon","Vic",33539.95
+"87","237","Wills","Vic",57.1177
+"88","294","No Usual Address (Vic.)",NA,0
+"89","297","Migratory - Offshore - Shipping (Vic.)",NA,0
+"90","301","Blair","Qld",6407.31
+"91","302","Bonner","Qld",372.847
+"92","303","Bowman","Qld",536.246
+"93","304","Brisbane","Qld",53.4692
+"94","305","Capricornia","Qld",94222.2
+"95","306","Dawson","Qld",11485.36
+"96","307","Dickson","Qld",720.91
+"97","308","Fadden","Qld",394.885
+"98","309","Fairfax","Qld",1042.93
+"99","310","Fisher","Qld",1159.96
+"100","311","Flynn","Qld",132850.76
+"101","312","Forde","Qld",412.446
+"102","313","Griffith","Qld",55.1639
+"103","314","Groom","Qld",5639.75
+"104","315","Herbert","Qld",1158.38
+"105","316","Hinkler","Qld",3429.98
+"106","317","Kennedy","Qld",582470.69
+"107","318","Leichhardt","Qld",132872.5
+"108","319","Lilley","Qld",147.176
+"109","320","Longman","Qld",1235.87
+"110","321","Maranoa","Qld",729818.63
+"111","322","Mcpherson","Qld",230.957
+"112","323","Moncrieff","Qld",91.4948
+"113","324","Moreton","Qld",109.549
+"114","325","Oxley","Qld",152.236
+"115","326","Petrie","Qld",149.112
+"116","327","Rankin","Qld",130.975
+"117","328","Ryan","Qld",426.596
+"118","329","Wide Bay","Qld",14594.97
+"119","330","Wright","Qld",7584.71
+"120","394","No Usual Address (Qld)",NA,0
+"121","397","Migratory - Offshore - Shipping (Qld)",NA,0
+"122","401","Adelaide","SA",75.0293
+"123","402","Barker","SA",58677.12
+"124","403","Boothby","SA",123.117
+"125","404","Grey","SA",909592
+"126","405","Hindmarsh","SA",73.3682
+"127","406","Kingston","SA",381.342
+"128","407","Makin","SA",112.665
+"129","408","Mayo","SA",9201.45
+"130","409","Port Adelaide","SA",254.789
+"131","410","Sturt","SA",84.3979
+"132","411","Wakefield","SA",5604.08
+"133","494","No Usual Address (SA)",NA,0
+"134","497","Migratory - Offshore - Shipping (SA)",NA,0
+"135","501","Brand","WA",410.485
+"136","502","Canning","WA",6046.09
+"137","503","Cowan","WA",180.454
+"138","504","Curtin","WA",90.078
+"139","505","Durack","WA",1583683.7
+"140","506","Forrest","WA",12776.98
+"141","507","Fremantle","WA",200.905
+"142","508","Hasluck","WA",236.496
+"143","509","Moore","WA",139.112
+"144","510","O'Connor","WA",908062.34
+"145","511","Pearce","WA",14383.68
+"146","512","Perth","WA",75.467
+"147","513","Stirling","WA",78.4441
+"148","514","Swan","WA",123.874
+"149","515","Tangney","WA",86.0984
+"150","594","No Usual Address (WA)",NA,0
+"151","597","Migratory - Offshore - Shipping (WA)",NA,0
+"152","601","Bass","Tas",7588.4
+"153","602","Braddon","Tas",20883.99
+"154","603","Denison","Tas",294.562
+"155","604","Franklin","Tas",2748.3
+"156","605","Lyons","Tas",36502.94
+"157","694","No Usual Address (Tas.)",NA,0
+"158","697","Migratory - Offshore - Shipping (Tas.)",NA,0
+"159","701","Lingiari","NT",1348081.72
+"160","702","Solomon","NT",266.862
+"161","794","No Usual Address (NT)",NA,0
+"162","797","Migratory - Offshore - Shipping (NT)",NA,0
+"163","801","Canberra","ACT",1920.65
+"164","802","Fraser","ACT",505.09
+"165","894","No Usual Address (ACT)",NA,0
+"166","897","Migratory - Offshore - Shipping (ACT)",NA,0
+"167","994","No Usual Address (OT)",NA,0
+"168","997","Migratory - Offshore - Shipping (OT)",NA,0

@@ -2,10 +2,11 @@
 % Please edit documentation in R/cartogram.R
 \name{aec_carto_f}
 \alias{aec_carto_f}
-\title{aec_carto_f - run dorling ondata centers}
+\title{aec_carto_f - run dorling on data centers}
 \usage{
 aec_carto_f(aec_data_sub, polygon.vertex = 6, name.text = TRUE,
-  dist.ratio = dist.ratio, iteration = 100, xlab = "", ylab = "", ...)
+  dist.ratio = dist.ratio, iteration = 100, xlab = "", ylab = "",
+  ...)
 }
 \arguments{
 \item{aec_data_sub}{subset of data with centroids of electoral divisions}
@@ -32,11 +33,12 @@ geographic proximity.
 \examples{
 library(dplyr)
 library(ggplot2)
-data(nat_map)
-data(nat_data)
-adelaide <- aec_extract_f(nat_data, ctr=c(138.6, -34.9), expand=c(2,3))
+data(nat_map16)
+data(nat_data16)
+nat_data16 <- nat_data16 \%>\% select(-c(x,y)) # remove existing cartogram coordinates
+adelaide <- aec_extract_f(nat_data16, ctr=c(138.6, -34.9), expand=c(2,3))
 adelaide_carto <- aec_carto_f(adelaide) \%>\% rename(id=region)
-ggplot(data=nat_map) + 
+ggplot(data=nat_map16) + 
   geom_path(aes(x=long, y=lat, group=group, order=order),
                  colour="grey50") +
   geom_point(data=adelaide_carto, aes(x=x, y=y), size=4, alpha=0.4,
@@ -44,7 +46,7 @@ ggplot(data=nat_map) +
         xlim(c(136, 140)) + ylim(-36, -33) +
         coord_equal()
 adelaide_all <- merge(adelaide, adelaide_carto, by="id")
-ggplot(data=nat_map) + 
+ggplot(data=nat_map16) + 
   geom_path(aes(x=long, y=lat, group=group, order=order),
                  colour="grey50") +
   geom_point(data=adelaide_all, aes(x=long_c, y=lat_c), size=2, alpha=0.4,

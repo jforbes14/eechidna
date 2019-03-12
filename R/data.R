@@ -1,27 +1,677 @@
+#' 2016 Australian Federal election data: First preference votes for candidates (House of 
+#' Representatives) in each electorate.
+#' 
+#' A dataset containing first preference vote counts, candidate names, and 
+#' other results for the House of Representatives from the 2016 Australian federal election. 
+#' The data were obtained from the Australian Electoral Commission, and downloaded 
+#' from \url{http://results.aec.gov.au/20499/Website/HouseDownloadsMenu-20499-csv.htm} and 
+#' \url{http://www.aec.gov.au/elections/federal_elections/2016/downloads.htm}.
+#' 
+#' @format A data frame with the following variables:
+#' \itemize{
+#'     \item StateAb: Abbreviation for state name    
+#'     \item DivisionID: Electoral division ID    
+#'     \item DivisionNm:  Electoral division name   
+#'     \item BallotPosition: Candidate's position on the ballot 
+#'     \item CandidateID: Candidate ID       
+#'     \item Surname: Candidate surname          
+#'     \item GivenNm: Candidate given name            
+#'     \item PartyAb: Abbreviation for political party name           
+#'     \item PartyNm: Political party name      
+#'     \item Elected: Whether the candidate was elected (Y/N)           
+#'     \item HistoricElected: Whether the candidate is the incumbent member  
+#'     \item OrdinaryVotes: Number of ordinary votes cast at the electorate for the candidate     
+#'     \item Percent: Percentage of ordinary votes for the candidate     
+#'     }
+"fp16"
 
-#' 2011 Census data on all 150 electorates
+#' 2016 Australian Federal election data: Two party preferred votes for candidates (House of 
+#' Representative) in each electorate.
+#' 
+#' A dataset containing two party preferred vote counts, winning candidate names, and other 
+#' results for the House of Representatives from the 2016 Australian federal election. 
+#' Includes the count of votes for the Australian Labor Party and the count of votes for 
+#' the Liberal-National Coalition for each electorate.
+#' The data were obtained from the Australian Electoral Commission, and downloaded 
+#' from \url{http://results.aec.gov.au/20499/Website/HouseDownloadsMenu-20499-csv.htm} and 
+#' \url{http://www.aec.gov.au/elections/federal_elections/2016/downloads.htm}.
+#' 
+#' @format A data frame with the following variables:
+#' \itemize{
+#'     \item DivisionID: Electoral division ID    
+#'     \item DivisionNm:  Electoral division name   
+#'     \item StateAb: Abbreviation for state name  
+#'     \item LNP_Votes: Count of two party preferred vote in favour of the Liberal National coalition
+#'     \item LNP_Percent: Percentage of two party preferred vote in favour of the Liberal National coalition   
+#'     \item ALP_Votes: Count of two party preferred vote in favour of the Labor party
+#'     \item ALP_Percent: Percentage of two party preferred vote in favour of the Labor party     
+#'     \item TotalVotes: Total number of votes cast     
+#'     \item Swing: Percentage point change in two party preferred vote from the previous election      
+#'     }
+"tpp16"
+
+
+#' 2016 Australian Federal election data: Two candidate preferred votes for candidates
+#' (House of Representatives) in each electorate.
+#' 
+#' A dataset containing two candidate preferred vote counts, and other results for the 
+#' House of Representatives from the 2016 Australian federal election. Includes the count of votes for
+#' the leading two candidates in the electorate after distribution of preferences.
+#' The data were obtained from the Australian Electoral Commission, and downloaded 
+#' from \url{http://results.aec.gov.au/20499/Website/HouseDownloadsMenu-20499-csv.htm} and 
+#' \url{http://www.aec.gov.au/elections/federal_elections/2016/downloads.htm}.
+#' 
+#' @format A data frame with the following variables:
+#' \itemize{
+#'     \item StateAb: Abbreviation for state name    
+#'     \item DivisionID: Electoral division ID    
+#'     \item DivisionNm:  Electoral division name             
+#'     \item BallotPosition: Candidate's position on the ballot      
+#'     \item CandidateID: Candidate ID       
+#'     \item Surname: Candidate surname          
+#'     \item GivenNm: Candidate given name 
+#'     \item PartyAb: Abbreviation for political party name           
+#'     \item PartyNm: Political party name        
+#'     \item Elected: Whether the candidate was elected (Y/N)           
+#'     \item HistoricElected: Whether the candidate is the incumbent member      
+#'     \item OrdinaryVotes: Number of ordinary votes cast for the candidate 
+#'     \item Percent: Percentage of ordinary votes cast for the candidate    
+#'     }
+"tcp16"
+
+#' 2013 Australian Federal election data: First preference votes for candidates (House of 
+#' Representatives) in each electorate.
+#' 
+#' A dataset containing first preference vote counts, candidate names, and other results for the
+#' House of Representatives from the 2013 Australian federal election. 
+#' The data were obtained from the Australian Electoral Commission, and downloaded 
+#' from \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm} and 
+#' \url{http://www.aec.gov.au/elections/federal_elections/2013/downloads.htm}.
+#' 
+#' @format A data frame with the following variables:
+#' \itemize{
+#'     \item StateAb: Abbreviation for state name    
+#'     \item DivisionID: Electoral division ID    
+#'     \item DivisionNm:  Electoral division name   
+#'     \item BallotPosition: Candidate's position on the ballot 
+#'     \item CandidateID: Candidate ID       
+#'     \item Surname: Candidate surname          
+#'     \item GivenNm: Candidate given name            
+#'     \item PartyAb: Abbreviation for political party name           
+#'     \item PartyNm: Political party name      
+#'     \item Elected: Whether the candidate was elected (Y/N)           
+#'     \item HistoricElected: Whether the candidate is the incumbent member  
+#'     \item OrdinaryVotes: Number of ordinary votes cast at the electorate for the candidate     
+#'     \item Percent: Percentage of ordinary votes for the candidate     
+#'     }
+"fp13"
+
+#' 2013 Australian Federal election data: Two party preferred votes for candidates (House of 
+#' Representatives) in each electorate.
+#' 
+#' A dataset containing two party preferred vote counts, winning candidate names, 
+#' and other results for the House of Representatives from the 2013 Australian federal 
+#' election. Includes the count of votes for the Australian Labor Party and the count 
+#' of votes for the Liberal-National Coalition for each electorate.
+#' The data were obtained from the Australian Electoral Commission, and downloaded 
+#' from \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm} and 
+#' \url{http://www.aec.gov.au/elections/federal_elections/2013/downloads.htm}.
+#' 
+#' @format A data frame with the following variables:
+#' \itemize{
+#'     \item DivisionID: Electoral division ID    
+#'     \item DivisionNm:  Electoral division name   
+#'     \item StateAb: Abbreviation for state name  
+#'     \item LNP_Votes: Count of two party preferred vote in favour of the Liberal National coalition
+#'     \item LNP_Percent: Percentage of two party preferred vote in favour of the Liberal National coalition   
+#'     \item ALP_Votes: Count of two party preferred vote in favour of the Labor party
+#'     \item ALP_Percent: Percentage of two party preferred vote in favour of the Labor party     
+#'     \item TotalVotes: Total number of votes cast     
+#'     \item Swing: Percentage point change in two party preferred vote from the previous election      
+#'     }
+"tpp13"
+
+#' 2013 Australian Federal election data: Two candidate preferred votes for candidates 
+#' (House of Representatives) in each electorate.
+#' 
+#' A dataset containing two candidate preferred vote counts, and other results for the 
+#' House of Representatives from the 2013 Australian federal election. Includes the count of votes for
+#' the leading two candidates in the electorate after distribution of preferences.
+#' The data were obtained from the Australian Electoral Commission, and downloaded 
+#' from \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm} and 
+#' \url{http://www.aec.gov.au/elections/federal_elections/2013/downloads.htm}.
+#' 
+#' @format A data frame with the following variables:
+#' \itemize{
+#'     \item StateAb: Abbreviation for state name    
+#'     \item DivisionID: Electoral division ID    
+#'     \item DivisionNm:  Electoral division name             
+#'     \item BallotPosition: Candidate's position on the ballot      
+#'     \item CandidateID: Candidate ID       
+#'     \item Surname: Candidate surname          
+#'     \item GivenNm: Candidate given name 
+#'     \item PartyAb: Abbreviation for political party name           
+#'     \item PartyNm: Political party name        
+#'     \item Elected: Whether the candidate was elected (Y/N)           
+#'     \item HistoricElected: Whether the candidate is the incumbent member      
+#'     \item OrdinaryVotes: Number of ordinary votes cast for the candidate 
+#'     \item Percent: Percentage of ordinary votes cast for the candidate    
+#'     }
+"tcp13"
+
+#' 2010 Australian Federal election data: First preference votes for candidates (House of House of 
+#' Representative for each electorate
+#' 
+#' A dataset containing first preference vote counts, candidate names, and other results for the
+#' House of Representatives from the 2010 Australian federal election. 
+#' The data were obtained from the Australian Electoral Commission, and downloaded 
+#' from \url{http://results.aec.gov.au/15508/Website/HouseDownloadsMenu-15508-csv.htm} and 
+#' \url{http://www.aec.gov.au/elections/federal_elections/2010/downloads.htm}.
+#' 
+#' @format A data frame with the following variables:
+#' \itemize{
+#'     \item StateAb: Abbreviation for state name    
+#'     \item DivisionID: Electoral division ID    
+#'     \item DivisionNm:  Electoral division name   
+#'     \item BallotPosition: Candidate's position on the ballot 
+#'     \item CandidateID: Candidate ID       
+#'     \item Surname: Candidate surname          
+#'     \item GivenNm: Candidate given name            
+#'     \item PartyAb: Abbreviation for political party name           
+#'     \item PartyNm: Political party name      
+#'     \item Elected: Whether the candidate was elected (Y/N)           
+#'     \item HistoricElected: Whether the candidate is the incumbent member  
+#'     \item OrdinaryVotes: Number of ordinary votes cast at the electorate for the candidate     
+#'     \item Percent: Percentage of ordinary votes for the candidate     
+#'     }
+"fp10"
+
+#' 2010 Australian Federal election data: Two party preferred votes for candidates (House of Representatives) in each electorate.
+#' 
+#' A dataset containing two party preferred vote counts, winning candidate names, and other results for the House of Representatives from the 2010 Australian federal election. Includes the count of votes for
+#' the Australian Labor Party and the count of votes for the Liberal-National Coalition for each electorate.
+#' The data were obtained from the Australian Electoral Commission, and downloaded 
+#' from \url{http://results.aec.gov.au/15508/Website/HouseDownloadsMenu-15508-csv.htm} and 
+#' \url{http://www.aec.gov.au/elections/federal_elections/2010/downloads.htm}.
+#' 
+#' @format A data frame with the following variables:
+#' \itemize{
+#'     \item DivisionID: Electoral division ID    
+#'     \item DivisionNm:  Electoral division name   
+#'     \item StateAb: Abbreviation for state name  
+#'     \item LNP_Votes: Count of two party preferred vote in favour of the Liberal National coalition
+#'     \item LNP_Percent: Percentage of two party preferred vote in favour of the Liberal National coalition   
+#'     \item ALP_Votes: Count of two party preferred vote in favour of the Labor party
+#'     \item ALP_Percent: Percentage of two party preferred vote in favour of the Labor party     
+#'     \item TotalVotes: Total number of votes cast     
+#'     \item Swing: Percentage point change in two party preferred vote from the previous election      
+#'     }
+"tpp10"
+
+#' 2010 Australian Federal election data: Two candidate preferred votes for candidates
+#' (House of Representatives) in each electorate.
+#' 
+#' A dataset containing two candidate preferred vote counts, and other results for the House of Representatives from the 2010 Australian federal election. Includes the count of votes for
+#' the leading two candidates in the electorate after distribution of preferences.
+#' The data were obtained from the Australian Electoral Commission, and downloaded 
+#' from \url{http://results.aec.gov.au/15508/Website/HouseDownloadsMenu-15508-csv.htm} and 
+#' \url{http://www.aec.gov.au/elections/federal_elections/2010/downloads.htm}.
+#' 
+#' @format A data frame with the following variables:
+#' \itemize{
+#'     \item StateAb: Abbreviation for state name    
+#'     \item DivisionID: Electoral division ID    
+#'     \item DivisionNm:  Electoral division name             
+#'     \item BallotPosition: Candidate's position on the ballot      
+#'     \item CandidateID: Candidate ID       
+#'     \item Surname: Candidate surname          
+#'     \item GivenNm: Candidate given name 
+#'     \item PartyAb: Abbreviation for political party name           
+#'     \item PartyNm: Political party name        
+#'     \item Elected: Whether the candidate was elected (Y/N)           
+#'     \item HistoricElected: Whether the candidate is the incumbent member      
+#'     \item OrdinaryVotes: Number of ordinary votes cast for the candidate 
+#'     \item Percent: Percentage of ordinary votes cast for the candidate    
+#'     }
+"tcp10"
+
+#' 2007 Australian Federal election data: First preference votes for candidates (House of Representatives) in each electorate.
+#' 
+#' A dataset containing first preference vote counts, candidate names, and other results for the
+#' House of Representatives from the 2007 Australian federal election. 
+#' The data were obtained from the Australian Electoral Commission, and downloaded 
+#' from \url{http://results.aec.gov.au/13745/Website/HouseDownloadsMenu-13745-csv.htm} and 
+#' \url{http://www.aec.gov.au/elections/federal_elections/2007/downloads.htm}.
+#' 
+#' @format A data frame with the following variables:
+#' \itemize{
+#'     \item StateAb: Abbreviation for state name    
+#'     \item DivisionID: Electoral division ID    
+#'     \item DivisionNm:  Electoral division name   
+#'     \item BallotPosition: Candidate's position on the ballot 
+#'     \item CandidateID: Candidate ID       
+#'     \item Surname: Candidate surname          
+#'     \item GivenNm: Candidate given name            
+#'     \item PartyAb: Abbreviation for political party name           
+#'     \item PartyNm: Political party name      
+#'     \item Elected: Whether the candidate was elected (Y/N)           
+#'     \item HistoricElected: Whether the candidate is the incumbent member  
+#'     \item OrdinaryVotes: Number of ordinary votes cast at the electorate for the candidate     
+#'     \item Percent: Percentage of ordinary votes for the candidate     
+#'     }
+"fp07"
+
+#' 2007 Australian Federal election data: Two party preferred votes for candidates (House of Representatives) in each electorate.
+#' 
+#' A dataset containing two party preferred vote counts, winning candidate names, and other results for the House of Representatives from the 2007 Australian federal election. Includes the count of votes for
+#' the Australian Labor Party and the count of votes for the Liberal-National Coalition for each electorate.
+#' The data were obtained from the Australian Electoral Commission, and downloaded 
+#' from \url{http://results.aec.gov.au/13745/Website/HouseDownloadsMenu-13745-csv.htm} and 
+#' \url{http://www.aec.gov.au/elections/federal_elections/2007/downloads.htm}.
+#' 
+#' @format A data frame with the following variables:
+#' \itemize{
+#'     \item DivisionID: Electoral division ID    
+#'     \item DivisionNm:  Electoral division name   
+#'     \item StateAb: Abbreviation for state name  
+#'     \item LNP_Votes: Count of two party preferred vote in favour of the Liberal National coalition
+#'     \item LNP_Percent: Percentage of two party preferred vote in favour of the Liberal National coalition   
+#'     \item ALP_Votes: Count of two party preferred vote in favour of the Labor party
+#'     \item ALP_Percent: Percentage of two party preferred vote in favour of the Labor party     
+#'     \item TotalVotes: Total number of votes cast     
+#'     \item Swing: Percentage point change in two party preferred vote from the previous election      
+#'     }
+"tpp07"
+
+#' 2007 Australian Federal election data: Two candidate preferred votes for candidates 
+#' (House of Representatives) in each electorate.
+#' 
+#' A dataset containing two candidate preferred vote counts, and other results for the 
+#' House of Representatives from the 2007 Australian federal election. Includes the count of votes for
+#' the leading two candidates in the electorate after distribution of preferences.
+#' The data were obtained from the Australian Electoral Commission, and downloaded 
+#' from \url{http://results.aec.gov.au/13745/Website/HouseDownloadsMenu-13745-csv.htm} and 
+#' \url{http://www.aec.gov.au/elections/federal_elections/2007/downloads.htm}.
+#' 
+#' @format A data frame with the following variables:
+#' \itemize{
+#'     \item StateAb: Abbreviation for state name    
+#'     \item DivisionID: Electoral division ID    
+#'     \item DivisionNm:  Electoral division name             
+#'     \item BallotPosition: Candidate's position on the ballot      
+#'     \item CandidateID: Candidate ID       
+#'     \item Surname: Candidate surname          
+#'     \item GivenNm: Candidate given name 
+#'     \item PartyAb: Abbreviation for political party name           
+#'     \item PartyNm: Political party name        
+#'     \item Elected: Whether the candidate was elected (Y/N)           
+#'     \item HistoricElected: Whether the candidate is the incumbent member      
+#'     \item OrdinaryVotes: Number of ordinary votes cast for the candidate 
+#'     \item Percent: Percentage of ordinary votes cast for the candidate    
+#'     }
+"tcp07"
+
+#' 2004 Australian Federal election data: First preference votes for candidates (House of 
+#' Representatives) in each electorate.
+#' 
+#' A dataset containing first preference vote counts, candidate names, and other results for the
+#' House of Representatives from the 2004 Australian federal election. 
+#' The data were obtained from the Australian Electoral Commission, and downloaded 
+#' from \url{http://results.aec.gov.au/12246/results/HouseDownloadsMenu-12246-csv.htm} and 
+#' \url{http://www.aec.gov.au/elections/federal_elections/2004/downloads.htm}.
+#' 
+#' @format A data frame with the following variables:
+#' \itemize{
+#'     \item StateAb: Abbreviation for state name    
+#'     \item DivisionID: Electoral division ID    
+#'     \item DivisionNm:  Electoral division name   
+#'     \item BallotPosition: Candidate's position on the ballot 
+#'     \item CandidateID: Candidate ID       
+#'     \item Surname: Candidate surname          
+#'     \item GivenNm: Candidate given name            
+#'     \item PartyAb: Abbreviation for political party name           
+#'     \item PartyNm: Political party name      
+#'     \item Elected: Whether the candidate was elected (Y/N)            
+#'     \item OrdinaryVotes: Number of ordinary votes cast at the electorate for the candidate     
+#'     \item Percent: Percentage of ordinary votes for the candidate     
+#'     }
+"fp04"
+
+#' 2004 Australian Federal election data: Two party preferred votes for candidates (House of 
+#' Representatives) in each electorate.
+#' 
+#' A dataset containing two party preferred vote counts, winning candidate names, and other results for the House of Representatives from the 2004 Australian federal election. Includes the count of votes for
+#' the Australian Labor Party and the count of votes for the Liberal-National Coalition for each electorate.
+#' The data were obtained from the Australian Electoral Commission, and downloaded 
+#' from \url{http://results.aec.gov.au/12246/results/HouseDownloadsMenu-12246-csv.htm} and 
+#' \url{http://www.aec.gov.au/elections/federal_elections/2004/downloads.htm}.
+#' 
+#' @format A data frame with the following variables:
+#' \itemize{
+#'     \item DivisionID: Electoral division ID    
+#'     \item DivisionNm:  Electoral division name   
+#'     \item StateAb: Abbreviation for state name  
+#'     \item LNP_Votes: Count of two party preferred vote in favour of the Liberal National coalition
+#'     \item LNP_Percent: Percentage of two party preferred vote in favour of the Liberal National coalition   
+#'     \item ALP_Votes: Count of two party preferred vote in favour of the Labor party
+#'     \item ALP_Percent: Percentage of two party preferred vote in favour of the Labor party     
+#'     \item TotalVotes: Total number of votes cast     
+#'     \item Swing: Percentage point change in two party preferred vote from the previous election      
+#'     }
+"tpp04"
+
+#' 2004 Australian Federal election data: Two candidate preferred votes for candidates 
+#' (House of Representatives) in each electorate.
+#' 
+#' A dataset containing two candidate preferred vote counts, and other results for the House of Representatives from the 2004 Australian federal election. Includes the count of votes for
+#' the leading two candidates in the electorate after distribution of preferences.
+#' The data were obtained from the Australian Electoral Commission, and downloaded 
+#' from \url{http://results.aec.gov.au/12246/results/HouseDownloadsMenu-12246-csv.htm} and 
+#' \url{http://www.aec.gov.au/elections/federal_elections/2004/downloads.htm}.
+#' 
+#' @format A data frame with the following variables:
+#' \itemize{
+#'     \item StateAb: Abbreviation for state name    
+#'     \item DivisionID: Electoral division ID    
+#'     \item DivisionNm:  Electoral division name             
+#'     \item BallotPosition: Candidate's position on the ballot      
+#'     \item CandidateID: Candidate ID       
+#'     \item Surname: Candidate surname          
+#'     \item GivenNm: Candidate given name 
+#'     \item PartyAb: Abbreviation for political party name           
+#'     \item PartyNm: Political party name        
+#'     \item Elected: Whether the candidate was elected (Y/N)                 
+#'     \item OrdinaryVotes: Number of ordinary votes cast for the candidate 
+#'     \item Percent: Percentage of ordinary votes cast for the candidate    
+#'     }
+"tcp04"
+
+#' 2001 Australian Federal election data: First preference votes for candidates (House of Representatives) in each electorate.
+#' 
+#' A dataset containing first preference vote counts, candidate names, and other results for the
+#' House of Representatives from the 2001 Australian federal election. 
+#' The data were obtained from the Australian Electoral Commission, and downloaded 
+#' from \url{https://www.aec.gov.au/About_AEC/Publications/statistics/files/aec-2001-election-statistics.zip}.
+#' 
+#' @format A data frame with the following variables:
+#' \itemize{
+#'     \item StateAb: Abbreviation for state name  
+#'     \item DivisionNm:  Electoral division name   
+#'     \item Surname: Candidate surname          
+#'     \item GivenNm: Candidate given name            
+#'     \item PartyAb: Abbreviation for political party name           
+#'     \item PartyNm: Political party name      
+#'     \item Elected: Whether the candidate was elected (Y/N)            
+#'     \item Percent: Percentage of ordinary votes for the candidate     
+#'     }
+"fp01"
+
+#' 2001 Australian Federal election data: Two party preferred votes for candidates (House of Representatives) in each electorate. where Labor and Liberal parties were the two most popular parties.
+#' 
+#' A dataset containing two party preferred vote counts, winning candidate names, and other results for 
+#' the House of Representatives from the 2001 Australian federal election. Includes the count of votes for
+#' the Australian Labor Party and the count of votes for the Liberal-National Coalition for each electorate.
+#' The data were obtained from the Australian Electoral Commission, and downloaded 
+#' from \url{https://www.aec.gov.au/About_AEC/Publications/statistics/files/aec-2001-election-statistics.zip}.
+#' 
+#' @format A data frame with the following variables:
+#' \itemize{ 
+#'     \item DivisionNm:  Electoral division name   
+#'     \item StateAb: Abbreviation for state name  
+#'     \item LNP_Votes: Count of two party preferred vote in favour of the Liberal National coalition
+#'     \item LNP_Percent: Percentage of two party preferred vote in favour of the Liberal National coalition   
+#'     \item ALP_Votes: Count of two party preferred vote in favour of the Labor party
+#'     \item ALP_Percent: Percentage of two party preferred vote in favour of the Labor party     
+#'     \item TotalVotes: Total number of votes cast     
+#'     \item Swing: Percentage point change in two party preferred vote from the previous election      
+#'     }
+"tpp01"
+
+#' 2001 Australian Federal election data: Two candidate preferred votes for candidates 
+#' (House of Representatives) in each electorate.
+#' 
+#' A dataset containing two candidate preferred vote counts, and other results for the House of Representatives from the 2001 Australian federal election. Includes the count of votes for
+#' the leading two candidates in the electorate after distribution of preferences.
+#' The data were obtained from the Australian Electoral Commission, and downloaded 
+#' from \url{https://www.aec.gov.au/About_AEC/Publications/statistics/files/aec-2001-election-statistics.zip}.
+#' 
+#' @format A data frame with the following variables:
+#' \itemize{
+#'     \item StateAb: Abbreviation for state name   
+#'     \item DivisionNm:  Electoral division name             
+#'     \item Surname: Candidate surname          
+#'     \item GivenNm: Candidate given name 
+#'     \item Elected: Whether the candidate was elected (Y/N)  
+#'     \item Percent: Percentage of ordinary votes cast for the candidate   
+#'     \item PartyAb: Abbreviation for political party name            
+#'     \item PartyNm: Political party name      
+#'     \item Swing: Percentage point change in ordinary votes for the party from the previous election      
+#'     }
+"tcp01"
+
+#' Map of Australian Electorates from 2016
 #'
-#' A dataset containing demographic and other information about each electorate.
+#' A dataset containing the map of the all 150 Australian electorates using the 2016 boundaries of the 
+#' The data were obtained from the Australian Electoral Commission, and downloaded 
+#' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
+#' @examples 
+#' 
+#' library(eechidna)
+#' data(nat_map16)
+#' # choropleth map with Australian Census data
+#' nat_map16$region <- nat_map16$elect_div
+#' data(abs2016)
+#' abs2016$region <- abs2016$DivisionNm
+#' library(ggplot2)
+#' library(ggthemes)
+#' both <- intersect(unique(abs2016$region), unique(nat_map16$region))
+#' ggplot(aes(map_id=region), data=subset(abs2016, region %in% both)) +
+#'   geom_map(aes(fill=MedianPersonalIncome), map=subset(nat_map16, region %in% both)) +
+#'   expand_limits(x=nat_map16$long, y=nat_map16$lat) + 
+#'   theme_map()
+#' 
+"nat_map16"
+
+#' Map of Australian Electorates from 2013
+#'
+#' A dataset containing the map of the all 150 Australian electorates using the 2013 boundaries of the 
+#' electorates (and downsampled to a 5\% file to allow fast plotting).
+#' The data were obtained from the Australian Electoral Commission, and downloaded 
+#' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
+#' 
+"nat_map13"
+
+#' Map of Australian Electorates from 2010
+#'
+#' A dataset containing the map of the all 150 Australian electorates using the 2010 boundaries of the 
+#' electorates (and downsampled to a 5\% file to allow fast plotting).
+#' The data were obtained from the Australian Electoral Commission, and downloaded 
+#' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
+#' 
+"nat_map10"
+
+#' Map of Australian Electorates from 2007
+#'
+#' A dataset containing the map of the all 150 Australian electorates using the 2007 boundaries of the 
+#' electorates (and downsampled to a 5\% file to allow fast plotting).
+#' The data were obtained from the Australian Electoral Commission, and downloaded 
+#' from \url{http://www.abs.gov.au/AUSSTATS/abs@@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}.
+#' 
+"nat_map07"
+
+#' Map of Australian Electorates from 2004
+#'
+#' A dataset containing the map of the all 150 Australian electorates using the 2004 boundaries of the 
+#' electorates (and downsampled to a 5\% file to allow fast plotting).
+#' The data were obtained from the Australian Bureau of Statistics, and downloaded 
+#' from \url{http://www.abs.gov.au/AUSSTATS/abs@@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}.
+#' 
+"nat_map04"
+
+#' Map of Australian Electorates from 2001
+#'
+#' A dataset containing the map of the all 150 Australian electorates using the 2001 boundaries of the 
+#' electorates (and downsampled to a 5\% file to allow fast plotting).
+#' The data were obtained from the Australian Government, and downloaded 
+#' from \url{https://data.gov.au/dataset/ds-dga-0b939a62-e53e-4616-add5-77f909b58ddd/details?q=asgc\%202001}.
+#' 
+"nat_map01"
+
+#' Data of the Australian Electorates from 2016
+#'
+#' A dataset containing some demographic information for each of the 150 Australian electorates.
+#' The data were obtained from the Australian Electoral Commission, and downloaded 
+#' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
+#' The data is published 
+#' @format A data frame with 150 rows with the following variables:
+#' \itemize{
+#'     \item id: numeric identifier that links the electorate with the corresponding polygon in `nat_map`.
+#'     \item elect_div: Electorate division name   
+#'     \item state: abbreviation of the state name
+#'     \item numccds: AEC variable that might be filled with meaning or a description down the road
+#'     \item area_sqkm: combined square kilometers of each electorate
+#'     \item long_c: longitude coordinate of electorate (polygon) centroid
+#'     \item lat_c: latitude coordinate of electorate (polygon) centroid
+#'     \item x: latitude coordinate for plotting a cartogram
+#'     \item y: longitude coordinate for plotting a cartogram
+#'     \item radius: variable used in the construction of cartogram points
+#' }
+#' @examples 
+#' 
+#' library(eechidna)
+#' library(tidyverse)
+#' library(ggthemes)
+#' data(nat_map16)
+#' data(fp16)
+#' winners <- fp16 %>% filter(Elected == "Y")
+#' data(nat_data16)
+#' nat_data16$DivisionNm <- toupper(nat_data16$elect_div)
+#' nat_data16 <- nat_data16 %>% left_join(winners, by = "DivisionNm")
+#' 
+#' # Plot
+#' partycolours = c("#FF0033", "#000000", "#CC3300", "#0066CC", "#FFFF00", "#009900")
+#' 
+#' ggplot(data=nat_map16) + 
+#' geom_polygon(aes(x=long, y=lat, group=group), fill="grey90", colour="white") +
+#' geom_point(data=nat_data16, aes(x=x, y=y, colour=PartyNm), size=1.5, alpha=0.8) +
+#' scale_colour_manual(name="Political Party", values=partycolours) +
+#' theme_map() + coord_equal() + theme(legend.position="bottom")
+"nat_data16"
+
+#' Data of the Australian Electorates from 2013
+#'
+#' A dataset containing some demographic information for each of the 150 Australian electorates.
+#' The data were obtained from the Australian Electoral Commission, and downloaded 
+#' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
+#' The data is published 
+#' @format A data frame with 150 rows with the following variables:
+#' \itemize{
+#'     \item id: numeric identifier that links the electorate with the corresponding polygon in `nat_map`.
+#'     \item elect_div: Electorate division name   
+#'     \item state: abbreviation of the state name
+#'     \item numccds: AEC variable that might be filled with meaning or a description down the road
+#'     \item area_sqkm: combined square kilometers of each electorate
+#'     \item long_c: longitude coordinate of electorate (polygon) centroid
+#'     \item lat_c: latitude coordinate of electorate (polygon) centroid
+#'     \item x: latitude coordinate for plotting a cartogram
+#'     \item y: longitude coordinate for plotting a cartogram
+#'     \item radius: variable used in the construction of cartogram points
+#' }
+"nat_data13"
+
+#' Data of the Australian Electorates from 2010
+#'
+#' A dataset containing some demographic information for each of the 150 Australian electorates.
+#' The data were obtained from the Australian Electoral Commission, and downloaded 
+#' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
+#' The data is published 
+#' @format A data frame with 150 rows with the following variables:
+#' \itemize{
+#'     \item id: numeric identifier that links the electorate with the corresponding polygon in `nat_map`.
+#'     \item elect_div: Electorate division name   
+#'     \item state: abbreviation of the state name
+#'     \item numccds: AEC variable that might be filled with meaning or a description down the road
+#'     \item area_sqkm: combined square kilometers of each electorate
+#'     \item long_c: longitude coordinate of electorate (polygon) centroid
+#'     \item lat_c: latitude coordinate of electorate (polygon) centroid
+#'     \item x: latitude coordinate for plotting a cartogram
+#'     \item y: longitude coordinate for plotting a cartogram
+#'     \item radius: variable used in the construction of cartogram points
+#' }
+"nat_data10"
+
+#' Data of the Australian Electorates from 2007
+#'
+#' A dataset containing some demographic information for each of the 150 Australian electorates.
+#' The data were obtained from the Australian Bureau of Statistics, and downloaded 
+#' from \url{http://www.abs.gov.au/AUSSTATS/abs@@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}.
+#' The data is published 
+#' @format A data frame with 150 rows with the following variables:
+#' \itemize{
+#'     \item id: numeric identifier that links the electorate with the corresponding polygon in `nat_map`.
+#'     \item elect_div: Electorate division name   
+#'     \item state: abbreviation of the state name
+#'     \item long_c: longitude coordinate of electorate (polygon) centroid
+#'     \item lat_c: latitude coordinate of electorate (polygon) centroid
+#'     \item x: latitude coordinate for plotting a cartogram
+#'     \item y: longitude coordinate for plotting a cartogram
+#'     \item radius: variable used in the construction of cartogram points
+#' }
+"nat_data07"
+
+#' Data of the Australian Electorates from 2004
+#'
+#' A dataset containing some demographic information for each of the 150 Australian electorates.
+#' The data were obtained from the Australian Bureau of Statistics, and downloaded 
+#' from \url{http://www.abs.gov.au/AUSSTATS/abs@@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}.
+#' The data is published 
+#' @format A data frame with 150 rows with the following variables:
+#' \itemize{
+#'     \item id: numeric identifier that links the electorate with the corresponding polygon in `nat_map`.
+#'     \item elect_div: Electorate division name   
+#'     \item state: abbreviation of the state name
+#'     \item long_c: longitude coordinate of electorate (polygon) centroid
+#'     \item lat_c: latitude coordinate of electorate (polygon) centroid
+#'     \item x: latitude coordinate for plotting a cartogram
+#'     \item y: longitude coordinate for plotting a cartogram
+#'     \item radius: variable used in the construction of cartogram points
+#' }
+"nat_data04"
+
+#' Data of the Australian Electorates from 2001
+#'
+#' A dataset containing some demographic information for each of the 150 Australian electorates.
+#' The data were obtained from the Australian Government, and downloaded 
+#' from \url{https://data.gov.au/dataset/ds-dga-0b939a62-e53e-4616-add5-77f909b58ddd/details?q=asgc\%202001}.
+#' The data is published 
+#' @format A data frame with 150 rows with the following variables:
+#' \itemize{
+#'     \item id: numeric identifier that links the electorate with the corresponding polygon in `nat_map`.
+#'     \item elect_div: Electorate division name   
+#'     \item state: abbreviation of the state name
+#'     \item long_c: longitude coordinate of electorate (polygon) centroid
+#'     \item lat_c: latitude coordinate of electorate (polygon) centroid
+#'     \item x: latitude coordinate for plotting a cartogram
+#'     \item y: longitude coordinate for plotting a cartogram
+#'     \item radius: variable used in the construction of cartogram points
+#' }
+"nat_data01"
+
+#' 2016 Australian Census data on all 150 electorates
+#'
+#' A dataset containing demographic and other information about each electorate from the
+#' Australian Census of Population and Housing.
 #' The data were obtained from the Australian Bureau of Statistics, and downloaded 
 #' from \url{https://www.censusdata.abs.gov.au/datapacks/}.
+#' Electorate boundaries match those in place at the time of the 2016 Federal election.
 #'
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
-#'   \item ID: Commonwealth Electoral District identifier.
-#'   \item Electorate: Name of electorate
-#'   \item State: State containing electorate.
-#'   \item Population: Total population of electorate.
-#'   \item Area: Area of electorate in square kilometres.
-#'   \item MedianIncome: Weekly median income of people within electorate (in $).
-#'   \item Unemployed: Percentage of people unemployed.
-#'   \item Bachelor: Percentage of people whose highest qualification is a Bachelor degree.
-#'   \item Postgraduate: Percentage of people whose highest qualification is a postgraduate degree.
-#'   \item Christianity: Percentage of people affiliated with the Christian religion (of all denominations).
-#'   \item Catholic: Percentage of people affiliated with the Catholic denomimation.
-#'   \item Buddhism: Percentage of people affiliated with the Buddhist religion.
-#'   \item Islam: Percentage of people affiliated with the Islam religion.
-#'   \item Judaism: Percentageof people affiliated with the Jewish religion. 
-#'   \item NoReligion: Percentage of people with no religious affiliation.
+#'   \item ID:Commonwealth Electoral District identifier
+#'   \item DivisionNm: Name of electorate
+#'   \item State: State containing electorate
+#'   \item Population: Total population of electorate
+#'   \item Area: Area of electorate division in square kilometres
 #'   \item Age00_04: Percentage of people aged 0-4.
 #'   \item Age05_14: Percentage of people aged 5-9.
 #'   \item Age15_19: Percentage of people aged 15-19.
@@ -33,551 +683,844 @@
 #'   \item Age65_74: Percentage of people aged 65-74.
 #'   \item Age75_84: Percentage of people aged 75-84.
 #'   \item Age85plus: Percentage of people aged 85 or higher.
-#'   \item BornOverseas: Percentage of people born outside Australia.
-#'   \item Indigenous: Percentage of people who are Indigenous.
-#'   \item EnglishOnly: Percentage of people who speak only English.
-#'   \item OtherLanguageHome: Percentage of people who speak a language other than English at home.
-#'   \item Married: Percentage of people who are married.
-#'   \item DeFacto: Percentage of people who are in a de facto marriage.
-#'   \item FamilyRatio: Total number of families to total number of people (times 100).
-#'   \item Internet: Percentage of people with home internet.
-#'   \item NotOwned: Percentage of dwellings not owned (either outright or with a mortgage).
+#'   \item Anglican: Percentage of people affiliated with the Anglican denomimation
+#'   \item AusCitizen: Percentage of people who are Australian Citizens
+#'   \item AverageHouseholdSize: Average number of people in a household 
+#'   \item BachelorAbv: Percentage of people who have completed a Bachelor degree or above
+#'   \item Born_Asia: Percentage of people born in Asia
+#'   \item Born_MidEast: Percentage of people born in the Middle East
+#'   \item Born_SE_Europe: Percentage of people born in South Eastern Europe
+#'   \item Born_UK: Percentage of people born in the United Kingdom
+#'   \item BornElsewhere: Percentage of people who were born overseas, outside of Asia, Middle East, South Eastern Europe and the UK
+#'   \item BornOverseas_NS: Percentage of people who did not answer the question relating to birthplace
+#'   \item Buddhism: Percentage of people affiliated with the Buddhist religion
+#'   \item Catholic: Percentage of people affiliated with the Catholic denomimation
+#'   \item Christianity: Percentage of people affiliated with the Christian religion (of all denominations)
+#'   \item Couple_NoChild_House: Percentage of households made up of a couple with no children
+#'   \item Couple_WChild_House: Percentage of households made up of a couple with children
+#'   \item CurrentlyStudying: Percentage of people who are currently studying
+#'   \item DeFacto: Percentage of people who are in a de facto marriage
+#'   \item DiffAddress: Percentage of people who live at a different address to what they did 5 years ago
+#'   \item DipCert: Percentage of people who have completed a diploma or certificate
+#'   \item Distributive: Percentage of employed persons who work in wholesale trade, retail trade, transport, post or warehousing related industries
+#'   \item EmuneratedElsewhere: Percentage of people who receive emuneration outside of Australia, out of the total population plus overseas visitors
+#'   \item EnglishOnly: Percentage of people who speak only English
+#'   \item Extractive: Percentage of employed persons who work in extractive industries (includes mining, gas, water, agriculture, waste, electricity)
+#'   \item FamilyIncome_NS: Percentage of people who did not answer the question relating to family income
+#'   \item FamilyRatio: Average number of people per family
+#'   \item Finance: Percentage of employed persons who work in finance or insurance related industries
+#'   \item HighSchool: Percentage of people who have completed high school
+#'   \item HighSchool_NS: Rate of nonresponse for questions relating to high school completion
+#'   \item HouseholdIncome_NS: Percentage of people who did not answer the question relating to houshold income
+#'   \item Indigenous: Percentage of people who are Indigenous
+#'   \item InternetAccess: Percentage of people with access to the internet
+#'   \item InternetAccess_NS: Rate of nonresponse for questions relating to internal access
+#'   \item InternetUse: Percentage of people who used interent in the last week (2001 only)
+#'   \item InternetUse_NS: Rate of nonresponse for questions relating to internet use (2001 only)
+#'   \item Islam: Percentage of people affiliated with the Islamic religion
+#'   \item Judaism: Percentage of people affiliated with the Jewish religion
+#'   \item Laborer: Percentage of employed persons who work as a laborer
+#'   \item Language_NS: Rate of nonresponse for questions relating to language spoken at home
+#'   \item LFParticipation: Labor force participation rate
+#'   \item ManagerAdminClericalSales: Percentage of employed persons who work in management, administration, clerical duties and sales
+#'   \item Married: Percentage of people who are married
+#'   \item MedianAge: Median age
+#'   \item MedianFamilyIncome: Median weekly family income (in $)
+#'   \item MedianHouseholdIncome: Median weekly household income (in $)
+#'   \item MedianLoanPay: Median mortgage loan repayment amount (of mortgage payments, in $)
+#'   \item MedianPersonalIncome: Median weekly personal income (in $)
+#'   \item MedianRent: Median weekly rental payment amount (of those who rent, in $)
+#'   \item Mortgage: Percentage of dwellings that are on a mortgage
+#'   \item NoReligion: Percentage of people with no religion
+#'   \item OneParent_House: Percentage of households made up of one parent with children
+#'   \item Other_NonChrist: Percentage of people affiliated with a religion other than Christianity, Buddhism, Islam and Judaism
+#'   \item OtherChrist: Percentage of people affiliated with a denomination of the Christian religion other than Anglican or Catholic
+#'   \item OtherLanguageHome: Percentage of people who speak a language other than English at home
+#'   \item Owned: Percentage of dwellings that are owned outright
+#'   \item PersonalIncome_NS: Rate of nonresponse for questions relating to personal income
+#'   \item Professional: Percentage of employed persons who work as a professional
+#'   \item PublicHousing: Percentage of dwellings that are owned by the government, and rented out to tenants
+#'   \item Religion_NS: Rate of nonresponse for questions relating to religion
+#'   \item Rent_NS: Rate of nonresponse for questions relating to rental costs
+#'   \item Renting: Percentage of dwellings that are being rented
+#'   \item SocialServ: Percentage of employed persons who work in education and training, healthcare, wocial work, community, arts and recreation
+#'   \item SP_House: Percentage of households occupied by a single person
+#'   \item Tenure_NS: Rate of nonresponse for questions relating to tenure
+#'   \item Tradesperson: Percentage of employed persons who specialise in a trade
+#'   \item Transformative: Percentage of employed persons who work in construction or manufacturing related industries
+#'   \item Unemployed: Unemployment rate
+#'   \item University_NS: Rate of nonresponse for questions relating to University
+#'   \item Volunteer: Percentage of people who work as a volunteer
+#'   \item Volunteer_NS: Rate of nonresponse for questions relating to working as a volunteer
 #' }
-"abs2011"    
-
-#' 2013 General election data for first preference votes for candidates for the House of Representatives for each polling place
 #' 
-#' A dataset containing first preference vote counts, candidate names, polling place locations,
-#' and other results for the
-#' House of Representatives from the 2013 Australian federal election. 
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm} and 
-#' \url{http://www.aec.gov.au/elections/federal_elections/2013/downloads.htm}.
-#' 
-#' @format A data frame with the following variables:
-#' \itemize{
-#'     \item ID: Electoral division ID    
-#'     \item Electorate:  Electoral division name   
-#'     \item PollingPlaceID: Polling place ID  
-#'     \item PollingPlace: Polling place name     
-#'     \item CandidateID: Candidate ID       
-#'     \item Surname: Candidate surname          
-#'     \item GivenNm: Candidate given name            
-#'     \item BallotPosition: Candidate's position on the ballot    
-#'     \item Elected: Whether the candidate was elected (Y/N)           
-#'     \item HistoricElected:   
-#'     \item PartyAb: Abbreviation for political party name           
-#'     \item PartyNm: Political party name           
-#'     \item OrdinaryVotes: Number of ordinates votes cast at the polling place for the candidate     
-#'     \item Swing:             
-#'     \item State: Abbreviation for state name             
-#'     \item PollingPlaceTypeID:
-#'     \item Premises Nm:        
-#'     \item PremisesAddress1:  
-#'     \item PremisesAddress2:  
-#'     \item PremisesAddress3:  
-#'     \item PremisesSuburb:    
-#'     \item PremisesStateAb:   
-#'     \item PremisesPostCode:  
-#'     \item Latitude:          
-#'     \item Longitude:
-#'     \item uid:.
-#'     }
-"aec2013_fp"
-
-#' 2013 General election data for first preference votes for candidates for the House of Representative for each electorate
-#' 
-#' A dataset containing first preference vote counts, candidate names, and other results for the
-#' House of Representatives from the 2013 Australian federal election. 
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm} and 
-#' \url{http://www.aec.gov.au/elections/federal_elections/2013/downloads.htm}.
-#' 
-#' @format A data frame with the following variables:
-#' \itemize{
-#'     \item ID: Electoral division ID    
-#'     \item Electorate:  Electoral division name   
-#'     \item CandidateID: Candidate ID       
-#'     \item Surname: Candidate surname          
-#'     \item GivenNm: Candidate given name            
-#'     \item BallotPosition: Candidate's position on the ballot    
-#'     \item Elected: Whether the candidate was elected (Y/N)           
-#'     \item HistoricElected:   
-#'     \item PartyAb: Abbreviation for political party name           
-#'     \item PartyNm: Political party name           
-#'     \item OrdinaryVotes: Number of ordinates votes cast at the polling place for the candidate     
-#'     \item State: Abbreviation for state name             
-#'     }
-"aec2013_fp_electorate"
-
-#' 2013 General election data for two party preferred votes for the House of Representatives for each polling place
-#' 
-#' A dataset containing two party preferred vote counts, winning candidate names, polling place locations,
-#' and other results for the House of Representatives from the 2013 Australian federal election. Includes the count of votes for
-#' the Australian Labor Party and the count of votes for the Liberal-National Coalition for each polling place.
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm} and 
-#' \url{http://www.aec.gov.au/elections/federal_elections/2013/downloads.htm}.
-#' 
-#' @format A data frame with the following variables:
-#' \itemize{
-#'     \item ID: Electoral division ID    
-#'     \item Electorate:  Electoral division name   
-#'     \item PollingPlaceID: Polling place ID  
-#'     \item PollingPlace: Polling place name     
-#'     \item CandidateID: Candidate ID       
-#'     \item Surname: Candidate surname          
-#'     \item GivenNm: Candidate given name            
-#'     \item BallotPosition: Candidate's position on the ballot    
-#'     \item Elected: Whether the candidate was elected (Y/N)           
-#'     \item HistoricElected:   
-#'     \item PartyAb: Abbreviation for political party name           
-#'     \item PartyNm: Political party name           
-#'     \item OrdinaryVotes: Number of ordinates votes cast at the polling place for the candidate     
-#'     \item Swing:             
-#'     \item State: Abbreviation for state name             
-#'     \item PollingPlaceTypeID:
-#'     \item Premises Nm:        
-#'     \item PremisesAddress1:  
-#'     \item PremisesAddress2:  
-#'     \item PremisesAddress3:  
-#'     \item PremisesSuburb:    
-#'     \item PremisesStateAb:   
-#'     \item PremisesPostCode:  
-#'     \item Latitude:          
-#'     \item Longitude:
-#'     \item Australian.Labor.Party.Votes:        
-#'     \item Australian.Labor.Party.Percentage:    
-#'     \item Liberal.National.Coalition.Votes:    
-#'     \item Liberal.National.Coalition.Percentage:
-#'     \item TotalVotes:
-#'     }
-"aec2013_2pp"
-
-#' 2013 General election data for two party preferred votes for candidates for the House of Representative for each electorate
-#' 
-#' A dataset containing two party preferred vote counts, winning candidate names, and other results for the House of Representatives from the 2013 Australian federal election. Includes the count of votes for
-#' the Australian Labor Party and the count of votes for the Liberal-National Coalition for each polling place.
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm} and 
-#' \url{http://www.aec.gov.au/elections/federal_elections/2013/downloads.htm}.
-#' 
-#' @format A data frame with the following variables:
-#' \itemize{
-#'     \item ID: Electoral division ID    
-#'     \item Electorate:  Electoral division name   
-#'     \item CandidateID: Candidate ID       
-#'     \item Surname: Candidate surname          
-#'     \item GivenNm: Candidate given name            
-#'     \item BallotPosition: Candidate's position on the ballot    
-#'     \item Elected: Whether the candidate was elected (Y/N)           
-#'     \item HistoricElected:   
-#'     \item PartyAb: Abbreviation for political party name           
-#'     \item PartyNm: Political party name           
-#'     \item OrdinaryVotes: Number of ordinates votes cast at the polling place for the candidate     
-#'     \item State: Abbreviation for state name        
-#'     \item Total_Australian_Labor_Party_Votes_per_electorate:     
-#'     \item Average_Australian_Labor_Party_Percentage_in_electorate:    
-#'     \item Total_Liberal_National_Coalition_Votes_per_electorate:      
-#'     \item Average_Liberal_National_Coalition_Percentage_in_electorate:
-#'     \item Total_2pp_votes_per_electorate:     
-#'     }
-"aec2013_2pp_electorate"
-
-#' 2013 General election data for two candidate preferred votes for the House of Representatives for each polling place
-#' 
-#' A dataset containing two candidate preferred vote counts,  polling place locations,
-#' and other results for the House of Representatives from the 2013 Australian federal election. Includes the count of votes for
-#' the leading two candidates in the electorate after distribution of preferences for each polling place.
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm} and 
-#' \url{http://www.aec.gov.au/elections/federal_elections/2013/downloads.htm}.
-#' 
-#' @format A data frame with the following variables:
-#' \itemize{
-#'     \item ID: Electoral division ID    
-#'     \item Electorate:  Electoral division name   
-#'     \item PollingPlace: Polling place name     
-#'     \item PollingPlaceID: Polling place ID  
-#'     \item CandidateID: Candidate ID       
-#'     \item Surname: Candidate surname          
-#'     \item GivenNm: Candidate given name            
-#'     \item BallotPosition: Candidate's position on the ballot    
-#'     \item Elected: Whether the candidate was elected (Y/N)           
-#'     \item HistoricElected:   
-#'     \item PartyAb: Abbreviation for political party name           
-#'     \item PartyNm: Political party name           
-#'     \item OrdinaryVotes: Number of ordinates votes cast at the polling place for the candidate     
-#'     \item Swing: Percentage change since the last election
-#'     }
-"aec2013_2cp"
-
-#' 2013 General election data for two candidate preferred votes for candidates for the House of Representative for each electorate
-#' 
-#' A dataset containing two candidate preferred vote counts, and other results for the House of Representatives from the 2013 Australian federal election. Includes the count of votes for
-#' the leading two candidates in the electorate after distribution of preferences.
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm} and 
-#' \url{http://www.aec.gov.au/elections/federal_elections/2013/downloads.htm}.
-#' 
-#' @format A data frame with the following variables:
-#' \itemize{
-#'     \item ID: Electoral division ID    
-#'     \item Electorate:  Electoral division name   
-#'     \item CandidateID: Candidate ID       
-#'     \item Surname: Candidate surname          
-#'     \item GivenNm: Candidate given name            
-#'     \item BallotPosition: Candidate's position on the ballot    
-#'     \item Elected: Whether the candidate was elected (Y/N)           
-#'     \item HistoricElected:   
-#'     \item PartyAb: Abbreviation for political party name           
-#'     \item PartyNm: Political party name           
-#'     \item OrdinaryVotes: Number of ordinates votes cast for the candidate     
-#'     \item AbsentVotes: Number of absentee votes cast for the candidate
-#'     \item ProvisionalVotes: Number of provisional votes cast for the candidate
-#'     \item PrePollVotes: Number of pre-poll votes cast for the candidate
-#'     \item PostalVotes: Number of postal votes cast for the candidate
-#'     \item TotalVotes: Total votes cast for the candidate
-#'     \item Swing: Percentage change since the last election
-#'     }
-"aec2013_2cp_electorate"
-
-
-#' Map of Australian Electorate from 2013
-#'
-#' A dataset containing the map of the all 150 Australian electorates using the 2013 boundaries of the 
-#' electorates (and downsampled to a 5\% file to allow fast plotting).
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
 #' @examples 
+#' library(eechidna)
+#' library(dplyr)
+#' data(abs2016)
+#' abs2016 %>% select(DivisionNm, MedianAge, Unemployed, NoReligion, MedianPersonalIncome) %>% head()
 #' 
-#' data(nat_map)
-#' # choropleth map with Census data
-#' nat_map$region <- nat_map$ELECT_DIV
-#' data(abs2011)
-#' abs2011$region <- abs2011$Electorate
-#' library(ggplot2)
-#' library(ggthemes)
-#' both <- intersect(unique(abs2011$region), unique(nat_map$region))
-#' ggplot(aes(map_id=region), data=subset(abs2011, region %in% both)) +
-#'   geom_map(aes(fill=MedianIncome), map=subset(nat_map, region %in% both)) +
-#'   expand_limits(x=nat_map$long, y=nat_map$lat) + 
-#'   theme_map()
-#' 
-"nat_map"
+"abs2016"  
 
-#' (Very small) Map of Australian Electorate from 2013
+#' 2011 Australian Census data on all 150 electorates
 #'
-#' A dataset containing the map of the all 150 Australian electorates using the 2013 boundaries of the 
-#' electorates (and downsampled to a 0.5\% file to allow fast plotting).
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
-# "nat_map_small"
-
-#' Map of Australian Electorate from 2016
+#' A dataset containing demographic and other information about each electorate from the
+#' Australian Census of Population and Housing.
+#' The data were obtained from the Australian Bureau of Statistics, and downloaded 
+#' from \url{https://www.censusdata.abs.gov.au/datapacks/}.
+#' Electorate boundaries match those in place at the time of the 2011 Census.
 #'
-#' A dataset containing the map of the all 150 Australian electorates using the 2016 boundaries of the 
-#' electorates (and downsampled to a 5\% file to allow fast plotting).
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
-#' @examples 
-#' 
-#' data(nat_map_2016)
-#' data(nat_data_2016)
-#' # choropleth map with area of electorate
-#' library(ggplot2)
-#' library(ggthemes)
-#' ggplot(aes(map_id=id), data=nat_data_2016) +
-#'   geom_map(aes(fill=Area_SqKm), map=nat_map_2016) +
-#'   expand_limits(x=nat_map_2016$long, y=nat_map_2016$lat) + 
-#'   theme_map()
-#' 
-"nat_map_2016"
-
-#' Data of the Australian Electorate from 2013
-#'
-#' A dataset containing some demographic information for each of the 150 Australian electorates.
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
-#' The data is published 
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
-#'     \item id: numeric identifier that links the electorate with the corresponding polygon in `nat_map`.
-#'     \item ELECT_DIV: Electorate division name   
-#'     \item STATE: abbreviation of the state name
-#'     \item NUMCCDS: AEC variable that might be filled with meaning or a description down the road
-#'     \item AREA_SQKM: combined square kilometers of each electorate
+#'   \item ID:Commonwealth Electoral District identifier
+#'   \item DivisionNm: Name of electorate
+#'   \item State: State containing electorate
+#'   \item Population: Total population of electorate
+#'   \item Area: Area of electorate division in square kilometres
+#'   \item Age00_04: Percentage of people aged 0-4.
+#'   \item Age05_14: Percentage of people aged 5-9.
+#'   \item Age15_19: Percentage of people aged 15-19.
+#'   \item Age20_24: Percentage of people aged 20-24.
+#'   \item Age25_34: Percentage of people aged 25-34.
+#'   \item Age35_44: Percentage of people aged 35-44.
+#'   \item Age45_54: Percentage of people aged 45-54.
+#'   \item Age55_64: Percentage of people aged 55-64.
+#'   \item Age65_74: Percentage of people aged 65-74.
+#'   \item Age75_84: Percentage of people aged 75-84.
+#'   \item Age85plus: Percentage of people aged 85 or higher.
+#'   \item Anglican: Percentage of people affiliated with the Anglican denomimation
+#'   \item AusCitizen: Percentage of people who are Australian Citizens
+#'   \item AverageHouseholdSize: Average number of people in a household 
+#'   \item BachelorAbv: Percentage of people who have completed a Bachelor degree or above
+#'   \item Born_Asia: Percentage of people born in Asia
+#'   \item Born_MidEast: Percentage of people born in the Middle East
+#'   \item Born_SE_Europe: Percentage of people born in South Eastern Europe
+#'   \item Born_UK: Percentage of people born in the United Kingdom
+#'   \item BornElsewhere: Percentage of people who were born overseas, outside of Asia, Middle East, South Eastern Europe and the UK
+#'   \item BornOverseas_NS: Percentage of people who did not answer the question relating to birthplace
+#'   \item Buddhism: Percentage of people affiliated with the Buddhist religion
+#'   \item Catholic: Percentage of people affiliated with the Catholic denomimation
+#'   \item Christianity: Percentage of people affiliated with the Christian religion (of all denominations)
+#'   \item Couple_NoChild_House: Percentage of households made up of a couple with no children
+#'   \item Couple_WChild_House: Percentage of households made up of a couple with children
+#'   \item CurrentlyStudying: Percentage of people who are currently studying
+#'   \item DeFacto: Percentage of people who are in a de facto marriage
+#'   \item DiffAddress: Percentage of people who live at a different address to what they did 5 years ago
+#'   \item DipCert: Percentage of people who have completed a diploma or certificate
+#'   \item Distributive: Percentage of employed persons who work in wholesale trade, retail trade, transport, post or warehousing related industries
+#'   \item EmuneratedElsewhere: Percentage of people who receive emuneration outside of Australia, out of the total population plus overseas visitors
+#'   \item EnglishOnly: Percentage of people who speak only English
+#'   \item Extractive: Percentage of employed persons who work in extractive industries (includes mining, gas, water, agriculture, waste, electricity)
+#'   \item FamilyIncome_NS: Percentage of people who did not answer the question relating to family income
+#'   \item FamilyRatio: Average number of people per family
+#'   \item Finance: Percentage of employed persons who work in finance or insurance related industries
+#'   \item HighSchool: Percentage of people who have completed high school
+#'   \item HighSchool_NS: Rate of nonresponse for questions relating to high school completion
+#'   \item HouseholdIncome_NS: Percentage of people who did not answer the question relating to houshold income
+#'   \item Indigenous: Percentage of people who are Indigenous
+#'   \item InternetAccess: Percentage of people with access to the internet
+#'   \item InternetAccess_NS: Rate of nonresponse for questions relating to internal access
+#'   \item InternetUse: Percentage of people who used interent in the last week (2001 only)
+#'   \item InternetUse_NS: Rate of nonresponse for questions relating to internet use (2001 only)
+#'   \item Islam: Percentage of people affiliated with the Islamic religion
+#'   \item Judaism: Percentage of people affiliated with the Jewish religion
+#'   \item Laborer: Percentage of employed persons who work as a laborer
+#'   \item Language_NS: Rate of nonresponse for questions relating to language spoken at home
+#'   \item LFParticipation: Labor force participation rate
+#'   \item ManagerAdminClericalSales: Percentage of employed persons who work in management, administration, clerical duties and sales
+#'   \item Married: Percentage of people who are married
+#'   \item MedianAge: Median age
+#'   \item MedianFamilyIncome: Median weekly family income (in $)
+#'   \item MedianHouseholdIncome: Median weekly household income (in $)
+#'   \item MedianLoanPay: Median mortgage loan repayment amount (of mortgage payments, in $)
+#'   \item MedianPersonalIncome: Median weekly personal income (in $)
+#'   \item MedianRent: Median weekly rental payment amount (of those who rent, in $)
+#'   \item Mortgage: Percentage of dwellings that are on a mortgage
+#'   \item NoReligion: Percentage of people with no religion
+#'   \item OneParent_House: Percentage of households made up of one parent with children
+#'   \item Other_NonChrist: Percentage of people affiliated with a religion other than Christianity, Buddhism, Islam and Judaism
+#'   \item OtherChrist: Percentage of people affiliated with a denomination of the Christian religion other than Anglican or Catholic
+#'   \item OtherLanguageHome: Percentage of people who speak a language other than English at home
+#'   \item Owned: Percentage of dwellings that are owned outright
+#'   \item PersonalIncome_NS: Rate of nonresponse for questions relating to personal income
+#'   \item Professional: Percentage of employed persons who work as a professional
+#'   \item PublicHousing: Percentage of dwellings that are owned by the government, and rented out to tenants
+#'   \item Religion_NS: Rate of nonresponse for questions relating to religion
+#'   \item Rent_NS: Rate of nonresponse for questions relating to rental costs
+#'   \item Renting: Percentage of dwellings that are being rented
+#'   \item SocialServ: Percentage of employed persons who work in education and training, healthcare, wocial work, community, arts and recreation
+#'   \item SP_House: Percentage of households occupied by a single person
+#'   \item Tenure_NS: Rate of nonresponse for questions relating to tenure
+#'   \item Tradesperson: Percentage of employed persons who specialise in a trade
+#'   \item Transformative: Percentage of employed persons who work in construction or manufacturing related industries
+#'   \item Unemployed: Unemployment rate
+#'   \item University_NS: Rate of nonresponse for questions relating to University
+#'   \item Volunteer: Percentage of people who work as a volunteer
+#'   \item Volunteer_NS: Rate of nonresponse for questions relating to working as a volunteer
 #' }
-#' @examples 
 #' 
-#' data(nat_data)
-#' nat_map$region <- nat_map$ELECT_DIV
+#' @examples 
+#' library(eechidna)
+#' library(dplyr)
 #' data(abs2011)
-#' abs2011$region <- abs2011$Electorate
-#' both <- intersect(unique(abs2011$region), unique(nat_map$region))
-#' data(nat_data)
-#' library(ggplot2)
-#' library(ggthemes)
-#' ggplot(aes(map_id=region), data=subset(abs2011, region %in% both)) +
-#'   geom_map(aes(fill=MedianIncome), map=subset(nat_map, region %in% both)) +
-#'   expand_limits(x=nat_map$long, y=nat_map$lat) + 
-#'   theme_map()
-#'   
-"nat_data"
+#' abs2011 %>% select(DivisionNm, MedianAge, Unemployed, NoReligion, MedianPersonalIncome) %>% head()
+#' 
+"abs2011" 
 
-#' Data of the Australian Electorate from 2016
+#' 2006 Australian Census data on all 150 electorates (2004 boundaries)
 #'
-#' A dataset containing some demographic information for each of the 150 Australian electorates.
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
-#' The data is published 
+#' A dataset containing demographic and other information about each electorate from the
+#' Australian Census of Population and Housing.
+#' The data were obtained from the Australian Bureau of Statistics, and downloaded 
+#' from \url{https://www.censusdata.abs.gov.au/datapacks/}.
+#' Electorate boundaries match those in place at the time of the 2004 Federal election.
+#'
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
-#'     \item id: numeric identifier that links the electorate with the corresponding polygon in `nat_map`.
-#'     \item Elect_div: Electorate division name   
-#'     \item State: abbreviation of the state name
-#'     \item Numccds: AEC variable that might be filled with meaning or a description down the road
-#'     \item Area_SqKm: combined square kilometers of each electorate
-#'     \item id Numerical id for electorate
-#'     \item long_c Centroid longitude
-#'     \item lat_c Centroid latitude
+#'   \item ID:Commonwealth Electoral District identifier
+#'   \item DivisionNm: Name of electorate
+#'   \item State: State containing electorate
+#'   \item Population: Total population of electorate
+#'   \item Area: Area of electorate division in square kilometres
+#'   \item Age00_04: Percentage of people aged 0-4.
+#'   \item Age05_14: Percentage of people aged 5-9.
+#'   \item Age15_19: Percentage of people aged 15-19.
+#'   \item Age20_24: Percentage of people aged 20-24.
+#'   \item Age25_34: Percentage of people aged 25-34.
+#'   \item Age35_44: Percentage of people aged 35-44.
+#'   \item Age45_54: Percentage of people aged 45-54.
+#'   \item Age55_64: Percentage of people aged 55-64.
+#'   \item Age65_74: Percentage of people aged 65-74.
+#'   \item Age75_84: Percentage of people aged 75-84.
+#'   \item Age85plus: Percentage of people aged 85 or higher.
+#'   \item Anglican: Percentage of people affiliated with the Anglican denomimation
+#'   \item AusCitizen: Percentage of people who are Australian Citizens
+#'   \item AverageHouseholdSize: Average number of people in a household 
+#'   \item BachelorAbv: Percentage of people who have completed a Bachelor degree or above
+#'   \item Born_Asia: Percentage of people born in Asia
+#'   \item Born_MidEast: Percentage of people born in the Middle East
+#'   \item Born_SE_Europe: Percentage of people born in South Eastern Europe
+#'   \item Born_UK: Percentage of people born in the United Kingdom
+#'   \item BornElsewhere: Percentage of people who were born overseas, outside of Asia, Middle East, South Eastern Europe and the UK
+#'   \item BornOverseas_NS: Percentage of people who did not answer the question relating to birthplace
+#'   \item Buddhism: Percentage of people affiliated with the Buddhist religion
+#'   \item Catholic: Percentage of people affiliated with the Catholic denomimation
+#'   \item Christianity: Percentage of people affiliated with the Christian religion (of all denominations)
+#'   \item Couple_NoChild_House: Percentage of households made up of a couple with no children
+#'   \item Couple_WChild_House: Percentage of households made up of a couple with children
+#'   \item CurrentlyStudying: Percentage of people who are currently studying
+#'   \item DeFacto: Percentage of people who are in a de facto marriage
+#'   \item DiffAddress: Percentage of people who live at a different address to what they did 5 years ago
+#'   \item DipCert: Percentage of people who have completed a diploma or certificate
+#'   \item Distributive: Percentage of employed persons who work in wholesale trade, retail trade, transport, post or warehousing related industries
+#'   \item EmuneratedElsewhere: Percentage of people who receive emuneration outside of Australia, out of the total population plus overseas visitors
+#'   \item EnglishOnly: Percentage of people who speak only English
+#'   \item Extractive: Percentage of employed persons who work in extractive industries (includes mining, gas, water, agriculture, waste, electricity)
+#'   \item FamilyIncome_NS: Percentage of people who did not answer the question relating to family income
+#'   \item FamilyRatio: Average number of people per family
+#'   \item Finance: Percentage of employed persons who work in finance or insurance related industries
+#'   \item HighSchool: Percentage of people who have completed high school
+#'   \item HighSchool_NS: Rate of nonresponse for questions relating to high school completion
+#'   \item HouseholdIncome_NS: Percentage of people who did not answer the question relating to houshold income
+#'   \item Indigenous: Percentage of people who are Indigenous
+#'   \item InternetAccess: Percentage of people with access to the internet
+#'   \item InternetAccess_NS: Rate of nonresponse for questions relating to internal access
+#'   \item InternetUse: Percentage of people who used interent in the last week (2001 only)
+#'   \item InternetUse_NS: Rate of nonresponse for questions relating to internet use (2001 only)
+#'   \item Islam: Percentage of people affiliated with the Islamic religion
+#'   \item Judaism: Percentage of people affiliated with the Jewish religion
+#'   \item Laborer: Percentage of employed persons who work as a laborer
+#'   \item Language_NS: Rate of nonresponse for questions relating to language spoken at home
+#'   \item LFParticipation: Labor force participation rate
+#'   \item ManagerAdminClericalSales: Percentage of employed persons who work in management, administration, clerical duties and sales
+#'   \item Married: Percentage of people who are married
+#'   \item MedianAge: Median age
+#'   \item MedianFamilyIncome: Median weekly family income (in $)
+#'   \item MedianHouseholdIncome: Median weekly household income (in $)
+#'   \item MedianLoanPay: Median mortgage loan repayment amount (of mortgage payments, in $)
+#'   \item MedianPersonalIncome: Median weekly personal income (in $)
+#'   \item MedianRent: Median weekly rental payment amount (of those who rent, in $)
+#'   \item Mortgage: Percentage of dwellings that are on a mortgage
+#'   \item NoReligion: Percentage of people with no religion
+#'   \item OneParent_House: Percentage of households made up of one parent with children
+#'   \item Other_NonChrist: Percentage of people affiliated with a religion other than Christianity, Buddhism, Islam and Judaism
+#'   \item OtherChrist: Percentage of people affiliated with a denomination of the Christian religion other than Anglican or Catholic
+#'   \item OtherLanguageHome: Percentage of people who speak a language other than English at home
+#'   \item Owned: Percentage of dwellings that are owned outright
+#'   \item PersonalIncome_NS: Rate of nonresponse for questions relating to personal income
+#'   \item Professional: Percentage of employed persons who work as a professional
+#'   \item PublicHousing: Percentage of dwellings that are owned by the government, and rented out to tenants
+#'   \item Religion_NS: Rate of nonresponse for questions relating to religion
+#'   \item Rent_NS: Rate of nonresponse for questions relating to rental costs
+#'   \item Renting: Percentage of dwellings that are being rented
+#'   \item SocialServ: Percentage of employed persons who work in education and training, healthcare, wocial work, community, arts and recreation
+#'   \item SP_House: Percentage of households occupied by a single person
+#'   \item Tenure_NS: Rate of nonresponse for questions relating to tenure
+#'   \item Tradesperson: Percentage of employed persons who specialise in a trade
+#'   \item Transformative: Percentage of employed persons who work in construction or manufacturing related industries
+#'   \item Unemployed: Unemployment rate
+#'   \item University_NS: Rate of nonresponse for questions relating to University
+#'   \item Volunteer: Percentage of people who work as a volunteer
+#'   \item Volunteer_NS: Rate of nonresponse for questions relating to working as a volunteer
+#' }
+#' 
+#' @examples
+#' library(eechidna)
+#' library(dplyr) 
+#' data(abs2006)
+#' abs2006 %>% select(DivisionNm, MedianAge, Unemployed, NoReligion, MedianPersonalIncome) %>% head()
+#' 
+"abs2006" 
+
+#' 2006 Australian Census data on all 150 electorates (2007 boundaries)
+#'
+#' A dataset containing demographic and other information about each electorate from the
+#' Australian Census of Population and Housing.
+#' The data were obtained from the Australian Bureau of Statistics, and downloaded 
+#' from \url{https://www.censusdata.abs.gov.au/datapacks/}.
+#' Electorate boundaries match those in place at the time of the 2007 Federal election.
+#'
+#' @format A data frame with 150 rows with the following variables:
+#' \itemize{
+#'   \item ID:Commonwealth Electoral District identifier
+#'   \item DivisionNm: Name of electorate
+#'   \item State: State containing electorate
+#'   \item Population: Total population of electorate
+#'   \item Area: Area of electorate division in square kilometres
+#'   \item Age00_04: Percentage of people aged 0-4.
+#'   \item Age05_14: Percentage of people aged 5-9.
+#'   \item Age15_19: Percentage of people aged 15-19.
+#'   \item Age20_24: Percentage of people aged 20-24.
+#'   \item Age25_34: Percentage of people aged 25-34.
+#'   \item Age35_44: Percentage of people aged 35-44.
+#'   \item Age45_54: Percentage of people aged 45-54.
+#'   \item Age55_64: Percentage of people aged 55-64.
+#'   \item Age65_74: Percentage of people aged 65-74.
+#'   \item Age75_84: Percentage of people aged 75-84.
+#'   \item Age85plus: Percentage of people aged 85 or higher.
+#'   \item Anglican: Percentage of people affiliated with the Anglican denomimation
+#'   \item AusCitizen: Percentage of people who are Australian Citizens
+#'   \item AverageHouseholdSize: Average number of people in a household 
+#'   \item BachelorAbv: Percentage of people who have completed a Bachelor degree or above
+#'   \item Born_Asia: Percentage of people born in Asia
+#'   \item Born_MidEast: Percentage of people born in the Middle East
+#'   \item Born_SE_Europe: Percentage of people born in South Eastern Europe
+#'   \item Born_UK: Percentage of people born in the United Kingdom
+#'   \item BornElsewhere: Percentage of people who were born overseas, outside of Asia, Middle East, South Eastern Europe and the UK
+#'   \item BornOverseas_NS: Percentage of people who did not answer the question relating to birthplace
+#'   \item Buddhism: Percentage of people affiliated with the Buddhist religion
+#'   \item Catholic: Percentage of people affiliated with the Catholic denomimation
+#'   \item Christianity: Percentage of people affiliated with the Christian religion (of all denominations)
+#'   \item Couple_NoChild_House: Percentage of households made up of a couple with no children
+#'   \item Couple_WChild_House: Percentage of households made up of a couple with children
+#'   \item CurrentlyStudying: Percentage of people who are currently studying
+#'   \item DeFacto: Percentage of people who are in a de facto marriage
+#'   \item DiffAddress: Percentage of people who live at a different address to what they did 5 years ago
+#'   \item DipCert: Percentage of people who have completed a diploma or certificate
+#'   \item Distributive: Percentage of employed persons who work in wholesale trade, retail trade, transport, post or warehousing related industries
+#'   \item EmuneratedElsewhere: Percentage of people who receive emuneration outside of Australia, out of the total population plus overseas visitors
+#'   \item EnglishOnly: Percentage of people who speak only English
+#'   \item Extractive: Percentage of employed persons who work in extractive industries (includes mining, gas, water, agriculture, waste, electricity)
+#'   \item FamilyIncome_NS: Percentage of people who did not answer the question relating to family income
+#'   \item FamilyRatio: Average number of people per family
+#'   \item Finance: Percentage of employed persons who work in finance or insurance related industries
+#'   \item HighSchool: Percentage of people who have completed high school
+#'   \item HighSchool_NS: Rate of nonresponse for questions relating to high school completion
+#'   \item HouseholdIncome_NS: Percentage of people who did not answer the question relating to houshold income
+#'   \item Indigenous: Percentage of people who are Indigenous
+#'   \item InternetAccess: Percentage of people with access to the internet
+#'   \item InternetAccess_NS: Rate of nonresponse for questions relating to internal access
+#'   \item InternetUse: Percentage of people who used interent in the last week (2001 only)
+#'   \item InternetUse_NS: Rate of nonresponse for questions relating to internet use (2001 only)
+#'   \item Islam: Percentage of people affiliated with the Islamic religion
+#'   \item Judaism: Percentage of people affiliated with the Jewish religion
+#'   \item Laborer: Percentage of employed persons who work as a laborer
+#'   \item Language_NS: Rate of nonresponse for questions relating to language spoken at home
+#'   \item LFParticipation: Labor force participation rate
+#'   \item ManagerAdminClericalSales: Percentage of employed persons who work in management, administration, clerical duties and sales
+#'   \item Married: Percentage of people who are married
+#'   \item MedianAge: Median age
+#'   \item MedianFamilyIncome: Median weekly family income (in $)
+#'   \item MedianHouseholdIncome: Median weekly household income (in $)
+#'   \item MedianLoanPay: Median mortgage loan repayment amount (of mortgage payments, in $)
+#'   \item MedianPersonalIncome: Median weekly personal income (in $)
+#'   \item MedianRent: Median weekly rental payment amount (of those who rent, in $)
+#'   \item Mortgage: Percentage of dwellings that are on a mortgage
+#'   \item NoReligion: Percentage of people with no religion
+#'   \item OneParent_House: Percentage of households made up of one parent with children
+#'   \item Other_NonChrist: Percentage of people affiliated with a religion other than Christianity, Buddhism, Islam and Judaism
+#'   \item OtherChrist: Percentage of people affiliated with a denomination of the Christian religion other than Anglican or Catholic
+#'   \item OtherLanguageHome: Percentage of people who speak a language other than English at home
+#'   \item Owned: Percentage of dwellings that are owned outright
+#'   \item PersonalIncome_NS: Rate of nonresponse for questions relating to personal income
+#'   \item Professional: Percentage of employed persons who work as a professional
+#'   \item PublicHousing: Percentage of dwellings that are owned by the government, and rented out to tenants
+#'   \item Religion_NS: Rate of nonresponse for questions relating to religion
+#'   \item Rent_NS: Rate of nonresponse for questions relating to rental costs
+#'   \item Renting: Percentage of dwellings that are being rented
+#'   \item SocialServ: Percentage of employed persons who work in education and training, healthcare, wocial work, community, arts and recreation
+#'   \item SP_House: Percentage of households occupied by a single person
+#'   \item Tenure_NS: Rate of nonresponse for questions relating to tenure
+#'   \item Tradesperson: Percentage of employed persons who specialise in a trade
+#'   \item Transformative: Percentage of employed persons who work in construction or manufacturing related industries
+#'   \item Unemployed: Unemployment rate
+#'   \item University_NS: Rate of nonresponse for questions relating to University
+#'   \item Volunteer: Percentage of people who work as a volunteer
+#'   \item Volunteer_NS: Rate of nonresponse for questions relating to working as a volunteer
+#' }
+#'
+#' @examples 
+#' library(eechidna)
+#' library(dplyr)
+#' data(abs2006_e07)
+#' abs2006_e07 %>% select(DivisionNm, MedianAge, Unemployed, NoReligion, MedianPersonalIncome) %>% head()
+#'
+"abs2006_e07"  
+
+#' 2001 Australian Census data on all 150 electorates
+#'
+#' A dataset containing demographic and other information about each electorate from the
+#' Australian Census of Population and Housing.
+#' The data were obtained from the Australian Bureau of Statistics, and downloaded 
+#' from \url{https://www.censusdata.abs.gov.au/datapacks/}.
+#' Electorate boundaries match those in place at the time of the 2001 Federal election.
+#'
+#' @format A data frame with 150 rows with the following variables:
+#' \itemize{
+#'   \item ID:Commonwealth Electoral District identifier
+#'   \item DivisionNm: Name of electorate
+#'   \item State: State containing electorate
+#'   \item Population: Total population of electorate
+#'   \item Area: Area of electorate division in square kilometres
+#'   \item Age00_04: Percentage of people aged 0-4.
+#'   \item Age05_14: Percentage of people aged 5-9.
+#'   \item Age15_19: Percentage of people aged 15-19.
+#'   \item Age20_24: Percentage of people aged 20-24.
+#'   \item Age25_34: Percentage of people aged 25-34.
+#'   \item Age35_44: Percentage of people aged 35-44.
+#'   \item Age45_54: Percentage of people aged 45-54.
+#'   \item Age55_64: Percentage of people aged 55-64.
+#'   \item Age65_74: Percentage of people aged 65-74.
+#'   \item Age75_84: Percentage of people aged 75-84.
+#'   \item Age85plus: Percentage of people aged 85 or higher.
+#'   \item Anglican: Percentage of people affiliated with the Anglican denomimation
+#'   \item AusCitizen: Percentage of people who are Australian Citizens
+#'   \item AverageHouseholdSize: Average number of people in a household 
+#'   \item BachelorAbv: Percentage of people who have completed a Bachelor degree or above
+#'   \item Born_Asia: Percentage of people born in Asia
+#'   \item Born_MidEast: Percentage of people born in the Middle East
+#'   \item Born_SE_Europe: Percentage of people born in South Eastern Europe
+#'   \item Born_UK: Percentage of people born in the United Kingdom
+#'   \item BornElsewhere: Percentage of people who were born overseas, outside of Asia, Middle East, South Eastern Europe and the UK
+#'   \item BornOverseas_NS: Percentage of people who did not answer the question relating to birthplace
+#'   \item Buddhism: Percentage of people affiliated with the Buddhist religion
+#'   \item Catholic: Percentage of people affiliated with the Catholic denomimation
+#'   \item Christianity: Percentage of people affiliated with the Christian religion (of all denominations)
+#'   \item Couple_NoChild_House: Percentage of households made up of a couple with no children
+#'   \item Couple_WChild_House: Percentage of households made up of a couple with children
+#'   \item CurrentlyStudying: Percentage of people who are currently studying
+#'   \item DeFacto: Percentage of people who are in a de facto marriage
+#'   \item DiffAddress: Percentage of people who live at a different address to what they did 5 years ago
+#'   \item DipCert: Percentage of people who have completed a diploma or certificate
+#'   \item Distributive: Percentage of employed persons who work in wholesale trade, retail trade, transport, post or warehousing related industries
+#'   \item EmuneratedElsewhere: Percentage of people who receive emuneration outside of Australia, out of the total population plus overseas visitors
+#'   \item EnglishOnly: Percentage of people who speak only English
+#'   \item Extractive: Percentage of employed persons who work in extractive industries (includes mining, gas, water, agriculture, waste, electricity)
+#'   \item FamilyIncome_NS: Percentage of people who did not answer the question relating to family income
+#'   \item FamilyRatio: Average number of people per family
+#'   \item Finance: Percentage of employed persons who work in finance or insurance related industries
+#'   \item HighSchool: Percentage of people who have completed high school
+#'   \item HighSchool_NS: Rate of nonresponse for questions relating to high school completion
+#'   \item HouseholdIncome_NS: Percentage of people who did not answer the question relating to houshold income
+#'   \item Indigenous: Percentage of people who are Indigenous
+#'   \item InternetAccess: Percentage of people with access to the internet
+#'   \item InternetAccess_NS: Rate of nonresponse for questions relating to internal access
+#'   \item InternetUse: Percentage of people who used interent in the last week (2001 only)
+#'   \item InternetUse_NS: Rate of nonresponse for questions relating to internet use (2001 only)
+#'   \item Islam: Percentage of people affiliated with the Islamic religion
+#'   \item Judaism: Percentage of people affiliated with the Jewish religion
+#'   \item Laborer: Percentage of employed persons who work as a laborer
+#'   \item Language_NS: Rate of nonresponse for questions relating to language spoken at home
+#'   \item LFParticipation: Labor force participation rate
+#'   \item ManagerAdminClericalSales: Percentage of employed persons who work in management, administration, clerical duties and sales
+#'   \item Married: Percentage of people who are married
+#'   \item MedianAge: Median age
+#'   \item MedianFamilyIncome: Median weekly family income (in $)
+#'   \item MedianHouseholdIncome: Median weekly household income (in $)
+#'   \item MedianLoanPay: Median mortgage loan repayment amount (of mortgage payments, in $)
+#'   \item MedianPersonalIncome: Median weekly personal income (in $)
+#'   \item MedianRent: Median weekly rental payment amount (of those who rent, in $)
+#'   \item Mortgage: Percentage of dwellings that are on a mortgage
+#'   \item NoReligion: Percentage of people with no religion
+#'   \item OneParent_House: Percentage of households made up of one parent with children
+#'   \item Other_NonChrist: Percentage of people affiliated with a religion other than Christianity, Buddhism, Islam and Judaism
+#'   \item OtherChrist: Percentage of people affiliated with a denomination of the Christian religion other than Anglican or Catholic
+#'   \item OtherLanguageHome: Percentage of people who speak a language other than English at home
+#'   \item Owned: Percentage of dwellings that are owned outright
+#'   \item PersonalIncome_NS: Rate of nonresponse for questions relating to personal income
+#'   \item Professional: Percentage of employed persons who work as a professional
+#'   \item PublicHousing: Percentage of dwellings that are owned by the government, and rented out to tenants
+#'   \item Religion_NS: Rate of nonresponse for questions relating to religion
+#'   \item Rent_NS: Rate of nonresponse for questions relating to rental costs
+#'   \item Renting: Percentage of dwellings that are being rented
+#'   \item SocialServ: Percentage of employed persons who work in education and training, healthcare, wocial work, community, arts and recreation
+#'   \item SP_House: Percentage of households occupied by a single person
+#'   \item Tenure_NS: Rate of nonresponse for questions relating to tenure
+#'   \item Tradesperson: Percentage of employed persons who specialise in a trade
+#'   \item Transformative: Percentage of employed persons who work in construction or manufacturing related industries
+#'   \item Unemployed: Unemployment rate
+#'   \item University_NS: Rate of nonresponse for questions relating to University
+#'   \item Volunteer: Percentage of people who work as a volunteer
+#'   \item Volunteer_NS: Rate of nonresponse for questions relating to working as a volunteer 
 #' }
 #' @examples 
+#' library(eechidna)
+#' library(dplyr)
+#' data(abs2001)
+#' abs2001 %>% select(DivisionNm, MedianAge, Unemployed, NoReligion, MedianPersonalIncome) %>% head()
+#'
+"abs2001"  
+
+#' Imputed Australian Census data for the electorates in place at time of the 2013 Federal election
+#'
+#' A dataset containing estimated demographic and other information about each electorate.
+#' The data is imputed using Census information from 2011 and 2016. See the imputing-census-data
+#' vignette for more details.
+#'
+#' @format A data frame with 150 rows with the following variables:
+#' \itemize{
+#'   \item DivisionNm: Name of electorate
+#'   \item Age00_04: Percentage of people aged 0-4.
+#'   \item Age05_14: Percentage of people aged 5-9.
+#'   \item Age15_19: Percentage of people aged 15-19.
+#'   \item Age20_24: Percentage of people aged 20-24.
+#'   \item Age25_34: Percentage of people aged 25-34.
+#'   \item Age35_44: Percentage of people aged 35-44.
+#'   \item Age45_54: Percentage of people aged 45-54.
+#'   \item Age55_64: Percentage of people aged 55-64.
+#'   \item Age65_74: Percentage of people aged 65-74.
+#'   \item Age75_84: Percentage of people aged 75-84.
+#'   \item Age85plus: Percentage of people aged 85 or higher.
+#'   \item Anglican: Percentage of people affiliated with the Anglican denomimation
+#'   \item AusCitizen: Percentage of people who are Australian Citizens
+#'   \item AverageHouseholdSize: Average number of people in a household 
+#'   \item BachelorAbv: Percentage of people who have completed a Bachelor degree or above
+#'   \item Born_Asia: Percentage of people born in Asia
+#'   \item Born_MidEast: Percentage of people born in the Middle East
+#'   \item Born_SE_Europe: Percentage of people born in South Eastern Europe
+#'   \item Born_UK: Percentage of people born in the United Kingdom
+#'   \item BornElsewhere: Percentage of people who were born overseas, outside of Asia, Middle East, South Eastern Europe and the UK
+#'   \item Buddhism: Percentage of people affiliated with the Buddhist religion
+#'   \item Catholic: Percentage of people affiliated with the Catholic denomimation
+#'   \item Christianity: Percentage of people affiliated with the Christian religion (of all denominations)
+#'   \item Couple_NoChild_House: Percentage of households made up of a couple with no children
+#'   \item Couple_WChild_House: Percentage of households made up of a couple with children
+#'   \item CurrentlyStudying: Percentage of people who are currently studying
+#'   \item DeFacto: Percentage of people who are in a de facto marriage
+#'   \item DiffAddress: Percentage of people who live at a different address to what they did 5 years ago
+#'   \item DipCert: Percentage of people who have completed a diploma or certificate
+#'   \item Distributive: Percentage of employed persons who work in wholesale trade, retail trade, transport, post or warehousing related industries
+#'   \item EmuneratedElsewhere: Percentage of people who receive emuneration outside of Australia, out of the total population plus overseas visitors
+#'   \item EnglishOnly: Percentage of people who speak only English
+#'   \item Extractive: Percentage of employed persons who work in extractive industries (includes mining, gas, water, agriculture, waste, electricity)
+#'   \item FamilyRatio: Average number of people per family
+#'   \item Finance: Percentage of employed persons who work in finance or insurance related industries
+#'   \item HighSchool: Percentage of people who have completed high school
+#'   \item Indigenous: Percentage of people who are Indigenous
+#'   \item InternetAccess: Percentage of people with access to the internet
+#'   \item InternetUse: Percentage of people who used interent in the last week (2001 only)
+#'   \item Islam: Percentage of people affiliated with the Islamic religion
+#'   \item Judaism: Percentage of people affiliated with the Jewish religion
+#'   \item Laborer: Percentage of employed persons who work as a laborer
+#'   \item LFParticipation: Labor force participation rate
+#'   \item ManagerAdminClericalSales: Percentage of employed persons who work in management, administration, clerical duties and sales
+#'   \item Married: Percentage of people who are married
+#'   \item MedianAge: Median age
+#'   \item MedianFamilyIncome: Median weekly family income (in $)
+#'   \item MedianHouseholdIncome: Median weekly household income (in $)
+#'   \item MedianLoanPay: Median mortgage loan repayment amount (of mortgage payments, in $)
+#'   \item MedianPersonalIncome: Median weekly personal income (in $)
+#'   \item MedianRent: Median weekly rental payment amount (of those who rent, in $)
+#'   \item Mortgage: Percentage of dwellings that are on a mortgage
+#'   \item NoReligion: Percentage of people with no religion
+#'   \item OneParent_House: Percentage of households made up of one parent with children
+#'   \item Other_NonChrist: Percentage of people affiliated with a religion other than Christianity, Buddhism, Islam and Judaism
+#'   \item OtherChrist: Percentage of people affiliated with a denomination of the Christian religion other than Anglican or Catholic
+#'   \item OtherLanguageHome: Percentage of people who speak a language other than English at home
+#'   \item Owned: Percentage of dwellings that are owned outright
+#'   \item Professional: Percentage of employed persons who work as a professional
+#'   \item PublicHousing: Percentage of dwellings that are owned by the government, and rented out to tenants
+#'   \item Renting: Percentage of dwellings that are being rented
+#'   \item SocialServ: Percentage of employed persons who work in education and training, healthcare, wocial work, community, arts and recreation
+#'   \item SP_House: Percentage of households occupied by a single person
+#'   \item Tradesperson: Percentage of employed persons who specialise in a trade
+#'   \item Transformative: Percentage of employed persons who work in construction or manufacturing related industries
+#'   \item Unemployed: Unemployment rate
+#'   \item Volunteer: Percentage of people who work as a volunteer
+#' }
 #' 
-#' data(nat_data_2016)
-#' data(nat_map_2016)
-#' library(ggplot2)
-#' library(ggthemes)
-#' ggplot(aes(map_id=id), data=nat_data_2016) +
-#'   geom_map(map=nat_map_2016) +
-#'   geom_point(data=nat_data_2016, aes(x=long_c, y=lat_c), inherit.aes=FALSE) +
-#'   expand_limits(x=nat_map_2016$long, y=nat_map_2016$lat) + 
-#'   theme_map()
-#'   
-"nat_data_2016"
-
-#' This is the same as nat_data, except that it has 
-#' spatial centroids of electorates spread out using the 
-#' Dorling cartogram. 
-#'
-#'
-"nat_data_cart"
-
-#' This is the same as nat_data_2016, except that it has 
-#' spatial centroids of electorates spread out using the 
-#' Dorling cartogram. 
-#'
-#'
-"nat_data_2016_cart"
-
-#' Electorate hexagon data in a tidy form
-#' @seealso Thomas Lumley
-#' @references Thomas Lumley
-#' @format A data frame
 #' @examples 
-#' data(hexDat)
-#' library(plotly)
-#' p <- ggplot(hexDat, aes(xcent, ycent, text = Electorate)) + 
-#'   geom_hex(stat = "identity") + 
-#'   lims(x=c(-80, 8), y=c(-40, 50))
-#' ggplotly(p, tooltip = "text")
-"hexDat"
+#' library(eechidna)
+#' library(dplyr)
+#' data(abs2013)
+#' abs2013 %>% select(DivisionNm, MedianAge, Unemployed, NoReligion, MedianPersonalIncome) %>% head()
+#'
+"abs2013"  
 
-#' 2016 General election data for first preference votes for candidates for the House of Representatives for each polling place
-#' 
-#' A dataset containing first preference vote counts, candidate names, polling place locations,
-#' and other results for the
-#' House of Representatives from the 2016 Australian federal election. 
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm} and 
-#' \url{http://www.aec.gov.au/elections/federal_elections/2016/downloads.htm}.
-#' 
-#' @format A data frame with the following variables:
+#' Imputed Australian Census data for the electorates in place at time of the 2010 Federal election
+#'
+#' A dataset containing estimated demographic and other information about each electorate.
+#' The data is imputed using Census information from 2006 and 2011. See the imputing-census-data
+#' vignette for more details.
+#'
+#' @format A data frame with 150 rows with the following variables:
 #' \itemize{
-#'     \item ID: Electoral division ID    
-#'     \item Electorate:  Electoral division name   
-#'     \item PollingPlaceID: Polling place ID  
-#'     \item PollingPlace: Polling place name     
-#'     \item CandidateID: Candidate ID       
-#'     \item Surname: Candidate surname          
-#'     \item GivenNm: Candidate given name            
-#'     \item BallotPosition: Candidate's position on the ballot    
-#'     \item Elected: Whether the candidate was elected (Y/N)           
-#'     \item HistoricElected:   
-#'     \item PartyAb: Abbreviation for political party name           
-#'     \item PartyNm: Political party name           
-#'     \item OrdinaryVotes: Number of ordinates votes cast at the polling place for the candidate     
-#'     \item Swing:             
-#'     \item State: Abbreviation for state name             
-#'     \item PollingPlaceTypeID:
-#'     \item Premises Nm:        
-#'     \item PremisesAddress1:  
-#'     \item PremisesAddress2:  
-#'     \item PremisesAddress3:  
-#'     \item PremisesSuburb:    
-#'     \item PremisesStateAb:   
-#'     \item PremisesPostCode:  
-#'     \item Latitude:          
-#'     \item Longitude:
-#'     \item uid:.
-#'     }
-"aec2016_fp"   
+#'   \item DivisionNm: Name of electorate
+#'   \item Age00_04: Percentage of people aged 0-4.
+#'   \item Age05_14: Percentage of people aged 5-9.
+#'   \item Age15_19: Percentage of people aged 15-19.
+#'   \item Age20_24: Percentage of people aged 20-24.
+#'   \item Age25_34: Percentage of people aged 25-34.
+#'   \item Age35_44: Percentage of people aged 35-44.
+#'   \item Age45_54: Percentage of people aged 45-54.
+#'   \item Age55_64: Percentage of people aged 55-64.
+#'   \item Age65_74: Percentage of people aged 65-74.
+#'   \item Age75_84: Percentage of people aged 75-84.
+#'   \item Age85plus: Percentage of people aged 85 or higher.
+#'   \item Anglican: Percentage of people affiliated with the Anglican denomimation
+#'   \item AusCitizen: Percentage of people who are Australian Citizens
+#'   \item AverageHouseholdSize: Average number of people in a household 
+#'   \item BachelorAbv: Percentage of people who have completed a Bachelor degree or above
+#'   \item Born_Asia: Percentage of people born in Asia
+#'   \item Born_MidEast: Percentage of people born in the Middle East
+#'   \item Born_SE_Europe: Percentage of people born in South Eastern Europe
+#'   \item Born_UK: Percentage of people born in the United Kingdom
+#'   \item BornElsewhere: Percentage of people who were born overseas, outside of Asia, Middle East, South Eastern Europe and the UK
+#'   \item Buddhism: Percentage of people affiliated with the Buddhist religion
+#'   \item Catholic: Percentage of people affiliated with the Catholic denomimation
+#'   \item Christianity: Percentage of people affiliated with the Christian religion (of all denominations)
+#'   \item Couple_NoChild_House: Percentage of households made up of a couple with no children
+#'   \item Couple_WChild_House: Percentage of households made up of a couple with children
+#'   \item CurrentlyStudying: Percentage of people who are currently studying
+#'   \item DeFacto: Percentage of people who are in a de facto marriage
+#'   \item DiffAddress: Percentage of people who live at a different address to what they did 5 years ago
+#'   \item DipCert: Percentage of people who have completed a diploma or certificate
+#'   \item Distributive: Percentage of employed persons who work in wholesale trade, retail trade, transport, post or warehousing related industries
+#'   \item EmuneratedElsewhere: Percentage of people who receive emuneration outside of Australia, out of the total population plus overseas visitors
+#'   \item EnglishOnly: Percentage of people who speak only English
+#'   \item Extractive: Percentage of employed persons who work in extractive industries (includes mining, gas, water, agriculture, waste, electricity)
+#'   \item FamilyRatio: Average number of people per family
+#'   \item Finance: Percentage of employed persons who work in finance or insurance related industries
+#'   \item HighSchool: Percentage of people who have completed high school
+#'   \item Indigenous: Percentage of people who are Indigenous
+#'   \item InternetAccess: Percentage of people with access to the internet
+#'   \item InternetUse: Percentage of people who used interent in the last week (2001 only)
+#'   \item Islam: Percentage of people affiliated with the Islamic religion
+#'   \item Judaism: Percentage of people affiliated with the Jewish religion
+#'   \item Laborer: Percentage of employed persons who work as a laborer
+#'   \item LFParticipation: Labor force participation rate
+#'   \item ManagerAdminClericalSales: Percentage of employed persons who work in management, administration, clerical duties and sales
+#'   \item Married: Percentage of people who are married
+#'   \item MedianAge: Median age
+#'   \item MedianFamilyIncome: Median weekly family income (in $)
+#'   \item MedianHouseholdIncome: Median weekly household income (in $)
+#'   \item MedianLoanPay: Median mortgage loan repayment amount (of mortgage payments, in $)
+#'   \item MedianPersonalIncome: Median weekly personal income (in $)
+#'   \item MedianRent: Median weekly rental payment amount (of those who rent, in $)
+#'   \item Mortgage: Percentage of dwellings that are on a mortgage
+#'   \item NoReligion: Percentage of people with no religion
+#'   \item OneParent_House: Percentage of households made up of one parent with children
+#'   \item Other_NonChrist: Percentage of people affiliated with a religion other than Christianity, Buddhism, Islam and Judaism
+#'   \item OtherChrist: Percentage of people affiliated with a denomination of the Christian religion other than Anglican or Catholic
+#'   \item OtherLanguageHome: Percentage of people who speak a language other than English at home
+#'   \item Owned: Percentage of dwellings that are owned outright
+#'   \item Professional: Percentage of employed persons who work as a professional
+#'   \item PublicHousing: Percentage of dwellings that are owned by the government, and rented out to tenants
+#'   \item Renting: Percentage of dwellings that are being rented
+#'   \item SocialServ: Percentage of employed persons who work in education and training, healthcare, wocial work, community, arts and recreation
+#'   \item SP_House: Percentage of households occupied by a single person
+#'   \item Tradesperson: Percentage of employed persons who specialise in a trade
+#'   \item Transformative: Percentage of employed persons who work in construction or manufacturing related industries
+#'   \item Unemployed: Unemployment rate
+#'   \item Volunteer: Percentage of people who work as a volunteer
+#' }
+#' @examples 
+#' library(eechidna)
+#' library(dplyr)
+#' data(abs2010)
+#' abs2010 %>% select(DivisionNm, MedianAge, Unemployed, NoReligion, MedianPersonalIncome) %>% head()
+#'
+"abs2010"  
 
-
-
-#' 2016 General election data for first preference votes for candidates for the House of Representative for each electorate
-#' 
-#' A dataset containing first preference vote counts, candidate names, and other results for the
-#' House of Representatives from the 2016 Australian federal election. 
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm} and 
-#' \url{http://www.aec.gov.au/elections/federal_elections/2016/downloads.htm}.
-#' 
-#' @format A data frame with the following variables:
+#' Imputed Australian Census data for the electorates in place at time of the 2007 Federal election
+#'
+#' A dataset containing estimated demographic and other information about each electorate.
+#' The data is imputed using Census information from 2006 and 2011. See the imputing-census-data
+#' vignette for more details.
+#'
+#' @format A data frame with 150 rows with the following variables:
 #' \itemize{
-#'     \item ID: Electoral division ID    
-#'     \item Electorate:  Electoral division name   
-#'     \item CandidateID: Candidate ID       
-#'     \item Surname: Candidate surname          
-#'     \item GivenNm: Candidate given name            
-#'     \item BallotPosition: Candidate's position on the ballot    
-#'     \item Elected: Whether the candidate was elected (Y/N)           
-#'     \item HistoricElected:   
-#'     \item PartyAb: Abbreviation for political party name           
-#'     \item PartyNm: Political party name           
-#'     \item OrdinaryVotes: Number of ordinates votes cast at the polling place for the candidate     
-#'     \item State: Abbreviation for state name             
-#'     }
-"aec2016_fp_electorate"
+#'   \item DivisionNm: Name of electorate
+#'   \item Age00_04: Percentage of people aged 0-4.
+#'   \item Age05_14: Percentage of people aged 5-9.
+#'   \item Age15_19: Percentage of people aged 15-19.
+#'   \item Age20_24: Percentage of people aged 20-24.
+#'   \item Age25_34: Percentage of people aged 25-34.
+#'   \item Age35_44: Percentage of people aged 35-44.
+#'   \item Age45_54: Percentage of people aged 45-54.
+#'   \item Age55_64: Percentage of people aged 55-64.
+#'   \item Age65_74: Percentage of people aged 65-74.
+#'   \item Age75_84: Percentage of people aged 75-84.
+#'   \item Age85plus: Percentage of people aged 85 or higher.
+#'   \item Anglican: Percentage of people affiliated with the Anglican denomimation
+#'   \item AusCitizen: Percentage of people who are Australian Citizens
+#'   \item AverageHouseholdSize: Average number of people in a household 
+#'   \item BachelorAbv: Percentage of people who have completed a Bachelor degree or above
+#'   \item Born_Asia: Percentage of people born in Asia
+#'   \item Born_MidEast: Percentage of people born in the Middle East
+#'   \item Born_SE_Europe: Percentage of people born in South Eastern Europe
+#'   \item Born_UK: Percentage of people born in the United Kingdom
+#'   \item BornElsewhere: Percentage of people who were born overseas, outside of Asia, Middle East, South Eastern Europe and the UK
+#'   \item Buddhism: Percentage of people affiliated with the Buddhist religion
+#'   \item Catholic: Percentage of people affiliated with the Catholic denomimation
+#'   \item Christianity: Percentage of people affiliated with the Christian religion (of all denominations)
+#'   \item Couple_NoChild_House: Percentage of households made up of a couple with no children
+#'   \item Couple_WChild_House: Percentage of households made up of a couple with children
+#'   \item CurrentlyStudying: Percentage of people who are currently studying
+#'   \item DeFacto: Percentage of people who are in a de facto marriage
+#'   \item DiffAddress: Percentage of people who live at a different address to what they did 5 years ago
+#'   \item DipCert: Percentage of people who have completed a diploma or certificate
+#'   \item Distributive: Percentage of employed persons who work in wholesale trade, retail trade, transport, post or warehousing related industries
+#'   \item EmuneratedElsewhere: Percentage of people who receive emuneration outside of Australia, out of the total population plus overseas visitors
+#'   \item EnglishOnly: Percentage of people who speak only English
+#'   \item Extractive: Percentage of employed persons who work in extractive industries (includes mining, gas, water, agriculture, waste, electricity)
+#'   \item FamilyRatio: Average number of people per family
+#'   \item Finance: Percentage of employed persons who work in finance or insurance related industries
+#'   \item HighSchool: Percentage of people who have completed high school
+#'   \item Indigenous: Percentage of people who are Indigenous
+#'   \item InternetAccess: Percentage of people with access to the internet
+#'   \item InternetUse: Percentage of people who used interent in the last week (2001 only)
+#'   \item Islam: Percentage of people affiliated with the Islamic religion
+#'   \item Judaism: Percentage of people affiliated with the Jewish religion
+#'   \item Laborer: Percentage of employed persons who work as a laborer
+#'   \item LFParticipation: Labor force participation rate
+#'   \item ManagerAdminClericalSales: Percentage of employed persons who work in management, administration, clerical duties and sales
+#'   \item Married: Percentage of people who are married
+#'   \item MedianAge: Median age
+#'   \item MedianFamilyIncome: Median weekly family income (in $)
+#'   \item MedianHouseholdIncome: Median weekly household income (in $)
+#'   \item MedianLoanPay: Median mortgage loan repayment amount (of mortgage payments, in $)
+#'   \item MedianPersonalIncome: Median weekly personal income (in $)
+#'   \item MedianRent: Median weekly rental payment amount (of those who rent, in $)
+#'   \item Mortgage: Percentage of dwellings that are on a mortgage
+#'   \item NoReligion: Percentage of people with no religion
+#'   \item OneParent_House: Percentage of households made up of one parent with children
+#'   \item Other_NonChrist: Percentage of people affiliated with a religion other than Christianity, Buddhism, Islam and Judaism
+#'   \item OtherChrist: Percentage of people affiliated with a denomination of the Christian religion other than Anglican or Catholic
+#'   \item OtherLanguageHome: Percentage of people who speak a language other than English at home
+#'   \item Owned: Percentage of dwellings that are owned outright
+#'   \item Professional: Percentage of employed persons who work as a professional
+#'   \item PublicHousing: Percentage of dwellings that are owned by the government, and rented out to tenants
+#'   \item Renting: Percentage of dwellings that are being rented
+#'   \item SocialServ: Percentage of employed persons who work in education and training, healthcare, wocial work, community, arts and recreation
+#'   \item SP_House: Percentage of households occupied by a single person
+#'   \item Tradesperson: Percentage of employed persons who specialise in a trade
+#'   \item Transformative: Percentage of employed persons who work in construction or manufacturing related industries
+#'   \item Unemployed: Unemployment rate
+#'   \item Volunteer: Percentage of people who work as a volunteer
+#' }
+#' 
+#' @examples 
+#' library(eechidna)
+#' library(dplyr)
+#' data(abs2007)
+#' abs2007 %>% select(DivisionNm, MedianAge, Unemployed, NoReligion, MedianPersonalIncome) %>% head()
+#'
+"abs2007"  
 
-#' 2016 General election data for two party preferred votes for the House of Representatives for each polling place
-#' 
-#' A dataset containing two party preferred vote counts, winning candidate names, polling place locations,
-#' and other results for the House of Representatives from the 2016 Australian federal election. Includes the count of votes for
-#' the Australian Labor Party and the count of votes for the Liberal-National Coalition for each polling place.
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm} and 
-#' \url{http://www.aec.gov.au/elections/federal_elections/2016/downloads.htm}.
-#' 
-#' @format A data frame with the following variables:
+#' Imputed Australian Census data for the electorates in place at time of the 2004 Federal election
+#'
+#' A dataset containing estimated demographic and other information about each electorate.
+#' The data is imputed using Census information from 2001 and 2006. See the imputing-census-data
+#' vignette for more details.
+#'
+#' @format A data frame with 150 rows with the following variables:
 #' \itemize{
-#'     \item ID: Electoral division ID    
-#'     \item Electorate:  Electoral division name   
-#'     \item PollingPlaceID: Polling place ID  
-#'     \item PollingPlace: Polling place name     
-#'     \item CandidateID: Candidate ID       
-#'     \item Surname: Candidate surname          
-#'     \item GivenNm: Candidate given name            
-#'     \item BallotPosition: Candidate's position on the ballot    
-#'     \item Elected: Whether the candidate was elected (Y/N)           
-#'     \item HistoricElected:   
-#'     \item PartyAb: Abbreviation for political party name           
-#'     \item PartyNm: Political party name           
-#'     \item OrdinaryVotes: Number of ordinates votes cast at the polling place for the candidate     
-#'     \item Swing:             
-#'     \item State: Abbreviation for state name             
-#'     \item PollingPlaceTypeID:
-#'     \item Premises Nm:        
-#'     \item PremisesAddress1:  
-#'     \item PremisesAddress2:  
-#'     \item PremisesAddress3:  
-#'     \item PremisesSuburb:    
-#'     \item PremisesStateAb:   
-#'     \item PremisesPostCode:  
-#'     \item Latitude:          
-#'     \item Longitude:
-#'     \item Australian.Labor.Party.Votes:        
-#'     \item Australian.Labor.Party.Percentage:    
-#'     \item Liberal.National.Coalition.Votes:    
-#'     \item Liberal.National.Coalition.Percentage:
-#'     \item TotalVotes:
-#'     }
-"aec2016_2pp"
+#'   \item DivisionNm: Name of electorate
+#'   \item Age00_04: Percentage of people aged 0-4.
+#'   \item Age05_14: Percentage of people aged 5-9.
+#'   \item Age15_19: Percentage of people aged 15-19.
+#'   \item Age20_24: Percentage of people aged 20-24.
+#'   \item Age25_34: Percentage of people aged 25-34.
+#'   \item Age35_44: Percentage of people aged 35-44.
+#'   \item Age45_54: Percentage of people aged 45-54.
+#'   \item Age55_64: Percentage of people aged 55-64.
+#'   \item Age65_74: Percentage of people aged 65-74.
+#'   \item Age75_84: Percentage of people aged 75-84.
+#'   \item Age85plus: Percentage of people aged 85 or higher.
+#'   \item Anglican: Percentage of people affiliated with the Anglican denomimation
+#'   \item AusCitizen: Percentage of people who are Australian Citizens
+#'   \item AverageHouseholdSize: Average number of people in a household 
+#'   \item BachelorAbv: Percentage of people who have completed a Bachelor degree or above
+#'   \item Born_Asia: Percentage of people born in Asia
+#'   \item Born_MidEast: Percentage of people born in the Middle East
+#'   \item Born_SE_Europe: Percentage of people born in South Eastern Europe
+#'   \item Born_UK: Percentage of people born in the United Kingdom
+#'   \item BornElsewhere: Percentage of people who were born overseas, outside of Asia, Middle East, South Eastern Europe and the UK
+#'   \item Buddhism: Percentage of people affiliated with the Buddhist religion
+#'   \item Catholic: Percentage of people affiliated with the Catholic denomimation
+#'   \item Christianity: Percentage of people affiliated with the Christian religion (of all denominations)
+#'   \item Couple_NoChild_House: Percentage of households made up of a couple with no children
+#'   \item Couple_WChild_House: Percentage of households made up of a couple with children
+#'   \item CurrentlyStudying: Percentage of people who are currently studying
+#'   \item DeFacto: Percentage of people who are in a de facto marriage
+#'   \item DiffAddress: Percentage of people who live at a different address to what they did 5 years ago
+#'   \item DipCert: Percentage of people who have completed a diploma or certificate
+#'   \item Distributive: Percentage of employed persons who work in wholesale trade, retail trade, transport, post or warehousing related industries
+#'   \item EmuneratedElsewhere: Percentage of people who receive emuneration outside of Australia, out of the total population plus overseas visitors
+#'   \item EnglishOnly: Percentage of people who speak only English
+#'   \item Extractive: Percentage of employed persons who work in extractive industries (includes mining, gas, water, agriculture, waste, electricity)
+#'   \item FamilyRatio: Average number of people per family
+#'   \item Finance: Percentage of employed persons who work in finance or insurance related industries
+#'   \item HighSchool: Percentage of people who have completed high school
+#'   \item Indigenous: Percentage of people who are Indigenous
+#'   \item InternetAccess: Percentage of people with access to the internet
+#'   \item InternetUse: Percentage of people who used interent in the last week (2001 only)
+#'   \item Islam: Percentage of people affiliated with the Islamic religion
+#'   \item Judaism: Percentage of people affiliated with the Jewish religion
+#'   \item Laborer: Percentage of employed persons who work as a laborer
+#'   \item LFParticipation: Labor force participation rate
+#'   \item ManagerAdminClericalSales: Percentage of employed persons who work in management, administration, clerical duties and sales
+#'   \item Married: Percentage of people who are married
+#'   \item MedianAge: Median age
+#'   \item MedianFamilyIncome: Median weekly family income (in $)
+#'   \item MedianHouseholdIncome: Median weekly household income (in $)
+#'   \item MedianLoanPay: Median mortgage loan repayment amount (of mortgage payments, in $)
+#'   \item MedianPersonalIncome: Median weekly personal income (in $)
+#'   \item MedianRent: Median weekly rental payment amount (of those who rent, in $)
+#'   \item Mortgage: Percentage of dwellings that are on a mortgage
+#'   \item NoReligion: Percentage of people with no religion
+#'   \item OneParent_House: Percentage of households made up of one parent with children
+#'   \item Other_NonChrist: Percentage of people affiliated with a religion other than Christianity, Buddhism, Islam and Judaism
+#'   \item OtherChrist: Percentage of people affiliated with a denomination of the Christian religion other than Anglican or Catholic
+#'   \item OtherLanguageHome: Percentage of people who speak a language other than English at home
+#'   \item Owned: Percentage of dwellings that are owned outright
+#'   \item Professional: Percentage of employed persons who work as a professional
+#'   \item PublicHousing: Percentage of dwellings that are owned by the government, and rented out to tenants
+#'   \item Renting: Percentage of dwellings that are being rented
+#'   \item SocialServ: Percentage of employed persons who work in education and training, healthcare, wocial work, community, arts and recreation
+#'   \item SP_House: Percentage of households occupied by a single person
+#'   \item Tradesperson: Percentage of employed persons who specialise in a trade
+#'   \item Transformative: Percentage of employed persons who work in construction or manufacturing related industries
+#'   \item Unemployed: Unemployment rate
+#'   \item Volunteer: Percentage of people who work as a volunteer
+#' }
+#' 
+#' @examples 
+#' library(eechidna)
+#' library(dplyr)
+#' data(abs2004)
+#' abs2004 %>% select(DivisionNm, MedianAge, Unemployed, NoReligion, MedianPersonalIncome) %>% head()
+#'
+"abs2004"  
 
-#' 2016 General election data for two party preferred votes for candidates for the House of Representative for each electorate
-#' 
-#' A dataset containing two party preferred vote counts, winning candidate names, and other results for the House of Representatives from the 2016 Australian federal election. Includes the count of votes for
-#' the Australian Labor Party and the count of votes for the Liberal-National Coalition for each polling place.
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm} and 
-#' \url{http://www.aec.gov.au/elections/federal_elections/2016/downloads.htm}.
-#' 
-#' @format A data frame with the following variables:
-#' \itemize{
-#'     \item ID: Electoral division ID    
-#'     \item Electorate:  Electoral division name   
-#'     \item CandidateID: Candidate ID       
-#'     \item Surname: Candidate surname          
-#'     \item GivenNm: Candidate given name            
-#'     \item BallotPosition: Candidate's position on the ballot    
-#'     \item Elected: Whether the candidate was elected (Y/N)           
-#'     \item HistoricElected:   
-#'     \item PartyAb: Abbreviation for political party name           
-#'     \item PartyNm: Political party name           
-#'     \item OrdinaryVotes: Number of ordinates votes cast at the polling place for the candidate     
-#'     \item State: Abbreviation for state name        
-#'     \item Total_Australian_Labor_Party_Votes_per_electorate:     
-#'     \item Average_Australian_Labor_Party_Percentage_in_electorate:    
-#'     \item Total_Liberal_National_Coalition_Votes_per_electorate:      
-#'     \item Average_Liberal_National_Coalition_Percentage_in_electorate:
-#'     \item Total_2pp_votes_per_electorate:     
-#'     }
-"aec2016_2pp_electorate"
-
-#' 2016 General election data for two candidate preferred votes for the House of Representatives for each polling place
-#' 
-#' A dataset containing two candidate preferred vote counts,  polling place locations,
-#' and other results for the House of Representatives from the 2016 Australian federal election. Includes the count of votes for
-#' the leading two candidates in the electorate after distribution of preferences for each polling place.
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm} and 
-#' \url{http://www.aec.gov.au/elections/federal_elections/2016/downloads.htm}.
-#' 
-#' @format A data frame with the following variables:
-#' \itemize{
-#'     \item ID: Electoral division ID    
-#'     \item Electorate:  Electoral division name   
-#'     \item PollingPlace: Polling place name     
-#'     \item PollingPlaceID: Polling place ID  
-#'     \item CandidateID: Candidate ID       
-#'     \item Surname: Candidate surname          
-#'     \item GivenNm: Candidate given name            
-#'     \item BallotPosition: Candidate's position on the ballot    
-#'     \item Elected: Whether the candidate was elected (Y/N)           
-#'     \item HistoricElected:   
-#'     \item PartyAb: Abbreviation for political party name           
-#'     \item PartyNm: Political party name           
-#'     \item OrdinaryVotes: Number of ordinates votes cast at the polling place for the candidate     
-#'     \item Swing: Percentage change since the last election
-#'     }
-"aec2016_2cp"
-
-#' 2016 General election data for two candidate preferred votes for candidates for the House of Representative for each electorate
-#' 
-#' A dataset containing two candidate preferred vote counts, and other results for the House of Representatives from the 2016 Australian federal election. Includes the count of votes for
-#' the leading two candidates in the electorate after distribution of preferences.
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm} and 
-#' \url{http://www.aec.gov.au/elections/federal_elections/2016/downloads.htm}.
-#' 
-#' @format A data frame with the following variables:
-#' \itemize{
-#'     \item ID: Electoral division ID    
-#'     \item Electorate:  Electoral division name   
-#'     \item CandidateID: Candidate ID       
-#'     \item Surname: Candidate surname          
-#'     \item GivenNm: Candidate given name            
-#'     \item BallotPosition: Candidate's position on the ballot    
-#'     \item Elected: Whether the candidate was elected (Y/N)           
-#'     \item HistoricElected:   
-#'     \item PartyAb: Abbreviation for political party name           
-#'     \item PartyNm: Political party name           
-#'     \item OrdinaryVotes: Number of ordinates votes cast for the candidate     
-#'     \item AbsentVotes: Number of absentee votes cast for the candidate
-#'     \item ProvisionalVotes: Number of provisional votes cast for the candidate
-#'     \item PrePollVotes: Number of pre-poll votes cast for the candidate
-#'     \item PostalVotes: Number of postal votes cast for the candidate
-#'     \item TotalVotes: Total votes cast for the candidate
-#'     \item Swing: Percentage change since the last election
-#'     }
-"aec2016_2cp_electorate"

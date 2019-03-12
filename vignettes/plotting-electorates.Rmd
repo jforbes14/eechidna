@@ -1,6 +1,6 @@
 ---
 title: "Mapping Australia's Electorates"
-author: "Nathaniel Tomasetti, Di Cook, Heike Hofmann"
+author: "Nathaniel Tomasetti, Di Cook, Heike Hofmann and Jeremy Forbes"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -13,22 +13,31 @@ vignette: >
 knitr::opts_chunk$set(fig.width = 6,
                       fig.height = 4,
                       fig.align='center',
-                      dev = "png", cache=FALSE)
+                      dev = "png")
 ```
 
-This vignette describes how to make a map of the Australian election results. It requires merging polygons of the electoral regions, with election results using the electorate id's or unique names. The `nat_map` contains the electorate polygons and `aec2013_fp_electorate` contains the results of the 2013 Federal election.
+This vignette describes how to make a map of the Australian election results. It requires merging polygons of the electoral regions, with election results using the electorate id's or unique names. The `nat_map16` contains the electorate polygons and `fp16` contains the results of the 2016 Federal election.
 
 ```{r load-read-merge, message=FALSE, error = TRUE, warning=FALSE, echo=FALSE, tidy=TRUE}
 library(eechidna)
-library(plyr)
-library(dplyr)
-library(ggplot2)
-data(nat_data_cart)
-data(nat_map)
-data(aec2013_fp_electorate)
-map.winners <- aec2013_fp_electorate %>% filter(Elected == "Y") %>% 
-  select(Electorate, PartyNm) %>% 
-  merge(nat_map, by.x="Electorate", by.y="ELECT_DIV")
+library(tidyverse)
+
+data("nat_data16")
+data("nat_map16")
+data("fp16")
+map.winners <- fp16 %>% filter(Elected == "Y") %>% 
+  select(DivisionNm, PartyNm) %>% 
+  merge(nat_map16, by.x="DivisionNm", by.y="elect_div")
+
+# Function to make all character fields upper case
+chr_upper <- function(df) {
+  fc_cols <- sapply(df, class) == 'factor'
+  df[, fc_cols] <- lapply(df[, fc_cols], as.character)
+  
+  ch_cols <- sapply(df, class) == 'character'
+  df[, ch_cols] <- lapply(df[, ch_cols], toupper)
+  return(df)
+}
 ```
 
 There are state-specific pseudonyms for the Liberal-National Party coalition, and for illustration purposes these are grouped into one category we will call "Liberal National Coalition". These political groups are set colours that roughly match their party colours.
@@ -36,12 +45,7 @@ There are state-specific pseudonyms for the Liberal-National Party coalition, an
 ```{r group, message=FALSE, error = TRUE, warning=FALSE, echo=TRUE, tidy=TRUE}
 # Grouping different Lib/Nats togethers
 map.winners$PartyNm <- as.character(map.winners$PartyNm)
-coalition <- c("Country Liberals (NT)", "Liberal", 
-               "Liberal National Party of Queensland", "The Nationals")
-map.winners.grouped <- mutate(map.winners, 
-    PartyNm = ifelse(as.character(PartyNm) %in% coalition,
-       "Liberal National Coalition", PartyNm))
-map.winners.grouped <- map.winners.grouped %>% arrange(group, order)
+map.winners <- map.winners %>% arrange(group, order)
 
 # Colour cells to match that parties colours
 # Order = Australian Labor Party, Independent, Katters, Lib/Nats Coalition, Palmer, The Greens
@@ -49,45 +53,29 @@ partycolours = c("#FF0033", "#000000", "#CC3300", "#0066CC", "#FFFF00", "#009900
 ```
 
 ```{r fig.width=7, fig.height=6, echo=TRUE, warning=FALSE, message=FALSE, error=FALSE, tidy=TRUE}
-# Make it look like a map
-theme_map <- theme_bw()
-theme_map$line <- element_blank()
-theme_map$strip.text <- element_blank()
-theme_map$axis.text <- element_blank()
-theme_map$plot.title <- element_blank()
-theme_map$axis.title <- element_blank()
-theme_map$panel.border <- element_rect(colour = "white", size=1, fill=NA)
-
-ggplot(data=map.winners.grouped) + 
-  geom_polygon(aes(x=long, y=lat, group=group, order=order, fill=PartyNm)) +
-  scale_fill_manual(name="Politcal Party", values=partycolours) +
-  theme_map + coord_equal() + theme(legend.position="bottom")
+library(ggthemes)
+ggplot(data=map.winners) + 
+  geom_polygon(aes(x=long, y=lat, group=group, fill=PartyNm)) +
+  scale_fill_manual(name="Political Party", values=partycolours) +
+  theme_map() + coord_equal() + theme(legend.position="bottom")
 ```
 
-However, the Australian electoral map is not conducive to chloropleth map, because most of the population concentrate in the five big cities, Sydney, Melbourne, Brisbane, Adelaide and Perth, which means that there are lot of very geographical tiny regions that contribute substantially to the house of representative composition.  A better approach would be to use a cartogram to display the election results, which would maintain the geographic location but make the sizes of the electorate polygons aprroximately equal. This is very hard to perfect for Australia because the size differential between electorates is huge, resulting in a cartogram where all sense of geography is demolished. 
+However, the Australian electoral map is not conducive to chloropleth map, because most of the population concentrate in the five big cities, Sydney, Melbourne, Brisbane, Adelaide and Perth, which means that there are lot of very geographical tiny regions that contribute substantially to the house of representative composition.  A better approach would be to use a cartogram to display the election results, which would maintain the geographic location but make the sizes of the electorate polygons approximately equal. This is very hard to perfect for Australia because the size differential between electorates is huge, resulting in a cartogram where all sense of geography is demolished. 
 
-A compromise is to use a non-contiguous, dorling cartogram, and represent each electorate with a circle, approximately in the geographic center of each electorate, with an underlying map. The major population centers need to have their center locations ballooned to make this feasible visually. This is achieved by extracting the electorates for each of the population centers, exploding the geographic center locations using the dorling algorithm, and then pasting them back into the landscale of all the electorates, using the `aec_extract_f`, `aec_carto_f` and the `aec_carto_join_f` functions in the package. The result is saved into the `nat_data_cart` dataset distributed with the package. This data is used to create the display of electoral results below.
+A compromise is to use a non-contiguous, dorling cartogram, and represent each electorate with a circle, approximately in the geographic center of each electorate, with an underlying map. The major population centers need to have their center locations ballooned to make this feasible visually. This is achieved by extracting the electorates for each of the population centers, exploding the geographic center locations using the dorling algorithm, and then pasting them back into the landscale of all the electorates, using the `aec_add_carto_f` function in the package (or step by step with the `aec_extract_f`, `aec_carto_f` and the `aec_carto_join_f` functions). The resultant coordinates for each election are saved in the `nat_data01`, `nat_data04` etc. datasets distributed with the package, they are labelled `x` and `y`. This data is used to create the display of electoral results below.
 
 ```{r fig.width=7, fig.height=6, echo=TRUE, warning=FALSE, message=FALSE, error=FALSE}
 # Load election results
-cart.winners <- aec2013_fp_electorate %>% filter(Elected == "Y") %>% 
-  select(Electorate, PartyNm) %>% 
-  merge(nat_data_cart, by.x="Electorate", by.y="ELECT_DIV")
-
-# Grouping different Lib/Nats togethers
-cart.winners$PartyNm <- as.character(cart.winners$PartyNm)
-coalition <- c("Country Liberals (NT)", "Liberal", "Liberal National Party of Queensland",
-               "The Nationals")
-cart.winners.grouped <- mutate(cart.winners, 
-  PartyNm = ifelse(as.character(PartyNm) %in% coalition, 
-                   "Liberal National Coalition", PartyNm))
+cart.winners <- fp16 %>% filter(Elected == "Y") %>% 
+  select(DivisionNm, PartyNm) %>% 
+  merge(nat_data16, by.x="DivisionNm", by.y="elect_div")
 
 # Plot it
-ggplot(data=nat_map) +
+ggplot(data=nat_map16) +
   geom_polygon(aes(x=long, y=lat, group=group, order=order),
                fill="grey90", colour="white") +
-  geom_point(data=cart.winners.grouped, aes(x=x, y=y, colour=PartyNm), size=2, alpha=0.8) +
+  geom_point(data=cart.winners, aes(x=x, y=y, colour=PartyNm), size=1.5, alpha=0.8) +
   scale_colour_manual(name="Political Party", values=partycolours) +
-  theme_map + coord_equal() + theme(legend.position="bottom")
+  theme_map() + coord_equal() + theme(legend.position="bottom")
 ```
 

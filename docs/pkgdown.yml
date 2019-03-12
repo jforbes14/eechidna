@@ -1,0 +1,12 @@
+pandoc: '2.7'
+pkgdown: 1.3.0
+pkgdown_sha: ~
+articles:
+  eechidna-intro: eechidna-intro.html
+  exploring-census-data: exploring-census-data.html
+  exploring-election-data: exploring-election-data.html
+  getting-ozShapefiles: getting-ozShapefiles.html
+  imputing-census-data: imputing-census-data.html
+  plotting-electorates: plotting-electorates.html
+  plotting-polling-stns: plotting-polling-stns.html
+

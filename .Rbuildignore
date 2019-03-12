@@ -1,6 +1,15 @@
+^vignettes/exploring-census-data\.Rmd$
+^vignettes/getting-ozShapefiles\.Rmd$
+^vignettes/exploring-election-data\.Rmd$
+^vignettes/imputing-census-data\.Rmd$
+^vignettes/plotting-electorates\.Rmd$
+^vignettes/plotting-polling-stns\.Rmd$
 ^.*\.md$
 !NEWS\.md$
 ^README\.Rmd$
+^README\.md$
+^CONDUCT\.md$
+^CONTRIBUTING\.md$
 ^\.travis\.yml$
 ^.*\.Rproj$
 ^\.Rproj\.user$
@@ -8,3 +17,6 @@
 ^cran-comments\.md$
 ^README_video_screenshot\.png$
 ^data-raw$
+^docs$
+^dont-document$
+^extra-data$

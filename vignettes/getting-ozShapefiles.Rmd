@@ -1,6 +1,6 @@
 ---
 title: "Getting Oz Electorate shapefiles into shape"
-author: "Heike Hofmann, Di Cook"
+author: "Heike Hofmann, Di Cook and Jeremy Forbes"
 date: "`r Sys.Date()`"
 output: 
     rmarkdown::html_vignette:
@@ -12,94 +12,142 @@ vignette: >
 ---
 
 
-```{r setup, echo=FALSE}
+```{r setup, echo=FALSE, include = FALSE}
 library(knitr)
-opts_chunk$set(eval = FALSE,
-               warning = FALSE,
-               message = FALSE)
+opts_chunk$set(warning = FALSE,
+               message = FALSE,
+               fig.width = 6,
+               fig.height = 4,
+               fig.align='center',
+               dev = "png")
 
 ```
 
-The Australian Electorate Commission publishes the boundaries of the electorates on their website at [http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm](http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm).
+This vignette details the procedure used to obtain the maps of electoral boundaries for each of the Australian federal elections and Censuses. 
 
-Once the files (preferably the national files) are downloaded, unzip the file (it will build a folder with a set of files). We want to read the shapes contained in the `shp` file into R.
+The Australian Electorate Commission publishes the boundaries of the electorates on their website at [http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm](http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm) (2010-2016). Electoral boundaries for 2001 are sourced from the Australian Government at [https://data.gov.au/](https://data.gov.au/dataset/ds-dga-0b939a62-e53e-4616-add5-77f909b58ddd/details?q=asgc%202001). The 2004 and 2007 electoral boundaries are available from the Australian Bureau of Statistics [http://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument](http://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument).
 
-```{r, eval=FALSE, echo=FALSE}
-library(maptools)
+Once the files (preferably the national files) are downloaded, unzip the file (it will build a folder with a set of files). We want to read the shapes contained in the `shp`, `TAB`, or `MIF` file into R. The `rgdal` library can be used to do this.
+
+The function `get_electorate_shapes` in this package extracts a list from the shapefile, consisting of a `dataframe` containing coordinates of each polygon and a `dataframe` with data associated with each polygon (electorate). These can be used directly with `ggplot` graphics. Alternatively, the `load_shapefile` function (also from `eechidna`) imports the shapefile as a `SpatialPolygonsDataFrame`.
+
+```{r, message=FALSE, warning=FALSE, eval = F}
+# shapeFile contains the path to the shp file:
+shapeFile <- "/PATH-ON-YOUR-COMPUTER/national-midmif-09052016/COM_ELB.TAB"
+sF <- get_electorate_shapes(shapeFile)
+
+nat_map <- sF$map
+nat_data <- sF$data
+```
+
+```{r, echo = F}
+library(eechidna)
+data("nat_map16")
+data("nat_data16")
+nat_map <- nat_map16
+nat_data <- nat_data16
+```
+
+Here we have a map of the Australian electorates colored by their size as given in the data (variable `area_sqkm`):
+
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=6}
+library(ggplot2)
+library(ggthemes)
+
+ggplot(aes(map_id=id), data=nat_data) +
+  geom_map(aes(fill=area_sqkm), map=nat_map) +
+  expand_limits(x=nat_map$long, y=nat_map$lat) + 
+  theme_map() + coord_equal()
+```
+
+The `get_electorate_shapes` function works for the Australian electoral boundaries between 2001 and 2016, but may need some tweaking for other maps (including future electoral maps). Each step of this function is detailed below, with the running example of the Australian electoral boundaries for 2016.
+
+## Steps
+
+For the 2016 election, the national electorate boundaries are given in MapInfo format.
+
+```{r eval=FALSE, echo=FALSE}
+library(dplyr)
+library(rgdal)
 
 # shapeFile contains the path to the shp file:
-shapeFile <- "national-esri-16122011/COM20111216_ELB_region.shp"
-sF <- readShapeSpatial(shapeFile)
-class(sF)
+shapeFile <- "/PATH-TO-YOUR-COMPUTER/national-midmif-09052016/COM_ELB.TAB"
+
+sF <- readOGR(dsn=shapeFile)
 ```
 
-For the 2016 election, the national electorate boundaries are given in mapinfo format ([http://www.aec.gov.au/Electorates/gis/files/nt-midmif-07022017.zip](http://www.aec.gov.au/Electorates/gis/files/nt-midmif-07022017.zip)). The `rgdal` library can be used to read this format:
+```{r echo = F}
+library(eechidna)
 
-```{r, message=FALSE}
-library(rgdal)
-sF <- readOGR(dsn="national-midmif-09052016/COM_ELB.TAB", layer="COM_ELB")
+sF <- sF_download(2016)
 ```
 
-`sF` is a spatial data frame containing all of the polygons. 
-We use the `rmapshaper` package to thin the polygons while preserving the geography:
 
-```{r, message=FALSE}
-library(rmapshaper)
-```
-If the library is not available, install it from CRAN using 
-`install.packages("rmapshaper")`.
+`sF` is a spatial data frame containing all of the polygons. First, for convenience, lets change all variable names in the assocated data set to lower case.
 
-```{r, message=FALSE}
-sFsmall <- ms_simplify(sF, keep=0.05) # use instead of thinnedSpatialPoly
-```
-`keep` indicates the percentage of points we want to keep in the polygons. 5% makes the electorate boundary still quite recognizable, but reduce the overall size of the map considerably, making it faster to plot.
-
-We can use base graphics to plot this map:
-```{r, cache=TRUE, message=FALSE}
-plot(sFsmall)
+```{r, eval=FALSE, message = FALSE}
+names(sF@data) <- tolower(names(sF@data))
 ```
 
+We now use `rgeos` to thin the polygons and ensure that there are no holes while preserving the geography:
+
+```{r eval=FALSE, message=FALSE}
+library(rgeos)
+```
+
+```{r, eval=FALSE, message=FALSE}
+polys_sF <- gSimplify(sF, tol = 0.005)
+sF <- sp::SpatialPolygonsDataFrame(polys_sF, sF@data)
+```
+
+`tol` is the numerical tolerance value to be used by the Douglas-Peuker algorithm. A larger value thins the polygons by more, reducing the number of points. Doing this helps reduce the overall size of the map considerably, making it faster to plot.
 
 ### Extracting the electorate information 
 
 A spatial polygons data frame consists of both a data set with information on each of the entities (in this case, electorates), and a set of polygons for each electorate (sometimes multiple polygons are needed, e.g. if the electorate has islands). We want to extract both of these parts.
-```{r, message=FALSE}
+
+```{r echo=FALSE}
+sF@data <- dplyr::select(sF@data, -c(long_c, lat_c))
+```
+
+```{r message=FALSE}
 nat_data <- sF@data
 head(nat_data)
 ```
+
 The row names of the data file are identifiers corresponding to the polygons - we want to make them a separate variable:
 ```{r, message=FALSE}
 nat_data$id <- row.names(nat_data)
 ```
-In the currently published version of the 2013 electorate boundaries, the `data` data frame has variable `ELECT_DIV` of the electorates' names, and variable `STATE`, which is an abbreviation of the state name. It might be convenient to merge this information (or at least the state abbreviation) into the polygons (see below).
-We are almost ready to export this data  into a file, but we still want include geographic centers in the data (see also below).
+In the currently published version of the 2016 electorate boundaries, the `data` data frame has variable `elect_div` of the electorates' names, and variable `state`, which is an abbreviation of the state name. It might be convenient to merge this information (or at least the state abbreviation) into the polygons (see below).
+
+We are almost ready to export this data into a file, but we still want include geographic centers in the data (see also below).
 
 ### Extracting the polygon information 
 
 The `fortify` function in the `ggplot2` package extracts the polygons into a data frame. 
-```{r}
-nat_map <- ggplot2::fortify(sFsmall)
-head(nat_map)
+```{r eval=F}
+nat_map <- ggplot2::fortify(sF)
 ```
 
 We need to make sure that `group` and `piece` are kept as factor variables - if they are allowed to be converted to numeric values, it messes things up, because as factor levels `9` and `9.0` are distinct, whereas they are not when interpreted as numbers ...
-```{r}
+```{r eval=F}
 nat_map$group <- paste("g",nat_map$group,sep=".")
 nat_map$piece <- paste("p",nat_map$piece,sep=".")
 ```
 
 It is useful to have the electorate name and state attached to the map.
 
-```{r}
-nms <- sFsmall@data %>% select(Elect_div, State)
+```{r eval=F}
+nms <- sF@data %>% select(elect_div, state)
 nms$id <- as.character(1:150)
 nat_map <- left_join(nat_map, nms, by="id")
 ```
 
 The map data is ready to be exported to a file:
 
-```{r eval=FALSE}
-write.csv(nat_map, "National-map-2016.csv", row.names=FALSE)
+```{r}
+head(nat_map)
 ```
 
 ###Getting centroids 
@@ -118,17 +166,19 @@ slotNames(polys)
 We are interested further into the polygon aspect of this object:
 
 ```{r}
-Polygon(polys[1])
+sp::Polygon(polys[1])
 ```
 From this, we want to extract the `labpt` component, because those are the centroids we are interested in. We will wrap this into a little function called `centroid` to help us with that:
 
 ```{r, message=FALSE, warning=FALSE}
-library(dplyr)
+library(purrr)
 centroid <- function(i, polys) {
-  ctr <- Polygon(polys[i])@labpt
+  ctr <- sp::Polygon(polys[i])@labpt
   data.frame(long_c=ctr[1], lat_c=ctr[2])
 }
+
 centroids <- seq_along(polys) %>% purrr::map_df(centroid, polys=polys)
+
 head(centroids)
 ```
 The centroids come in the same order as the data (luckily) and we just extend the data set for the electorates by this information, and finally export:
@@ -141,15 +191,12 @@ nat_data <- data.frame(nat_data, centroids)
 write.csv(nat_data, "National-data-2016.csv", row.names=FALSE)
 ```
 
+Finally, just to check the data, a map of the Australian electorates colored by their size as given in the data (variable `area_sqkm`):
 
-Finally, just to check the data, a map of the Australian electorates colored by their size as given in the data (variable `Area_SqKm`):
-
-```{r, message=FALSE, warning=FALSE}
-library(ggplot2)
-library(ggthemes)
+```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=6}
 ggplot(aes(map_id=id), data=nat_data) +
-  geom_map(aes(fill=Area_SqKm), map=nat_map) +
+  geom_map(aes(fill=area_sqkm), map=nat_map) +
   expand_limits(x=nat_map$long, y=nat_map$lat) + 
-  theme_map()
+  theme_map() + coord_equal()
 ```
 

@@ -1,10 +1,10 @@
 ---
-title: "Plotting Australia's Polling Stations"
-author: "Di Cook"
+title: "Plotting Australia's Polling Booths"
+author: "Di Cook and Jeremy Forbes"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Plotting Australia's Polling Stations}
+  %\VignetteIndexEntry{Plotting Australia's Polling Booths}
   %\VignetteEngine{knitr::rmarkdown}
   %\usepackage[utf8]{inputenc}
 ---
@@ -13,74 +13,74 @@ vignette: >
 knitr::opts_chunk$set(fig.width = 6,
                       fig.height = 4,
                       fig.align='center',
-                      dev = "png", cache=FALSE)
+                      dev = "png")
 ```
 
-This vignette dscribes how to show the polling stations on a map of the Australian electorates. The polling station locations for the 2013 election can be downloaded from [http://results.aec.gov.au/17496/Website/GeneralDownloadsMenu-17496-csv.htm](http://results.aec.gov.au/17496/Website/GeneralDownloadsMenu-17496-csv.htm). This data is a reduced set of information. (The data sometimes needs to be cleaned a little in order to read properly into R: (1) One polling place has instructions for getting in that include `6" step` which messes up the text read, (2) Two polling places have `"F"` and `"B"` in the instructions to get in that messes with the text reading. The data provided with the vignette has been cleaned.)
+This vignette demonstrates how to plot the polling booths on a map of the Australian electorates. The polling booth locations for each federal election (from 2001 to 2016) can be downloaded from [http://results.aec.gov.au/](http://results.aec.gov.au/). Coordinates for 2001 and 2004 polling booths are obtained by matching polling booth ID and name with later elections. Those without coordinates in 2004 were filled using [Google Maps API](https://cloud.google.com/maps-platform/), using the latest `ggmap` package from [github](https://github.com/dkahle/ggmap/).
+
+## Polling booths in 2016
 
 ```{r message=FALSE, error = TRUE, warning=FALSE, echo=FALSE, tidy=TRUE}
 library(eechidna)
-library(plyr)
-library(dplyr)
-library(ggplot2)
+library(tidyverse)
 library(readr)
 
-stns <- read_csv("http://results.aec.gov.au/17496/Website/Downloads/GeneralPollingPlacesDownload-17496.csv", skip=1)
-
-# could also get polling locations from aec2013_2pp
-# stns <- aec2013_2pp %>% 
-#   group_by(PollingPlaceID) %>% 
-#   select(Latitude, Longitude) %>% 
-#   slice(1)
-```
-
-```{r fig.width=7, fig.height=4, message=FALSE, error = TRUE, warning=FALSE, echo=TRUE, tidy=TRUE}
-library(ggthemes)
-
-data(nat_map)
-data(nat_data)
-ggplot(data=nat_data, aes(map_id=id)) +
-  geom_map(map=nat_map, fill="grey90", colour="white") + 
-  geom_point(data=stns, aes(x=Longitude, y=Latitude), colour="red", size=1, alpha=0.3, inherit.aes=FALSE) +
-  xlim(c(112,157)) + ylim(c(-44,-11)) +
-  theme_map() + coord_equal() 
-```
-
-
-## 2016 Update
-
-```{r message=FALSE, error = TRUE, warning=FALSE, echo=FALSE, tidy=TRUE}
 stns <- read_csv("http://results.aec.gov.au/20499/Website/Downloads/GeneralPollingPlacesDownload-20499.csv", skip=1)
 ```
 
 ```{r mapit, fig.width=7, fig.height=4, message=FALSE, error = TRUE, warning=FALSE, echo=TRUE, tidy=TRUE}
-data(nat_map_2016)
-data(nat_data_2016)
-ggplot(data=nat_data_2016, aes(map_id=id)) +
-  geom_map(map=nat_map_2016, fill="grey90", colour="white") + 
+library(ggthemes)
+data("nat_map16")
+data("nat_data16")
+
+ggplot(data=nat_data16, aes(map_id=id)) +
+  geom_map(map=nat_map16, fill="grey90", colour="white") + 
   geom_point(data=stns, aes(x=Longitude, y=Latitude), colour="red", size=1, alpha=0.3, inherit.aes=FALSE) +
   xlim(c(112,157)) + ylim(c(-44,-11)) +
-  theme_map() + coord_equal() 
+  theme_map() + coord_equal()
 ```
 
 ## Incorporating other information
 
-Election results are provided at the resolution of polling place. We can use this information to color the points. The two files need to be merged. Both have id's for the polling place, that can be used to match the records. The two party preferred votes are given in `aec2013_2pp` data, only for the Australian Labor Party and the Liberal/National Coalition. From these columns the winner needs to be calculated based on the higher percentage. This is used to colour the points on the polling places. 
+Election results are provided at the resolution of polling place, but must be downloaded using the functions `firstpref_pollingbooth_download`, `twoparty_pollingbooth_download` or `twocand_pollingbooth_download` (depending on the vote type). We can use this information to color the points. The two files need to be merged. Both have a unique ID for the polling place that can be used to match the records. The two party preferred vote, a measure of preference between only the Australian Labor Party (ALP) and the Liberal/National Coalition (LNP), is downloaded using `twoparty_pollingbooth_download`. The preferred party is the one with the higher percentage, and we use this to colour the points indicating polling places. 
 
+This gives a richer look at the party preferences across the country. You can see that although the big rural electorates vote for LNP overall, some polling places would elect the ALP, e.g. western NSW around Broken Hill. This data would look far more interesting if the data also contained the minority parties, because there must be some polling places where the majority vote would be for a minor party, since there are some minor party representatives in the House.  
 
+```{r tpp_map, fig.width=7, fig.height=5, message=FALSE, error = TRUE, warning=FALSE, echo=FALSE, tidy=TRUE}
+tpp_pp <- twoparty_pollingbooth_download()
+tpp_pp16 <- tpp_pp %>% filter(year == 2016)
 
-This gives a richer look at the party preferences across the country. You can see that although the big rural electorates vote the LNC overall some polling places would elect the ALP, e.g. western NSW around Broken Hill. This data would look far more interesting if the data also contained the minority parties, because there must be some polling places where the majority vote would be for a minor party, since there are some minor partt representatives in the House.  
-
-```{r addresults, fig.width=7, fig.height=5, message=FALSE, error = TRUE, warning=FALSE, echo=FALSE, tidy=TRUE}
-data(aec2016_2pp)
-all <- merge(stns, aec2016_2pp, by.x="PollingPlaceID", by.y="PollingPlaceID")
 # Find winner
-all$winner <- apply(all[,c(42,44)], 1, which.max)
-all$winner <- ifelse(all$winner==1, "ALP", "LNC")
-ggplot(data=nat_data_2016, aes(map_id=id)) +
-  geom_map(map=nat_map_2016, fill="grey90", colour="white") + 
-  geom_point(data=all, aes(x=Longitude.x, y=Latitude.x, colour=winner), size=2, alpha=0.3, inherit.aes=FALSE) +
-  scale_color_manual("Party", values=c("LNC"="#FF0033", "ALP"="#0066CC")) + 
+tpp_pp16 <- tpp_pp16 %>% 
+  mutate(winner = ifelse(ALP_Percent >= 50, "ALP", "LNP"))
+
+ggplot(data=nat_data16, aes(map_id=id)) +
+  geom_map(map=nat_map16, fill="grey90", colour="white") + 
+  geom_point(data=tpp_pp16, aes(x=Longitude, y=Latitude, colour=winner), size=1, alpha=0.3, inherit.aes=FALSE) +
+  scale_color_manual("Party", values=c("LNP"="#80b1d3", "ALP"="#fb8072")) + 
   xlim(c(112,157)) + ylim(c(-44,-11)) +
   theme_map() + coord_equal() + theme(legend.position="bottom")
 ```
+
+The two candidate preferred vote (downloaded with `twocand_pollingbooth_download`) is a measure of preference between the two candidates who received the most votes through the division of preferences, where the winner has the higher percentage.
+
+```{r tcp_map, fig.width=7, fig.height=5, message=FALSE, error = TRUE, warning=FALSE, echo=FALSE, tidy=TRUE}
+tcp_pp <- twocand_pollingbooth_download()
+tcp_pp16 <- tcp_pp %>% filter(year == 2016)
+
+# Find winner
+winners <- tcp_pp16 %>% 
+  left_join(tcp_pp16 %>% dplyr::group_by(PollingPlace, DivisionNm) %>% summarise(TotalVotes = sum(OrdinaryVotes)), by = c("PollingPlace", "DivisionNm")) %>% 
+  filter(OrdinaryVotes/TotalVotes > 0.5)
+
+# Plot
+ggplot(data=nat_data16, aes(map_id=id)) +
+  geom_map(map=nat_map16, fill="grey90", colour="white") + 
+  geom_point(data=winners, aes(x=Longitude, y=Latitude, colour=PartyAb), size=1, alpha=0.6, inherit.aes=FALSE) +
+  scale_color_manual("Party", values=c("LNP"="#80b1d3", "ALP"="#fb8072", "GRN" = "#33a02c", "XEN" = "#beaed4", "ON" = "#fdc086", "KAP" = "#ffff99", "IND" = "grey25")) + 
+  xlim(c(112,157)) + ylim(c(-44,-11)) +
+  theme_map() + coord_equal() + theme(legend.position="bottom")
+```
+
+This map shows which party had the most support at each polling booth, and we see that support for minor parties are clustered in different regiond. An independent candidate has lots of support in the electorate of Indi (rural Victoria), One Nation party is backed by parts of rural Queesland, and other parties are popular in northern Queenaland and around Adelaide. Again we see the cities strongly support Labor.
+
