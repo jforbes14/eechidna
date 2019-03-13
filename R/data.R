@@ -10,7 +10,8 @@
 #' @format A data frame with the following variables:
 #' \itemize{
 #'     \item StateAb: Abbreviation for state name    
-#'     \item DivisionID: Electoral division ID    
+#'     \item UniqueID: numeric identifier that links the electoral division with Census  
+#'     and other election datasets.
 #'     \item DivisionNm:  Electoral division name   
 #'     \item BallotPosition: Candidate's position on the ballot 
 #'     \item CandidateID: Candidate ID       
@@ -38,7 +39,8 @@
 #' 
 #' @format A data frame with the following variables:
 #' \itemize{
-#'     \item DivisionID: Electoral division ID    
+#'     \item UniqueID: numeric identifier that links the electoral division with Census  
+#'     and other election datasets. 
 #'     \item DivisionNm:  Electoral division name   
 #'     \item StateAb: Abbreviation for state name  
 #'     \item LNP_Votes: Count of two party preferred vote in favour of the Liberal National coalition
@@ -64,7 +66,8 @@
 #' @format A data frame with the following variables:
 #' \itemize{
 #'     \item StateAb: Abbreviation for state name    
-#'     \item DivisionID: Electoral division ID    
+#'     \item UniqueID: numeric identifier that links the electoral division with Census  
+#'     and other election datasets.  
 #'     \item DivisionNm:  Electoral division name             
 #'     \item BallotPosition: Candidate's position on the ballot      
 #'     \item CandidateID: Candidate ID       
@@ -91,7 +94,8 @@
 #' @format A data frame with the following variables:
 #' \itemize{
 #'     \item StateAb: Abbreviation for state name    
-#'     \item DivisionID: Electoral division ID    
+#'     \item UniqueID: numeric identifier that links the electoral division with Census  
+#'     and other election datasets.
 #'     \item DivisionNm:  Electoral division name   
 #'     \item BallotPosition: Candidate's position on the ballot 
 #'     \item CandidateID: Candidate ID       
@@ -119,7 +123,8 @@
 #' 
 #' @format A data frame with the following variables:
 #' \itemize{
-#'     \item DivisionID: Electoral division ID    
+#'     \item UniqueID: numeric identifier that links the electoral division with Census  
+#'     and other election datasets.  
 #'     \item DivisionNm:  Electoral division name   
 #'     \item StateAb: Abbreviation for state name  
 #'     \item LNP_Votes: Count of two party preferred vote in favour of the Liberal National coalition
@@ -144,7 +149,8 @@
 #' @format A data frame with the following variables:
 #' \itemize{
 #'     \item StateAb: Abbreviation for state name    
-#'     \item DivisionID: Electoral division ID    
+#'     \item UniqueID: numeric identifier that links the electoral division with Census  
+#'     and other election datasets.  
 #'     \item DivisionNm:  Electoral division name             
 #'     \item BallotPosition: Candidate's position on the ballot      
 #'     \item CandidateID: Candidate ID       
@@ -171,7 +177,8 @@
 #' @format A data frame with the following variables:
 #' \itemize{
 #'     \item StateAb: Abbreviation for state name    
-#'     \item DivisionID: Electoral division ID    
+#'     \item UniqueID: numeric identifier that links the electoral division with Census  
+#'     and other election datasets.   
 #'     \item DivisionNm:  Electoral division name   
 #'     \item BallotPosition: Candidate's position on the ballot 
 #'     \item CandidateID: Candidate ID       
@@ -196,7 +203,8 @@
 #' 
 #' @format A data frame with the following variables:
 #' \itemize{
-#'     \item DivisionID: Electoral division ID    
+#'     \item UniqueID: numeric identifier that links the electoral division with Census  
+#'     and other election datasets.  
 #'     \item DivisionNm:  Electoral division name   
 #'     \item StateAb: Abbreviation for state name  
 #'     \item LNP_Votes: Count of two party preferred vote in favour of the Liberal National coalition
@@ -220,7 +228,8 @@
 #' @format A data frame with the following variables:
 #' \itemize{
 #'     \item StateAb: Abbreviation for state name    
-#'     \item DivisionID: Electoral division ID    
+#'     \item UniqueID: numeric identifier that links the electoral division with Census  
+#'     and other election datasets.  
 #'     \item DivisionNm:  Electoral division name             
 #'     \item BallotPosition: Candidate's position on the ballot      
 #'     \item CandidateID: Candidate ID       
@@ -246,7 +255,8 @@
 #' @format A data frame with the following variables:
 #' \itemize{
 #'     \item StateAb: Abbreviation for state name    
-#'     \item DivisionID: Electoral division ID    
+#'     \item UniqueID: numeric identifier that links the electoral division with Census  
+#'     and other election datasets.   
 #'     \item DivisionNm:  Electoral division name   
 #'     \item BallotPosition: Candidate's position on the ballot 
 #'     \item CandidateID: Candidate ID       
@@ -271,7 +281,8 @@
 #' 
 #' @format A data frame with the following variables:
 #' \itemize{
-#'     \item DivisionID: Electoral division ID    
+#'     \item UniqueID: numeric identifier that links the electoral division with Census  
+#'     and other election datasets.   
 #'     \item DivisionNm:  Electoral division name   
 #'     \item StateAb: Abbreviation for state name  
 #'     \item LNP_Votes: Count of two party preferred vote in favour of the Liberal National coalition
@@ -296,7 +307,8 @@
 #' @format A data frame with the following variables:
 #' \itemize{
 #'     \item StateAb: Abbreviation for state name    
-#'     \item DivisionID: Electoral division ID    
+#'     \item UniqueID: numeric identifier that links the electoral division with Census  
+#'     and other election datasets.  
 #'     \item DivisionNm:  Electoral division name             
 #'     \item BallotPosition: Candidate's position on the ballot      
 #'     \item CandidateID: Candidate ID       
@@ -323,7 +335,8 @@
 #' @format A data frame with the following variables:
 #' \itemize{
 #'     \item StateAb: Abbreviation for state name    
-#'     \item DivisionID: Electoral division ID    
+#'     \item UniqueID: numeric identifier that links the electoral division with Census  
+#'     and other election datasets.  
 #'     \item DivisionNm:  Electoral division name   
 #'     \item BallotPosition: Candidate's position on the ballot 
 #'     \item CandidateID: Candidate ID       
@@ -348,7 +361,8 @@
 #' 
 #' @format A data frame with the following variables:
 #' \itemize{
-#'     \item DivisionID: Electoral division ID    
+#'     \item UniqueID: numeric identifier that links the electoral division with Census  
+#'     and other election datasets.  
 #'     \item DivisionNm:  Electoral division name   
 #'     \item StateAb: Abbreviation for state name  
 #'     \item LNP_Votes: Count of two party preferred vote in favour of the Liberal National coalition
@@ -372,7 +386,8 @@
 #' @format A data frame with the following variables:
 #' \itemize{
 #'     \item StateAb: Abbreviation for state name    
-#'     \item DivisionID: Electoral division ID    
+#'     \item UniqueID: numeric identifier that links the electoral division with Census  
+#'     and other election datasets.
 #'     \item DivisionNm:  Electoral division name             
 #'     \item BallotPosition: Candidate's position on the ballot      
 #'     \item CandidateID: Candidate ID       
@@ -395,6 +410,8 @@
 #' 
 #' @format A data frame with the following variables:
 #' \itemize{
+#'     \item UniqueID: numeric identifier that links the electoral division with Census  
+#'     and other election datasets.
 #'     \item StateAb: Abbreviation for state name  
 #'     \item DivisionNm:  Electoral division name   
 #'     \item Surname: Candidate surname          
@@ -416,10 +433,12 @@
 #' 
 #' @format A data frame with the following variables:
 #' \itemize{ 
+#'     \item UniqueID: numeric identifier that links the electoral division with Census  
+#'     and other election datasets.
 #'     \item DivisionNm:  Electoral division name   
 #'     \item StateAb: Abbreviation for state name  
 #'     \item LNP_Votes: Count of two party preferred vote in favour of the Liberal National coalition
-#'     \item LNP_Percent: Percentage of two party preferred vote in favour of the Liberal National coalition   
+#'     \item LNP_Percent: Percentage of two party preferred vote in favour of the Liberal National coalition
 #'     \item ALP_Votes: Count of two party preferred vote in favour of the Labor party
 #'     \item ALP_Percent: Percentage of two party preferred vote in favour of the Labor party     
 #'     \item TotalVotes: Total number of votes cast     
@@ -437,6 +456,8 @@
 #' 
 #' @format A data frame with the following variables:
 #' \itemize{
+#'     \item UniqueID: numeric identifier that links the electoral division with Census  
+#'     and other election datasets.
 #'     \item StateAb: Abbreviation for state name   
 #'     \item DivisionNm:  Electoral division name             
 #'     \item Surname: Candidate surname          
@@ -454,6 +475,21 @@
 #' A dataset containing the map of the all 150 Australian electorates using the 2016 boundaries of the 
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
 #' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
+#' 
+#' @format A data frame with the following variables:
+#' \itemize{
+#'     \item UniqueID: numeric identifier that links the electoral division with Census  
+#'     and other election datasets.
+#'     \item long: longitude coordinate of point in polygon
+#'     \item lat: latitude coordinate of point in polygon
+#'     \item order: order for polygon points
+#'     \item hole: whether polygon has a hole
+#'     \item piece: piece for polygon
+#'     \item group: group for polygon
+#'     \item elect_div: Electoral division name
+#'     \item state: Abbreviation for state name
+#' }
+#' 
 #' @examples 
 #' 
 #' library(eechidna)
@@ -478,7 +514,20 @@
 #' electorates (and downsampled to a 5\% file to allow fast plotting).
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
 #' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
-#' 
+#'
+#' @format A data frame with the following variables:
+#' \itemize{
+#'     \item UniqueID: numeric identifier that links the electoral division with Census  
+#'     and other election datasets.
+#'     \item long: longitude coordinate of point in polygon
+#'     \item lat: latitude coordinate of point in polygon
+#'     \item order: order for polygon points
+#'     \item hole: whether polygon has a hole
+#'     \item piece: piece for polygon
+#'     \item group: group for polygon
+#'     \item elect_div: Electoral division name
+#'     \item state: Abbreviation for state name
+#' }
 "nat_map13"
 
 #' Map of Australian Electorates from 2010
@@ -497,6 +546,19 @@
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
 #' from \url{http://www.abs.gov.au/AUSSTATS/abs@@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}.
 #' 
+#' @format A data frame with the following variables:
+#' \itemize{
+#'     \item UniqueID: numeric identifier that links the electoral division with Census  
+#'     and other election datasets.
+#'     \item long: longitude coordinate of point in polygon
+#'     \item lat: latitude coordinate of point in polygon
+#'     \item order: order for polygon points
+#'     \item hole: whether polygon has a hole
+#'     \item piece: piece for polygon
+#'     \item group: group for polygon
+#'     \item elect_div: Electoral division name
+#'     \item state: Abbreviation for state name
+#' }
 "nat_map07"
 
 #' Map of Australian Electorates from 2004
@@ -506,6 +568,19 @@
 #' The data were obtained from the Australian Bureau of Statistics, and downloaded 
 #' from \url{http://www.abs.gov.au/AUSSTATS/abs@@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}.
 #' 
+#' @format A data frame with the following variables:
+#' \itemize{
+#'     \item UniqueID: numeric identifier that links the electoral division with Census  
+#'     and other election datasets.
+#'     \item long: longitude coordinate of point in polygon
+#'     \item lat: latitude coordinate of point in polygon
+#'     \item order: order for polygon points
+#'     \item hole: whether polygon has a hole
+#'     \item piece: piece for polygon
+#'     \item group: group for polygon
+#'     \item elect_div: Electoral division name
+#'     \item state: Abbreviation for state name
+#' }
 "nat_map04"
 
 #' Map of Australian Electorates from 2001
@@ -515,6 +590,19 @@
 #' The data were obtained from the Australian Government, and downloaded 
 #' from \url{https://data.gov.au/dataset/ds-dga-0b939a62-e53e-4616-add5-77f909b58ddd/details?q=asgc\%202001}.
 #' 
+#' @format A data frame with the following variables:
+#' \itemize{
+#'     \item UniqueID: numeric identifier that links the electoral division with Census  
+#'     and other election datasets.
+#'     \item long: longitude coordinate of point in polygon
+#'     \item lat: latitude coordinate of point in polygon
+#'     \item order: order for polygon points
+#'     \item hole: whether polygon has a hole
+#'     \item piece: piece for polygon
+#'     \item group: group for polygon
+#'     \item elect_div: Electoral division name
+#'     \item state: Abbreviation for state name
+#' }
 "nat_map01"
 
 #' Data of the Australian Electorates from 2016
@@ -525,7 +613,8 @@
 #' The data is published 
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
-#'     \item id: numeric identifier that links the electorate with the corresponding polygon in `nat_map`.
+#'     \item UniqueID: numeric identifier that links the electorate with the corresponding polygon 
+#'     in `nat_map` and other data sets.
 #'     \item elect_div: Electorate division name   
 #'     \item state: abbreviation of the state name
 #'     \item numccds: AEC variable that might be filled with meaning or a description down the road
@@ -566,7 +655,8 @@
 #' The data is published 
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
-#'     \item id: numeric identifier that links the electorate with the corresponding polygon in `nat_map`.
+#'     \item UniqueID: numeric identifier that links the electorate with the corresponding polygon 
+#'     in `nat_map` and other data sets.
 #'     \item elect_div: Electorate division name   
 #'     \item state: abbreviation of the state name
 #'     \item numccds: AEC variable that might be filled with meaning or a description down the road
@@ -587,7 +677,8 @@
 #' The data is published 
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
-#'     \item id: numeric identifier that links the electorate with the corresponding polygon in `nat_map`.
+#'     \item UniqueID: numeric identifier that links the electorate with the corresponding polygon 
+#'     in `nat_map` and other data sets.
 #'     \item elect_div: Electorate division name   
 #'     \item state: abbreviation of the state name
 #'     \item numccds: AEC variable that might be filled with meaning or a description down the road
@@ -608,7 +699,8 @@
 #' The data is published 
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
-#'     \item id: numeric identifier that links the electorate with the corresponding polygon in `nat_map`.
+#'     \item UniqueID: numeric identifier that links the electorate with the corresponding polygon 
+#'     in `nat_map` and other data sets.
 #'     \item elect_div: Electorate division name   
 #'     \item state: abbreviation of the state name
 #'     \item long_c: longitude coordinate of electorate (polygon) centroid
@@ -627,7 +719,8 @@
 #' The data is published 
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
-#'     \item id: numeric identifier that links the electorate with the corresponding polygon in `nat_map`.
+#'     \item UniqueID: numeric identifier that links the electorate with the corresponding polygon 
+#'     in `nat_map` and other data sets.
 #'     \item elect_div: Electorate division name   
 #'     \item state: abbreviation of the state name
 #'     \item long_c: longitude coordinate of electorate (polygon) centroid
@@ -646,7 +739,8 @@
 #' The data is published 
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
-#'     \item id: numeric identifier that links the electorate with the corresponding polygon in `nat_map`.
+#'     \item UniqueID: numeric identifier that links the electorate with the corresponding polygon 
+#'     in `nat_map` and other data sets.
 #'     \item elect_div: Electorate division name   
 #'     \item state: abbreviation of the state name
 #'     \item long_c: longitude coordinate of electorate (polygon) centroid
@@ -667,7 +761,8 @@
 #'
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
-#'   \item ID:Commonwealth Electoral District identifier
+#'   \item UniqueID: numeric identifier that links the electoral division with Census 
+#'   and other election datasets.
 #'   \item DivisionNm: Name of electorate
 #'   \item State: State containing electorate
 #'   \item Population: Total population of electorate
@@ -760,6 +855,11 @@
 #' data(abs2016)
 #' abs2016 %>% select(DivisionNm, MedianAge, Unemployed, NoReligion, MedianPersonalIncome) %>% head()
 #' 
+#' # Join with two-party preferred voting data
+#' data(tpp16)
+#' election2016 <- left_join(abs2016, tpp16, by = "UniqueID")
+#' # See relationship between personal income and Liberal/National support
+#' ggplot(election2016, aes(x = MedianPersonalIncome, y = LNP_Percent)) + geom_point() + geom_smooth()
 "abs2016"  
 
 #' 2011 Australian Census data on all 150 electorates
@@ -772,7 +872,8 @@
 #'
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
-#'   \item ID:Commonwealth Electoral District identifier
+#'   \item UniqueID: numeric identifier that links the electoral division with Census 
+#'   and other election datasets.
 #'   \item DivisionNm: Name of electorate
 #'   \item State: State containing electorate
 #'   \item Population: Total population of electorate
@@ -877,7 +978,8 @@
 #'
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
-#'   \item ID:Commonwealth Electoral District identifier
+#'   \item UniqueID: numeric identifier that links the electoral division with Census 
+#'   and other election datasets.
 #'   \item DivisionNm: Name of electorate
 #'   \item State: State containing electorate
 #'   \item Population: Total population of electorate
@@ -982,7 +1084,8 @@
 #'
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
-#'   \item ID:Commonwealth Electoral District identifier
+#'   \item UniqueID: numeric identifier that links the electoral division with Census 
+#'   and other election datasets.
 #'   \item DivisionNm: Name of electorate
 #'   \item State: State containing electorate
 #'   \item Population: Total population of electorate
@@ -1087,7 +1190,8 @@
 #'
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
-#'   \item ID:Commonwealth Electoral District identifier
+#'   \item UniqueID: numeric identifier that links the electoral division with Census 
+#'   and other election datasets.
 #'   \item DivisionNm: Name of electorate
 #'   \item State: State containing electorate
 #'   \item Population: Total population of electorate
@@ -1178,7 +1282,12 @@
 #' library(dplyr)
 #' data(abs2001)
 #' abs2001 %>% select(DivisionNm, MedianAge, Unemployed, NoReligion, MedianPersonalIncome) %>% head()
-#'
+#' 
+#' # Join with two-party preferred voting data
+#' data(tpp01)
+#' election2001 <- left_join(abs2001, tpp01, by = "UniqueID")
+#' # See relationship between personal income and Liberal/National support
+#' ggplot(election2001, aes(x = MedianPersonalIncome, y = LNP_Percent)) + geom_point() + geom_smooth()
 "abs2001"  
 
 #' Imputed Australian Census data for the electorates in place at time of the 2013 Federal election
@@ -1264,7 +1373,12 @@
 #' library(dplyr)
 #' data(abs2013)
 #' abs2013 %>% select(DivisionNm, MedianAge, Unemployed, NoReligion, MedianPersonalIncome) %>% head()
-#'
+#' 
+#' # Join with two-party preferred voting data
+#' data(tpp13)
+#' election2013 <- left_join(abs2013, tpp13, by = "UniqueID")
+#' # See relationship between personal income and Liberal/National support
+#' ggplot(election2013, aes(x = MedianPersonalIncome, y = LNP_Percent)) + geom_point() + geom_smooth()
 "abs2013"  
 
 #' Imputed Australian Census data for the electorates in place at time of the 2010 Federal election
@@ -1349,7 +1463,12 @@
 #' library(dplyr)
 #' data(abs2010)
 #' abs2010 %>% select(DivisionNm, MedianAge, Unemployed, NoReligion, MedianPersonalIncome) %>% head()
-#'
+#' 
+#' # Join with two-party preferred voting data
+#' data(tpp10)
+#' election2010 <- left_join(abs2010, tpp10, by = "UniqueID")
+#' # See relationship between personal income and Liberal/National support
+#' ggplot(election2010, aes(x = MedianPersonalIncome, y = LNP_Percent)) + geom_point() + geom_smooth()
 "abs2010"  
 
 #' Imputed Australian Census data for the electorates in place at time of the 2007 Federal election
@@ -1435,7 +1554,12 @@
 #' library(dplyr)
 #' data(abs2007)
 #' abs2007 %>% select(DivisionNm, MedianAge, Unemployed, NoReligion, MedianPersonalIncome) %>% head()
-#'
+#' 
+#' # Join with two-party preferred voting data
+#' data(tpp07)
+#' election2007 <- left_join(abs2007, tpp07, by = "UniqueID")
+#' # See relationship between personal income and Liberal/National support
+#' ggplot(election2007, aes(x = MedianPersonalIncome, y = LNP_Percent)) + geom_point() + geom_smooth()
 "abs2007"  
 
 #' Imputed Australian Census data for the electorates in place at time of the 2004 Federal election
@@ -1521,6 +1645,11 @@
 #' library(dplyr)
 #' data(abs2004)
 #' abs2004 %>% select(DivisionNm, MedianAge, Unemployed, NoReligion, MedianPersonalIncome) %>% head()
-#'
+#' 
+#' # Join with two-party preferred voting data
+#' data(tpp04)
+#' election2004 <- left_join(abs2004, tpp04, by = "UniqueID")
+#' # See relationship between personal income and Liberal/National support
+#' ggplot(election2004, aes(x = MedianPersonalIncome, y = LNP_Percent)) + geom_point() + geom_smooth()
 "abs2004"  
 

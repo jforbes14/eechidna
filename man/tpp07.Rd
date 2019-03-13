@@ -6,7 +6,8 @@
 \title{2007 Australian Federal election data: Two party preferred votes for candidates (House of Representatives) in each electorate.}
 \format{A data frame with the following variables:
 \itemize{
-    \item DivisionID: Electoral division ID    
+    \item UniqueID: numeric identifier that links the electoral division with Census  
+    and other election datasets.   
     \item DivisionNm:  Electoral division name   
     \item StateAb: Abbreviation for state name  
     \item LNP_Votes: Count of two party preferred vote in favour of the Liberal National coalition

@@ -4,7 +4,19 @@
 \name{nat_map16}
 \alias{nat_map16}
 \title{Map of Australian Electorates from 2016}
-\format{An object of class \code{data.frame} with 37041 rows and 9 columns.}
+\format{A data frame with the following variables:
+\itemize{
+    \item UniqueID: numeric identifier that links the electoral division with Census  
+    and other election datasets.
+    \item long: longitude coordinate of point in polygon
+    \item lat: latitude coordinate of point in polygon
+    \item order: order for polygon points
+    \item hole: whether polygon has a hole
+    \item piece: piece for polygon
+    \item group: group for polygon
+    \item elect_div: Electoral division name
+    \item state: Abbreviation for state name
+}}
 \usage{
 nat_map16
 }

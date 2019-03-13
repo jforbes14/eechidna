@@ -6,7 +6,8 @@
 \title{2016 Australian Census data on all 150 electorates}
 \format{A data frame with 150 rows with the following variables:
 \itemize{
-  \item ID:Commonwealth Electoral District identifier
+  \item UniqueID: numeric identifier that links the electoral division with Census 
+  and other election datasets.
   \item DivisionNm: Name of electorate
   \item State: State containing electorate
   \item Population: Total population of electorate
@@ -108,5 +109,10 @@ library(dplyr)
 data(abs2016)
 abs2016 \%>\% select(DivisionNm, MedianAge, Unemployed, NoReligion, MedianPersonalIncome) \%>\% head()
 
+# Join with two-party preferred voting data
+data(tpp16)
+election2016 <- left_join(abs2016, tpp16, by = "UniqueID")
+# See relationship between personal income and Liberal/National support
+ggplot(election2016, aes(x = MedianPersonalIncome, y = LNP_Percent)) + geom_point() + geom_smooth()
 }
 \keyword{datasets}
