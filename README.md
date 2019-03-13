@@ -3,10 +3,12 @@
 
 # eechidna
 
-[![Travis build
-status](https://travis-ci.org/jforbes14/eechidna.svg?branch=master)](https://travis-ci.org/jforbes14/eechidna)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/eechidna)](http://cran.r-project.org/package=eechidna)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/eechidna)](http://cran.rstudio.com/web/packages/eechidna/index.html)
+[![Travis-CI Build
+Status](https://travis-ci.org/ropenscilabs/eechidna.svg?branch=master)](https://travis-ci.org/ropenscilabs/eechidna)
+[![AppVeyor Build
+Status](https://ci.appveyor.com/api/projects/status/github/ropenscilabs/eechidna?branch=master&svg=true)](https://ci.appveyor.com/project/ropenscilabs/eechidna)
 
 ## Exploring Election and Census Highly Informative Data Nationally for Australia
 
