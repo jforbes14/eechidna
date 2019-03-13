@@ -107,7 +107,9 @@ Electorate boundaries match those in place at the time of the 2007 Federal elect
 library(eechidna)
 library(dplyr)
 data(abs2006_e07)
-abs2006_e07 \%>\% select(DivisionNm, MedianAge, Unemployed, NoReligion, MedianPersonalIncome) \%>\% head()
+abs2006_e07 \%>\% 
+select(DivisionNm, MedianAge, Unemployed, NoReligion, MedianPersonalIncome) \%>\% 
+head()
 
 }
 \keyword{datasets}

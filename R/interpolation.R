@@ -141,7 +141,7 @@ weighted_avg_census <- function(mapping_df, abs_df) {
     # Census info from the relevant divisions
     census_divs <- abs_df %>% 
       filter(DivisionNm %in% mapping$ABS_division) %>% 
-      select(-c(ends_with("NS"), Area, ID, State)) %>% 
+      select(-c(ends_with("NS"), Area, UniqueID, State)) %>% 
       left_join(mapping, by = c("DivisionNm" = "ABS_division")) %>% 
       # add imputed population
       mutate(imputed_population = Percent_Census_Composition*Population)

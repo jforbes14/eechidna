@@ -478,8 +478,7 @@
 #' 
 #' @format A data frame with the following variables:
 #' \itemize{
-#'     \item UniqueID: numeric identifier that links the electoral division with Census  
-#'     and other election datasets.
+#'     \item id: numeric identifier for the polygon
 #'     \item long: longitude coordinate of point in polygon
 #'     \item lat: latitude coordinate of point in polygon
 #'     \item order: order for polygon points
@@ -517,8 +516,7 @@
 #'
 #' @format A data frame with the following variables:
 #' \itemize{
-#'     \item UniqueID: numeric identifier that links the electoral division with Census  
-#'     and other election datasets.
+#'     \item id: numeric identifier for the polygon
 #'     \item long: longitude coordinate of point in polygon
 #'     \item lat: latitude coordinate of point in polygon
 #'     \item order: order for polygon points
@@ -537,6 +535,18 @@
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
 #' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
 #' 
+#' @format A data frame with the following variables:
+#' \itemize{
+#'     \item id: numeric identifier for the polygon
+#'     \item long: longitude coordinate of point in polygon
+#'     \item lat: latitude coordinate of point in polygon
+#'     \item order: order for polygon points
+#'     \item hole: whether polygon has a hole
+#'     \item piece: piece for polygon
+#'     \item group: group for polygon
+#'     \item elect_div: Electoral division name
+#'     \item state: Abbreviation for state name
+#' }
 "nat_map10"
 
 #' Map of Australian Electorates from 2007
@@ -548,8 +558,7 @@
 #' 
 #' @format A data frame with the following variables:
 #' \itemize{
-#'     \item UniqueID: numeric identifier that links the electoral division with Census  
-#'     and other election datasets.
+#'     \item id: numeric identifier for the polygon
 #'     \item long: longitude coordinate of point in polygon
 #'     \item lat: latitude coordinate of point in polygon
 #'     \item order: order for polygon points
@@ -570,8 +579,7 @@
 #' 
 #' @format A data frame with the following variables:
 #' \itemize{
-#'     \item UniqueID: numeric identifier that links the electoral division with Census  
-#'     and other election datasets.
+#'     \item id: numeric identifier for the polygon
 #'     \item long: longitude coordinate of point in polygon
 #'     \item lat: latitude coordinate of point in polygon
 #'     \item order: order for polygon points
@@ -592,8 +600,7 @@
 #' 
 #' @format A data frame with the following variables:
 #' \itemize{
-#'     \item UniqueID: numeric identifier that links the electoral division with Census  
-#'     and other election datasets.
+#'     \item id: numeric identifier for the polygon
 #'     \item long: longitude coordinate of point in polygon
 #'     \item lat: latitude coordinate of point in polygon
 #'     \item order: order for polygon points
@@ -613,8 +620,7 @@
 #' The data is published 
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
-#'     \item UniqueID: numeric identifier that links the electorate with the corresponding polygon 
-#'     in `nat_map` and other data sets.
+#'     \item id: numeric identifier for the polygon
 #'     \item elect_div: Electorate division name   
 #'     \item state: abbreviation of the state name
 #'     \item numccds: AEC variable that might be filled with meaning or a description down the road
@@ -655,8 +661,7 @@
 #' The data is published 
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
-#'     \item UniqueID: numeric identifier that links the electorate with the corresponding polygon 
-#'     in `nat_map` and other data sets.
+#'     \item id: numeric identifier for the polygon
 #'     \item elect_div: Electorate division name   
 #'     \item state: abbreviation of the state name
 #'     \item numccds: AEC variable that might be filled with meaning or a description down the road
@@ -677,8 +682,7 @@
 #' The data is published 
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
-#'     \item UniqueID: numeric identifier that links the electorate with the corresponding polygon 
-#'     in `nat_map` and other data sets.
+#'     \item id: numeric identifier for the polygon
 #'     \item elect_div: Electorate division name   
 #'     \item state: abbreviation of the state name
 #'     \item numccds: AEC variable that might be filled with meaning or a description down the road
@@ -699,8 +703,7 @@
 #' The data is published 
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
-#'     \item UniqueID: numeric identifier that links the electorate with the corresponding polygon 
-#'     in `nat_map` and other data sets.
+#'     \item id: numeric identifier for the polygon
 #'     \item elect_div: Electorate division name   
 #'     \item state: abbreviation of the state name
 #'     \item long_c: longitude coordinate of electorate (polygon) centroid
@@ -719,8 +722,7 @@
 #' The data is published 
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
-#'     \item UniqueID: numeric identifier that links the electorate with the corresponding polygon 
-#'     in `nat_map` and other data sets.
+#'     \item id: numeric identifier for the polygon
 #'     \item elect_div: Electorate division name   
 #'     \item state: abbreviation of the state name
 #'     \item long_c: longitude coordinate of electorate (polygon) centroid
@@ -739,8 +741,7 @@
 #' The data is published 
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
-#'     \item UniqueID: numeric identifier that links the electorate with the corresponding polygon 
-#'     in `nat_map` and other data sets.
+#'     \item id: numeric identifier for the polygon
 #'     \item elect_div: Electorate division name   
 #'     \item state: abbreviation of the state name
 #'     \item long_c: longitude coordinate of electorate (polygon) centroid
@@ -856,6 +857,7 @@
 #' abs2016 %>% select(DivisionNm, MedianAge, Unemployed, NoReligion, MedianPersonalIncome) %>% head()
 #' 
 #' # Join with two-party preferred voting data
+#' library(ggplot2)
 #' data(tpp16)
 #' election2016 <- left_join(abs2016, tpp16, by = "UniqueID")
 #' # See relationship between personal income and Liberal/National support
@@ -1176,7 +1178,9 @@
 #' library(eechidna)
 #' library(dplyr)
 #' data(abs2006_e07)
-#' abs2006_e07 %>% select(DivisionNm, MedianAge, Unemployed, NoReligion, MedianPersonalIncome) %>% head()
+#' abs2006_e07 %>% 
+#' select(DivisionNm, MedianAge, Unemployed, NoReligion, MedianPersonalIncome) %>% 
+#' head()
 #'
 "abs2006_e07"  
 
@@ -1284,6 +1288,7 @@
 #' abs2001 %>% select(DivisionNm, MedianAge, Unemployed, NoReligion, MedianPersonalIncome) %>% head()
 #' 
 #' # Join with two-party preferred voting data
+#' library(ggplot2)
 #' data(tpp01)
 #' election2001 <- left_join(abs2001, tpp01, by = "UniqueID")
 #' # See relationship between personal income and Liberal/National support
@@ -1375,6 +1380,7 @@
 #' abs2013 %>% select(DivisionNm, MedianAge, Unemployed, NoReligion, MedianPersonalIncome) %>% head()
 #' 
 #' # Join with two-party preferred voting data
+#' library(ggplot2)
 #' data(tpp13)
 #' election2013 <- left_join(abs2013, tpp13, by = "UniqueID")
 #' # See relationship between personal income and Liberal/National support
@@ -1465,6 +1471,7 @@
 #' abs2010 %>% select(DivisionNm, MedianAge, Unemployed, NoReligion, MedianPersonalIncome) %>% head()
 #' 
 #' # Join with two-party preferred voting data
+#' library(ggplot2)
 #' data(tpp10)
 #' election2010 <- left_join(abs2010, tpp10, by = "UniqueID")
 #' # See relationship between personal income and Liberal/National support
@@ -1556,6 +1563,7 @@
 #' abs2007 %>% select(DivisionNm, MedianAge, Unemployed, NoReligion, MedianPersonalIncome) %>% head()
 #' 
 #' # Join with two-party preferred voting data
+#' library(ggplot2)
 #' data(tpp07)
 #' election2007 <- left_join(abs2007, tpp07, by = "UniqueID")
 #' # See relationship between personal income and Liberal/National support
@@ -1647,6 +1655,7 @@
 #' abs2004 %>% select(DivisionNm, MedianAge, Unemployed, NoReligion, MedianPersonalIncome) %>% head()
 #' 
 #' # Join with two-party preferred voting data
+#' library(ggplot2)
 #' data(tpp04)
 #' election2004 <- left_join(abs2004, tpp04, by = "UniqueID")
 #' # See relationship between personal income and Liberal/National support

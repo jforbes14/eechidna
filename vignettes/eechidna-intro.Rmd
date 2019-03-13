@@ -257,7 +257,7 @@ data16 <- left_join(tpp16 %>% select(LNP_Percent, DivisionNm), abs2016, by = "Di
 
 # Fit a model using all of the available population characteristics
 lmod <- data16 %>% 
-  select(-c(ends_with("NS"), Area, Population, DivisionNm, ID, State, EmuneratedElsewhere, InternetUse, Other_NonChrist, OtherChrist, EnglishOnly)) %>% 
+  select(-c(ends_with("NS"), Area, Population, DivisionNm, UniqueID, State, EmuneratedElsewhere, InternetUse, Other_NonChrist, OtherChrist, EnglishOnly)) %>% 
   lm(LNP_Percent ~ ., data = .)
 
 # See if the variables are jointly significant

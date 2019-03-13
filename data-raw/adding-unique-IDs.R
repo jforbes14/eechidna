@@ -57,16 +57,6 @@ tcp16 <- tcp16 %>%
 abs2016 <- abs2016 %>% 
   rename(UniqueID = ID)
 
-nat_data16 <- nat_data16 %>% 
-  left_join(my_ids, by = c("elect_div"="DivisionNm")) %>% 
-  select(-id) %>% 
-  select(UniqueID, everything())
-
-nat_map16 <- nat_map16 %>% 
-  left_join(my_ids, by = c("elect_div"="DivisionNm")) %>% 
-  select(-id) %>% 
-  select(UniqueID, everything())
-
 # 2013
 
 fp13 <- fp13 %>% 
@@ -86,16 +76,6 @@ tcp13 <- tcp13 %>%
 
 abs2013 <- abs2013 %>% 
   left_join(my_ids, by = "DivisionNm") %>% 
-  select(UniqueID, everything())
-
-nat_data13 <- nat_data13 %>% 
-  left_join(my_ids, by = c("elect_div"="DivisionNm")) %>% 
-  select(-id) %>% 
-  select(UniqueID, everything())
-
-nat_map13 <- nat_map13 %>% 
-  left_join(my_ids, by = c("elect_div"="DivisionNm")) %>% 
-  select(-id) %>% 
   select(UniqueID, everything())
 
 # 2011
@@ -125,16 +105,6 @@ abs2010 <- abs2010 %>%
   left_join(my_ids, by = "DivisionNm") %>% 
   select(UniqueID, everything())
 
-nat_data10 <- nat_data10 %>% 
-  left_join(my_ids, by = c("elect_div"="DivisionNm")) %>% 
-  select(-id) %>% 
-  select(UniqueID, everything())
-
-nat_map10 <- nat_map10 %>% 
-  left_join(my_ids, by = c("elect_div"="DivisionNm")) %>% 
-  select(-id) %>% 
-  select(UniqueID, everything())
-
 # 2007
 
 fp07 <- fp07 %>% 
@@ -154,16 +124,6 @@ tcp07 <- tcp07 %>%
 
 abs2007 <- abs2007 %>% 
   left_join(my_ids, by = "DivisionNm") %>% 
-  select(UniqueID, everything())
-
-nat_data07 <- nat_data07 %>% 
-  left_join(my_ids, by = c("elect_div"="DivisionNm")) %>% 
-  select(-id) %>% 
-  select(UniqueID, everything())
-
-nat_map07 <- nat_map07 %>% 
-  left_join(my_ids, by = c("elect_div"="DivisionNm")) %>% 
-  select(-id) %>% 
   select(UniqueID, everything())
 
 # 2006
@@ -197,16 +157,6 @@ abs2004 <- abs2004 %>%
   left_join(my_ids, by = "DivisionNm") %>% 
   select(UniqueID, everything())
 
-nat_data04 <- nat_data04 %>% 
-  left_join(my_ids, by = c("elect_div"="DivisionNm")) %>% 
-  select(-id) %>% 
-  select(UniqueID, everything())
-
-nat_map04 <- nat_map04 %>% 
-  left_join(my_ids, by = c("elect_div"="DivisionNm")) %>% 
-  select(-id) %>% 
-  select(UniqueID, everything())
-
 # 2001
 
 fp01 <- fp01 %>% 
@@ -225,54 +175,32 @@ abs2001 <- abs2001 %>%
   left_join(my_ids, by = "DivisionNm") %>% 
   select(UniqueID, everything())
 
-nat_data01 <- nat_data01 %>% 
-  left_join(my_ids, by = c("elect_div"="DivisionNm")) %>% 
-  select(-id) %>% 
-  select(UniqueID, everything())
-
-nat_map01 <- nat_map01 %>% 
-  left_join(my_ids, by = c("elect_div"="DivisionNm")) %>% 
-  select(-id) %>% 
-  select(UniqueID, everything())
-
 # Save
 
 usethis::use_data(abs2016, overwrite = T, compress = "xz")
 usethis::use_data(fp16, overwrite = T, compress = "xz")
 usethis::use_data(tcp16, overwrite = T, compress = "xz")
 usethis::use_data(tpp16, overwrite = T, compress = "xz")
-usethis::use_data(nat_map16, overwrite = T, compress = "xz")
-usethis::use_data(nat_data16, overwrite = T, compress = "xz")
 usethis::use_data(abs2013, overwrite = T, compress = "xz")
 usethis::use_data(fp13, overwrite = T, compress = "xz")
 usethis::use_data(tcp13, overwrite = T, compress = "xz")
 usethis::use_data(tpp13, overwrite = T, compress = "xz")
-usethis::use_data(nat_map13, overwrite = T, compress = "xz")
-usethis::use_data(nat_data13, overwrite = T, compress = "xz")
 usethis::use_data(abs2011, overwrite = T, compress = "xz")
 usethis::use_data(abs2010, overwrite = T, compress = "xz")
 usethis::use_data(fp10, overwrite = T, compress = "xz")
 usethis::use_data(tcp10, overwrite = T, compress = "xz")
 usethis::use_data(tpp10, overwrite = T, compress = "xz")
-usethis::use_data(nat_map10, overwrite = T, compress = "xz")
-usethis::use_data(nat_data10, overwrite = T, compress = "xz")
 usethis::use_data(abs2007, overwrite = T, compress = "xz")
 usethis::use_data(fp07, overwrite = T, compress = "xz")
 usethis::use_data(tcp07, overwrite = T, compress = "xz")
 usethis::use_data(tpp07, overwrite = T, compress = "xz")
-usethis::use_data(nat_map07, overwrite = T, compress = "xz")
-usethis::use_data(nat_data07, overwrite = T, compress = "xz")
 usethis::use_data(abs2006_e07, overwrite = T, compress = "xz")
 usethis::use_data(abs2006, overwrite = T, compress = "xz")
 usethis::use_data(abs2004, overwrite = T, compress = "xz")
 usethis::use_data(fp04, overwrite = T, compress = "xz")
 usethis::use_data(tcp04, overwrite = T, compress = "xz")
 usethis::use_data(tpp04, overwrite = T, compress = "xz")
-usethis::use_data(nat_map04, overwrite = T, compress = "xz")
-usethis::use_data(nat_data04, overwrite = T, compress = "xz")
 usethis::use_data(abs2001, overwrite = T, compress = "xz")
 usethis::use_data(fp01, overwrite = T, compress = "xz")
 usethis::use_data(tcp01, overwrite = T, compress = "xz")
 usethis::use_data(tpp01, overwrite = T, compress = "xz")
-usethis::use_data(nat_map01, overwrite = T, compress = "xz")
-usethis::use_data(nat_data01, overwrite = T, compress = "xz")

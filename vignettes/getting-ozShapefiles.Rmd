@@ -141,7 +141,8 @@ It is useful to have the electorate name and state attached to the map.
 ```{r eval=F}
 nms <- sF@data %>% select(elect_div, state)
 nms$id <- as.character(1:150)
-nat_map <- left_join(nat_map, nms, by="id")
+nat_map <- left_join(nat_map, nms, by="id") %>% 
+  rename(id = UniqueID)
 ```
 
 The map data is ready to be exported to a file:
@@ -184,7 +185,8 @@ head(centroids)
 The centroids come in the same order as the data (luckily) and we just extend the data set for the electorates by this information, and finally export:
 
 ```{r, message=FALSE, warning=FALSE}
-nat_data <- data.frame(nat_data, centroids)
+nat_data <- data.frame(nat_data, centroids) %>% 
+  rename(UniqueID = id)
 ```
 
 ```{r, eval=FALSE}

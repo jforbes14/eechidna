@@ -4,7 +4,18 @@
 \name{nat_map10}
 \alias{nat_map10}
 \title{Map of Australian Electorates from 2010}
-\format{An object of class \code{data.frame} with 38110 rows and 9 columns.}
+\format{A data frame with the following variables:
+\itemize{
+    \item id: numeric identifier for the polygon
+    \item long: longitude coordinate of point in polygon
+    \item lat: latitude coordinate of point in polygon
+    \item order: order for polygon points
+    \item hole: whether polygon has a hole
+    \item piece: piece for polygon
+    \item group: group for polygon
+    \item elect_div: Electoral division name
+    \item state: Abbreviation for state name
+}}
 \usage{
 nat_map10
 }

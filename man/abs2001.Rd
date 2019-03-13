@@ -110,6 +110,7 @@ data(abs2001)
 abs2001 \%>\% select(DivisionNm, MedianAge, Unemployed, NoReligion, MedianPersonalIncome) \%>\% head()
 
 # Join with two-party preferred voting data
+library(ggplot2)
 data(tpp01)
 election2001 <- left_join(abs2001, tpp01, by = "UniqueID")
 # See relationship between personal income and Liberal/National support

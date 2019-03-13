@@ -1,3 +1,5 @@
+^Meta$
+^doc$
 ^vignettes/exploring-census-data\.Rmd$
 ^vignettes/getting-ozShapefiles\.Rmd$
 ^vignettes/exploring-election-data\.Rmd$
