@@ -231,7 +231,11 @@ vignette for more details.</p>
 #&gt; 4      BANKS  37.55584   5.293864   10.86179             379.4701
 #&gt; 5     BARKER  38.60000   5.446166   22.70138             356.1337
 #&gt; 6     BARTON  36.97828   5.526100   12.18216             429.4740</div><div class='input'>
-</div></pre>
+<span class='co'># Join with two-party preferred voting data</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>tpp04</span>)
+<span class='no'>election2004</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/join.html'>left_join</a></span>(<span class='no'>abs2004</span>, <span class='no'>tpp04</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"UniqueID"</span>)
+<span class='co'># See relationship between personal income and Liberal/National support</span>
+<span class='fu'>ggplot</span>(<span class='no'>election2004</span>, <span class='fu'>aes</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>MedianPersonalIncome</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>LNP_Percent</span>)) + <span class='fu'>geom_point</span>() + <span class='fu'>geom_smooth</span>()</div><div class='output co'>#&gt; <span class='error'>Error in ggplot(election2004, aes(x = MedianPersonalIncome, y = LNP_Percent)): could not find function "ggplot"</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

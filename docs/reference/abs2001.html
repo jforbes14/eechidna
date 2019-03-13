@@ -153,7 +153,8 @@ Electorate boundaries match those in place at the time of the 2001 Federal elect
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
     <p>A data frame with 150 rows with the following variables:</p><ul>
-<li><p>ID:Commonwealth Electoral District identifier</p></li>
+<li><p>UniqueID: numeric identifier that links the electoral division with Census 
+  and other election datasets.</p></li>
 <li><p>DivisionNm: Name of electorate</p></li>
 <li><p>State: State containing electorate</p></li>
 <li><p>Population: Total population of electorate</p></li>
@@ -258,7 +259,11 @@ Electorate boundaries match those in place at the time of the 2001 Federal elect
 #&gt; 4      BANKS        37   5.301010   9.693882                349.5
 #&gt; 5     BARKER        38   6.330406  21.711487                349.5
 #&gt; 6     BARTON        37   5.802002  10.540373                449.5</div><div class='input'>
-</div></pre>
+<span class='co'># Join with two-party preferred voting data</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>tpp01</span>)
+<span class='no'>election2001</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/join.html'>left_join</a></span>(<span class='no'>abs2001</span>, <span class='no'>tpp01</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"UniqueID"</span>)
+<span class='co'># See relationship between personal income and Liberal/National support</span>
+<span class='fu'>ggplot</span>(<span class='no'>election2001</span>, <span class='fu'>aes</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>MedianPersonalIncome</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>LNP_Percent</span>)) + <span class='fu'>geom_point</span>() + <span class='fu'>geom_smooth</span>()</div><div class='output co'>#&gt; <span class='error'>Error in ggplot(election2001, aes(x = MedianPersonalIncome, y = LNP_Percent)): could not find function "ggplot"</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
