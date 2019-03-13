@@ -1,22 +1,36 @@
-# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
+language: r
+dist: trusty
+sudo: false
 
-language: R
-distro: trusty
-sudo: required
-warnings_are_errors: false
+cache:
+  packages: yes
 
-addon:
-  packages:
-   - gdal-bin
-   - libgdal1-dev
-   - libproj-dev
-
-# Code coverage
 r_packages:
+  - testthat
+  - roxygen2
   - covr
 
-r_binary_packages:
-  - rgdal
+addons:
+  apt:
+    packages:
+      - gdal-bin
+      - proj-bin
+      - libgdal-dev
+      - libgdal1-dev
+      - libproj-dev
+      - libgeos-dev
+      - r-cran-ncdf4
+      - libv8-3.14-dev
+      - libprotobuf-dev
+      - protobuf-compiler
+      - libudunits2-dev
+      - libnetcdf-dev
+      - libjq-dev
+
+before_install:
+    - sudo add-apt-repository -y ppa:ubuntugis/ubuntugis-unstable
+    - sudo add-apt-repository -y ppa:opencpu/jq
+    - sudo apt-get --yes --force-yes update -qq
 
 after_success:
-- Rscript -e 'library(covr); codecov()'
+  - Rscript -e 'covr::coveralls()'
