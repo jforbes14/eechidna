@@ -46,7 +46,7 @@ data(tcp16)
 
 The data can be summarized to reveal some basic details about the election. Start by reproducing the overall result of the election by finding out which party won the most electorates according to the two candidate preferred votes.
 
-```{r who_won}
+```{r who_won, message = FALSE}
 library(knitr)
 library(dplyr)
 who_won <- tcp16 %>% 

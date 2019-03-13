@@ -232,10 +232,11 @@ vignette for more details.</p>
 #&gt; 5     BARKER  38.60000   5.446166   22.70138             356.1337
 #&gt; 6     BARTON  36.97828   5.526100   12.18216             429.4740</div><div class='input'>
 <span class='co'># Join with two-party preferred voting data</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>ggplot2</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>tpp04</span>)
 <span class='no'>election2004</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/join.html'>left_join</a></span>(<span class='no'>abs2004</span>, <span class='no'>tpp04</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"UniqueID"</span>)
 <span class='co'># See relationship between personal income and Liberal/National support</span>
-<span class='fu'>ggplot</span>(<span class='no'>election2004</span>, <span class='fu'>aes</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>MedianPersonalIncome</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>LNP_Percent</span>)) + <span class='fu'>geom_point</span>() + <span class='fu'>geom_smooth</span>()</div><div class='output co'>#&gt; <span class='error'>Error in ggplot(election2004, aes(x = MedianPersonalIncome, y = LNP_Percent)): could not find function "ggplot"</span></div></pre>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>election2004</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>MedianPersonalIncome</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>LNP_Percent</span>)) + <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span>() + <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span>()</div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using method = 'loess' and formula 'y ~ x'</span></div><div class='img'><img src='abs2004-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
