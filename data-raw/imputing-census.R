@@ -43,6 +43,8 @@ abs2013 <- (2/5)*(select(census_aec13_16, -DivisionNm)) + (3/5)*(select(census_a
 # Maintain division names
 abs2013$DivisionNm <- census_aec13_16$DivisionNm
 
+# Add unique ID using adding-unique-IDs.R
+
 # Save
 usethis::use_data(abs2013, overwrite = T, compress = "xz")
 
@@ -76,6 +78,8 @@ abs2010 <- (1/5)*(select(census_aec10_06, -DivisionNm)) + (4/5)*(select(census_a
 # Maintain division names
 abs2010$DivisionNm <- census_aec10_11$DivisionNm
 
+# Add unique ID using adding-unique-IDs.R
+
 # Save
 usethis::use_data(abs2010, overwrite = T, compress = "xz")
 
@@ -86,7 +90,7 @@ usethis::use_data(abs2010, overwrite = T, compress = "xz")
 # The 2006 Census data aggregated to electoral boundaries from the 2007 election is also available. This means that we don't have to do any estimate for 2006, but still do for 2011.
 
 # Load shapefiles and Census
-sF_11 <- sF_download(2007)
+sF_07 <- sF_download(2007)
 data("abs2006_e07")
 
 # Census information for electoral boundaries at time of 2011 Census
@@ -96,7 +100,7 @@ census_aec07_11 <- weighted_avg_census(mapping_df = mapping_aec07_11, abs_df = a
 
 # 2006 Census information for the 2007 boundaries
 census_aec07_06 <- abs2006_e07 %>% 
-  select(-c(ends_with("NS"), Area, ID, State, Population))
+  select(-c(ends_with("NS"), Area, UniqueID, State, Population))
 
 # Check that DivisionNm matches
 divname_warning(census_aec07_06, census_aec07_11)
@@ -107,6 +111,8 @@ abs2007 <- (4/5)*(select(census_aec07_06, -DivisionNm)) + (1/5)*(select(census_a
 
 # Maintain division names
 abs2007$DivisionNm <- census_aec07_11$DivisionNm
+
+# Add unique ID using adding-unique-IDs.R
 
 # Save
 usethis::use_data(abs2007, overwrite = T, compress = "xz")
@@ -130,7 +136,7 @@ census_aec04_01 <- weighted_avg_census(mapping_df = mapping_aec04_01, abs_df = a
 
 # 2004 Census information for the 2007 boundaries
 census_aec04_06 <- abs2006 %>% 
-  select(-c(ends_with("NS"), Area, ID, State, Population))
+  select(-c(ends_with("NS"), Area, UniqueID, State, Population))
 
 # Check that DivisionNm matches
 divname_warning(census_aec04_06, census_aec04_01)
@@ -141,6 +147,8 @@ abs2004 <- (2/5)*(select(census_aec04_01, -DivisionNm)) + (3/5)*(select(census_a
 
 # Maintain division names
 abs2004$DivisionNm <- census_aec04_01$DivisionNm
+
+# Add unique ID using adding-unique-IDs.R
 
 # Save
 usethis::use_data(abs2004, overwrite = T, compress = "xz")

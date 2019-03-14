@@ -971,11 +971,11 @@ for (i in 1:nrow(CED_list_2006_04)) {
   #question_popl <- as.numeric(temp_sheet[33,11]) - as.numeric(temp_sheet[31,11])
   
   # Industry of employment
-  abs2006$Extractive[i] = ((as.numeric(temp_sheet[11,11]) + as.numeric(temp_sheet[12,11]) + as.numeric(temp_sheet[14,11])) / popl_15) * 100
-  abs2006$Transformative[i] = ((as.numeric(temp_sheet[13,11]) + as.numeric(temp_sheet[15,11])) / popl_15) * 100
-  abs2006$Distributive[i] = ((as.numeric(temp_sheet[16,11]) + as.numeric(temp_sheet[17,11]) + as.numeric(temp_sheet[19,11])) / popl_15) * 100
-  abs2006$Finance[i] = (as.numeric(temp_sheet[21,11]) / popl_15) * 100
-  abs2006$SocialServ[i] = ((as.numeric(temp_sheet[26,11]) + as.numeric(temp_sheet[27,11]) + as.numeric(temp_sheet[28,11])) / popl_15) * 100
+  abs2006$Extractive[i] = ((as.numeric(temp_sheet[11,11]) + as.numeric(temp_sheet[12,11]) + as.numeric(temp_sheet[14,11])) / popl) * 100
+  abs2006$Transformative[i] = ((as.numeric(temp_sheet[13,11]) + as.numeric(temp_sheet[15,11])) / popl) * 100
+  abs2006$Distributive[i] = ((as.numeric(temp_sheet[16,11]) + as.numeric(temp_sheet[17,11]) + as.numeric(temp_sheet[19,11])) / popl) * 100
+  abs2006$Finance[i] = (as.numeric(temp_sheet[21,11]) / popl) * 100
+  abs2006$SocialServ[i] = ((as.numeric(temp_sheet[26,11]) + as.numeric(temp_sheet[27,11]) + as.numeric(temp_sheet[28,11])) / popl) * 100
 }
 
 
@@ -993,10 +993,10 @@ for (i in 1:nrow(CED_list_2006_04)) {
   #question_popl <- as.numeric(temp_sheet[51,11]) - as.numeric(temp_sheet[51,10])
   
   # Occupation 
-  abs2006$ManagerAdminClericalSales[i] = ((as.numeric(temp_sheet[51,2]) + as.numeric(temp_sheet[51,6]) + as.numeric(temp_sheet[51,7])) / popl_15) * 100
-  abs2006$Professional[i] = ((as.numeric(temp_sheet[51,3])) / popl_15) * 100
-  abs2006$Tradesperson[i] = (as.numeric(temp_sheet[51,4]) / popl_15) * 100
-  abs2006$Laborer[i] = (as.numeric(temp_sheet[51,9]) / popl_15) * 100
+  abs2006$ManagerAdminClericalSales[i] = ((as.numeric(temp_sheet[51,2]) + as.numeric(temp_sheet[51,6]) + as.numeric(temp_sheet[51,7])) / popl) * 100
+  abs2006$Professional[i] = ((as.numeric(temp_sheet[51,3])) / popl) * 100
+  abs2006$Tradesperson[i] = (as.numeric(temp_sheet[51,4]) / popl) * 100
+  abs2006$Laborer[i] = (as.numeric(temp_sheet[51,9]) / popl) * 100
   
 }
 
@@ -1435,7 +1435,7 @@ for (i in 1:nrow(CED_list_2006_e07)) {
   popl_15 <- popl*(100 - abs2006_e07$Age00_04[i] - abs2006_e07$Age05_14[i])/100 #population aged 15+
   #question_popl <- popl_15 - as.numeric(temp_sheet[27,10]) #Excludes not stated from total pop over 15
   
-  #Bachelor and Postgraduate
+  #Bachelor and DipCert
   abs2006_e07$BachelorAbv[i] = ((as.numeric(temp_sheet[15,10]) + as.numeric(temp_sheet[11,10]) + as.numeric(temp_sheet[13,10])) / popl_15) * 100
   abs2006_e07$DipCert[i] = ((as.numeric(temp_sheet[17,10]) + as.numeric(temp_sheet[23,10])) / popl_15) * 100
   abs2006_e07$University_NS[i] = ((as.numeric(temp_sheet[25,10]) + as.numeric(temp_sheet[27,10])) / popl_15)*100 #not stated and inadequately described out of population 15+
@@ -1641,6 +1641,7 @@ abs2006 <- abs2006 %>%
 abs2006_e07 <- abs2006_e07 %>% 
   arrange(DivisionNm)
 
+# Add unique ID using adding-unique-IDs.R
 
 # Save
 

@@ -35,7 +35,11 @@ my_ids <- my_ids %>%
                   ifelse(DivisionNm == "THROSBY", 147, UniqueID
         ))))))))))
 
+save(my_ids, file = "data-raw/supplement/my_ids.rda")
+
 # Now replace any existing IDs
+
+load("data-raw/supplement/my_ids.rda")
 
 # 2016
 
@@ -82,6 +86,7 @@ abs2013 <- abs2013 %>%
 
 abs2011 <- abs2011 %>% 
   left_join(my_ids, by = "DivisionNm") %>% 
+  select(-ID) %>% 
   select(UniqueID, everything())
 
 # 2010
@@ -130,10 +135,12 @@ abs2007 <- abs2007 %>%
 
 abs2006 <- abs2006 %>% 
   left_join(my_ids, by = "DivisionNm") %>% 
+
   select(UniqueID, everything())
 
 abs2006_e07 <- abs2006_e07 %>% 
   left_join(my_ids, by = "DivisionNm") %>% 
+  select(-ID) %>% 
   select(UniqueID, everything())
 
 # 2004
@@ -173,6 +180,7 @@ tcp01 <- tcp01 %>%
 
 abs2001 <- abs2001 %>% 
   left_join(my_ids, by = "DivisionNm") %>% 
+  select(-ID) %>% 
   select(UniqueID, everything())
 
 # Save
