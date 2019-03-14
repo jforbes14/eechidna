@@ -246,21 +246,21 @@ Electorate boundaries match those in place at the time of the 2016 Federal elect
     <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>eechidna</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>abs2016</span>)
-<span class='no'>abs2016</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='no'>DivisionNm</span>, <span class='no'>MedianAge</span>, <span class='no'>Unemployed</span>, <span class='no'>NoReligion</span>, <span class='no'>MedianPersonalIncome</span>) <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>()</div><div class='output co'>#&gt; # A tibble: 6 x 5
+<span class='no'>abs2016</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='no'>DivisionNm</span>, <span class='no'>MedianAge</span>, <span class='no'>Unemployed</span>, <span class='no'>NoReligion</span>, <span class='no'>MedianPersonalIncome</span>) <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>()</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 6 x 5</span><span>
 #&gt;   DivisionNm MedianAge Unemployed NoReligion MedianPersonalIncome
-#&gt;   &lt;chr&gt;          &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;                &lt;dbl&gt;
-#&gt; 1 ADELAIDE          36        8.1       35.5                 463.
-#&gt; 2 ASTON             39        5.6       32.5                 455.
-#&gt; 3 BALLARAT          40        6.5       37.0                 406.
-#&gt; 4 BANKS             38        6.2       23.9                 441.
-#&gt; 5 BARKER            44        5.8       34.8                 390.
-#&gt; 6 BARTON            35        6.6       25.2                 436.</div><div class='input'>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>                </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> ADELAIDE          36        8.1       35.5                 463.
+#&gt; </span><span style='color: #555555;'>2</span><span> ASTON             39        5.6       32.5                 455.
+#&gt; </span><span style='color: #555555;'>3</span><span> BALLARAT          40        6.5       37.0                 406.
+#&gt; </span><span style='color: #555555;'>4</span><span> BANKS             38        6.2       23.9                 441.
+#&gt; </span><span style='color: #555555;'>5</span><span> BARKER            44        5.8       34.8                 390.
+#&gt; </span><span style='color: #555555;'>6</span><span> BARTON            35        6.6       25.2                 436.</div><div class='input'>
 <span class='co'># Join with two-party preferred voting data</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>ggplot2</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>tpp16</span>)
 <span class='no'>election2016</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/join.html'>left_join</a></span>(<span class='no'>abs2016</span>, <span class='no'>tpp16</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"UniqueID"</span>)
 <span class='co'># See relationship between personal income and Liberal/National support</span>
-<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>election2016</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>MedianPersonalIncome</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>LNP_Percent</span>)) + <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span>() + <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span>()</div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using method = 'loess' and formula 'y ~ x'</span></div><div class='img'><img src='abs2016-1.png' alt='' width='700' height='433' /></div></pre>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>election2016</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>MedianPersonalIncome</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>LNP_Percent</span>)) + <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span>() + <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span>()</div><div class='output co'>#&gt; <span class='message'>`geom_smooth()` using method = 'loess' and formula 'y ~ x'</span></div><div class='img'><img src='abs2016-1.png' alt='' width='700' height='433' /></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
