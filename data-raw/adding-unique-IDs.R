@@ -135,7 +135,7 @@ abs2007 <- abs2007 %>%
 
 abs2006 <- abs2006 %>% 
   left_join(my_ids, by = "DivisionNm") %>% 
-
+  select(-ID) %>% 
   select(UniqueID, everything())
 
 abs2006_e07 <- abs2006_e07 %>% 
