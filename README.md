@@ -8,15 +8,16 @@
 [![Travis-CI Build
 Status](https://travis-ci.org/ropenscilabs/eechidna.svg?branch=master)](https://travis-ci.org/ropenscilabs/eechidna)
 [![AppVeyor Build
-Status](https://ci.appveyor.com/api/projects/status/github/ropenscilabs/eechidna?branch=master&svg=true)](https://ci.appveyor.com/project/ropenscilabs/eechidna)
+Status](https://ci.appveyor.com/api/projects/status/fbpks81w1jqgimxv?svg=true)](https://ci.appveyor.com/project/ropenscilabs/eechidna)
 
 ## Exploring Election and Census Highly Informative Data Nationally for Australia
 
 The R package *eechidna* provides data from the Australian Federal
 elections in 2001, 2004, 2007, 2010, 2013 and 2016, along with the
 Australian Census information for each House of Representatives
-electorate from the 2001, 2006, 2011 and 2016 Censuses, and some tools
-for visualizing and analysing the data.
+electorate from the 2001, 2006, 2011 and 2016 Censuses. Additionally,
+Census information is imputed for electorates in years 2004, 2007, 2010
+and 2013. It also includes tools for visualizing and analysing the data.
 
 This package was developed during the [rOpenSci auunconf
 event](http://auunconf.ropensci.org/) in Brisbane, Queensland, during
@@ -120,8 +121,9 @@ abide by its terms.
 Thanks to Xiaoyue Cheng for her
 [cartogram](https://github.com/chxy/cartogram) package which supplies
 the Dorling algorithm for this package. Thanks also to Roger Bivand for
-his rgeos package which has some key functions for working with
-shapefiles. Thanks to Scott Chamberlain and Yihui Xie for help with
+his `rgdal` and `rgeos` packages which has some key functions for
+working with shapefiles. Thanks to Scott Chamberlain and Yihui Xie for
+help with
 troubleshooting.
 
 -----

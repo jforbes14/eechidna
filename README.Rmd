@@ -14,11 +14,11 @@ knitr::opts_chunk$set(
 
 # eechidna
 
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/eechidna)](http://cran.r-project.org/package=eechidna) [![](http://cranlogs.r-pkg.org/badges/grand-total/eechidna)](http://cran.rstudio.com/web/packages/eechidna/index.html) [![Travis-CI Build Status](https://travis-ci.org/ropenscilabs/eechidna.svg?branch=master)](https://travis-ci.org/ropenscilabs/eechidna) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ropenscilabs/eechidna?branch=master&svg=true)](https://ci.appveyor.com/project/ropenscilabs/eechidna) 
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/eechidna)](http://cran.r-project.org/package=eechidna) [![](http://cranlogs.r-pkg.org/badges/grand-total/eechidna)](http://cran.rstudio.com/web/packages/eechidna/index.html) [![Travis-CI Build Status](https://travis-ci.org/ropenscilabs/eechidna.svg?branch=master)](https://travis-ci.org/ropenscilabs/eechidna) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/fbpks81w1jqgimxv?svg=true)](https://ci.appveyor.com/project/ropenscilabs/eechidna) 
 
 ## Exploring Election and Census Highly Informative Data Nationally for Australia
 
-The R package *eechidna* provides data from the Australian Federal elections in 2001, 2004, 2007, 2010, 2013 and 2016, along with the Australian Census information for each House of Representatives electorate from the 2001, 2006, 2011 and 2016 Censuses, and some tools for visualizing and analysing the data.
+The R package *eechidna* provides data from the Australian Federal elections in 2001, 2004, 2007, 2010, 2013 and 2016, along with the Australian Census information for each House of Representatives electorate from the 2001, 2006, 2011 and 2016 Censuses. Additionally, Census information is imputed for electorates in years 2004, 2007, 2010 and 2013. It also includes tools for visualizing and analysing the data.
 
 This package was developed during the [rOpenSci auunconf event](http://auunconf.ropensci.org/) in Brisbane, Queensland, during 21-22 April 2016. It has been updated during the 2017 rOpenSci auunconf event, and most recently in March 2019 with the addition of election and Census information for the events between 2001 and 2011. [Peter Ellis'](https://github.com/ellisp/) work on the NZ electoral data was an important inspiration for this package.
 
@@ -79,7 +79,7 @@ Please open an issue if you find something that doesn't work as expected or have
 
 ## Acknoweldgements 
 
-Thanks to Xiaoyue Cheng for her [cartogram](https://github.com/chxy/cartogram) package which supplies the Dorling algorithm for this package. Thanks also to Roger Bivand for his rgeos package which has some key functions for working with shapefiles. Thanks to Scott Chamberlain and Yihui Xie for help with troubleshooting. 
+Thanks to Xiaoyue Cheng for her [cartogram](https://github.com/chxy/cartogram) package which supplies the Dorling algorithm for this package. Thanks also to Roger Bivand for his `rgdal` and `rgeos` packages which has some key functions for working with shapefiles. Thanks to Scott Chamberlain and Yihui Xie for help with troubleshooting. 
 
 ---
 [![ropensci_footer](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)

@@ -10,7 +10,7 @@
   
 * Published on CRAN
 
-# eechidna 1.2 (2019-01-23)
+# eechidna 1.1 (2019-01-23)
 
 * Removed from CRAN
 
