@@ -7,7 +7,6 @@
 ^vignettes/plotting-electorates\.Rmd$
 ^vignettes/plotting-polling-stns\.Rmd$
 ^.*\.md$
-!NEWS\.md$
 ^README\.Rmd$
 ^README\.md$
 ^CONDUCT\.md$
