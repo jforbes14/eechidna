@@ -226,7 +226,7 @@
 <a class="sourceLine" id="cb22-4" title="4">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(<span class="dt">long_c=</span>ctr[<span class="dv">1</span>], <span class="dt">lat_c=</span>ctr[<span class="dv">2</span>])</a>
 <a class="sourceLine" id="cb22-5" title="5">}</a>
 <a class="sourceLine" id="cb22-6" title="6"></a>
-<a class="sourceLine" id="cb22-7" title="7">centroids &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq_along</a></span>(polys) <span class="op">%&gt;%</span><span class="st"> </span>purrr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/purrr/topics/map">map_df</a></span>(centroid, <span class="dt">polys=</span>polys)</a>
+<a class="sourceLine" id="cb22-7" title="7">centroids &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq_along</a></span>(polys) <span class="op">%&gt;%</span><span class="st"> </span>purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/map.html">map_df</a></span>(centroid, <span class="dt">polys=</span>polys)</a>
 <a class="sourceLine" id="cb22-8" title="8"></a>
 <a class="sourceLine" id="cb22-9" title="9"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(centroids)</a></code></pre></div>
 <pre><code>##     long_c     lat_c
