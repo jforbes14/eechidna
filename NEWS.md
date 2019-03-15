@@ -14,7 +14,7 @@
 
 * Removed from CRAN
 
-# eechidna 1.3 (2019-03-15)
+# eechidna 1.3.0 (2019-03-15)
 
 * Now covers all elections and Censuses between 2001-2016
 * Includes polling booth data from each election (available using download functions in the pkg)
