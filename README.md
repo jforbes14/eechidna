@@ -116,7 +116,7 @@ with a [Guide to Contributing](CONTRIBUTING.md) and a [Contributor Code
 of Conduct](CONDUCT.md). By participating in this project you agree to
 abide by its terms.
 
-## Acknoweldgements
+## Acknowledgements
 
 Thanks to Xiaoyue Cheng for her
 [cartogram](https://github.com/chxy/cartogram) package which supplies

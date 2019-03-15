@@ -77,7 +77,7 @@ This package is free and open source software, licensed under GPL (>= 2).
 
 Please open an issue if you find something that doesn't work as expected or have questions or suggestions. Note that this project is released with a [Guide to Contributing](CONTRIBUTING.md) and a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
 
-## Acknoweldgements 
+## Acknowledgements 
 
 Thanks to Xiaoyue Cheng for her [cartogram](https://github.com/chxy/cartogram) package which supplies the Dorling algorithm for this package. Thanks also to Roger Bivand for his `rgdal` and `rgeos` packages which has some key functions for working with shapefiles. Thanks to Scott Chamberlain and Yihui Xie for help with troubleshooting. 
 

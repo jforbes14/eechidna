@@ -45,7 +45,7 @@
   \item HighSchool: Percentage of people who have completed high school
   \item Indigenous: Percentage of people who are Indigenous
   \item InternetAccess: Percentage of people with access to the internet
-  \item InternetUse: Percentage of people who used interent in the last week (2001 only)
+  \item InternetUse: Percentage of people who used internet in the last week (2001 only)
   \item Islam: Percentage of people affiliated with the Islamic religion
   \item Judaism: Percentage of people affiliated with the Jewish religion
   \item Laborer: Percentage of employed persons who work as a laborer
@@ -68,7 +68,7 @@
   \item Professional: Percentage of employed persons who work as a professional
   \item PublicHousing: Percentage of dwellings that are owned by the government, and rented out to tenants
   \item Renting: Percentage of dwellings that are being rented
-  \item SocialServ: Percentage of employed persons who work in education and training, healthcare, wocial work, community, arts and recreation
+  \item SocialServ: Percentage of employed persons who work in education and training, healthcare, social work, community, arts and recreation
   \item SP_House: Percentage of households occupied by a single person
   \item Tradesperson: Percentage of employed persons who specialise in a trade
   \item Transformative: Percentage of employed persons who work in construction or manufacturing related industries

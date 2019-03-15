@@ -51,11 +51,11 @@
   \item Finance: Percentage of employed persons who work in finance or insurance related industries
   \item HighSchool: Percentage of people who have completed high school
   \item HighSchool_NS: Rate of nonresponse for questions relating to high school completion
-  \item HouseholdIncome_NS: Percentage of people who did not answer the question relating to houshold income
+  \item HouseholdIncome_NS: Percentage of people who did not answer the question relating to household income
   \item Indigenous: Percentage of people who are Indigenous
   \item InternetAccess: Percentage of people with access to the internet
   \item InternetAccess_NS: Rate of nonresponse for questions relating to internal access
-  \item InternetUse: Percentage of people who used interent in the last week (2001 only)
+  \item InternetUse: Percentage of people who used internet in the last week (2001 only)
   \item InternetUse_NS: Rate of nonresponse for questions relating to internet use (2001 only)
   \item Islam: Percentage of people affiliated with the Islamic religion
   \item Judaism: Percentage of people affiliated with the Jewish religion
@@ -83,7 +83,7 @@
   \item Religion_NS: Rate of nonresponse for questions relating to religion
   \item Rent_NS: Rate of nonresponse for questions relating to rental costs
   \item Renting: Percentage of dwellings that are being rented
-  \item SocialServ: Percentage of employed persons who work in education and training, healthcare, wocial work, community, arts and recreation
+  \item SocialServ: Percentage of employed persons who work in education and training, healthcare, social work, community, arts and recreation
   \item SP_House: Percentage of households occupied by a single person
   \item Tenure_NS: Rate of nonresponse for questions relating to tenure
   \item Tradesperson: Percentage of employed persons who specialise in a trade
