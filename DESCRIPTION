@@ -42,8 +42,6 @@ Suggests:
     gridExtra,
     tidyverse,
     tibble
-Remotes: 
-    cran/rgdal@1.3-9
 Encoding: UTF-8
 Authors@R: c(person("Di", "Cook",       role = c("aut")),
 		         person("Anthony", "Ebert", role = c("aut")),
