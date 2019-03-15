@@ -2,7 +2,7 @@
 * local macOS Mojave install, R 3.5.2
 * ubuntu 14.04 (on travis-ci), R 3.5.2
 * windows Visual Studio 2015 (on appveyor), R 3.5.3
-* win-builder (devel, release and old release) (2019-03-15)
+* win-builder (devel and release) R Under development (unstable) (2019-03-12 r76226)
 
 ## R CMD check results
 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
