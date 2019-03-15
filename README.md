@@ -80,13 +80,13 @@ found in the *articles* tab at the top of this page.
 There are also three vignettes that demonstrate how to use the spatial
 data to make maps. Mapping election data for Australia is not trivial
 because of the extreme variation in electorate size. In these vignettes
-we show some methods for effectively visualising election data in
+we show some methods for effectively visualizing election data in
 Australia. These too are found in the *articles* tab at the top of this
 page.
 
   - [Mapping federal electorates](articles/plotting-electorates.html):
     how to plot a map of Australian federal electorates, and how to
-    better visualise electoral voting data using a cartogram.
+    better visualize electoral voting data using a cartogram.
 
   - [Mapping polling booths](articles/plotting-polling-stns.html):
     examples of how to plot the polling booth locations and associated
@@ -94,7 +94,7 @@ page.
 
   - [Getting Australian electoral
     maps](articles/getting-ozShapefiles.html): details the process to
-    produce useable electoral maps from the original shapefiles.
+    produce usable electoral maps from the original shapefiles.
 
 Additionally, there is a vignette on how we have imputed electoral
 Census data in election years for which a Census does not exactly align.

@@ -2,7 +2,7 @@ Package: eechidna
 Version: 1.3.0
 Title: Exploring Election and Census Highly Informative Data Nationally for
     Australia
-Description: Data from the six Australian Federal Election (House of
+Description: Data from the six Australian Federal Elections (House of
     Representatives) between 2001 and 2016, and from the four Australian
     Censuses over the same period. Includes tools for visualizing and
     analysing the data, as well as imputing Census data for years in 
