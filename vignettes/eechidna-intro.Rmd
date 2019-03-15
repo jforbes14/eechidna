@@ -21,6 +21,27 @@ knitr::opts_chunk$set(echo = TRUE, fig.align = "center")
 
 This vignette documents how to access these datasets, and shows a few typical methods to explore the data.
 
+# Joining election and Census data
+
+Each electoral division has a unique ID (`UniqueID`) that can be used to match together Censuses and elections.
+
+```{r message = F}
+library(knitr)
+library(dplyr)
+library(eechidna)
+data(tpp16)
+data(abs2016)
+
+# Join 2016 election and Census
+data16 <- left_join(tpp16 %>% select(LNP_Percent, UniqueID), abs2016, by = "UniqueID")
+
+# See what it looks like
+data16 %>% 
+  select(LNP_Percent, DivisionNm, Population, Area, AusCitizen, MedianPersonalIncome, Renting) %>% 
+  head() %>% 
+  kable
+```
+
 
 # Election results
 
@@ -34,11 +55,8 @@ The same voting results are available for each polling booth (of which there are
 Let's have a look at some of the results from the 2016 Federal election.
 
 ```{r echo = TRUE, message = FALSE}
-library(eechidna)
-
 # Load data
 data(fp16)
-data(tpp16)
 data(tcp16)
 ```
 
@@ -47,8 +65,6 @@ data(tcp16)
 The data can be summarized to reveal some basic details about the election. Start by reproducing the overall result of the election by finding out which party won the most electorates according to the two candidate preferred votes.
 
 ```{r who_won, message = FALSE}
-library(knitr)
-library(dplyr)
 who_won <- tcp16 %>% 
   filter(Elected == "Y") %>% 
   group_by(PartyNm) %>% 
@@ -118,9 +134,6 @@ There are four Censuses included in this package, which consist of 85 variables 
 Let's have a look at data from the 2016 Census held in `abs2016`.
 
 ```{r}
-# Load
-data(abs2016)
-
 # Dimensions
 dim(abs2016)
 
@@ -253,7 +266,7 @@ Let's look at modelling the two party preferred vote (in favour of the Liberal p
 
 ```{r}
 # Join
-data16 <- left_join(tpp16 %>% select(LNP_Percent, DivisionNm), abs2016, by = "DivisionNm")
+data16 <- left_join(tpp16 %>% select(LNP_Percent, UniqueID), abs2016, by = "UniqueID")
 
 # Fit a model using all of the available population characteristics
 lmod <- data16 %>% 

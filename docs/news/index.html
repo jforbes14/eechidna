@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>2010 Australian Federal election data: First preference votes for candidates (House of House of 
-Representative for each electorate — fp10 • eechidna</title>
+<title>Changelog • eechidna</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -31,15 +30,7 @@ Representative for each electorate — fp10 • eechidna</title>
 
 
 
-<meta property="og:title" content="2010 Australian Federal election data: First preference votes for candidates (House of House of 
-Representative for each electorate — fp10" />
-
-<meta property="og:description" content="A dataset containing first preference vote counts, candidate names, and other results for the
-House of Representatives from the 2010 Australian federal election. 
-The data were obtained from the Australian Electoral Commission, and downloaded 
-from http://results.aec.gov.au/15508/Website/HouseDownloadsMenu-15508-csv.htm and 
-http://www.aec.gov.au/elections/federal_elections/2010/downloads.htm." />
-<meta name="twitter:card" content="summary" />
+<meta property="og:title" content="Changelog" />
 
 
 
@@ -56,7 +47,7 @@ http://www.aec.gov.au/elections/federal_elections/2010/downloads.htm." />
   </head>
 
   <body>
-    <div class="container template-reference-topic">
+    <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -138,53 +129,68 @@ http://www.aec.gov.au/elections/federal_elections/2010/downloads.htm." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>2010 Australian Federal election data: First preference votes for candidates (House of House of 
-Representative for each electorate</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ropenscilabs/eechidna/blob/master/R/data.R'><code>R/data.R</code></a></small>
-    <div class="hidden name"><code>fp10.Rd</code></div>
+      <h1>Changelog <small></small></h1>
+      <small>Source: <a href='https://github.com/ropenscilabs/eechidna/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div class="ref-description">
-    
-    <p>A dataset containing first preference vote counts, candidate names, and other results for the
-House of Representatives from the 2010 Australian federal election. 
-The data were obtained from the Australian Electoral Commission, and downloaded 
-from <a href='http://results.aec.gov.au/15508/Website/HouseDownloadsMenu-15508-csv.htm'>http://results.aec.gov.au/15508/Website/HouseDownloadsMenu-15508-csv.htm</a> and 
-<a href='http://www.aec.gov.au/elections/federal_elections/2010/downloads.htm'>http://www.aec.gov.au/elections/federal_elections/2010/downloads.htm</a>.</p>
-    
-    </div>
-
-    <pre class="usage"><span class='no'>fp10</span></pre>
-        
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
-
-    <p>A data frame with the following variables:</p><ul>
-<li><p>StateAb: Abbreviation for state name</p></li>
-<li><p>UniqueID: numeric identifier that links the electoral division with Census  
-    and other election datasets.</p></li>
-<li><p>DivisionNm:  Electoral division name</p></li>
-<li><p>BallotPosition: Candidate's position on the ballot</p></li>
-<li><p>CandidateID: Candidate ID</p></li>
-<li><p>Surname: Candidate surname</p></li>
-<li><p>GivenNm: Candidate given name</p></li>
-<li><p>PartyAb: Abbreviation for political party name</p></li>
-<li><p>PartyNm: Political party name</p></li>
-<li><p>Elected: Whether the candidate was elected (Y/N)</p></li>
-<li><p>HistoricElected: Whether the candidate is the incumbent member</p></li>
-<li><p>OrdinaryVotes: Number of ordinary votes cast at the electorate for the candidate</p></li>
-<li><p>Percent: Percentage of ordinary votes for the candidate</p></li>
+    <div id="eechidna-0109000" class="section level1">
+<h1 class="page-header">
+<a href="#eechidna-0109000" class="anchor"></a>eechidna 0.1.0.9000<small> Unreleased </small>
+</h1>
+<ul>
+<li>
+<code>launchApp()</code> now displays densities, rather than dotplots, to avoid the potential confusion that each dot represents an electorate.</li>
 </ul>
-    
-
+</div>
+    <div id="eechidna-01-2016-06-01" class="section level1">
+<h1 class="page-header">
+<a href="#eechidna-01-2016-06-01" class="anchor"></a>eechidna 0.1 (2016-06-01)<small> 2016-05-23 </small>
+</h1>
+<ul>
+<li>Added a <code>NEWS.md</code> file to track changes to the package (<a href='https://github.com/ropenscilabs/eechidna/issues/8'>#8</a>)</li>
+</ul>
+</div>
+    <div id="eechidna-01-2016-05-23" class="section level1">
+<h1 class="page-header">
+<a href="#eechidna-01-2016-05-23" class="anchor"></a>eechidna 0.1 (2016-05-23)<small> 2016-05-23 </small>
+</h1>
+<ul>
+<li>Published on CRAN</li>
+</ul>
+</div>
+    <div id="eechidna-12-2019-01-23" class="section level1">
+<h1 class="page-header">
+<a href="#eechidna-12-2019-01-23" class="anchor"></a>eechidna 1.2 (2019-01-23)<small> Unreleased </small>
+</h1>
+<ul>
+<li>Removed from CRAN</li>
+</ul>
+</div>
+    <div id="eechidna-13-2019-03-15" class="section level1">
+<h1 class="page-header">
+<a href="#eechidna-13-2019-03-15" class="anchor"></a>eechidna 1.3 (2019-03-15)<small> Unreleased </small>
+</h1>
+<ul>
+<li>Now covers all elections and Censuses between 2001-2016</li>
+<li>Includes polling booth data from each election (available using download functions in the pkg)</li>
+<li>Submitted to CRAN</li>
+</ul>
+</div>
   </div>
+
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      
-      <li><a href="#format">Format</a></li>
-          </ul>
-
+    <div id="tocnav">
+      <h2>Contents</h2>
+      <ul class="nav nav-pills nav-stacked">
+        <li><a href="#eechidna-0109000">0.1.0.9000</a></li>
+        <li><a href="#eechidna-01-2016-06-01">0.1</a></li>
+        <li><a href="#eechidna-01-2016-05-23">0.1</a></li>
+        <li><a href="#eechidna-12-2019-01-23">1.2</a></li>
+        <li><a href="#eechidna-13-2019-03-15">1.3</a></li>
+      </ul>
+    </div>
   </div>
+
 </div>
 
       <footer>
