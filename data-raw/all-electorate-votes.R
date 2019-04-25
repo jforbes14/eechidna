@@ -12,27 +12,30 @@ relabel_parties <- function(df, PartyNm = PartyNm) {
     ungroup %>% 
     mutate(PartyNm = ifelse(
       PartyNm %in% c("AUSTRALIAN LABOR PARTY (NORTHERN TERRITORY) BRANCH",  "LABOR", "AUSTRALIAN LABOR PARTY (ACT BRANCH)", "AUSTRALIAN LABOR PARTY (ALP)", "COUNTRY LABOR"), "AUSTRALIAN LABOR PARTY",
-      ifelse(PartyNm %in% c("C.L.P.", "COUNTRY LIBERALS (NT)", "LIBERAL NATIONAL PARTY OF QUEENSLAND", "THE NATIONALS", "NATIONAL PARTY", "CLP-THE TERRITORY PARTY", "LIBERALS", "NATIONALS"), "LIBERAL", 
-        ifelse(PartyNm %in% c("THE GREENS (WA)", "AUSTRALIAN GREENS"), "THE GREENS", 
-          ifelse(PartyNm %in% c(""), "INFORMAL", 
-            ifelse(PartyNm %in% c("AUSTRALIAN DEMOCRATS"), "DEMOCRATS",
-              ifelse(PartyNm %in% c("NEW COUNTRY"), "NEW COUNTRY PARTY",
-                ifelse(PartyNm %in% c("ONE NATION WA", "PAULINE HANSON'S ONE NATION (NSW DIVISION)", "PAULINE HANSON'S ONE NATION"), "ONE NATION", 
-                  ifelse(PartyNm %in% c("SEX PARTY"), "AUSTRALIAN SEX PARTY", 
-                    ifelse(PartyNm %in% c("CHRISTIAN DEMOCRATIC PARTY (FRED NILE GROUP)", "CDP CHRISTIAN PARTY"), "CHRISTIAN DEMOCRATIC PARTY",
-                      ifelse(PartyNm %in% c("CITIZENS ELECTORAL COUNCIL OF AUSTRALIA"), "CITIZENS ELECTORAL COUNCIL",
-                        ifelse(PartyNm %in% c("AUSTRALIAN COUNTRY PARTY"), "COUNTRY ALLIANCE", 
-                          ifelse(PartyNm %in% c("DEMOCRATIC LABOUR PARTY (DLP)", "DLP DEMOCRATIC LABOUR PARTY", "D.L.P. - DEMOCRATIC LABOR PARTY"), "DEMOCRATIC LABOR PARTY",
-                            ifelse(PartyNm %in% c("FAMILY FIRST PARTY"), "FAMILY FIRST", 
-                              ifelse(PartyNm %in% c("SCIENCE PARTY"), "FUTURE PARTY",
-                                ifelse(PartyNm %in% c("HELP END MARIJUANA PROHIBITION"), "MARIJUANA (HEMP) PARTY",
-                                  ifelse(PartyNm %in% c("LDP", "LIBERAL DEMOCRATS (LDP)"), "LIBERAL DEMOCRATS",
-                                    ifelse(PartyNm %in% c("NON-CUSTODIAL PARENTS PARTY (EQUAL PARENTING)"), "NON-CUSTODIAL PARENTS PARTY",
-                                      ifelse(PartyNm %in% c("SENATOR ONLINE (INTERNET VOTING BILLS/ISSUES)", "ONLINE DIRECT DEMOCRACY - (EMPOWERING THE PEOPLE!)"), "SENATOR ONLINE",
-                                        ifelse(PartyNm %in% c("STABLE POPULATION PARTY"), "SUSTAINABLE AUSTRALIA",
-                                          ifelse(PartyNm %in% c("AUSTRALIAN VOICE"), "AUSTRALIAN VOICE PARTY",
-                                 ifelse(is.na(PartyNm), "INDEPENDENT", PartyNm
-            ))))))))))))))))))))))
+      ifelse(PartyNm %in% c("C.L.P.", "COUNTRY LIBERALS (NT)", "LIBERAL NATIONAL PARTY OF QUEENSLAND", "CLP-THE TERRITORY PARTY", "LIBERALS", "LIBERAL"), "LIBERAL PARTY",
+        
+        ifelse(PartyNm %in% c("THE NATIONALS", "NATIONAL PARTY", "NATIONALS"), "NATIONAL PARTY",
+          
+          ifelse(PartyNm %in% c("THE GREENS (WA)", "AUSTRALIAN GREENS"), "THE GREENS", 
+            ifelse(PartyNm %in% c(""), "INFORMAL", 
+              ifelse(PartyNm %in% c("AUSTRALIAN DEMOCRATS"), "DEMOCRATS",
+                ifelse(PartyNm %in% c("NEW COUNTRY"), "NEW COUNTRY PARTY",
+                  ifelse(PartyNm %in% c("ONE NATION WA", "PAULINE HANSON'S ONE NATION (NSW DIVISION)", "PAULINE HANSON'S ONE NATION"), "ONE NATION", 
+                    ifelse(PartyNm %in% c("SEX PARTY"), "AUSTRALIAN SEX PARTY", 
+                      ifelse(PartyNm %in% c("CHRISTIAN DEMOCRATIC PARTY (FRED NILE GROUP)", "CDP CHRISTIAN PARTY"), "CHRISTIAN DEMOCRATIC PARTY",
+                        ifelse(PartyNm %in% c("CITIZENS ELECTORAL COUNCIL OF AUSTRALIA"), "CITIZENS ELECTORAL COUNCIL",
+                          ifelse(PartyNm %in% c("AUSTRALIAN COUNTRY PARTY"), "COUNTRY ALLIANCE", 
+                            ifelse(PartyNm %in% c("DEMOCRATIC LABOUR PARTY (DLP)", "DLP DEMOCRATIC LABOUR PARTY", "D.L.P. - DEMOCRATIC LABOR PARTY"), "DEMOCRATIC LABOR PARTY",
+                              ifelse(PartyNm %in% c("FAMILY FIRST PARTY"), "FAMILY FIRST", 
+                                ifelse(PartyNm %in% c("SCIENCE PARTY"), "FUTURE PARTY",
+                                  ifelse(PartyNm %in% c("HELP END MARIJUANA PROHIBITION"), "MARIJUANA (HEMP) PARTY",
+                                    ifelse(PartyNm %in% c("LDP", "LIBERAL DEMOCRATS (LDP)"), "LIBERAL DEMOCRATS",
+                                      ifelse(PartyNm %in% c("NON-CUSTODIAL PARENTS PARTY (EQUAL PARENTING)"), "NON-CUSTODIAL PARENTS PARTY",
+                                        ifelse(PartyNm %in% c("SENATOR ONLINE (INTERNET VOTING BILLS/ISSUES)", "ONLINE DIRECT DEMOCRACY - (EMPOWERING THE PEOPLE!)"), "SENATOR ONLINE",
+                                          ifelse(PartyNm %in% c("STABLE POPULATION PARTY"), "SUSTAINABLE AUSTRALIA",
+                                            ifelse(PartyNm %in% c("AUSTRALIAN VOICE"), "AUSTRALIAN VOICE PARTY",
+                                              ifelse(is.na(PartyNm), "INDEPENDENT", PartyNm
+                                              )))))))))))))))))))))))
   return(out)
 }
 
@@ -42,11 +45,12 @@ reabbrev_parties <- function(df, PartyNm = PartyNm) {
   out <- df %>%
     ungroup %>% 
     mutate(PartyAb = ifelse(PartyAb %in% c("CLR", "ALP"), "ALP", 
-      ifelse(PartyAb %in% c("CLP", "LP", "LNP", "NP"), "LNP", 
+      ifelse(PartyAb %in% c("CLP", "LP", "LNP"), "LP", 
         ifelse(PartyAb %in% c("GRN", "GWA", "TG"), "GRN", 
           ifelse(PartyAb %in% c("HAN","ON"), "ON",
             ifelse(is.na(PartyAb), "IND", 
-              PartyAb))))))
+              PartyAb)))))) 
+  
   return(out)
 }
 
