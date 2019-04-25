@@ -65,15 +65,18 @@ We have many vignettes that show how to access these data in the
 package, and demonstrate how to analyse the data using R. These can be
 found in the *articles* tab at the top of this page.
 
-  - [An introduction to eechidna](articles/eechidna-intro.html): an
-    overview of the package contents and examples of how to use the
+  - [An introduction to
+    eechidna](https://ropenscilabs.github.io/eechidna/articles/eechidna-intro.html):
+    an overview of the package contents and examples of how to use the
     data.
 
-  - [Exploring election data](articles/exploring-election-data.html):
+  - [Exploring election
+    data](https://ropenscilabs.github.io/eechidna/articles/exploring-election-data.html):
     examples of wrangling data from the 2016 Federal election data to
     gain insights.
 
-  - [Exploring Census data](articles/exploring-census-data.html):
+  - [Exploring Census
+    data](https://ropenscilabs.github.io/eechidna/articles/exploring-census-data.html):
     visualizing 2016 Census data to analyse patterns in electoral
     population characteristics.
 
@@ -84,24 +87,28 @@ we show some methods for effectively visualizing election data in
 Australia. These too are found in the *articles* tab at the top of this
 page.
 
-  - [Mapping federal electorates](articles/plotting-electorates.html):
+  - [Mapping federal
+    electorates](https://ropenscilabs.github.io/eechidna/articles/plotting-electorates.html):
     how to plot a map of Australian federal electorates, and how to
     better visualize electoral voting data using a cartogram.
 
-  - [Mapping polling booths](articles/plotting-polling-stns.html):
+  - [Mapping polling
+    booths](https://ropenscilabs.github.io/eechidna/articles/plotting-polling-stns.html):
     examples of how to plot the polling booth locations and associated
     voting data.
 
   - [Getting Australian electoral
-    maps](articles/getting-ozShapefiles.html): details the process to
-    produce usable electoral maps from the original shapefiles.
+    maps](https://ropenscilabs.github.io/eechidna/articles/getting-ozShapefiles.html):
+    details the process to produce usable electoral maps from the
+    original shapefiles.
 
 Additionally, there is a vignette on how we have imputed electoral
 Census data in election years for which a Census does not exactly align.
 
   - [Imputing Census data for non-Census
-    years](article/imputing-census-data.html): details the procedure
-    used to impute Census data for 2004, 2007, 2010 and 2013.
+    years](https://ropenscilabs.github.io/eechidna/articles/imputing-census-data.html):
+    details the procedure used to impute Census data for 2004, 2007,
+    2010 and 2013.
 
 ## License
 
