@@ -19,3 +19,7 @@
 * Now covers all elections and Censuses between 2001-2016
 * Includes polling booth data from each election (available using download functions in the pkg)
 * Submitted to CRAN
+
+# eechidna 1.3.1 (TBC)
+
+* Minor update to existing election data - adding a unique identifier to easily link electorates together over time.
