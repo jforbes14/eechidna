@@ -228,6 +228,10 @@ map.winners <- fp16 %>% filter(Elected == "Y") %>%
 map.winners$PartyNm <- as.character(map.winners$PartyNm)
 map.winners <- map.winners %>% arrange(group, order)
 
+# Combine Liberal and National parties
+map.winners <- map.winners %>% 
+  mutate(PartyNm = ifelse(PartyNm %in% c("NATIONAL PARTY", "LIBERAL PARTY"), "LIBERAL NATIONAL COALITION", PartyNm))
+
 # Colour cells to match that parties colours
 # Order = Australian Labor Party, Independent, Katters, Lib/Nats Coalition, Palmer, The Greens
 partycolours = c("#FF0033", "#000000", "#CC3300", "#0066CC", "#FFFF00", "#009900")
@@ -248,6 +252,11 @@ A better approach would be to use a cartogram to display the election results, w
 cart.winners <- fp16 %>% filter(Elected == "Y") %>% 
   select(DivisionNm, PartyNm) %>% 
   merge(nat_data16, by.x="DivisionNm", by.y="elect_div")
+
+# Combine Liberal and National parties
+cart.winners <- cart.winners %>% 
+  mutate(PartyNm = ifelse(PartyNm %in% c("NATIONAL PARTY", "LIBERAL PARTY"), "LIBERAL NATIONAL COALITION", PartyNm))
+
 
 # Plot dorling cartogram
 ggplot(data=nat_map16) +
