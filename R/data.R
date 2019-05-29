@@ -639,10 +639,17 @@
 #' data(nat_map16)
 #' data(fp16)
 #' winners <- fp16 %>% filter(Elected == "Y")
+#' 
+#' # Combine Liberal and National parties
+#' winners <- winners %>% 
+#' mutate(PartyNm = ifelse(PartyNm %in% c("NATIONAL PARTY", "LIBERAL PARTY"), 
+#' "LIBERAL NATIONAL COALITION", PartyNm))
+#' 
+#' # Join to map
 #' data(nat_data16)
 #' nat_data16$DivisionNm <- toupper(nat_data16$elect_div)
 #' nat_data16 <- nat_data16 %>% left_join(winners, by = "DivisionNm")
-#' 
+#
 #' # Plot
 #' partycolours = c("#FF0033", "#000000", "#CC3300", "#0066CC", "#FFFF00", "#009900")
 #' 
