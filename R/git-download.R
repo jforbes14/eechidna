@@ -1,3 +1,61 @@
+#' Download centroids of Statistical Area 1 regions from an Australian Census
+#' 
+#' @param year Desired year, must be one of 2001, 2006, 2011, 2016
+#' @param ... Additional arguments passed to `download.file`
+#'
+#' Downloads and returns a large list containing the centroids (SpatialPoints) and 
+#' and associated data for each of the Statistical Area 1 regions from the Census. 
+#' This object is obtained using the `sa1_centroid_download` function. The data were obtained from the 
+#' Australian Electoral Commission and the Australian Bureau of Statistics.
+#'
+#' @return A Large list containing centroids and data for each of the Statistical Area 1 regions
+#' 
+#' @examples
+#' \dontrun{
+#' sa1_centroids_16 <- sa1_centroid_download(year = 2016)
+#' # Find the SA1 with largest area
+#' library(dplyr)
+#' library(magrittr)
+#' sa1_centroids_16$data %>% arrange(-AREA_SQKM) %>% head(1)
+#' }
+#' 
+#' @export
+sa1_centroid_download <- function(year, ...){
+  
+    year = as.numeric(year)
+    url_git = paste0("https://github.com/ropenscilabs/eechidna/raw/master/extra-data/centroids_sa1_", year, ".rda")
+    
+    if (year == 2001) {
+      sa1_01 <- 1
+      tmp <- tempfile()
+      utils::download.file(url_git, tmp, ...)
+      load(tmp)
+      sa1_01      
+    } else if (year == 2006) {
+      sa1_06 <- 1
+      tmp <- tempfile()
+      utils::download.file(url_git, tmp, ...)
+      load(tmp)
+      sa1_04      
+    } else if (year == 2011) {
+      sa1_11 <- 1
+      tmp <- tempfile()
+      utils::download.file(url_git, tmp, ...)
+      load(tmp)
+      sa1_11        
+    } else if (year == 2016) {
+      sa1_16 <- 1
+      tmp <- tempfile()
+      utils::download.file(url_git, tmp, ...)
+      load(tmp)
+      sa1_16      
+    } else {
+      warning("SA1 centroids for desired year are not available: select from 2001, 2006, 2011, 2013, 2016") 
+      return()
+    }
+      
+}
+
 #' Download SpatialPolygonsDataFrame containing polygons of Australian federal electorates
 #' 
 #' @param year Desired year, must be one of 2001, 2004, 2007, 2010, 2011, 2013, 2016
@@ -21,59 +79,58 @@
 #' @export
 sF_download <- function(year, ...){
   
-    year = as.numeric(year)
-    suffix = substr(year, 3, 4)
-    url_git = paste0("https://github.com/jforbes14/eechidna/raw/master/extra-data/sF_", suffix, ".rda")
-    
-    if (year == 2001) {
-      sF_01 <- 1
-      tmp <- tempfile()
-      utils::download.file(url_git, tmp, ...)
-      load(tmp)
-      sF_01      
-    } else if (year == 2004) {
-      sF_04 <- 1
-      tmp <- tempfile()
-      utils::download.file(url_git, tmp, ...)
-      load(tmp)
-      sF_04      
-    } else if (year == 2007) {
-      sF_07 <- 1
-      tmp <- tempfile()
-      utils::download.file(url_git, tmp, ...)
-      load(tmp)
-      sF_07      
-    } else if (year == 2010) {
-      sF_10 <- 1
-      tmp <- tempfile()
-      utils::download.file(url_git, tmp, ...)
-      load(tmp)
-      sF_10      
-    } else if (year == 2011) {
-      sF_11 <- 1
-      tmp <- tempfile()
-      utils::download.file(url_git, tmp, ...)
-      load(tmp)
-      sF_11      
-    } else if (year == 2013) {
-      sF_13 <- 1
-      tmp <- tempfile()
-      utils::download.file(url_git, tmp, ...)
-      load(tmp)
-      sF_13      
-    } else if (year == 2016) {
-      sF_16 <- 1
-      tmp <- tempfile()
-      utils::download.file(url_git, tmp, ...)
-      load(tmp)
-      sF_16      
-    } else {
-      warning("Electoral boundaries for desired year are not available: select from 2001, 2004, 2007, 2010, 2011, 2013, 2016") 
-      return()
-    }
-      
+  year = as.numeric(year)
+  suffix = substr(year, 3, 4)
+  url_git = paste0("https://github.com/ropenscilabs/eechidna/raw/master/extra-data/sF_", suffix, ".rda")
+  
+  if (year == 2001) {
+    sF_01 <- 1
+    tmp <- tempfile()
+    utils::download.file(url_git, tmp, ...)
+    load(tmp)
+    sF_01      
+  } else if (year == 2004) {
+    sF_04 <- 1
+    tmp <- tempfile()
+    utils::download.file(url_git, tmp, ...)
+    load(tmp)
+    sF_04      
+  } else if (year == 2007) {
+    sF_07 <- 1
+    tmp <- tempfile()
+    utils::download.file(url_git, tmp, ...)
+    load(tmp)
+    sF_07      
+  } else if (year == 2010) {
+    sF_10 <- 1
+    tmp <- tempfile()
+    utils::download.file(url_git, tmp, ...)
+    load(tmp)
+    sF_10      
+  } else if (year == 2011) {
+    sF_11 <- 1
+    tmp <- tempfile()
+    utils::download.file(url_git, tmp, ...)
+    load(tmp)
+    sF_11      
+  } else if (year == 2013) {
+    sF_13 <- 1
+    tmp <- tempfile()
+    utils::download.file(url_git, tmp, ...)
+    load(tmp)
+    sF_13      
+  } else if (year == 2016) {
+    sF_16 <- 1
+    tmp <- tempfile()
+    utils::download.file(url_git, tmp, ...)
+    load(tmp)
+    sF_16      
+  } else {
+    warning("Electoral boundaries for desired year are not available: select from 2001, 2004, 2007, 2010, 2011, 2013, 2016") 
+    return()
+  }
+  
 }
-
 
 #' Download first preference voting data from each polling booth, from the six 
 #' Australian Federal elections between 2001 and 2016.
@@ -128,7 +185,7 @@ sF_download <- function(year, ...){
 firstpref_pollingbooth_download <- function(...){
   fp_pp <- 1
   tmp <- tempfile()
-  utils::download.file("https://github.com/jforbes14/eechidna/raw/master/extra-data/fp_pp.rda", tmp)
+  utils::download.file("https://github.com/ropenscilabs/eechidna/raw/master/extra-data/fp_pp.rda", tmp)
   load(tmp)
   fp_pp 
 }
@@ -187,7 +244,7 @@ firstpref_pollingbooth_download <- function(...){
 twoparty_pollingbooth_download <- function(...){
   tpp_pp <- 1
   tmp <- tempfile()
-  utils::download.file("https://github.com/jforbes14/eechidna/raw/master/extra-data/tpp_pp.rda", tmp)
+  utils::download.file("https://github.com/ropenscilabs/eechidna/raw/master/extra-data/tpp_pp.rda", tmp)
   load(tmp)
   tpp_pp 
 }
@@ -247,7 +304,7 @@ twoparty_pollingbooth_download <- function(...){
 twocand_pollingbooth_download <- function(...){
   tcp_pp <- 1
   tmp <- tempfile()
-  utils::download.file("https://github.com/jforbes14/eechidna/raw/master/extra-data/tcp_pp.rda", tmp)
+  utils::download.file("https://github.com/ropenscilabs/eechidna/raw/master/extra-data/tcp_pp.rda", tmp)
   load(tmp)
   tcp_pp 
 }
