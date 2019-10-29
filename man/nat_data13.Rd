@@ -6,7 +6,7 @@
 \title{Data of the Australian Electorates from 2013}
 \format{A data frame with 150 rows with the following variables:
 \itemize{
-    \item id: numeric identifier for the polygon
+    \item id: Numeric identifier for the polygon
     \item elect_div: Electorate division name   
     \item state: abbreviation of the state name
     \item numccds: AEC variable that might be filled with meaning or a description down the road

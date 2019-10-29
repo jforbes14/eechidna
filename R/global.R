@@ -18,4 +18,4 @@ utils::globalVariables(
     "Intersect_area", "AEC_division_area", "ABS_division_area",
     "AEC_division", "ABS_division", "Area", "Percent_Census_Composition",
     "Population", "imputed_population", "total_pop", "Age00_04", "Volunteer",
-    "tolerance_rad", "Percent"))
+    "tolerance_rad", "Percent", "CD", "electorate", "proj4string<-", "sa1"))

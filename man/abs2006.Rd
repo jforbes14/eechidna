@@ -6,7 +6,7 @@
 \title{2006 Australian Census data on all 150 electorates (2004 boundaries)}
 \format{A data frame with 150 rows with the following variables:
 \itemize{
-  \item UniqueID: numeric identifier that links the electoral division with Census 
+  \item UniqueID: Numeric identifier that links the electoral division with Census 
   and other election datasets.
   \item DivisionNm: Name of electorate
   \item State: State containing electorate

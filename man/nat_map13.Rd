@@ -6,7 +6,7 @@
 \title{Map of Australian Electorates from 2013}
 \format{A data frame with the following variables:
 \itemize{
-    \item id: numeric identifier for the polygon
+    \item id: Numeric identifier for the polygon
     \item long: longitude coordinate of point in polygon
     \item lat: latitude coordinate of point in polygon
     \item order: order for polygon points

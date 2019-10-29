@@ -10,7 +10,7 @@
 #' @format A data frame with the following variables:
 #' \itemize{
 #'     \item StateAb: Abbreviation for state name    
-#'     \item UniqueID: numeric identifier that links the electoral division with Census  
+#'     \item UniqueID: Numeric identifier that links the electoral division with Census  
 #'     and other election datasets.
 #'     \item DivisionNm:  Electoral division name   
 #'     \item BallotPosition: Candidate's position on the ballot 
@@ -39,7 +39,7 @@
 #' 
 #' @format A data frame with the following variables:
 #' \itemize{
-#'     \item UniqueID: numeric identifier that links the electoral division with Census  
+#'     \item UniqueID: Numeric identifier that links the electoral division with Census  
 #'     and other election datasets. 
 #'     \item DivisionNm:  Electoral division name   
 #'     \item StateAb: Abbreviation for state name  
@@ -66,7 +66,7 @@
 #' @format A data frame with the following variables:
 #' \itemize{
 #'     \item StateAb: Abbreviation for state name    
-#'     \item UniqueID: numeric identifier that links the electoral division with Census  
+#'     \item UniqueID: Numeric identifier that links the electoral division with Census  
 #'     and other election datasets.  
 #'     \item DivisionNm:  Electoral division name             
 #'     \item BallotPosition: Candidate's position on the ballot      
@@ -94,7 +94,7 @@
 #' @format A data frame with the following variables:
 #' \itemize{
 #'     \item StateAb: Abbreviation for state name    
-#'     \item UniqueID: numeric identifier that links the electoral division with Census  
+#'     \item UniqueID: Numeric identifier that links the electoral division with Census  
 #'     and other election datasets.
 #'     \item DivisionNm:  Electoral division name   
 #'     \item BallotPosition: Candidate's position on the ballot 
@@ -123,7 +123,7 @@
 #' 
 #' @format A data frame with the following variables:
 #' \itemize{
-#'     \item UniqueID: numeric identifier that links the electoral division with Census  
+#'     \item UniqueID: Numeric identifier that links the electoral division with Census  
 #'     and other election datasets.  
 #'     \item DivisionNm:  Electoral division name   
 #'     \item StateAb: Abbreviation for state name  
@@ -149,7 +149,7 @@
 #' @format A data frame with the following variables:
 #' \itemize{
 #'     \item StateAb: Abbreviation for state name    
-#'     \item UniqueID: numeric identifier that links the electoral division with Census  
+#'     \item UniqueID: Numeric identifier that links the electoral division with Census  
 #'     and other election datasets.  
 #'     \item DivisionNm:  Electoral division name             
 #'     \item BallotPosition: Candidate's position on the ballot      
@@ -177,7 +177,7 @@
 #' @format A data frame with the following variables:
 #' \itemize{
 #'     \item StateAb: Abbreviation for state name    
-#'     \item UniqueID: numeric identifier that links the electoral division with Census  
+#'     \item UniqueID: Numeric identifier that links the electoral division with Census  
 #'     and other election datasets.   
 #'     \item DivisionNm:  Electoral division name   
 #'     \item BallotPosition: Candidate's position on the ballot 
@@ -203,7 +203,7 @@
 #' 
 #' @format A data frame with the following variables:
 #' \itemize{
-#'     \item UniqueID: numeric identifier that links the electoral division with Census  
+#'     \item UniqueID: Numeric identifier that links the electoral division with Census  
 #'     and other election datasets.  
 #'     \item DivisionNm:  Electoral division name   
 #'     \item StateAb: Abbreviation for state name  
@@ -228,7 +228,7 @@
 #' @format A data frame with the following variables:
 #' \itemize{
 #'     \item StateAb: Abbreviation for state name    
-#'     \item UniqueID: numeric identifier that links the electoral division with Census  
+#'     \item UniqueID: Numeric identifier that links the electoral division with Census  
 #'     and other election datasets.  
 #'     \item DivisionNm:  Electoral division name             
 #'     \item BallotPosition: Candidate's position on the ballot      
@@ -255,7 +255,7 @@
 #' @format A data frame with the following variables:
 #' \itemize{
 #'     \item StateAb: Abbreviation for state name    
-#'     \item UniqueID: numeric identifier that links the electoral division with Census  
+#'     \item UniqueID: Numeric identifier that links the electoral division with Census  
 #'     and other election datasets.   
 #'     \item DivisionNm:  Electoral division name   
 #'     \item BallotPosition: Candidate's position on the ballot 
@@ -281,7 +281,7 @@
 #' 
 #' @format A data frame with the following variables:
 #' \itemize{
-#'     \item UniqueID: numeric identifier that links the electoral division with Census  
+#'     \item UniqueID: Numeric identifier that links the electoral division with Census  
 #'     and other election datasets.   
 #'     \item DivisionNm:  Electoral division name   
 #'     \item StateAb: Abbreviation for state name  
@@ -307,7 +307,7 @@
 #' @format A data frame with the following variables:
 #' \itemize{
 #'     \item StateAb: Abbreviation for state name    
-#'     \item UniqueID: numeric identifier that links the electoral division with Census  
+#'     \item UniqueID: Numeric identifier that links the electoral division with Census  
 #'     and other election datasets.  
 #'     \item DivisionNm:  Electoral division name             
 #'     \item BallotPosition: Candidate's position on the ballot      
@@ -335,7 +335,7 @@
 #' @format A data frame with the following variables:
 #' \itemize{
 #'     \item StateAb: Abbreviation for state name    
-#'     \item UniqueID: numeric identifier that links the electoral division with Census  
+#'     \item UniqueID: Numeric identifier that links the electoral division with Census  
 #'     and other election datasets.  
 #'     \item DivisionNm:  Electoral division name   
 #'     \item BallotPosition: Candidate's position on the ballot 
@@ -361,7 +361,7 @@
 #' 
 #' @format A data frame with the following variables:
 #' \itemize{
-#'     \item UniqueID: numeric identifier that links the electoral division with Census  
+#'     \item UniqueID: Numeric identifier that links the electoral division with Census  
 #'     and other election datasets.  
 #'     \item DivisionNm:  Electoral division name   
 #'     \item StateAb: Abbreviation for state name  
@@ -386,7 +386,7 @@
 #' @format A data frame with the following variables:
 #' \itemize{
 #'     \item StateAb: Abbreviation for state name    
-#'     \item UniqueID: numeric identifier that links the electoral division with Census  
+#'     \item UniqueID: Numeric identifier that links the electoral division with Census  
 #'     and other election datasets.
 #'     \item DivisionNm:  Electoral division name             
 #'     \item BallotPosition: Candidate's position on the ballot      
@@ -410,7 +410,7 @@
 #' 
 #' @format A data frame with the following variables:
 #' \itemize{
-#'     \item UniqueID: numeric identifier that links the electoral division with Census  
+#'     \item UniqueID: Numeric identifier that links the electoral division with Census  
 #'     and other election datasets.
 #'     \item StateAb: Abbreviation for state name  
 #'     \item DivisionNm:  Electoral division name   
@@ -433,7 +433,7 @@
 #' 
 #' @format A data frame with the following variables:
 #' \itemize{ 
-#'     \item UniqueID: numeric identifier that links the electoral division with Census  
+#'     \item UniqueID: Numeric identifier that links the electoral division with Census  
 #'     and other election datasets.
 #'     \item DivisionNm:  Electoral division name   
 #'     \item StateAb: Abbreviation for state name  
@@ -456,7 +456,7 @@
 #' 
 #' @format A data frame with the following variables:
 #' \itemize{
-#'     \item UniqueID: numeric identifier that links the electoral division with Census  
+#'     \item UniqueID: Numeric identifier that links the electoral division with Census  
 #'     and other election datasets.
 #'     \item StateAb: Abbreviation for state name   
 #'     \item DivisionNm:  Electoral division name             
@@ -478,7 +478,7 @@
 #' 
 #' @format A data frame with the following variables:
 #' \itemize{
-#'     \item id: numeric identifier for the polygon
+#'     \item id: Numeric identifier for the polygon
 #'     \item long: longitude coordinate of point in polygon
 #'     \item lat: latitude coordinate of point in polygon
 #'     \item order: order for polygon points
@@ -516,7 +516,7 @@
 #'
 #' @format A data frame with the following variables:
 #' \itemize{
-#'     \item id: numeric identifier for the polygon
+#'     \item id: Numeric identifier for the polygon
 #'     \item long: longitude coordinate of point in polygon
 #'     \item lat: latitude coordinate of point in polygon
 #'     \item order: order for polygon points
@@ -537,7 +537,7 @@
 #' 
 #' @format A data frame with the following variables:
 #' \itemize{
-#'     \item id: numeric identifier for the polygon
+#'     \item id: Numeric identifier for the polygon
 #'     \item long: longitude coordinate of point in polygon
 #'     \item lat: latitude coordinate of point in polygon
 #'     \item order: order for polygon points
@@ -558,7 +558,7 @@
 #' 
 #' @format A data frame with the following variables:
 #' \itemize{
-#'     \item id: numeric identifier for the polygon
+#'     \item id: Numeric identifier for the polygon
 #'     \item long: longitude coordinate of point in polygon
 #'     \item lat: latitude coordinate of point in polygon
 #'     \item order: order for polygon points
@@ -579,7 +579,7 @@
 #' 
 #' @format A data frame with the following variables:
 #' \itemize{
-#'     \item id: numeric identifier for the polygon
+#'     \item id: Numeric identifier for the polygon
 #'     \item long: longitude coordinate of point in polygon
 #'     \item lat: latitude coordinate of point in polygon
 #'     \item order: order for polygon points
@@ -600,7 +600,7 @@
 #' 
 #' @format A data frame with the following variables:
 #' \itemize{
-#'     \item id: numeric identifier for the polygon
+#'     \item id: Numeric identifier for the polygon
 #'     \item long: longitude coordinate of point in polygon
 #'     \item lat: latitude coordinate of point in polygon
 #'     \item order: order for polygon points
@@ -620,7 +620,7 @@
 #' The data is published 
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
-#'     \item id: numeric identifier for the polygon
+#'     \item id: Numeric identifier for the polygon
 #'     \item elect_div: Electorate division name   
 #'     \item state: abbreviation of the state name
 #'     \item numccds: AEC variable that might be filled with meaning or a description down the road
@@ -668,7 +668,7 @@
 #' The data is published 
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
-#'     \item id: numeric identifier for the polygon
+#'     \item id: Numeric identifier for the polygon
 #'     \item elect_div: Electorate division name   
 #'     \item state: abbreviation of the state name
 #'     \item numccds: AEC variable that might be filled with meaning or a description down the road
@@ -689,7 +689,7 @@
 #' The data is published 
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
-#'     \item id: numeric identifier for the polygon
+#'     \item id: Numeric identifier for the polygon
 #'     \item elect_div: Electorate division name   
 #'     \item state: abbreviation of the state name
 #'     \item numccds: AEC variable that might be filled with meaning or a description down the road
@@ -710,7 +710,7 @@
 #' The data is published 
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
-#'     \item id: numeric identifier for the polygon
+#'     \item id: Numeric identifier for the polygon
 #'     \item elect_div: Electorate division name   
 #'     \item state: abbreviation of the state name
 #'     \item long_c: longitude coordinate of electorate (polygon) centroid
@@ -729,7 +729,7 @@
 #' The data is published 
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
-#'     \item id: numeric identifier for the polygon
+#'     \item id: Numeric identifier for the polygon
 #'     \item elect_div: Electorate division name   
 #'     \item state: abbreviation of the state name
 #'     \item long_c: longitude coordinate of electorate (polygon) centroid
@@ -748,7 +748,7 @@
 #' The data is published 
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
-#'     \item id: numeric identifier for the polygon
+#'     \item id: Numeric identifier for the polygon
 #'     \item elect_div: Electorate division name   
 #'     \item state: abbreviation of the state name
 #'     \item long_c: longitude coordinate of electorate (polygon) centroid
@@ -769,7 +769,7 @@
 #'
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
-#'   \item UniqueID: numeric identifier that links the electoral division with Census 
+#'   \item UniqueID: Numeric identifier that links the electoral division with Census 
 #'   and other election datasets.
 #'   \item DivisionNm: Name of electorate
 #'   \item State: State containing electorate
@@ -881,7 +881,7 @@
 #'
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
-#'   \item UniqueID: numeric identifier that links the electoral division with Census 
+#'   \item UniqueID: Numeric identifier that links the electoral division with Census 
 #'   and other election datasets.
 #'   \item DivisionNm: Name of electorate
 #'   \item State: State containing electorate
@@ -987,7 +987,7 @@
 #'
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
-#'   \item UniqueID: numeric identifier that links the electoral division with Census 
+#'   \item UniqueID: Numeric identifier that links the electoral division with Census 
 #'   and other election datasets.
 #'   \item DivisionNm: Name of electorate
 #'   \item State: State containing electorate
@@ -1093,7 +1093,7 @@
 #'
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
-#'   \item UniqueID: numeric identifier that links the electoral division with Census 
+#'   \item UniqueID: Numeric identifier that links the electoral division with Census 
 #'   and other election datasets.
 #'   \item DivisionNm: Name of electorate
 #'   \item State: State containing electorate
@@ -1201,7 +1201,7 @@
 #'
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
-#'   \item UniqueID: numeric identifier that links the electoral division with Census 
+#'   \item UniqueID: Numeric identifier that links the electoral division with Census 
 #'   and other election datasets.
 #'   \item DivisionNm: Name of electorate
 #'   \item State: State containing electorate
@@ -1308,8 +1308,12 @@
 #' The data is imputed using Census information from 2011 and 2016. See the imputing-census-data
 #' vignette for more details.
 #'
+#' Note that this data was updated in October 2019. The older versions can be found at 
+#' `https://github.com/ropenscilabs/eechidna/tree/master/extra-data`
+#' 
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
+#'   \item Population: Number of people in electorate
 #'   \item DivisionNm: Name of electorate
 #'   \item Age00_04: Percentage of people aged 0-4.
 #'   \item Age05_14: Percentage of people aged 5-9.
@@ -1378,6 +1382,7 @@
 #'   \item Transformative: Percentage of employed persons who work in construction or manufacturing related industries
 #'   \item Unemployed: Unemployment rate
 #'   \item Volunteer: Percentage of people who work as a volunteer
+#'   \item UniqueID: Numeric identifier that links the electoral division with Census and other election datasets.
 #' }
 #' 
 #' @examples 
@@ -1400,8 +1405,12 @@
 #' The data is imputed using Census information from 2006 and 2011. See the imputing-census-data
 #' vignette for more details.
 #'
+#' Note that this data was updated in October 2019. The older versions can be found at 
+#' `https://github.com/ropenscilabs/eechidna/tree/master/extra-data`
+#'
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
+#'   \item Population: Number of people in electorate
 #'   \item DivisionNm: Name of electorate
 #'   \item Age00_04: Percentage of people aged 0-4.
 #'   \item Age05_14: Percentage of people aged 5-9.
@@ -1470,6 +1479,7 @@
 #'   \item Transformative: Percentage of employed persons who work in construction or manufacturing related industries
 #'   \item Unemployed: Unemployment rate
 #'   \item Volunteer: Percentage of people who work as a volunteer
+#'   \item UniqueID: Numeric identifier that links the electoral division with Census and other election datasets.
 #' }
 #' @examples 
 #' library(eechidna)
@@ -1490,9 +1500,13 @@
 #' A dataset containing estimated demographic and other information about each electorate.
 #' The data is imputed using Census information from 2006 and 2011. See the imputing-census-data
 #' vignette for more details.
+#' 
+#' Note that this data was updated in October 2019. The older versions can be found at 
+#' `https://github.com/ropenscilabs/eechidna/tree/master/extra-data`
 #'
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
+#'   \item Population: Number of people in electorate
 #'   \item DivisionNm: Name of electorate
 #'   \item Age00_04: Percentage of people aged 0-4.
 #'   \item Age05_14: Percentage of people aged 5-9.
@@ -1561,6 +1575,7 @@
 #'   \item Transformative: Percentage of employed persons who work in construction or manufacturing related industries
 #'   \item Unemployed: Unemployment rate
 #'   \item Volunteer: Percentage of people who work as a volunteer
+#'   \item UniqueID: Numeric identifier that links the electoral division with Census and other election datasets.
 #' }
 #' 
 #' @examples 
@@ -1582,9 +1597,13 @@
 #' A dataset containing estimated demographic and other information about each electorate.
 #' The data is imputed using Census information from 2001 and 2006. See the imputing-census-data
 #' vignette for more details.
+#' 
+#' Note that this data was updated in October 2019. The older versions can be found at 
+#' `https://github.com/ropenscilabs/eechidna/tree/master/extra-data`
 #'
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
+#'   \item Population: Number of people in electorate
 #'   \item DivisionNm: Name of electorate
 #'   \item Age00_04: Percentage of people aged 0-4.
 #'   \item Age05_14: Percentage of people aged 5-9.
@@ -1653,6 +1672,7 @@
 #'   \item Transformative: Percentage of employed persons who work in construction or manufacturing related industries
 #'   \item Unemployed: Unemployment rate
 #'   \item Volunteer: Percentage of people who work as a volunteer
+#'   \item UniqueID: Numeric identifier that links the electoral division with Census and other election datasets.
 #' }
 #' 
 #' @examples 

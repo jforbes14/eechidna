@@ -3,7 +3,7 @@
 \name{mapping_fn}
 \alias{mapping_fn}
 \title{Compute areas of intersection between each election boundary and those in
-the Census of interest.}
+the Census of interest. This is a less refined method than using SA1 centroids.}
 \usage{
 mapping_fn(aec_sF, abs_sF, area_thres = 0.995)
 }

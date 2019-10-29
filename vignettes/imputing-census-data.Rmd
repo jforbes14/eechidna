@@ -42,102 +42,112 @@ The Australian Electoral Commission shifts the electoral boundaries regularly, s
 
 To account for these boundary shifts, we use a spatio-temporal algorithm to estimate Census information about each electorate, at the time of the election of interest. Electoral boundaries are superimposed onto each of the neighbouring Censuses, in order to estimate Census characteristics for each of those years. By linearly interpolating between these time points, we get an estimate for the election year of interest. 
 
-To illustrate this algorithm, consider the example of the Hume electoral division in the 2013 federal election.
+To illustrate this algorithm, consider the example Melbourne Ports, an electoral division in the 2013 federal election.
 
-## Example: Hume in the 2013 election
+## Example: Melbourne Ports in the 2013 election
 
-To illustrate the spatio-temporal algorithm, consider the imputation of a socio-demographic variable for the electorate of Hume in New South Wales (NSW), at the time of the 2013 federal election. The figure below shows this region amongst other NSW electorates.
+To illustrate the spatio-temporal algorithm, consider the imputation of a socio-demographic variable for the electorate of Melbourne Ports in Victoria (VIC), at the time of the 2013 federal election. The figure below shows this region amongst other VIC electorates.
 
-```{r hume13, fig.cap = "Some of the electoral boundaries in NSW for 2013, with the electoral boundary for Hume, shown in purple."}
-hume_area13 <- nat_map13 %>% 
-  filter(state %in% c("ACT","NSW"), long < 154)
+```{r melb_ports13, fig.cap = "Some of the electoral boundaries in NSW for 2013, with the electoral boundary for Hume, shown in purple."}
+# Data available in extra-data folder of github repo
+load("../extra-data/vic_map.rda")
 
-ggplot(data=hume_area13) +
-  geom_polygon(aes(x=long, y=lat, group=group, fill = elect_div == "HUME"),
-               colour="grey50", alpha = 0.4) +
-  scale_fill_manual(name="Boundary", values=c("white", "purple"), labels = c("Other 2013 Electorates", "Hume 2013")) +
-  theme_map() + coord_equal()
+p1 <- ggplot(data = vic_map) +
+  geom_polygon(aes(x = long, y = lat, group = group, fill = Elect_div == "Melbourne Ports"),
+    colour = "black", alpha = 0.4
+  ) +
+  scale_fill_manual(
+    name = "Electoral Boundaries",
+    values = c("white", "purple"),
+    labels = c("Other Electorates", "Melbourne Ports (VIC)")
+  ) +
+  theme_map() +
+  coord_equal(xlim = c(144.88, 145.07), ylim = c(-37.92, -37.78))
+
+p1
 ```
 
-The Censuses neighbouring the 2013 election are those in 2011 and 2016. By plotting the Hume boundary (purple) in the 2013 election over the divisions in 2016, we see that its boundary has changed. 
+The Censuses neighbouring the 2013 election are those in 2011 and 2016. From each Census, the most disaggregate data that is publicly available is used - Statistical Area 1. There were approximately 55,000 SA1s in the 2016 Census (meaning approximately 400 people are contained in each SA1). For simplicity, each SA1 is summarised by its centroid. Each SA1 centroid that falls within the 2013 Melbourne Ports boundary is assigned to the Melbourne Ports electorate for 2013.
 
-```{r hume16, fig.cap = "Census division boundaries in NSW for 2016, with the 2013 electoral boundary for Hume, shown in purple. The purple region is not contained within a single Census division."}
-hume_area16 <- nat_map16 %>% 
-  filter(state %in% c("ACT","NSW"), long < 154) %>% 
-  mutate(year = "2016") %>% 
-  bind_rows(hume_area13 %>% filter(elect_div == "HUME") %>% mutate(year = "2013"))
+The centroids are held in the `extra-data` folder in the `eechidna` github repo.
 
-ggplot(data=hume_area16) +
-  geom_polygon(aes(x=long, y=lat, group=group, fill = year == "2013", 
-    alpha = year == "2013", colour=year == "2013")) +
-  scale_fill_manual(name="Boundary", values=c("grey95", "purple"), labels = c("2016 Electorates", "Hume 2013")) +
-  scale_alpha_manual(values=c(0, 0.4)) +
-  scale_color_manual(values=c("grey50", NA)) +
-  theme_map() + coord_equal() + guides(alpha = F, color = F)
-
+```{r, eval = FALSE}
+load("../extra-data/centroids_sa1_2011.rda")
 ```
 
-Our aim is to impute Census information for this purple region.
+```{r melb_ports_with_sa1, fig.cap = "Melbourne Ports boundary and surrounding electorates from 2013, with the SA1 centroids from the 2016 Census shown. Centroids falling within the purple region are assigned to Melbourne Ports."}
+# Load centroids in this window (pre-prepared)
+load("../extra-data/MP_sa1_dots_2011.rda")
 
-There are many divisions in 2016 that intersect with the purple region (Hume boundary for 2013), these include the divisions of Riverina, Eden-Monaro and Hume, along with smaller intersecting areas with Fenner, Calare, Gilmore and Whitlam.
+p1 + geom_point(aes(x = long_c, y = lat_c, shape = shape), data = MP_sa1_dots_2011 %>% mutate(shape = "1"), colour = "grey25", size = 1.3) + scale_shape_manual(name = "Statistical Area 1", values = 3, labels = "Centroids")
+```
 
-For each 2016 division that intersects with the purple region, we calculate the percentage of its area is consumed by the purple. The population in this region can then be estimated by assuming evenly distributed populations over the space.
+Formally, let $I_{s,t}$ be an indicator variable, for which $I_{s,t} = 1$ if the centroid of source zone $s$ falls within target zone $t$, and $0$ otherwise. Additionally, let the population of the source zone $s$ be $U_s$ and the population of target zone $t$ be $P_{t}$.
 
-Electoral division (2016) | Percentage | Population in Division | Estimated Population Allocated to Purple Region
---------------------------|------------|------------------------|-------------------------------------------------
-Hume                      | 90.58%     | 150643                 | 136458
-Riverina                  | 24.89%     | 155793                 | 38780
-Eden-Monaro               | 9.96%      | 147532                 | 14691
-Whitlam                   | 0.55%      | 152280                 | 844
-Calare                    | 0.39%      | 161298                 | 633
-Fenner                    | 0.33%      | 202955                 | 683
-Gilmore                   | 0.03%      | 150436                 | 49
+In order to calculate socio-demographic information for each of the electoral boundaries, a weighted average of SA1 characteristics is taken using their populations as weights. Denote a given Census variable for the target zone by $C_t$, and the same Census variable for the source zone as $D_s$. Then, estimate $C_t$ using
+$$
+  \hat{C}_t = \frac{\sum_{s=1}^{S}{I_{s,t}*D_s*U_s}}%
+  {\sum_{s=1}^{S}{I_{s,t}*U_s}},
+  \quad\text{for each $t=1,\dots,T$}.
+$$
 
-This is done for each of the 2013 electoral divisions using the `mapping_fn` function, which computes the composition of the electoral divisions in terms of the divisions in place at Census time. Note that shapefiles need to be loaded through `load_shapefile` to be in the right format to be passed through `mapping_fn`. Populations and other Census data is estimated using `weighted_avg_census`.
+To account for temporal changes, linear interpolation is used between Census years to get the final estimate of a Census variable for the target zone in the election year. Let $y_1$ be the year of the Census preceding an election, let $y_2$ be the year of the election, and $y_3$ be the year of the Census that follows. Add this year subscript to the Census variable estimate $\hat{C}_t$, resulting in $\hat{C}_{t,y}$. Linear interpolating between these Census years results an imputed value for the election year, given by
+$$
+  \hat{C}_{t,y_2} = \frac{y_3-y_2}{y_3-y_1} \hat{C}_{t,y_1} +
+    \frac{y_2-y_1}{y_3-y_1} \hat{C}_{t,y_3}.
+$$
 
-## Applying function to all electorates in the 2013 election
+Continuing with the example of Melbourne Ports in the 2013 election, the estimate for a given Census variable in 2016, $\hat{C}_{\text{MelbPorts}, 2016}$ would be obtained by computing the weighted average of this variable amongst the SA1s within the purple region shown in Figure \@ref(fig:melb_ports13). This would be repeated with the 2011 Census SA1s to obtain $\hat{C}_{\text{MelbPorts}, 2011}$, from which the final estimate is given by
+$$
+  \hat{C}_{\text{MelbPorts},2013}
+    = \frac{3}{5} \hat{C}_{\text{MelbPorts},2011} + \frac{2}{5} \hat{C}_{\text{MelbPorts},2016}.
+$$
+This is done for each of the socio-demographic variables, and is repeated for each of the 149 remaining electoral boundaries corresponding with 2013 electorates.
 
-`aec_sF` is the shapefile containing the polygons associated with electoral boundaries for which Census information is to be imputed, and `abs_sF` contains polygons that match those in place at the time of the Census. 
+## Imputing all electorates in the 2013 election
+
+`aec_sF` is the shapefile containing the polygons associated with electoral boundaries for which Census information is to be imputed, and `abs_sF` contains SA1 polygons from the Census. 
+
+First load the shapefile containing the electoral boundaries from the 2013 federal election, `sF_13`. 
 
 ```{r loadsF, eval = F}
 sF_13 <- load_shapefile("path-to-your-shapefiles/national-midmif-16122011/COM20111216_ELB.MIF")
-sF_16 <- load_shapefile("path-to-your-shapefiles/national-midmif-09052016/COM_ELB.TAB")
-```
-```{r mapping, eval = F}
-mapping_2016 <- mapping_fn(aec_sF = sF_13, abs_sF = sF_16)
 ```
 
-The resultant object is a `data.frame` which contains information about the intersecting areas, and the variable `Percent_Census_Composition` is the percentage of the Census division population that will be attributed to the electoral division.
+Then extract the centroids from the 2011 Census SA1 polygons from the object `sF_11_sa1`. Here we use the function `extract_centroids`. Note that `sF_11_sa1` is too large an object for demonstration but it can be downloaded from `https://datapacks.censusdata.abs.gov.au/datapacks/`.
 
-The next step is to estimate Census data with a weighted average of these intersecting populations, for each electoral division. This is done using `weighted_avg_census`.
-
-```{r weighted-avg-2016, eval = F}
-imputed_data_2016 <- weighted_avg_census(mapping_df = mapping_2016, abs_df = abs2016)
+```{r getcentroids, eval = F}
+centroids_sa1_2011 <- extract_centroids(sF11_sa1)
 ```
 
-We have now estimated 2016 Census information for the electoral boundaries of interest (2013 election). The steps above are repeated with the 2011 Census.
+Now use the function `allocate_electorate` to allocate each SA1 to the electoral boundary in which it sits.
 
-```{r}
-# Load 2011 boundaries
-sF_11 <- load_shapefile("/Users/Jeremy/Documents/R/eechidna/data-raw/Shapefiles/2011_CED_shape/CED_2011_AUST.shp")
+```{r allocatesa1, eval = F}
+mapping_c11_e13 <- allocate_electorate(centroids_ls = centroids_sa1_2011, electorates_sf = sF_13, census_year = "2011", election_year = "2013")
 ```
 
-```{r census-2011, eval = F}
-# Mapping
-mapping_2011 <- mapping_fn(aec_sF = sF_13, abs_sF = sF_11)
+Next the `weighted_avg_census_sa1` function applies a weighted average of SA1 characteristics for each electorate using the SA1 populations as weights. This uses `abs2011_cd` which is the equivalent of `abs2011` in `eechidna1`, but with each row corresponding with an SA1. Again, this is too large to include in the repo.
 
-# Weighted average
-imputed_data_2011 <- weighted_avg_census(mapping_df = mapping_2011, abs_df = abs2011)
+```{r weightedavgcensus, eval = F}
+census_aec13_11 <- weighted_avg_census_sa1(mapping_df = mapping_c11_e13, abs_df = abs2011_cd)
 ```
 
-Then we can linearly interpolate between 2011 and 2016 to arrive at our final estimate of Census data for the electorates in place at the 2013 federal election. This involves using inverse distance weighting (power of 1).
+We repeat this for the 2016 Census.
+
+```{r repeat2016, eval = F}
+centroids_sa1_2016 <- extract_centroids(sF16_sa1)
+mapping_c16_e13 <- allocate_electorate(centroids_ls = centroids_sa1_2016, electorates_sf = sF_13, census_year = "2016", election_year = "2013")
+census_aec13_16 <- weighted_avg_census_sa1(mapping_df = mapping_c16_e13, abs_df = abs2016_cd)
+```
+
+Now we can linearly interpolate between 2011 and 2016 to arrive at our final estimate of Census data for the electorates in place at the 2013 federal election. This involves using inverse distance weighting (power of 1).
 
 ```{r, eval = F}
 # Linearly interpolate using inverse distance weighting (power of 1)
-abs2013 <- (2/5)*(select(imputed_data_2016, -DivisionNm)) + (3/5)*(select(imputed_data_2011, -DivisionNm))
+abs2013 <- (2/5)*(select(census_aec13_16, -DivisionNm)) + (3/5)*(select(census_aec13_11, -DivisionNm))
 
 # Maintain division names
-abs2013$DivisionNm <- imputed_data_2016$DivisionNm
+abs2013$DivisionNm <- census_aec13_16$DivisionNm
 
 abs2013 %>% select(DivisionNm, Age00_04, Age05_14, Age15_19, BachelorAbv, MedianPersonalIncome, Owned, NoReligion) %>%
   head() %>% 

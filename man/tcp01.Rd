@@ -7,7 +7,7 @@
 (House of Representatives) in each electorate.}
 \format{A data frame with the following variables:
 \itemize{
-    \item UniqueID: numeric identifier that links the electoral division with Census  
+    \item UniqueID: Numeric identifier that links the electoral division with Census  
     and other election datasets.
     \item StateAb: Abbreviation for state name   
     \item DivisionNm:  Electoral division name             

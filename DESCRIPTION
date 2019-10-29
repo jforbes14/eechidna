@@ -1,5 +1,5 @@
 Package: eechidna
-Version: 1.3.0
+Version: 1.3.1
 Title: Exploring Election and Census Highly Informative Data Nationally for
     Australia
 Description: Data from the six Australian Federal Elections (House of
@@ -27,7 +27,9 @@ Imports:
     colourpicker,
     rgdal,
     methods,
-    stringi
+    stringi,
+    tibble,
+    tidyselect
 Suggests:
     testthat,
     knitr,
@@ -41,7 +43,6 @@ Suggests:
     readr,
     gridExtra,
     tidyverse,
-    tibble,
     spelling
 Encoding: UTF-8
 Authors@R: c(person("Di", "Cook",       role = c("aut")),

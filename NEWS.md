@@ -20,6 +20,9 @@
 * Includes polling booth data from each election (available using download functions in the pkg)
 * Submitted to CRAN
 
-# eechidna 1.3.1 (TBC)
+# eechidna 1.3.1 (2019-10-27)
 
-* Minor update to existing election data - adding a unique identifier to easily link electorates together over time.
+* Revised imputation method for 2004, 2007, 2010 and 2013 data using SA1s
+* Added SA1 centroid data from 2001, 2006, 2011 and 2016 Censuses
+
+(??) * Minor update to existing election data - adding a unique identifier to easily link electorates together over time.

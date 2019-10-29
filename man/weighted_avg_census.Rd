@@ -3,7 +3,7 @@
 \name{weighted_avg_census}
 \alias{weighted_avg_census}
 \title{Function to compute weighted average of Census information
-using imputed populations as weights}
+using imputed populations as weights.}
 \usage{
 weighted_avg_census(mapping_df, abs_df)
 }
@@ -18,12 +18,12 @@ data frame with imputed Census data for electoral boundaries at the time of
 the Census
 }
 \description{
-Function to compute weighted average of Census information
-using imputed populations as weights
+This is a less refined method than using SA1 centroids, because it uses Census data
+aggregated at Census division level.
 }
 \examples{
 \dontrun{
-data(abs2016)
+data("abs2016")
 
 # Each 2013 electorate boundary's composition in terms of the 
 # boundaries in place for the 2016 Census

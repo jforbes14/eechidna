@@ -6,6 +6,7 @@
 \title{Imputed Australian Census data for the electorates in place at time of the 2010 Federal election}
 \format{A data frame with 150 rows with the following variables:
 \itemize{
+  \item Population: Number of people in electorate
   \item DivisionNm: Name of electorate
   \item Age00_04: Percentage of people aged 0-4.
   \item Age05_14: Percentage of people aged 5-9.
@@ -74,6 +75,7 @@
   \item Transformative: Percentage of employed persons who work in construction or manufacturing related industries
   \item Unemployed: Unemployment rate
   \item Volunteer: Percentage of people who work as a volunteer
+  \item UniqueID: Numeric identifier that links the electoral division with Census and other election datasets.
 }}
 \usage{
 abs2010
@@ -82,6 +84,10 @@ abs2010
 A dataset containing estimated demographic and other information about each electorate.
 The data is imputed using Census information from 2006 and 2011. See the imputing-census-data
 vignette for more details.
+}
+\details{
+Note that this data was updated in October 2019. The older versions can be found at 
+`https://github.com/ropenscilabs/eechidna/tree/master/extra-data`
 }
 \examples{
 library(eechidna)
