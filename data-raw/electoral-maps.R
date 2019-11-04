@@ -15,6 +15,7 @@ shapeFile_10 <- "data-raw/Shapefiles/national-esri-2010/COM_ELB_2010_region.shp"
 shapeFile_11 <- "data-raw/Shapefiles/2011_CED_shape/CED_2011_AUST.shp"
 shapeFile_13 <- "data-raw/Shapefiles/national-midmif-16122011/COM20111216_ELB.MIF"
 shapeFile_16 <- "data-raw/Shapefiles/national-midmif-09052016/COM_ELB.TAB"
+shapeFile_19 <- "data-raw/Shapefiles/national-esri-fe2019/COM_ELB_region.shp"
 
 # Load in shape file using load_shapefile function
 
@@ -25,6 +26,7 @@ sF_10 <- load_shapefile(shapeFile_10)
 sF_11 <- load_shapefile(shapeFile_11)
 sF_13 <- load_shapefile(shapeFile_13)
 sF_16 <- load_shapefile(shapeFile_16)
+sF_19 <- load_shapefile(shapeFile_19)
 
 # Save
 
@@ -34,6 +36,7 @@ save(sF_07, file = "extra-data/sF_07.rda", compress = "xz")
 save(sF_10, file = "extra-data/sF_10.rda", compress = "xz")
 save(sF_13, file = "extra-data/sF_13.rda", compress = "xz")
 save(sF_16, file = "extra-data/sF_16.rda", compress = "xz")
+save(sF_19, file = "extra-data/sF_19.rda", compress = "xz")
 
 # ------------------------------------
 
