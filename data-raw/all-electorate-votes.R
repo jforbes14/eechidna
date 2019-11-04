@@ -67,6 +67,64 @@ chr_upper <- function(df) {
 # ---------------------------------------------------------------------------------------------------------
 
 ####################################################################################################
+# 2019
+####################################################################################################
+
+## Importing federal election results for 2019, and forming a dataframe for each vote count
+## Vote counts are: first preference, two candidate preferred (2cp) and two party preferred (2pp)
+
+#---- FIRST PREFERENCES ----
+pref19 <- read_csv("https://results.aec.gov.au/24310/Website/Downloads/HouseDopByDivisionDownload-24310.csv", skip = 1)
+
+fp19 <- pref19 %>% 
+  filter(CalculationType %in% c("Preference Count", "Preference Percent")) %>% 
+  group_by(StateAb, DivisionID, DivisionNm, CountNumber, BallotPosition, CandidateID, Surname, GivenNm, PartyAb, PartyNm, Elected, HistoricElected) %>% 
+  spread(key = CalculationType, value = CalculationValue) %>%
+  filter(CountNumber == 0) %>% 
+  ungroup() %>% 
+  select(-CountNumber) %>% #takes only % of first preference votes
+  rename(OrdinaryVotes = `Preference Count`, Percent = `Preference Percent`)
+
+
+#---- TWO CANDIDATE PREFERRED ----
+# Distribution of preferences to the two candidates who came first and second in the election
+# add here total votes as well
+tcp19 <- pref19 %>% 
+  group_by(DivisionID, PartyAb) %>%
+  filter(CountNumber == max(CountNumber), CalculationType %in% c("Preference Count", "Preference Percent")) %>%
+  arrange() %>%
+  filter(CalculationValue != 0) %>% 
+  spread(CalculationType, CalculationValue) %>% 
+  rename(OrdinaryVotes = `Preference Count`, Percent = `Preference Percent`) %>% 
+  select(-CountNumber)
+
+#---- TWO PARTY PREFERRED ----
+# Preferences distribution only to Labor (ALP) and Coalition (LP, NP, LNQ, CLP)
+# A distribution of preferences where, by convention, comparisons are made between the ALP and the leading Liberal/National candidates. In seats where the final two candidates are not from the ALP and the Liberal or National parties, a two party preferred count may be conducted to find the result of preference flows to the ALP and the Liberal/National candidates.
+
+tpp19 <- read_csv("https://results.aec.gov.au/24310/Website/Downloads/HouseTppByDivisionDownload-24310.csv", skip = 1) %>%
+  arrange(DivisionID) %>% 
+  rename(LNP_Votes = `Liberal/National Coalition Votes`, LNP_Percent = `Liberal/National Coalition Percentage`,
+    ALP_Votes = `Australian Labor Party Votes`, ALP_Percent = `Australian Labor Party Percentage`) %>% 
+  select(-PartyAb)
+
+
+# Apply
+
+fp19 <- fp19 %>% reabbrev_parties() %>% chr_upper() %>% relabel_parties()
+tcp19 <- tcp19 %>% reabbrev_parties() %>% chr_upper() %>% relabel_parties()
+tpp19 <- tpp19 %>% chr_upper()
+
+
+#---- SAVE ----
+usethis::use_data(fp19, overwrite = T, compress = "xz")
+usethis::use_data(tcp19, overwrite = T, compress = "xz")
+usethis::use_data(tpp19, overwrite = T, compress = "xz")
+
+
+# ---------------------------------------------------------------------------------------------------------
+
+####################################################################################################
 # 2016
 ####################################################################################################
 
