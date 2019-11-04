@@ -18,9 +18,9 @@ knitr::opts_chunk$set(
 
 ## Exploring Election and Census Highly Informative Data Nationally for Australia
 
-The R package *eechidna* provides data from the Australian Federal elections in 2001, 2004, 2007, 2010, 2013 and 2016, along with the Australian Census information for each House of Representatives electorate from the 2001, 2006, 2011 and 2016 Censuses. Additionally, Census information is imputed for electorates in years 2004, 2007, 2010 and 2013. It also includes tools for visualizing and analysing the data.
+The R package *eechidna* provides data from the Australian Federal elections in 2001, 2004, 2007, 2010, 2013, 2016 and 2019, along with the Australian Census information for each House of Representatives electorate from the 2001, 2006, 2011 and 2016 Censuses. Additionally, Census information is imputed for electorates in years 2004, 2007, 2010, 2013 and 2019. It also includes tools for visualizing and analysing the data.
 
-This package was developed during the [rOpenSci auunconf event](http://auunconf.ropensci.org/) in Brisbane, Queensland, during 21-22 April 2016. It has been updated during the 2017 rOpenSci auunconf event, and most recently in March 2019 with the addition of election and Census information for the events between 2001 and 2011. [Peter Ellis'](https://github.com/ellisp/) work on the NZ electoral data was an important inspiration for this package.
+This package was developed during the [rOpenSci auunconf event](http://auunconf.ropensci.org/) in Brisbane, Queensland, during 21-22 April 2016. It has been updated during the 2017 rOpenSci auunconf event, and recently in 2019 with the addition of election and Census information for the events between 2001 and 2011, as well as 2019. [Peter Ellis'](https://github.com/ellisp/) work on the NZ electoral data was an important inspiration for this package.
 
 ## How to install
 
@@ -67,7 +67,7 @@ There are also three vignettes that demonstrate how to use the spatial data to m
 
 Additionally, there is a vignette on how we have imputed electoral Census data in election years for which a Census does not exactly align.
 
-- [Imputing Census data for non-Census years](https://ropenscilabs.github.io/eechidna/articles/imputing-census-data.html): details the procedure used to impute Census data for 2004, 2007, 2010 and 2013.
+- [Imputing Census data for non-Census years](https://ropenscilabs.github.io/eechidna/articles/imputing-census-data.html): details the procedure used to impute Census data for 2004, 2007, 2010, 2013 and 2019.
 
 ## License
 

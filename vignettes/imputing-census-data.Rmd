@@ -163,6 +163,6 @@ abs2013 %>% select(DivisionNm, Age00_04, Age05_14, Age15_19, BachelorAbv, Median
 
 ## Summary
 
-We have demonstrated how to use the functions needed to impute Census information for 2004, 2007, 2010 and 2013 elections. For future elections, the same functions can be used, and rather than interpolating over time, simply use the previous Census, until another Census is made available. 
+We have demonstrated how to use the functions needed to impute Census information for 2004, 2007, 2010 and 2013 elections. For future elections, the same functions can be used, and rather than interpolating over time, simply use the previous Census, until another Census is made available (as we have done with 2019). 
 
 

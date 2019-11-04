@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE, fig.align = "center")
 
 # Introduction
 
-`eechidna` (Exploring Election and Census Highly Informative Data Nationally for Australia) is an R package that makes it easy to look at the data from the Australian Federal elections and Censuses that occurred between 2001 and 2016. An Australian Federal election typically takes place every three years (2001, 2004, 2007, 2010, 2013 and 2016), and a Census of Population and Housing is conducted every five years (2001, 2006, 2011, 2016). The data in this package includes voting results for each polling booth and electoral division (electorate), Census information for each electorate and maps of the electorates that were in place at the time of each event. All data in this package is obtained from the [Australian Electoral Commission](https://results.aec.gov.au/), the [Australian Bureau of Statistics](http://www.abs.gov.au/websitedbs/D3310114.nsf/home/census) and the [Australian Government](https://data.gov.au/).
+`eechidna` (Exploring Election and Census Highly Informative Data Nationally for Australia) is an R package that makes it easy to look at the data from the Australian Federal elections and Censuses that occurred between 2001 and 2019. An Australian Federal election typically takes place every three years (2001, 2004, 2007, 2010, 2013, 2016 and 2019), and a Census of Population and Housing is conducted every five years (2001, 2006, 2011, 2016). The data in this package includes voting results for each polling booth and electoral division (electorate), Census information for each electorate and maps of the electorates that were in place at the time of each event. All data in this package is obtained from the [Australian Electoral Commission](https://results.aec.gov.au/), the [Australian Bureau of Statistics](http://www.abs.gov.au/websitedbs/D3310114.nsf/home/census) and the [Australian Government](https://data.gov.au/).
 
 This vignette documents how to access these datasets, and shows a few typical methods to explore the data.
 
@@ -108,7 +108,7 @@ ggplot(total_votes_for_parties,
 
 The function `twoparty_pollingbooth_download()` downloads the two party preferred vote for each polling booth in each of the six elections. Boxplots can be used to compare the distributions of this vote across the six elections.
 
-```{r eval = F}
+```{r}
 # Download TPP for all elections
 tpp_pollingbooth <- twoparty_pollingbooth_download()
 
@@ -123,7 +123,7 @@ tpp_pollingbooth %>%
 ```
 
 ```{r echo = F, message = F, out.width="600px"}
-knitr::include_graphics("fig/tpp_plot.png")
+#knitr::include_graphics("fig/tpp_plot.png")
 ```
 
 
@@ -304,9 +304,11 @@ Many variables are individually significant too.
 
 ### Imputing Census data for the elections that do not have a Census that matches exactly
 
-The 2004, 2007, 2010 and 2013 elections do not have a Census that directly match. Instead of matching these elections with a Census in neighbouring years, we have imputed Census data to correspond with the both time of the election and the electorate boundaries in place. This was done using an areal interpolation method over space and linear interpolation over time, via the `mapping_fn` and `weighted_avg_census` functions in this package.
+The 2004, 2007, 2010 and 2013 elections do not have a Census that directly match. Instead of matching these elections with a Census in neighbouring years, we have imputed Census data to correspond with the both time of the election and the electorate boundaries in place. This uses the most disaggregate Census data available (Statistical Area 1). This was done using an areal interpolation method over space and linear interpolation over time, via the `allocate_electorate` and `weighted_avg_census_sa1` functions in this package.
 
-The resultant (imputed) Census objects are `abs2004`, `abs2007`, `abs2010` and `abs2013`. They include all of the variables in the other Census objects, aside from population, area, state and question non-response. 
+For the 2019 election, because there only exists a Census before (2016) and not after (as of Nov, 2019), we do an areal interpolation of the 2016 SA1 Census data.
+
+The resultant (imputed) Census objects are `abs2004`, `abs2007`, `abs2010`, `abs2013` and `abs2019`. They include all of the variables in the other Census objects, aside from population, area, state and question non-response. 
 
 # For more details on how the data in this package was obtained...
 

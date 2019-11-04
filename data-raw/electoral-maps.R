@@ -49,6 +49,7 @@ sF_07_fortified <- get_electorate_shapes(shapeFile_07)
 sF_10_fortified <- get_electorate_shapes(shapeFile_10)
 sF_13_fortified <- get_electorate_shapes(shapeFile_13)
 sF_16_fortified <- get_electorate_shapes(shapeFile_16)
+sF_19_fortified <- get_electorate_shapes(shapeFile_19)
 
 
 # Separate map and data
@@ -65,6 +66,8 @@ nat_map13 <- sF_13_fortified$map
 
 nat_map16 <- sF_16_fortified$map
 
+nat_map19 <- sF_19_fortified$map
+
 nat_data01 <- sF_01_fortified$data
 
 nat_data04 <- sF_04_fortified$data
@@ -77,6 +80,8 @@ nat_data13 <- sF_13_fortified$data
 
 nat_data16 <- sF_16_fortified$data
 
+nat_data19 <- sF_19_fortified$data
+
 
 # Save
 usethis::use_data(nat_data01, overwrite = T, compress = "xz")
@@ -85,6 +90,7 @@ usethis::use_data(nat_data07, overwrite = T, compress = "xz")
 usethis::use_data(nat_data10, overwrite = T, compress = "xz")
 usethis::use_data(nat_data13, overwrite = T, compress = "xz")
 usethis::use_data(nat_data16, overwrite = T, compress = "xz")
+usethis::use_data(nat_data19, overwrite = T, compress = "xz")
 
 usethis::use_data(nat_map01, overwrite = T, compress = "xz")
 usethis::use_data(nat_map04, overwrite = T, compress = "xz")
@@ -92,3 +98,4 @@ usethis::use_data(nat_map07, overwrite = T, compress = "xz")
 usethis::use_data(nat_map10, overwrite = T, compress = "xz")
 usethis::use_data(nat_map13, overwrite = T, compress = "xz")
 usethis::use_data(nat_map16, overwrite = T, compress = "xz")
+usethis::use_data(nat_map19, overwrite = T, compress = "xz")

@@ -150,7 +150,7 @@ get_electorate_shapes <- function(path_to_shapeFile = NULL, sF = NULL, mapinfo=T
     nms <- dplyr::select(sF@data, elect_div)
   }
   
-  nms$id <- as.character(1:150)
+  nms$id <- as.character(row.names(nat_data))
   nat_map <- dplyr::left_join(nat_map, nms, by="id")
   
   # get centroids
