@@ -7,17 +7,17 @@
 sF_download(year, ...)
 }
 \arguments{
-\item{year}{Desired year, must be one of 2001, 2004, 2007, 2010, 2011, 2013, 2016}
+\item{year}{Desired year, must be one of 2001, 2004, 2007, 2010, 2011, 2013, 2016, 2019}
 
 \item{...}{Additional arguments passed to `download.file`
 
 Downloads and returns a large SpatialPolygonsDataFrame containing the polygons 
-and associated data for each of the 150 Australian electorates in the 2001 federal election. 
+and associated data for each of the Australian electorates in the desired federal election. 
 This object is obtained using the `sF_download` function. The data were obtained from the 
 Australian Electoral Commission and the Australian Bureau of Statistics.}
 }
 \value{
-A SpatialPolygonsDataFrame containing polygons of the 150 Australian federal electorates
+A SpatialPolygonsDataFrame containing polygons of the Australian federal electorates
 }
 \description{
 Download SpatialPolygonsDataFrame containing polygons of Australian federal electorates

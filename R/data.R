@@ -735,7 +735,7 @@
 #' }
 "nat_map01"
 
-#' Data of the Australian Electorates from 2019
+#' Data and centroids corresponding to the Australian Electorates from 2019
 #'
 #' A dataset containing some demographic information for each of the 151 Australian electorates.
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
@@ -784,7 +784,7 @@
 #' theme_map() + coord_equal() + theme(legend.position="bottom")
 "nat_data19"
 
-#' Data of the Australian Electorates from 2016
+#' Data and centroids corresponding to the Australian Electorates from 2016
 #'
 #' A dataset containing some demographic information for each of the 150 Australian electorates.
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
@@ -833,7 +833,7 @@
 #' theme_map() + coord_equal() + theme(legend.position="bottom")
 "nat_data16"
 
-#' Data of the Australian Electorates from 2013
+#' Data and centroids corresponding to the Australian Electorates from 2013
 #'
 #' A dataset containing some demographic information for each of the 150 Australian electorates.
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
@@ -855,7 +855,7 @@
 #' }
 "nat_data13"
 
-#' Data of the Australian Electorates from 2010
+#' Data and centroids corresponding to the Australian Electorates from 2010
 #'
 #' A dataset containing some demographic information for each of the 150 Australian electorates.
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
@@ -877,7 +877,7 @@
 #' }
 "nat_data10"
 
-#' Data of the Australian Electorates from 2007
+#' Data and centroids corresponding to the Australian Electorates from 2007
 #'
 #' A dataset containing some demographic information for each of the 150 Australian electorates.
 #' The data were obtained from the Australian Bureau of Statistics, and downloaded 
@@ -897,7 +897,7 @@
 #' }
 "nat_data07"
 
-#' Data of the Australian Electorates from 2004
+#' Data and centroids corresponding to the Australian Electorates from 2004
 #'
 #' A dataset containing some demographic information for each of the 150 Australian electorates.
 #' The data were obtained from the Australian Bureau of Statistics, and downloaded 
@@ -917,7 +917,7 @@
 #' }
 "nat_data04"
 
-#' Data of the Australian Electorates from 2001
+#' Data and centroids corresponding to the Australian Electorates from 2001
 #'
 #' A dataset containing some demographic information for each of the 150 Australian electorates.
 #' The data were obtained from the Australian Government, and downloaded 

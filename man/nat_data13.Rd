@@ -3,7 +3,7 @@
 \docType{data}
 \name{nat_data13}
 \alias{nat_data13}
-\title{Data of the Australian Electorates from 2013}
+\title{Data and centroids corresponding to the Australian Electorates from 2013}
 \format{A data frame with 150 rows with the following variables:
 \itemize{
     \item id: Numeric identifier for the polygon
@@ -24,6 +24,6 @@ nat_data13
 A dataset containing some demographic information for each of the 150 Australian electorates.
 The data were obtained from the Australian Electoral Commission, and downloaded 
 from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
-The data is published
+Must be loaded using the `nat_data_download` function.
 }
 \keyword{datasets}

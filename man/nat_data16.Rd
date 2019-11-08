@@ -3,7 +3,7 @@
 \docType{data}
 \name{nat_data16}
 \alias{nat_data16}
-\title{Data of the Australian Electorates from 2016}
+\title{Data and centroids corresponding to the Australian Electorates from 2016}
 \format{A data frame with 150 rows with the following variables:
 \itemize{
     \item id: Numeric identifier for the polygon
@@ -24,14 +24,14 @@ nat_data16
 A dataset containing some demographic information for each of the 150 Australian electorates.
 The data were obtained from the Australian Electoral Commission, and downloaded 
 from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
-The data is published
+Must be loaded using the `nat_data_download` function.
 }
 \examples{
 
 library(eechidna)
 library(tidyverse)
 library(ggthemes)
-data(nat_map16)
+nat_map16 <- nat_map_download(2016)
 data(fp16)
 winners <- fp16 \%>\% filter(Elected == "Y")
 

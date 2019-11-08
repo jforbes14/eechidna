@@ -3,7 +3,7 @@
 \docType{data}
 \name{nat_data19}
 \alias{nat_data19}
-\title{Data of the Australian Electorates from 2019}
+\title{Data and centroids corresponding to the Australian Electorates from 2019}
 \format{A data frame with 151 rows with the following variables:
 \itemize{
     \item id: Numeric identifier for the polygon
@@ -24,14 +24,14 @@ nat_data19
 A dataset containing some demographic information for each of the 151 Australian electorates.
 The data were obtained from the Australian Electoral Commission, and downloaded 
 from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
-The data is published
+Must be loaded using the `nat_data_download` function.
 }
 \examples{
 
 library(eechidna)
 library(tidyverse)
 library(ggthemes)
-data(nat_map19)
+nat_map19 <- nat_map_download(2019)
 data(fp19)
 winners <- fp19 \%>\% filter(Elected == "Y")
 
@@ -41,7 +41,7 @@ mutate(PartyNm = ifelse(PartyNm \%in\% c("NATIONAL PARTY", "LIBERAL PARTY"),
 "LIBERAL NATIONAL COALITION", PartyNm))
 
 # Join to map
-data(nat_data19)
+nat_data19 <- nat_data_download(2019)
 nat_data19$DivisionNm <- toupper(nat_data19$elect_div)
 nat_data19 <- nat_data19 \%>\% left_join(winners, by = "DivisionNm")
 # Plot

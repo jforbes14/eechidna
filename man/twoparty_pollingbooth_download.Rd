@@ -2,7 +2,7 @@
 % Please edit documentation in R/git-download.R
 \name{twoparty_pollingbooth_download}
 \alias{twoparty_pollingbooth_download}
-\title{Download two party preference voting data from each polling booth, from the six 
+\title{Download two party preference voting data from each polling booth, from the seven 
 Australian Federal elections between 2001 and 2016.}
 \format{A data frame with the following variables:
 \itemize{
@@ -33,7 +33,7 @@ twoparty_pollingbooth_download(...)
 \arguments{
 \item{...}{Additional arguments passed to `download.file`
 
-Downloads and returns the wo party preferred votes for candidates in the House of 
+Downloads and returns the two party preferred votes for candidates in the House of 
 Representatives, for each polling both, in the six Australian Federal elections between
 2001 and 2016.}
 }
@@ -49,7 +49,7 @@ using the `twoparty_pollingbooth_download` function. The data were obtained from
 Australian Electoral Commission.
 }
 \description{
-Download two party preference voting data from each polling booth, from the six 
+Download two party preference voting data from each polling booth, from the seven 
 Australian Federal elections between 2001 and 2016.
 }
 \examples{

@@ -3,7 +3,7 @@
 \docType{data}
 \name{nat_data07}
 \alias{nat_data07}
-\title{Data of the Australian Electorates from 2007}
+\title{Data and centroids corresponding to the Australian Electorates from 2007}
 \format{A data frame with 150 rows with the following variables:
 \itemize{
     \item id: Numeric identifier for the polygon
@@ -22,6 +22,6 @@ nat_data07
 A dataset containing some demographic information for each of the 150 Australian electorates.
 The data were obtained from the Australian Bureau of Statistics, and downloaded 
 from \url{http://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}.
-The data is published
+Must be loaded using the `nat_data_download` function.
 }
 \keyword{datasets}

@@ -22,12 +22,13 @@ nat_map19
 \description{
 A dataset containing the map of the all 150 Australian electorates using the 2019 boundaries of the 
 The data were obtained from the Australian Electoral Commission, and downloaded 
-from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
+from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}. Must be loaded using the
+`nat_map_download` function.
 }
 \examples{
 
 library(eechidna)
-data(nat_map19)
+nat_map19 <- nat_map_download(2019)
 # choropleth map with Australian Census data
 nat_map19$region <- nat_map19$elect_div
 data(abs2019)

@@ -35,7 +35,7 @@ firstpref_pollingbooth_download(...)
 \item{...}{Additional arguments passed to `download.file`
 
 Downloads and returns first preference votes for candidates in the House of 
-Representatives, for each polling both, in the six Australian Federal elections 
+Representatives, for each polling both, in the seven Australian Federal elections 
 between 2001 and 2016.}
 }
 \value{
