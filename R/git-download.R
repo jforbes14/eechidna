@@ -1,14 +1,180 @@
+#' Download DataFrame containing the polygons of Australian federal electorates
+#' 
+#' @param year Desired year, must be one of 2001, 2004, 2007, 2010, 2011, 2013, 2016, 2019
+#' @param ... Additional arguments passed to `download.file`
+#'
+#' Downloads and returns a DataFrame containing the points that outline the polygons 
+#' for each of the Australian electorates in the desired federal election. 
+#' This object is obtained using the `nat_map_download` function. The data were obtained from the 
+#' Australian Electoral Commission and the Australian Bureau of Statistics.
+#'
+#' @return A DataFrame consisting of points outlining each of the Australian federal electorates
+#' 
+#' @examples
+#' \dontrun{
+#' nat_map16 <- nat_map_download(year = 2016)
+#' nat_data16 <- nat_data_download(year = 2016)
+#' # Plot a map of the electorates
+#' library(sp)
+#' plot(sF_16)
+#' }
+#' 
+#' @export
+nat_map_download <- function(year, ...){
+  
+  year = as.numeric(year)
+  suffix = substr(year, 3, 4)
+  url_git = paste0("https://github.com/ropenscilabs/eechidna/raw/master/extra-data/nat_map", suffix, ".rda")
+  
+  if (year == 2001) {
+    nat_map01 <- 1
+    tmp <- tempfile()
+    utils::download.file(url_git, tmp, ...)
+    load(tmp)
+    nat_map01      
+  } else if (year == 2004) {
+    nat_map04 <- 1
+    tmp <- tempfile()
+    utils::download.file(url_git, tmp, ...)
+    load(tmp)
+    nat_map04      
+  } else if (year == 2007) {
+    nat_map07 <- 1
+    tmp <- tempfile()
+    utils::download.file(url_git, tmp, ...)
+    load(tmp)
+    nat_map07      
+  } else if (year == 2010) {
+    nat_map10 <- 1
+    tmp <- tempfile()
+    utils::download.file(url_git, tmp, ...)
+    load(tmp)
+    nat_map10      
+  } else if (year == 2011) {
+    nat_map11 <- 1
+    tmp <- tempfile()
+    utils::download.file(url_git, tmp, ...)
+    load(tmp)
+    nat_map11      
+  } else if (year == 2013) {
+    nat_map13 <- 1
+    tmp <- tempfile()
+    utils::download.file(url_git, tmp, ...)
+    load(tmp)
+    nat_map13      
+  } else if (year == 2016) {
+    nat_map16 <- 1
+    tmp <- tempfile()
+    utils::download.file(url_git, tmp, ...)
+    load(tmp)
+    nat_map16   
+  } else if (year == 2019) {
+    nat_map19 <- 1
+    tmp <- tempfile()
+    utils::download.file(url_git, tmp, ...)
+    load(tmp)
+    nat_map19      
+  } else {
+    warning("Desired year are not available: select from 2001, 2004, 2007, 2010, 2011, 2013, 2016, 2019") 
+    return()
+  }
+  
+}
+
+#' Download DataFrame containing the data associated with Australian federal electorates
+#' 
+#' @param year Desired year, must be one of 2001, 2004, 2007, 2010, 2011, 2013, 2016, 2019
+#' @param ... Additional arguments passed to `download.file`
+#'
+#' Downloads and returns a DataFrame containing the points that outline the polygons 
+#' for each of the Australian electorates in the desired federal election. 
+#' This object is obtained using the `nat_data_download` function. The data were obtained from the 
+#' Australian Electoral Commission and the Australian Bureau of Statistics.
+#'
+#' @return A DataFrame with data associated with each of the Australian federal electorates
+#' 
+#' @examples
+#' \dontrun{
+#' nat_map16 <- nat_map_download(year = 2016)
+#' nat_data16 <- nat_data_download(year = 2016)
+#' # Plot a map of the electorates
+#' library(sp)
+#' plot(sF_16)
+#' }
+#' 
+#' @export
+nat_data_download <- function(year, ...){
+  
+  year = as.numeric(year)
+  suffix = substr(year, 3, 4)
+  url_git = paste0("https://github.com/ropenscilabs/eechidna/raw/master/extra-data/nat_data", suffix, ".rda")
+  
+  if (year == 2001) {
+    nat_data01 <- 1
+    tmp <- tempfile()
+    utils::download.file(url_git, tmp, ...)
+    load(tmp)
+    nat_data01      
+  } else if (year == 2004) {
+    nat_data04 <- 1
+    tmp <- tempfile()
+    utils::download.file(url_git, tmp, ...)
+    load(tmp)
+    nat_data04      
+  } else if (year == 2007) {
+    nat_data07 <- 1
+    tmp <- tempfile()
+    utils::download.file(url_git, tmp, ...)
+    load(tmp)
+    nat_data07      
+  } else if (year == 2010) {
+    nat_data10 <- 1
+    tmp <- tempfile()
+    utils::download.file(url_git, tmp, ...)
+    load(tmp)
+    nat_data10      
+  } else if (year == 2011) {
+    nat_data11 <- 1
+    tmp <- tempfile()
+    utils::download.file(url_git, tmp, ...)
+    load(tmp)
+    nat_data11      
+  } else if (year == 2013) {
+    nat_data13 <- 1
+    tmp <- tempfile()
+    utils::download.file(url_git, tmp, ...)
+    load(tmp)
+    nat_data13      
+  } else if (year == 2016) {
+    nat_data16 <- 1
+    tmp <- tempfile()
+    utils::download.file(url_git, tmp, ...)
+    load(tmp)
+    nat_data16   
+  } else if (year == 2019) {
+    nat_data19 <- 1
+    tmp <- tempfile()
+    utils::download.file(url_git, tmp, ...)
+    load(tmp)
+    nat_data19      
+  } else {
+    warning("Desired year are not available: select from 2001, 2004, 2007, 2010, 2011, 2013, 2016, 2019") 
+    return()
+  }
+  
+}
+
 #' Download SpatialPolygonsDataFrame containing polygons of Australian federal electorates
 #' 
-#' @param year Desired year, must be one of 2001, 2004, 2007, 2010, 2011, 2013, 2016
+#' @param year Desired year, must be one of 2001, 2004, 2007, 2010, 2011, 2013, 2016, 2019
 #' @param ... Additional arguments passed to `download.file`
 #'
 #' Downloads and returns a large SpatialPolygonsDataFrame containing the polygons 
-#' and associated data for each of the 150 Australian electorates in the 2001 federal election. 
+#' and associated data for each of the Australian electorates in the desired federal election. 
 #' This object is obtained using the `sF_download` function. The data were obtained from the 
 #' Australian Electoral Commission and the Australian Bureau of Statistics.
 #'
-#' @return A SpatialPolygonsDataFrame containing polygons of the 150 Australian federal electorates
+#' @return A SpatialPolygonsDataFrame containing polygons of the Australian federal electorates
 #' 
 #' @examples
 #' \dontrun{
@@ -67,8 +233,14 @@ sF_download <- function(year, ...){
     utils::download.file(url_git, tmp, ...)
     load(tmp)
     sF_16      
+  } else if (year == 2019) {
+    sF_19 <- 1
+    tmp <- tempfile()
+    utils::download.file(url_git, tmp, ...)
+    load(tmp)
+    sF_19      
   } else {
-    warning("Electoral boundaries for desired year are not available: select from 2001, 2004, 2007, 2010, 2011, 2013, 2016") 
+    warning("Electoral boundaries for desired year are not available: select from 2001, 2004, 2007, 2010, 2011, 2013, 2016, 2019") 
     return()
   }
   
@@ -80,7 +252,7 @@ sF_download <- function(year, ...){
 #' @param ... Additional arguments passed to `download.file`
 #'
 #' Downloads and returns first preference votes for candidates in the House of 
-#' Representatives, for each polling both, in the six Australian Federal elections 
+#' Representatives, for each polling both, in the seven Australian Federal elections 
 #' between 2001 and 2016. 
 #'
 #' @return A data frame containing first preference votes
@@ -132,12 +304,12 @@ firstpref_pollingbooth_download <- function(...){
   fp_pp 
 }
 
-#' Download two party preference voting data from each polling booth, from the six 
+#' Download two party preference voting data from each polling booth, from the seven 
 #' Australian Federal elections between 2001 and 2016.
 #' 
 #' @param ... Additional arguments passed to `download.file`
 #'
-#' Downloads and returns the wo party preferred votes for candidates in the House of 
+#' Downloads and returns the two party preferred votes for candidates in the House of 
 #' Representatives, for each polling both, in the six Australian Federal elections between
 #' 2001 and 2016. 
 #'

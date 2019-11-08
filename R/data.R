@@ -554,7 +554,8 @@
 #'
 #' A dataset containing the map of the all 150 Australian electorates using the 2019 boundaries of the 
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
+#' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}. Must be loaded using the
+#' `nat_map_download` function.
 #' 
 #' @format A data frame with the following variables:
 #' \itemize{
@@ -572,7 +573,7 @@
 #' @examples 
 #' 
 #' library(eechidna)
-#' data(nat_map19)
+#' nat_map19 <- nat_map_download(2019)
 #' # choropleth map with Australian Census data
 #' nat_map19$region <- nat_map19$elect_div
 #' data(abs2019)
@@ -591,7 +592,8 @@
 #'
 #' A dataset containing the map of the all 150 Australian electorates using the 2016 boundaries of the 
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
+#' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}. Must be loaded using the
+#' `nat_map_download` function.
 #' 
 #' @format A data frame with the following variables:
 #' \itemize{
@@ -609,7 +611,7 @@
 #' @examples 
 #' 
 #' library(eechidna)
-#' data(nat_map16)
+#' nat_map16 <- nat_map_download(2016)
 #' # choropleth map with Australian Census data
 #' nat_map16$region <- nat_map16$elect_div
 #' data(abs2016)
@@ -627,9 +629,10 @@
 #' Map of Australian Electorates from 2013
 #'
 #' A dataset containing the map of the all 150 Australian electorates using the 2013 boundaries of the 
-#' electorates (and downsampled to a 5\% file to allow fast plotting).
+#' electorates.
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
+#' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}. Must be loaded using the
+#' `nat_map_download` function.
 #'
 #' @format A data frame with the following variables:
 #' \itemize{
@@ -648,9 +651,10 @@
 #' Map of Australian Electorates from 2010
 #'
 #' A dataset containing the map of the all 150 Australian electorates using the 2010 boundaries of the 
-#' electorates (and downsampled to a 5\% file to allow fast plotting).
+#' electorates.
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
+#' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}. Must be loaded using the
+#' `nat_map_download` function.
 #' 
 #' @format A data frame with the following variables:
 #' \itemize{
@@ -669,9 +673,9 @@
 #' Map of Australian Electorates from 2007
 #'
 #' A dataset containing the map of the all 150 Australian electorates using the 2007 boundaries of the 
-#' electorates (and downsampled to a 5\% file to allow fast plotting).
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://www.abs.gov.au/AUSSTATS/abs@@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}.
+#' electorates. The data were obtained from the Australian Electoral Commission, and downloaded 
+#' from \url{http://www.abs.gov.au/AUSSTATS/abs@@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}. 
+#' Must be loaded using the `nat_map_download` function.
 #' 
 #' @format A data frame with the following variables:
 #' \itemize{
@@ -690,9 +694,10 @@
 #' Map of Australian Electorates from 2004
 #'
 #' A dataset containing the map of the all 150 Australian electorates using the 2004 boundaries of the 
-#' electorates (and downsampled to a 5\% file to allow fast plotting).
+#' electorates.
 #' The data were obtained from the Australian Bureau of Statistics, and downloaded 
 #' from \url{http://www.abs.gov.au/AUSSTATS/abs@@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}.
+#' Must be loaded using the `nat_map_download` function.
 #' 
 #' @format A data frame with the following variables:
 #' \itemize{
@@ -711,9 +716,10 @@
 #' Map of Australian Electorates from 2001
 #'
 #' A dataset containing the map of the all 150 Australian electorates using the 2001 boundaries of the 
-#' electorates (and downsampled to a 5\% file to allow fast plotting).
+#' electorates.
 #' The data were obtained from the Australian Government, and downloaded 
 #' from \url{https://data.gov.au/dataset/ds-dga-0b939a62-e53e-4616-add5-77f909b58ddd/details?q=asgc\%202001}.
+#' Must be loaded using the `nat_map_download` function.
 #' 
 #' @format A data frame with the following variables:
 #' \itemize{
@@ -734,7 +740,8 @@
 #' A dataset containing some demographic information for each of the 151 Australian electorates.
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
 #' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
-#' The data is published 
+#' Must be loaded using the `nat_data_download` function.
+#' 
 #' @format A data frame with 151 rows with the following variables:
 #' \itemize{
 #'     \item id: Numeric identifier for the polygon
@@ -753,7 +760,7 @@
 #' library(eechidna)
 #' library(tidyverse)
 #' library(ggthemes)
-#' data(nat_map19)
+#' nat_map19 <- nat_map_download(2019)
 #' data(fp19)
 #' winners <- fp19 %>% filter(Elected == "Y")
 #' 
@@ -763,7 +770,7 @@
 #' "LIBERAL NATIONAL COALITION", PartyNm))
 #' 
 #' # Join to map
-#' data(nat_data19)
+#' nat_data19 <- nat_data_download(2019)
 #' nat_data19$DivisionNm <- toupper(nat_data19$elect_div)
 #' nat_data19 <- nat_data19 %>% left_join(winners, by = "DivisionNm")
 #
@@ -782,7 +789,8 @@
 #' A dataset containing some demographic information for each of the 150 Australian electorates.
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
 #' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
-#' The data is published 
+#' Must be loaded using the `nat_data_download` function.
+#' 
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
 #'     \item id: Numeric identifier for the polygon
@@ -801,7 +809,7 @@
 #' library(eechidna)
 #' library(tidyverse)
 #' library(ggthemes)
-#' data(nat_map16)
+#' nat_map16 <- nat_map_download(2016)
 #' data(fp16)
 #' winners <- fp16 %>% filter(Elected == "Y")
 #' 
@@ -830,7 +838,8 @@
 #' A dataset containing some demographic information for each of the 150 Australian electorates.
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
 #' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
-#' The data is published 
+#' Must be loaded using the `nat_data_download` function.
+#' 
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
 #'     \item id: Numeric identifier for the polygon
@@ -851,7 +860,8 @@
 #' A dataset containing some demographic information for each of the 150 Australian electorates.
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
 #' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
-#' The data is published 
+#' Must be loaded using the `nat_data_download` function.
+#' 
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
 #'     \item id: Numeric identifier for the polygon
@@ -872,7 +882,8 @@
 #' A dataset containing some demographic information for each of the 150 Australian electorates.
 #' The data were obtained from the Australian Bureau of Statistics, and downloaded 
 #' from \url{http://www.abs.gov.au/AUSSTATS/abs@@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}.
-#' The data is published 
+#' Must be loaded using the `nat_data_download` function.
+#' 
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
 #'     \item id: Numeric identifier for the polygon
@@ -891,7 +902,8 @@
 #' A dataset containing some demographic information for each of the 150 Australian electorates.
 #' The data were obtained from the Australian Bureau of Statistics, and downloaded 
 #' from \url{http://www.abs.gov.au/AUSSTATS/abs@@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}.
-#' The data is published 
+#' Must be loaded using the `nat_data_download` function.
+#' 
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
 #'     \item id: Numeric identifier for the polygon
@@ -910,7 +922,8 @@
 #' A dataset containing some demographic information for each of the 150 Australian electorates.
 #' The data were obtained from the Australian Government, and downloaded 
 #' from \url{https://data.gov.au/dataset/ds-dga-0b939a62-e53e-4616-add5-77f909b58ddd/details?q=asgc\%202001}.
-#' The data is published 
+#' Must be loaded using the `nat_data_download` function.
+#' 
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
 #'     \item id: Numeric identifier for the polygon
