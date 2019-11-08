@@ -274,7 +274,7 @@ proportions <- fp16 %>%
   group_by(DivisionNm) %>%
   dplyr::summarise(Prop_Labour = sum(OrdinaryVotes[PartyNm == "AUSTRALIAN LABOR PARTY"]) / sum(OrdinaryVotes),
             Prop_Coalition = sum(
-              OrdinaryVotes[PartyNm == "LIBERAL"]
+              OrdinaryVotes[PartyNm %in% c("LIBERAL PARTY", "NATIONAL PARTY")]
               ) / sum(OrdinaryVotes),
             Prop_Greens = sum(OrdinaryVotes[PartyNm == "THE GREENS"]) / sum(OrdinaryVotes)) 
 

@@ -48,7 +48,9 @@ There are state-specific pseudonyms for the Liberal-National Party coalition, an
 ```{r group, message=FALSE, error = TRUE, warning=FALSE, echo=TRUE, tidy=TRUE}
 # Grouping different Lib/Nats togethers
 map.winners$PartyNm <- as.character(map.winners$PartyNm)
-map.winners <- map.winners %>% arrange(group, order)
+map.winners <- map.winners %>% 
+  mutate(PartyNm = ifelse(PartyNm %in% c("LIBERAL PARTY", "NATIONAL PARTY"), "LIB/NATS COALITION", PartyNm)) %>% 
+  arrange(group, order)
 
 # Colour cells to match that parties colours
 # Order = Australian Labor Party, Independent, Katters, Lib/Nats Coalition, Palmer, The Greens
@@ -69,8 +71,10 @@ A compromise is to use a non-contiguous, dorling cartogram, and represent each e
 
 ```{r fig.width=7, fig.height=6, echo=TRUE, warning=FALSE, message=FALSE, error=FALSE}
 # Load election results
-cart.winners <- fp16 %>% filter(Elected == "Y") %>% 
+cart.winners <- fp16 %>% 
+  filter(Elected == "Y") %>% 
   select(DivisionNm, PartyNm) %>% 
+  mutate(PartyNm = ifelse(PartyNm %in% c("LIBERAL PARTY", "NATIONAL PARTY"), "LIB/NATS COALITION", PartyNm)) %>% 
   merge(nat_data16, by.x="DivisionNm", by.y="elect_div")
 
 # Plot it

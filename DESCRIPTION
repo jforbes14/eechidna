@@ -1,14 +1,14 @@
 Package: eechidna
-Version: 1.3.1
+Version: 1.4.0
 Title: Exploring Election and Census Highly Informative Data Nationally for
     Australia
-Description: Data from the six Australian Federal Elections (House of
-    Representatives) between 2001 and 2016, and from the four Australian
+Description: Data from the seven Australian Federal Elections (House of
+    Representatives) between 2001 and 2019, and from the four Australian
     Censuses over the same period. Includes tools for visualizing and
     analysing the data, as well as imputing Census data for years in 
     which a Census does not occur. This package incorporates
     data that is copyright Commonwealth of Australia (Australian
-    Electoral Commission) 2016.
+    Electoral Commission) 2019.
 Depends:
     R (>= 3.5.0)
 Imports:
