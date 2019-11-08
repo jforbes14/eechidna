@@ -30,8 +30,8 @@ stns <- read_csv("http://results.aec.gov.au/20499/Website/Downloads/GeneralPolli
 
 ```{r mapit, fig.width=7, fig.height=4, message=FALSE, error = TRUE, warning=FALSE, echo=TRUE, tidy=TRUE}
 library(ggthemes)
-data("nat_map16")
-data("nat_data16")
+nat_map16 <- nat_map_download(2016)
+nat_data16 <- nat_data_download(2016)
 
 ggplot(data=nat_data16, aes(map_id=id)) +
   geom_map(map=nat_map16, fill="grey90", colour="white") + 

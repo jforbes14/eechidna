@@ -199,14 +199,14 @@ bind_rows(abs2016 %>% mutate(year = "2016"), abs2011 %>% mutate(year = "2011"), 
 
 # Maps of the Australian electoral divisions
 
-Electoral divisions change regularly, so many electorates represent different regions from one election to the next. A consequence of this is that the electorate Census data (for example, in 2011) may not align with those in place for any election. As a resource for addressing this problem, and also for plotting visualizations of Australia, a map of electorates for the years 2001, 2004, 2006, 2007, 2010, 2011, 2013 and 2016 are included. The `nat_map` objects (e.g. `nat_map16`) are data frames that contain the coordinates of each electoral polygon, and can be plotted using `ggplot2` graphics. The accompanying `nat_data` object (e.g. `nat_data16`) contains some information about each electoral polygon.
+Electoral divisions change regularly, so many electorates represent different regions from one election to the next. A consequence of this is that the electorate Census data (for example, in 2011) may not align with those in place for any election. As a resource for addressing this problem, and also for plotting visualizations of Australia, a map of electorates for the years 2001, 2004, 2006, 2007, 2010, 2011, 2013 and 2016 are included. The `nat_map` objects (e.g. `nat_map16`) are data frames that contain the coordinates of each electoral polygon, and can be plotted using `ggplot2` graphics. The accompanying `nat_data` object (e.g. `nat_data16`) contains some information about each electoral polygon. These objects can be loaded using the `nat_map_download` and `nat_data_download` functions, respectively.
 
 As an example, let's plot a map of electorates in the 2016 election.  
 
 ```{r}
 library(ggthemes)
-data(nat_map16)
-data(nat_data16)
+nat_map16 <- nat_map_download(2016)
+nat_data16 <- nat_data_download(2016)
 
 ggplot(aes(map_id=id), data=nat_data16) +
   geom_map(aes(fill=state), map=nat_map16, col = "grey50") +

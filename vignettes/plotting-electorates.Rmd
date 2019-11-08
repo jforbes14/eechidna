@@ -16,15 +16,18 @@ knitr::opts_chunk$set(fig.width = 6,
                       dev = "png")
 ```
 
-This vignette describes how to make a map of the Australian election results. It requires merging polygons of the electoral regions, with election results using the electorate id's or unique names. The `nat_map16` contains the electorate polygons and `fp16` contains the results of the 2016 Federal election.
+This vignette describes how to make a map of the Australian election results. It requires merging polygons of the electoral regions, with election results using the electorate id's or unique names. The `nat_map16` contains the electorate polygons and `fp16` contains the results of the 2016 Federal election. `nat_map16` must be loaded using `nat_map_download`.
 
 ```{r load-read-merge, message=FALSE, error = TRUE, warning=FALSE, echo=FALSE, tidy=TRUE}
 library(eechidna)
 library(tidyverse)
 
-data("nat_data16")
-data("nat_map16")
+# Load
 data("fp16")
+nat_map16 <- nat_map_download(2016)
+nat_data16 <- nat_data_download(2016)
+
+# Winners
 map.winners <- fp16 %>% filter(Elected == "Y") %>% 
   select(DivisionNm, PartyNm) %>% 
   merge(nat_map16, by.x="DivisionNm", by.y="elect_div")

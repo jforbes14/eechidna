@@ -23,10 +23,10 @@ opts_chunk$set(fig.width = 6,
 library(eechidna)
 library(tidyverse)
 library(ggthemes)
-data("nat_map13")
-data("nat_map16")
 data("abs2011")
 data("abs2016")
+nat_map16 <- nat_map_download(2016)
+nat_data16 <- nat_data_download(2016)
 sF_13 <- sF_download(2013)
 sF_16 <- sF_download(2016)
 

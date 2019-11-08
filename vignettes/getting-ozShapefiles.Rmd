@@ -42,8 +42,8 @@ nat_data <- sF$data
 
 ```{r, echo = F}
 library(eechidna)
-data("nat_map16")
-data("nat_data16")
+nat_map16 <- nat_map_download(2016)
+nat_data16 <- nat_data_download(2016)
 nat_map <- nat_map16
 nat_data <- nat_data16
 ```
