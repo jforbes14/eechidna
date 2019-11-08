@@ -18,8 +18,8 @@ and make any of these that were not made equal to the original centroids
 \examples{
 library(dplyr)
 library(ggplot2)
-data(nat_map16)
-data(nat_data16)
+nat_map16 <- nat_map_download(2016)
+nat_data16 <- nat_data_download(2016)
 nat_data16 <- nat_data16 \%>\% select(-c(x,y)) # remove existing cartogram coordinates
 cities <- list(c(151.2, -33.8), # Sydney
 c(153.0, -27.5), # Brisbane

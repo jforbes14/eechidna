@@ -33,8 +33,8 @@ geographic proximity.
 \examples{
 library(dplyr)
 library(ggplot2)
-data(nat_map16)
-data(nat_data16)
+nat_map16 <- nat_map_download(2016)
+nat_data16 <- nat_data_download(2016)
 nat_data16 <- nat_data16 \%>\% select(-c(x,y)) # remove existing cartogram coordinates
 adelaide <- aec_extract_f(nat_data16, ctr=c(138.6, -34.9), expand=c(2,3))
 adelaide_carto <- aec_carto_f(adelaide) \%>\% rename(id=region)

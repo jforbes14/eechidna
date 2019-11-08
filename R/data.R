@@ -819,7 +819,7 @@
 #' "LIBERAL NATIONAL COALITION", PartyNm))
 #' 
 #' # Join to map
-#' data(nat_data16)
+#' nat_data16 <- nat_data_download(2016)
 #' nat_data16$DivisionNm <- toupper(nat_data16$elect_div)
 #' nat_data16 <- nat_data16 %>% left_join(winners, by = "DivisionNm")
 #
