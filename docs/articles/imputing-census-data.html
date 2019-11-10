@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eechidna</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.0</span>
       </span>
     </div>
 
@@ -101,7 +101,7 @@
       <h1>Imputing electoral Census data for election years</h1>
                         <h4 class="author">Jeremy Forbes</h4>
             
-            <h4 class="date">2019-03-15</h4>
+            <h4 class="date">2019-11-10</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ropenscilabs/eechidna/blob/master/vignettes/imputing-census-data.Rmd"><code>vignettes/imputing-census-data.Rmd</code></a></small>
       <div class="hidden name"><code>imputing-census-data.Rmd</code></div>
@@ -110,12 +110,12 @@
 
     
     
-<pre><code>## ── Attaching packages ──────────────────────────────────────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
-<pre><code>## ✔ ggplot2 3.1.0       ✔ purrr   0.3.1  
-## ✔ tibble  2.0.1       ✔ dplyr   0.8.0.1
-## ✔ tidyr   0.8.3       ✔ stringr 1.4.0  
-## ✔ readr   1.3.1       ✔ forcats 0.3.0</code></pre>
-<pre><code>## ── Conflicts ─────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+<pre><code>## ── Attaching packages ────────────────────────────────────────────────────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
+<pre><code>## ✔ ggplot2 3.1.0          ✔ purrr   0.3.2     
+## ✔ tibble  2.1.3          ✔ dplyr   0.8.3     
+## ✔ tidyr   1.0.0.9000     ✔ stringr 1.4.0     
+## ✔ readr   1.3.1          ✔ forcats 0.3.0</code></pre>
+<pre><code>## ── Conflicts ───────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()</code></pre>
 <div id="introduction" class="section level2">
@@ -125,134 +125,82 @@
 <p>We impute Census data for the electoral divisions in the 2013 federal election. Maps of 2013 and 2016 electoral divisions are obtained from the Australian Electoral Commission <a href="http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm">http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm</a>, and the map of divisions in place at the time of the 2011 Census is from the Australian Bureau of Statistics <a href="https://datapacks.censusdata.abs.gov.au/datapacks/">https://datapacks.censusdata.abs.gov.au/datapacks/</a>.</p>
 <p>The Australian Electoral Commission shifts the electoral boundaries regularly, so the electoral divisions in place in the 2013 election may not match those in 2016, nor those in 2011. This means that obtaining Census information for a particular electoral division, we are not necessarily able to directly interpolate between the electoral Census profiles in neighbouring Censuses.</p>
 <p>To account for these boundary shifts, we use a spatio-temporal algorithm to estimate Census information about each electorate, at the time of the election of interest. Electoral boundaries are superimposed onto each of the neighbouring Censuses, in order to estimate Census characteristics for each of those years. By linearly interpolating between these time points, we get an estimate for the election year of interest.</p>
-<p>To illustrate this algorithm, consider the example of the Hume electoral division in the 2013 federal election.</p>
+<p>To illustrate this algorithm, consider the example Melbourne Ports, an electoral division in the 2013 federal election.</p>
 </div>
-<div id="example-hume-in-the-2013-election" class="section level2">
+<div id="example-melbourne-ports-in-the-2013-election" class="section level2">
 <h2 class="hasAnchor">
-<a href="#example-hume-in-the-2013-election" class="anchor"></a>Example: Hume in the 2013 election</h2>
-<p>To illustrate the spatio-temporal algorithm, consider the imputation of a socio-demographic variable for the electorate of Hume in New South Wales (NSW), at the time of the 2013 federal election. The figure below shows this region amongst other NSW electorates.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">hume_area13 &lt;-<span class="st"> </span>nat_map13 <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb4-2" title="2"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(state <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"ACT"</span>,<span class="st">"NSW"</span>), long <span class="op">&lt;</span><span class="st"> </span><span class="dv">154</span>)</a>
+<a href="#example-melbourne-ports-in-the-2013-election" class="anchor"></a>Example: Melbourne Ports in the 2013 election</h2>
+<p>To illustrate the spatio-temporal algorithm, consider the imputation of a socio-demographic variable for the electorate of Melbourne Ports in Victoria (VIC), at the time of the 2013 federal election. The figure below shows this region amongst other VIC electorates.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co"># Data available in extra-data folder of github repo</span></a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/load">load</a></span>(<span class="st">"../extra-data/vic_map.rda"</span>)</a>
 <a class="sourceLine" id="cb4-3" title="3"></a>
-<a class="sourceLine" id="cb4-4" title="4"><span class="kw">ggplot</span>(<span class="dt">data=</span>hume_area13) <span class="op">+</span></a>
-<a class="sourceLine" id="cb4-5" title="5"><span class="st">  </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">x=</span>long, <span class="dt">y=</span>lat, <span class="dt">group=</span>group, <span class="dt">fill =</span> elect_div <span class="op">==</span><span class="st"> "HUME"</span>),</a>
-<a class="sourceLine" id="cb4-6" title="6">               <span class="dt">colour=</span><span class="st">"grey50"</span>, <span class="dt">alpha =</span> <span class="fl">0.4</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb4-7" title="7"><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">name=</span><span class="st">"Boundary"</span>, <span class="dt">values=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"white"</span>, <span class="st">"purple"</span>), <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Other 2013 Electorates"</span>, <span class="st">"Hume 2013"</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb4-8" title="8"><span class="st">  </span><span class="kw">theme_map</span>() <span class="op">+</span><span class="st"> </span><span class="kw">coord_equal</span>()</a></code></pre></div>
+<a class="sourceLine" id="cb4-4" title="4">p1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> vic_map) <span class="op">+</span></a>
+<a class="sourceLine" id="cb4-5" title="5"><span class="st">  </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group, <span class="dt">fill =</span> Elect_div <span class="op">==</span><span class="st"> "Melbourne Ports"</span>),</a>
+<a class="sourceLine" id="cb4-6" title="6">    <span class="dt">colour =</span> <span class="st">"black"</span>, <span class="dt">alpha =</span> <span class="fl">0.4</span></a>
+<a class="sourceLine" id="cb4-7" title="7">  ) <span class="op">+</span></a>
+<a class="sourceLine" id="cb4-8" title="8"><span class="st">  </span><span class="kw">scale_fill_manual</span>(</a>
+<a class="sourceLine" id="cb4-9" title="9">    <span class="dt">name =</span> <span class="st">"Electoral Boundaries"</span>,</a>
+<a class="sourceLine" id="cb4-10" title="10">    <span class="dt">values =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"white"</span>, <span class="st">"purple"</span>),</a>
+<a class="sourceLine" id="cb4-11" title="11">    <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Other Electorates"</span>, <span class="st">"Melbourne Ports (VIC)"</span>)</a>
+<a class="sourceLine" id="cb4-12" title="12">  ) <span class="op">+</span></a>
+<a class="sourceLine" id="cb4-13" title="13"><span class="st">  </span><span class="kw">theme_map</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb4-14" title="14"><span class="st">  </span><span class="kw">coord_equal</span>(<span class="dt">xlim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">144.88</span>, <span class="fl">145.07</span>), <span class="dt">ylim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="op">-</span><span class="fl">37.92</span>, <span class="fl">-37.78</span>))</a>
+<a class="sourceLine" id="cb4-15" title="15"></a>
+<a class="sourceLine" id="cb4-16" title="16">p1</a></code></pre></div>
 <div class="figure" style="text-align: center">
-<img src="imputing-census-data_files/figure-html/hume13-1.png" alt="Some of the electoral boundaries in NSW for 2013, with the electoral boundary for Hume, shown in purple." width="576"><p class="caption">
+<img src="imputing-census-data_files/figure-html/melb_ports13-1.png" alt="Some of the electoral boundaries in NSW for 2013, with the electoral boundary for Hume, shown in purple." width="576"><p class="caption">
 Some of the electoral boundaries in NSW for 2013, with the electoral boundary for Hume, shown in purple.
 </p>
 </div>
-<p>The Censuses neighbouring the 2013 election are those in 2011 and 2016. By plotting the Hume boundary (purple) in the 2013 election over the divisions in 2016, we see that its boundary has changed.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">hume_area16 &lt;-<span class="st"> </span>nat_map16 <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb5-2" title="2"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(state <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"ACT"</span>,<span class="st">"NSW"</span>), long <span class="op">&lt;</span><span class="st"> </span><span class="dv">154</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb5-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="st">"2016"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb5-4" title="4"><span class="st">  </span><span class="kw">bind_rows</span>(hume_area13 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(elect_div <span class="op">==</span><span class="st"> "HUME"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="st">"2013"</span>))</a>
-<a class="sourceLine" id="cb5-5" title="5"></a>
-<a class="sourceLine" id="cb5-6" title="6"><span class="kw">ggplot</span>(<span class="dt">data=</span>hume_area16) <span class="op">+</span></a>
-<a class="sourceLine" id="cb5-7" title="7"><span class="st">  </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">x=</span>long, <span class="dt">y=</span>lat, <span class="dt">group=</span>group, <span class="dt">fill =</span> year <span class="op">==</span><span class="st"> "2013"</span>, </a>
-<a class="sourceLine" id="cb5-8" title="8">    <span class="dt">alpha =</span> year <span class="op">==</span><span class="st"> "2013"</span>, <span class="dt">colour=</span>year <span class="op">==</span><span class="st"> "2013"</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb5-9" title="9"><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">name=</span><span class="st">"Boundary"</span>, <span class="dt">values=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"grey95"</span>, <span class="st">"purple"</span>), <span class="dt">labels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"2016 Electorates"</span>, <span class="st">"Hume 2013"</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb5-10" title="10"><span class="st">  </span><span class="kw">scale_alpha_manual</span>(<span class="dt">values=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>, <span class="fl">0.4</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb5-11" title="11"><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"grey50"</span>, <span class="ot">NA</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb5-12" title="12"><span class="st">  </span><span class="kw">theme_map</span>() <span class="op">+</span><span class="st"> </span><span class="kw">coord_equal</span>() <span class="op">+</span><span class="st"> </span><span class="kw">guides</span>(<span class="dt">alpha =</span> F, <span class="dt">color =</span> F)</a></code></pre></div>
+<p>The Censuses neighbouring the 2013 election are those in 2011 and 2016. From each Census, the most disaggregate data that is publicly available is used - Statistical Area 1. There were approximately 55,000 SA1s in the 2016 Census (meaning approximately 400 people are contained in each SA1). For simplicity, each SA1 is summarised by its centroid. Each SA1 centroid that falls within the 2013 Melbourne Ports boundary is assigned to the Melbourne Ports electorate for 2013.</p>
+<p>The centroids are held in the <code>extra-data</code> folder in the <code>eechidna</code> github repo.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/load">load</a></span>(<span class="st">"../extra-data/centroids_sa1_2011.rda"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="co"># Load centroids in this window (pre-prepared)</span></a>
+<a class="sourceLine" id="cb6-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/load">load</a></span>(<span class="st">"../extra-data/MP_sa1_dots_2011.rda"</span>)</a>
+<a class="sourceLine" id="cb6-3" title="3"></a>
+<a class="sourceLine" id="cb6-4" title="4">p1 <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> long_c, <span class="dt">y =</span> lat_c, <span class="dt">shape =</span> shape), <span class="dt">data =</span> MP_sa1_dots_<span class="dv">2011</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">shape =</span> <span class="st">"1"</span>), <span class="dt">colour =</span> <span class="st">"grey25"</span>, <span class="dt">size =</span> <span class="fl">1.3</span>) <span class="op">+</span><span class="st"> </span><span class="kw">scale_shape_manual</span>(<span class="dt">name =</span> <span class="st">"Statistical Area 1"</span>, <span class="dt">values =</span> <span class="dv">3</span>, <span class="dt">labels =</span> <span class="st">"Centroids"</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center">
-<img src="imputing-census-data_files/figure-html/hume16-1.png" alt="Census division boundaries in NSW for 2016, with the 2013 electoral boundary for Hume, shown in purple. The purple region is not contained within a single Census division." width="576"><p class="caption">
-Census division boundaries in NSW for 2016, with the 2013 electoral boundary for Hume, shown in purple. The purple region is not contained within a single Census division.
+<img src="imputing-census-data_files/figure-html/melb_ports_with_sa1-1.png" alt="Melbourne Ports boundary and surrounding electorates from 2013, with the SA1 centroids from the 2016 Census shown. Centroids falling within the purple region are assigned to Melbourne Ports." width="576"><p class="caption">
+Melbourne Ports boundary and surrounding electorates from 2013, with the SA1 centroids from the 2016 Census shown. Centroids falling within the purple region are assigned to Melbourne Ports.
 </p>
 </div>
-<p>Our aim is to impute Census information for this purple region.</p>
-<p>There are many divisions in 2016 that intersect with the purple region (Hume boundary for 2013), these include the divisions of Riverina, Eden-Monaro and Hume, along with smaller intersecting areas with Fenner, Calare, Gilmore and Whitlam.</p>
-<p>For each 2016 division that intersects with the purple region, we calculate the percentage of its area is consumed by the purple. The population in this region can then be estimated by assuming evenly distributed populations over the space.</p>
-<table class="table">
-<colgroup>
-<col width="23%">
-<col width="10%">
-<col width="21%">
-<col width="44%">
-</colgroup>
-<thead><tr class="header">
-<th>Electoral division (2016)</th>
-<th>Percentage</th>
-<th>Population in Division</th>
-<th>Estimated Population Allocated to Purple Region</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td>Hume</td>
-<td>90.58%</td>
-<td>150643</td>
-<td>136458</td>
-</tr>
-<tr class="even">
-<td>Riverina</td>
-<td>24.89%</td>
-<td>155793</td>
-<td>38780</td>
-</tr>
-<tr class="odd">
-<td>Eden-Monaro</td>
-<td>9.96%</td>
-<td>147532</td>
-<td>14691</td>
-</tr>
-<tr class="even">
-<td>Whitlam</td>
-<td>0.55%</td>
-<td>152280</td>
-<td>844</td>
-</tr>
-<tr class="odd">
-<td>Calare</td>
-<td>0.39%</td>
-<td>161298</td>
-<td>633</td>
-</tr>
-<tr class="even">
-<td>Fenner</td>
-<td>0.33%</td>
-<td>202955</td>
-<td>683</td>
-</tr>
-<tr class="odd">
-<td>Gilmore</td>
-<td>0.03%</td>
-<td>150436</td>
-<td>49</td>
-</tr>
-</tbody>
-</table>
-<p>This is done for each of the 2013 electoral divisions using the <code>mapping_fn</code> function, which computes the composition of the electoral divisions in terms of the divisions in place at Census time. Note that shapefiles need to be loaded through <code>load_shapefile</code> to be in the right format to be passed through <code>mapping_fn</code>. Populations and other Census data is estimated using <code>weighted_avg_census</code>.</p>
+<p>Formally, let <span class="math inline">\(I_{s,t}\)</span> be an indicator variable, for which <span class="math inline">\(I_{s,t} = 1\)</span> if the centroid of source zone <span class="math inline">\(s\)</span> falls within target zone <span class="math inline">\(t\)</span>, and <span class="math inline">\(0\)</span> otherwise. Additionally, let the population of the source zone <span class="math inline">\(s\)</span> be <span class="math inline">\(U_s\)</span> and the population of target zone <span class="math inline">\(t\)</span> be <span class="math inline">\(P_{t}\)</span>.</p>
+<p>In order to calculate socio-demographic information for each of the electoral boundaries, a weighted average of SA1 characteristics is taken using their populations as weights. Denote a given Census variable for the target zone by <span class="math inline">\(C_t\)</span>, and the same Census variable for the source zone as <span class="math inline">\(D_s\)</span>. Then, estimate <span class="math inline">\(C_t\)</span> using <span class="math display">\[
+  \hat{C}_t = \frac{\sum_{s=1}^{S}{I_{s,t}*D_s*U_s}}%
+  {\sum_{s=1}^{S}{I_{s,t}*U_s}},
+  \quad\text{for each $t=1,\dots,T$}.
+\]</span></p>
+<p>To account for temporal changes, linear interpolation is used between Census years to get the final estimate of a Census variable for the target zone in the election year. Let <span class="math inline">\(y_1\)</span> be the year of the Census preceding an election, let <span class="math inline">\(y_2\)</span> be the year of the election, and <span class="math inline">\(y_3\)</span> be the year of the Census that follows. Add this year subscript to the Census variable estimate <span class="math inline">\(\hat{C}_t\)</span>, resulting in <span class="math inline">\(\hat{C}_{t,y}\)</span>. Linear interpolating between these Census years results an imputed value for the election year, given by <span class="math display">\[
+  \hat{C}_{t,y_2} = \frac{y_3-y_2}{y_3-y_1} \hat{C}_{t,y_1} +
+    \frac{y_2-y_1}{y_3-y_1} \hat{C}_{t,y_3}.
+\]</span></p>
+<p>Continuing with the example of Melbourne Ports in the 2013 election, the estimate for a given Census variable in 2016, <span class="math inline">\(\hat{C}_{\text{MelbPorts}, 2016}\)</span> would be obtained by computing the weighted average of this variable amongst the SA1s within the purple region shown in Figure @ref(fig:melb_ports13). This would be repeated with the 2011 Census SA1s to obtain <span class="math inline">\(\hat{C}_{\text{MelbPorts}, 2011}\)</span>, from which the final estimate is given by <span class="math display">\[
+  \hat{C}_{\text{MelbPorts},2013}
+    = \frac{3}{5} \hat{C}_{\text{MelbPorts},2011} + \frac{2}{5} \hat{C}_{\text{MelbPorts},2016}.
+\]</span> This is done for each of the socio-demographic variables, and is repeated for each of the 149 remaining electoral boundaries corresponding with 2013 electorates.</p>
 </div>
-<div id="applying-function-to-all-electorates-in-the-2013-election" class="section level2">
+<div id="imputing-all-electorates-in-the-2013-election" class="section level2">
 <h2 class="hasAnchor">
-<a href="#applying-function-to-all-electorates-in-the-2013-election" class="anchor"></a>Applying function to all electorates in the 2013 election</h2>
-<p><code>aec_sF</code> is the shapefile containing the polygons associated with electoral boundaries for which Census information is to be imputed, and <code>abs_sF</code> contains polygons that match those in place at the time of the Census.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">sF_<span class="dv">13</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/load_shapefile.html">load_shapefile</a></span>(<span class="st">"path-to-your-shapefiles/national-midmif-16122011/COM20111216_ELB.MIF"</span>)</a>
-<a class="sourceLine" id="cb6-2" title="2">sF_<span class="dv">16</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/load_shapefile.html">load_shapefile</a></span>(<span class="st">"path-to-your-shapefiles/national-midmif-09052016/COM_ELB.TAB"</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">mapping_<span class="dv">2016</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/mapping_fn.html">mapping_fn</a></span>(<span class="dt">aec_sF =</span> sF_<span class="dv">13</span>, <span class="dt">abs_sF =</span> sF_<span class="dv">16</span>)</a></code></pre></div>
-<p>The resultant object is a <code>data.frame</code> which contains information about the intersecting areas, and the variable <code>Percent_Census_Composition</code> is the percentage of the Census division population that will be attributed to the electoral division.</p>
-<p>The next step is to estimate Census data with a weighted average of these intersecting populations, for each electoral division. This is done using <code>weighted_avg_census</code>.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">imputed_data_<span class="dv">2016</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/weighted_avg_census.html">weighted_avg_census</a></span>(<span class="dt">mapping_df =</span> mapping_<span class="dv">2016</span>, <span class="dt">abs_df =</span> abs2016)</a></code></pre></div>
-<p>We have now estimated 2016 Census information for the electoral boundaries of interest (2013 election). The steps above are repeated with the 2011 Census.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="co"># Load 2011 boundaries</span></a>
-<a class="sourceLine" id="cb9-2" title="2">sF_<span class="dv">11</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/load_shapefile.html">load_shapefile</a></span>(<span class="st">"/Users/Jeremy/Documents/R/eechidna/data-raw/Shapefiles/2011_CED_shape/CED_2011_AUST.shp"</span>)</a></code></pre></div>
-<pre><code>## OGR data source with driver: ESRI Shapefile 
-## Source: "/Users/Jeremy/Documents/R/eechidna/data-raw/Shapefiles/2011_CED_shape/CED_2011_AUST.shp", layer: "CED_2011_AUST"
-## with 168 features
-## It has 3 fields</code></pre>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="co"># Mapping</span></a>
-<a class="sourceLine" id="cb11-2" title="2">mapping_<span class="dv">2011</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/mapping_fn.html">mapping_fn</a></span>(<span class="dt">aec_sF =</span> sF_<span class="dv">13</span>, <span class="dt">abs_sF =</span> sF_<span class="dv">11</span>)</a>
-<a class="sourceLine" id="cb11-3" title="3"></a>
-<a class="sourceLine" id="cb11-4" title="4"><span class="co"># Weighted average</span></a>
-<a class="sourceLine" id="cb11-5" title="5">imputed_data_<span class="dv">2011</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/weighted_avg_census.html">weighted_avg_census</a></span>(<span class="dt">mapping_df =</span> mapping_<span class="dv">2011</span>, <span class="dt">abs_df =</span> abs2011)</a></code></pre></div>
-<p>Then we can linearly interpolate between 2011 and 2016 to arrive at our final estimate of Census data for the electorates in place at the 2013 federal election. This involves using inverse distance weighting (power of 1).</p>
+<a href="#imputing-all-electorates-in-the-2013-election" class="anchor"></a>Imputing all electorates in the 2013 election</h2>
+<p><code>aec_sF</code> is the shapefile containing the polygons associated with electoral boundaries for which Census information is to be imputed, and <code>abs_sF</code> contains SA1 polygons from the Census.</p>
+<p>First load the shapefile containing the electoral boundaries from the 2013 federal election, <code>sF_13</code>.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">sF_<span class="dv">13</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/load_shapefile.html">load_shapefile</a></span>(<span class="st">"path-to-your-shapefiles/national-midmif-16122011/COM20111216_ELB.MIF"</span>)</a></code></pre></div>
+<p>Then extract the centroids from the 2011 Census SA1 polygons from the object <code>sF_11_sa1</code>. Here we use the function <code>extract_centroids</code>. Note that <code>sF_11_sa1</code> is too large an object for demonstration but it can be downloaded from <code>https://datapacks.censusdata.abs.gov.au/datapacks/</code>.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">centroids_sa1_<span class="dv">2011</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/extract_centroids.html">extract_centroids</a></span>(sF11_sa1)</a></code></pre></div>
+<p>Now use the function <code>allocate_electorate</code> to allocate each SA1 to the electoral boundary in which it sits.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">mapping_c11_e13 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/allocate_electorate.html">allocate_electorate</a></span>(<span class="dt">centroids_ls =</span> centroids_sa1_<span class="dv">2011</span>, <span class="dt">electorates_sf =</span> sF_<span class="dv">13</span>, <span class="dt">census_year =</span> <span class="st">"2011"</span>, <span class="dt">election_year =</span> <span class="st">"2013"</span>)</a></code></pre></div>
+<p>Next the <code>weighted_avg_census_sa1</code> function applies a weighted average of SA1 characteristics for each electorate using the SA1 populations as weights. This uses <code>abs2011_cd</code> which is the equivalent of <code>abs2011</code> in <code>eechidna1</code>, but with each row corresponding with an SA1. Again, this is too large to include in the repo.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">census_aec13_<span class="dv">11</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/weighted_avg_census_sa1.html">weighted_avg_census_sa1</a></span>(<span class="dt">mapping_df =</span> mapping_c11_e13, <span class="dt">abs_df =</span> abs2011_cd)</a></code></pre></div>
+<p>We repeat this for the 2016 Census.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">centroids_sa1_<span class="dv">2016</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/extract_centroids.html">extract_centroids</a></span>(sF16_sa1)</a>
+<a class="sourceLine" id="cb11-2" title="2">mapping_c16_e13 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/allocate_electorate.html">allocate_electorate</a></span>(<span class="dt">centroids_ls =</span> centroids_sa1_<span class="dv">2016</span>, <span class="dt">electorates_sf =</span> sF_<span class="dv">13</span>, <span class="dt">census_year =</span> <span class="st">"2016"</span>, <span class="dt">election_year =</span> <span class="st">"2013"</span>)</a>
+<a class="sourceLine" id="cb11-3" title="3">census_aec13_<span class="dv">16</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/weighted_avg_census_sa1.html">weighted_avg_census_sa1</a></span>(<span class="dt">mapping_df =</span> mapping_c16_e13, <span class="dt">abs_df =</span> abs2016_cd)</a></code></pre></div>
+<p>Now we can linearly interpolate between 2011 and 2016 to arrive at our final estimate of Census data for the electorates in place at the 2013 federal election. This involves using inverse distance weighting (power of 1).</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="co"># Linearly interpolate using inverse distance weighting (power of 1)</span></a>
-<a class="sourceLine" id="cb12-2" title="2">abs2013 &lt;-<span class="st"> </span>(<span class="dv">2</span><span class="op">/</span><span class="dv">5</span>)<span class="op">*</span>(<span class="kw">select</span>(imputed_data_<span class="dv">2016</span>, <span class="op">-</span>DivisionNm)) <span class="op">+</span><span class="st"> </span>(<span class="dv">3</span><span class="op">/</span><span class="dv">5</span>)<span class="op">*</span>(<span class="kw">select</span>(imputed_data_<span class="dv">2011</span>, <span class="op">-</span>DivisionNm))</a>
+<a class="sourceLine" id="cb12-2" title="2">abs2013 &lt;-<span class="st"> </span>(<span class="dv">2</span><span class="op">/</span><span class="dv">5</span>)<span class="op">*</span>(<span class="kw">select</span>(census_aec13_<span class="dv">16</span>, <span class="op">-</span>DivisionNm)) <span class="op">+</span><span class="st"> </span>(<span class="dv">3</span><span class="op">/</span><span class="dv">5</span>)<span class="op">*</span>(<span class="kw">select</span>(census_aec13_<span class="dv">11</span>, <span class="op">-</span>DivisionNm))</a>
 <a class="sourceLine" id="cb12-3" title="3"></a>
 <a class="sourceLine" id="cb12-4" title="4"><span class="co"># Maintain division names</span></a>
-<a class="sourceLine" id="cb12-5" title="5">abs2013<span class="op">$</span>DivisionNm &lt;-<span class="st"> </span>imputed_data_<span class="dv">2016</span><span class="op">$</span>DivisionNm</a>
+<a class="sourceLine" id="cb12-5" title="5">abs2013<span class="op">$</span>DivisionNm &lt;-<span class="st"> </span>census_aec13_<span class="dv">16</span><span class="op">$</span>DivisionNm</a>
 <a class="sourceLine" id="cb12-6" title="6"></a>
 <a class="sourceLine" id="cb12-7" title="7">abs2013 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(DivisionNm, Age00_<span class="dv">04</span>, Age05_<span class="dv">14</span>, Age15_<span class="dv">19</span>, BachelorAbv, MedianPersonalIncome, Owned, NoReligion) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb12-8" title="8"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
@@ -271,63 +219,63 @@ Census division boundaries in NSW for 2016, with the 2013 electoral boundary for
 <tbody>
 <tr class="odd">
 <td align="left">ADELAIDE</td>
-<td align="right">5.238255</td>
-<td align="right">9.509769</td>
-<td align="right">5.834180</td>
-<td align="right">32.096012</td>
-<td align="right">457.7773</td>
-<td align="right">28.41219</td>
-<td align="right">30.84079</td>
+<td align="right">5.233431</td>
+<td align="right">9.525292</td>
+<td align="right">5.798392</td>
+<td align="right">32.026265</td>
+<td align="right">479.2099</td>
+<td align="right">28.92356</td>
+<td align="right">30.89500</td>
 </tr>
 <tr class="even">
 <td align="left">ASTON</td>
-<td align="right">5.768565</td>
-<td align="right">12.496998</td>
-<td align="right">7.152311</td>
-<td align="right">21.434418</td>
-<td align="right">451.1648</td>
-<td align="right">35.85664</td>
-<td align="right">27.13446</td>
+<td align="right">5.857371</td>
+<td align="right">12.317517</td>
+<td align="right">7.088707</td>
+<td align="right">20.278193</td>
+<td align="right">458.3521</td>
+<td align="right">34.28622</td>
+<td align="right">27.50937</td>
 </tr>
 <tr class="odd">
 <td align="left">BALLARAT</td>
-<td align="right">6.487517</td>
-<td align="right">12.955704</td>
-<td align="right">6.914614</td>
-<td align="right">16.460032</td>
-<td align="right">392.9592</td>
-<td align="right">34.29433</td>
-<td align="right">31.20174</td>
+<td align="right">6.502042</td>
+<td align="right">12.982534</td>
+<td align="right">6.914297</td>
+<td align="right">16.500943</td>
+<td align="right">406.2691</td>
+<td align="right">34.17926</td>
+<td align="right">31.20523</td>
 </tr>
 <tr class="even">
 <td align="left">BANKS</td>
-<td align="right">6.161189</td>
-<td align="right">11.673810</td>
-<td align="right">6.112022</td>
-<td align="right">24.201877</td>
-<td align="right">416.1158</td>
-<td align="right">34.10598</td>
-<td align="right">21.11699</td>
+<td align="right">6.056353</td>
+<td align="right">11.479071</td>
+<td align="right">6.174769</td>
+<td align="right">24.902730</td>
+<td align="right">421.4060</td>
+<td align="right">34.85625</td>
+<td align="right">22.54929</td>
 </tr>
 <tr class="odd">
 <td align="left">BARKER</td>
-<td align="right">5.963957</td>
-<td align="right">12.941691</td>
-<td align="right">6.242635</td>
-<td align="right">8.215222</td>
-<td align="right">376.8047</td>
-<td align="right">35.89354</td>
-<td align="right">30.30135</td>
+<td align="right">5.949816</td>
+<td align="right">12.904095</td>
+<td align="right">6.215134</td>
+<td align="right">8.145889</td>
+<td align="right">386.6909</td>
+<td align="right">36.01356</td>
+<td align="right">30.27061</td>
 </tr>
 <tr class="even">
 <td align="left">BARTON</td>
-<td align="right">6.310199</td>
-<td align="right">10.776653</td>
-<td align="right">5.323435</td>
-<td align="right">24.429438</td>
-<td align="right">431.5335</td>
-<td align="right">34.46361</td>
-<td align="right">18.10582</td>
+<td align="right">6.330059</td>
+<td align="right">10.807894</td>
+<td align="right">5.271060</td>
+<td align="right">23.877154</td>
+<td align="right">435.3009</td>
+<td align="right">36.15573</td>
+<td align="right">16.12376</td>
 </tr>
 </tbody>
 </table>
@@ -335,7 +283,7 @@ Census division boundaries in NSW for 2016, with the 2013 electoral boundary for
 <div id="summary" class="section level2">
 <h2 class="hasAnchor">
 <a href="#summary" class="anchor"></a>Summary</h2>
-<p>We have demonstrated how to use the functions needed to impute Census information for 2004, 2007, 2010 and 2013 elections. For future elections, the same functions can be used, and rather than interpolating over time, simply use the previous Census, until another Census is made available.</p>
+<p>We have demonstrated how to use the functions needed to impute Census information for 2004, 2007, 2010 and 2013 elections. For future elections, the same functions can be used, and rather than interpolating over time, simply use the previous Census, until another Census is made available (as we have done with 2019).</p>
 </div>
   </div>
 
@@ -345,8 +293,8 @@ Census division boundaries in NSW for 2016, with the 2013 electoral boundary for
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#introduction">Introduction</a></li>
-      <li><a href="#example-hume-in-the-2013-election">Example: Hume in the 2013 election</a></li>
-      <li><a href="#applying-function-to-all-electorates-in-the-2013-election">Applying function to all electorates in the 2013 election</a></li>
+      <li><a href="#example-melbourne-ports-in-the-2013-election">Example: Melbourne Ports in the 2013 election</a></li>
+      <li><a href="#imputing-all-electorates-in-the-2013-election">Imputing all electorates in the 2013 election</a></li>
       <li><a href="#summary">Summary</a></li>
       </ul>
 </div>

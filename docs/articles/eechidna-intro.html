@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eechidna</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.0</span>
       </span>
     </div>
 
@@ -101,7 +101,7 @@
       <h1>An Introduction to Exploring Election and Census Highly Informative Data Nationally for Australia</h1>
                         <h4 class="author">Jeremy Forbes</h4>
             
-            <h4 class="date">2019-03-15</h4>
+            <h4 class="date">2019-11-10</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ropenscilabs/eechidna/blob/master/vignettes/eechidna-intro.Rmd"><code>vignettes/eechidna-intro.Rmd</code></a></small>
       <div class="hidden name"><code>eechidna-intro.Rmd</code></div>
@@ -113,7 +113,7 @@
 <div id="introduction" class="section level1">
 <h1 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h1>
-<p><code>eechidna</code> (Exploring Election and Census Highly Informative Data Nationally for Australia) is an R package that makes it easy to look at the data from the Australian Federal elections and Censuses that occurred between 2001 and 2016. An Australian Federal election typically takes place every three years (2001, 2004, 2007, 2010, 2013 and 2016), and a Census of Population and Housing is conducted every five years (2001, 2006, 2011, 2016). The data in this package includes voting results for each polling booth and electoral division (electorate), Census information for each electorate and maps of the electorates that were in place at the time of each event. All data in this package is obtained from the <a href="https://results.aec.gov.au/">Australian Electoral Commission</a>, the <a href="http://www.abs.gov.au/websitedbs/D3310114.nsf/home/census">Australian Bureau of Statistics</a> and the <a href="https://data.gov.au/">Australian Government</a>.</p>
+<p><code>eechidna</code> (Exploring Election and Census Highly Informative Data Nationally for Australia) is an R package that makes it easy to look at the data from the Australian Federal elections and Censuses that occurred between 2001 and 2019. An Australian Federal election typically takes place every three years (2001, 2004, 2007, 2010, 2013, 2016 and 2019), and a Census of Population and Housing is conducted every five years (2001, 2006, 2011, 2016). The data in this package includes voting results for each polling booth and electoral division (electorate), Census information for each electorate and maps of the electorates that were in place at the time of each event. All data in this package is obtained from the <a href="https://results.aec.gov.au/">Australian Electoral Commission</a>, the <a href="http://www.abs.gov.au/websitedbs/D3310114.nsf/home/census">Australian Bureau of Statistics</a> and the <a href="https://data.gov.au/">Australian Government</a>.</p>
 <p>This vignette documents how to access these datasets, and shows a few typical methods to explore the data.</p>
 </div>
 <div id="joining-election-and-census-data" class="section level1">
@@ -231,26 +231,30 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">LIBERAL</td>
-<td align="right">76</td>
-</tr>
-<tr class="even">
 <td align="left">AUSTRALIAN LABOR PARTY</td>
 <td align="right">69</td>
 </tr>
+<tr class="even">
+<td align="left">LIBERAL PARTY</td>
+<td align="right">66</td>
+</tr>
 <tr class="odd">
+<td align="left">NATIONAL PARTY</td>
+<td align="right">10</td>
+</tr>
+<tr class="even">
 <td align="left">INDEPENDENT</td>
 <td align="right">2</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">KATTER’S AUSTRALIAN PARTY</td>
 <td align="right">1</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">NICK XENOPHON TEAM</td>
 <td align="right">1</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">THE GREENS</td>
 <td align="right">1</td>
 </tr>
@@ -298,7 +302,7 @@
 <a class="sourceLine" id="cb5-9" title="9"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span>() <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb5-10" title="10"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/guides.html">guides</a></span>(<span class="dt">fill=</span>F) <span class="op">+</span></a>
 <a class="sourceLine" id="cb5-11" title="11"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">x =</span> <span class="st">"Year"</span>, <span class="dt">y =</span> <span class="st">"Two party preferred % in favour </span><span class="ch">\n</span><span class="st">of the Liberal/National Coalition"</span>)</a></code></pre></div>
-<p><img src="fig/tpp_plot.png" width="600px" style="display: block; margin: auto;"></p>
+<p><img src="eechidna-intro_files/figure-html/unnamed-chunk-3-1.png" width="700" style="display: block; margin: auto;"></p>
 </div>
 </div>
 <div id="census-data" class="section level1">
@@ -448,11 +452,11 @@
 <div id="maps-of-the-australian-electoral-divisions" class="section level1">
 <h1 class="hasAnchor">
 <a href="#maps-of-the-australian-electoral-divisions" class="anchor"></a>Maps of the Australian electoral divisions</h1>
-<p>Electoral divisions change regularly, so many electorates represent different regions from one election to the next. A consequence of this is that the electorate Census data (for example, in 2011) may not align with those in place for any election. As a resource for addressing this problem, and also for plotting visualizations of Australia, a map of electorates for the years 2001, 2004, 2006, 2007, 2010, 2011, 2013 and 2016 are included. The <code>nat_map</code> objects (e.g. <code>nat_map16</code>) are data frames that contain the coordinates of each electoral polygon, and can be plotted using <code>ggplot2</code> graphics. The accompanying <code>nat_data</code> object (e.g. <code>nat_data16</code>) contains some information about each electoral polygon.</p>
+<p>Electoral divisions change regularly, so many electorates represent different regions from one election to the next. A consequence of this is that the electorate Census data (for example, in 2011) may not align with those in place for any election. As a resource for addressing this problem, and also for plotting visualizations of Australia, a map of electorates for the years 2001, 2004, 2006, 2007, 2010, 2011, 2013 and 2016 are included. The <code>nat_map</code> objects (e.g. <code>nat_map16</code>) are data frames that contain the coordinates of each electoral polygon, and can be plotted using <code>ggplot2</code> graphics. The accompanying <code>nat_data</code> object (e.g. <code>nat_data16</code>) contains some information about each electoral polygon. These objects can be loaded using the <code>nat_map_download</code> and <code>nat_data_download</code> functions, respectively.</p>
 <p>As an example, let’s plot a map of electorates in the 2016 election.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggthemes)</a>
-<a class="sourceLine" id="cb13-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(nat_map16)</a>
-<a class="sourceLine" id="cb13-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(nat_data16)</a>
+<a class="sourceLine" id="cb13-2" title="2">nat_map16 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/nat_map_download.html">nat_map_download</a></span>(<span class="dv">2016</span>)</a>
+<a class="sourceLine" id="cb13-3" title="3">nat_data16 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/nat_data_download.html">nat_data_download</a></span>(<span class="dv">2016</span>)</a>
 <a class="sourceLine" id="cb13-4" title="4"></a>
 <a class="sourceLine" id="cb13-5" title="5"><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">map_id=</span>id), <span class="dt">data=</span>nat_data16) <span class="op">+</span></a>
 <a class="sourceLine" id="cb13-6" title="6"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_map.html">geom_map</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">fill=</span>state), <span class="dt">map=</span>nat_map16, <span class="dt">col =</span> <span class="st">"grey50"</span>) <span class="op">+</span></a>
@@ -472,15 +476,19 @@
 <a class="sourceLine" id="cb14-7" title="7">map.winners<span class="op">$</span>PartyNm &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/character">as.character</a></span>(map.winners<span class="op">$</span>PartyNm)</a>
 <a class="sourceLine" id="cb14-8" title="8">map.winners &lt;-<span class="st"> </span>map.winners <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(group, order)</a>
 <a class="sourceLine" id="cb14-9" title="9"></a>
-<a class="sourceLine" id="cb14-10" title="10"><span class="co"># Colour cells to match that parties colours</span></a>
-<a class="sourceLine" id="cb14-11" title="11"><span class="co"># Order = Australian Labor Party, Independent, Katters, Lib/Nats Coalition, Palmer, The Greens</span></a>
-<a class="sourceLine" id="cb14-12" title="12">partycolours =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"#FF0033"</span>, <span class="st">"#000000"</span>, <span class="st">"#CC3300"</span>, <span class="st">"#0066CC"</span>, <span class="st">"#FFFF00"</span>, <span class="st">"#009900"</span>)</a>
+<a class="sourceLine" id="cb14-10" title="10"><span class="co"># Combine Liberal and National parties</span></a>
+<a class="sourceLine" id="cb14-11" title="11">map.winners &lt;-<span class="st"> </span>map.winners <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb14-12" title="12"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">PartyNm =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/ifelse">ifelse</a></span>(PartyNm <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"NATIONAL PARTY"</span>, <span class="st">"LIBERAL PARTY"</span>), <span class="st">"LIBERAL NATIONAL COALITION"</span>, PartyNm))</a>
 <a class="sourceLine" id="cb14-13" title="13"></a>
-<a class="sourceLine" id="cb14-14" title="14"></a>
-<a class="sourceLine" id="cb14-15" title="15"><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="dt">data=</span>map.winners) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb14-16" title="16"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_polygon.html">geom_polygon</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x=</span>long, <span class="dt">y=</span>lat, <span class="dt">group=</span>group, <span class="dt">fill=</span>PartyNm)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb14-17" title="17"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span>(<span class="dt">name=</span><span class="st">"Political Party"</span>, <span class="dt">values=</span>partycolours) <span class="op">+</span></a>
-<a class="sourceLine" id="cb14-18" title="18"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_map">theme_map</a></span>() <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html">coord_equal</a></span>() <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">legend.position=</span><span class="st">"bottom"</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb14-14" title="14"><span class="co"># Colour cells to match that parties colours</span></a>
+<a class="sourceLine" id="cb14-15" title="15"><span class="co"># Order = Australian Labor Party, Independent, Katters, Lib/Nats Coalition, Palmer, The Greens</span></a>
+<a class="sourceLine" id="cb14-16" title="16">partycolours =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"#FF0033"</span>, <span class="st">"#000000"</span>, <span class="st">"#CC3300"</span>, <span class="st">"#0066CC"</span>, <span class="st">"#FFFF00"</span>, <span class="st">"#009900"</span>)</a>
+<a class="sourceLine" id="cb14-17" title="17"></a>
+<a class="sourceLine" id="cb14-18" title="18"></a>
+<a class="sourceLine" id="cb14-19" title="19"><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="dt">data=</span>map.winners) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb14-20" title="20"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_polygon.html">geom_polygon</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x=</span>long, <span class="dt">y=</span>lat, <span class="dt">group=</span>group, <span class="dt">fill=</span>PartyNm)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb14-21" title="21"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span>(<span class="dt">name=</span><span class="st">"Political Party"</span>, <span class="dt">values=</span>partycolours) <span class="op">+</span></a>
+<a class="sourceLine" id="cb14-22" title="22"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_map">theme_map</a></span>() <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html">coord_equal</a></span>() <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">legend.position=</span><span class="st">"bottom"</span>)</a></code></pre></div>
 <p><img src="eechidna-intro_files/figure-html/unnamed-chunk-10-1.png" width="700" style="display: block; margin: auto;"></p>
 <p>However, the Australian electoral map is not conducive to chloropleth map, because most of the population concentrate in the five big cities, Sydney, Melbourne, Brisbane, Adelaide and Perth, which means that there are lot of very geographical tiny regions that contribute substantially to the house of representative composition. An alternative is to plot a dorling cartogram, where each electorate is represented by a circle, approximately in the geographic center of each electorate, with an underlying map. The major population centers need to have their center locations ballooned to make this feasible visually. The coordinates corresponding for the dorling cartogram have been pre-processed and correspond with the variables <code>x</code> and <code>y</code> in the <code>nat_data</code> datasets distributed in this package. These can be reproduced using the <code>aec_add_carto_f</code> function in the package.</p>
 <p>A better approach would be to use a cartogram to display the election results, which maintains the geographic location but make the sizes of the electorate polygons approximately equal. This is very hard to perfect for Australia because the size differential between electorates is huge, resulting in a cartogram where all sense of geography is demolished. This data is used to create the display of electoral results below.</p>
@@ -489,13 +497,18 @@
 <a class="sourceLine" id="cb15-3" title="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(DivisionNm, PartyNm) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb15-4" title="4"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/merge">merge</a></span>(nat_data16, <span class="dt">by.x=</span><span class="st">"DivisionNm"</span>, <span class="dt">by.y=</span><span class="st">"elect_div"</span>)</a>
 <a class="sourceLine" id="cb15-5" title="5"></a>
-<a class="sourceLine" id="cb15-6" title="6"><span class="co"># Plot dorling cartogram</span></a>
-<a class="sourceLine" id="cb15-7" title="7"><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="dt">data=</span>nat_map16) <span class="op">+</span></a>
-<a class="sourceLine" id="cb15-8" title="8"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_polygon.html">geom_polygon</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x=</span>long, <span class="dt">y=</span>lat, <span class="dt">group=</span>group),</a>
-<a class="sourceLine" id="cb15-9" title="9">               <span class="dt">fill=</span><span class="st">"grey90"</span>, <span class="dt">colour=</span><span class="st">"white"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb15-10" title="10"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>(<span class="dt">data=</span>cart.winners, <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x=</span>x, <span class="dt">y=</span>y, <span class="dt">colour=</span>PartyNm), <span class="dt">size =</span> <span class="fl">0.75</span>, <span class="dt">alpha=</span><span class="fl">0.8</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb15-11" title="11"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_colour_manual</a></span>(<span class="dt">name=</span><span class="st">"Political Party"</span>, <span class="dt">values=</span>partycolours) <span class="op">+</span></a>
-<a class="sourceLine" id="cb15-12" title="12"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_map">theme_map</a></span>() <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html">coord_equal</a></span>() <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">legend.position=</span><span class="st">"bottom"</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb15-6" title="6"><span class="co"># Combine Liberal and National parties</span></a>
+<a class="sourceLine" id="cb15-7" title="7">cart.winners &lt;-<span class="st"> </span>cart.winners <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb15-8" title="8"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">PartyNm =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/ifelse">ifelse</a></span>(PartyNm <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"NATIONAL PARTY"</span>, <span class="st">"LIBERAL PARTY"</span>), <span class="st">"LIBERAL NATIONAL COALITION"</span>, PartyNm))</a>
+<a class="sourceLine" id="cb15-9" title="9"></a>
+<a class="sourceLine" id="cb15-10" title="10"></a>
+<a class="sourceLine" id="cb15-11" title="11"><span class="co"># Plot dorling cartogram</span></a>
+<a class="sourceLine" id="cb15-12" title="12"><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="dt">data=</span>nat_map16) <span class="op">+</span></a>
+<a class="sourceLine" id="cb15-13" title="13"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_polygon.html">geom_polygon</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x=</span>long, <span class="dt">y=</span>lat, <span class="dt">group=</span>group),</a>
+<a class="sourceLine" id="cb15-14" title="14">               <span class="dt">fill=</span><span class="st">"grey90"</span>, <span class="dt">colour=</span><span class="st">"white"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb15-15" title="15"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>(<span class="dt">data=</span>cart.winners, <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x=</span>x, <span class="dt">y=</span>y, <span class="dt">colour=</span>PartyNm), <span class="dt">size =</span> <span class="fl">0.75</span>, <span class="dt">alpha=</span><span class="fl">0.8</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb15-16" title="16"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_colour_manual</a></span>(<span class="dt">name=</span><span class="st">"Political Party"</span>, <span class="dt">values=</span>partycolours) <span class="op">+</span></a>
+<a class="sourceLine" id="cb15-17" title="17"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_map">theme_map</a></span>() <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html">coord_equal</a></span>() <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">legend.position=</span><span class="st">"bottom"</span>)</a></code></pre></div>
 <p><img src="eechidna-intro_files/figure-html/unnamed-chunk-11-1.png" width="700" style="display: block; margin: auto;"></p>
 </div>
 </div>
@@ -679,8 +692,9 @@
 <div id="imputing-census-data-for-the-elections-that-do-not-have-a-census-that-matches-exactly" class="section level3">
 <h3 class="hasAnchor">
 <a href="#imputing-census-data-for-the-elections-that-do-not-have-a-census-that-matches-exactly" class="anchor"></a>Imputing Census data for the elections that do not have a Census that matches exactly</h3>
-<p>The 2004, 2007, 2010 and 2013 elections do not have a Census that directly match. Instead of matching these elections with a Census in neighbouring years, we have imputed Census data to correspond with the both time of the election and the electorate boundaries in place. This was done using an areal interpolation method over space and linear interpolation over time, via the <code>mapping_fn</code> and <code>weighted_avg_census</code> functions in this package.</p>
-<p>The resultant (imputed) Census objects are <code>abs2004</code>, <code>abs2007</code>, <code>abs2010</code> and <code>abs2013</code>. They include all of the variables in the other Census objects, aside from population, area, state and question non-response.</p>
+<p>The 2004, 2007, 2010 and 2013 elections do not have a Census that directly match. Instead of matching these elections with a Census in neighbouring years, we have imputed Census data to correspond with the both time of the election and the electorate boundaries in place. This uses the most disaggregate Census data available (Statistical Area 1). This was done using an areal interpolation method over space and linear interpolation over time, via the <code>allocate_electorate</code> and <code>weighted_avg_census_sa1</code> functions in this package.</p>
+<p>For the 2019 election, because there only exists a Census before (2016) and not after (as of Nov, 2019), we do an areal interpolation of the 2016 SA1 Census data.</p>
+<p>The resultant (imputed) Census objects are <code>abs2004</code>, <code>abs2007</code>, <code>abs2010</code>, <code>abs2013</code> and <code>abs2019</code>. They include all of the variables in the other Census objects, aside from population, area, state and question non-response.</p>
 </div>
 </div>
 <div id="for-more-details-on-how-the-data-in-this-package-was-obtained" class="section level1">

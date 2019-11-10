@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Data of the Australian Electorates from 2010 — nat_data10 • eechidna</title>
+<title>Data and centroids corresponding to the Australian Electorates from 2010 — nat_data10 • eechidna</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,12 +30,12 @@
 
 
 
-<meta property="og:title" content="Data of the Australian Electorates from 2010 — nat_data10" />
+<meta property="og:title" content="Data and centroids corresponding to the Australian Electorates from 2010 — nat_data10" />
 
 <meta property="og:description" content="A dataset containing some demographic information for each of the 150 Australian electorates.
 The data were obtained from the Australian Electoral Commission, and downloaded 
 from http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm.
-The data is published" />
+Must be loaded using the `nat_data_download` function." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -66,7 +66,7 @@ The data is published" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eechidna</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.0</span>
       </span>
     </div>
 
@@ -135,7 +135,7 @@ The data is published" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Data of the Australian Electorates from 2010</h1>
+    <h1>Data and centroids corresponding to the Australian Electorates from 2010</h1>
     <small class="dont-index">Source: <a href='https://github.com/ropenscilabs/eechidna/blob/master/R/data.R'><code>R/data.R</code></a></small>
     <div class="hidden name"><code>nat_data10.Rd</code></div>
     </div>
@@ -145,7 +145,7 @@ The data is published" />
     <p>A dataset containing some demographic information for each of the 150 Australian electorates.
 The data were obtained from the Australian Electoral Commission, and downloaded 
 from <a href='http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm'>http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm</a>.
-The data is published</p>
+Must be loaded using the `nat_data_download` function.</p>
     
     </div>
 
@@ -154,7 +154,7 @@ The data is published</p>
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
     <p>A data frame with 150 rows with the following variables:</p><ul>
-<li><p>id: numeric identifier for the polygon</p></li>
+<li><p>id: Numeric identifier for the polygon</p></li>
 <li><p>elect_div: Electorate division name</p></li>
 <li><p>state: abbreviation of the state name</p></li>
 <li><p>numccds: AEC variable that might be filled with meaning or a description down the road</p></li>

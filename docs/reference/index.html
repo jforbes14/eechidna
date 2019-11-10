@@ -60,7 +60,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eechidna</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.0</span>
       </span>
     </div>
 
@@ -168,12 +168,6 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="abs2006_e07.html">abs2006_e07</a></code> </p>
-        </td>
-        <td><p>2006 Australian Census data on all 150 electorates (2007 boundaries)</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="abs2007.html">abs2007</a></code> </p>
         </td>
         <td><p>Imputed Australian Census data for the electorates in place at time of the 2007 Federal election</p></td>
@@ -204,6 +198,12 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="abs2019.html">abs2019</a></code> </p>
+        </td>
+        <td><p>Imputed Australian Census data for the electorates in place at time of the 2019 Federal election</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="aec_add_carto_f.html">aec_add_carto_f()</a></code> </p>
         </td>
         <td><p>aec_add_carto_f - computes and binds the cartogram coordinates to original data</p></td>
@@ -228,6 +228,12 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="allocate_electorate.html">allocate_electorate()</a></code> </p>
+        </td>
+        <td><p>Determine which electoral division contains the centroid from each of the Census polygons.</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="circle.html">circle()</a></code> </p>
         </td>
         <td><p>Draw a circle</p></td>
@@ -249,6 +255,12 @@
           <p><code><a href="eechidnaR-package.html">eechidna-package</a></code> </p>
         </td>
         <td><p>Exploring Election and Census Highly Informative Data Nationally for Australia</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="extract_centroids.html">extract_centroids()</a></code> </p>
+        </td>
+        <td><p>Extract centroids from the polygons within a shapefile.</p></td>
       </tr><tr>
         
         <td>
@@ -299,6 +311,13 @@ Representatives) in each electorate.</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="fp19.html">fp19</a></code> </p>
+        </td>
+        <td><p>2019 Australian Federal election data: First preference votes for candidates (House of 
+Representatives) in each electorate.</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="get_electorate_shapes.html">get_electorate_shapes()</a></code> </p>
         </td>
         <td><p>Extract shapefiles (of Australian electorates) from raw file into fortified
@@ -321,43 +340,55 @@ map and data components.</p></td>
           <p><code><a href="mapping_fn.html">mapping_fn()</a></code> </p>
         </td>
         <td><p>Compute areas of intersection between each election boundary and those in
-the Census of interest.</p></td>
+the Census of interest. This is a less refined method than using SA1 centroids.</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="nat_data01.html">nat_data01</a></code> </p>
         </td>
-        <td><p>Data of the Australian Electorates from 2001</p></td>
+        <td><p>Data and centroids corresponding to the Australian Electorates from 2001</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="nat_data04.html">nat_data04</a></code> </p>
         </td>
-        <td><p>Data of the Australian Electorates from 2004</p></td>
+        <td><p>Data and centroids corresponding to the Australian Electorates from 2004</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="nat_data07.html">nat_data07</a></code> </p>
         </td>
-        <td><p>Data of the Australian Electorates from 2007</p></td>
+        <td><p>Data and centroids corresponding to the Australian Electorates from 2007</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="nat_data10.html">nat_data10</a></code> </p>
         </td>
-        <td><p>Data of the Australian Electorates from 2010</p></td>
+        <td><p>Data and centroids corresponding to the Australian Electorates from 2010</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="nat_data13.html">nat_data13</a></code> </p>
         </td>
-        <td><p>Data of the Australian Electorates from 2013</p></td>
+        <td><p>Data and centroids corresponding to the Australian Electorates from 2013</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="nat_data16.html">nat_data16</a></code> </p>
         </td>
-        <td><p>Data of the Australian Electorates from 2016</p></td>
+        <td><p>Data and centroids corresponding to the Australian Electorates from 2016</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="nat_data19.html">nat_data19</a></code> </p>
+        </td>
+        <td><p>Data and centroids corresponding to the Australian Electorates from 2019</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="nat_data_download.html">nat_data_download()</a></code> </p>
+        </td>
+        <td><p>Download DataFrame containing the data associated with Australian federal electorates</p></td>
       </tr><tr>
         
         <td>
@@ -394,6 +425,18 @@ the Census of interest.</p></td>
           <p><code><a href="nat_map16.html">nat_map16</a></code> </p>
         </td>
         <td><p>Map of Australian Electorates from 2016</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="nat_map19.html">nat_map19</a></code> </p>
+        </td>
+        <td><p>Map of Australian Electorates from 2019</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="nat_map_download.html">nat_map_download()</a></code> </p>
+        </td>
+        <td><p>Download DataFrame containing the polygons of Australian federal electorates</p></td>
       </tr><tr>
         
         <td>
@@ -445,6 +488,13 @@ the Census of interest.</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="tcp19.html">tcp19</a></code> </p>
+        </td>
+        <td><p>2019 Australian Federal election data: Two candidate preferred votes for candidates
+(House of Representatives) in each electorate.</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="tpp01.html">tpp01</a></code> </p>
         </td>
         <td><p>2001 Australian Federal election data: Two party preferred votes for candidates (House of Representatives) in each electorate. where Labor and Liberal parties were the two most popular parties.</p></td>
@@ -484,6 +534,13 @@ Representative) in each electorate.</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="tpp19.html">tpp19</a></code> </p>
+        </td>
+        <td><p>2019 Australian Federal election data: Two party preferred votes for candidates (House of 
+Representative) in each electorate.</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="twocand_pollingbooth_download.html">twocand_pollingbooth_download()</a></code> </p>
         </td>
         <td><p>Download two candidate preference voting data from each polling booth, from the five 
@@ -493,12 +550,19 @@ Australian Federal elections between 2004 and 2016.</p></td>
         <td>
           <p><code><a href="twoparty_pollingbooth_download.html">twoparty_pollingbooth_download()</a></code> </p>
         </td>
-        <td><p>Download two party preference voting data from each polling booth, from the six 
+        <td><p>Download two party preference voting data from each polling booth, from the seven 
 Australian Federal elections between 2001 and 2016.</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="weighted_avg_census.html">weighted_avg_census()</a></code> </p>
+        </td>
+        <td><p>Function to compute weighted average of Census information
+using imputed populations as weights.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="weighted_avg_census_sa1.html">weighted_avg_census_sa1()</a></code> </p>
         </td>
         <td><p>Function to compute weighted average of Census information
 using imputed populations as weights</p></td>

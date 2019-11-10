@@ -65,7 +65,7 @@ vignette for more details." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eechidna</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.0</span>
       </span>
     </div>
 
@@ -152,6 +152,7 @@ vignette for more details.</p>
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
     <p>A data frame with 150 rows with the following variables:</p><ul>
+<li><p>Population: Number of people in electorate</p></li>
 <li><p>DivisionNm: Name of electorate</p></li>
 <li><p>Age00_04: Percentage of people aged 0-4.</p></li>
 <li><p>Age05_14: Percentage of people aged 5-9.</p></li>
@@ -220,7 +221,13 @@ vignette for more details.</p>
 <li><p>Transformative: Percentage of employed persons who work in construction or manufacturing related industries</p></li>
 <li><p>Unemployed: Unemployment rate</p></li>
 <li><p>Volunteer: Percentage of people who work as a volunteer</p></li>
+<li><p>UniqueID: Numeric identifier that links the electoral division with Census and other election datasets.</p></li>
 </ul>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Note that this data was updated in October 2019. The older versions can be found at 
+`https://github.com/ropenscilabs/eechidna/tree/master/extra-data`</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -228,12 +235,12 @@ vignette for more details.</p>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>abs2007</span>)
 <span class='no'>abs2007</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='no'>DivisionNm</span>, <span class='no'>MedianAge</span>, <span class='no'>Unemployed</span>, <span class='no'>NoReligion</span>, <span class='no'>MedianPersonalIncome</span>) <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>()</div><div class='output co'>#&gt;   DivisionNm MedianAge Unemployed NoReligion MedianPersonalIncome
-#&gt; 1   ADELAIDE  36.00000   5.596000   24.05738             434.3310
-#&gt; 2      ASTON  36.60000   4.076000   21.27010             442.0133
-#&gt; 3   BALLARAT  37.20398   6.002811   23.52016             357.6678
-#&gt; 4      BANKS  36.95309   5.962911   11.39630             381.8281
-#&gt; 5     BARKER  39.40000   4.952000   24.47995             361.9787
-#&gt; 6     BARTON  37.02326   5.381008   13.62558             417.2510</div><div class='input'>
+#&gt; 1   ADELAIDE  37.04149   5.966005   24.12096             454.8134
+#&gt; 2      ASTON  37.45685   4.026690   21.22516             448.4792
+#&gt; 3   BALLARAT  38.04727   6.314292   23.51826             372.3830
+#&gt; 4      BANKS  37.34603   6.393358   10.60514             389.8057
+#&gt; 5     BARKER  39.98620   5.340724   24.44335             372.0820
+#&gt; 6     BARTON  37.62628   5.411089   13.51276             424.9817</div><div class='input'>
 <span class='co'># Join with two-party preferred voting data</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>ggplot2</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>tpp07</span>)
@@ -246,6 +253,8 @@ vignette for more details.</p>
     <ul class="nav nav-pills nav-stacked">
       
       <li><a href="#format">Format</a></li>
+
+      <li><a href="#details">Details</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
