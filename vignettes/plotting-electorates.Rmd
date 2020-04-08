@@ -31,7 +31,7 @@ nat_data16 <- nat_data_download(2016)
 map.winners <- fp16 %>% 
   filter(Elected == "Y") %>% 
   select(DivisionNm, PartyNm) %>% 
-  merge(nat_map16, by.x="DivisionNm", by.y="elect_div")
+  left_join(nat_map16, by = c("DivisionNm" = "elect_div"))
 ```
 
 There are state-specific pseudonyms for the Liberal-National Party coalition, and for illustration purposes these are grouped into one category we will call "Liberal National Coalition". These political groups are set colours that roughly match their party colours.
@@ -67,7 +67,7 @@ cart.winners <- fp16 %>%
   filter(Elected == "Y") %>% 
   select(DivisionNm, PartyNm) %>% 
   mutate(PartyNm = ifelse(PartyNm %in% c("LIBERAL PARTY", "NATIONAL PARTY"), "LIB/NATS COALITION", PartyNm)) %>% 
-  merge(nat_data16, by.x="DivisionNm", by.y="elect_div")
+  left_join(nat_data16, by = c("DivisionNm" = "elect_div"))
 
 # Plot it
 ggplot(data=nat_map16) +
