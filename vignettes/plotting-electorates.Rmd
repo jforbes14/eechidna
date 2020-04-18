@@ -18,7 +18,7 @@ knitr::opts_chunk$set(fig.width = 6,
 
 This vignette describes how to make a map of the Australian election results. It requires merging polygons of the electoral regions, with election results using the electorate id's or unique names. The `nat_map16` contains the electorate polygons and `fp16` contains the results of the 2016 Federal election. `nat_map16` must be loaded using `nat_map_download`.
 
-```{r load-read-merge, message=FALSE, error = TRUE, warning=FALSE, echo=FALSE, tidy=TRUE}
+```{r load-read-merge, message=FALSE, error = TRUE, warning=FALSE, echo=TRUE}
 library(eechidna)
 library(tidyverse)
 
@@ -28,33 +28,25 @@ nat_map16 <- nat_map_download(2016)
 nat_data16 <- nat_data_download(2016)
 
 # Winners
-map.winners <- fp16 %>% filter(Elected == "Y") %>% 
+map.winners <- fp16 %>% 
+  filter(Elected == "Y") %>% 
   select(DivisionNm, PartyNm) %>% 
-  merge(nat_map16, by.x="DivisionNm", by.y="elect_div")
-
-# Function to make all character fields upper case
-chr_upper <- function(df) {
-  fc_cols <- sapply(df, class) == 'factor'
-  df[, fc_cols] <- lapply(df[, fc_cols], as.character)
-  
-  ch_cols <- sapply(df, class) == 'character'
-  df[, ch_cols] <- lapply(df[, ch_cols], toupper)
-  return(df)
-}
+  left_join(nat_map16, by = c("DivisionNm" = "elect_div"))
 ```
 
 There are state-specific pseudonyms for the Liberal-National Party coalition, and for illustration purposes these are grouped into one category we will call "Liberal National Coalition". These political groups are set colours that roughly match their party colours.
 
-```{r group, message=FALSE, error = TRUE, warning=FALSE, echo=TRUE, tidy=TRUE}
+```{r group, message=FALSE, error = TRUE, warning=FALSE, echo=TRUE}
 # Grouping different Lib/Nats togethers
-map.winners$PartyNm <- as.character(map.winners$PartyNm)
 map.winners <- map.winners %>% 
-  mutate(PartyNm = ifelse(PartyNm %in% c("LIBERAL PARTY", "NATIONAL PARTY"), "LIB/NATS COALITION", PartyNm)) %>% 
+  mutate(PartyNm = as.character(PartyNm),
+         PartyNm = ifelse(PartyNm %in% c("LIBERAL PARTY", "NATIONAL PARTY"), 
+                          "LIB/NATS COALITION", PartyNm)) %>% 
   arrange(group, order)
 
 # Colour cells to match that parties colours
 # Order = Australian Labor Party, Independent, Katters, Lib/Nats Coalition, Palmer, The Greens
-partycolours = c("#FF0033", "#000000", "#CC3300", "#0066CC", "#FFFF00", "#009900")
+partycolours <- c("#FF0033", "#000000", "#CC3300", "#0066CC", "#FFFF00", "#009900")
 ```
 
 ```{r fig.width=7, fig.height=6, echo=TRUE, warning=FALSE, message=FALSE, error=FALSE, tidy=TRUE}
@@ -75,7 +67,7 @@ cart.winners <- fp16 %>%
   filter(Elected == "Y") %>% 
   select(DivisionNm, PartyNm) %>% 
   mutate(PartyNm = ifelse(PartyNm %in% c("LIBERAL PARTY", "NATIONAL PARTY"), "LIB/NATS COALITION", PartyNm)) %>% 
-  merge(nat_data16, by.x="DivisionNm", by.y="elect_div")
+  left_join(nat_data16, by = c("DivisionNm" = "elect_div"))
 
 # Plot it
 ggplot(data=nat_map16) +

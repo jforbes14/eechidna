@@ -5,6 +5,7 @@ date: "`r Sys.Date()`"
 output: 
     rmarkdown::html_vignette:
         toc: true
+        df_print: kable
 vignette: >
   %\VignetteIndexEntry{Exploring the Election data: a case study of 2016}
   %\VignetteEngine{knitr::rmarkdown}
@@ -40,7 +41,7 @@ Data object name        | Description
 ----------------------- | ------------------------------------------------------------
 fp16                    | first preference votes for candidates at each electorate (2016)
 tpp16                   | two party preferred votes for candidates at each electorate (2016)
-tcp16                   | two condidate preferred votes for candidates at each electorate (2016)
+tcp16                   | two candidate preferred votes for candidates at each electorate (2016)
 
 The suffix `16` corresponds with the 2016 federal election, so objects for other elections will have an equivalent suffix, e.g. `fp07` contains first preference votes for candidates in each electorate from the 2007 federal election.
 
@@ -62,7 +63,7 @@ data(abs2016)
 # inspect the data frame
 glimpse(fp16)
 # show the first few rows
-head(fp16) %>% kable
+head(fp16) 
 ```
 
 We can see that the data contains `r formatC(nrow(fp16), big.mark=",", drop0trailing=TRUE, format="f")` rows and `r ncol(fp16)` columns. Each of the six data objects can be accessed and inspected in this way. Note that some parties have slightly different names in different states. We've simplified the data by renaming some of the parties to the varient of the name that won the most votes. 
@@ -85,8 +86,7 @@ who_won <- tcp16 %>%
   arrange(desc(n)) 
 
 # inspect
-who_won %>% 
-  kable()
+who_won 
 
 # plot
 library(scales)
@@ -118,8 +118,7 @@ total_votes_for_parties <- fp16 %>%
 
 #  inspect
 total_votes_for_parties %>% 
-  head %>% # just the first 10 rows
-  kable
+  head # just the first 10 rows
 ```
 
 The table above shows a similar result, with the Liberal Party recieving the most ordinary votes. 
@@ -155,8 +154,7 @@ who_most_votes %>%
   mutate(total_votes_for_candidate = 
            prettyNum(total_votes_for_candidate, 
                      big.mark = ","))  %>% 
-  head %>% 
-  kable
+  head()
 ```
 
 But this is a crude measure of how successful a candidate was in the election, because electorates with more people will result in more votes for the winner, even if the victory is only by a tiny margin. So let's remove the effect of the population size in the electorates by finding out who won the highest proportion of first preference votes in their electorate. 
@@ -174,8 +172,7 @@ who_most_votes_prop %>%
   mutate(percent_votes_for_candidate = 
            prettyNum(percent_votes_for_candidate, 
                      big.mark = ","))  %>% 
-  head %>% 
-  kable
+  head()
 ```
 
 In the above table (which shows just the first ten rows for convienience) we see that Julie Bishop received the highest proportion of first preference votes in any electorate, as well as a few more familiar names doing very well in their electorates. We can see that taking about 65% of the first preference vote in an electorate counts as a huge win. But what about who won with the least amount of first preference votes?
@@ -189,7 +186,7 @@ who_won_least_votes_prop <- fp16 %>%
   mutate(candidate_full_name = paste0(GivenNm, " ", Surname, " (", CandidateID, ")")) %>% 
   select(candidate_full_name, PartyNm, DivisionNm, Percent)
 
-who_won_least_votes_prop %>% head %>% kable
+who_won_least_votes_prop %>% head()
 ```
 
 Michael Danby won Melbourne Ports with just 27% of first preference votes.
@@ -208,8 +205,7 @@ who_won_smallest_margin <- tcp16 %>%
 
 # have a look
 who_won_smallest_margin %>%
- head %>%
- kable
+ head()
 ```
 
 We see that Labor candidate for Herbert, Cathy O'Toole, managed to secure the seat by a margin of only 35 votes - equating to 0.04% of total votes. Let's see the distribution of first preference votes in Herbert for a bit more detail.
@@ -221,7 +217,7 @@ herbert_fp <- fp16 %>%
   mutate(candidate_full_name = paste0(GivenNm, " ", Surname, " (", CandidateID, ")")) %>% 
   select(candidate_full_name, PartyNm, DivisionNm, Percent, OrdinaryVotes)
 
-herbert_fp %>% kable
+herbert_fp
 ```
 
 We see that the greatest proportion of first preferences in Herbert actually went to Ewen Jones (Liberal), not to Cathy O'Toole. The win is due to preference flow from minor parties to Labor.
@@ -343,8 +339,7 @@ multiple_regression_model <-
 
 multiple_regression_model %>% 
   glance %>% 
-  dmap(round, 3) %>% 
-  kable
+  dmap(round, 3)
 ```
 
 The table below shows the variables that have a significant effect on the percentage of Labor votes across all electorates:
@@ -355,8 +350,7 @@ multiple_regression_model %>%
   tidy %>% 
   filter(p.value < 0.05) %>% 
   dmap_if(is.numeric, round, 3) %>% 
-  arrange(p.value) %>% 
-  kable
+  arrange(p.value) 
 ```
 
 In the plots below, we can see the Census variables that have a statistically significant relationship with the percentage of Labor votes. There seems to be a positive relationship between voting Labor and defacto relationships, university education and public housing tenants. Labour force participation and proportion of workers in extractive jobs (e.g. mining, gas, agriculture), and median personal income are a negatively correlated variables, meaning that increases in the proportion of workers in extractive jobs and increases in median personal income correlate with decreases in the percentage of the Labor vote in that electorate.

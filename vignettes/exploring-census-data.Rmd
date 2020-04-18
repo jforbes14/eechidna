@@ -5,6 +5,7 @@ date: "`r Sys.Date()`"
 output: 
     rmarkdown::html_vignette:
         toc: true
+        df_print: kable
 vignette: >
   %\VignetteIndexEntry{Exploring the Census data: A case study of 2016}
   %\VignetteEngine{knitr::rmarkdown}
@@ -137,7 +138,7 @@ data_dictionary <- data.frame(
 
 ```{r display-data-dictionary, echo = FALSE}
 library(knitr)
-kable(data_dictionary)
+data_dictionary
 ```
 
 So let's just look at some nice and simple plots using `ggplot2`.
