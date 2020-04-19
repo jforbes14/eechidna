@@ -7,48 +7,49 @@ library(tidyverse)
 # ---------------------------------------------------------------------------------------------------------
 
 # Function to re-label parties so that names are common
-relabel_parties <- function(df, PartyNm) {
+relabel_parties <- function(df, PartyNm = PartyNm) {
   out <- df %>% 
-    ungroup() %>% 
-    mutate(PartyNm = case_when(
-      PartyNm %in% c("AUSTRALIAN LABOR PARTY (NORTHERN TERRITORY) BRANCH",  "LABOR", "AUSTRALIAN LABOR PARTY (ACT BRANCH)", "AUSTRALIAN LABOR PARTY (ALP)", "COUNTRY LABOR") ~ "AUSTRALIAN LABOR PARTY",
-      PartyNm %in% c("C.L.P.", "COUNTRY LIBERALS (NT)", "LIBERAL NATIONAL PARTY OF QUEENSLAND", "CLP-THE TERRITORY PARTY", "LIBERALS", "LIBERAL") ~ "LIBERAL PARTY",
-      PartyNm %in% c("THE NATIONALS", "NATIONAL PARTY", "NATIONALS") ~ "NATIONAL PARTY",
-      PartyNm %in% c("THE GREENS (WA)", "AUSTRALIAN GREENS") ~ "THE GREENS", 
-      PartyNm %in% c("") ~ "INFORMAL", 
-      PartyNm %in% c("AUSTRALIAN DEMOCRATS") ~ "DEMOCRATS",
-      PartyNm %in% c("NEW COUNTRY") ~ "NEW COUNTRY PARTY",
-      PartyNm %in% c("ONE NATION WA", "PAULINE HANSON'S ONE NATION (NSW DIVISION)", "PAULINE HANSON'S ONE NATION") ~ "ONE NATION", 
-      PartyNm %in% c("SEX PARTY") ~ "AUSTRALIAN SEX PARTY", 
-      PartyNm %in% c("CHRISTIAN DEMOCRATIC PARTY (FRED NILE GROUP)", "CDP CHRISTIAN PARTY") ~ "CHRISTIAN DEMOCRATIC PARTY",
-      PartyNm %in% c("CITIZENS ELECTORAL COUNCIL OF AUSTRALIA") ~ "CITIZENS ELECTORAL COUNCIL",
-      PartyNm %in% c("AUSTRALIAN COUNTRY PARTY") ~ "COUNTRY ALLIANCE", 
-      PartyNm %in% c("DEMOCRATIC LABOUR PARTY (DLP)", "DLP DEMOCRATIC LABOUR PARTY", "D.L.P. - DEMOCRATIC LABOR PARTY") ~ "DEMOCRATIC LABOR PARTY",
-      PartyNm %in% c("FAMILY FIRST PARTY") ~ "FAMILY FIRST", 
-      PartyNm %in% c("SCIENCE PARTY") ~ "FUTURE PARTY",
-      PartyNm %in% c("HELP END MARIJUANA PROHIBITION") ~ "MARIJUANA (HEMP) PARTY",
-      PartyNm %in% c("LDP", "LIBERAL DEMOCRATS (LDP)") ~ "LIBERAL DEMOCRATS",
-      PartyNm %in% c("NON-CUSTODIAL PARENTS PARTY (EQUAL PARENTING)") ~ "NON-CUSTODIAL PARENTS PARTY",
-      PartyNm %in% c("SENATOR ONLINE (INTERNET VOTING BILLS/ISSUES)", "ONLINE DIRECT DEMOCRACY - (EMPOWERING THE PEOPLE!)") ~ "SENATOR ONLINE",
-      PartyNm %in% c("STABLE POPULATION PARTY") ~ "SUSTAINABLE AUSTRALIA",
-      PartyNm %in% c("AUSTRALIAN VOICE") ~ "AUSTRALIAN VOICE PARTY",
-      is.na(PartyNm) ~ "INDEPENDENT", 
-      TRUE ~ PartyNm))
+    ungroup %>% 
+    mutate(PartyNm = ifelse(
+      PartyNm %in% c("AUSTRALIAN LABOR PARTY (NORTHERN TERRITORY) BRANCH",  "LABOR", "AUSTRALIAN LABOR PARTY (ACT BRANCH)", "AUSTRALIAN LABOR PARTY (ALP)", "COUNTRY LABOR"), "AUSTRALIAN LABOR PARTY",
+      ifelse(PartyNm %in% c("C.L.P.", "COUNTRY LIBERALS (NT)", "LIBERAL NATIONAL PARTY OF QUEENSLAND", "CLP-THE TERRITORY PARTY", "LIBERALS", "LIBERAL"), "LIBERAL PARTY",
+        
+        ifelse(PartyNm %in% c("THE NATIONALS", "NATIONAL PARTY", "NATIONALS"), "NATIONAL PARTY",
+          
+          ifelse(PartyNm %in% c("THE GREENS (WA)", "AUSTRALIAN GREENS"), "THE GREENS", 
+            ifelse(PartyNm %in% c(""), "INFORMAL", 
+              ifelse(PartyNm %in% c("AUSTRALIAN DEMOCRATS"), "DEMOCRATS",
+                ifelse(PartyNm %in% c("NEW COUNTRY"), "NEW COUNTRY PARTY",
+                  ifelse(PartyNm %in% c("ONE NATION WA", "PAULINE HANSON'S ONE NATION (NSW DIVISION)", "PAULINE HANSON'S ONE NATION"), "ONE NATION", 
+                    ifelse(PartyNm %in% c("SEX PARTY"), "AUSTRALIAN SEX PARTY", 
+                      ifelse(PartyNm %in% c("CHRISTIAN DEMOCRATIC PARTY (FRED NILE GROUP)", "CDP CHRISTIAN PARTY"), "CHRISTIAN DEMOCRATIC PARTY",
+                        ifelse(PartyNm %in% c("CITIZENS ELECTORAL COUNCIL OF AUSTRALIA"), "CITIZENS ELECTORAL COUNCIL",
+                          ifelse(PartyNm %in% c("AUSTRALIAN COUNTRY PARTY"), "COUNTRY ALLIANCE", 
+                            ifelse(PartyNm %in% c("DEMOCRATIC LABOUR PARTY (DLP)", "DLP DEMOCRATIC LABOUR PARTY", "D.L.P. - DEMOCRATIC LABOR PARTY"), "DEMOCRATIC LABOR PARTY",
+                              ifelse(PartyNm %in% c("FAMILY FIRST PARTY"), "FAMILY FIRST", 
+                                ifelse(PartyNm %in% c("SCIENCE PARTY"), "FUTURE PARTY",
+                                  ifelse(PartyNm %in% c("HELP END MARIJUANA PROHIBITION"), "MARIJUANA (HEMP) PARTY",
+                                    ifelse(PartyNm %in% c("LDP", "LIBERAL DEMOCRATS (LDP)"), "LIBERAL DEMOCRATS",
+                                      ifelse(PartyNm %in% c("NON-CUSTODIAL PARENTS PARTY (EQUAL PARENTING)"), "NON-CUSTODIAL PARENTS PARTY",
+                                        ifelse(PartyNm %in% c("SENATOR ONLINE (INTERNET VOTING BILLS/ISSUES)", "ONLINE DIRECT DEMOCRACY - (EMPOWERING THE PEOPLE!)"), "SENATOR ONLINE",
+                                          ifelse(PartyNm %in% c("STABLE POPULATION PARTY"), "SUSTAINABLE AUSTRALIA",
+                                            ifelse(PartyNm %in% c("AUSTRALIAN VOICE"), "AUSTRALIAN VOICE PARTY",
+                                              ifelse(is.na(PartyNm), "INDEPENDENT", PartyNm
+                                              )))))))))))))))))))))))
   return(out)
 }
 
 # Function to reabbreviate parties
 
-reabbrev_parties <- function(df, PartyNm) {
+reabbrev_parties <- function(df, PartyNm = PartyNm) {
   out <- df %>%
-    ungroup() %>% 
-    mutate(PartyAb = case_when(
-      PartyAb %in% c("CLR", "ALP") ~ "ALP", 
-      PartyAb %in% c("CLP", "LP", "LNP") ~ "LP", 
-      PartyAb %in% c("GRN", "GWA", "TG") ~ "GRN", 
-      PartyAb %in% c("HAN","ON") ~ "ON",
-      is.na(PartyAb) ~ "IND", 
-      TRUE ~ PartyAb))
+    ungroup %>% 
+    mutate(PartyAb = ifelse(PartyAb %in% c("CLR", "ALP"), "ALP", 
+      ifelse(PartyAb %in% c("CLP", "LP", "LNP"), "LP", 
+        ifelse(PartyAb %in% c("GRN", "GWA", "TG"), "GRN", 
+          ifelse(PartyAb %in% c("HAN","ON"), "ON",
+            ifelse(is.na(PartyAb), "IND", 
+              PartyAb)))))) 
   
   return(out)
 }
@@ -663,17 +664,16 @@ my_ids <- my_ids %>%
 # Renamed electorates: FRASER became FENNER, PROSPECT became MCMAHON, THROSBY became WHITLAM
 
 my_ids <- my_ids %>% 
-  mutate(UniqueID = case_when(DivisionNm == "BONYTHON" ~ 412, 
-                              DivisionNm == "BURKE" ~ 238, 
-                              DivisionNm == "CHARLTON" ~ 148,  
-                              DivisionNm == "FRASER" ~ 802, 
-                              DivisionNm == "GWYDIR" ~ 149,
-                              DivisionNm == "KALGOORLIE" ~ 517,
-                              DivisionNm == "LOWE" ~ 150,
-                              DivisionNm == "PROSPECT" ~ 128,
-                              DivisionNm == "THROSBY" ~ 147, 
-                              TRUE ~ UniqueID
-                  ))
+  mutate(UniqueID = ifelse(DivisionNm == "BONYTHON", 412, 
+    ifelse(DivisionNm == "BURKE", 238, 
+      ifelse(DivisionNm == "CHARLTON", 148,  
+        ifelse(DivisionNm == "FRASER", 802, 
+          ifelse(DivisionNm == "GWYDIR", 149,
+            ifelse(DivisionNm == "KALGOORLIE", 517,
+              ifelse(DivisionNm == "LOWE", 150,
+                ifelse(DivisionNm == "PROSPECT", 128,
+                  ifelse(DivisionNm == "THROSBY", 147, UniqueID
+                  ))))))))))
 
 save(my_ids, file = "data-raw/supplement/my_ids.rda")
 

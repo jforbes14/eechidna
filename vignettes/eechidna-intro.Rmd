@@ -5,7 +5,6 @@ date: "`r Sys.Date()`"
 output: 
     rmarkdown::html_vignette:
         toc: true
-        df_print: kable
 vignette: >
   %\VignetteIndexEntry{An Introduction to Exploring Election and Census Highly Informative Data Nationally for Australia}
   %\VignetteEngine{knitr::rmarkdown}
@@ -39,7 +38,8 @@ data16 <- left_join(tpp16 %>% select(LNP_Percent, UniqueID), abs2016, by = "Uniq
 # See what it looks like
 data16 %>% 
   select(LNP_Percent, DivisionNm, Population, Area, AusCitizen, MedianPersonalIncome, Renting) %>% 
-  head()
+  head() %>% 
+  kable
 ```
 
 
@@ -72,7 +72,8 @@ who_won <- tcp16 %>%
   arrange(desc(n)) 
 
 # Inspect
-who_won
+who_won %>% 
+  kable()
 ```
 
 We see that Liberal/National Coalition won with 76 seats, which is just enough to secure a majority in the House of Representatives.
@@ -139,7 +140,8 @@ dim(abs2016)
 # Preview some of the data
 abs2016 %>% 
   select(DivisionNm, State, Population, Area, AusCitizen, BachelorAbv, Indigenous, MedianAge, Unemployed) %>%
-  head()
+  head %>% 
+  kable
 ```
 
 ### Income and unemployment by state
@@ -185,16 +187,14 @@ data(abs2006)
 data(abs2001)
 
 # Bind and plot 
-bind_rows(abs2016 %>% mutate(year = "2016"), 
-          abs2011 %>% mutate(year = "2011"), 
-          abs2006 %>% mutate(year = "2006"), 
-          abs2001 %>% mutate(year = "2001")) %>% 
+bind_rows(abs2016 %>% mutate(year = "2016"), abs2011 %>% mutate(year = "2011"), abs2006 %>% mutate(year = "2006"), abs2001 %>% mutate(year = "2001")) %>% 
   ggplot(aes(x = year, y = MedianAge, col = year)) + 
   geom_boxplot() +
   geom_jitter(alpha = 0.3) +
   guides(col = F) + 
   labs(x = "Year", y = "Median Age") +
   theme_minimal()
+  
 ```
 
 # Maps of the Australian electoral divisions
@@ -285,7 +285,8 @@ lmod <- data16 %>%
 # See if the variables are jointly significant
 library(broom)
 lmod %>% 
-  glance()
+  glance %>% 
+  kable
 ```
 
 We see that electoral socio-demographics from the Census are jointly significant in predicting the two party preferred vote. 
@@ -293,9 +294,10 @@ We see that electoral socio-demographics from the Census are jointly significant
 ```{r}
 # See which variables are individually significant
 lmod %>% 
-  tidy() %>% 
+  tidy %>% 
   filter(p.value < 0.05) %>% 
-  arrange(p.value) 
+  arrange(p.value) %>% 
+  kable
 ```
 
 Many variables are individually significant too.
