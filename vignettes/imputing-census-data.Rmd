@@ -5,7 +5,6 @@ date: "`r Sys.Date()`"
 output: 
     rmarkdown::html_vignette:
         toc: true
-        df_print: kable
 vignette: >
   %\VignetteIndexEntry{Imputing electoral Census data for election years}
   %\VignetteEngine{knitr::rmarkdown}
@@ -151,13 +150,15 @@ abs2013 <- (2/5)*(select(census_aec13_16, -DivisionNm)) + (3/5)*(select(census_a
 abs2013$DivisionNm <- census_aec13_16$DivisionNm
 
 abs2013 %>% select(DivisionNm, Age00_04, Age05_14, Age15_19, BachelorAbv, MedianPersonalIncome, Owned, NoReligion) %>%
-  head() 
+  head() %>% 
+  kable
 ```
 
 ```{r, echo = F}
 data("abs2013")
 abs2013 %>% select(DivisionNm, Age00_04, Age05_14, Age15_19, BachelorAbv, MedianPersonalIncome, Owned, NoReligion) %>%
-  head()
+  head() %>% 
+  kable
 ```
 
 ## Summary
