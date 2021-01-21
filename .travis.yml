@@ -1,9 +1,5 @@
 language: r
 
-before_install:
-  - R -e 'install.packages("rgdal", repos=c("http://R-Forge.R-project.org", "http://cran.rstudio.com"))'
-
-dist: trusty
 sudo: false
 
 cache:
@@ -32,6 +28,7 @@ addons:
       - libjq-dev
 
 before_install:
+    - R -e 'install.packages("rgdal", repos=c("http://R-Forge.R-project.org", "http://cran.rstudio.com"))'
     - sudo add-apt-repository -y ppa:ubuntugis/ubuntugis-unstable
     - sudo add-apt-repository -y ppa:opencpu/jq
     - sudo apt-get --yes --force-yes update -qq
