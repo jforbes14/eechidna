@@ -65,8 +65,8 @@ Maintainer: Jeremy Forbes <jeremyforbes1995@gmail.com>
 LazyData: true
 ByteCompile: TRUE
 License: GPL (>= 2)
-URL: https://github.com/ropenscilabs/eechidna
+URL: https://github.com/jforbes14/eechidna
 VignetteBuilder: knitr
 RoxygenNote: 6.1.1
-BugReports: https://github.com/ropenscilabs/eechidna/issues
+BugReports: https://github.com/jforbes14/eechidna/issues
 Language: en-US

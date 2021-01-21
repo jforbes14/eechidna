@@ -6,24 +6,24 @@
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/eechidna)](http://cran.r-project.org/package=eechidna)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/eechidna)](http://cran.rstudio.com/web/packages/eechidna/index.html)
 [![Travis-CI Build
-Status](https://travis-ci.org/ropenscilabs/eechidna.svg?branch=master)](https://travis-ci.org/ropenscilabs/eechidna)
+Status](https://api.travis-ci.com/jforbes14/eechidna.svg?branch=master)](https://travis-ci.com/github/jforbes14/eechidna)
 [![AppVeyor Build
-Status](https://ci.appveyor.com/api/projects/status/fbpks81w1jqgimxv?svg=true)](https://ci.appveyor.com/project/ropenscilabs/eechidna)
+Status](https://ci.appveyor.com/api/projects/status/fbpks81w1jqgimxv?svg=true)](https://ci.appveyor.com/project/jforbes14/eechidna)
 
 ## Exploring Election and Census Highly Informative Data Nationally for Australia
 
 The R package *eechidna* provides data from the Australian Federal
-elections in 2001, 2004, 2007, 2010, 2013 and 2016, along with the
+elections in 2001, 2004, 2007, 2010, 2013, 2016 and 2019, along with the
 Australian Census information for each House of Representatives
 electorate from the 2001, 2006, 2011 and 2016 Censuses. Additionally,
-Census information is imputed for electorates in years 2004, 2007, 2010
-and 2013. It also includes tools for visualizing and analysing the data.
+Census information is imputed for electorates in years 2004, 2007, 2010,
+2013 and 2019. It also includes tools for visualizing and analysing the
+data.
 
 This package was developed during the [rOpenSci auunconf
 event](http://auunconf.ropensci.org/) in Brisbane, Queensland, during
-21-22 April 2016. It has been updated during the 2017 rOpenSci auunconf
-event, and most recently in March 2019 with the addition of election and
-Census information for the events between 2001 and 2011. [Peter
+21-22 April 2016. It has been updated many times since to include
+election and Census information for 2001, 2011 and 2019. [Peter
 Ellis’](https://github.com/ellisp/) work on the NZ electoral data was
 an important inspiration for this package.
 
@@ -39,7 +39,7 @@ Or you can install the development version from github, which may have
 some changes that are not yet on CRAN, using `devtools`, like this:
 
 ``` r
-devtools::install_github("ropenscilabs/eechidna", 
+devtools::install_github("jforbes14/eechidna", 
                          build_vignettes = TRUE)
 library(eechidna)
 ```
@@ -66,17 +66,17 @@ package, and demonstrate how to analyse the data using R. These can be
 found in the *articles* tab at the top of this page.
 
   - [An introduction to
-    eechidna](https://ropenscilabs.github.io/eechidna/articles/eechidna-intro.html):
+    eechidna](https://jforbes14.github.io/eechidna/articles/eechidna-intro.html):
     an overview of the package contents and examples of how to use the
     data.
 
   - [Exploring election
-    data](https://ropenscilabs.github.io/eechidna/articles/exploring-election-data.html):
+    data](https://jforbes14.github.io/eechidna/articles/exploring-election-data.html):
     examples of wrangling data from the 2016 Federal election data to
     gain insights.
 
   - [Exploring Census
-    data](https://ropenscilabs.github.io/eechidna/articles/exploring-census-data.html):
+    data](https://jforbes14.github.io/eechidna/articles/exploring-census-data.html):
     visualizing 2016 Census data to analyse patterns in electoral
     population characteristics.
 
@@ -88,17 +88,17 @@ Australia. These too are found in the *articles* tab at the top of this
 page.
 
   - [Mapping federal
-    electorates](https://ropenscilabs.github.io/eechidna/articles/plotting-electorates.html):
+    electorates](https://jforbes14.github.io/eechidna/articles/plotting-electorates.html):
     how to plot a map of Australian federal electorates, and how to
     better visualize electoral voting data using a cartogram.
 
   - [Mapping polling
-    booths](https://ropenscilabs.github.io/eechidna/articles/plotting-polling-stns.html):
+    booths](https://jforbes14.github.io/eechidna/articles/plotting-polling-stns.html):
     examples of how to plot the polling booth locations and associated
     voting data.
 
   - [Getting Australian electoral
-    maps](https://ropenscilabs.github.io/eechidna/articles/getting-ozShapefiles.html):
+    maps](https://jforbes14.github.io/eechidna/articles/getting-ozShapefiles.html):
     details the process to produce usable electoral maps from the
     original shapefiles.
 
@@ -106,9 +106,9 @@ Additionally, there is a vignette on how we have imputed electoral
 Census data in election years for which a Census does not exactly align.
 
   - [Imputing Census data for non-Census
-    years](https://ropenscilabs.github.io/eechidna/articles/imputing-census-data.html):
+    years](https://jforbes14.github.io/eechidna/articles/imputing-census-data.html):
     details the procedure used to impute Census data for 2004, 2007,
-    2010 and 2013.
+    2010, 2013 and 2019.
 
 ## License
 
@@ -130,9 +130,4 @@ Thanks to Xiaoyue Cheng for her
 the Dorling algorithm for this package. Thanks also to Roger Bivand for
 his `rgdal` and `rgeos` packages which has some key functions for
 working with shapefiles. Thanks to Scott Chamberlain and Yihui Xie for
-help with
-troubleshooting.
-
------
-
-[![ropensci\_footer](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
+help with troubleshooting.

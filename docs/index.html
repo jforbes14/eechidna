@@ -89,7 +89,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/ropenscilabs/eechidna">
+  <a href="https://github.com/jforbes14/eechidna">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -118,7 +118,7 @@
 <h2 class="hasAnchor">
 <a href="#exploring-election-and-census-highly-informative-data-nationally-for-australia" class="anchor"></a>Exploring Election and Census Highly Informative Data Nationally for Australia</h2>
 <p>The R package <em>eechidna</em> provides data from the Australian Federal elections in 2001, 2004, 2007, 2010, 2013, 2016 and 2019, along with the Australian Census information for each House of Representatives electorate from the 2001, 2006, 2011 and 2016 Censuses. Additionally, Census information is imputed for electorates in years 2004, 2007, 2010, 2013 and 2019. It also includes tools for visualizing and analysing the data.</p>
-<p>This package was developed during the <a href="http://auunconf.ropensci.org/">rOpenSci auunconf event</a> in Brisbane, Queensland, during 21-22 April 2016. It has been updated during the 2017 rOpenSci auunconf event, and recently in 2019 with the addition of election and Census information for the events between 2001 and 2011, as well as 2019. <a href="https://github.com/ellisp/">Peter Ellis’</a> work on the NZ electoral data was an important inspiration for this package.</p>
+<p>This package was developed during the <a href="http://auunconf.ropensci.org/">rOpenSci auunconf event</a> in Brisbane, Queensland, during 21-22 April 2016. It has been updated many times since to include election and Census information for 2001, 2011 and 2019. <a href="https://github.com/ellisp/">Peter Ellis’</a> work on the NZ electoral data was an important inspiration for this package.</p>
 </div>
 <div id="how-to-install" class="section level2">
 <h2 class="hasAnchor">
@@ -126,7 +126,7 @@
 <p>You can install the latest release of the package from CRAN like this</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"eechidna"</span>)</a></code></pre></div>
 <p>Or you can install the development version from github, which may have some changes that are not yet on CRAN, using <code>devtools</code>, like this:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"ropenscilabs/eechidna"</span>, </a>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"jforbes14/eechidna"</span>, </a>
 <a class="sourceLine" id="cb2-2" title="2">                         <span class="dt">build_vignettes =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb2-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(eechidna)</a></code></pre></div>
 <p>If you are using Linux, you may need some additional libraries for the mapping functions, you can get these with this line:</p>
@@ -138,20 +138,20 @@
 <p>The package consists of several datasets, which includes Australian Census data at electorate level, Australian Federal election (House of Representatives) voting data from electorates and polling booths, and shapefiles for Australian electoral districts at various points in time. In addition to the data provided, <code>eechidna</code> includes a highly interactive web app for exploring the election and census data together. This app uses the shiny framework, and can be run locally on your computer with the command <code>eechidna::launchApp()</code>. There is a video demo of the app here: <a href="https://vimeo.com/167367369" class="uri">https://vimeo.com/167367369</a>.</p>
 <p>We have many vignettes that show how to access these data in the package, and demonstrate how to analyse the data using R. These can be found in the <em>articles</em> tab at the top of this page.</p>
 <ul>
-<li><p><a href="https://ropenscilabs.github.io/eechidna/articles/eechidna-intro.html">An introduction to eechidna</a>: an overview of the package contents and examples of how to use the data.</p></li>
-<li><p><a href="https://ropenscilabs.github.io/eechidna/articles/exploring-election-data.html">Exploring election data</a>: examples of wrangling data from the 2016 Federal election data to gain insights.</p></li>
-<li><p><a href="https://ropenscilabs.github.io/eechidna/articles/exploring-census-data.html">Exploring Census data</a>: visualizing 2016 Census data to analyse patterns in electoral population characteristics.</p></li>
+<li><p><a href="https://jforbes14.github.io/eechidna/articles/eechidna-intro.html">An introduction to eechidna</a>: an overview of the package contents and examples of how to use the data.</p></li>
+<li><p><a href="https://jforbes14.github.io/eechidna/articles/exploring-election-data.html">Exploring election data</a>: examples of wrangling data from the 2016 Federal election data to gain insights.</p></li>
+<li><p><a href="https://jforbes14.github.io/eechidna/articles/exploring-census-data.html">Exploring Census data</a>: visualizing 2016 Census data to analyse patterns in electoral population characteristics.</p></li>
 </ul>
 <p>There are also three vignettes that demonstrate how to use the spatial data to make maps. Mapping election data for Australia is not trivial because of the extreme variation in electorate size. In these vignettes we show some methods for effectively visualizing election data in Australia. These too are found in the <em>articles</em> tab at the top of this page.</p>
 <ul>
-<li><p><a href="https://ropenscilabs.github.io/eechidna/articles/plotting-electorates.html">Mapping federal electorates</a>: how to plot a map of Australian federal electorates, and how to better visualize electoral voting data using a cartogram.</p></li>
-<li><p><a href="https://ropenscilabs.github.io/eechidna/articles/plotting-polling-stns.html">Mapping polling booths</a>: examples of how to plot the polling booth locations and associated voting data.</p></li>
-<li><p><a href="https://ropenscilabs.github.io/eechidna/articles/getting-ozShapefiles.html">Getting Australian electoral maps</a>: details the process to produce usable electoral maps from the original shapefiles.</p></li>
+<li><p><a href="https://jforbes14.github.io/eechidna/articles/plotting-electorates.html">Mapping federal electorates</a>: how to plot a map of Australian federal electorates, and how to better visualize electoral voting data using a cartogram.</p></li>
+<li><p><a href="https://jforbes14.github.io/eechidna/articles/plotting-polling-stns.html">Mapping polling booths</a>: examples of how to plot the polling booth locations and associated voting data.</p></li>
+<li><p><a href="https://jforbes14.github.io/eechidna/articles/getting-ozShapefiles.html">Getting Australian electoral maps</a>: details the process to produce usable electoral maps from the original shapefiles.</p></li>
 </ul>
 <p>Additionally, there is a vignette on how we have imputed electoral Census data in election years for which a Census does not exactly align.</p>
 <ul>
 <li>
-<a href="https://ropenscilabs.github.io/eechidna/articles/imputing-census-data.html">Imputing Census data for non-Census years</a>: details the procedure used to impute Census data for 2004, 2007, 2010, 2013 and 2019.</li>
+<a href="https://jforbes14.github.io/eechidna/articles/imputing-census-data.html">Imputing Census data for non-Census years</a>: details the procedure used to impute Census data for 2004, 2007, 2010, 2013 and 2019.</li>
 </ul>
 </div>
 <div id="license" class="section level2">
@@ -168,8 +168,6 @@
 <h2 class="hasAnchor">
 <a href="#acknowledgements" class="anchor"></a>Acknowledgements</h2>
 <p>Thanks to Xiaoyue Cheng for her <a href="https://github.com/chxy/cartogram">cartogram</a> package which supplies the Dorling algorithm for this package. Thanks also to Roger Bivand for his <code>rgdal</code> and <code>rgeos</code> packages which has some key functions for working with shapefiles. Thanks to Scott Chamberlain and Yihui Xie for help with troubleshooting.</p>
-<hr>
-<p><a href="http://ropensci.org"><img src="http://ropensci.org/public_images/github_footer.png" alt="ropensci_footer"></a></p>
 </div>
 </div>
   </div>
@@ -180,9 +178,9 @@
 <ul class="list-unstyled">
 <li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=eechidna">https://​cloud.r-project.org/​package=eechidna</a>
 </li>
-<li>Browse source code at <br><a href="https://github.com/ropenscilabs/eechidna">https://​github.com/​ropenscilabs/​eechidna</a>
+<li>Browse source code at <br><a href="https://github.com/jforbes14/eechidna">https://​github.com/​jforbes14/​eechidna</a>
 </li>
-<li>Report a bug at <br><a href="https://github.com/ropenscilabs/eechidna/issues">https://​github.com/​ropenscilabs/​eechidna/​issues</a>
+<li>Report a bug at <br><a href="https://github.com/jforbes14/eechidna/issues">https://​github.com/​jforbes14/​eechidna/​issues</a>
 </li>
 </ul>
 </div>
@@ -218,8 +216,8 @@
 <ul class="list-unstyled">
 <li><a href="http://cran.r-project.org/package=eechidna"><img src="http://www.r-pkg.org/badges/version/eechidna" alt="CRAN_Status_Badge"></a></li>
 <li><a href="http://cran.rstudio.com/web/packages/eechidna/index.html"><img src="http://cranlogs.r-pkg.org/badges/grand-total/eechidna"></a></li>
-<li><a href="https://travis-ci.org/ropenscilabs/eechidna"><img src="https://travis-ci.org/ropenscilabs/eechidna.svg?branch=master" alt="Travis-CI Build Status"></a></li>
-<li><a href="https://ci.appveyor.com/project/ropenscilabs/eechidna"><img src="https://ci.appveyor.com/api/projects/status/fbpks81w1jqgimxv?svg=true" alt="AppVeyor Build Status"></a></li>
+<li><a href="https://travis-ci.com/github/jforbes14/eechidna"><img src="https://api.travis-ci.com/jforbes14/eechidna.svg?branch=master" alt="Travis-CI Build Status"></a></li>
+<li><a href="https://ci.appveyor.com/project/jforbes14/eechidna"><img src="https://ci.appveyor.com/api/projects/status/fbpks81w1jqgimxv?svg=true" alt="AppVeyor Build Status"></a></li>
 </ul>
 </div>
 </div>

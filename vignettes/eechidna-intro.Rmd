@@ -312,4 +312,4 @@ The resultant (imputed) Census objects are `abs2004`, `abs2007`, `abs2010`, `abs
 
 # For more details on how the data in this package was obtained...
 
-Please see the vignettes on our [webpage](https://ropenscilabs.github.io/eechidna/). These detail the procedures used to obtain the election data, Census data and electorate maps, as well as the Census imputation method.
+Please see the vignettes on our [webpage](https://jforbes14.github.io/eechidna/). These detail the procedures used to obtain the election data, Census data and electorate maps, as well as the Census imputation method.
