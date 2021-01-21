@@ -45,9 +45,9 @@ Suggests:
     tidyverse,
     spelling
 Encoding: UTF-8
-Authors@R: c(person("Di", "Cook",       role = c("aut")),
+Authors@R: c(person("Jeremy", "Forbes", role = c("aut", "cre"), email = "jeremyforbes1995@gmail.com"),
+		         person("Di", "Cook",       role = c("aut")),
 		         person("Anthony", "Ebert", role = c("aut")),
-		         person("Jeremy", "Forbes", role = c("aut", "cre"), email = "jeremyforbes1995@gmail.com"),
 		         person("Heike", "Hofmann", role = c("aut")),
 	                 person("Rob", "Hyndman",   role = c("aut")),
 		         person("Thomas", "Lumley", role = c("aut")),
