@@ -16,7 +16,7 @@ relabel_parties <- function(df, PartyNm = PartyNm) {
         
         ifelse(PartyNm %in% c("THE NATIONALS", "NATIONAL PARTY", "NATIONALS"), "NATIONAL PARTY",
           
-          ifelse(PartyNm %in% c("THE GREENS (WA)", "AUSTRALIAN GREENS"), "THE GREENS", 
+          ifelse(PartyNm %in% c("THE GREENS (WA)", "THE GREENS (VIC)", "AUSTRALIAN GREENS"), "THE GREENS",
             ifelse(PartyNm %in% c(""), "INFORMAL", 
               ifelse(PartyNm %in% c("AUSTRALIAN DEMOCRATS"), "DEMOCRATS",
                 ifelse(PartyNm %in% c("NEW COUNTRY"), "NEW COUNTRY PARTY",
@@ -46,8 +46,8 @@ reabbrev_parties <- function(df, PartyNm = PartyNm) {
     ungroup %>% 
     mutate(PartyAb = ifelse(PartyAb %in% c("CLR", "ALP"), "ALP", 
       ifelse(PartyAb %in% c("CLP", "LP", "LNP"), "LP", 
-        ifelse(PartyAb %in% c("GRN", "GWA", "TG"), "GRN", 
-          ifelse(PartyAb %in% c("HAN","ON"), "ON",
+        ifelse(PartyAb %in% c("GRN", "GWA", "GVIC", "TG"), "GRN",
+          ifelse(PartyAb %in% c("HAN", "ON"), "ON",
             ifelse(is.na(PartyAb), "IND", 
               PartyAb)))))) 
   
