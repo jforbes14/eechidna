@@ -24,7 +24,7 @@ nat_map_download <- function(year, ...){
   
   year = as.numeric(year)
   suffix = substr(year, 3, 4)
-  url_git = paste0("https://github.com/ropenscilabs/eechidna/raw/master/extra-data/nat_map", suffix, ".rda")
+  url_git = paste0("https://github.com/jforbes14/eechidna/raw/master/extra-data/nat_map", suffix, ".rda")
   
   if (year == 2001) {
     nat_map01 <- 1
@@ -107,7 +107,7 @@ nat_data_download <- function(year, ...){
   
   year = as.numeric(year)
   suffix = substr(year, 3, 4)
-  url_git = paste0("https://github.com/ropenscilabs/eechidna/raw/master/extra-data/nat_data", suffix, ".rda")
+  url_git = paste0("https://github.com/jforbes14/eechidna/raw/master/extra-data/nat_data", suffix, ".rda")
   
   if (year == 2001) {
     nat_data01 <- 1
@@ -189,7 +189,7 @@ sF_download <- function(year, ...){
   
   year = as.numeric(year)
   suffix = substr(year, 3, 4)
-  url_git = paste0("https://github.com/ropenscilabs/eechidna/raw/master/extra-data/sF_", suffix, ".rda")
+  url_git = paste0("https://github.com/jforbes14/eechidna/raw/master/extra-data/sF_", suffix, ".rda")
   
   if (year == 2001) {
     sF_01 <- 1
@@ -299,7 +299,7 @@ sF_download <- function(year, ...){
 firstpref_pollingbooth_download <- function(...){
   fp_pp <- 1
   tmp <- tempfile()
-  utils::download.file("https://github.com/ropenscilabs/eechidna/raw/master/extra-data/fp_pp.rda", tmp)
+  utils::download.file("https://github.com/jforbes14/eechidna/raw/master/extra-data/fp_pp.rda", tmp)
   load(tmp)
   fp_pp 
 }
@@ -358,7 +358,7 @@ firstpref_pollingbooth_download <- function(...){
 twoparty_pollingbooth_download <- function(...){
   tpp_pp <- 1
   tmp <- tempfile()
-  utils::download.file("https://github.com/ropenscilabs/eechidna/raw/master/extra-data/tpp_pp.rda", tmp)
+  utils::download.file("https://github.com/jforbes14/eechidna/raw/master/extra-data/tpp_pp.rda", tmp)
   load(tmp)
   tpp_pp 
 }
@@ -418,7 +418,7 @@ twoparty_pollingbooth_download <- function(...){
 twocand_pollingbooth_download <- function(...){
   tcp_pp <- 1
   tmp <- tempfile()
-  utils::download.file("https://github.com/ropenscilabs/eechidna/raw/master/extra-data/tcp_pp.rda", tmp)
+  utils::download.file("https://github.com/jforbes14/eechidna/raw/master/extra-data/tcp_pp.rda", tmp)
   load(tmp)
   tcp_pp 
 }

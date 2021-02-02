@@ -1473,7 +1473,7 @@
 #' vignette for more details.
 #'
 #' Note that this data was updated in October 2019. The older versions can be found at 
-#' `https://github.com/ropenscilabs/eechidna/tree/master/extra-data`
+#' `https://github.com/jforbes14/eechidna/tree/master/extra-data`
 #' 
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
@@ -1570,7 +1570,7 @@
 #' vignette for more details.
 #'
 #' Note that this data was updated in October 2019. The older versions can be found at 
-#' `https://github.com/ropenscilabs/eechidna/tree/master/extra-data`
+#' `https://github.com/jforbes14/eechidna/tree/master/extra-data`
 #'
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
@@ -1666,7 +1666,7 @@
 #' vignette for more details.
 #' 
 #' Note that this data was updated in October 2019. The older versions can be found at 
-#' `https://github.com/ropenscilabs/eechidna/tree/master/extra-data`
+#' `https://github.com/jforbes14/eechidna/tree/master/extra-data`
 #'
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
@@ -1763,7 +1763,7 @@
 #' vignette for more details.
 #' 
 #' Note that this data was updated in October 2019. The older versions can be found at 
-#' `https://github.com/ropenscilabs/eechidna/tree/master/extra-data`
+#' `https://github.com/jforbes14/eechidna/tree/master/extra-data`
 #'
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
