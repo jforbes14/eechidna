@@ -87,7 +87,7 @@ vignette for more details.
 }
 \details{
 Note that this data was updated in October 2019. The older versions can be found at 
-`https://github.com/ropenscilabs/eechidna/tree/master/extra-data`
+`https://github.com/jforbes14/eechidna/tree/master/extra-data`
 }
 \examples{
 library(eechidna)

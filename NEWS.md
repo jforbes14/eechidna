@@ -27,3 +27,7 @@
 * Added election data, and imputed Census data, from the 2019 federal election
 * Added `UniqueID` variable to datasets so that electorates can be tracked over time (note: these were manually assigned and an electorate inherits the same ID as an electorate in a previous election if these two electoral boundaries are roughly the same)
 * Remove nat_map and nat_data objects from being loaded with eechidna, instead use the `nat_map_download` and `nat_data_download` functions to obtain these objects
+
+# eechidna 1.4.1 (2021-02-03)
+
+* Fixed UniqueID and party labels (for the Greens) for 2019 data

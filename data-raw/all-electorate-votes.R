@@ -654,6 +654,7 @@ my_ids <- abs2016 %>%
 # Add DivisionNms that are not in 2016
 
 my_ids <- my_ids %>% 
+  full_join(abs2019 %>% select(DivisionNm)) %>% 
   full_join(abs2013 %>% select(DivisionNm)) %>% 
   full_join(abs2010 %>% select(DivisionNm)) %>% 
   full_join(abs2007 %>% select(DivisionNm)) %>% 
@@ -661,7 +662,10 @@ my_ids <- my_ids %>%
   full_join(abs2001 %>% select(DivisionNm))
 
 # Add UniqueID for divisions that changed their name and for divisions that were abolished before 2016
-# Renamed electorates: FRASER became FENNER, PROSPECT became MCMAHON, THROSBY became WHITLAM
+# Renamed electorates: FRASER became FENNER, PROSPECT became MCMAHON, THROSBY became WHITLAM,
+# DENISON became CLARK, BATMAN became COOPER, MELBOURNE PORTS became MACNAMARA, MCMILLAN became MONASH, 
+# MURRAY became NICHOLLS, WAKEFIELD became SPENCE
+# New electorates in 2019: BEAN, FRASER (same name as an extinct electorate, but is actually a new distinct one)
 
 my_ids <- my_ids %>% 
   mutate(UniqueID = ifelse(DivisionNm == "BONYTHON", 412, 
@@ -672,14 +676,54 @@ my_ids <- my_ids %>%
             ifelse(DivisionNm == "KALGOORLIE", 517,
               ifelse(DivisionNm == "LOWE", 150,
                 ifelse(DivisionNm == "PROSPECT", 128,
-                  ifelse(DivisionNm == "THROSBY", 147, UniqueID
-                  ))))))))))
+                  ifelse(DivisionNm == "THROSBY", 147, 
+                    ifelse(DivisionNm == "SPENCE", 411, 
+                      ifelse(DivisionNm == "BEAN", 803, 
+                        ifelse(DivisionNm == "CLARK", 603, 
+                          ifelse(DivisionNm == "COOPER", 203, 
+                            ifelse(DivisionNm == "MACNAMARA", 232, 
+                              ifelse(DivisionNm == "MONASH", 230, 
+                                ifelse(DivisionNm == "NICHOLLS", 234, UniqueID
+                                  ))))))))))))))))) %>% unique() %>% 
+  # Add last year used where needed
+  mutate(LastYearRelevant = ifelse(DivisionNm %in% c("FRASER"), 2013, 9999)) %>% 
+  bind_rows(data.frame(DivisionNm = 'FRASER', UniqueID = 238, LastYearRelevant = 9999))
 
 save(my_ids, file = "data-raw/supplement/my_ids.rda")
 
 # Now replace any existing IDs
 
 load("data-raw/supplement/my_ids.rda")
+
+# 2019
+my_ids_2019 <- my_ids %>% 
+  filter(LastYearRelevant >= 2019) %>% 
+  select(-LastYearRelevant)
+
+fp19 <- fp19 %>% 
+  left_join(my_ids_2019, by = "DivisionNm") %>% 
+  select(-DivisionID) %>% 
+  select(UniqueID, everything())
+
+tpp19 <- tpp19 %>% 
+  left_join(my_ids_2019, by = "DivisionNm") %>% 
+  select(-DivisionID) %>% 
+  select(UniqueID, everything())
+
+tcp19 <- tcp19 %>% 
+  left_join(my_ids_2019, by = "DivisionNm") %>% 
+  select(-DivisionID) %>% 
+  select(UniqueID, everything())
+
+if (!'UniqueID' %in% colnames(abs2019)) {
+  abs2019 <- abs2019 %>% 
+    rename(UniqueID = ID)
+}
+
+abs2019 <- abs2019 %>% 
+  select(-UniqueID) %>% 
+  left_join(my_ids_2019, by = "DivisionNm") %>%
+  select(UniqueID, DivisionNm, Population, everything())
 
 # 2016
 
@@ -825,6 +869,10 @@ abs2001 <- abs2001 %>%
 
 # Save
 
+usethis::use_data(abs2019, overwrite = T, compress = "xz")
+usethis::use_data(fp19, overwrite = T, compress = "xz")
+usethis::use_data(tcp19, overwrite = T, compress = "xz")
+usethis::use_data(tpp19, overwrite = T, compress = "xz")
 usethis::use_data(abs2016, overwrite = T, compress = "xz")
 usethis::use_data(fp16, overwrite = T, compress = "xz")
 usethis::use_data(tcp16, overwrite = T, compress = "xz")
