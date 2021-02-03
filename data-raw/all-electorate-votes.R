@@ -651,13 +651,6 @@ my_ids <- abs2016 %>%
   unique() %>% 
   arrange(UniqueID)
 
-## remove REMOVE REMOVE
-my_ids <- abs2016 %>% 
-  select(UniqueID, DivisionNm) %>% 
-  unique() %>% 
-  arrange(UniqueID)
-  
-
 # Add DivisionNms that are not in 2016
 
 my_ids <- my_ids %>% 
@@ -722,8 +715,10 @@ tcp19 <- tcp19 %>%
   select(-DivisionID) %>% 
   select(UniqueID, everything())
 
-abs2019 <- abs2019 %>% 
-  rename(UniqueID = ID)
+if (!'UniqueID' %in% colnames(abs2019)) {
+  abs2019 <- abs2019 %>% 
+    rename(UniqueID = ID)
+}
 
 abs2019 <- abs2019 %>% 
   select(-UniqueID) %>% 
