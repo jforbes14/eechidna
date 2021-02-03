@@ -12,7 +12,7 @@ tcp19 <- tcp19 %>%
   left_join(tcp16 %>% select(DivisionNm, UniqueID))
 
 new_names <- c("BEAN", "CLARK", "COOPER", "FRASER", "MACNAMARA", "MONASH", "NICHOLLS", "SPENCE")
-new_IDs <- c(803, 603, 203, 238, 2018, 230, 234, 411)
+new_IDs <- c(803, 603, 203, 238, 232, 230, 234, 411)
 
 for (i in 1:length(new_names)) {
   abs2019$UniqueID[which(abs2019$DivisionNm == new_names[i])] <- new_IDs[i]
