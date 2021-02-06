@@ -63,10 +63,10 @@ centroids_sa1_2011 <- extract_centroids(sF11_sa1)
 centroids_sa1_2006 <- extract_centroids(sF06_sa1)
 centroids_sa1_2001 <- extract_centroids(sF01_sa1)
 
-#save(centroids_sa1_2016, file = "/Volumes/J_External_HD/eechidna-paper-storage/shapefiles/centroids_sa1_2016.rda")
-#save(centroids_sa1_2011, file = "/Volumes/J_External_HD/eechidna-paper-storage/shapefiles/centroids_sa1_2011.rda")
-#save(centroids_sa1_2006, file = "/Volumes/J_External_HD/eechidna-paper-storage/shapefiles/centroids_sa1_2006.rda")
-#save(centroids_sa1_2001, file = "/Volumes/J_External_HD/eechidna-paper-storage/shapefiles/centroids_sa1_2001.rda")
+# save(centroids_sa1_2016, file = "data-raw/imputing-using-sa1/data/centroids_sa1_2016.rda")
+# save(centroids_sa1_2011, file = "data-raw/imputing-using-sa1/data/centroids_sa1_2011.rda")
+# save(centroids_sa1_2006, file = "data-raw/imputing-using-sa1/data/centroids_sa1_2006.rda")
+# save(centroids_sa1_2001, file = "data-raw/imputing-using-sa1/data/centroids_sa1_2001.rda")
 
 # -------------------------------------------------------------------------------------------------------- #
 
@@ -188,15 +188,15 @@ mapping_c06_e04 <- allocate_electorate(centroids_ls = centroids_sa1_2006, electo
 mapping_c01_e04 <- allocate_electorate(centroids_ls = centroids_sa1_2001, electorates_sf = sF_04, census_year = "2001", election_year = "2004")
 
 # Save
-save(mapping_c16_e19, file = "./sa1/mapping_c16_e19.rda")
-save(mapping_c16_e13, file = "./sa1/mapping_c16_e13.rda")
-save(mapping_c11_e13, file = "./sa1/mapping_c11_e13.rda")
-save(mapping_c11_e10, file = "./sa1/mapping_c11_e10.rda")
-save(mapping_c06_e10, file = "./sa1/mapping_c06_e10.rda")
-save(mapping_c11_e07, file = "./sa1/mapping_c11_e07.rda")
-save(mapping_c06_e07, file = "./sa1/mapping_c06_e07.rda")
-save(mapping_c06_e04, file = "./sa1/mapping_c06_e04.rda")
-save(mapping_c01_e04, file = "./sa1/mapping_c01_e04.rda")
+save(mapping_c16_e19, file = "data-raw/imputing-using-sa1/data/mapping_c16_e19.rda")
+save(mapping_c16_e13, file = "data-raw/imputing-using-sa1/data/mapping_c16_e13.rda")
+save(mapping_c11_e13, file = "data-raw/imputing-using-sa1/data/mapping_c11_e13.rda")
+save(mapping_c11_e10, file = "data-raw/imputing-using-sa1/data/mapping_c11_e10.rda")
+save(mapping_c06_e10, file = "data-raw/imputing-using-sa1/data/mapping_c06_e10.rda")
+save(mapping_c11_e07, file = "data-raw/imputing-using-sa1/data/mapping_c11_e07.rda")
+save(mapping_c06_e07, file = "data-raw/imputing-using-sa1/data/mapping_c06_e07.rda")
+save(mapping_c06_e04, file = "data-raw/imputing-using-sa1/data/mapping_c06_e04.rda")
+save(mapping_c01_e04, file = "data-raw/imputing-using-sa1/data/mapping_c01_e04.rda")
 
 # Test case using 2016
 # It definitely works!

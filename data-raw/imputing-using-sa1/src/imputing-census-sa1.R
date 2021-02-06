@@ -138,15 +138,22 @@ abs2007 <- (1/5)*(select(census_aec07_11, -DivisionNm)) + (4/5)*(select(census_a
 abs2004 <- (3/5)*(select(census_aec04_06, -DivisionNm)) + (2/5)*(select(census_aec04_01, -DivisionNm))
 
 # Maintain division names
-abs2013$DivisionNm <- census_aec13_16$DivisionNm
+abs2019$DivisionNm <- census_aec19_16$DivisionNm
 abs2013$DivisionNm <- census_aec13_16$DivisionNm
 abs2010$DivisionNm <- census_aec10_11$DivisionNm
 abs2007$DivisionNm <- census_aec07_11$DivisionNm
 abs2004$DivisionNm <- census_aec04_06$DivisionNm
 
+# Reset rownames
+rownames(abs2019) <- NULL
+rownames(abs2013) <- NULL
+rownames(abs2010) <- NULL
+rownames(abs2007) <- NULL
+rownames(abs2004) <- NULL
+
 # Save
-save(abs2019, file = "data/abs2019.rda")
-save(abs2013, file = "data/abs2013.rda")
-save(abs2010, file = "data/abs2010.rda")
-save(abs2007, file = "data/abs2007.rda")
-save(abs2004, file = "data/abs2004.rda")
+save(abs2019, file = "data-raw/imputing-using-sa1/data/abs2019.rda")
+save(abs2013, file = "data-raw/imputing-using-sa1/data/abs2013.rda")
+save(abs2010, file = "data-raw/imputing-using-sa1/data/abs2010.rda")
+save(abs2007, file = "data-raw/imputing-using-sa1/data/abs2007.rda")
+save(abs2004, file = "data-raw/imputing-using-sa1/data/abs2004.rda")
