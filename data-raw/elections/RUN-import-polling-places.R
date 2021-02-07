@@ -3,6 +3,10 @@
 # For 2001 election data, download the folder in the link: https://www.aec.gov.au/About_AEC/Publications/statistics/files/aec-2001-election-statistics.zip
 # Change the directory in this code as required (2001 section only).
 
+## IMPORTANT:
+## THIS FILE USES A GOOGLE MAPS API TO GEOCODE THE POLLING PLACES
+## YOU MUST ENTER YOUR OWN API KEY TO RUN THIS
+
 # -------------------------------------
 
 library(tidyverse)
@@ -275,8 +279,8 @@ fp_pp04 <- read_csv("https://results.aec.gov.au/12246/results/Downloads/HouseSta
 
 # Get locations of polling places (extract address from first preferences)
 
-votes <- read_delim("data-raw/results_pollingplace_table(/hppdop.txt", delim = ";")
-candidates <- read_delim("data-raw/results_pollingplace_2001/hcands.txt", delim = ";")
+votes <- read_delim("data-raw/elections/data/aec/polling_places_votes_2001/hppdop.txt", delim = ";")
+candidates <- read_delim("data-raw/elections/data/aec/polling_places_votes_2001/hcands.txt", delim = ";")
 
 all <- left_join(votes, candidates, by = c("State", "Division", "Ballot Position"))
 

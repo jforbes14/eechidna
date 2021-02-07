@@ -3,7 +3,6 @@
 library(readxl)
 library(tidyverse)
 
-
 # ---------------------------------------------------------------------------------------------------------
 
 # Function to re-label parties so that names are common
@@ -117,9 +116,10 @@ tpp19 <- tpp19 %>% chr_upper()
 
 
 #---- SAVE ----
-usethis::use_data(fp19, overwrite = T, compress = "xz")
-usethis::use_data(tcp19, overwrite = T, compress = "xz")
-usethis::use_data(tpp19, overwrite = T, compress = "xz")
+
+save(fp19, file = "data-raw/elections/data/fp19.rda")
+save(tcp19, file = "data-raw/elections/data/tcp19.rda")
+save(tpp19, file = "data-raw/elections/data/tpp19.rda")
 
 
 # ---------------------------------------------------------------------------------------------------------
@@ -175,9 +175,9 @@ tpp16 <- tpp16 %>% chr_upper()
 
 
 #---- SAVE ----
-usethis::use_data(fp16, overwrite = T, compress = "xz")
-usethis::use_data(tcp16, overwrite = T, compress = "xz")
-usethis::use_data(tpp16, overwrite = T, compress = "xz")
+save(fp16, file = "data-raw/elections/data/fp16.rda")
+save(tcp16, file = "data-raw/elections/data/tcp16.rda")
+save(tpp16, file = "data-raw/elections/data/tpp16.rda")
 
 
 # ---------------------------------------------------------------------------------------------------------
@@ -235,9 +235,9 @@ tcp13 <- tcp13 %>% reabbrev_parties() %>% chr_upper() %>% relabel_parties()
 tpp13 <- tpp13 %>% chr_upper()
 
 #---- SAVE ----
-usethis::use_data(fp13, overwrite = T, compress = "xz")
-usethis::use_data(tcp13, overwrite = T, compress = "xz")
-usethis::use_data(tpp13, overwrite = T, compress = "xz")
+save(fp13, file = "data-raw/elections/data/fp13.rda")
+save(tcp13, file = "data-raw/elections/data/tcp13.rda")
+save(tpp13, file = "data-raw/elections/data/tpp13.rda")
 
 
 # ---------------------------------------------------------------------------------------------------------
@@ -296,9 +296,9 @@ tpp10 <- tpp10 %>% chr_upper()
 
 
 #---- SAVE ----
-usethis::use_data(fp10, overwrite = T, compress = "xz")
-usethis::use_data(tcp10, overwrite = T, compress = "xz")
-usethis::use_data(tpp10, overwrite = T, compress = "xz")
+save(fp10, file = "data-raw/elections/data/fp10.rda")
+save(tcp10, file = "data-raw/elections/data/tcp10.rda")
+save(tpp10, file = "data-raw/elections/data/tpp10.rda")
 
 
 
@@ -358,9 +358,9 @@ tpp07 <- tpp07 %>% chr_upper()
 
 
 #---- SAVE ----
-usethis::use_data(fp07, overwrite = T, compress = "xz")
-usethis::use_data(tcp07, overwrite = T, compress = "xz")
-usethis::use_data(tpp07, overwrite = T, compress = "xz")
+save(fp07, file = "data-raw/elections/data/fp07.rda")
+save(tcp07, file = "data-raw/elections/data/tcp07.rda")
+save(tpp07, file = "data-raw/elections/data/tpp07.rda")
 
 
 
@@ -427,10 +427,9 @@ tcp04 <- tcp04 %>% reabbrev_parties() %>% chr_upper() %>% relabel_parties()
 tpp04 <- tpp04 %>% chr_upper()
 
 #---- SAVE ----
-usethis::use_data(fp04, overwrite = T, compress = "xz")
-usethis::use_data(tcp04, overwrite = T, compress = "xz")
-usethis::use_data(tpp04, overwrite = T, compress = "xz")
-
+save(fp04, file = "data-raw/elections/data/fp04.rda")
+save(tcp04, file = "data-raw/elections/data/tcp04.rda")
+save(tpp04, file = "data-raw/elections/data/tpp04.rda")
 
 
 # ---------------------------------------------------------------------------------------------------------
@@ -458,7 +457,7 @@ fp01 <- data.frame(StateAb = 0, DivisionNm = 0, Surname = 0, GivenNm = 0, PartyA
 #For ACT, NSW, SA and NT
 for (j in 1:(length(states) - 4)) {
   state_name = states[j]
-  xls_ref <- paste0("data-raw/House-Dop-Division-2001/DOP_", state_name, ".xls")
+  xls_ref <- paste0("data-raw/elections/data/aec/House-Dop-Division-2001/DOP_", state_name, ".xls")
   pref01_temp <- read_xls(xls_ref)
   count_rows <- as.data.frame(which(pref01_temp == "Count", arr.ind=TRUE))
   n_divisions <- nrow(count_rows)
@@ -490,7 +489,7 @@ for (j in 1:(length(states) - 4)) {
 #For TAS, VIC, QLD, WA
 for (j in (length(states)-3):length(states)) {
   state_name = states[j]
-  xls_ref <- paste0("data-raw/House-Dop-Division-2001/DOP_", state_name, ".xls")
+  xls_ref <- paste0("data-raw/elections/data/aec/House-Dop-Division-2001/DOP_", state_name, ".xls")
   pref01_temp <- read_xls(xls_ref)
   count_rows <- as.data.frame(which(pref01_temp == "Count", arr.ind=TRUE))
   n_divisions <- nrow(count_rows)
@@ -547,7 +546,7 @@ tcp01 <- data.frame(StateAb = 0, DivisionNm = 0, Surname = 0, GivenNm = 0, Party
 #For ACT, NSW, SA and NT
 for (j in 1:length(states)) {
   state_name = states[j]
-  xls_ref <- paste0("data-raw/House-Tcp-Division-2001/TCP_", state_name, ".xls")
+  xls_ref <- paste0("data-raw/elections/data/aec/House-Tcp-Division-2001/TCP_", state_name, ".xls")
   tcp01_temp <- read_xls(xls_ref)
   row_cand <- as.data.frame(which(tcp01_temp == "Candidates", arr.ind=TRUE))
   row_fulldist <- as.data.frame(which(tcp01_temp == "Full Distribution of Preferences", arr.ind=TRUE))[,1]
@@ -605,7 +604,7 @@ tcp01 <- tcp01 %>%
 # Preferences distribution only to Labor (ALP) and Coalition (LP, NP, LNQ, CLP)
 # A distribution of preferences where, by convention, comparisons are made between the ALP and the leading Liberal/National candidates. In seats where the final two candidates are not from the ALP and the Liberal or National parties, a two party preferred count may be conducted to find the result of preference flows to the ALP and the Liberal/National candidates.
 
-tpp01 <- read_csv("data-raw/HouseTppByDivision2001.csv")[-(1:17), ] %>% 
+tpp01 <- read_csv("data-raw/elections/data/aec/HouseTppByDivision2001.csv")[-(1:17), ] %>% 
   rename("DivisionNm" = "House of Representatives: Election 2001 - National", "ALP_Votes" = "X2", "ALP_Percent" = "X3", "LNP_Votes" = "X4", "LNP_Percent" = "X5", "TotalVotes" = "X6", "Swing" = "X7") %>% 
   filter(!is.na(DivisionNm), !DivisionNm %in% c("Division", "State Total", "Territory Total")) %>% 
   select(-X8) %>% 
@@ -631,272 +630,8 @@ fp01 <- fp01 %>% left_join(allpartynms, by = "PartyAb")
 tcp01 <- tcp01 %>% left_join(allpartynms, by = "PartyAb")
 
 #---- SAVE ----
-usethis::use_data(fp01, overwrite = T, compress = "xz")
-usethis::use_data(tcp01, overwrite = T, compress = "xz")
-usethis::use_data(tpp01, overwrite = T, compress = "xz")
+save(fp01, file = "data-raw/elections/data/fp01.rda")
+save(tcp01, file = "data-raw/elections/data/tcp01.rda")
+save(tpp01, file = "data-raw/elections/data/tpp01.rda")
 
 
-# --- Creating UniqueID --- #
-
-# Creating unique electoral division IDs
-# All objects must be in global environment before running this script - this is the last script to be run
-
-library(dplyr)
-
-# Use the 2016 Census IDs as the default
-
-my_ids <- abs2016 %>% 
-  select(ID, DivisionNm) %>% 
-  rename(UniqueID = ID) %>% 
-  unique() %>% 
-  arrange(UniqueID)
-
-# Add DivisionNms that are not in 2016
-
-my_ids <- my_ids %>% 
-  full_join(abs2019 %>% select(DivisionNm)) %>% 
-  full_join(abs2013 %>% select(DivisionNm)) %>% 
-  full_join(abs2010 %>% select(DivisionNm)) %>% 
-  full_join(abs2007 %>% select(DivisionNm)) %>% 
-  full_join(abs2004 %>% select(DivisionNm)) %>% 
-  full_join(abs2001 %>% select(DivisionNm))
-
-# Add UniqueID for divisions that changed their name and for divisions that were abolished before 2016
-# Renamed electorates: FRASER became FENNER, PROSPECT became MCMAHON, THROSBY became WHITLAM,
-# DENISON became CLARK, BATMAN became COOPER, MELBOURNE PORTS became MACNAMARA, MCMILLAN became MONASH, 
-# MURRAY became NICHOLLS, WAKEFIELD became SPENCE
-# New electorates in 2019: BEAN, FRASER (same name as an extinct electorate, but is actually a new distinct one)
-
-my_ids <- my_ids %>% 
-  mutate(UniqueID = ifelse(DivisionNm == "BONYTHON", 412, 
-    ifelse(DivisionNm == "BURKE", 238, 
-      ifelse(DivisionNm == "CHARLTON", 148,  
-        ifelse(DivisionNm == "FRASER", 802, 
-          ifelse(DivisionNm == "GWYDIR", 149,
-            ifelse(DivisionNm == "KALGOORLIE", 517,
-              ifelse(DivisionNm == "LOWE", 150,
-                ifelse(DivisionNm == "PROSPECT", 128,
-                  ifelse(DivisionNm == "THROSBY", 147, 
-                    ifelse(DivisionNm == "SPENCE", 411, 
-                      ifelse(DivisionNm == "BEAN", 803, 
-                        ifelse(DivisionNm == "CLARK", 603, 
-                          ifelse(DivisionNm == "COOPER", 203, 
-                            ifelse(DivisionNm == "MACNAMARA", 232, 
-                              ifelse(DivisionNm == "MONASH", 230, 
-                                ifelse(DivisionNm == "NICHOLLS", 234, UniqueID
-                                  ))))))))))))))))) %>% unique() %>% 
-  # Add last year used where needed
-  mutate(LastYearRelevant = ifelse(DivisionNm %in% c("FRASER"), 2013, 9999)) %>% 
-  bind_rows(data.frame(DivisionNm = 'FRASER', UniqueID = 238, LastYearRelevant = 9999))
-
-save(my_ids, file = "data-raw/supplement/my_ids.rda")
-
-# Now replace any existing IDs
-
-load("data-raw/supplement/my_ids.rda")
-
-# 2019
-my_ids_2019 <- my_ids %>% 
-  filter(LastYearRelevant >= 2019) %>% 
-  select(-LastYearRelevant)
-
-fp19 <- fp19 %>% 
-  left_join(my_ids_2019, by = "DivisionNm") %>% 
-  select(-DivisionID) %>% 
-  select(UniqueID, everything())
-
-tpp19 <- tpp19 %>% 
-  left_join(my_ids_2019, by = "DivisionNm") %>% 
-  select(-DivisionID) %>% 
-  select(UniqueID, everything())
-
-tcp19 <- tcp19 %>% 
-  left_join(my_ids_2019, by = "DivisionNm") %>% 
-  select(-DivisionID) %>% 
-  select(UniqueID, everything())
-
-if (!'UniqueID' %in% colnames(abs2019)) {
-  abs2019 <- abs2019 %>% 
-    rename(UniqueID = ID)
-}
-
-abs2019 <- abs2019 %>% 
-  select(-UniqueID) %>% 
-  left_join(my_ids_2019, by = "DivisionNm") %>%
-  select(UniqueID, DivisionNm, Population, everything())
-
-# 2016
-
-fp16 <- fp16 %>% 
-  left_join(my_ids, by = "DivisionNm") %>% 
-  select(-DivisionID) %>% 
-  select(UniqueID, everything())
-
-tpp16 <- tpp16 %>% 
-  left_join(my_ids, by = "DivisionNm") %>% 
-  select(-DivisionID) %>% 
-  select(UniqueID, everything())
-
-tcp16 <- tcp16 %>% 
-  left_join(my_ids, by = "DivisionNm") %>% 
-  select(-DivisionID) %>% 
-  select(UniqueID, everything())
-
-abs2016 <- abs2016 %>% 
-  rename(UniqueID = ID)
-
-# 2013
-
-fp13 <- fp13 %>% 
-  left_join(my_ids, by = "DivisionNm") %>% 
-  select(-DivisionID) %>% 
-  select(UniqueID, everything())
-
-tpp13 <- tpp13 %>% 
-  left_join(my_ids, by = "DivisionNm") %>% 
-  select(-DivisionID) %>% 
-  select(UniqueID, everything())
-
-tcp13 <- tcp13 %>% 
-  left_join(my_ids, by = "DivisionNm") %>% 
-  select(-DivisionID) %>% 
-  select(UniqueID, everything())
-
-abs2013 <- abs2013 %>% 
-  left_join(my_ids, by = "DivisionNm") %>% 
-  select(UniqueID, everything())
-
-# 2011
-
-abs2011 <- abs2011 %>% 
-  left_join(my_ids, by = "DivisionNm") %>% 
-  select(-ID) %>% 
-  select(UniqueID, everything())
-
-# 2010
-
-fp10 <- fp10 %>% 
-  left_join(my_ids, by = "DivisionNm") %>% 
-  select(-DivisionID) %>% 
-  select(UniqueID, everything())
-
-tpp10 <- tpp10 %>% 
-  left_join(my_ids, by = "DivisionNm") %>% 
-  select(-DivisionID) %>% 
-  select(UniqueID, everything())
-
-tcp10 <- tcp10 %>% 
-  left_join(my_ids, by = "DivisionNm") %>% 
-  select(-DivisionID) %>% 
-  select(UniqueID, everything())
-
-abs2010 <- abs2010 %>% 
-  left_join(my_ids, by = "DivisionNm") %>% 
-  select(UniqueID, everything())
-
-# 2007
-
-fp07 <- fp07 %>% 
-  left_join(my_ids, by = "DivisionNm") %>% 
-  select(-DivisionID) %>% 
-  select(UniqueID, everything())
-
-tpp07 <- tpp07 %>% 
-  left_join(my_ids, by = "DivisionNm") %>% 
-  select(-DivisionID) %>% 
-  select(UniqueID, everything())
-
-tcp07 <- tcp07 %>% 
-  left_join(my_ids, by = "DivisionNm") %>% 
-  select(-DivisionID) %>% 
-  select(UniqueID, everything())
-
-abs2007 <- abs2007 %>% 
-  left_join(my_ids, by = "DivisionNm") %>% 
-  select(UniqueID, everything())
-
-# 2006
-
-abs2006 <- abs2006 %>% 
-  left_join(my_ids, by = "DivisionNm") %>% 
-  select(-ID) %>% 
-  select(UniqueID, everything())
-
-abs2006_e07 <- abs2006_e07 %>% 
-  left_join(my_ids, by = "DivisionNm") %>% 
-  select(-ID) %>% 
-  select(UniqueID, everything())
-
-# 2004
-
-fp04 <- fp04 %>% 
-  left_join(my_ids, by = "DivisionNm") %>% 
-  select(-DivisionID) %>% 
-  select(UniqueID, everything())
-
-tpp04 <- tpp04 %>% 
-  left_join(my_ids, by = "DivisionNm") %>% 
-  select(-DivisionID) %>% 
-  select(UniqueID, everything())
-
-tcp04 <- tcp04 %>% 
-  left_join(my_ids, by = "DivisionNm") %>% 
-  select(-DivisionID) %>% 
-  select(UniqueID, everything())
-
-abs2004 <- abs2004 %>% 
-  left_join(my_ids, by = "DivisionNm") %>% 
-  select(UniqueID, everything())
-
-# 2001
-
-fp01 <- fp01 %>% 
-  left_join(my_ids, by = "DivisionNm") %>% 
-  select(UniqueID, everything())
-
-tpp01 <- tpp01 %>% 
-  left_join(my_ids, by = "DivisionNm") %>% 
-  select(UniqueID, everything())
-
-tcp01 <- tcp01 %>% 
-  left_join(my_ids, by = "DivisionNm") %>% 
-  select(UniqueID, everything())
-
-abs2001 <- abs2001 %>% 
-  left_join(my_ids, by = "DivisionNm") %>% 
-  select(-ID) %>% 
-  select(UniqueID, everything())
-
-# Save
-
-usethis::use_data(abs2019, overwrite = T, compress = "xz")
-usethis::use_data(fp19, overwrite = T, compress = "xz")
-usethis::use_data(tcp19, overwrite = T, compress = "xz")
-usethis::use_data(tpp19, overwrite = T, compress = "xz")
-usethis::use_data(abs2016, overwrite = T, compress = "xz")
-usethis::use_data(fp16, overwrite = T, compress = "xz")
-usethis::use_data(tcp16, overwrite = T, compress = "xz")
-usethis::use_data(tpp16, overwrite = T, compress = "xz")
-usethis::use_data(abs2013, overwrite = T, compress = "xz")
-usethis::use_data(fp13, overwrite = T, compress = "xz")
-usethis::use_data(tcp13, overwrite = T, compress = "xz")
-usethis::use_data(tpp13, overwrite = T, compress = "xz")
-usethis::use_data(abs2011, overwrite = T, compress = "xz")
-usethis::use_data(abs2010, overwrite = T, compress = "xz")
-usethis::use_data(fp10, overwrite = T, compress = "xz")
-usethis::use_data(tcp10, overwrite = T, compress = "xz")
-usethis::use_data(tpp10, overwrite = T, compress = "xz")
-usethis::use_data(abs2007, overwrite = T, compress = "xz")
-usethis::use_data(fp07, overwrite = T, compress = "xz")
-usethis::use_data(tcp07, overwrite = T, compress = "xz")
-usethis::use_data(tpp07, overwrite = T, compress = "xz")
-usethis::use_data(abs2006_e07, overwrite = T, compress = "xz")
-usethis::use_data(abs2006, overwrite = T, compress = "xz")
-usethis::use_data(abs2004, overwrite = T, compress = "xz")
-usethis::use_data(fp04, overwrite = T, compress = "xz")
-usethis::use_data(tcp04, overwrite = T, compress = "xz")
-usethis::use_data(tpp04, overwrite = T, compress = "xz")
-usethis::use_data(abs2001, overwrite = T, compress = "xz")
-usethis::use_data(fp01, overwrite = T, compress = "xz")
-usethis::use_data(tcp01, overwrite = T, compress = "xz")
-usethis::use_data(tpp01, overwrite = T, compress = "xz")
