@@ -12,8 +12,8 @@ quiet_excel <- quietly(read_excel)
 
 # Load CD lists
 
-load(file = "data-raw/imputing-using-sa1/data/CD_list_wdata_2001.rda")
-load(file = "data-raw/imputing-using-sa1/data/CD_list_wdata_2006.rda")
+load(file = "data-raw/census-imputation-using-sa1/data/CD_list_wdata_2001.rda")
+load(file = "data-raw/census-imputation-using-sa1/data/CD_list_wdata_2006.rda")
 
 print(CD_list_wdata_2001 %>% head())
 
@@ -935,9 +935,9 @@ abs2006_cd <- abs2006_cd %>%
 
 # Save
 save(abs2001_cd, file = "/Volumes/J_External_HD/eechidna-paper-storage/ABS2001_cd.rda")
-save(abs2001_cd, file = "data-raw/imputing-using-sa1/data/ABS2001_cd.rda")
+save(abs2001_cd, file = "data-raw/census-imputation-using-sa1/data/ABS2001_cd.rda")
 save(abs2006_cd, file = "/Volumes/J_External_HD/eechidna-paper-storage/ABS2006_cd.rda")
-save(abs2006_cd, file = "data-raw/imputing-using-sa1/data/ABS2006_cd.rda")
+save(abs2006_cd, file = "data-raw/census-imputation-using-sa1/data/ABS2006_cd.rda")
 #usethis::use_data(abs2001_cd, overwrite = T, compress = "xz")
 #usethis::use_data(abs2006_cd, overwrite = T, compress = "xz")
 

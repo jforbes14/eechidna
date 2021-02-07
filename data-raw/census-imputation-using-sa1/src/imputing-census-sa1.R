@@ -152,8 +152,8 @@ rownames(abs2007) <- NULL
 rownames(abs2004) <- NULL
 
 # Save
-save(abs2019, file = "data-raw/imputing-using-sa1/data/abs2019.rda")
-save(abs2013, file = "data-raw/imputing-using-sa1/data/abs2013.rda")
-save(abs2010, file = "data-raw/imputing-using-sa1/data/abs2010.rda")
-save(abs2007, file = "data-raw/imputing-using-sa1/data/abs2007.rda")
-save(abs2004, file = "data-raw/imputing-using-sa1/data/abs2004.rda")
+save(abs2019, file = "data-raw/census-imputation-using-sa1/data/abs2019.rda")
+save(abs2013, file = "data-raw/census-imputation-using-sa1/data/abs2013.rda")
+save(abs2010, file = "data-raw/census-imputation-using-sa1/data/abs2010.rda")
+save(abs2007, file = "data-raw/census-imputation-using-sa1/data/abs2007.rda")
+save(abs2004, file = "data-raw/census-imputation-using-sa1/data/abs2004.rda")

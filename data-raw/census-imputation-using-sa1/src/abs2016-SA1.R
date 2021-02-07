@@ -228,6 +228,6 @@ abs2016_cd <- abs2016_cd %>%
 
 
 #Save
-save(abs2016_cd, file = "data-raw/imputing-using-sa1/data/abs2016_cd.rda")
+save(abs2016_cd, file = "data-raw/census-imputation-using-sa1/data/abs2016_cd.rda")
 save(abs2016_cd, file = "/Volumes/J_External_HD/eechidna-paper-storage/abs2016_cd.rda")
 #usethis::use_data(abs2016_cd, overwrite = T, compress = "xz")

@@ -202,6 +202,6 @@ abs2011_cd <- abs2011_cd %>%
     MedianRent = MedianRent/inflation_rates[2])
 
 # Save
-save(abs2011_cd, file = "data-raw/imputing-using-sa1/data/abs2011_cd.rda")
+save(abs2011_cd, file = "data-raw/census-imputation-using-sa1/data/abs2011_cd.rda")
 save(abs2011_cd, file = "/Volumes/J_External_HD/eechidna-paper-storage/abs2011_cd.rda")
 #usethis::use_data(abs2011_cd, overwrite = T, compress = "xz")
