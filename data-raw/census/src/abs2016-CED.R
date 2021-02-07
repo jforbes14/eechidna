@@ -10,47 +10,47 @@
 library(tidyverse)
 library(readxl)
 
-G1_Main<- read_csv("data-raw/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G01_AUS_CED.csv")
-G02_Medians <- read_csv("data-raw/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G02_AUS_CED.csv")
-G06_Marriage <- read_csv("data-raw/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G06_AUS_CED.csv")
+G1_Main<- read_csv("data-raw/census/data/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G01_AUS_CED.csv")
+G02_Medians <- read_csv("data-raw/census/data/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G02_AUS_CED.csv")
+G06_Marriage <- read_csv("data-raw/census/data/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G06_AUS_CED.csv")
 G09_BornOverseas <- 
-  cbind(read_csv("data-raw/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G09A_AUS_CED.csv"), 
-        read_csv("data-raw/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G09B_AUS_CED.csv"), 
-        read_csv("data-raw/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G09C_AUS_CED.csv"), 
-        read_csv("data-raw/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G09D_AUS_CED.csv"), 
-        read_csv("data-raw/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G09E_AUS_CED.csv"), 
-        read_csv("data-raw/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G09F_AUS_CED.csv"), 
-        read_csv("data-raw/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G09G_AUS_CED.csv"), 
-        read_csv("data-raw/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G09H_AUS_CED.csv"))
+  cbind(read_csv("data-raw/census/data/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G09A_AUS_CED.csv"), 
+        read_csv("data-raw/census/data/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G09B_AUS_CED.csv"), 
+        read_csv("data-raw/census/data/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G09C_AUS_CED.csv"), 
+        read_csv("data-raw/census/data/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G09D_AUS_CED.csv"), 
+        read_csv("data-raw/census/data/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G09E_AUS_CED.csv"), 
+        read_csv("data-raw/census/data/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G09F_AUS_CED.csv"), 
+        read_csv("data-raw/census/data/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G09G_AUS_CED.csv"), 
+        read_csv("data-raw/census/data/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G09H_AUS_CED.csv"))
 
 
-G13D_LanguageHome <- read_csv("data-raw/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G13D_AUS_CED.csv")
-G14_Religion <- read_csv("data-raw/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G14_AUS_CED.csv")
-G15_Study <- read_csv("data-raw/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G15_AUS_CED.csv")
-G16A_HighSchool <- read_csv("data-raw/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G16A_AUS_CED.csv")
-G16B_HighSchool <- read_csv("data-raw/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G16B_AUS_CED.csv")
-G17B_Income <- read_csv("data-raw/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G17B_AUS_CED.csv")
-G17C_Income <- read_csv("data-raw/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G17C_AUS_CED.csv")
-G19_Volunteer <- read_csv("data-raw/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G19_AUS_CED.csv")
-G25_Family <- read_csv("data-raw/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G25_AUS_CED.csv")
-G28_FamilyIncome <- read_csv("data-raw/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G28_AUS_CED.csv")
-G29_HouseholdIncome <- read_csv("data-raw/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G29_AUS_CED.csv")
-G31_NumberInHouse <- read_csv("data-raw/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G31_AUS_CED.csv")
-G33_Tenure <- read_csv("data-raw/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G33_AUS_CED.csv")
-G36_Rent <- read_csv("data-raw/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G36_AUS_CED.csv")
-G37_Internet <- read_csv("data-raw/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G37_AUS_CED.csv")
-G40_Employ <- read_csv("data-raw/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G40_AUS_CED.csv")
-G42_Address <- read_csv("data-raw/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G42_AUS_CED.csv")
-G46B_Uni <- read_csv("data-raw/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G46B_AUS_CED.csv")
+G13D_LanguageHome <- read_csv("data-raw/census/data/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G13D_AUS_CED.csv")
+G14_Religion <- read_csv("data-raw/census/data/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G14_AUS_CED.csv")
+G15_Study <- read_csv("data-raw/census/data/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G15_AUS_CED.csv")
+G16A_HighSchool <- read_csv("data-raw/census/data/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G16A_AUS_CED.csv")
+G16B_HighSchool <- read_csv("data-raw/census/data/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G16B_AUS_CED.csv")
+G17B_Income <- read_csv("data-raw/census/data/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G17B_AUS_CED.csv")
+G17C_Income <- read_csv("data-raw/census/data/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G17C_AUS_CED.csv")
+G19_Volunteer <- read_csv("data-raw/census/data/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G19_AUS_CED.csv")
+G25_Family <- read_csv("data-raw/census/data/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G25_AUS_CED.csv")
+G28_FamilyIncome <- read_csv("data-raw/census/data/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G28_AUS_CED.csv")
+G29_HouseholdIncome <- read_csv("data-raw/census/data/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G29_AUS_CED.csv")
+G31_NumberInHouse <- read_csv("data-raw/census/data/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G31_AUS_CED.csv")
+G33_Tenure <- read_csv("data-raw/census/data/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G33_AUS_CED.csv")
+G36_Rent <- read_csv("data-raw/census/data/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G36_AUS_CED.csv")
+G37_Internet <- read_csv("data-raw/census/data/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G37_AUS_CED.csv")
+G40_Employ <- read_csv("data-raw/census/data/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G40_AUS_CED.csv")
+G42_Address <- read_csv("data-raw/census/data/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G42_AUS_CED.csv")
+G46B_Uni <- read_csv("data-raw/census/data/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G46B_AUS_CED.csv")
 G51_Industry <- 
-  cbind(read_csv("data-raw/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G51A_AUS_CED.csv"),
-        read_csv("data-raw/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G51B_AUS_CED.csv"),
-        read_csv("data-raw/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G51C_AUS_CED.csv"),
-        read_csv("data-raw/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G51D_AUS_CED.csv"))
+  cbind(read_csv("data-raw/census/data/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G51A_AUS_CED.csv"),
+        read_csv("data-raw/census/data/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G51B_AUS_CED.csv"),
+        read_csv("data-raw/census/data/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G51C_AUS_CED.csv"),
+        read_csv("data-raw/census/data/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G51D_AUS_CED.csv"))
 G57_Occupation <- 
-  cbind(read_csv("data-raw/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G57A_AUS_CED.csv"),
-        read_csv("data-raw/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G57B_AUS_CED.csv"))
-Area_sqkm <- read_csv("data-raw/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_geog_desc_1st_and_2nd_release.csv")
+  cbind(read_csv("data-raw/census/data/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G57A_AUS_CED.csv"),
+        read_csv("data-raw/census/data/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_G57B_AUS_CED.csv"))
+Area_sqkm <- read_csv("data-raw/census/data/2016 Census GCP Commonwealth Electoral Divisions for AUST/2016Census_geog_desc_1st_and_2nd_release.csv")
 
 
 new <- G1_Main %>% mutate(
@@ -200,7 +200,7 @@ new <- G1_Main %>% mutate(
 CED <- read_excel("data-raw/supplement/tidy_CED16.xlsx")
 
 new <- new %>% 
-  left_join(CED %>% rename(ID = CED) %>% select(-"..1"), by = "ID")
+  left_join(CED %>% rename(ID = CED) %>% select(-"...1"), by = "ID")
 
 # Remove no usual address and offshore rows, and only 
 abs2016 <- new %>% 
@@ -226,11 +226,16 @@ abs2016 <- abs2016 %>%
   select(-BornOverseas) 
 
 abs2016 <- abs2016 %>% 
-  select(noquote(order(names(abs2016)))) %>% 
+  select(order(colnames(.))) %>% 
   select(ID, DivisionNm, State, Population, Area, everything()) %>% 
   mutate(ID = as.numeric(ID))
 
 
-#Save
+# Save
+save(abs2016, file = "data-raw/census/data/abs2016.rda")
 
-usethis::use_data(abs2016, overwrite = T, compress = "xz")
+# Remove objects from environment
+objs = ls()[grepl("^G[0-9]{1-2}", ls())]
+for (ob in objs) {remove(list=ob)}
+remove(objs)
+

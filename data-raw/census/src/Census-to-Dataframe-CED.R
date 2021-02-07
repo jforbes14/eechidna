@@ -87,7 +87,7 @@ sheet_ref <- "B 01"
 
 for (i in 1:nrow(CED_list_2001)) {
   CED <- CED_list_2001$CED[i]
-  excel_ref <- paste0("data-raw/ABS2001/Unzipped/BCP_CED", CED, ".xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2001/Unzipped/BCP_CED", CED, ".xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   
@@ -120,7 +120,7 @@ sheet_ref <- "B 03"
 
 for (i in 1:nrow(CED_list_2001)) {
   CED <- CED_list_2001$CED[i]
-  excel_ref <- paste0("data-raw/ABS2001/Unzipped/BCP_CED", CED, ".xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2001/Unzipped/BCP_CED", CED, ".xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   popl = abs2001$Population[i]
@@ -156,7 +156,7 @@ sheet_ref <- "B 04"
 
 for (i in 1:nrow(CED_list_2001)) {
   CED <- CED_list_2001$CED[i]
-  excel_ref <- paste0("data-raw/ABS2001/Unzipped/BCP_CED", CED, ".xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2001/Unzipped/BCP_CED", CED, ".xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   
@@ -172,7 +172,7 @@ sheet_refB <- "B 07B"
 
 for (i in 1:nrow(CED_list_2001)) {
   CED <- CED_list_2001$CED[i]
-  excel_ref <- paste0("data-raw/ABS2001/Unzipped/BCP_CED", CED, ".xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2001/Unzipped/BCP_CED", CED, ".xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   temp_sheetB <- read_excel(excel_ref, sheet = sheet_refB)
@@ -195,7 +195,7 @@ sheet_ref <- "B 10"
 
 for (i in 1:nrow(CED_list_2001)) {
   CED <- CED_list_2001$CED[i]
-  excel_ref <- paste0("data-raw/ABS2001/Unzipped/BCP_CED", CED, ".xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2001/Unzipped/BCP_CED", CED, ".xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   popl = abs2001$Population[i]
@@ -225,7 +225,7 @@ sheet_ref <- "B 11"
 
 for (i in 1:nrow(CED_list_2001)) {
   CED <- CED_list_2001$CED[i]
-  excel_ref <- paste0("data-raw/ABS2001/Unzipped/BCP_CED", CED, ".xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2001/Unzipped/BCP_CED", CED, ".xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   popl = abs2001$Population[i]
@@ -242,7 +242,7 @@ sheet_ref <- "B 12"
 
 for (i in 1:nrow(CED_list_2001)) {
   CED <- CED_list_2001$CED[i]
-  excel_ref <- paste0("data-raw/ABS2001/Unzipped/BCP_CED", CED, ".xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2001/Unzipped/BCP_CED", CED, ".xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   
@@ -261,7 +261,7 @@ sheet_ref <- "B 14"
 
 for (i in 1:nrow(CED_list_2001)) {
   CED <- CED_list_2001$CED[i]
-  excel_ref <- paste0("data-raw/ABS2001/Unzipped/BCP_CED", CED, ".xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2001/Unzipped/BCP_CED", CED, ".xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   popl = abs2001$Population[i]
@@ -278,7 +278,7 @@ sheet_ref <- "B 16"
 
 for (i in 1:nrow(CED_list_2001)) {
   CED <- CED_list_2001$CED[i]
-  excel_ref <- paste0("data-raw/ABS2001/Unzipped/BCP_CED", CED, ".xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2001/Unzipped/BCP_CED", CED, ".xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   popl = abs2001$Population[i]
@@ -295,7 +295,7 @@ sheet_ref <- "B 17"
 
 for (i in 1:nrow(CED_list_2001)) {
   CED <- CED_list_2001$CED[i]
-  excel_ref <- paste0("data-raw/ABS2001/Unzipped/BCP_CED", CED, ".xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2001/Unzipped/BCP_CED", CED, ".xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   
@@ -319,7 +319,7 @@ sheet_ref <- "B 19"
 
 for (i in 1:nrow(CED_list_2001)) {
   CED <- CED_list_2001$CED[i]
-  excel_ref <- paste0("data-raw/ABS2001/Unzipped/BCP_CED", CED, ".xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2001/Unzipped/BCP_CED", CED, ".xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   
@@ -344,7 +344,7 @@ sheet_ref <- "B 22"
 
 for (i in 1:nrow(CED_list_2001)) {
   CED <- CED_list_2001$CED[i]
-  excel_ref <- paste0("data-raw/ABS2001/Unzipped/BCP_CED", CED, ".xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2001/Unzipped/BCP_CED", CED, ".xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   
@@ -366,7 +366,7 @@ sheet_ref <- "B 23"
 
 for (i in 1:nrow(CED_list_2001)) {
   CED <- CED_list_2001$CED[i]
-  excel_ref <- paste0("data-raw/ABS2001/Unzipped/BCP_CED", CED, ".xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2001/Unzipped/BCP_CED", CED, ".xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   
@@ -389,7 +389,7 @@ sheet_ref <- "B 26B"
 
 for (i in 1:nrow(CED_list_2001)) {
   CED <- CED_list_2001$CED[i]
-  excel_ref <- paste0("data-raw/ABS2001/Unzipped/BCP_CED", CED, ".xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2001/Unzipped/BCP_CED", CED, ".xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   
@@ -412,7 +412,7 @@ sheet_ref <- "B 27B"
 
 for (i in 1:nrow(CED_list_2001)) {
   CED <- CED_list_2001$CED[i]
-  excel_ref <- paste0("data-raw/ABS2001/Unzipped/BCP_CED", CED, ".xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2001/Unzipped/BCP_CED", CED, ".xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   
@@ -435,7 +435,7 @@ sheet_ref <- "B 32"
 
 for (i in 1:nrow(CED_list_2001)) {
   CED <- CED_list_2001$CED[i]
-  excel_ref <- paste0("data-raw/ABS2001/Unzipped/BCP_CED", CED, ".xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2001/Unzipped/BCP_CED", CED, ".xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   
@@ -453,7 +453,7 @@ sheet_ref <- "B 33"
 
 for (i in 1:nrow(CED_list_2001)) {
   CED <- CED_list_2001$CED[i]
-  excel_ref <- paste0("data-raw/ABS2001/Unzipped/BCP_CED", CED, ".xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2001/Unzipped/BCP_CED", CED, ".xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   
@@ -513,7 +513,7 @@ sheet_ref <- "B 06"
 
 for (i in 1:nrow(CED_list_2001)) {
   CED <- CED_list_2001$CED[i]
-  excel_ref <- paste0("data-raw/ABS2001/Unzipped/BCP_CED", CED, ".xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2001/Unzipped/BCP_CED", CED, ".xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   popl = abs2001$Population[i]
@@ -526,7 +526,7 @@ sheet_ref <- "B 08"
 
 for (i in 1:nrow(CED_list_2001)) {
   CED <- CED_list_2001$CED[i]
-  excel_ref <- paste0("data-raw/ABS2001/Unzipped/BCP_CED", CED, ".xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2001/Unzipped/BCP_CED", CED, ".xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   popl = abs2001$Population[i]
@@ -539,7 +539,7 @@ sheet_ref <- "B 13B"
 
 for (i in 1:nrow(CED_list_2001)) {
   CED <- CED_list_2001$CED[i]
-  excel_ref <- paste0("data-raw/ABS2001/Unzipped/BCP_CED", CED, ".xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2001/Unzipped/BCP_CED", CED, ".xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   
@@ -551,7 +551,7 @@ sheet_ref <- "B 16"
 
 for (i in 1:nrow(CED_list_2001)) {
   CED <- CED_list_2001$CED[i]
-  excel_ref <- paste0("data-raw/ABS2001/Unzipped/BCP_CED", CED, ".xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2001/Unzipped/BCP_CED", CED, ".xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   popl = abs2001$Population[i]
@@ -564,7 +564,7 @@ sheet_ref <- "B 21"
 
 for (i in 1:nrow(CED_list_2001)) {
   CED <- CED_list_2001$CED[i]
-  excel_ref <- paste0("data-raw/ABS2001/Unzipped/BCP_CED", CED, ".xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2001/Unzipped/BCP_CED", CED, ".xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   
@@ -576,7 +576,7 @@ sheet_ref <- "B 30"
 
 for (i in 1:nrow(CED_list_2001)) {
   CED <- CED_list_2001$CED[i]
-  excel_ref <- paste0("data-raw/ABS2001/Unzipped/BCP_CED", CED, ".xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2001/Unzipped/BCP_CED", CED, ".xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   popl = abs2001$Population[i]
@@ -589,7 +589,7 @@ sheet_ref <- "B 31"
 
 for (i in 1:nrow(CED_list_2001)) {
   CED <- CED_list_2001$CED[i]
-  excel_ref <- paste0("data-raw/ABS2001/Unzipped/BCP_CED", CED, ".xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2001/Unzipped/BCP_CED", CED, ".xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   popl = abs2001$Population[i]
@@ -609,7 +609,7 @@ sheet_ref <- "B 01a"
 
 for (i in 1:nrow(CED_list_2006_04)) {
   elec <- CED_list_2006_04$Electorate[i]; state <- CED_list_2006_04$State[i]; ES <- paste0(paste0(elec,"-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   
   #Metrics
@@ -637,7 +637,7 @@ sheet_ref <- "B 02"
 
 for (i in 1:nrow(CED_list_2006_04)) {
   elec <- CED_list_2006_04$Electorate[i]; state <- CED_list_2006_04$State[i]; ES <- paste0(paste0(elec,"-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   
@@ -665,7 +665,7 @@ sheet_ref <- "B 04"
 
 for (i in 1:nrow(CED_list_2006_04)) {
   elec <- CED_list_2006_04$Electorate[i]; state <- CED_list_2006_04$State[i]; ES <- paste0(paste0(elec,"-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   popl = abs2006$Population[i]
@@ -701,7 +701,7 @@ sheet_ref <- "B 06"
 
 for (i in 1:nrow(CED_list_2006_04)) {
   elec <- CED_list_2006_04$Electorate[i]; state <- CED_list_2006_04$State[i]; ES <- paste0(paste0(elec,"-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   popl <- abs2006$Population[i]
@@ -720,7 +720,7 @@ sheet_ref <- "B 09"
 
 for (i in 1:nrow(CED_list_2006_04)) {
   elec <- CED_list_2006_04$Electorate[i]; state <- CED_list_2006_04$State[i]; ES <- paste0(paste0(elec,"-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   
@@ -748,7 +748,7 @@ sheet_ref <- "B 13"
 
 for (i in 1:nrow(CED_list_2006_04)) {
   elec <- CED_list_2006_04$Electorate[i]; state <- CED_list_2006_04$State[i]; ES <- paste0(paste0(elec,"-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   popl = abs2006$Population[i]
@@ -776,7 +776,7 @@ sheet_ref <- "B 14"
 
 for (i in 1:nrow(CED_list_2006_04)) {
   elec <- CED_list_2006_04$Electorate[i]; state <- CED_list_2006_04$State[i]; ES <- paste0(paste0(elec,"-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   
@@ -793,7 +793,7 @@ sheet_ref <- "B 15"
 
 for (i in 1:nrow(CED_list_2006_04)) {
   elec <- CED_list_2006_04$Electorate[i]; state <- CED_list_2006_04$State[i]; ES <- paste0(paste0(elec,"-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   
   popl = as.numeric(temp_sheet[49,11]) 
@@ -811,7 +811,7 @@ sheet_ref <- "B 18"
 
 for (i in 1:nrow(CED_list_2006_04)) {
   elec <- CED_list_2006_04$Electorate[i]; state <- CED_list_2006_04$State[i]; ES <- paste0(paste0(elec,"-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   
   popl = as.numeric(temp_sheet[48,5])
@@ -829,7 +829,7 @@ sheet_ref <- "B 24"
 
 for (i in 1:nrow(CED_list_2006_04)) {
   elec <- CED_list_2006_04$Electorate[i]; state <- CED_list_2006_04$State[i]; ES <- paste0(paste0(elec,"-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   temp_sheet2 <- read_excel(excel_ref, sheet = "B 25")
@@ -859,7 +859,7 @@ sheet_ref <- "B 30"
 
 for (i in 1:nrow(CED_list_2006_04)) {
   elec <- CED_list_2006_04$Electorate[i]; state <- CED_list_2006_04$State[i]; ES <- paste0(paste0(elec,"-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   
@@ -874,7 +874,7 @@ sheet_ref <- "B 32"
 
 for (i in 1:nrow(CED_list_2006_04)) {
   elec <- CED_list_2006_04$Electorate[i]; state <- CED_list_2006_04$State[i]; ES <- paste0(paste0(elec,"-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   
@@ -894,7 +894,7 @@ sheet_ref <- "B 35"
 
 for (i in 1:nrow(CED_list_2006_04)) {
   elec <- CED_list_2006_04$Electorate[i]; state <- CED_list_2006_04$State[i]; ES <- paste0(paste0(elec,"-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   
@@ -910,7 +910,7 @@ sheet_ref <- "B 36"
 
 for (i in 1:nrow(CED_list_2006_04)) {
   elec <- CED_list_2006_04$Electorate[i]; state <- CED_list_2006_04$State[i]; ES <- paste0(paste0(elec,"-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   
@@ -926,7 +926,7 @@ sheet_ref <- "B 38"
 
 for (i in 1:nrow(CED_list_2006_04)) {
   elec <- CED_list_2006_04$Electorate[i]; state <- CED_list_2006_04$State[i]; ES <- paste0(paste0(elec,"-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   
@@ -942,7 +942,7 @@ sheet_ref <- "B 39b"
 
 for (i in 1:nrow(CED_list_2006_04)) {
   elec <- CED_list_2006_04$Electorate[i]; state <- CED_list_2006_04$State[i]; ES <- paste0(paste0(elec,"-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   
@@ -963,7 +963,7 @@ sheet_ref <- "B 42c"
 
 for (i in 1:nrow(CED_list_2006_04)) {
   elec <- CED_list_2006_04$Electorate[i]; state <- CED_list_2006_04$State[i]; ES <- paste0(paste0(elec,"-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   
@@ -985,7 +985,7 @@ sheet_ref <- "B 44"
 
 for (i in 1:nrow(CED_list_2006_04)) {
   elec <- CED_list_2006_04$Electorate[i]; state <- CED_list_2006_04$State[i]; ES <- paste0(paste0(elec,"-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   
@@ -1008,7 +1008,7 @@ sheet_ref <- "B 09"
 
 for (i in 1:nrow(CED_list_2006_04)) {
   elec <- CED_list_2006_04$Electorate[i]; state <- CED_list_2006_04$State[i]; ES <- paste0(paste0(elec,"-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   popl = abs2006$Population[i]
@@ -1021,7 +1021,7 @@ sheet_ref <- "B 12"
 
 for (i in 1:nrow(CED_list_2006_04)) {
   elec <- CED_list_2006_04$Electorate[i]; state <- CED_list_2006_04$State[i]; ES <- paste0(paste0(elec,"-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   popl = abs2006$Population[i]
@@ -1034,7 +1034,7 @@ sheet_ref <- "B 16b"
 
 for (i in 1:nrow(CED_list_2006_04)) {
   elec <- CED_list_2006_04$Electorate[i]; state <- CED_list_2006_04$State[i]; ES <- paste0(paste0(elec,"-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   popl = abs2006$Population[i]
@@ -1047,7 +1047,7 @@ sheet_ref <- "B 26"
 
 for (i in 1:nrow(CED_list_2006_04)) {
   elec <- CED_list_2006_04$Electorate[i]; state <- CED_list_2006_04$State[i]; ES <- paste0(paste0(elec,"-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   
@@ -1059,7 +1059,7 @@ sheet_ref <- "B 28"
 
 for (i in 1:nrow(CED_list_2006_04)) {
   elec <- CED_list_2006_04$Electorate[i]; state <- CED_list_2006_04$State[i]; ES <- paste0(paste0(elec,"-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   
@@ -1071,7 +1071,7 @@ sheet_ref <- "B 34"
 
 for (i in 1:nrow(CED_list_2006_04)) {
   elec <- CED_list_2006_04$Electorate[i]; state <- CED_list_2006_04$State[i]; ES <- paste0(paste0(elec,"-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2004/20010-BCP-", ES, " (Commonwealth Electoral Division 2004).xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   
@@ -1090,7 +1090,7 @@ for (i in 1:nrow(CED_list_2006_e07)) {
   elec <- CED_list_2006_e07$Electorate[i]; 
   state <- CED_list_2006_e07$State[i]; 
   ES <- paste0(paste0(elec,"(CED07)-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
   
   if (file.exists(excel_ref) == TRUE) {
     temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
@@ -1124,7 +1124,7 @@ sheet_ref <- "B 02"
 
 for (i in 1:nrow(CED_list_2006_e07)) {
   elec <- CED_list_2006_e07$Electorate[i];  state <- CED_list_2006_e07$State[i];  ES <- paste0(paste0(elec,"(CED07)-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   
@@ -1152,7 +1152,7 @@ sheet_ref <- "B 04"
 
 for (i in 1:nrow(CED_list_2006_e07)) {
   elec <- CED_list_2006_e07$Electorate[i];  state <- CED_list_2006_e07$State[i];  ES <- paste0(paste0(elec,"(CED07)-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   popl = abs2006_e07$Population[i]
@@ -1188,7 +1188,7 @@ sheet_ref <- "B 06"
 
 for (i in 1:nrow(CED_list_2006_e07)) {
   elec <- CED_list_2006_e07$Electorate[i];  state <- CED_list_2006_e07$State[i];  ES <- paste0(paste0(elec,"(CED07)-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   popl <- abs2006_e07$Population[i]
@@ -1207,7 +1207,7 @@ sheet_ref <- "B 09"
 
 for (i in 1:nrow(CED_list_2006_e07)) {
   elec <- CED_list_2006_e07$Electorate[i];  state <- CED_list_2006_e07$State[i];  ES <- paste0(paste0(elec,"(CED07)-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   
@@ -1235,7 +1235,7 @@ sheet_ref <- "B 13"
 
 for (i in 1:nrow(CED_list_2006_e07)) {
   elec <- CED_list_2006_e07$Electorate[i];  state <- CED_list_2006_e07$State[i];  ES <- paste0(paste0(elec,"(CED07)-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   popl = abs2006_e07$Population[i]
@@ -1262,7 +1262,7 @@ sheet_ref <- "B 14"
 
 for (i in 1:nrow(CED_list_2006_e07)) {
   elec <- CED_list_2006_e07$Electorate[i];  state <- CED_list_2006_e07$State[i];  ES <- paste0(paste0(elec,"(CED07)-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   
@@ -1279,7 +1279,7 @@ sheet_ref <- "B 15"
 
 for (i in 1:nrow(CED_list_2006_e07)) {
   elec <- CED_list_2006_e07$Electorate[i];  state <- CED_list_2006_e07$State[i];  ES <- paste0(paste0(elec,"(CED07)-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   
   popl = as.numeric(temp_sheet[49,11])
@@ -1297,7 +1297,7 @@ sheet_ref <- "B 18"
 
 for (i in 1:nrow(CED_list_2006_e07)) {
   elec <- CED_list_2006_e07$Electorate[i];  state <- CED_list_2006_e07$State[i];  ES <- paste0(paste0(elec,"(CED07)-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   
   popl = as.numeric(temp_sheet[48,5])
@@ -1315,7 +1315,7 @@ sheet_ref <- "B 24"
 
 for (i in 1:nrow(CED_list_2006_e07)) {
   elec <- CED_list_2006_e07$Electorate[i];  state <- CED_list_2006_e07$State[i];  ES <- paste0(paste0(elec,"(CED07)-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   temp_sheet2 <- read_excel(excel_ref, sheet = "B 25")
@@ -1345,7 +1345,7 @@ sheet_ref <- "B 30"
 
 for (i in 1:nrow(CED_list_2006_e07)) {
   elec <- CED_list_2006_e07$Electorate[i];  state <- CED_list_2006_e07$State[i];  ES <- paste0(paste0(elec,"(CED07)-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   
@@ -1360,7 +1360,7 @@ sheet_ref <- "B 32"
 
 for (i in 1:nrow(CED_list_2006_e07)) {
   elec <- CED_list_2006_e07$Electorate[i];  state <- CED_list_2006_e07$State[i];  ES <- paste0(paste0(elec,"(CED07)-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   
@@ -1380,7 +1380,7 @@ sheet_ref <- "B 35"
 
 for (i in 1:nrow(CED_list_2006_e07)) {
   elec <- CED_list_2006_e07$Electorate[i];  state <- CED_list_2006_e07$State[i];  ES <- paste0(paste0(elec,"(CED07)-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   
@@ -1396,7 +1396,7 @@ sheet_ref <- "B 36"
 
 for (i in 1:nrow(CED_list_2006_e07)) {
   elec <- CED_list_2006_e07$Electorate[i];  state <- CED_list_2006_e07$State[i];  ES <- paste0(paste0(elec,"(CED07)-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   
@@ -1412,7 +1412,7 @@ sheet_ref <- "B 38"
 
 for (i in 1:nrow(CED_list_2006_e07)) {
   elec <- CED_list_2006_e07$Electorate[i];  state <- CED_list_2006_e07$State[i];  ES <- paste0(paste0(elec,"(CED07)-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   
@@ -1427,7 +1427,7 @@ sheet_ref <- "B 39b"
 
 for (i in 1:nrow(CED_list_2006_e07)) {
   elec <- CED_list_2006_e07$Electorate[i];  state <- CED_list_2006_e07$State[i];  ES <- paste0(paste0(elec,"(CED07)-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   
@@ -1448,7 +1448,7 @@ sheet_ref <- "B 42c"
 
 for (i in 1:nrow(CED_list_2006_e07)) {
   elec <- CED_list_2006_e07$Electorate[i];  state <- CED_list_2006_e07$State[i];  ES <- paste0(paste0(elec,"(CED07)-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   
@@ -1470,7 +1470,7 @@ sheet_ref <- "B 44"
 
 for (i in 1:nrow(CED_list_2006_e07)) {
   elec <- CED_list_2006_e07$Electorate[i];  state <- CED_list_2006_e07$State[i];  ES <- paste0(paste0(elec,"(CED07)-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   
@@ -1494,7 +1494,7 @@ sheet_ref <- "B 09"
 
 for (i in 1:nrow(CED_list_2006_e07)) {
   elec <- CED_list_2006_e07$Electorate[i];  state <- CED_list_2006_e07$State[i];  ES <- paste0(paste0(elec,"(CED07)-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   popl = abs2006_e07$Population[i]
@@ -1507,7 +1507,7 @@ sheet_ref <- "B 12"
 
 for (i in 1:nrow(CED_list_2006_e07)) {
   elec <- CED_list_2006_e07$Electorate[i];  state <- CED_list_2006_e07$State[i];  ES <- paste0(paste0(elec,"(CED07)-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   popl = abs2006_e07$Population[i]
@@ -1520,7 +1520,7 @@ sheet_ref <- "B 16b"
 
 for (i in 1:nrow(CED_list_2006_e07)) {
   elec <- CED_list_2006_e07$Electorate[i];  state <- CED_list_2006_e07$State[i];  ES <- paste0(paste0(elec,"(CED07)-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   popl = abs2006_e07$Population[i]
@@ -1533,7 +1533,7 @@ sheet_ref <- "B 26"
 
 for (i in 1:nrow(CED_list_2006_e07)) {
   elec <- CED_list_2006_e07$Electorate[i];  state <- CED_list_2006_e07$State[i];  ES <- paste0(paste0(elec,"(CED07)-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   
@@ -1545,7 +1545,7 @@ sheet_ref <- "B 28"
 
 for (i in 1:nrow(CED_list_2006_e07)) {
   elec <- CED_list_2006_e07$Electorate[i];  state <- CED_list_2006_e07$State[i];  ES <- paste0(paste0(elec,"(CED07)-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   
@@ -1557,7 +1557,7 @@ sheet_ref <- "B 34"
 
 for (i in 1:nrow(CED_list_2006_e07)) {
   elec <- CED_list_2006_e07$Electorate[i];  state <- CED_list_2006_e07$State[i];  ES <- paste0(paste0(elec,"(CED07)-"),state)
-  excel_ref <- paste0("data-raw/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
+  excel_ref <- paste0("data-raw/census/data/ABS2006/Unzipped/CED2007/20010-BCP-", ES, "(CommonwealthElectoralDivision2007).xls")
   
   temp_sheet <- read_excel(excel_ref, sheet = sheet_ref)
   
@@ -1606,19 +1606,19 @@ abs2001$Electorate <- as.factor(abs2001$Electorate)
 abs2001 <- abs2001 %>% 
   rename(DivisionNm = Electorate) %>% 
   mutate(DivisionNm = toupper(DivisionNm)) %>% 
-  select(noquote(order(colnames(abs2001)))) %>% 
+  select(order(colnames(.))) %>% 
   select(ID, DivisionNm, State, Population, Area, everything())
 
 abs2006 <- abs2006 %>% 
   rename(DivisionNm = Electorate) %>% 
   mutate(DivisionNm = toupper(DivisionNm)) %>% 
-  select(noquote(order(colnames(abs2006)))) %>% 
+  select(order(colnames(.))) %>% 
   select(ID, DivisionNm, State, Population, Area, everything())
 
 abs2006_e07 <- abs2006_e07 %>% 
   rename(DivisionNm = Electorate) %>% 
   mutate(DivisionNm = toupper(DivisionNm)) %>% 
-  select(noquote(order(colnames(abs2006_e07)))) %>% 
+  select(order(colnames(.))) %>% 
   select(ID, DivisionNm, State, Population, Area, everything())
 
 # Fix electorate names for abs2006_e07
@@ -1641,12 +1641,10 @@ abs2006 <- abs2006 %>%
 abs2006_e07 <- abs2006_e07 %>% 
   arrange(DivisionNm)
 
-# Add unique ID using adding-unique-IDs.R
-
 # Save
 
-usethis::use_data(abs2001, overwrite = T, compress = "xz")
-usethis::use_data(abs2006, overwrite = T, compress = "xz")
-usethis::use_data(abs2006_e07, overwrite = T, compress = "xz")
+save(abs2001, file = "data-raw/census/data/abs2001.rda")
+save(abs2006, file = "data-raw/census/data/abs2006.rda")
+save(abs2006_e07, file = "data-raw/census/data/abs2006_e07.rda")
 
 
