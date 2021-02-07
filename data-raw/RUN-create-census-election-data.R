@@ -7,7 +7,6 @@
 # Census
 load("data-raw/census/data/abs2001.rda")
 load("data-raw/census/data/abs2006.rda")
-load("data-raw/census/data/abs2006_e07.rda")
 load("data-raw/census/data/abs2011.rda")
 load("data-raw/census/data/abs2016.rda")
 
@@ -234,11 +233,6 @@ abs2007 <- abs2007 %>%
 my_ids_2006 <- get_year_ids(year = 2006, my_ids = my_ids)
 
 abs2006 <- abs2006 %>% 
-  left_join(my_ids_2006, by = "DivisionNm") %>% 
-  select(-ID) %>% 
-  select(UniqueID, everything())
-
-abs2006_e07 <- abs2006_e07 %>% 
   left_join(my_ids_2006, by = "DivisionNm") %>% 
   select(-ID) %>% 
   select(UniqueID, everything())
