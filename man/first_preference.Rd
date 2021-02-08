@@ -16,17 +16,17 @@ A data frame with the following variables:
 \strong{For the 2001 election only:}
 
 \itemize{
-\item UniqueID: Numeric identifier that links the electoral division with Census
-and other election datasets.
-\item StateAb: Abbreviation for state name
-\item DivisionNm:  Electoral division name
-\item Surname: Candidate surname
-\item GivenNm: Candidate given name
-\item PartyAb: Abbreviation for political party name
-\item PartyNm: Political party name
-\item Elected: Whether the candidate was elected (Y/N)
-\item Percent: Percentage of ordinary votes for the candidate
-}
+    \item UniqueID: Numeric identifier that links the electoral division with Census  
+    and other election datasets.
+    \item StateAb: Abbreviation for state name  
+    \item DivisionNm:  Electoral division name   
+    \item Surname: Candidate surname          
+    \item GivenNm: Candidate given name            
+    \item PartyAb: Abbreviation for political party name           
+    \item PartyNm: Political party name      
+    \item Elected: Whether the candidate was elected (Y/N)            
+    \item Percent: Percentage of ordinary votes for the candidate     
+    }
 
 \strong{For the 2004 election onwards:}
 

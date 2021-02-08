@@ -15,30 +15,12 @@
 
 #' 2019 Australian Federal election data: Two candidate preferred votes for candidates
 #' (House of Representatives) in each electorate.
+#'
+#' @source \url{https://results.aec.gov.au/24310/Website/HouseDownloadsMenu-24310-Csv.htm}
 #' 
-#' A dataset containing two candidate preferred vote counts, and other results for the 
-#' House of Representatives from the 2019 Australian federal election. Includes the count of votes for
-#' the leading two candidates in the electorate after distribution of preferences.
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{https://results.aec.gov.au/24310/Website/HouseDownloadsMenu-24310-Csv.htm}.
-#' 
-#' @format A data frame with the following variables:
-#' \itemize{
-#'     \item StateAb: Abbreviation for state name    
-#'     \item UniqueID: Numeric identifier that links the electoral division with Census  
-#'     and other election datasets.  
-#'     \item DivisionNm:  Electoral division name             
-#'     \item BallotPosition: Candidate's position on the ballot      
-#'     \item CandidateID: Candidate ID       
-#'     \item Surname: Candidate surname          
-#'     \item GivenNm: Candidate given name 
-#'     \item PartyAb: Abbreviation for political party name           
-#'     \item PartyNm: Political party name        
-#'     \item Elected: Whether the candidate was elected (Y/N)           
-#'     \item HistoricElected: Whether the candidate is the incumbent member      
-#'     \item OrdinaryVotes: Number of ordinary votes cast for the candidate 
-#'     \item Percent: Percentage of ordinary votes cast for the candidate    
-#'     }
+#' @format {}
+#' @rdname tcp
+#' @order 7
 "tcp19"
 
 #' @format {}
@@ -64,30 +46,12 @@
 #' 2016 Australian Federal election data: Two candidate preferred votes for candidates
 #' (House of Representatives) in each electorate.
 #' 
-#' A dataset containing two candidate preferred vote counts, and other results for the 
-#' House of Representatives from the 2016 Australian federal election. Includes the count of votes for
-#' the leading two candidates in the electorate after distribution of preferences.
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://results.aec.gov.au/20499/Website/HouseDownloadsMenu-20499-csv.htm} and 
-#' \url{http://www.aec.gov.au/elections/federal_elections/2016/downloads.htm}.
+#' @source \url{http://results.aec.gov.au/20499/Website/HouseDownloadsMenu-20499-csv.htm}
+#' @source \url{http://www.aec.gov.au/elections/federal_elections/2016/downloads.htm}
 #' 
-#' @format A data frame with the following variables:
-#' \itemize{
-#'     \item StateAb: Abbreviation for state name    
-#'     \item UniqueID: Numeric identifier that links the electoral division with Census  
-#'     and other election datasets.  
-#'     \item DivisionNm:  Electoral division name             
-#'     \item BallotPosition: Candidate's position on the ballot      
-#'     \item CandidateID: Candidate ID       
-#'     \item Surname: Candidate surname          
-#'     \item GivenNm: Candidate given name 
-#'     \item PartyAb: Abbreviation for political party name           
-#'     \item PartyNm: Political party name        
-#'     \item Elected: Whether the candidate was elected (Y/N)           
-#'     \item HistoricElected: Whether the candidate is the incumbent member      
-#'     \item OrdinaryVotes: Number of ordinary votes cast for the candidate 
-#'     \item Percent: Percentage of ordinary votes cast for the candidate    
-#'     }
+#' @format {}
+#' @rdname tcp
+#' @order 6
 "tcp16"
 
 #' @format {}
@@ -112,30 +76,12 @@
 #' 2013 Australian Federal election data: Two candidate preferred votes for candidates 
 #' (House of Representatives) in each electorate.
 #' 
-#' A dataset containing two candidate preferred vote counts, and other results for the 
-#' House of Representatives from the 2013 Australian federal election. Includes the count of votes for
-#' the leading two candidates in the electorate after distribution of preferences.
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm} and 
-#' \url{http://www.aec.gov.au/elections/federal_elections/2013/downloads.htm}.
+#' @source \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm} 
+#' @source \url{http://www.aec.gov.au/elections/federal_elections/2013/downloads.htm}
 #' 
-#' @format A data frame with the following variables:
-#' \itemize{
-#'     \item StateAb: Abbreviation for state name    
-#'     \item UniqueID: Numeric identifier that links the electoral division with Census  
-#'     and other election datasets.  
-#'     \item DivisionNm:  Electoral division name             
-#'     \item BallotPosition: Candidate's position on the ballot      
-#'     \item CandidateID: Candidate ID       
-#'     \item Surname: Candidate surname          
-#'     \item GivenNm: Candidate given name 
-#'     \item PartyAb: Abbreviation for political party name           
-#'     \item PartyNm: Political party name        
-#'     \item Elected: Whether the candidate was elected (Y/N)           
-#'     \item HistoricElected: Whether the candidate is the incumbent member      
-#'     \item OrdinaryVotes: Number of ordinary votes cast for the candidate 
-#'     \item Percent: Percentage of ordinary votes cast for the candidate    
-#'     }
+#' @format {}
+#' @rdname tcp
+#' @order 5
 "tcp13"
 
 #' @format {}
@@ -159,29 +105,12 @@
 #' 2010 Australian Federal election data: Two candidate preferred votes for candidates
 #' (House of Representatives) in each electorate.
 #' 
-#' A dataset containing two candidate preferred vote counts, and other results for the House of Representatives from the 2010 Australian federal election. Includes the count of votes for
-#' the leading two candidates in the electorate after distribution of preferences.
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://results.aec.gov.au/15508/Website/HouseDownloadsMenu-15508-csv.htm} and 
-#' \url{http://www.aec.gov.au/elections/federal_elections/2010/downloads.htm}.
+#' @source \url{http://results.aec.gov.au/15508/Website/HouseDownloadsMenu-15508-csv.htm} 
+#' @source \url{http://www.aec.gov.au/elections/federal_elections/2010/downloads.htm}
 #' 
-#' @format A data frame with the following variables:
-#' \itemize{
-#'     \item StateAb: Abbreviation for state name    
-#'     \item UniqueID: Numeric identifier that links the electoral division with Census  
-#'     and other election datasets.  
-#'     \item DivisionNm:  Electoral division name             
-#'     \item BallotPosition: Candidate's position on the ballot      
-#'     \item CandidateID: Candidate ID       
-#'     \item Surname: Candidate surname          
-#'     \item GivenNm: Candidate given name 
-#'     \item PartyAb: Abbreviation for political party name           
-#'     \item PartyNm: Political party name        
-#'     \item Elected: Whether the candidate was elected (Y/N)           
-#'     \item HistoricElected: Whether the candidate is the incumbent member      
-#'     \item OrdinaryVotes: Number of ordinary votes cast for the candidate 
-#'     \item Percent: Percentage of ordinary votes cast for the candidate    
-#'     }
+#' @format {}
+#' @rdname tcp
+#' @order 4
 "tcp10"
 
 #' @format {}
@@ -210,36 +139,35 @@
 #' 2007 Australian Federal election data: Two candidate preferred votes for candidates 
 #' (House of Representatives) in each electorate.
 #' 
-#' A dataset containing two candidate preferred vote counts, and other results for the 
-#' House of Representatives from the 2007 Australian federal election. Includes the count of votes for
-#' the leading two candidates in the electorate after distribution of preferences.
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://results.aec.gov.au/13745/Website/HouseDownloadsMenu-13745-csv.htm} and 
-#' \url{http://www.aec.gov.au/elections/federal_elections/2007/downloads.htm}.
+#' @source \url{http://results.aec.gov.au/13745/Website/HouseDownloadsMenu-13745-csv.htm}
+#' @source \url{http://www.aec.gov.au/elections/federal_elections/2007/downloads.htm}.
 #' 
-#' @format A data frame with the following variables:
-#' \itemize{
-#'     \item StateAb: Abbreviation for state name    
-#'     \item UniqueID: Numeric identifier that links the electoral division with Census  
-#'     and other election datasets.  
-#'     \item DivisionNm:  Electoral division name             
-#'     \item BallotPosition: Candidate's position on the ballot      
-#'     \item CandidateID: Candidate ID       
-#'     \item Surname: Candidate surname          
-#'     \item GivenNm: Candidate given name 
-#'     \item PartyAb: Abbreviation for political party name           
-#'     \item PartyNm: Political party name        
-#'     \item Elected: Whether the candidate was elected (Y/N)           
-#'     \item HistoricElected: Whether the candidate is the incumbent member      
-#'     \item OrdinaryVotes: Number of ordinary votes cast for the candidate 
-#'     \item Percent: Percentage of ordinary votes cast for the candidate    
+#' @format \strong{For the 2007 election onwards:}
+#' \describe{
+#'     \item{StateAb}{Abbreviation for state name}
+#'     \item{UniqueID}{Numeric identifier that links the electoral division with Census  
+#'     and other election datasets.}
+#'     \item{DivisionNm}{Electoral division name}
+#'     \item{BallotPosition}{Candidate's position on the ballot}
+#'     \item{CandidateID}{Candidate ID}
+#'     \item{Surname}{Candidate surname}     
+#'     \item{GivenNm}{Candidate given name}
+#'     \item{PartyAb}{Abbreviation for political party name}
+#'     \item{PartyNm}{Political party name}
+#'     \item{Elected}{Whether the candidate was elected (Y/N)}  
+#'     \item{HistoricElected}{Whether the candidate is the incumbent member}
+#'     \item{OrdinaryVotes}{Number of ordinary votes cast for the candidate}
+#'     \item{Percent}{Percentage of ordinary votes cast for the candidate}
 #'     }
+#' @rdname tcp
+#' @order 3
+#' @md
 "tcp07"
 
 #' 2004 Australian Federal election data: First preference votes for candidates (House of 
 #' Representatives) in each electorate.
 #' 
-#' @format **For the 2004 election onwards:** 
+#' @format \strong{For the 2004 election onwards:}
 #' 
 #' \itemize{
 #'     \item StateAb: Abbreviation for state name    
@@ -278,28 +206,30 @@
 #' 2004 Australian Federal election data: Two candidate preferred votes for candidates 
 #' (House of Representatives) in each electorate.
 #' 
-#' A dataset containing two candidate preferred vote counts, and other results for the House of Representatives from the 2004 Australian federal election. Includes the count of votes for
-#' the leading two candidates in the electorate after distribution of preferences.
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://results.aec.gov.au/12246/results/HouseDownloadsMenu-12246-csv.htm} and 
-#' \url{http://www.aec.gov.au/elections/federal_elections/2004/downloads.htm}.
+#' @source \url{http://results.aec.gov.au/12246/results/HouseDownloadsMenu-12246-csv.htm} 
+#' @source \url{http://www.aec.gov.au/elections/federal_elections/2004/downloads.htm}.
 #' 
-#' @format A data frame with the following variables:
-#' \itemize{
-#'     \item StateAb: Abbreviation for state name    
-#'     \item UniqueID: Numeric identifier that links the electoral division with Census  
-#'     and other election datasets.
-#'     \item DivisionNm:  Electoral division name             
-#'     \item BallotPosition: Candidate's position on the ballot      
-#'     \item CandidateID: Candidate ID       
-#'     \item Surname: Candidate surname          
-#'     \item GivenNm: Candidate given name 
-#'     \item PartyAb: Abbreviation for political party name           
-#'     \item PartyNm: Political party name        
-#'     \item Elected: Whether the candidate was elected (Y/N)                 
-#'     \item OrdinaryVotes: Number of ordinary votes cast for the candidate 
-#'     \item Percent: Percentage of ordinary votes cast for the candidate    
+#' @format 
+#' 
+#' \strong{For the 2004 election:}
+#' 
+#' \describe{
+#'     \item{StateAb}{Abbreviation for state name}  
+#'     \item{UniqueID}{Numeric identifier that links the electoral division with Census
+#'     and other election datasets.}
+#'     \item{DivisionNm}{Electoral division name}
+#'     \item{BallotPosition}{Candidate's position on the ballot}
+#'     \item{CandidateID}{Candidate ID}
+#'     \item{Surname}{Candidate surname}
+#'     \item{GivenNm}{Candidate given name}
+#'     \item{PartyAb}{Abbreviation for political party name}
+#'     \item{PartyNm}{Political party name}
+#'     \item{Elected}{Whether the candidate was elected (Y/N)}
+#'     \item{OrdinaryVotes}{Number of ordinary votes cast for the candidate}
+#'     \item{Percent}{Percentage of ordinary votes cast for the candidate}
 #'     }
+#' @rdname tcp
+#' @order 2
 "tcp04"
 
 #' First preference votes for candidates (House of Representatives) in each electorate.
@@ -309,7 +239,7 @@
 #' 
 #' @format A data frame with the following variables:
 #' 
-#' **For the 2001 election only:**
+#' \strong{For the 2001 election only:}
 #' 
 #' \itemize{
 #'     \item UniqueID: Numeric identifier that links the electoral division with Census  
@@ -328,7 +258,6 @@
 #' @source \url{https://www.aec.gov.au/About_AEC/Publications/statistics/files/aec-2001-election-statistics.zip}
 #' @rdname first_preference
 #' @order 1
-#' @md
 "fp01"
 
 #' Two party preferred votes for candidates in each electorate where Labor and
@@ -360,28 +289,36 @@
 #' @order 1
 "tpp01"
 
-#' 2001 Australian Federal election data: Two candidate preferred votes for candidates 
+#' Two candidate preferred votes for candidates 
 #' (House of Representatives) in each electorate.
 #' 
-#' A dataset containing two candidate preferred vote counts, and other results for the House of Representatives from the 2001 Australian federal election. Includes the count of votes for
-#' the leading two candidates in the electorate after distribution of preferences.
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{https://www.aec.gov.au/About_AEC/Publications/statistics/files/aec-2001-election-statistics.zip}.
+#' A dataset containing two candidate preferred vote counts, 
+#' and other results for the House of Representatives from the 
+#' 2001 to 2019 Australian federal elections. 
+#' Includes the count of votes for the leading two candidates 
+#' in the electorate after distribution of preferences.
+#' 
+#' @source \url{https://www.aec.gov.au/About_AEC/Publications/statistics/files/aec-2001-election-statistics.zip}.
 #' 
 #' @format A data frame with the following variables:
-#' \itemize{
-#'     \item UniqueID: Numeric identifier that links the electoral division with Census  
-#'     and other election datasets.
-#'     \item StateAb: Abbreviation for state name   
-#'     \item DivisionNm:  Electoral division name             
-#'     \item Surname: Candidate surname          
-#'     \item GivenNm: Candidate given name 
-#'     \item Elected: Whether the candidate was elected (Y/N)  
-#'     \item Percent: Percentage of ordinary votes cast for the candidate   
-#'     \item PartyAb: Abbreviation for political party name            
-#'     \item PartyNm: Political party name      
-#'     \item Swing: Percentage point change in ordinary votes for the party from the previous election      
+#' 
+#' \strong{For the 2001 election:}
+#' 
+#' \describe{
+#'     \item{UniqueID}{Numeric identifier that links the electoral division with Census  
+#'     and other election datasets}
+#'     \item{StateAb}{Abbreviation for state name}  
+#'     \item{DivisionNm}{Electoral division name}             
+#'     \item{Surname}{Candidate surname}          
+#'     \item{GivenNm}{Candidate given name}
+#'     \item{Elected}{Whether the candidate was elected (Y/N)}
+#'     \item{Percent}{Percentage of ordinary votes cast for the candidate}
+#'     \item{PartyAb}{Abbreviation for political party name}         
+#'     \item{PartyNm}{Political party name}    
+#'     \item{Swing}{Percentage point change in ordinary votes for the party from the previous election}     
 #'     }
+#' @rdname tcp
+#' @order 1
 "tcp01"
 
 #' Map of Australian Electorates from 2019
