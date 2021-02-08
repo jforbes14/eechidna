@@ -5,7 +5,8 @@
 \alias{tcp16}
 \title{2016 Australian Federal election data: Two candidate preferred votes for candidates
 (House of Representatives) in each electorate.}
-\format{A data frame with the following variables:
+\format{
+A data frame with the following variables:
 \itemize{
     \item StateAb: Abbreviation for state name    
     \item UniqueID: Numeric identifier that links the electoral division with Census  
@@ -21,7 +22,8 @@
     \item HistoricElected: Whether the candidate is the incumbent member      
     \item OrdinaryVotes: Number of ordinary votes cast for the candidate 
     \item Percent: Percentage of ordinary votes cast for the candidate    
-    }}
+    }
+}
 \usage{
 tcp16
 }

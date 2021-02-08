@@ -4,7 +4,8 @@
 \name{nat_data07}
 \alias{nat_data07}
 \title{Data and centroids corresponding to the Australian Electorates from 2007}
-\format{A data frame with 150 rows with the following variables:
+\format{
+A data frame with 150 rows with the following variables:
 \itemize{
     \item id: Numeric identifier for the polygon
     \item elect_div: Electorate division name   
@@ -14,7 +15,8 @@
     \item x: latitude coordinate for plotting a cartogram
     \item y: longitude coordinate for plotting a cartogram
     \item radius: variable used in the construction of cartogram points
-}}
+}
+}
 \usage{
 nat_data07
 }

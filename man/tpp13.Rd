@@ -5,7 +5,8 @@
 \alias{tpp13}
 \title{2013 Australian Federal election data: Two party preferred votes for candidates (House of 
 Representatives) in each electorate.}
-\format{A data frame with the following variables:
+\format{
+A data frame with the following variables:
 \itemize{
     \item UniqueID: Numeric identifier that links the electoral division with Census  
     and other election datasets.  
@@ -17,7 +18,8 @@ Representatives) in each electorate.}
     \item ALP_Percent: Percentage of two party preferred vote in favour of the Labor party     
     \item TotalVotes: Total number of votes cast     
     \item Swing: Percentage point change in two party preferred vote from the previous election      
-    }}
+    }
+}
 \usage{
 tpp13
 }

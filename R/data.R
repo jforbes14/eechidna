@@ -1,28 +1,7 @@
-#' 2019 Australian Federal election data: First preference votes for candidates (House of 
-#' Representatives) in each electorate.
-#' 
-#' A dataset containing first preference vote counts, candidate names, and 
-#' other results for the House of Representatives from the 2019 Australian federal election. 
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{https://results.aec.gov.au/24310/Website/HouseDownloadsMenu-24310-Csv.htm}.
-#' 
-#' @format A data frame with the following variables:
-#' \itemize{
-#'     \item StateAb: Abbreviation for state name    
-#'     \item UniqueID: Numeric identifier that links the electoral division with Census  
-#'     and other election datasets.
-#'     \item DivisionNm:  Electoral division name   
-#'     \item BallotPosition: Candidate's position on the ballot 
-#'     \item CandidateID: Candidate ID       
-#'     \item Surname: Candidate surname          
-#'     \item GivenNm: Candidate given name            
-#'     \item PartyAb: Abbreviation for political party name           
-#'     \item PartyNm: Political party name      
-#'     \item Elected: Whether the candidate was elected (Y/N)           
-#'     \item HistoricElected: Whether the candidate is the incumbent member  
-#'     \item OrdinaryVotes: Number of ordinary votes cast at the electorate for the candidate     
-#'     \item Percent: Percentage of ordinary votes for the candidate     
-#'     }
+#' @format
+#' @source \url{https://results.aec.gov.au/24310/Website/HouseDownloadsMenu-24310-Csv.htm}
+#' @rdname first_preference
+#' @order 7
 "fp19"
 
 #' 2019 Australian Federal election data: Two party preferred votes for candidates (House of 
@@ -78,32 +57,12 @@
 #'     }
 "tcp19"
 
-#' 2016 Australian Federal election data: First preference votes for candidates (House of 
-#' Representatives) in each electorate.
+#' @format {}
 #' 
-#' A dataset containing first preference vote counts, candidate names, and 
-#' other results for the House of Representatives from the 2016 Australian federal election. 
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://results.aec.gov.au/20499/Website/HouseDownloadsMenu-20499-csv.htm} and 
-#' \url{http://www.aec.gov.au/elections/federal_elections/2016/downloads.htm}.
-#' 
-#' @format A data frame with the following variables:
-#' \itemize{
-#'     \item StateAb: Abbreviation for state name    
-#'     \item UniqueID: Numeric identifier that links the electoral division with Census  
-#'     and other election datasets.
-#'     \item DivisionNm:  Electoral division name   
-#'     \item BallotPosition: Candidate's position on the ballot 
-#'     \item CandidateID: Candidate ID       
-#'     \item Surname: Candidate surname          
-#'     \item GivenNm: Candidate given name            
-#'     \item PartyAb: Abbreviation for political party name           
-#'     \item PartyNm: Political party name      
-#'     \item Elected: Whether the candidate was elected (Y/N)           
-#'     \item HistoricElected: Whether the candidate is the incumbent member  
-#'     \item OrdinaryVotes: Number of ordinary votes cast at the electorate for the candidate     
-#'     \item Percent: Percentage of ordinary votes for the candidate     
-#'     }
+#' @source \url{http://results.aec.gov.au/20499/Website/HouseDownloadsMenu-20499-csv.htm}
+#' @source \url{http://www.aec.gov.au/elections/federal_elections/2016/downloads.htm}
+#' @rdname first_preference
+#' @order 6
 "fp16"
 
 #' 2016 Australian Federal election data: Two party preferred votes for candidates (House of 
@@ -162,32 +121,12 @@
 #'     }
 "tcp16"
 
-#' 2013 Australian Federal election data: First preference votes for candidates (House of 
-#' Representatives) in each electorate.
-#' 
-#' A dataset containing first preference vote counts, candidate names, and other results for the
-#' House of Representatives from the 2013 Australian federal election. 
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm} and 
-#' \url{http://www.aec.gov.au/elections/federal_elections/2013/downloads.htm}.
-#' 
-#' @format A data frame with the following variables:
-#' \itemize{
-#'     \item StateAb: Abbreviation for state name    
-#'     \item UniqueID: Numeric identifier that links the electoral division with Census  
-#'     and other election datasets.
-#'     \item DivisionNm:  Electoral division name   
-#'     \item BallotPosition: Candidate's position on the ballot 
-#'     \item CandidateID: Candidate ID       
-#'     \item Surname: Candidate surname          
-#'     \item GivenNm: Candidate given name            
-#'     \item PartyAb: Abbreviation for political party name           
-#'     \item PartyNm: Political party name      
-#'     \item Elected: Whether the candidate was elected (Y/N)           
-#'     \item HistoricElected: Whether the candidate is the incumbent member  
-#'     \item OrdinaryVotes: Number of ordinary votes cast at the electorate for the candidate     
-#'     \item Percent: Percentage of ordinary votes for the candidate     
-#'     }
+#' @format {}
+#'     
+#' @source \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm}
+#' @source \url{http://www.aec.gov.au/elections/federal_elections/2013/downloads.htm}
+#' @rdname first_preference
+#' @order 5
 "fp13"
 
 #' 2013 Australian Federal election data: Two party preferred votes for candidates (House of 
@@ -245,32 +184,12 @@
 #'     }
 "tcp13"
 
-#' 2010 Australian Federal election data: First preference votes for candidates (House of House of 
-#' Representative for each electorate
+#' @format {}
 #' 
-#' A dataset containing first preference vote counts, candidate names, and other results for the
-#' House of Representatives from the 2010 Australian federal election. 
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://results.aec.gov.au/15508/Website/HouseDownloadsMenu-15508-csv.htm} and 
-#' \url{http://www.aec.gov.au/elections/federal_elections/2010/downloads.htm}.
-#' 
-#' @format A data frame with the following variables:
-#' \itemize{
-#'     \item StateAb: Abbreviation for state name    
-#'     \item UniqueID: Numeric identifier that links the electoral division with Census  
-#'     and other election datasets.   
-#'     \item DivisionNm:  Electoral division name   
-#'     \item BallotPosition: Candidate's position on the ballot 
-#'     \item CandidateID: Candidate ID       
-#'     \item Surname: Candidate surname          
-#'     \item GivenNm: Candidate given name            
-#'     \item PartyAb: Abbreviation for political party name           
-#'     \item PartyNm: Political party name      
-#'     \item Elected: Whether the candidate was elected (Y/N)           
-#'     \item HistoricElected: Whether the candidate is the incumbent member  
-#'     \item OrdinaryVotes: Number of ordinary votes cast at the electorate for the candidate     
-#'     \item Percent: Percentage of ordinary votes for the candidate     
-#'     }
+#' @source \url{http://results.aec.gov.au/15508/Website/HouseDownloadsMenu-15508-csv.htm}
+#' @source \url{http://www.aec.gov.au/elections/federal_elections/2010/downloads.htm}
+#' @rdname first_preference
+#' @order 4
 "fp10"
 
 #' 2010 Australian Federal election data: Two party preferred votes for candidates (House of Representatives) in each electorate.
@@ -324,31 +243,14 @@
 #'     }
 "tcp10"
 
-#' 2007 Australian Federal election data: First preference votes for candidates (House of Representatives) in each electorate.
+#' @format {}
 #' 
-#' A dataset containing first preference vote counts, candidate names, and other results for the
-#' House of Representatives from the 2007 Australian federal election. 
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://results.aec.gov.au/13745/Website/HouseDownloadsMenu-13745-csv.htm} and 
-#' \url{http://www.aec.gov.au/elections/federal_elections/2007/downloads.htm}.
-#' 
-#' @format A data frame with the following variables:
-#' \itemize{
-#'     \item StateAb: Abbreviation for state name    
-#'     \item UniqueID: Numeric identifier that links the electoral division with Census  
-#'     and other election datasets.   
-#'     \item DivisionNm:  Electoral division name   
-#'     \item BallotPosition: Candidate's position on the ballot 
-#'     \item CandidateID: Candidate ID       
-#'     \item Surname: Candidate surname          
-#'     \item GivenNm: Candidate given name            
-#'     \item PartyAb: Abbreviation for political party name           
-#'     \item PartyNm: Political party name      
-#'     \item Elected: Whether the candidate was elected (Y/N)           
-#'     \item HistoricElected: Whether the candidate is the incumbent member  
-#'     \item OrdinaryVotes: Number of ordinary votes cast at the electorate for the candidate     
-#'     \item Percent: Percentage of ordinary votes for the candidate     
-#'     }
+#' @source
+#'   \url{http://results.aec.gov.au/13745/Website/HouseDownloadsMenu-13745-csv.htm}
+#' @source
+#'   \url{http://www.aec.gov.au/elections/federal_elections/2007/downloads.htm}
+#' @rdname first_preference
+#' @order 3
 "fp07"
 
 #' 2007 Australian Federal election data: Two party preferred votes for candidates (House of Representatives) in each electorate.
@@ -406,13 +308,8 @@
 #' 2004 Australian Federal election data: First preference votes for candidates (House of 
 #' Representatives) in each electorate.
 #' 
-#' A dataset containing first preference vote counts, candidate names, and other results for the
-#' House of Representatives from the 2004 Australian federal election. 
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://results.aec.gov.au/12246/results/HouseDownloadsMenu-12246-csv.htm} and 
-#' \url{http://www.aec.gov.au/elections/federal_elections/2004/downloads.htm}.
+#' @format **For the 2004 election onwards:** 
 #' 
-#' @format A data frame with the following variables:
 #' \itemize{
 #'     \item StateAb: Abbreviation for state name    
 #'     \item UniqueID: Numeric identifier that links the electoral division with Census  
@@ -428,6 +325,12 @@
 #'     \item OrdinaryVotes: Number of ordinary votes cast at the electorate for the candidate     
 #'     \item Percent: Percentage of ordinary votes for the candidate     
 #'     }
+#'     
+#' @source \url{http://results.aec.gov.au/12246/results/HouseDownloadsMenu-12246-csv.htm}
+#' @source \url{http://www.aec.gov.au/elections/federal_elections/2004/downloads.htm}
+#' @rdname first_preference
+#' @order 2
+#' @md
 "fp04"
 
 #' 2004 Australian Federal election data: Two party preferred votes for candidates (House of 
@@ -481,14 +384,15 @@
 #'     }
 "tcp04"
 
-#' 2001 Australian Federal election data: First preference votes for candidates (House of Representatives) in each electorate.
+#' First preference votes for candidates (House of Representatives) in each electorate.
 #' 
 #' A dataset containing first preference vote counts, candidate names, and other results for the
-#' House of Representatives from the 2001 Australian federal election. 
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{https://www.aec.gov.au/About_AEC/Publications/statistics/files/aec-2001-election-statistics.zip}.
+#' House of Representatives from Australian federal elections from 2001 to 2019.
 #' 
 #' @format A data frame with the following variables:
+#' 
+#' **For the 2001 election only:**
+#' 
 #' \itemize{
 #'     \item UniqueID: Numeric identifier that links the electoral division with Census  
 #'     and other election datasets.
@@ -501,6 +405,12 @@
 #'     \item Elected: Whether the candidate was elected (Y/N)            
 #'     \item Percent: Percentage of ordinary votes for the candidate     
 #'     }
+#'     
+#'     
+#' @source \url{https://www.aec.gov.au/About_AEC/Publications/statistics/files/aec-2001-election-statistics.zip}
+#' @rdname first_preference
+#' @order 1
+#' @md
 "fp01"
 
 #' 2001 Australian Federal election data: Two party preferred votes for candidates (House of Representatives) in each electorate. where Labor and Liberal parties were the two most popular parties.

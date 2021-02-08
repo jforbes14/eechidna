@@ -4,8 +4,17 @@
 \alias{circle}
 \title{Draw a circle}
 \usage{
-circle(xvec, yvec, rvec, vertex = 100, border = 1, col = NULL,
-  add = TRUE, square = FALSE, ...)
+circle(
+  xvec,
+  yvec,
+  rvec,
+  vertex = 100,
+  border = 1,
+  col = NULL,
+  add = TRUE,
+  square = FALSE,
+  ...
+)
 }
 \arguments{
 \item{xvec}{X-coordinates}

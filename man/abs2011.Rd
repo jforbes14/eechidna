@@ -4,7 +4,8 @@
 \name{abs2011}
 \alias{abs2011}
 \title{2011 Australian Census data on all 150 electorates}
-\format{A data frame with 150 rows with the following variables:
+\format{
+A data frame with 150 rows with the following variables:
 \itemize{
   \item UniqueID: Numeric identifier that links the electoral division with Census 
   and other election datasets.
@@ -92,7 +93,8 @@
   \item University_NS: Rate of nonresponse for questions relating to University
   \item Volunteer: Percentage of people who work as a volunteer
   \item Volunteer_NS: Rate of nonresponse for questions relating to working as a volunteer
-}}
+}
+}
 \usage{
 abs2011
 }

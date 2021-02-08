@@ -4,7 +4,8 @@
 \name{nat_map19}
 \alias{nat_map19}
 \title{Map of Australian Electorates from 2019}
-\format{A data frame with the following variables:
+\format{
+A data frame with the following variables:
 \itemize{
     \item id: Numeric identifier for the polygon
     \item long: longitude coordinate of point in polygon
@@ -15,7 +16,8 @@
     \item group: group for polygon
     \item elect_div: Electoral division name
     \item state: Abbreviation for state name
-}}
+}
+}
 \usage{
 nat_map19
 }

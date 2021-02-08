@@ -4,7 +4,8 @@
 \name{abs2004}
 \alias{abs2004}
 \title{Imputed Australian Census data for the electorates in place at time of the 2004 Federal election}
-\format{A data frame with 150 rows with the following variables:
+\format{
+A data frame with 150 rows with the following variables:
 \itemize{
   \item Population: Number of people in electorate
   \item DivisionNm: Name of electorate
@@ -76,7 +77,8 @@
   \item Unemployed: Unemployment rate
   \item Volunteer: Percentage of people who work as a volunteer
   \item UniqueID: Numeric identifier that links the electoral division with Census and other election datasets.
-}}
+}
+}
 \usage{
 abs2004
 }

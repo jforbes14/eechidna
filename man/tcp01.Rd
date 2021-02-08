@@ -5,7 +5,8 @@
 \alias{tcp01}
 \title{2001 Australian Federal election data: Two candidate preferred votes for candidates 
 (House of Representatives) in each electorate.}
-\format{A data frame with the following variables:
+\format{
+A data frame with the following variables:
 \itemize{
     \item UniqueID: Numeric identifier that links the electoral division with Census  
     and other election datasets.
@@ -18,7 +19,8 @@
     \item PartyAb: Abbreviation for political party name            
     \item PartyNm: Political party name      
     \item Swing: Percentage point change in ordinary votes for the party from the previous election      
-    }}
+    }
+}
 \usage{
 tcp01
 }
