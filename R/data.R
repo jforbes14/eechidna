@@ -540,33 +540,9 @@
 #'     \item y: longitude coordinate for plotting a cartogram
 #'     \item radius: variable used in the construction of cartogram points
 #' }
-#' @examples 
 #' 
-#' library(eechidna)
-#' library(tidyverse)
-#' library(ggthemes)
-#' nat_map19 <- nat_map_download(2019)
-#' data(fp19)
-#' winners <- fp19 %>% filter(Elected == "Y")
+#' @keywords internal
 #' 
-#' # Combine Liberal and National parties
-#' winners <- winners %>% 
-#' mutate(PartyNm = ifelse(PartyNm %in% c("NATIONAL PARTY", "LIBERAL PARTY"), 
-#' "LIBERAL NATIONAL COALITION", PartyNm))
-#' 
-#' # Join to map
-#' nat_data19 <- nat_data_download(2019)
-#' nat_data19$DivisionNm <- toupper(nat_data19$elect_div)
-#' nat_data19 <- nat_data19 %>% left_join(winners, by = "DivisionNm")
-#
-#' # Plot
-#' partycolours = c("#FF0033", "#FF7B00", "#000000", "#FFFF00", "#0066CC", "#009900")
-#' 
-#' ggplot(data=nat_map19) + 
-#' geom_polygon(aes(x=long, y=lat, group=group), fill="grey90", colour="white") +
-#' geom_point(data=nat_data19, aes(x=x, y=y, colour=PartyNm), size=1.5, alpha=0.8) +
-#' scale_colour_manual(name="Political Party", values=partycolours) +
-#' theme_map() + coord_equal() + theme(legend.position="bottom")
 "nat_data19"
 
 #' Data and centroids corresponding to the Australian Electorates from 2016
@@ -589,33 +565,7 @@
 #'     \item y: longitude coordinate for plotting a cartogram
 #'     \item radius: variable used in the construction of cartogram points
 #' }
-#' @examples 
-#' 
-#' library(eechidna)
-#' library(tidyverse)
-#' library(ggthemes)
-#' nat_map16 <- nat_map_download(2016)
-#' data(fp16)
-#' winners <- fp16 %>% filter(Elected == "Y")
-#' 
-#' # Combine Liberal and National parties
-#' winners <- winners %>% 
-#' mutate(PartyNm = ifelse(PartyNm %in% c("NATIONAL PARTY", "LIBERAL PARTY"), 
-#' "LIBERAL NATIONAL COALITION", PartyNm))
-#' 
-#' # Join to map
-#' nat_data16 <- nat_data_download(2016)
-#' nat_data16$DivisionNm <- toupper(nat_data16$elect_div)
-#' nat_data16 <- nat_data16 %>% left_join(winners, by = "DivisionNm")
-#
-#' # Plot
-#' partycolours = c("#FF0033", "#000000", "#CC3300", "#0066CC", "#FFFF00", "#009900")
-#' 
-#' ggplot(data=nat_map16) + 
-#' geom_polygon(aes(x=long, y=lat, group=group), fill="grey90", colour="white") +
-#' geom_point(data=nat_data16, aes(x=x, y=y, colour=PartyNm), size=1.5, alpha=0.8) +
-#' scale_colour_manual(name="Political Party", values=partycolours) +
-#' theme_map() + coord_equal() + theme(legend.position="bottom")
+#' @keywords internal
 "nat_data16"
 
 #' Data and centroids corresponding to the Australian Electorates from 2013
@@ -638,6 +588,8 @@
 #'     \item y: longitude coordinate for plotting a cartogram
 #'     \item radius: variable used in the construction of cartogram points
 #' }
+#' 
+#' @keywords internal
 "nat_data13"
 
 #' Data and centroids corresponding to the Australian Electorates from 2010
@@ -660,6 +612,8 @@
 #'     \item y: longitude coordinate for plotting a cartogram
 #'     \item radius: variable used in the construction of cartogram points
 #' }
+#' 
+#' @keywords internal
 "nat_data10"
 
 #' Data and centroids corresponding to the Australian Electorates from 2007
@@ -680,6 +634,8 @@
 #'     \item y: longitude coordinate for plotting a cartogram
 #'     \item radius: variable used in the construction of cartogram points
 #' }
+#' 
+#' @keywords internal
 "nat_data07"
 
 #' Data and centroids corresponding to the Australian Electorates from 2004
@@ -700,6 +656,8 @@
 #'     \item y: longitude coordinate for plotting a cartogram
 #'     \item radius: variable used in the construction of cartogram points
 #' }
+#' 
+#' @keywords internal
 "nat_data04"
 
 #' Data and centroids corresponding to the Australian Electorates from 2001
@@ -720,6 +678,8 @@
 #'     \item y: longitude coordinate for plotting a cartogram
 #'     \item radius: variable used in the construction of cartogram points
 #' }
+#' 
+#' @keywords internal
 "nat_data01"
 
 #' 2016 Australian Census data on all 150 electorates

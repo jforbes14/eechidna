@@ -96,27 +96,40 @@ nat_map_download <- function(year, ...){
   
 }
 
-#' Download DataFrame containing the data associated with Australian federal electorates
+#' Download a data frame containing electorate centroids
+#' 
+#' @description
+#' Downloads and returns a data frame containing the points that make up the centroids
+#' for each of the Australian electorates in the desired federal election. 
 #' 
 #' @param year Desired year, must be one of 2001, 2004, 2007, 2010, 2011, 2013, 2016, 2019
 #' @param ... Additional arguments passed to `download.file`
 #'
-#' Downloads and returns a DataFrame containing the points that outline the polygons 
-#' for each of the Australian electorates in the desired federal election. 
-#' This object is obtained using the `nat_data_download` function. The data were obtained from the 
-#' Australian Electoral Commission and the Australian Bureau of Statistics.
 #'
-#' @return A DataFrame with data associated with each of the Australian federal electorates
+#' @return A data frame with data associated with each of the Australian federal electorates
 #' 
-#' @examples
-#' \dontrun{
-#' nat_map16 <- nat_map_download(year = 2016)
-#' nat_data16 <- nat_data_download(year = 2016)
-#' # Plot a map of the electorates
-#' library(sp)
-#' plot(sF_16)
+#' \itemize{
+#'     \item id: Numeric identifier for the polygon
+#'     \item elect_div: Electorate division name   
+#'     \item state: abbreviation of the state name
+#'     \item numccds: AEC variable that might be filled with meaning or a description down the road
+#'     \item area_sqkm: combined square kilometers of each electorate
+#'     \item long_c: longitude coordinate of electorate (polygon) centroid
+#'     \item lat_c: latitude coordinate of electorate (polygon) centroid
+#'     \item x: latitude coordinate for plotting a cartogram
+#'     \item y: longitude coordinate for plotting a cartogram
+#'     \item radius: variable used in the construction of cartogram points
 #' }
 #' 
+#' @examples
+#' library(eechidna)
+#' library(dplyr)
+#' library(ggmap)
+#'
+#' nat_data19 <- nat_data_download(2019)
+#'
+#' nat_data19 %>%
+#'   qmplot(long_c, lat_c, data=.)
 #' @export
 nat_data_download <- function(year, ...){
   
