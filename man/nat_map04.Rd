@@ -28,4 +28,4 @@ The data were obtained from the Australian Bureau of Statistics, and downloaded
 from \url{http://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}.
 Must be loaded using the `nat_map_download` function.
 }
-\keyword{datasets}
+\keyword{internal}

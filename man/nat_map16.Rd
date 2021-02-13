@@ -44,4 +44,4 @@ ggplot(aes(map_id=region), data=subset(abs2016, region \%in\% both)) +
   theme_map()
 
 }
-\keyword{datasets}
+\keyword{internal}

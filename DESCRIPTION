@@ -43,7 +43,8 @@ Suggests:
     readr,
     gridExtra,
     tidyverse,
-    spelling
+    spelling,
+    ggmap
 Encoding: UTF-8
 Authors@R: c(person("Jeremy", "Forbes", role = c("aut", "cre"), email = "jeremyforbes1995@gmail.com"),
 		         person("Di", "Cook",       role = c("aut")),

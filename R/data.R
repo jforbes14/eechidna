@@ -328,6 +328,8 @@
 #' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}. Must be loaded using the
 #' `nat_map_download` function.
 #' 
+#' @keywords internal
+#' 
 #' @format A data frame with the following variables:
 #' \itemize{
 #'     \item id: Numeric identifier for the polygon
@@ -365,6 +367,8 @@
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
 #' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}. Must be loaded using the
 #' `nat_map_download` function.
+#' 
+#' @keywords internal
 #' 
 #' @format A data frame with the following variables:
 #' \itemize{
@@ -405,6 +409,8 @@
 #' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}. Must be loaded using the
 #' `nat_map_download` function.
 #'
+#' @keywords internal
+#'
 #' @format A data frame with the following variables:
 #' \itemize{
 #'     \item id: Numeric identifier for the polygon
@@ -427,6 +433,8 @@
 #' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}. Must be loaded using the
 #' `nat_map_download` function.
 #' 
+#' @keywords internal
+#' 
 #' @format A data frame with the following variables:
 #' \itemize{
 #'     \item id: Numeric identifier for the polygon
@@ -447,6 +455,8 @@
 #' electorates. The data were obtained from the Australian Electoral Commission, and downloaded 
 #' from \url{http://www.abs.gov.au/AUSSTATS/abs@@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}. 
 #' Must be loaded using the `nat_map_download` function.
+#' 
+#' @keywords internal
 #' 
 #' @format A data frame with the following variables:
 #' \itemize{
@@ -470,6 +480,8 @@
 #' from \url{http://www.abs.gov.au/AUSSTATS/abs@@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}.
 #' Must be loaded using the `nat_map_download` function.
 #' 
+#' @keywords internal
+#' 
 #' @format A data frame with the following variables:
 #' \itemize{
 #'     \item id: Numeric identifier for the polygon
@@ -491,6 +503,8 @@
 #' The data were obtained from the Australian Government, and downloaded 
 #' from \url{https://data.gov.au/dataset/ds-dga-0b939a62-e53e-4616-add5-77f909b58ddd/details?q=asgc\%202001}.
 #' Must be loaded using the `nat_map_download` function.
+#' 
+#' @keywords internal
 #' 
 #' @format A data frame with the following variables:
 #' \itemize{

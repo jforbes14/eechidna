@@ -28,4 +28,4 @@ The data were obtained from the Australian Government, and downloaded
 from \url{https://data.gov.au/dataset/ds-dga-0b939a62-e53e-4616-add5-77f909b58ddd/details?q=asgc\%202001}.
 Must be loaded using the `nat_map_download` function.
 }
-\keyword{datasets}
+\keyword{internal}
