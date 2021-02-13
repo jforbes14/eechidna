@@ -1,0 +1,29 @@
+reference:
+  - title: Results
+  - contents:
+    - starts_with('fp')
+    - starts_with('tcp')
+    - starts_with('tpp')
+    - firstpref_pollingbooth_download
+    - starts_with('two')
+  - title: Census Data
+  - contents:
+    - starts_with('abs')
+    - starts_with('weighted_')
+  - title: Spatial Data
+  - contents:
+    - nat_data_download
+    - nat_map_download
+    - sF_download
+    - load_shapefile
+    - get_electorate_shapes
+  - title: Cartograms and Helpers
+  - contents:
+    - starts_with('aec_')
+    - allocate_electorate
+    - extract_centroids
+    - mapping_fn
+    - circle
+    - complete_color
+    - dorling
+    - launch_app
