@@ -4,7 +4,8 @@
 \name{nat_data04}
 \alias{nat_data04}
 \title{Data and centroids corresponding to the Australian Electorates from 2004}
-\format{A data frame with 150 rows with the following variables:
+\format{
+A data frame with 150 rows with the following variables:
 \itemize{
     \item id: Numeric identifier for the polygon
     \item elect_div: Electorate division name   
@@ -14,7 +15,8 @@
     \item x: latitude coordinate for plotting a cartogram
     \item y: longitude coordinate for plotting a cartogram
     \item radius: variable used in the construction of cartogram points
-}}
+}
+}
 \usage{
 nat_data04
 }
@@ -24,4 +26,4 @@ The data were obtained from the Australian Bureau of Statistics, and downloaded
 from \url{http://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}.
 Must be loaded using the `nat_data_download` function.
 }
-\keyword{datasets}
+\keyword{internal}

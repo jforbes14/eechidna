@@ -4,11 +4,25 @@
 \alias{dorling}
 \title{Produce a Pseudo-Dorling Cartogram.}
 \usage{
-dorling(name, centroidx, centroidy, density, nbr = NULL,
-  shared.border = NULL, color = NULL, tolerance = 0.1,
-  dist.ratio = 1.2, iteration = 9999, polygon.vertex = 100,
-  animation = FALSE, sleep.time = 0.3, nbredge = ifelse(is.null(nbr),
-  FALSE, TRUE), name.text = TRUE, ggplot2 = FALSE, ...)
+dorling(
+  name,
+  centroidx,
+  centroidy,
+  density,
+  nbr = NULL,
+  shared.border = NULL,
+  color = NULL,
+  tolerance = 0.1,
+  dist.ratio = 1.2,
+  iteration = 9999,
+  polygon.vertex = 100,
+  animation = FALSE,
+  sleep.time = 0.3,
+  nbredge = ifelse(is.null(nbr), FALSE, TRUE),
+  name.text = TRUE,
+  ggplot2 = FALSE,
+  ...
+)
 }
 \arguments{
 \item{name}{A vector of region names.}

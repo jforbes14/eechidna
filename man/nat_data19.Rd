@@ -4,7 +4,8 @@
 \name{nat_data19}
 \alias{nat_data19}
 \title{Data and centroids corresponding to the Australian Electorates from 2019}
-\format{A data frame with 151 rows with the following variables:
+\format{
+A data frame with 151 rows with the following variables:
 \itemize{
     \item id: Numeric identifier for the polygon
     \item elect_div: Electorate division name   
@@ -16,7 +17,8 @@
     \item x: latitude coordinate for plotting a cartogram
     \item y: longitude coordinate for plotting a cartogram
     \item radius: variable used in the construction of cartogram points
-}}
+}
+}
 \usage{
 nat_data19
 }
@@ -26,31 +28,4 @@ The data were obtained from the Australian Electoral Commission, and downloaded
 from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
 Must be loaded using the `nat_data_download` function.
 }
-\examples{
-
-library(eechidna)
-library(tidyverse)
-library(ggthemes)
-nat_map19 <- nat_map_download(2019)
-data(fp19)
-winners <- fp19 \%>\% filter(Elected == "Y")
-
-# Combine Liberal and National parties
-winners <- winners \%>\% 
-mutate(PartyNm = ifelse(PartyNm \%in\% c("NATIONAL PARTY", "LIBERAL PARTY"), 
-"LIBERAL NATIONAL COALITION", PartyNm))
-
-# Join to map
-nat_data19 <- nat_data_download(2019)
-nat_data19$DivisionNm <- toupper(nat_data19$elect_div)
-nat_data19 <- nat_data19 \%>\% left_join(winners, by = "DivisionNm")
-# Plot
-partycolours = c("#FF0033", "#FF7B00", "#000000", "#FFFF00", "#0066CC", "#009900")
-
-ggplot(data=nat_map19) + 
-geom_polygon(aes(x=long, y=lat, group=group), fill="grey90", colour="white") +
-geom_point(data=nat_data19, aes(x=x, y=y, colour=PartyNm), size=1.5, alpha=0.8) +
-scale_colour_manual(name="Political Party", values=partycolours) +
-theme_map() + coord_equal() + theme(legend.position="bottom")
-}
-\keyword{datasets}
+\keyword{internal}

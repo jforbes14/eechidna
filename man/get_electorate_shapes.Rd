@@ -5,8 +5,13 @@
 \title{Extract shapefiles (of Australian electorates) from raw file into fortified
 map and data components.}
 \usage{
-get_electorate_shapes(path_to_shapeFile = NULL, sF = NULL,
-  mapinfo = TRUE, layer = NULL, tolerance = 0.005)
+get_electorate_shapes(
+  path_to_shapeFile = NULL,
+  sF = NULL,
+  mapinfo = TRUE,
+  layer = NULL,
+  tolerance = 0.005
+)
 }
 \arguments{
 \item{path_to_shapeFile}{path to object in local machine (only if shapefile has not already loaded)}

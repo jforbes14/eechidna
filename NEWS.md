@@ -1,24 +1,6 @@
-# eechidna 0.1.0.9000
+# eechidna 1.4.1 (2021-02-03)
 
-* `launchApp()` now displays densities, rather than dotplots, to avoid the potential confusion that each dot represents an electorate.
-
-# eechidna 0.1.0 (2016-06-01)
-
-* Added a `NEWS.md` file to track changes to the package (#8)
-
-# eechidna 0.1.0 (2016-05-23)
-  
-* Published on CRAN
-
-# eechidna 1.1.0 (2019-01-23)
-
-* Removed from CRAN
-
-# eechidna 1.3.0 (2019-03-15)
-
-* Now covers all elections and Censuses between 2001-2016
-* Includes polling booth data from each election (available using download functions in the pkg)
-* Submitted to CRAN
+* Fixed UniqueID and party labels (for the Greens) for 2019 data
 
 # eechidna 1.4.0 (2019-11-08)
 
@@ -28,6 +10,21 @@
 * Added `UniqueID` variable to datasets so that electorates can be tracked over time (note: these were manually assigned and an electorate inherits the same ID as an electorate in a previous election if these two electoral boundaries are roughly the same)
 * Remove nat_map and nat_data objects from being loaded with eechidna, instead use the `nat_map_download` and `nat_data_download` functions to obtain these objects
 
-# eechidna 1.4.1 (2021-02-03)
+# eechidna 1.3.0 (2019-03-15)
 
-* Fixed UniqueID and party labels (for the Greens) for 2019 data
+* Now covers all elections and Censuses between 2001-2016
+* Includes polling booth data from each election (available using download functions in the pkg)
+* Submitted to CRAN
+
+# eechidna 1.1.0 (2019-01-23)
+
+* Removed from CRAN
+
+# eechidna 0.1.0 (2016-06-01)
+
+* Added a `NEWS.md` file to track changes to the package (#8)
+* Published on CRAN
+
+# eechidna 0.1.0.9000
+
+* `launchApp()` now displays densities, rather than dotplots, to avoid the potential confusion that each dot represents an electorate.

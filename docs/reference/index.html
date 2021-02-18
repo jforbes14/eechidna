@@ -8,21 +8,29 @@
 
 <title>Function reference • eechidna</title>
 
+
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,7 +38,9 @@
 
 
 
+
 <meta property="og:title" content="Function reference" />
+
 
 
 
@@ -44,9 +54,10 @@
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-index">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -60,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eechidna</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.1</span>
       </span>
     </div>
 
@@ -68,7 +79,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -109,11 +120,10 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/jforbes14/eechidna">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="https://github.com/jforbes14/eechidna/">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -124,6 +134,7 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -143,65 +154,147 @@
     <tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
+          <h2 id="section-results" class="hasAnchor"><a href="#section-results" class="anchor"></a>Results</h2>
           <p class="section-desc"></p>
         </th>
       </tr>
+      
+      
+    </tbody><tbody>
+      
+      
       <tr>
         
         <td>
-          <p><code><a href="abs2001.html">abs2001</a></code> </p>
+          <p><code><a href="first_preference.html">fp01</a></code> <code><a href="first_preference.html">fp04</a></code> <code><a href="first_preference.html">fp07</a></code> <code><a href="first_preference.html">fp10</a></code> <code><a href="first_preference.html">fp13</a></code> <code><a href="first_preference.html">fp16</a></code> <code><a href="first_preference.html">fp19</a></code> </p>
         </td>
-        <td><p>2001 Australian Census data on all 150 electorates</p></td>
+        <td><p>First preference votes for candidates (House of Representatives) in each electorate.</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="abs2004.html">abs2004</a></code> </p>
+          <p><code><a href="tcp.html">tcp01</a></code> <code><a href="tcp.html">tcp04</a></code> <code><a href="tcp.html">tcp07</a></code> <code><a href="tcp.html">tcp10</a></code> <code><a href="tcp.html">tcp13</a></code> <code><a href="tcp.html">tcp16</a></code> <code><a href="tcp.html">tcp19</a></code> </p>
         </td>
-        <td><p>Imputed Australian Census data for the electorates in place at time of the 2004 Federal election</p></td>
+        <td><p>Two candidate preferred votes for candidates 
+(House of Representatives) in each electorate.</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="abs2006.html">abs2006</a></code> </p>
+          <p><code><a href="tpp.html">tpp01</a></code> <code><a href="tpp.html">tpp04</a></code> <code><a href="tpp.html">tpp10</a></code> <code><a href="tpp.html">tpp07</a></code> <code><a href="tpp.html">tpp13</a></code> <code><a href="tpp.html">tpp16</a></code> <code><a href="tpp.html">tpp19</a></code> </p>
         </td>
-        <td><p>2006 Australian Census data on all 150 electorates (2004 boundaries)</p></td>
+        <td><p>Two party preferred votes for candidates in each electorate where Labor and
+Liberal parties were the two most popular parties.</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="abs2007.html">abs2007</a></code> </p>
+          <p><code><a href="firstpref_pollingbooth_download.html">firstpref_pollingbooth_download()</a></code> </p>
         </td>
-        <td><p>Imputed Australian Census data for the electorates in place at time of the 2007 Federal election</p></td>
+        <td><p>Download first preference voting data from each polling booth, from the six 
+Australian Federal elections between 2001 and 2016.</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="abs2010.html">abs2010</a></code> </p>
+          <p><code><a href="twocand_pollingbooth_download.html">twocand_pollingbooth_download()</a></code> </p>
         </td>
-        <td><p>Imputed Australian Census data for the electorates in place at time of the 2010 Federal election</p></td>
+        <td><p>Download two candidate preference voting data from each polling booth, from the five 
+Australian Federal elections between 2004 and 2016.</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="abs2011.html">abs2011</a></code> </p>
+          <p><code><a href="twoparty_pollingbooth_download.html">twoparty_pollingbooth_download()</a></code> </p>
         </td>
-        <td><p>2011 Australian Census data on all 150 electorates</p></td>
+        <td><p>Download two party preference voting data from each polling booth, from the seven 
+Australian Federal elections between 2001 and 2016.</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-census-data" class="hasAnchor"><a href="#section-census-data" class="anchor"></a>Census Data</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="census.html">abs2001</a></code> <code><a href="census.html">abs2004</a></code> <code><a href="census.html">abs2006</a></code> <code><a href="census.html">abs2007</a></code> <code><a href="census.html">abs2010</a></code> <code><a href="census.html">abs2011</a></code> <code><a href="census.html">abs2013</a></code> <code><a href="census.html">abs2016</a></code> <code><a href="census.html">abs2019</a></code> </p>
+        </td>
+        <td><p>Australian Census data on all electorates</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="abs2013.html">abs2013</a></code> </p>
+          <p><code><a href="weighted_avg_census.html">weighted_avg_census()</a></code> </p>
         </td>
-        <td><p>Imputed Australian Census data for the electorates in place at time of the 2013 Federal election</p></td>
+        <td><p>Function to compute weighted average of Census information
+using imputed populations as weights.</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="abs2016.html">abs2016</a></code> </p>
+          <p><code><a href="weighted_avg_census_sa1.html">weighted_avg_census_sa1()</a></code> </p>
         </td>
-        <td><p>2016 Australian Census data on all 150 electorates</p></td>
+        <td><p>Function to compute weighted average of Census information
+using imputed populations as weights</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-spatial-data" class="hasAnchor"><a href="#section-spatial-data" class="anchor"></a>Spatial Data</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="nat_data_download.html">nat_data_download()</a></code> </p>
+        </td>
+        <td><p>Download a data frame containing electorate centroids</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="abs2019.html">abs2019</a></code> </p>
+          <p><code><a href="nat_map_download.html">nat_map_download()</a></code> </p>
         </td>
-        <td><p>Imputed Australian Census data for the electorates in place at time of the 2019 Federal election</p></td>
+        <td><p>Download a data frame containing the polygons of Australian federal electorates</p></td>
       </tr><tr>
+        
+        <td>
+          <p><code><a href="sF_download.html">sF_download()</a></code> </p>
+        </td>
+        <td><p>Download SpatialPolygonsDataFrame containing polygons of Australian federal electorates</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="load_shapefile.html">load_shapefile()</a></code> </p>
+        </td>
+        <td><p>Load shapefile of Australia into R</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_electorate_shapes.html">get_electorate_shapes()</a></code> </p>
+        </td>
+        <td><p>Extract shapefiles (of Australian electorates) from raw file into fortified
+map and data components.</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-cartograms-and-helpers" class="hasAnchor"><a href="#section-cartograms-and-helpers" class="anchor"></a>Cartograms and Helpers</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
         
         <td>
           <p><code><a href="aec_add_carto_f.html">aec_add_carto_f()</a></code> </p>
@@ -234,6 +327,19 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="extract_centroids.html">extract_centroids()</a></code> </p>
+        </td>
+        <td><p>Extract centroids from the polygons within a shapefile.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="mapping_fn.html">mapping_fn()</a></code> </p>
+        </td>
+        <td><p>Compute areas of intersection between each election boundary and those in
+the Census of interest. This is a less refined method than using SA1 centroids.</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="circle.html">circle()</a></code> </p>
         </td>
         <td><p>Draw a circle</p></td>
@@ -252,346 +358,38 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="eechidnaR-package.html">eechidna-package</a></code> </p>
-        </td>
-        <td><p>Exploring Election and Census Highly Informative Data Nationally for Australia</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="extract_centroids.html">extract_centroids()</a></code> </p>
-        </td>
-        <td><p>Extract centroids from the polygons within a shapefile.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="firstpref_pollingbooth_download.html">firstpref_pollingbooth_download()</a></code> </p>
-        </td>
-        <td><p>Download first preference voting data from each polling booth, from the six 
-Australian Federal elections between 2001 and 2016.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="fp01.html">fp01</a></code> </p>
-        </td>
-        <td><p>2001 Australian Federal election data: First preference votes for candidates (House of Representatives) in each electorate.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="fp04.html">fp04</a></code> </p>
-        </td>
-        <td><p>2004 Australian Federal election data: First preference votes for candidates (House of 
-Representatives) in each electorate.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="fp07.html">fp07</a></code> </p>
-        </td>
-        <td><p>2007 Australian Federal election data: First preference votes for candidates (House of Representatives) in each electorate.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="fp10.html">fp10</a></code> </p>
-        </td>
-        <td><p>2010 Australian Federal election data: First preference votes for candidates (House of House of 
-Representative for each electorate</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="fp13.html">fp13</a></code> </p>
-        </td>
-        <td><p>2013 Australian Federal election data: First preference votes for candidates (House of 
-Representatives) in each electorate.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="fp16.html">fp16</a></code> </p>
-        </td>
-        <td><p>2016 Australian Federal election data: First preference votes for candidates (House of 
-Representatives) in each electorate.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="fp19.html">fp19</a></code> </p>
-        </td>
-        <td><p>2019 Australian Federal election data: First preference votes for candidates (House of 
-Representatives) in each electorate.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_electorate_shapes.html">get_electorate_shapes()</a></code> </p>
-        </td>
-        <td><p>Extract shapefiles (of Australian electorates) from raw file into fortified
-map and data components.</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="launch_app.html">launch_app()</a></code> </p>
         </td>
         <td><p>Shiny app for exploring census and electorate data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="load_shapefile.html">load_shapefile()</a></code> </p>
-        </td>
-        <td><p>Load shapefile of Australia into R</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="mapping_fn.html">mapping_fn()</a></code> </p>
-        </td>
-        <td><p>Compute areas of intersection between each election boundary and those in
-the Census of interest. This is a less refined method than using SA1 centroids.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="nat_data01.html">nat_data01</a></code> </p>
-        </td>
-        <td><p>Data and centroids corresponding to the Australian Electorates from 2001</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="nat_data04.html">nat_data04</a></code> </p>
-        </td>
-        <td><p>Data and centroids corresponding to the Australian Electorates from 2004</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="nat_data07.html">nat_data07</a></code> </p>
-        </td>
-        <td><p>Data and centroids corresponding to the Australian Electorates from 2007</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="nat_data10.html">nat_data10</a></code> </p>
-        </td>
-        <td><p>Data and centroids corresponding to the Australian Electorates from 2010</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="nat_data13.html">nat_data13</a></code> </p>
-        </td>
-        <td><p>Data and centroids corresponding to the Australian Electorates from 2013</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="nat_data16.html">nat_data16</a></code> </p>
-        </td>
-        <td><p>Data and centroids corresponding to the Australian Electorates from 2016</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="nat_data19.html">nat_data19</a></code> </p>
-        </td>
-        <td><p>Data and centroids corresponding to the Australian Electorates from 2019</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="nat_data_download.html">nat_data_download()</a></code> </p>
-        </td>
-        <td><p>Download DataFrame containing the data associated with Australian federal electorates</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="nat_map01.html">nat_map01</a></code> </p>
-        </td>
-        <td><p>Map of Australian Electorates from 2001</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="nat_map04.html">nat_map04</a></code> </p>
-        </td>
-        <td><p>Map of Australian Electorates from 2004</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="nat_map07.html">nat_map07</a></code> </p>
-        </td>
-        <td><p>Map of Australian Electorates from 2007</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="nat_map10.html">nat_map10</a></code> </p>
-        </td>
-        <td><p>Map of Australian Electorates from 2010</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="nat_map13.html">nat_map13</a></code> </p>
-        </td>
-        <td><p>Map of Australian Electorates from 2013</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="nat_map16.html">nat_map16</a></code> </p>
-        </td>
-        <td><p>Map of Australian Electorates from 2016</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="nat_map19.html">nat_map19</a></code> </p>
-        </td>
-        <td><p>Map of Australian Electorates from 2019</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="nat_map_download.html">nat_map_download()</a></code> </p>
-        </td>
-        <td><p>Download DataFrame containing the polygons of Australian federal electorates</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="sF_download.html">sF_download()</a></code> </p>
-        </td>
-        <td><p>Download SpatialPolygonsDataFrame containing polygons of Australian federal electorates</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="tcp01.html">tcp01</a></code> </p>
-        </td>
-        <td><p>2001 Australian Federal election data: Two candidate preferred votes for candidates 
-(House of Representatives) in each electorate.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="tcp04.html">tcp04</a></code> </p>
-        </td>
-        <td><p>2004 Australian Federal election data: Two candidate preferred votes for candidates 
-(House of Representatives) in each electorate.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="tcp07.html">tcp07</a></code> </p>
-        </td>
-        <td><p>2007 Australian Federal election data: Two candidate preferred votes for candidates 
-(House of Representatives) in each electorate.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="tcp10.html">tcp10</a></code> </p>
-        </td>
-        <td><p>2010 Australian Federal election data: Two candidate preferred votes for candidates
-(House of Representatives) in each electorate.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="tcp13.html">tcp13</a></code> </p>
-        </td>
-        <td><p>2013 Australian Federal election data: Two candidate preferred votes for candidates 
-(House of Representatives) in each electorate.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="tcp16.html">tcp16</a></code> </p>
-        </td>
-        <td><p>2016 Australian Federal election data: Two candidate preferred votes for candidates
-(House of Representatives) in each electorate.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="tcp19.html">tcp19</a></code> </p>
-        </td>
-        <td><p>2019 Australian Federal election data: Two candidate preferred votes for candidates
-(House of Representatives) in each electorate.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="tpp01.html">tpp01</a></code> </p>
-        </td>
-        <td><p>2001 Australian Federal election data: Two party preferred votes for candidates (House of Representatives) in each electorate. where Labor and Liberal parties were the two most popular parties.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="tpp04.html">tpp04</a></code> </p>
-        </td>
-        <td><p>2004 Australian Federal election data: Two party preferred votes for candidates (House of 
-Representatives) in each electorate.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="tpp07.html">tpp07</a></code> </p>
-        </td>
-        <td><p>2007 Australian Federal election data: Two party preferred votes for candidates (House of Representatives) in each electorate.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="tpp10.html">tpp10</a></code> </p>
-        </td>
-        <td><p>2010 Australian Federal election data: Two party preferred votes for candidates (House of Representatives) in each electorate.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="tpp13.html">tpp13</a></code> </p>
-        </td>
-        <td><p>2013 Australian Federal election data: Two party preferred votes for candidates (House of 
-Representatives) in each electorate.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="tpp16.html">tpp16</a></code> </p>
-        </td>
-        <td><p>2016 Australian Federal election data: Two party preferred votes for candidates (House of 
-Representative) in each electorate.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="tpp19.html">tpp19</a></code> </p>
-        </td>
-        <td><p>2019 Australian Federal election data: Two party preferred votes for candidates (House of 
-Representative) in each electorate.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="twocand_pollingbooth_download.html">twocand_pollingbooth_download()</a></code> </p>
-        </td>
-        <td><p>Download two candidate preference voting data from each polling booth, from the five 
-Australian Federal elections between 2004 and 2016.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="twoparty_pollingbooth_download.html">twoparty_pollingbooth_download()</a></code> </p>
-        </td>
-        <td><p>Download two party preference voting data from each polling booth, from the seven 
-Australian Federal elections between 2001 and 2016.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="weighted_avg_census.html">weighted_avg_census()</a></code> </p>
-        </td>
-        <td><p>Function to compute weighted average of Census information
-using imputed populations as weights.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="weighted_avg_census_sa1.html">weighted_avg_census_sa1()</a></code> </p>
-        </td>
-        <td><p>Function to compute weighted average of Census information
-using imputed populations as weights</p></td>
       </tr>
     </tbody>
     </table>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
-    </ul>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
+
       <footer>
       <div class="copyright">
-  <p>Developed by Di Cook, Anthony Ebert, Jeremy Forbes, Heike Hofmann, Rob Hyndman, Thomas Lumley, Ben Marwick, Carson Sievert, Mingzhu Sun, Dilini Talagala, Nicholas Tierney, Nathaniel Tomasetti, Earo Wang, Fang Zhou.</p>
+  <p>Developed by Jeremy Forbes, Di Cook, Anthony Ebert, Heike Hofmann, Rob Hyndman, Thomas Lumley, Ben Marwick, Carson Sievert, Mingzhu Sun, Dilini Talagala, Nicholas Tierney, Nathaniel Tomasetti, Earo Wang, Fang Zhou.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

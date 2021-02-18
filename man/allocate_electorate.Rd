@@ -4,8 +4,12 @@
 \alias{allocate_electorate}
 \title{Determine which electoral division contains the centroid from each of the Census polygons.}
 \usage{
-allocate_electorate(centroids_ls, electorates_sf, census_year = NA,
-  election_year = NA)
+allocate_electorate(
+  centroids_ls,
+  electorates_sf,
+  census_year = NA,
+  election_year = NA
+)
 }
 \arguments{
 \item{centroids_ls}{list containing centroids as SpatialPoints and a dataframe with

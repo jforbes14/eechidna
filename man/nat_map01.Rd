@@ -4,7 +4,8 @@
 \name{nat_map01}
 \alias{nat_map01}
 \title{Map of Australian Electorates from 2001}
-\format{A data frame with the following variables:
+\format{
+A data frame with the following variables:
 \itemize{
     \item id: Numeric identifier for the polygon
     \item long: longitude coordinate of point in polygon
@@ -15,7 +16,8 @@
     \item group: group for polygon
     \item elect_div: Electoral division name
     \item state: Abbreviation for state name
-}}
+}
+}
 \usage{
 nat_map01
 }
@@ -26,4 +28,4 @@ The data were obtained from the Australian Government, and downloaded
 from \url{https://data.gov.au/dataset/ds-dga-0b939a62-e53e-4616-add5-77f909b58ddd/details?q=asgc\%202001}.
 Must be loaded using the `nat_map_download` function.
 }
-\keyword{datasets}
+\keyword{internal}

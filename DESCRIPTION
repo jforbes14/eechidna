@@ -43,7 +43,8 @@ Suggests:
     readr,
     gridExtra,
     tidyverse,
-    spelling
+    spelling,
+    ggmap
 Encoding: UTF-8
 Authors@R: c(person("Jeremy", "Forbes", role = c("aut", "cre"), email = "jeremyforbes1995@gmail.com"),
 		         person("Di", "Cook",       role = c("aut")),
@@ -65,8 +66,8 @@ Maintainer: Jeremy Forbes <jeremyforbes1995@gmail.com>
 LazyData: true
 ByteCompile: TRUE
 License: GPL (>= 2)
-URL: https://github.com/jforbes14/eechidna
+URL: https://github.com/jforbes14/eechidna, https://jforbes14.github.io/eechidna
 VignetteBuilder: knitr
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.1
 BugReports: https://github.com/jforbes14/eechidna/issues
 Language: en-US
