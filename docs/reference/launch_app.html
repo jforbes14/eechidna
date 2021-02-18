@@ -8,21 +8,29 @@
 
 <title>Shiny app for exploring census and electorate data — launch_app • eechidna</title>
 
+
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,10 +38,10 @@
 
 
 
-<meta property="og:title" content="Shiny app for exploring census and electorate data — launch_app" />
 
+<meta property="og:title" content="Shiny app for exploring census and electorate data — launch_app" />
 <meta property="og:description" content="Shiny app for exploring census and electorate data" />
-<meta name="twitter:card" content="summary" />
+
 
 
 
@@ -47,9 +55,10 @@
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -63,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eechidna</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.1</span>
       </span>
     </div>
 
@@ -71,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -112,11 +121,10 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/jforbes14/eechidna">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="https://github.com/jforbes14/eechidna/">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -127,6 +135,7 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -138,20 +147,22 @@
     </div>
 
     <div class="ref-description">
-    
     <p>Shiny app for exploring census and electorate data</p>
-    
     </div>
 
-    <pre class="usage"><span class='fu'>launch_app</span>(<span class='kw'>election_year</span> <span class='kw'>=</span> <span class='fl'>2016</span>, <span class='kw'>age</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Age00_04"</span>, <span class='st'>"Age05_14"</span>,
-  <span class='st'>"Age15_19"</span>, <span class='st'>"Age20_24"</span>, <span class='st'>"Age25_34"</span>, <span class='st'>"Age35_44"</span>, <span class='st'>"Age45_54"</span>, <span class='st'>"Age55_64"</span>,
-  <span class='st'>"Age65_74"</span>, <span class='st'>"Age75_84"</span>, <span class='st'>"Age85plus"</span>), <span class='kw'>religion</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Christianity"</span>,
-  <span class='st'>"Catholic"</span>, <span class='st'>"Buddhism"</span>, <span class='st'>"Islam"</span>, <span class='st'>"Judaism"</span>, <span class='st'>"NoReligion"</span>),
-  <span class='kw'>other</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"AusCitizen"</span>, <span class='st'>"MedianPersonalIncome"</span>, <span class='st'>"Unemployed"</span>,
-  <span class='st'>"BachelorAbv"</span>, <span class='st'>"Indigenous"</span>, <span class='st'>"EnglishOnly"</span>, <span class='st'>"OtherLanguageHome"</span>,
-  <span class='st'>"Married"</span>, <span class='st'>"DeFacto"</span>, <span class='st'>"FamilyRatio"</span>, <span class='st'>"Owned"</span>), <span class='kw'>palette</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"#1B9E77"</span>,
-  <span class='st'>"#F0027F"</span>, <span class='st'>"#E6AB02"</span>, <span class='st'>"#66A61E"</span>, <span class='st'>"#7570B3"</span>, <span class='st'>"#D95F02"</span>, <span class='st'>"#3690C0"</span>))</pre>
-    
+    <pre class="usage"><span class='fu'>launch_app</span><span class='op'>(</span>
+  election_year <span class='op'>=</span> <span class='fl'>2016</span>,
+  age <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Age00_04"</span>, <span class='st'>"Age05_14"</span>, <span class='st'>"Age15_19"</span>, <span class='st'>"Age20_24"</span>, <span class='st'>"Age25_34"</span>, <span class='st'>"Age35_44"</span>,
+    <span class='st'>"Age45_54"</span>, <span class='st'>"Age55_64"</span>, <span class='st'>"Age65_74"</span>, <span class='st'>"Age75_84"</span>, <span class='st'>"Age85plus"</span><span class='op'>)</span>,
+  religion <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Christianity"</span>, <span class='st'>"Catholic"</span>, <span class='st'>"Buddhism"</span>, <span class='st'>"Islam"</span>, <span class='st'>"Judaism"</span>,
+    <span class='st'>"NoReligion"</span><span class='op'>)</span>,
+  other <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"AusCitizen"</span>, <span class='st'>"MedianPersonalIncome"</span>, <span class='st'>"Unemployed"</span>, <span class='st'>"BachelorAbv"</span>,
+    <span class='st'>"Indigenous"</span>, <span class='st'>"EnglishOnly"</span>, <span class='st'>"OtherLanguageHome"</span>, <span class='st'>"Married"</span>, <span class='st'>"DeFacto"</span>,
+    <span class='st'>"FamilyRatio"</span>, <span class='st'>"Owned"</span><span class='op'>)</span>,
+  palette <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"#1B9E77"</span>, <span class='st'>"#F0027F"</span>, <span class='st'>"#E6AB02"</span>, <span class='st'>"#66A61E"</span>, <span class='st'>"#7570B3"</span>, <span class='st'>"#D95F02"</span>,
+    <span class='st'>"#3690C0"</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -162,17 +173,17 @@
     <tr>
       <th>age</th>
       <td><p>Age variables to show. Variable(s) should match column names from
-<a href='abs2016.html'>abs2016</a>. By default, all variables are shown.</p></td>
+<a href='abs2001.html'>abs2016</a>. By default, all variables are shown.</p></td>
     </tr>
     <tr>
       <th>religion</th>
       <td><p>Religion variables to show. Variable(s) should match column 
-names from <a href='abs2016.html'>abs2016</a>. By default, all variables are shown.</p></td>
+names from <a href='abs2001.html'>abs2016</a>. By default, all variables are shown.</p></td>
     </tr>
     <tr>
       <th>other</th>
       <td><p>Other census variables to show. Variable(s) should match column 
-names from <a href='abs2016.html'>abs2016</a>. By default, all variables are shown.</p></td>
+names from <a href='abs2001.html'>abs2016</a>. By default, all variables are shown.</p></td>
     </tr>
     <tr>
       <th>palette</th>
@@ -180,59 +191,61 @@ names from <a href='abs2016.html'>abs2016</a>. By default, all variables are sho
 are used as the display in the drop-down control.</p></td>
     </tr>
     </table>
-    
+
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Carson Sievert</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shiny</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>plotly</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>tidyverse</span>)
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://shiny.rstudio.com/'>shiny</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://plotly-r.com'>plotly</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
 <span class='co'># for comparing labor/liberal</span>
-<span class='fu'>launch_app</span>(
-  <span class='kw'>election_year</span> <span class='kw'>=</span> <span class='fl'>2016</span>,
-  <span class='kw'>age</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Age20_24"</span>, <span class='st'>"Age25_34"</span>, <span class='st'>"Age55_64"</span>),
-  <span class='kw'>religion</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Christianity"</span>, <span class='st'>"Catholic"</span>, <span class='st'>"NoReligion"</span>),
-  <span class='kw'>other</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"AusCitizen"</span>, <span class='st'>"MedianPersonalIncome"</span>, <span class='st'>"Unemployed"</span>)
-)
+<span class='fu'>launch_app</span><span class='op'>(</span>
+  election_year <span class='op'>=</span> <span class='fl'>2016</span>,
+  age <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Age20_24"</span>, <span class='st'>"Age25_34"</span>, <span class='st'>"Age55_64"</span><span class='op'>)</span>,
+  religion <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Christianity"</span>, <span class='st'>"Catholic"</span>, <span class='st'>"NoReligion"</span><span class='op'>)</span>,
+  other <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"AusCitizen"</span>, <span class='st'>"MedianPersonalIncome"</span>, <span class='st'>"Unemployed"</span><span class='op'>)</span>
+<span class='op'>)</span>
 
 <span class='co'># for inspecting highly contested areas</span>
-<span class='fu'>launch_app</span>(
-  <span class='kw'>election_year</span> <span class='kw'>=</span> <span class='fl'>2016</span>,
-  <span class='kw'>age</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Age25_34"</span>, <span class='st'>"Age35_44"</span>, <span class='st'>"Age55_64"</span>),
-  <span class='kw'>religion</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Christianity"</span>, <span class='st'>"Catholic"</span>, <span class='st'>"NoReligion"</span>),
-  <span class='kw'>other</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Owned"</span>, <span class='st'>"Indigenous"</span>, <span class='st'>"AusCitizen"</span>)
-)
+<span class='fu'>launch_app</span><span class='op'>(</span>
+  election_year <span class='op'>=</span> <span class='fl'>2016</span>,
+  age <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Age25_34"</span>, <span class='st'>"Age35_44"</span>, <span class='st'>"Age55_64"</span><span class='op'>)</span>,
+  religion <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Christianity"</span>, <span class='st'>"Catholic"</span>, <span class='st'>"NoReligion"</span><span class='op'>)</span>,
+  other <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Owned"</span>, <span class='st'>"Indigenous"</span>, <span class='st'>"AusCitizen"</span><span class='op'>)</span>
+<span class='op'>)</span>
 
-<span class='fu'>launch_app</span>()
+<span class='fu'>launch_app</span><span class='op'>(</span><span class='op'>)</span>
 
-<span class='co'># }</span></pre>
+<span class='op'>}</span>
+</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-            
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
-    <h2>Author</h2>
-    <p>Carson Sievert</p>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
-  <p>Developed by Di Cook, Anthony Ebert, Jeremy Forbes, Heike Hofmann, Rob Hyndman, Thomas Lumley, Ben Marwick, Carson Sievert, Mingzhu Sun, Dilini Talagala, Nicholas Tierney, Nathaniel Tomasetti, Earo Wang, Fang Zhou.</p>
+  <p>Developed by Jeremy Forbes, Di Cook, Anthony Ebert, Heike Hofmann, Rob Hyndman, Thomas Lumley, Ben Marwick, Carson Sievert, Mingzhu Sun, Dilini Talagala, Nicholas Tierney, Nathaniel Tomasetti, Earo Wang, Fang Zhou.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

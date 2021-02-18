@@ -4,14 +4,18 @@
 \alias{launch_app}
 \title{Shiny app for exploring census and electorate data}
 \usage{
-launch_app(election_year = 2016, age = c("Age00_04", "Age05_14",
-  "Age15_19", "Age20_24", "Age25_34", "Age35_44", "Age45_54", "Age55_64",
-  "Age65_74", "Age75_84", "Age85plus"), religion = c("Christianity",
-  "Catholic", "Buddhism", "Islam", "Judaism", "NoReligion"),
-  other = c("AusCitizen", "MedianPersonalIncome", "Unemployed",
-  "BachelorAbv", "Indigenous", "EnglishOnly", "OtherLanguageHome",
-  "Married", "DeFacto", "FamilyRatio", "Owned"), palette = c("#1B9E77",
-  "#F0027F", "#E6AB02", "#66A61E", "#7570B3", "#D95F02", "#3690C0"))
+launch_app(
+  election_year = 2016,
+  age = c("Age00_04", "Age05_14", "Age15_19", "Age20_24", "Age25_34", "Age35_44",
+    "Age45_54", "Age55_64", "Age65_74", "Age75_84", "Age85plus"),
+  religion = c("Christianity", "Catholic", "Buddhism", "Islam", "Judaism",
+    "NoReligion"),
+  other = c("AusCitizen", "MedianPersonalIncome", "Unemployed", "BachelorAbv",
+    "Indigenous", "EnglishOnly", "OtherLanguageHome", "Married", "DeFacto",
+    "FamilyRatio", "Owned"),
+  palette = c("#1B9E77", "#F0027F", "#E6AB02", "#66A61E", "#7570B3", "#D95F02",
+    "#3690C0")
+)
 }
 \arguments{
 \item{election_year}{Year of Federal election to be explored (2001, 2004, 2007, 2010, 2013 or 2016)}

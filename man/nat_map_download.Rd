@@ -2,33 +2,44 @@
 % Please edit documentation in R/git-download.R
 \name{nat_map_download}
 \alias{nat_map_download}
-\title{Download DataFrame containing the polygons of Australian federal electorates}
+\title{Download a data frame containing the polygons of Australian federal electorates}
 \usage{
 nat_map_download(year, ...)
 }
 \arguments{
 \item{year}{Desired year, must be one of 2001, 2004, 2007, 2010, 2011, 2013, 2016, 2019}
 
-\item{...}{Additional arguments passed to `download.file`
-
-Downloads and returns a DataFrame containing the points that outline the polygons 
-for each of the Australian electorates in the desired federal election. 
-This object is obtained using the `nat_map_download` function. The data were obtained from the 
-Australian Electoral Commission and the Australian Bureau of Statistics.}
+\item{...}{Additional arguments passed to `download.file`}
 }
 \value{
-A DataFrame consisting of points outlining each of the Australian federal electorates
+A data frame consisting of points with the following variables:
+\itemize{
+    \item id: Numeric identifier for the polygon
+    \item long: longitude coordinate of point in polygon
+    \item lat: latitude coordinate of point in polygon
+    \item order: order for polygon points
+    \item hole: whether polygon has a hole
+    \item piece: piece for polygon
+    \item group: group for polygon
+    \item elect_div: Electoral division name
+    \item state: Abbreviation for state name
+}
 }
 \description{
-Download DataFrame containing the polygons of Australian federal electorates
+Downloads and returns a DataFrame containing the points that outline the polygons 
+for each of the Australian electorates in the desired federal election. The data were obtained from the 
+Australian Electoral Commission and the Australian Bureau of Statistics.
 }
 \examples{
-\dontrun{
-nat_map16 <- nat_map_download(year = 2016)
-nat_data16 <- nat_data_download(year = 2016)
-# Plot a map of the electorates
-library(sp)
-plot(sF_16)
-}
+library(eechidna)
+library(dplyr)
+library(ggmap)
 
+nat_map16 <- nat_map_download(2016)
+
+nat_map16 \%>\%
+ filter(elect_div=='MELBOURNE') \%>\%
+ qmplot(long, lat, data=., color='red', size=5,
+        xlab=NA,ylab=NA) +
+ theme(legend.position = 'none')
 }

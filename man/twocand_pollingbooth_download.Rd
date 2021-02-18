@@ -4,7 +4,8 @@
 \alias{twocand_pollingbooth_download}
 \title{Download two candidate preference voting data from each polling booth, from the five 
 Australian Federal elections between 2004 and 2016.}
-\format{A data frame with the following variables:
+\format{
+A data frame with the following variables:
 \itemize{
     \item StateAb: Abbreviation for state name    
     \item DivisionID: Electoral division ID    
@@ -27,7 +28,8 @@ Australian Federal elections between 2004 and 2016.}
     \item Latitude: Coordinates        
     \item Longitude: Coordinates
     \item year: Election year
-    }}
+    }
+}
 \usage{
 twocand_pollingbooth_download(...)
 }

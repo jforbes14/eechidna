@@ -6,18 +6,19 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Exploring the Election data: a case study of 2016 • eechidna</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Exploring the Election data: a case study of 2016">
-<meta property="og:description" content="">
-<meta name="twitter:card" content="summary">
+<meta property="og:description" content="eechidna">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body>
+<body data-spy="scroll" data-target="#toc">
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -30,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eechidna</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.1</span>
       </span>
     </div>
 
@@ -38,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -81,8 +82,8 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/jforbes14/eechidna">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="https://github.com/jforbes14/eechidna/">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -95,13 +96,14 @@
 <!--/.navbar -->
 
       
-      </header><div class="row">
+
+      </header><script src="exploring-election-data_files/header-attrs-2.6/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>Exploring the Election data: a case study of 2016</h1>
+      <h1 data-toc-skip>Exploring the Election data: a case study of 2016</h1>
                         <h4 class="author">Ben Marwick, Di Cook, Jeremy Forbes, Heike Hofmann, Rob Hyndman, Carson Sievert, Nicholas Tierney and Fang Zhou</h4>
             
-            <h4 class="date">2021-01-21</h4>
+            <h4 class="date">2021-02-19</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/jforbes14/eechidna/blob/master/vignettes/exploring-election-data.Rmd"><code>vignettes/exploring-election-data.Rmd</code></a></small>
       <div class="hidden name"><code>exploring-election-data.Rmd</code></div>
@@ -150,38 +152,55 @@
 </table>
 <p>The suffix <code>16</code> corresponds with the 2016 federal election, so objects for other elections will have an equivalent suffix, e.g. <code>fp07</code> contains first preference votes for candidates in each electorate from the 2007 federal election.</p>
 <p>We can access and explore each of these using common methods in R, for example:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(eechidna)</a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(tidyverse)</a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(purrr)</a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(knitr)</a>
-<a class="sourceLine" id="cb1-5" title="5"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(broom)</a>
-<a class="sourceLine" id="cb1-6" title="6"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(purrrlyr)</a>
-<a class="sourceLine" id="cb1-7" title="7"></a>
-<a class="sourceLine" id="cb1-8" title="8"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(fp16)</a>
-<a class="sourceLine" id="cb1-9" title="9"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(tpp16)</a>
-<a class="sourceLine" id="cb1-10" title="10"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(tcp16)</a>
-<a class="sourceLine" id="cb1-11" title="11"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(abs2016)</a>
-<a class="sourceLine" id="cb1-12" title="12"></a>
-<a class="sourceLine" id="cb1-13" title="13"><span class="co"># inspect the data frame</span></a>
-<a class="sourceLine" id="cb1-14" title="14"><span class="kw">glimpse</span>(fp16)</a></code></pre></div>
-<pre><code>## Observations: 994
-## Variables: 13
-## $ UniqueID        &lt;dbl&gt; 801, 801, 801, 801, 802, 802, 802, 802, 802, 101…
-## $ StateAb         &lt;chr&gt; "ACT", "ACT", "ACT", "ACT", "ACT", "ACT", "ACT",…
-## $ DivisionNm      &lt;chr&gt; "CANBERRA", "CANBERRA", "CANBERRA", "CANBERRA", …
-## $ BallotPosition  &lt;dbl&gt; 1, 2, 3, 4, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 6, 7, …
-## $ CandidateID     &lt;dbl&gt; 28189, 28336, 29373, 28989, 28190, 28200, 28983,…
-## $ Surname         &lt;chr&gt; "BRODTMANN", "CAHILL", "BUCKNELL", "ADELAN-LANGF…
-## $ GivenNm         &lt;chr&gt; "GAI", "PATRICIA", "CHRISTOPHER D'ARCY", "JESSIC…
-## $ PartyAb         &lt;chr&gt; "ALP", "GRN", "BTA", "LP", "ALP", "IND", "LP", "…
-## $ PartyNm         &lt;chr&gt; "AUSTRALIAN LABOR PARTY", "THE GREENS", "BULLET …
-## $ Elected         &lt;chr&gt; "Y", "N", "N", "N", "Y", "N", "N", "N", "N", "N"…
-## $ HistoricElected &lt;chr&gt; "Y", "N", "N", "N", "Y", "N", "N", "N", "N", "N"…
-## $ OrdinaryVotes   &lt;dbl&gt; 55091, 19200, 6013, 48416, 56796, 4707, 38930, 1…
-## $ Percent         &lt;dbl&gt; 42.80, 14.92, 4.67, 37.61, 45.80, 3.80, 31.39, 1…</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co"># show the first few rows</span></a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(fp16) <span class="op">%&gt;%</span><span class="st"> </span>kable</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jforbes14/eechidna">eechidna</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://purrr.tidyverse.org">purrr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/">knitr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://broom.tidymodels.org/">broom</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hadley/purrrlyr">purrrlyr</a></span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">fp16</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">tpp16</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">tcp16</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">abs2016</span><span class="op">)</span>
+
+<span class="co"># inspect the data frame</span>
+<span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">fp16</span><span class="op">)</span></code></pre></div>
+<pre><code>## Rows: 994
+## Columns: 13
+## $ UniqueID        &lt;dbl&gt; 801, 801, 801, 801, 802, 802, 802, 802, 802, 101, 1...
+## $ StateAb         &lt;chr&gt; "ACT", "ACT", "ACT", "ACT", "ACT", "ACT", "ACT", "A...
+## $ DivisionNm      &lt;chr&gt; "CANBERRA", "CANBERRA", "CANBERRA", "CANBERRA", "FE...
+## $ BallotPosition  &lt;dbl&gt; 1, 2, 3, 4, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 6, 7, 1, ...
+## $ CandidateID     &lt;dbl&gt; 28189, 28336, 29373, 28989, 28190, 28200, 28983, 28...
+## $ Surname         &lt;chr&gt; "BRODTMANN", "CAHILL", "BUCKNELL", "ADELAN-LANGFORD...
+## $ GivenNm         &lt;chr&gt; "GAI", "PATRICIA", "CHRISTOPHER D'ARCY", "JESSICA",...
+## $ PartyAb         &lt;chr&gt; "ALP", "GRN", "BTA", "LP", "ALP", "IND", "LP", "GRN...
+## $ PartyNm         &lt;chr&gt; "AUSTRALIAN LABOR PARTY", "THE GREENS", "BULLET TRA...
+## $ Elected         &lt;chr&gt; "Y", "N", "N", "N", "Y", "N", "N", "N", "N", "N", "...
+## $ HistoricElected &lt;chr&gt; "Y", "N", "N", "N", "Y", "N", "N", "N", "N", "N", "...
+## $ OrdinaryVotes   &lt;dbl&gt; 55091, 19200, 6013, 48416, 56796, 4707, 38930, 1892...
+## $ Percent         &lt;dbl&gt; 42.80, 14.92, 4.67, 37.61, 45.80, 3.80, 31.39, 15.2...</code></pre>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># show the first few rows</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">fp16</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="va">kable</span></code></pre></div>
 <table class="table">
+<colgroup>
+<col width="5%">
+<col width="4%">
+<col width="6%">
+<col width="8%">
+<col width="7%">
+<col width="9%">
+<col width="11%">
+<col width="4%">
+<col width="15%">
+<col width="4%">
+<col width="9%">
+<col width="8%">
+<col width="4%">
+</colgroup>
 <thead><tr class="header">
 <th align="right">UniqueID</th>
 <th align="left">StateAb</th>
@@ -305,15 +324,16 @@
 <h3 class="hasAnchor">
 <a href="#which-party-won-the-election" class="anchor"></a>Which party won the election?</h3>
 <p>We can summarise the data to discover some basic details about the election. Let’s start by reproducing the overall result of the election by finding out which party won the most electorates according to the two candidate preferred votes:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">who_won &lt;-<span class="st"> </span>tcp16 <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb4-2" title="2"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(Elected <span class="op">==</span><span class="st"> "Y"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb4-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(PartyNm) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb4-4" title="4"><span class="st">  </span><span class="kw">tally</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb4-5" title="5"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(n)) </a>
-<a class="sourceLine" id="cb4-6" title="6"></a>
-<a class="sourceLine" id="cb4-7" title="7"><span class="co"># inspect</span></a>
-<a class="sourceLine" id="cb4-8" title="8">who_won <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb4-9" title="9"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">who_won</span> <span class="op">&lt;-</span> <span class="va">tcp16</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Elected</span> <span class="op">==</span> <span class="st">"Y"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">PartyNm</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">tally</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span> 
+
+<span class="co"># inspect</span>
+<span class="va">who_won</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">PartyNm</th>
@@ -350,18 +370,19 @@
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb5-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(scales)</a>
-<a class="sourceLine" id="cb5-3" title="3"><span class="kw">ggplot</span>(who_won, </a>
-<a class="sourceLine" id="cb5-4" title="4">       <span class="kw">aes</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/reorder.factor">reorder</a></span>(PartyNm, n), </a>
-<a class="sourceLine" id="cb5-5" title="5">           n)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb5-6" title="6"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb5-7" title="7"><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb5-8" title="8"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels =</span> comma) <span class="op">+</span></a>
-<a class="sourceLine" id="cb5-9" title="9"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb5-10" title="10"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">"Total number of electorates"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb5-11" title="11"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">"Party"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb5-12" title="12"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">10</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># plot</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://scales.r-lib.org">scales</a></span><span class="op">)</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">who_won</span>, 
+       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/reorder.factor.html">reorder</a></span><span class="op">(</span><span class="va">PartyNm</span>, <span class="va">n</span><span class="op">)</span>, 
+           <span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="va">comma</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Total number of electorates"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"Party"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="exploring-election-data_files/figure-html/who_won-1.png" width="576" style="display: block; margin: auto;"></p>
 <p>This result above matches the official AEC result, showing the Liberal party winning the most electorates (76).</p>
 </div>
@@ -369,17 +390,18 @@
 <h3 class="hasAnchor">
 <a href="#which-party-received-the-most-ordinary-votes" class="anchor"></a>Which party received the most ordinary votes?</h3>
 <p>An alternative way to evaluate the outcome of the election is by counting the number of ordinary first preference votes for each party (not including postal votes, preference flows, etc.). Here we can find the total number of ordinary votes for each party:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">total_votes_for_parties &lt;-<span class="st"> </span>fp16 <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb6-2" title="2"><span class="st">  </span><span class="kw">select</span>(PartyNm, OrdinaryVotes) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb6-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(PartyNm) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb6-4" title="4"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span>(<span class="dt">total_votes =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(OrdinaryVotes, <span class="dt">rm.na =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb6-5" title="5"><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-6" title="6"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(total_votes))</a>
-<a class="sourceLine" id="cb6-7" title="7"></a>
-<a class="sourceLine" id="cb6-8" title="8"><span class="co">#  inspect</span></a>
-<a class="sourceLine" id="cb6-9" title="9">total_votes_for_parties <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb6-10" title="10"><span class="st">  </span>head <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># just the first 10 rows</span></a>
-<a class="sourceLine" id="cb6-11" title="11"><span class="st">  </span>kable</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">total_votes_for_parties</span> <span class="op">&lt;-</span> <span class="va">fp16</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">PartyNm</span>, <span class="va">OrdinaryVotes</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">PartyNm</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>total_votes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">OrdinaryVotes</span>, rm.na <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">total_votes</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co">#  inspect</span>
+<span class="va">total_votes_for_parties</span> <span class="op">%&gt;%</span> 
+  <span class="va">head</span> <span class="op">%&gt;%</span> <span class="co"># just the first 10 rows</span>
+  <span class="va">kable</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">PartyNm</th>
@@ -414,35 +436,37 @@
 </table>
 <p>The table above shows a similar result, with the Liberal Party recieving the most ordinary votes.</p>
 <p>We can plot the ordinary vote count like so:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw">ggplot</span>(total_votes_for_parties, </a>
-<a class="sourceLine" id="cb7-2" title="2">       <span class="kw">aes</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/reorder.factor">reorder</a></span>(PartyNm, total_votes), </a>
-<a class="sourceLine" id="cb7-3" title="3">           total_votes)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb7-4" title="4"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb7-5" title="5"><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb7-6" title="6"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels =</span> comma) <span class="op">+</span></a>
-<a class="sourceLine" id="cb7-7" title="7"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb7-8" title="8"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">"Total ordinary votes"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb7-9" title="9"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">"Party"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb7-10" title="10"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">10</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">total_votes_for_parties</span>, 
+       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/reorder.factor.html">reorder</a></span><span class="op">(</span><span class="va">PartyNm</span>, <span class="va">total_votes</span><span class="op">)</span>, 
+           <span class="va">total_votes</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="va">comma</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Total ordinary votes"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"Party"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="exploring-election-data_files/figure-html/plot_total_votes_for_parties-1.png" width="576" style="display: block; margin: auto;"></p>
 </div>
 <div id="which-candidate-did-the-best" class="section level3">
 <h3 class="hasAnchor">
 <a href="#which-candidate-did-the-best" class="anchor"></a>Which candidate did the best?</h3>
 <p>There are a few ways we can answer this question. We can see who received the highest number of ordinary votes, like this:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">who_most_votes &lt;-<span class="st"> </span>fp16 <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb8-2" title="2"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(CandidateID <span class="op">!=</span><span class="st"> </span><span class="dv">999</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#exclude informal votes</span></a>
-<a class="sourceLine" id="cb8-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">candidate_full_name =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0</a></span>(GivenNm, <span class="st">" "</span>, Surname, <span class="st">" ("</span>, CandidateID, <span class="st">")"</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb8-4" title="4"><span class="st">  </span><span class="kw">group_by</span>(candidate_full_name) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb8-5" title="5"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span>(<span class="dt">total_votes_for_candidate =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(OrdinaryVotes, <span class="dt">rm.na =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb8-6" title="6"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(total_votes_for_candidate))</a>
-<a class="sourceLine" id="cb8-7" title="7"><span class="co"># inspect</span></a>
-<a class="sourceLine" id="cb8-8" title="8">who_most_votes <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb8-9" title="9"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">total_votes_for_candidate =</span> </a>
-<a class="sourceLine" id="cb8-10" title="10">           <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/formatc">prettyNum</a></span>(total_votes_for_candidate, </a>
-<a class="sourceLine" id="cb8-11" title="11">                     <span class="dt">big.mark =</span> <span class="st">","</span>))  <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb8-12" title="12"><span class="st">  </span>head <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb8-13" title="13"><span class="st">  </span>kable</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">who_most_votes</span> <span class="op">&lt;-</span> <span class="va">fp16</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">CandidateID</span> <span class="op">!=</span> <span class="fl">999</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="co">#exclude informal votes</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>candidate_full_name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">GivenNm</span>, <span class="st">" "</span>, <span class="va">Surname</span>, <span class="st">" ("</span>, <span class="va">CandidateID</span>, <span class="st">")"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">candidate_full_name</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>total_votes_for_candidate <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">OrdinaryVotes</span>, rm.na <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">total_votes_for_candidate</span><span class="op">)</span><span class="op">)</span>
+<span class="co"># inspect</span>
+<span class="va">who_most_votes</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>total_votes_for_candidate <span class="op">=</span> 
+           <span class="fu"><a href="https://rdrr.io/r/base/formatc.html">prettyNum</a></span><span class="op">(</span><span class="va">total_votes_for_candidate</span>, 
+                     big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span>  <span class="op">%&gt;%</span> 
+  <span class="va">head</span> <span class="op">%&gt;%</span> 
+  <span class="va">kable</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">candidate_full_name</th>
@@ -476,20 +500,21 @@
 </tbody>
 </table>
 <p>But this is a crude measure of how successful a candidate was in the election, because electorates with more people will result in more votes for the winner, even if the victory is only by a tiny margin. So let’s remove the effect of the population size in the electorates by finding out who won the highest proportion of first preference votes in their electorate.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">who_most_votes_prop &lt;-<span class="st"> </span>fp16 <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb9-2" title="2"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(CandidateID <span class="op">!=</span><span class="st"> </span><span class="dv">999</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#exclude informal votes</span></a>
-<a class="sourceLine" id="cb9-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">candidate_full_name =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0</a></span>(GivenNm, <span class="st">" "</span>, Surname, <span class="st">" ("</span>, CandidateID, <span class="st">")"</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb9-4" title="4"><span class="st">  </span><span class="kw">group_by</span>(candidate_full_name) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb9-5" title="5"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span>(<span class="dt">total_votes_for_candidate =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(Percent, <span class="dt">rm.na =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb9-6" title="6"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(total_votes_for_candidate)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb9-7" title="7"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">rename</a></span>(<span class="dt">percent_votes_for_candidate =</span> total_votes_for_candidate)</a>
-<a class="sourceLine" id="cb9-8" title="8"><span class="co"># inspect</span></a>
-<a class="sourceLine" id="cb9-9" title="9">who_most_votes_prop <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb9-10" title="10"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">percent_votes_for_candidate =</span> </a>
-<a class="sourceLine" id="cb9-11" title="11">           <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/formatc">prettyNum</a></span>(percent_votes_for_candidate, </a>
-<a class="sourceLine" id="cb9-12" title="12">                     <span class="dt">big.mark =</span> <span class="st">","</span>))  <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb9-13" title="13"><span class="st">  </span>head <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb9-14" title="14"><span class="st">  </span>kable</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">who_most_votes_prop</span> <span class="op">&lt;-</span> <span class="va">fp16</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">CandidateID</span> <span class="op">!=</span> <span class="fl">999</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="co">#exclude informal votes</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>candidate_full_name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">GivenNm</span>, <span class="st">" "</span>, <span class="va">Surname</span>, <span class="st">" ("</span>, <span class="va">CandidateID</span>, <span class="st">")"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">candidate_full_name</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>total_votes_for_candidate <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">Percent</span>, rm.na <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">total_votes_for_candidate</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>percent_votes_for_candidate <span class="op">=</span> <span class="va">total_votes_for_candidate</span><span class="op">)</span>
+<span class="co"># inspect</span>
+<span class="va">who_most_votes_prop</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>percent_votes_for_candidate <span class="op">=</span> 
+           <span class="fu"><a href="https://rdrr.io/r/base/formatc.html">prettyNum</a></span><span class="op">(</span><span class="va">percent_votes_for_candidate</span>, 
+                     big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span>  <span class="op">%&gt;%</span> 
+  <span class="va">head</span> <span class="op">%&gt;%</span> 
+  <span class="va">kable</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">candidate_full_name</th>
@@ -527,13 +552,14 @@
 <div id="which-candidate-won-with-the-smallest-percentage-of-votes" class="section level3">
 <h3 class="hasAnchor">
 <a href="#which-candidate-won-with-the-smallest-percentage-of-votes" class="anchor"></a>Which candidate won with the smallest percentage of votes?</h3>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">who_won_least_votes_prop &lt;-<span class="st"> </span>fp16 <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb10-2" title="2"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(Elected <span class="op">==</span><span class="st"> "Y"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb10-3" title="3"><span class="st">  </span><span class="kw">arrange</span>(Percent) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb10-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">candidate_full_name =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0</a></span>(GivenNm, <span class="st">" "</span>, Surname, <span class="st">" ("</span>, CandidateID, <span class="st">")"</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb10-5" title="5"><span class="st">  </span><span class="kw">select</span>(candidate_full_name, PartyNm, DivisionNm, Percent)</a>
-<a class="sourceLine" id="cb10-6" title="6"></a>
-<a class="sourceLine" id="cb10-7" title="7">who_won_least_votes_prop <span class="op">%&gt;%</span><span class="st"> </span>head <span class="op">%&gt;%</span><span class="st"> </span>kable</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">who_won_least_votes_prop</span> <span class="op">&lt;-</span> <span class="va">fp16</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Elected</span> <span class="op">==</span> <span class="st">"Y"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">Percent</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>candidate_full_name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">GivenNm</span>, <span class="st">" "</span>, <span class="va">Surname</span>, <span class="st">" ("</span>, <span class="va">CandidateID</span>, <span class="st">")"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">candidate_full_name</span>, <span class="va">PartyNm</span>, <span class="va">DivisionNm</span>, <span class="va">Percent</span><span class="op">)</span>
+
+<span class="va">who_won_least_votes_prop</span> <span class="op">%&gt;%</span> <span class="va">head</span> <span class="op">%&gt;%</span> <span class="va">kable</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">candidate_full_name</th>
@@ -586,18 +612,28 @@
 <div id="which-candidate-won-by-the-smallest-margin" class="section level3">
 <h3 class="hasAnchor">
 <a href="#which-candidate-won-by-the-smallest-margin" class="anchor"></a>Which candidate won by the smallest margin?</h3>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">who_won_smallest_margin &lt;-<span class="st"> </span>tcp16 <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb11-2" title="2"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(Elected <span class="op">==</span><span class="st"> "Y"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb11-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">percent_margin =</span> <span class="dv">2</span><span class="op">*</span>(Percent <span class="op">-</span><span class="st"> </span><span class="dv">50</span>), <span class="dt">vote_margin =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Round">round</a></span>(percent_margin <span class="op">*</span><span class="st"> </span>OrdinaryVotes <span class="op">/</span><span class="st"> </span>Percent)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb11-4" title="4"><span class="st">  </span><span class="kw">arrange</span>(Percent) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb11-5" title="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">candidate_full_name =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0</a></span>(GivenNm, <span class="st">" "</span>, Surname, <span class="st">" ("</span>, CandidateID, <span class="st">")"</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb11-6" title="6"><span class="st">  </span><span class="kw">select</span>(candidate_full_name, PartyNm, DivisionNm, Percent, OrdinaryVotes, percent_margin, vote_margin)</a>
-<a class="sourceLine" id="cb11-7" title="7"></a>
-<a class="sourceLine" id="cb11-8" title="8"><span class="co"># have a look</span></a>
-<a class="sourceLine" id="cb11-9" title="9">who_won_smallest_margin <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-10" title="10"><span class="st"> </span>head <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-11" title="11"><span class="st"> </span>kable</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">who_won_smallest_margin</span> <span class="op">&lt;-</span> <span class="va">tcp16</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Elected</span> <span class="op">==</span> <span class="st">"Y"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>percent_margin <span class="op">=</span> <span class="fl">2</span><span class="op">*</span><span class="op">(</span><span class="va">Percent</span> <span class="op">-</span> <span class="fl">50</span><span class="op">)</span>, vote_margin <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">percent_margin</span> <span class="op">*</span> <span class="va">OrdinaryVotes</span> <span class="op">/</span> <span class="va">Percent</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">Percent</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>candidate_full_name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">GivenNm</span>, <span class="st">" "</span>, <span class="va">Surname</span>, <span class="st">" ("</span>, <span class="va">CandidateID</span>, <span class="st">")"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">candidate_full_name</span>, <span class="va">PartyNm</span>, <span class="va">DivisionNm</span>, <span class="va">Percent</span>, <span class="va">OrdinaryVotes</span>, <span class="va">percent_margin</span>, <span class="va">vote_margin</span><span class="op">)</span>
+
+<span class="co"># have a look</span>
+<span class="va">who_won_smallest_margin</span> <span class="op">%&gt;%</span>
+ <span class="va">head</span> <span class="op">%&gt;%</span>
+ <span class="va">kable</span></code></pre></div>
 <table class="table">
+<colgroup>
+<col width="22%">
+<col width="21%">
+<col width="11%">
+<col width="7%">
+<col width="12%">
+<col width="13%">
+<col width="11%">
+</colgroup>
 <thead><tr class="header">
 <th align="left">candidate_full_name</th>
 <th align="left">PartyNm</th>
@@ -665,13 +701,14 @@
 </tbody>
 </table>
 <p>We see that Labor candidate for Herbert, Cathy O’Toole, managed to secure the seat by a margin of only 35 votes - equating to 0.04% of total votes. Let’s see the distribution of first preference votes in Herbert for a bit more detail.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">herbert_fp &lt;-<span class="st"> </span>fp16 <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb12-2" title="2"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(DivisionNm <span class="op">==</span><span class="st"> "HERBERT"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb12-3" title="3"><span class="st">  </span><span class="kw">arrange</span>(<span class="op">-</span>Percent) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb12-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">candidate_full_name =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0</a></span>(GivenNm, <span class="st">" "</span>, Surname, <span class="st">" ("</span>, CandidateID, <span class="st">")"</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb12-5" title="5"><span class="st">  </span><span class="kw">select</span>(candidate_full_name, PartyNm, DivisionNm, Percent, OrdinaryVotes)</a>
-<a class="sourceLine" id="cb12-6" title="6"></a>
-<a class="sourceLine" id="cb12-7" title="7">herbert_fp <span class="op">%&gt;%</span><span class="st"> </span>kable</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">herbert_fp</span> <span class="op">&lt;-</span> <span class="va">fp16</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">DivisionNm</span> <span class="op">==</span> <span class="st">"HERBERT"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="op">-</span><span class="va">Percent</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>candidate_full_name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">GivenNm</span>, <span class="st">" "</span>, <span class="va">Surname</span>, <span class="st">" ("</span>, <span class="va">CandidateID</span>, <span class="st">")"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">candidate_full_name</span>, <span class="va">PartyNm</span>, <span class="va">DivisionNm</span>, <span class="va">Percent</span>, <span class="va">OrdinaryVotes</span><span class="op">)</span>
+
+<span class="va">herbert_fp</span> <span class="op">%&gt;%</span> <span class="va">kable</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">candidate_full_name</th>
@@ -752,54 +789,56 @@
 <h3 class="hasAnchor">
 <a href="#how-did-each-electorate-vote-in-each-state" class="anchor"></a>How did each electorate vote in each state?</h3>
 <p>We can look at the proportion of voters for a particular party in each electorate, grouped by each state. This plot was inspired by Peter Ellis’s work on the NZ election data.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="co"># summarise and compute proportion of votes for a particular party</span></a>
-<a class="sourceLine" id="cb13-2" title="2">p &lt;-<span class="st"> </span>fp16 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb13-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(DivisionNm, StateAb) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb13-4" title="4"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span>(<span class="dt">TotalVotes =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(OrdinaryVotes), </a>
-<a class="sourceLine" id="cb13-5" title="5">    <span class="dt">ProportionLabor =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Round">round</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(OrdinaryVotes[PartyNm <span class="op">==</span><span class="st"> "AUSTRALIAN LABOR PARTY"</span>]) <span class="op">/</span><span class="st"> </span>TotalVotes, <span class="dv">3</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb13-6" title="6"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(TotalVotes <span class="op">!=</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb13-7" title="7"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(ProportionLabor)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb13-8" title="8"><span class="st">  </span><span class="kw">group_by</span>(StateAb) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb13-9" title="9"><span class="st">  </span><span class="co"># send the data to the plotting function</span></a>
-<a class="sourceLine" id="cb13-10" title="10"><span class="st">  </span><span class="kw">do</span>(<span class="dt">plots=</span><span class="kw">ggplot</span>(<span class="dt">data =</span> .) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb13-11" title="11"><span class="st">       </span><span class="kw">aes</span>(<span class="dt">x =</span> ProportionLabor, </a>
-<a class="sourceLine" id="cb13-12" title="12">           <span class="dt">y =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/reorder.factor">reorder</a></span>(DivisionNm, ProportionLabor), </a>
-<a class="sourceLine" id="cb13-13" title="13">           <span class="dt">size =</span> TotalVotes, </a>
-<a class="sourceLine" id="cb13-14" title="14">           <span class="dt">label =</span> StateAb) <span class="op">+</span></a>
-<a class="sourceLine" id="cb13-15" title="15"><span class="st">       </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb13-16" title="16"><span class="st">       </span><span class="kw">ylab</span>(<span class="st">"DivisionNm"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb13-17" title="17"><span class="st">       </span><span class="kw">labs</span>(<span class="dt">title =</span> .<span class="op">$</span>StateAb) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb13-18" title="18"><span class="st">       </span><span class="kw">scale_x_continuous</span>(<span class="st">"Proportion voting Labor Party"</span>, </a>
-<a class="sourceLine" id="cb13-19" title="19">                          <span class="dt">label =</span> percent) <span class="op">+</span></a>
-<a class="sourceLine" id="cb13-20" title="20"><span class="st">       </span><span class="kw">scale_size</span>(<span class="st">"Number of</span><span class="ch">\n</span><span class="st">votes cast"</span>, </a>
-<a class="sourceLine" id="cb13-21" title="21">                  <span class="dt">label =</span> comma)  <span class="op">+</span></a>
-<a class="sourceLine" id="cb13-22" title="22"><span class="st">       </span><span class="kw">theme_bw</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb13-23" title="23"><span class="st">       </span><span class="kw">theme</span>(<span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">8</span>)))</a>
-<a class="sourceLine" id="cb13-24" title="24"></a>
-<a class="sourceLine" id="cb13-25" title="25"><span class="co"># draw the plots</span></a>
-<a class="sourceLine" id="cb13-26" title="26"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(gridExtra)</a>
-<a class="sourceLine" id="cb13-27" title="27">n &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span>(p<span class="op">$</span>plots)</a>
-<a class="sourceLine" id="cb13-28" title="28">nCol &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Round">floor</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/MathFun">sqrt</a></span>(n))</a>
-<a class="sourceLine" id="cb13-29" title="29"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/do.call">do.call</a></span>(<span class="st">"grid.arrange"</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(p<span class="op">$</span>plots, <span class="dt">ncol=</span>nCol))</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># summarise and compute proportion of votes for a particular party</span>
+<span class="va">p</span> <span class="op">&lt;-</span> <span class="va">fp16</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">DivisionNm</span>, <span class="va">StateAb</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>TotalVotes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">OrdinaryVotes</span><span class="op">)</span>, 
+    ProportionLabor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">OrdinaryVotes</span><span class="op">[</span><span class="va">PartyNm</span> <span class="op">==</span> <span class="st">"AUSTRALIAN LABOR PARTY"</span><span class="op">]</span><span class="op">)</span> <span class="op">/</span> <span class="va">TotalVotes</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">TotalVotes</span> <span class="op">!=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">ProportionLabor</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">StateAb</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="co"># send the data to the plotting function</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/do.html">do</a></span><span class="op">(</span>plots<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">.</span><span class="op">)</span> <span class="op">+</span> 
+       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">ProportionLabor</span>, 
+           y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/reorder.factor.html">reorder</a></span><span class="op">(</span><span class="va">DivisionNm</span>, <span class="va">ProportionLabor</span><span class="op">)</span>, 
+           size <span class="op">=</span> <span class="va">TotalVotes</span>, 
+           label <span class="op">=</span> <span class="va">StateAb</span><span class="op">)</span> <span class="op">+</span>
+       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"DivisionNm"</span><span class="op">)</span> <span class="op">+</span>
+       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="va">.</span><span class="op">$</span><span class="va">StateAb</span><span class="op">)</span> <span class="op">+</span> 
+       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span><span class="st">"Proportion voting Labor Party"</span>, 
+                          label <span class="op">=</span> <span class="va">percent</span><span class="op">)</span> <span class="op">+</span>
+       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_size.html">scale_size</a></span><span class="op">(</span><span class="st">"Number of\nvotes cast"</span>, 
+                  label <span class="op">=</span> <span class="va">comma</span><span class="op">)</span>  <span class="op">+</span>
+       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">8</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># draw the plots</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">gridExtra</span><span class="op">)</span>
+<span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">p</span><span class="op">$</span><span class="va">plots</span><span class="op">)</span>
+<span class="va">nCol</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">floor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/do.call.html">do.call</a></span><span class="op">(</span><span class="st">"grid.arrange"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">p</span><span class="op">$</span><span class="va">plots</span>, ncol<span class="op">=</span><span class="va">nCol</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="exploring-election-data_files/figure-html/plot_prop_particular_party-1.png" width="960" style="display: block; margin: auto;"></p>
 </div>
 <div id="how-are-party-votes-correlated" class="section level3">
 <h3 class="hasAnchor">
 <a href="#how-are-party-votes-correlated" class="anchor"></a>How are party votes correlated?</h3>
 <p>We can also see how party votes are correlated, for example here we can see a strong negative correlation between votes for Labor and votes for Liberal (this plot also inspired by Peter Ellis). Green and Labor have a slight negative correlation, and Green and Liberal have a slightly more negative correlation:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="co"># Comparing party and candidate votes of several parties -------</span></a>
-<a class="sourceLine" id="cb14-2" title="2">proportions &lt;-<span class="st"> </span>fp16 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb14-3" title="3"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(CandidateID <span class="op">!=</span><span class="st"> </span><span class="dv">999</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># exclude informal votes</span></a>
-<a class="sourceLine" id="cb14-4" title="4"><span class="st">  </span><span class="kw">group_by</span>(DivisionNm) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb14-5" title="5"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span>(<span class="dt">Prop_Labour =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(OrdinaryVotes[PartyNm <span class="op">==</span><span class="st"> "AUSTRALIAN LABOR PARTY"</span>]) <span class="op">/</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(OrdinaryVotes),</a>
-<a class="sourceLine" id="cb14-6" title="6">            <span class="dt">Prop_Coalition =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(</a>
-<a class="sourceLine" id="cb14-7" title="7">              OrdinaryVotes[PartyNm <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"LIBERAL PARTY"</span>, <span class="st">"NATIONAL PARTY"</span>)]</a>
-<a class="sourceLine" id="cb14-8" title="8">              ) <span class="op">/</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(OrdinaryVotes),</a>
-<a class="sourceLine" id="cb14-9" title="9">            <span class="dt">Prop_Greens =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(OrdinaryVotes[PartyNm <span class="op">==</span><span class="st"> "THE GREENS"</span>]) <span class="op">/</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(OrdinaryVotes)) </a>
-<a class="sourceLine" id="cb14-10" title="10"></a>
-<a class="sourceLine" id="cb14-11" title="11"><span class="co"># make a scatterplot matrix</span></a>
-<a class="sourceLine" id="cb14-12" title="12"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(GGally)</a>
-<a class="sourceLine" id="cb14-13" title="13"><span class="kw"><a href="https://ggobi.github.io/ggally/reference/ggpairs.html">ggpairs</a></span>(proportions, <span class="dt">columns =</span> <span class="dv">2</span><span class="op">:</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">ncol</a></span>(proportions)) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Comparing party and candidate votes of several parties -------</span>
+<span class="va">proportions</span> <span class="op">&lt;-</span> <span class="va">fp16</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">CandidateID</span> <span class="op">!=</span> <span class="fl">999</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="co"># exclude informal votes</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">DivisionNm</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>Prop_Labour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">OrdinaryVotes</span><span class="op">[</span><span class="va">PartyNm</span> <span class="op">==</span> <span class="st">"AUSTRALIAN LABOR PARTY"</span><span class="op">]</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">OrdinaryVotes</span><span class="op">)</span>,
+            Prop_Coalition <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span>
+              <span class="va">OrdinaryVotes</span><span class="op">[</span><span class="va">PartyNm</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"LIBERAL PARTY"</span>, <span class="st">"NATIONAL PARTY"</span><span class="op">)</span><span class="op">]</span>
+              <span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">OrdinaryVotes</span><span class="op">)</span>,
+            Prop_Greens <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">OrdinaryVotes</span><span class="op">[</span><span class="va">PartyNm</span> <span class="op">==</span> <span class="st">"THE GREENS"</span><span class="op">]</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">OrdinaryVotes</span><span class="op">)</span><span class="op">)</span> 
+
+<span class="co"># make a scatterplot matrix</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggobi.github.io/ggally/">GGally</a></span><span class="op">)</span>
+<span class="fu"><a href="https://ggobi.github.io/ggally/reference/ggpairs.html">ggpairs</a></span><span class="op">(</span><span class="va">proportions</span>, columns <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">proportions</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="exploring-election-data_files/figure-html/plot_prop_by_particular_party-1.png" width="576" style="display: block; margin: auto;"></p>
 </div>
 <div id="how-do-election-results-correlate-with-census-data" class="section level3">
@@ -807,51 +846,68 @@
 <a href="#how-do-election-results-correlate-with-census-data" class="anchor"></a>How do election results correlate with Census data?</h3>
 <p>One of our motivations for creating this package was to make it easy to explore relationships between political views and socio-economic conditions across Australia. With a few simple R functions, we can join the Census data to the election data and build models to explore relationships.</p>
 <p>Here’s how we join the two datasets together, the common variable is the DivisionNm:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">census_and_election &lt;-<span class="st"> </span><span class="kw">left_join</span>(tpp16, </a>
-<a class="sourceLine" id="cb15-2" title="2">                                 abs2016,</a>
-<a class="sourceLine" id="cb15-3" title="3">                                 <span class="dt">by =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"DivisionNm"</span> =<span class="st"> "DivisionNm"</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">census_and_election</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">tpp16</span>, 
+                                 <span class="va">abs2016</span>,
+                                 by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"DivisionNm"</span> <span class="op">=</span> <span class="st">"DivisionNm"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Now we can easily explore some relationships between the Census data and the two party preferred voting patterns. For example, what Census variable mostly strongly correlates with the percentage that vote Labor? The first step in these kinds of explorations is always to visualise the data:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="co"># subset only the columns we want for the model</span></a>
-<a class="sourceLine" id="cb16-2" title="2">census_and_election_subset &lt;-<span class="st">  </span></a>
-<a class="sourceLine" id="cb16-3" title="3"><span class="st">  </span>census_and_election <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb16-4" title="4"><span class="st">  </span>ungroup <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb16-5" title="5"><span class="st">  </span><span class="kw">select</span>(DivisionNm, </a>
-<a class="sourceLine" id="cb16-6" title="6">         ALP_Percent,</a>
-<a class="sourceLine" id="cb16-7" title="7">         Population<span class="op">:</span>Volunteer_NS) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb16-8" title="8"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="kw">ends_with</span>(<span class="st">"NS"</span>), EmuneratedElsewhere, InternetUse, <span class="kw">starts_with</span>(<span class="st">"Age"</span>)))</a>
-<a class="sourceLine" id="cb16-9" title="9"></a>
-<a class="sourceLine" id="cb16-10" title="10"></a>
-<a class="sourceLine" id="cb16-11" title="11"><span class="co"># Plot</span></a>
-<a class="sourceLine" id="cb16-12" title="12"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(tibble)</a>
-<a class="sourceLine" id="cb16-13" title="13">correl_df &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/cor">cor</a></span>(census_and_election_subset[, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">2</span><span class="op">:</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">ncol</a></span>(census_and_election_subset))], </a>
-<a class="sourceLine" id="cb16-14" title="14">         <span class="dt">use =</span> <span class="st">"pairwise.complete.obs"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb16-15" title="15"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/as.data.frame">as.data.frame</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb16-16" title="16"><span class="st">  </span><span class="kw">select</span>(ALP_Percent) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb16-17" title="17"><span class="st">  </span><span class="kw"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames_to_column</a></span>(<span class="dt">var =</span> <span class="st">"Covariate"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb16-18" title="18"><span class="st">  </span><span class="kw">rename</span>(<span class="st">"Correlation_with_ALP"</span> =<span class="st"> "ALP_Percent"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb16-19" title="19"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(Covariate <span class="op">!=</span><span class="st"> "ALP_Percent"</span>)</a>
-<a class="sourceLine" id="cb16-20" title="20"></a>
-<a class="sourceLine" id="cb16-21" title="21"><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Correlation_with_ALP, <span class="dt">y =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/reorder.factor">reorder</a></span>(Covariate, Correlation_with_ALP)), <span class="dt">data =</span> correl_df) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># subset only the columns we want for the model</span>
+<span class="va">census_and_election_subset</span> <span class="op">&lt;-</span>  
+  <span class="va">census_and_election</span> <span class="op">%&gt;%</span> 
+  <span class="va">ungroup</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">DivisionNm</span>, 
+         <span class="va">ALP_Percent</span>,
+         <span class="va">Population</span><span class="op">:</span><span class="va">Volunteer_NS</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">ends_with</a></span><span class="op">(</span><span class="st">"NS"</span><span class="op">)</span>, <span class="va">EmuneratedElsewhere</span>, <span class="va">InternetUse</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"Age"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+
+
+<span class="co"># Plot</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/">tibble</a></span><span class="op">)</span>
+<span class="va">correl_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">census_and_election_subset</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">census_and_election_subset</span><span class="op">)</span><span class="op">)</span><span class="op">]</span>, 
+         use <span class="op">=</span> <span class="st">"pairwise.complete.obs"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">ALP_Percent</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames_to_column</a></span><span class="op">(</span>var <span class="op">=</span> <span class="st">"Covariate"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span><span class="st">"Correlation_with_ALP"</span> <span class="op">=</span> <span class="st">"ALP_Percent"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Covariate</span> <span class="op">!=</span> <span class="st">"ALP_Percent"</span><span class="op">)</span>
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Correlation_with_ALP</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/reorder.factor.html">reorder</a></span><span class="op">(</span><span class="va">Covariate</span>, <span class="va">Correlation_with_ALP</span><span class="op">)</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">correl_df</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="exploring-election-data_files/figure-html/unnamed-chunk-1-1.png" width="576" style="display: block; margin: auto;"></p>
 <p>We can spot some potentially interesting correlations, as well as some obvious ones.</p>
 <p>The table below gives an overall summary of the model containing all the Census variables. We see that the p-value is very low, indicating that we have some relationships that are probably not due to chance alone.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/options">options</a></span>(<span class="dt">scipen =</span> <span class="dv">10</span>) <span class="co"># for more readable numbers</span></a>
-<a class="sourceLine" id="cb17-2" title="2"></a>
-<a class="sourceLine" id="cb17-3" title="3"><span class="co"># compute the multiple regressions</span></a>
-<a class="sourceLine" id="cb17-4" title="4">multiple_regression_model &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb17-5" title="5"><span class="st">  </span>census_and_election <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb17-6" title="6"><span class="st">  </span>ungroup <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb17-7" title="7"><span class="st">  </span><span class="kw">select</span>(ALP_Percent,</a>
-<a class="sourceLine" id="cb17-8" title="8">         Population<span class="op">:</span>Volunteer_NS) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb17-9" title="9"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="kw">ends_with</span>(<span class="st">"NS"</span>), EmuneratedElsewhere, InternetUse, <span class="kw">starts_with</span>(<span class="st">"Age"</span>))) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb17-10" title="10"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/lm">lm</a></span>(ALP_Percent <span class="op">~</span><span class="st"> </span>., </a>
-<a class="sourceLine" id="cb17-11" title="11">     <span class="dt">data =</span> .)</a>
-<a class="sourceLine" id="cb17-12" title="12"></a>
-<a class="sourceLine" id="cb17-13" title="13">multiple_regression_model <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb17-14" title="14"><span class="st">  </span>glance <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb17-15" title="15"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/purrrlyr/topics/dmap">dmap</a></span>(round, <span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb17-16" title="16"><span class="st">  </span>kable</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>scipen <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="co"># for more readable numbers</span>
+
+<span class="co"># compute the multiple regressions</span>
+<span class="va">multiple_regression_model</span> <span class="op">&lt;-</span> 
+  <span class="va">census_and_election</span> <span class="op">%&gt;%</span> 
+  <span class="va">ungroup</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">ALP_Percent</span>,
+         <span class="va">Population</span><span class="op">:</span><span class="va">Volunteer_NS</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">ends_with</a></span><span class="op">(</span><span class="st">"NS"</span><span class="op">)</span>, <span class="va">EmuneratedElsewhere</span>, <span class="va">InternetUse</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"Age"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">ALP_Percent</span> <span class="op">~</span> <span class="va">.</span>, 
+     data <span class="op">=</span> <span class="va">.</span><span class="op">)</span>
+
+<span class="va">multiple_regression_model</span> <span class="op">%&gt;%</span> 
+  <span class="va">glance</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/purrrlyr/man/dmap.html">dmap</a></span><span class="op">(</span><span class="va">round</span>, <span class="fl">3</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="va">kable</span></code></pre></div>
 <table class="table">
+<colgroup>
+<col width="9%">
+<col width="13%">
+<col width="5%">
+<col width="9%">
+<col width="7%">
+<col width="2%">
+<col width="8%">
+<col width="7%">
+<col width="7%">
+<col width="8%">
+<col width="11%">
+<col width="4%">
+</colgroup>
 <thead><tr class="header">
 <th align="right">r.squared</th>
 <th align="right">adj.r.squared</th>
@@ -864,6 +920,7 @@
 <th align="right">BIC</th>
 <th align="right">deviance</th>
 <th align="right">df.residual</th>
+<th align="right">nobs</th>
 </tr></thead>
 <tbody><tr class="odd">
 <td align="right">0.899</td>
@@ -871,22 +928,24 @@
 <td align="right">4.487</td>
 <td align="right">16.068</td>
 <td align="right">0</td>
-<td align="right">54</td>
+<td align="right">53</td>
 <td align="right">-404.538</td>
 <td align="right">919.076</td>
 <td align="right">1084.66</td>
 <td align="right">1932.549</td>
 <td align="right">96</td>
+<td align="right">150</td>
 </tr></tbody>
 </table>
 <p>The table below shows the variables that have a significant effect on the percentage of Labor votes across all electorates:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="co"># find the variables with a significant effect</span></a>
-<a class="sourceLine" id="cb18-2" title="2">multiple_regression_model <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb18-3" title="3"><span class="st">  </span>tidy <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb18-4" title="4"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(p.value <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.05</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb18-5" title="5"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/purrrlyr/topics/dmap">dmap_if</a></span>(is.numeric, round, <span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb18-6" title="6"><span class="st">  </span><span class="kw">arrange</span>(p.value) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb18-7" title="7"><span class="st">  </span>kable</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># find the variables with a significant effect</span>
+<span class="va">multiple_regression_model</span> <span class="op">%&gt;%</span> 
+  <span class="va">tidy</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">p.value</span> <span class="op">&lt;</span> <span class="fl">0.05</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/purrrlyr/man/dmap.html">dmap_if</a></span><span class="op">(</span><span class="va">is.numeric</span>, <span class="va">round</span>, <span class="fl">3</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">p.value</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="va">kable</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">term</th>
@@ -997,55 +1056,53 @@
 </tbody>
 </table>
 <p>In the plots below, we can see the Census variables that have a statistically significant relationship with the percentage of Labor votes. There seems to be a positive relationship between voting Labor and defacto relationships, university education and public housing tenants. Labour force participation and proportion of workers in extractive jobs (e.g. mining, gas, agriculture), and median personal income are a negatively correlated variables, meaning that increases in the proportion of workers in extractive jobs and increases in median personal income correlate with decreases in the percentage of the Labor vote in that electorate.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="co"># model that includes all Census variables</span></a>
-<a class="sourceLine" id="cb19-2" title="2">all_vars &lt;-<span class="st"> </span>multiple_regression_model <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb19-3" title="3"><span class="st">  </span>tidy <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb19-4" title="4"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(p.value <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.05</span>, term <span class="op">!=</span><span class="st"> "(Intercept)"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb19-5" title="5"><span class="st">  </span><span class="kw">arrange</span>(p.value) </a>
-<a class="sourceLine" id="cb19-6" title="6"></a>
-<a class="sourceLine" id="cb19-7" title="7">census_and_election <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb19-8" title="8"><span class="st">  </span>ungroup <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb19-9" title="9"><span class="st">  </span><span class="kw">select_</span>(<span class="dt">.dots =</span> all_vars<span class="op">$</span>term,</a>
-<a class="sourceLine" id="cb19-10" title="10">          <span class="st">"ALP_Percent"</span>)  <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb19-11" title="11"><span class="st">  </span><span class="kw">gather</span>(variable, </a>
-<a class="sourceLine" id="cb19-12" title="12">         value, </a>
-<a class="sourceLine" id="cb19-13" title="13">         <span class="op">-</span>ALP_Percent) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb19-14" title="14"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(value, ALP_Percent)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb19-15" title="15"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="fl">0.5</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb19-16" title="16"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">"lm"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb19-17" title="17"><span class="st">  </span><span class="kw">facet_wrap</span>( <span class="op">~</span><span class="st"> </span>variable, <span class="dt">scales =</span> <span class="st">"free"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb19-18" title="18"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">8</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># model that includes all Census variables</span>
+<span class="va">all_vars</span> <span class="op">&lt;-</span> <span class="va">multiple_regression_model</span> <span class="op">%&gt;%</span> 
+  <span class="va">tidy</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">p.value</span> <span class="op">&lt;</span> <span class="fl">0.05</span>, <span class="va">term</span> <span class="op">!=</span> <span class="st">"(Intercept)"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">p.value</span><span class="op">)</span> 
+
+<span class="va">census_and_election</span> <span class="op">%&gt;%</span> 
+  <span class="va">ungroup</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/se-deprecated.html">select_</a></span><span class="op">(</span>.dots <span class="op">=</span> <span class="va">all_vars</span><span class="op">$</span><span class="va">term</span>,
+          <span class="st">"ALP_Percent"</span><span class="op">)</span>  <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/gather.html">gather</a></span><span class="op">(</span><span class="va">variable</span>, 
+         <span class="va">value</span>, 
+         <span class="op">-</span><span class="va">ALP_Percent</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">value</span>, <span class="va">ALP_Percent</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">variable</span>, scales <span class="op">=</span> <span class="st">"free"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">8</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="exploring-election-data_files/figure-html/unnamed-chunk-3-1.png" width="576" style="display: block; margin: auto;"></p>
 </div>
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-        <div id="tocnav">
-      <h2 class="hasAnchor">
-<a href="#tocnav" class="anchor"></a>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-<li><a href="#introduction">Introduction</a></li>
-      <li><a href="#federal-election-house-of-representatives-data">2016 Federal Election House of Representatives data</a></li>
-      <li><a href="#exploring-the-election-results">Exploring the election results</a></li>
-      </ul>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
 </div>
-      </div>
 
 </div>
+
 
 
       <footer><div class="copyright">
-  <p>Developed by Di Cook, Anthony Ebert, Jeremy Forbes, Heike Hofmann, Rob Hyndman, Thomas Lumley, Ben Marwick, Carson Sievert, Mingzhu Sun, Dilini Talagala, Nicholas Tierney, Nathaniel Tomasetti, Earo Wang, Fang Zhou.</p>
+  <p>Developed by Jeremy Forbes, Di Cook, Anthony Ebert, Heike Hofmann, Rob Hyndman, Thomas Lumley, Ben Marwick, Carson Sievert, Mingzhu Sun, Dilini Talagala, Nicholas Tierney, Nathaniel Tomasetti, Earo Wang, Fang Zhou.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>
