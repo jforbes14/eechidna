@@ -24,3 +24,4 @@
 ^dont-document$
 ^extra-data$
 ^_config\.yml$
+^revdep
