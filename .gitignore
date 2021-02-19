@@ -4,5 +4,6 @@ inst/doc
 .Rproj.user
 .Rhistory
 *.DS_Store
-/data-raw/Shapefiles/*
+/data-raw/maps/data/Shapefiles/*
 *.Rproj
+revdep
