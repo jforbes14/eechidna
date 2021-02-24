@@ -1,6 +1,6 @@
-# eechidna 1.4.1 (2021-02-03)
+# eechidna 1.4.1 (2021-02-24)
 
-* Fixed UniqueID and party labels (for the Greens) for 2019 data
+* Resolved minor data quality issues for 2019 data: UniqueID, party labels and NAs
 
 # eechidna 1.4.0 (2019-11-08)
 

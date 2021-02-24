@@ -25,3 +25,4 @@
 ^extra-data$
 ^_config\.yml$
 ^revdep
+^.github
