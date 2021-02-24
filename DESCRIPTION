@@ -46,7 +46,7 @@ Suggests:
     spelling,
     ggmap
 Encoding: UTF-8
-Authors@R: c(person("Jeremy", "Forbes", role = c("aut", "cre"), email = "jeremyforbes1995@gmail.com"),
+Authors@R: c(person("Jeremy", "Forbes", role = c("aut", "cre"), email = "jeforbes14@gmail.com"),
 		         person("Di", "Cook",       role = c("aut")),
 		         person("Anthony", "Ebert", role = c("aut")),
 		         person("Heike", "Hofmann", role = c("aut")),
@@ -62,7 +62,7 @@ Authors@R: c(person("Jeremy", "Forbes", role = c("aut", "cre"), email = "jeremyf
 		         person("Fang", "Zhou", role = c("aut")),
 		         person("Commonwealth of Australia", "AEC", role = c("cph")),
 		         person("Australian Bureau of Statistics", "ABS", role = c("cph")))
-Maintainer: Jeremy Forbes <jeremyforbes1995@gmail.com>
+Maintainer: Jeremy Forbes <jeforbes14@gmail.com>
 LazyData: true
 ByteCompile: TRUE
 License: GPL (>= 2)
