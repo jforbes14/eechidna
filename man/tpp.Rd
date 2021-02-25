@@ -40,25 +40,25 @@ A data frame with the following variables:
 \source{
 \url{https://www.aec.gov.au/About_AEC/Publications/statistics/files/aec-2001-election-statistics.zip}
 
-\url{http://results.aec.gov.au/12246/results/HouseDownloadsMenu-12246-csv.htm}
+\url{https://results.aec.gov.au/12246/results/HouseDownloadsMenu-12246-csv.htm}
 
-\url{http://www.aec.gov.au/elections/federal_elections/2004/downloads.htm}
+\url{https://www.aec.gov.au/elections/federal_elections/2004/downloads.htm}
 
-\url{http://results.aec.gov.au/15508/Website/HouseDownloadsMenu-15508-csv.htm}
+\url{https://results.aec.gov.au/15508/Website/HouseDownloadsMenu-15508-csv.htm}
 
-\url{http://www.aec.gov.au/elections/federal_elections/2010/downloads.htm}
+\url{https://www.aec.gov.au/elections/federal_elections/2010/downloads.htm}
 
-\url{http://results.aec.gov.au/13745/Website/HouseDownloadsMenu-13745-csv.htm}
+\url{https://results.aec.gov.au/13745/Website/HouseDownloadsMenu-13745-csv.htm}
 
-\url{http://www.aec.gov.au/elections/federal_elections/2007/downloads.htm}
+\url{https://www.aec.gov.au/elections/federal_elections/2007/downloads.htm}
 
-\url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm}
+\url{https://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm}
 
-\url{http://www.aec.gov.au/elections/federal_elections/2013/downloads.htm}
+\url{https://www.aec.gov.au/elections/federal_elections/2013/downloads.htm}
 
-\url{http://results.aec.gov.au/20499/Website/HouseDownloadsMenu-20499-csv.htm}
+\url{https://results.aec.gov.au/20499/Website/HouseDownloadsMenu-20499-csv.htm}
 
-\url{http://www.aec.gov.au/elections/federal_elections/2016/downloads.htm}
+\url{https://www.aec.gov.au/elections/federal_elections/2016/downloads.htm}
 
 \url{https://results.aec.gov.au/24310/Website/HouseDownloadsMenu-24310-Csv.htm}
 }

@@ -25,7 +25,7 @@ nat_map13
 A dataset containing the map of the all 150 Australian electorates using the 2013 boundaries of the 
 electorates.
 The data were obtained from the Australian Electoral Commission, and downloaded 
-from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}. Must be loaded using the
+from \url{https://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}. Must be loaded using the
 `nat_map_download` function.
 }
 \keyword{internal}

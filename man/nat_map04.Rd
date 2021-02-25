@@ -25,7 +25,7 @@ nat_map04
 A dataset containing the map of the all 150 Australian electorates using the 2004 boundaries of the 
 electorates.
 The data were obtained from the Australian Bureau of Statistics, and downloaded 
-from \url{http://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}.
+from \url{https://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}.
 Must be loaded using the `nat_map_download` function.
 }
 \keyword{internal}

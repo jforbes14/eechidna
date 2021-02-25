@@ -25,7 +25,7 @@ nat_data10
 \description{
 A dataset containing some demographic information for each of the 150 Australian electorates.
 The data were obtained from the Australian Electoral Commission, and downloaded 
-from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
+from \url{https://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
 Must be loaded using the `nat_data_download` function.
 }
 \keyword{internal}

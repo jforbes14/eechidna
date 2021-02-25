@@ -25,8 +25,8 @@
 
 #' @format {}
 #' 
-#' @source \url{http://results.aec.gov.au/20499/Website/HouseDownloadsMenu-20499-csv.htm}
-#' @source \url{http://www.aec.gov.au/elections/federal_elections/2016/downloads.htm}
+#' @source \url{https://results.aec.gov.au/20499/Website/HouseDownloadsMenu-20499-csv.htm}
+#' @source \url{https://www.aec.gov.au/elections/federal_elections/2016/downloads.htm}
 #' @rdname first_preference
 #' @order 6
 "fp16"
@@ -34,8 +34,8 @@
 #' 2016 Australian Federal election data: Two party preferred votes for candidates (House of 
 #' Representative) in each electorate.
 #' 
-#' @source \url{http://results.aec.gov.au/20499/Website/HouseDownloadsMenu-20499-csv.htm}
-#' @source \url{http://www.aec.gov.au/elections/federal_elections/2016/downloads.htm}
+#' @source \url{https://results.aec.gov.au/20499/Website/HouseDownloadsMenu-20499-csv.htm}
+#' @source \url{https://www.aec.gov.au/elections/federal_elections/2016/downloads.htm}
 #' 
 #' @format {}
 #' @rdname tpp
@@ -46,8 +46,8 @@
 #' 2016 Australian Federal election data: Two candidate preferred votes for candidates
 #' (House of Representatives) in each electorate.
 #' 
-#' @source \url{http://results.aec.gov.au/20499/Website/HouseDownloadsMenu-20499-csv.htm}
-#' @source \url{http://www.aec.gov.au/elections/federal_elections/2016/downloads.htm}
+#' @source \url{https://results.aec.gov.au/20499/Website/HouseDownloadsMenu-20499-csv.htm}
+#' @source \url{https://www.aec.gov.au/elections/federal_elections/2016/downloads.htm}
 #' 
 #' @format {}
 #' @rdname tcp
@@ -56,8 +56,8 @@
 
 #' @format {}
 #'     
-#' @source \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm}
-#' @source \url{http://www.aec.gov.au/elections/federal_elections/2013/downloads.htm}
+#' @source \url{https://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm}
+#' @source \url{https://www.aec.gov.au/elections/federal_elections/2013/downloads.htm}
 #' @rdname first_preference
 #' @order 5
 "fp13"
@@ -65,8 +65,8 @@
 #' 2013 Australian Federal election data: Two party preferred votes for candidates (House of 
 #' Representatives) in each electorate.
 #'  
-#' @source \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm} 
-#' @source \url{http://www.aec.gov.au/elections/federal_elections/2013/downloads.htm}
+#' @source \url{https://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm} 
+#' @source \url{https://www.aec.gov.au/elections/federal_elections/2013/downloads.htm}
 #' 
 #' @format {}
 #' @rdname tpp
@@ -76,8 +76,8 @@
 #' 2013 Australian Federal election data: Two candidate preferred votes for candidates 
 #' (House of Representatives) in each electorate.
 #' 
-#' @source \url{http://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm} 
-#' @source \url{http://www.aec.gov.au/elections/federal_elections/2013/downloads.htm}
+#' @source \url{https://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm} 
+#' @source \url{https://www.aec.gov.au/elections/federal_elections/2013/downloads.htm}
 #' 
 #' @format {}
 #' @rdname tcp
@@ -86,16 +86,16 @@
 
 #' @format {}
 #' 
-#' @source \url{http://results.aec.gov.au/15508/Website/HouseDownloadsMenu-15508-csv.htm}
-#' @source \url{http://www.aec.gov.au/elections/federal_elections/2010/downloads.htm}
+#' @source \url{https://results.aec.gov.au/15508/Website/HouseDownloadsMenu-15508-csv.htm}
+#' @source \url{https://www.aec.gov.au/elections/federal_elections/2010/downloads.htm}
 #' @rdname first_preference
 #' @order 4
 "fp10"
 
 #' 2010 Australian Federal election data: Two party preferred votes for candidates (House of Representatives) in each electorate.
 #' 
-#' @source \url{http://results.aec.gov.au/15508/Website/HouseDownloadsMenu-15508-csv.htm} 
-#' @source \url{http://www.aec.gov.au/elections/federal_elections/2010/downloads.htm}
+#' @source \url{https://results.aec.gov.au/15508/Website/HouseDownloadsMenu-15508-csv.htm} 
+#' @source \url{https://www.aec.gov.au/elections/federal_elections/2010/downloads.htm}
 #' 
 #' @format {}
 #' @rdname tpp
@@ -105,8 +105,8 @@
 #' 2010 Australian Federal election data: Two candidate preferred votes for candidates
 #' (House of Representatives) in each electorate.
 #' 
-#' @source \url{http://results.aec.gov.au/15508/Website/HouseDownloadsMenu-15508-csv.htm} 
-#' @source \url{http://www.aec.gov.au/elections/federal_elections/2010/downloads.htm}
+#' @source \url{https://results.aec.gov.au/15508/Website/HouseDownloadsMenu-15508-csv.htm} 
+#' @source \url{https://www.aec.gov.au/elections/federal_elections/2010/downloads.htm}
 #' 
 #' @format {}
 #' @rdname tcp
@@ -116,9 +116,9 @@
 #' @format {}
 #' 
 #' @source
-#'   \url{http://results.aec.gov.au/13745/Website/HouseDownloadsMenu-13745-csv.htm}
+#'   \url{https://results.aec.gov.au/13745/Website/HouseDownloadsMenu-13745-csv.htm}
 #' @source
-#'   \url{http://www.aec.gov.au/elections/federal_elections/2007/downloads.htm}
+#'   \url{https://www.aec.gov.au/elections/federal_elections/2007/downloads.htm}
 #' @rdname first_preference
 #' @order 3
 "fp07"
@@ -127,9 +127,9 @@
 #' candidates (House of Representatives) in each electorate.
 #'
 #' @source
-#'   \url{http://results.aec.gov.au/13745/Website/HouseDownloadsMenu-13745-csv.htm}
+#'   \url{https://results.aec.gov.au/13745/Website/HouseDownloadsMenu-13745-csv.htm}
 #' @source
-#'   \url{http://www.aec.gov.au/elections/federal_elections/2007/downloads.htm}
+#'   \url{https://www.aec.gov.au/elections/federal_elections/2007/downloads.htm}
 #'
 #' @format {}
 #' @rdname tpp
@@ -139,8 +139,8 @@
 #' 2007 Australian Federal election data: Two candidate preferred votes for candidates 
 #' (House of Representatives) in each electorate.
 #' 
-#' @source \url{http://results.aec.gov.au/13745/Website/HouseDownloadsMenu-13745-csv.htm}
-#' @source \url{http://www.aec.gov.au/elections/federal_elections/2007/downloads.htm}.
+#' @source \url{https://results.aec.gov.au/13745/Website/HouseDownloadsMenu-13745-csv.htm}
+#' @source \url{https://www.aec.gov.au/elections/federal_elections/2007/downloads.htm}.
 #' 
 #' @format \strong{For the 2007 election onwards:}
 #' \describe{
@@ -185,8 +185,8 @@
 #'     \item Percent: Percentage of ordinary votes for the candidate     
 #'     }
 #'     
-#' @source \url{http://results.aec.gov.au/12246/results/HouseDownloadsMenu-12246-csv.htm}
-#' @source \url{http://www.aec.gov.au/elections/federal_elections/2004/downloads.htm}
+#' @source \url{https://results.aec.gov.au/12246/results/HouseDownloadsMenu-12246-csv.htm}
+#' @source \url{https://www.aec.gov.au/elections/federal_elections/2004/downloads.htm}
 #' @rdname first_preference
 #' @order 2
 #' @md
@@ -195,8 +195,8 @@
 #' 2004 Australian Federal election data: Two party preferred votes for candidates (House of 
 #' Representatives) in each electorate.
 #' 
-#' @source \url{http://results.aec.gov.au/12246/results/HouseDownloadsMenu-12246-csv.htm}
-#' @source \url{http://www.aec.gov.au/elections/federal_elections/2004/downloads.htm}
+#' @source \url{https://results.aec.gov.au/12246/results/HouseDownloadsMenu-12246-csv.htm}
+#' @source \url{https://www.aec.gov.au/elections/federal_elections/2004/downloads.htm}
 #' 
 #' @format {}
 #' @rdname tpp
@@ -206,8 +206,8 @@
 #' 2004 Australian Federal election data: Two candidate preferred votes for candidates 
 #' (House of Representatives) in each electorate.
 #' 
-#' @source \url{http://results.aec.gov.au/12246/results/HouseDownloadsMenu-12246-csv.htm} 
-#' @source \url{http://www.aec.gov.au/elections/federal_elections/2004/downloads.htm}.
+#' @source \url{https://results.aec.gov.au/12246/results/HouseDownloadsMenu-12246-csv.htm} 
+#' @source \url{https://www.aec.gov.au/elections/federal_elections/2004/downloads.htm}.
 #' 
 #' @format 
 #' 
@@ -325,7 +325,7 @@
 #'
 #' A dataset containing the map of the all 150 Australian electorates using the 2019 boundaries of the 
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}. Must be loaded using the
+#' from \url{https://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}. Must be loaded using the
 #' `nat_map_download` function.
 #' 
 #' @keywords internal
@@ -365,7 +365,7 @@
 #'
 #' A dataset containing the map of the all 150 Australian electorates using the 2016 boundaries of the 
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}. Must be loaded using the
+#' from \url{https://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}. Must be loaded using the
 #' `nat_map_download` function.
 #' 
 #' @keywords internal
@@ -406,7 +406,7 @@
 #' A dataset containing the map of the all 150 Australian electorates using the 2013 boundaries of the 
 #' electorates.
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}. Must be loaded using the
+#' from \url{https://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}. Must be loaded using the
 #' `nat_map_download` function.
 #'
 #' @keywords internal
@@ -430,7 +430,7 @@
 #' A dataset containing the map of the all 150 Australian electorates using the 2010 boundaries of the 
 #' electorates.
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}. Must be loaded using the
+#' from \url{https://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}. Must be loaded using the
 #' `nat_map_download` function.
 #' 
 #' @keywords internal
@@ -453,7 +453,7 @@
 #'
 #' A dataset containing the map of the all 150 Australian electorates using the 2007 boundaries of the 
 #' electorates. The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://www.abs.gov.au/AUSSTATS/abs@@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}. 
+#' from \url{https://www.abs.gov.au/AUSSTATS/abs@@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}. 
 #' Must be loaded using the `nat_map_download` function.
 #' 
 #' @keywords internal
@@ -477,7 +477,7 @@
 #' A dataset containing the map of the all 150 Australian electorates using the 2004 boundaries of the 
 #' electorates.
 #' The data were obtained from the Australian Bureau of Statistics, and downloaded 
-#' from \url{http://www.abs.gov.au/AUSSTATS/abs@@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}.
+#' from \url{https://www.abs.gov.au/AUSSTATS/abs@@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}.
 #' Must be loaded using the `nat_map_download` function.
 #' 
 #' @keywords internal
@@ -524,7 +524,7 @@
 #'
 #' A dataset containing some demographic information for each of the 151 Australian electorates.
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
+#' from \url{https://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
 #' Must be loaded using the `nat_data_download` function.
 #' 
 #' @format A data frame with 151 rows with the following variables:
@@ -549,7 +549,7 @@
 #'
 #' A dataset containing some demographic information for each of the 150 Australian electorates.
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
+#' from \url{https://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
 #' Must be loaded using the `nat_data_download` function.
 #' 
 #' @format A data frame with 150 rows with the following variables:
@@ -572,7 +572,7 @@
 #'
 #' A dataset containing some demographic information for each of the 150 Australian electorates.
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
+#' from \url{https://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
 #' Must be loaded using the `nat_data_download` function.
 #' 
 #' @format A data frame with 150 rows with the following variables:
@@ -596,7 +596,7 @@
 #'
 #' A dataset containing some demographic information for each of the 150 Australian electorates.
 #' The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
+#' from \url{https://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
 #' Must be loaded using the `nat_data_download` function.
 #' 
 #' @format A data frame with 150 rows with the following variables:
@@ -620,7 +620,7 @@
 #'
 #' A dataset containing some demographic information for each of the 150 Australian electorates.
 #' The data were obtained from the Australian Bureau of Statistics, and downloaded 
-#' from \url{http://www.abs.gov.au/AUSSTATS/abs@@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}.
+#' from \url{https://www.abs.gov.au/AUSSTATS/abs@@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}.
 #' Must be loaded using the `nat_data_download` function.
 #' 
 #' @format A data frame with 150 rows with the following variables:
@@ -642,7 +642,7 @@
 #'
 #' A dataset containing some demographic information for each of the 150 Australian electorates.
 #' The data were obtained from the Australian Bureau of Statistics, and downloaded 
-#' from \url{http://www.abs.gov.au/AUSSTATS/abs@@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}.
+#' from \url{https://www.abs.gov.au/AUSSTATS/abs@@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}.
 #' Must be loaded using the `nat_data_download` function.
 #' 
 #' @format A data frame with 150 rows with the following variables:
