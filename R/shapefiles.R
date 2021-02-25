@@ -102,7 +102,7 @@ load_shapefile <- function(path_to_shapeFile, tolerance = 0.005) {
 #' map and data components.
 #' 
 #' Extract polygon information and demographics for each of Australia's electorates. 
-#' The map and data corresponding to the shapefiles of the 2013 Australian electorates (available at \url{http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}) are part of this package as nat_map.rda and nat_data.rda in the data folder.
+#' The map and data corresponding to the shapefiles of the 2013 Australian electorates (available at \url{https://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}) are part of this package as nat_map.rda and nat_data.rda in the data folder.
 #' The function will take several minutes to complete.
 #' @param path_to_shapeFile path to object in local machine (only if shapefile has not already loaded)
 #' @param sF Shapefile object loaded to environment using load_shapefile
