@@ -1,4 +1,4 @@
-pandoc: 2.11.2
+pandoc: 2.11.4
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
@@ -9,5 +9,5 @@ articles:
   imputing-census-data: imputing-census-data.html
   plotting-electorates: plotting-electorates.html
   plotting-polling-stns: plotting-polling-stns.html
-last_built: 2021-02-18T23:31Z
+last_built: 2021-02-26T00:44Z
 
