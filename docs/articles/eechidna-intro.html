@@ -97,13 +97,13 @@
 
       
 
-      </header><script src="eechidna-intro_files/header-attrs-2.6/header-attrs.js"></script><div class="row">
+      </header><script src="eechidna-intro_files/header-attrs-2.7/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>An Introduction to Exploring Election and Census Highly Informative Data Nationally for Australia</h1>
                         <h4 class="author">Jeremy Forbes</h4>
             
-            <h4 class="date">2021-02-19</h4>
+            <h4 class="date">2021-02-26</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/jforbes14/eechidna/blob/master/vignettes/eechidna-intro.Rmd"><code>vignettes/eechidna-intro.Rmd</code></a></small>
       <div class="hidden name"><code>eechidna-intro.Rmd</code></div>
@@ -115,7 +115,7 @@
 <div id="introduction" class="section level1">
 <h1 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h1>
-<p><code>eechidna</code> (Exploring Election and Census Highly Informative Data Nationally for Australia) is an R package that makes it easy to look at the data from the Australian Federal elections and Censuses that occurred between 2001 and 2019. An Australian Federal election typically takes place every three years (2001, 2004, 2007, 2010, 2013, 2016 and 2019), and a Census of Population and Housing is conducted every five years (2001, 2006, 2011, 2016). The data in this package includes voting results for each polling booth and electoral division (electorate), Census information for each electorate and maps of the electorates that were in place at the time of each event. All data in this package is obtained from the <a href="https://results.aec.gov.au/">Australian Electoral Commission</a>, the <a href="http://www.abs.gov.au/websitedbs/D3310114.nsf/home/census">Australian Bureau of Statistics</a> and the <a href="https://data.gov.au/">Australian Government</a>.</p>
+<p><code>eechidna</code> (Exploring Election and Census Highly Informative Data Nationally for Australia) is an R package that makes it easy to look at the data from the Australian Federal elections and Censuses that occurred between 2001 and 2019. An Australian Federal election typically takes place every three years (2001, 2004, 2007, 2010, 2013, 2016 and 2019), and a Census of Population and Housing is conducted every five years (2001, 2006, 2011, 2016). The data in this package includes voting results for each polling booth and electoral division (electorate), Census information for each electorate and maps of the electorates that were in place at the time of each event. All data in this package is obtained from the <a href="https://results.aec.gov.au/">Australian Electoral Commission</a>, the <a href="https://www.abs.gov.au/websitedbs/D3310114.nsf/home/census">Australian Bureau of Statistics</a> and the <a href="https://data.gov.au/">Australian Government</a>.</p>
 <p>This vignette documents how to access these datasets, and shows a few typical methods to explore the data.</p>
 </div>
 <div id="joining-election-and-census-data" class="section level1">
@@ -125,7 +125,7 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/">knitr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jforbes14/eechidna">eechidna</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jforbes14/eechidna/">eechidna</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">tpp16</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">abs2016</span><span class="op">)</span>
 

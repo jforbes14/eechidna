@@ -28,7 +28,7 @@ from \url{https://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}. Must be 
 `nat_map_download` function.
 }
 \examples{
-
+\dontrun{
 library(eechidna)
 nat_map16 <- nat_map_download(2016)
 # choropleth map with Australian Census data
@@ -42,6 +42,6 @@ ggplot(aes(map_id=region), data=subset(abs2016, region \%in\% both)) +
   geom_map(aes(fill=MedianPersonalIncome), map=subset(nat_map16, region \%in\% both)) +
   expand_limits(x=nat_map16$long, y=nat_map16$lat) + 
   theme_map()
-
+}
 }
 \keyword{internal}

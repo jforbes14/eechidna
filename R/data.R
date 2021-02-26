@@ -344,7 +344,7 @@
 #' }
 #' 
 #' @examples 
-#' 
+#' \dontrun{
 #' library(eechidna)
 #' nat_map19 <- nat_map_download(2019)
 #' # choropleth map with Australian Census data
@@ -358,7 +358,7 @@
 #'   geom_map(aes(fill=MedianPersonalIncome), map=subset(nat_map19, region %in% both)) +
 #'   expand_limits(x=nat_map19$long, y=nat_map19$lat) + 
 #'   theme_map()
-#' 
+#' }
 "nat_map19"
 
 #' Map of Australian Electorates from 2016
@@ -383,8 +383,8 @@
 #'     \item state: Abbreviation for state name
 #' }
 #' 
-#' @examples 
-#' 
+#' @examples
+#' \dontrun{
 #' library(eechidna)
 #' nat_map16 <- nat_map_download(2016)
 #' # choropleth map with Australian Census data
@@ -398,7 +398,7 @@
 #'   geom_map(aes(fill=MedianPersonalIncome), map=subset(nat_map16, region %in% both)) +
 #'   expand_limits(x=nat_map16$long, y=nat_map16$lat) + 
 #'   theme_map()
-#' 
+#' }
 "nat_map16"
 
 #' Map of Australian Electorates from 2013
