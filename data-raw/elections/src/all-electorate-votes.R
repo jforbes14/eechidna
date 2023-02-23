@@ -66,6 +66,65 @@ chr_upper <- function(df) {
 # ---------------------------------------------------------------------------------------------------------
 
 ####################################################################################################
+# 2021
+####################################################################################################
+
+## Importing federal election results for 2019, and forming a dataframe for each vote count
+## Vote counts are: first preference, two candidate preferred (2cp) and two party preferred (2pp)
+
+#---- FIRST PREFERENCES ----
+pref21 <- read_csv("https://results.aec.gov.au/27966/Website/Downloads/HouseDopByDivisionDownload-27966.csv", skip = 1)
+
+fp21 <- pref21 %>% 
+  filter(CalculationType %in% c("Preference Count", "Preference Percent")) %>% 
+  group_by(StateAb, DivisionID, DivisionNm, CountNumber, BallotPosition, CandidateID, Surname, GivenNm, PartyAb, PartyNm, Elected, HistoricElected) %>% 
+  spread(key = CalculationType, value = CalculationValue) %>%
+  filter(CountNumber == 0) %>% 
+  ungroup() %>% 
+  select(-CountNumber) %>% #takes only % of first preference votes
+  rename(OrdinaryVotes = `Preference Count`, Percent = `Preference Percent`)
+
+
+#---- TWO CANDIDATE PREFERRED ----
+# Distribution of preferences to the two candidates who came first and second in the election
+# add here total votes as well
+tcp21 <- pref21 %>% 
+  group_by(DivisionID, PartyAb) %>%
+  filter(CountNumber == max(CountNumber), CalculationType %in% c("Preference Count", "Preference Percent")) %>%
+  arrange() %>%
+  filter(CalculationValue != 0) %>% 
+  spread(CalculationType, CalculationValue) %>% 
+  rename(OrdinaryVotes = `Preference Count`, Percent = `Preference Percent`) %>% 
+  select(-CountNumber)
+
+#---- TWO PARTY PREFERRED ----
+# Preferences distribution only to Labor (ALP) and Coalition (LP, NP, LNQ, CLP)
+# A distribution of preferences where, by convention, comparisons are made between the ALP and the leading Liberal/National candidates. In seats where the final two candidates are not from the ALP and the Liberal or National parties, a two party preferred count may be conducted to find the result of preference flows to the ALP and the Liberal/National candidates.
+
+tpp21 <- read_csv("https://results.aec.gov.au/27966/Website/Downloads/HouseTppByDivisionDownload-27966.csv",skip = 1) |> 
+  arrange(DivisionID) %>% 
+  rename(LNP_Votes = `Liberal/National Coalition Votes`, LNP_Percent = `Liberal/National Coalition Percentage`,
+    ALP_Votes = `Australian Labor Party Votes`, ALP_Percent = `Australian Labor Party Percentage`) %>% 
+  select(-PartyAb)
+
+
+# Apply
+
+fp21 <- fp21 %>% reabbrev_parties() %>% chr_upper() %>% relabel_parties()
+tcp21 <- tcp21 %>% reabbrev_parties() %>% chr_upper() %>% relabel_parties()
+tpp21 <- tpp21 %>% chr_upper()
+
+
+#---- SAVE ----
+
+save(fp21, file = "data-raw/elections/data/fp21.rda")
+save(tcp21, file = "data-raw/elections/data/tcp21.rda")
+save(tpp21, file = "data-raw/elections/data/tpp21.rda")
+
+
+# ---------------------------------------------------------------------------------------------------------
+
+####################################################################################################
 # 2019
 ####################################################################################################
 
@@ -104,7 +163,7 @@ tcp19 <- pref19 %>%
 tpp19 <- read_csv("https://results.aec.gov.au/24310/Website/Downloads/HouseTppByDivisionDownload-24310.csv", skip = 1) %>%
   arrange(DivisionID) %>% 
   rename(LNP_Votes = `Liberal/National Coalition Votes`, LNP_Percent = `Liberal/National Coalition Percentage`,
-    ALP_Votes = `Australian Labor Party Votes`, ALP_Percent = `Australian Labor Party Percentage`) %>% 
+         ALP_Votes = `Australian Labor Party Votes`, ALP_Percent = `Australian Labor Party Percentage`) %>% 
   select(-PartyAb)
 
 
@@ -120,7 +179,6 @@ tpp19 <- tpp19 %>% chr_upper()
 save(fp19, file = "data-raw/elections/data/fp19.rda")
 save(tcp19, file = "data-raw/elections/data/tcp19.rda")
 save(tpp19, file = "data-raw/elections/data/tpp19.rda")
-
 
 # ---------------------------------------------------------------------------------------------------------
 

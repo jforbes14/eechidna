@@ -1,6 +1,35 @@
-#' @format
+#' 2021 Australian Federal election data: Two party preferred votes for candidates (House of 
+#' Representative) in each electorate.
+#' @format {}
+#' @source \url{https://results.aec.gov.au/27966/Website/HouseDownloadsMenu-27966-Csv.htm}
+#' @rdname fp
+#' @order 8
+"fp21"
+
+#' 2021 Australian Federal election data: Two party preferred votes for candidates (House of 
+#' Representative) in each electorate.
+#' @source \url{https://results.aec.gov.au/27966/Website/HouseDownloadsMenu-27966-Csv.htm}
+#' 
+#' @format {}
+#' @rdname tpp
+#' @order 8
+"tpp21"
+
+#' 2021 Australian Federal election data: Two candidate preferred votes for candidates
+#' (House of Representatives) in each electorate.
+#'
+#' @source \url{https://results.aec.gov.au/27966/Website/HouseDownloadsMenu-27966-Csv.htm}
+#' 
+#' @format {}
+#' @rdname tcp
+#' @order 8
+"tcp21"
+
+#' 2019 Australian Federal election data: Two party preferred votes for candidates (House of 
+#' Representative) in each electorate.
+#' @format {}
 #' @source \url{https://results.aec.gov.au/24310/Website/HouseDownloadsMenu-24310-Csv.htm}
-#' @rdname first_preference
+#' @rdname fp
 #' @order 7
 "fp19"
 
@@ -27,7 +56,7 @@
 #' 
 #' @source \url{https://results.aec.gov.au/20499/Website/HouseDownloadsMenu-20499-csv.htm}
 #' @source \url{https://www.aec.gov.au/elections/federal_elections/2016/downloads.htm}
-#' @rdname first_preference
+#' @rdname fp
 #' @order 6
 "fp16"
 
@@ -58,7 +87,7 @@
 #'     
 #' @source \url{https://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm}
 #' @source \url{https://www.aec.gov.au/elections/federal_elections/2013/downloads.htm}
-#' @rdname first_preference
+#' @rdname fp
 #' @order 5
 "fp13"
 
@@ -88,7 +117,7 @@
 #' 
 #' @source \url{https://results.aec.gov.au/15508/Website/HouseDownloadsMenu-15508-csv.htm}
 #' @source \url{https://www.aec.gov.au/elections/federal_elections/2010/downloads.htm}
-#' @rdname first_preference
+#' @rdname fp
 #' @order 4
 "fp10"
 
@@ -119,7 +148,7 @@
 #'   \url{https://results.aec.gov.au/13745/Website/HouseDownloadsMenu-13745-csv.htm}
 #' @source
 #'   \url{https://www.aec.gov.au/elections/federal_elections/2007/downloads.htm}
-#' @rdname first_preference
+#' @rdname fp
 #' @order 3
 "fp07"
 
@@ -187,7 +216,7 @@
 #'     
 #' @source \url{https://results.aec.gov.au/12246/results/HouseDownloadsMenu-12246-csv.htm}
 #' @source \url{https://www.aec.gov.au/elections/federal_elections/2004/downloads.htm}
-#' @rdname first_preference
+#' @rdname fp
 #' @order 2
 #' @md
 "fp04"
@@ -235,7 +264,7 @@
 #' First preference votes for candidates (House of Representatives) in each electorate.
 #' 
 #' A dataset containing first preference vote counts, candidate names, and other results for the
-#' House of Representatives from Australian federal elections from 2001 to 2019.
+#' House of Representatives from Australian federal elections from 2001 to 2021.
 #' 
 #' @format A data frame with the following variables:
 #' 
@@ -256,7 +285,7 @@
 #'     
 #'     
 #' @source \url{https://www.aec.gov.au/About_AEC/Publications/statistics/files/aec-2001-election-statistics.zip}
-#' @rdname first_preference
+#' @name fp
 #' @order 1
 "fp01"
 
@@ -285,7 +314,7 @@
 #' @source
 #'   \url{https://www.aec.gov.au/About_AEC/Publications/statistics/files/aec-2001-election-statistics.zip}
 #'
-#' @rdname tpp
+#' @name tpp
 #' @order 1
 "tpp01"
 
@@ -317,7 +346,7 @@
 #'     \item{PartyNm}{Political party name}    
 #'     \item{Swing}{Percentage point change in ordinary votes for the party from the previous election}     
 #'     }
-#' @rdname tcp
+#' @name tcp
 #' @order 1
 "tcp01"
 
