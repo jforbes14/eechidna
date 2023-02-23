@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,23 +33,17 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eechidna</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -82,7 +78,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/jforbes14/eechidna/">
+  <a href="https://github.com/jforbes14/eechidna/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -101,36 +97,36 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Plotting Australia’s Polling Booths</h1>
-                        <h4 class="author">Di Cook and Jeremy Forbes</h4>
+                        <h4 data-toc-skip class="author">Di Cook and Jeremy Forbes</h4>
             
-            <h4 class="date">2021-02-26</h4>
+            <h4 data-toc-skip class="date">2023-02-23</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/jforbes14/eechidna/blob/master/vignettes/plotting-polling-stns.Rmd"><code>vignettes/plotting-polling-stns.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/jforbes14/eechidna/blob/HEAD/vignettes/plotting-polling-stns.Rmd" class="external-link"><code>vignettes/plotting-polling-stns.Rmd</code></a></small>
       <div class="hidden name"><code>plotting-polling-stns.Rmd</code></div>
 
     </div>
 
     
     
-<p>This vignette demonstrates how to plot the polling booths on a map of the Australian electorates. The polling booth locations for each federal election (from 2001 to 2016) can be downloaded from <a href="http://results.aec.gov.au/">http://results.aec.gov.au/</a>. Coordinates for 2001 and 2004 polling booths are obtained by matching polling booth ID and name with later elections. Those without coordinates in 2004 were filled using <a href="https://cloud.google.com/maps-platform/">Google Maps API</a>, using the latest <code>ggmap</code> package from <a href="https://github.com/dkahle/ggmap/">github</a>.</p>
-<div id="polling-booths-in-2016" class="section level2">
-<h2 class="hasAnchor">
-<a href="#polling-booths-in-2016" class="anchor"></a>Polling booths in 2016</h2>
+<p>This vignette demonstrates how to plot the polling booths on a map of the Australian electorates. The polling booth locations for each federal election (from 2001 to 2016) can be downloaded from <a href="http://results.aec.gov.au/" class="external-link">http://results.aec.gov.au/</a>. Coordinates for 2001 and 2004 polling booths are obtained by matching polling booth ID and name with later elections. Those without coordinates in 2004 were filled using <a href="https://cloud.google.com/maps-platform/" class="external-link">Google Maps API</a>, using the latest <code>ggmap</code> package from <a href="https://github.com/dkahle/ggmap/" class="external-link">github</a>.</p>
+<div class="section level2">
+<h2 id="polling-booths-in-2016">Polling booths in 2016<a class="anchor" aria-label="anchor" href="#polling-booths-in-2016"></a>
+</h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jrnold/ggthemes">ggthemes</a></span><span class="op">)</span>
-<span class="va">nat_map16</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/nat_map_download.html">nat_map_download</a></span><span class="op">(</span><span class="fl">2016</span><span class="op">)</span>
-<span class="va">nat_data16</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/nat_data_download.html">nat_data_download</a></span><span class="op">(</span><span class="fl">2016</span><span class="op">)</span>
-
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">nat_data16</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>map_id<span class="op">=</span><span class="va">id</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_map.html">geom_map</a></span><span class="op">(</span>map<span class="op">=</span><span class="va">nat_map16</span>, fill<span class="op">=</span><span class="st">"grey90"</span>, colour<span class="op">=</span><span class="st">"white"</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">stns</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Longitude</span>, y<span class="op">=</span><span class="va">Latitude</span><span class="op">)</span>, colour<span class="op">=</span><span class="st">"red"</span>, size<span class="op">=</span><span class="fl">1</span>, alpha<span class="op">=</span><span class="fl">0.3</span>, inherit.aes<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">xlim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">112</span>,<span class="fl">157</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">ylim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">44</span>,<span class="op">-</span><span class="fl">11</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_map.html">theme_map</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html">coord_equal</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jrnold/ggthemes" class="external-link">ggthemes</a></span><span class="op">)</span></span>
+<span><span class="va">nat_map16</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/nat_map_download.html">nat_map_download</a></span><span class="op">(</span><span class="fl">2016</span><span class="op">)</span></span>
+<span><span class="va">nat_data16</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/nat_data_download.html">nat_data_download</a></span><span class="op">(</span><span class="fl">2016</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">nat_data16</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>map_id<span class="op">=</span><span class="va">id</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_map.html" class="external-link">geom_map</a></span><span class="op">(</span>map<span class="op">=</span><span class="va">nat_map16</span>, fill<span class="op">=</span><span class="st">"grey90"</span>, colour<span class="op">=</span><span class="st">"white"</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">stns</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Longitude</span>, y<span class="op">=</span><span class="va">Latitude</span><span class="op">)</span>, colour<span class="op">=</span><span class="st">"red"</span>, size<span class="op">=</span><span class="fl">1</span>, alpha<span class="op">=</span><span class="fl">0.3</span>, inherit.aes<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html" class="external-link">xlim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">112</span>,<span class="fl">157</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html" class="external-link">ylim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">44</span>,<span class="op">-</span><span class="fl">11</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_map.html" class="external-link">theme_map</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html" class="external-link">coord_equal</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="plotting-polling-stns_files/figure-html/mapit-1.png" width="672" style="display: block; margin: auto;"></p>
 </div>
-<div id="incorporating-other-information" class="section level2">
-<h2 class="hasAnchor">
-<a href="#incorporating-other-information" class="anchor"></a>Incorporating other information</h2>
+<div class="section level2">
+<h2 id="incorporating-other-information">Incorporating other information<a class="anchor" aria-label="anchor" href="#incorporating-other-information"></a>
+</h2>
 <p>Election results are provided at the resolution of polling place, but must be downloaded using the functions <code>firstpref_pollingbooth_download</code>, <code>twoparty_pollingbooth_download</code> or <code>twocand_pollingbooth_download</code> (depending on the vote type). We can use this information to color the points. The two files need to be merged. Both have a unique ID for the polling place that can be used to match the records. The two party preferred vote, a measure of preference between only the Australian Labor Party (ALP) and the Liberal/National Coalition (LNP), is downloaded using <code>twoparty_pollingbooth_download</code>. The preferred party is the one with the higher percentage, and we use this to colour the points indicating polling places.</p>
 <p>This gives a richer look at the party preferences across the country. You can see that although the big rural electorates vote for LNP overall, some polling places would elect the ALP, e.g. western NSW around Broken Hill. This data would look far more interesting if the data also contained the minority parties, because there must be some polling places where the majority vote would be for a minor party, since there are some minor party representatives in the House.</p>
 <p><img src="plotting-polling-stns_files/figure-html/tpp_map-1.png" width="672" style="display: block; margin: auto;"></p>
@@ -151,11 +147,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Jeremy Forbes, Di Cook, Anthony Ebert, Heike Hofmann, Rob Hyndman, Thomas Lumley, Ben Marwick, Carson Sievert, Mingzhu Sun, Dilini Talagala, Nicholas Tierney, Nathaniel Tomasetti, Earo Wang, Fang Zhou.</p>
+  <p></p>
+<p>Developed by Jeremy Forbes, Di Cook, Anthony Ebert, Heike Hofmann, Rob Hyndman, Thomas Lumley, Ben Marwick, Carson Sievert, Mingzhu Sun, Dilini Talagala, Nicholas Tierney, Nathaniel Tomasetti, Earo Wang, Fang Zhou.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
@@ -163,6 +161,8 @@
 
   
 
+
+  
 
   </body>
 </html>

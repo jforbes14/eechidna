@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,23 +33,17 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eechidna</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -82,7 +78,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/jforbes14/eechidna/">
+  <a href="https://github.com/jforbes14/eechidna/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -101,11 +97,11 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Getting Oz Electorate shapefiles into shape</h1>
-                        <h4 class="author">Heike Hofmann, Di Cook and Jeremy Forbes</h4>
+                        <h4 data-toc-skip class="author">Heike Hofmann, Di Cook and Jeremy Forbes</h4>
             
-            <h4 class="date">2021-02-26</h4>
+            <h4 data-toc-skip class="date">2023-02-23</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/jforbes14/eechidna/blob/master/vignettes/getting-ozShapefiles.Rmd"><code>vignettes/getting-ozShapefiles.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/jforbes14/eechidna/blob/HEAD/vignettes/getting-ozShapefiles.Rmd" class="external-link"><code>vignettes/getting-ozShapefiles.Rmd</code></a></small>
       <div class="hidden name"><code>getting-ozShapefiles.Rmd</code></div>
 
     </div>
@@ -113,158 +109,158 @@
     
     
 <p>This vignette details the procedure used to obtain the maps of electoral boundaries for each of the Australian federal elections and Censuses.</p>
-<p>The Australian Electorate Commission publishes the boundaries of the electorates on their website at <a href="http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm">http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm</a> (2010-2016). Electoral boundaries for 2001 are sourced from the Australian Government at <a href="https://data.gov.au/dataset/ds-dga-0b939a62-e53e-4616-add5-77f909b58ddd/details?q=asgc%202001">https://data.gov.au/</a>. The 2004 and 2007 electoral boundaries are available from the Australian Bureau of Statistics <a href="http://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument">http://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument</a>.</p>
+<p>The Australian Electorate Commission publishes the boundaries of the electorates on their website at <a href="http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm" class="external-link">http://www.aec.gov.au/Electorates/gis/gis_datadownload.htm</a> (2010-2016). Electoral boundaries for 2001 are sourced from the Australian Government at <a href="https://data.gov.au/dataset/ds-dga-0b939a62-e53e-4616-add5-77f909b58ddd/details?q=asgc%202001" class="external-link">https://data.gov.au/</a>. The 2004 and 2007 electoral boundaries are available from the Australian Bureau of Statistics <a href="http://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument" class="external-link">http://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument</a>.</p>
 <p>Once the files (preferably the national files) are downloaded, unzip the file (it will build a folder with a set of files). We want to read the shapes contained in the <code>shp</code>, <code>TAB</code>, or <code>MIF</code> file into R. The <code>rgdal</code> library can be used to do this.</p>
 <p>The function <code>get_electorate_shapes</code> in this package extracts a list from the shapefile, consisting of a <code>dataframe</code> containing coordinates of each polygon and a <code>dataframe</code> with data associated with each polygon (electorate). These can be used directly with <code>ggplot</code> graphics. Alternatively, the <code>load_shapefile</code> function (also from <code>eechidna</code>) imports the shapefile as a <code>SpatialPolygonsDataFrame</code>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># shapeFile contains the path to the shp file:</span>
-<span class="va">shapeFile</span> <span class="op">&lt;-</span> <span class="st">"/PATH-ON-YOUR-COMPUTER/national-midmif-09052016/COM_ELB.TAB"</span>
-<span class="va">sF</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_electorate_shapes.html">get_electorate_shapes</a></span><span class="op">(</span><span class="va">shapeFile</span><span class="op">)</span>
-
-<span class="va">nat_map</span> <span class="op">&lt;-</span> <span class="va">sF</span><span class="op">$</span><span class="va">map</span>
-<span class="va">nat_data</span> <span class="op">&lt;-</span> <span class="va">sF</span><span class="op">$</span><span class="va">data</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># shapeFile contains the path to the shp file:</span></span>
+<span><span class="va">shapeFile</span> <span class="op">&lt;-</span> <span class="st">"/PATH-ON-YOUR-COMPUTER/national-midmif-09052016/COM_ELB.TAB"</span></span>
+<span><span class="va">sF</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_electorate_shapes.html">get_electorate_shapes</a></span><span class="op">(</span><span class="va">shapeFile</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">nat_map</span> <span class="op">&lt;-</span> <span class="va">sF</span><span class="op">$</span><span class="va">map</span></span>
+<span><span class="va">nat_data</span> <span class="op">&lt;-</span> <span class="va">sF</span><span class="op">$</span><span class="va">data</span></span></code></pre></div>
 <p>Here we have a map of the Australian electorates colored by their size as given in the data (variable <code>area_sqkm</code>):</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jrnold/ggthemes">ggthemes</a></span><span class="op">)</span>
-
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>map_id<span class="op">=</span><span class="va">id</span><span class="op">)</span>, data<span class="op">=</span><span class="va">nat_data</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_map.html">geom_map</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill<span class="op">=</span><span class="va">area_sqkm</span><span class="op">)</span>, map<span class="op">=</span><span class="va">nat_map</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expand_limits.html">expand_limits</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">nat_map</span><span class="op">$</span><span class="va">long</span>, y<span class="op">=</span><span class="va">nat_map</span><span class="op">$</span><span class="va">lat</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_map.html">theme_map</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html">coord_equal</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jrnold/ggthemes" class="external-link">ggthemes</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>map_id<span class="op">=</span><span class="va">id</span><span class="op">)</span>, data<span class="op">=</span><span class="va">nat_data</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_map.html" class="external-link">geom_map</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill<span class="op">=</span><span class="va">area_sqkm</span><span class="op">)</span>, map<span class="op">=</span><span class="va">nat_map</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expand_limits.html" class="external-link">expand_limits</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">nat_map</span><span class="op">$</span><span class="va">long</span>, y<span class="op">=</span><span class="va">nat_map</span><span class="op">$</span><span class="va">lat</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_map.html" class="external-link">theme_map</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html" class="external-link">coord_equal</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="getting-ozShapefiles_files/figure-html/unnamed-chunk-3-1.png" width="768" style="display: block; margin: auto;"></p>
 <p>The <code>get_electorate_shapes</code> function works for the Australian electoral boundaries between 2001 and 2016, but may need some tweaking for other maps (including future electoral maps). Each step of this function is detailed below, with the running example of the Australian electoral boundaries for 2016.</p>
-<div id="steps" class="section level2">
-<h2 class="hasAnchor">
-<a href="#steps" class="anchor"></a>Steps</h2>
+<div class="section level2">
+<h2 id="steps">Steps<a class="anchor" aria-label="anchor" href="#steps"></a>
+</h2>
 <p>For the 2016 election, the national electorate boundaries are given in MapInfo format.</p>
 <p><code>sF</code> is a spatial data frame containing all of the polygons. First, for convenience, lets change all variable names in the assocated data set to lower case.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">sF</span><span class="op">@</span><span class="va">data</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/chartr.html">tolower</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">sF</span><span class="op">@</span><span class="va">data</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">sF</span><span class="op">@</span><span class="va">data</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/chartr.html" class="external-link">tolower</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">sF</span><span class="op">@</span><span class="va">data</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>We now use <code>rgeos</code> to thin the polygons and ensure that there are no holes while preserving the geography:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-forge.r-project.org/projects/rgeos/">rgeos</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-forge.r-project.org/projects/rgeos/" class="external-link">rgeos</a></span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">polys_sF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rgeos/man/topo-unary-gSimplify.html">gSimplify</a></span><span class="op">(</span><span class="va">sF</span>, tol <span class="op">=</span> <span class="fl">0.005</span><span class="op">)</span>
-<span class="va">sF</span> <span class="op">&lt;-</span> <span class="fu">sp</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/sp/man/SpatialPolygons.html">SpatialPolygonsDataFrame</a></span><span class="op">(</span><span class="va">polys_sF</span>, <span class="va">sF</span><span class="op">@</span><span class="va">data</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">polys_sF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rgeos/man/topo-unary-gSimplify.html" class="external-link">gSimplify</a></span><span class="op">(</span><span class="va">sF</span>, tol <span class="op">=</span> <span class="fl">0.005</span><span class="op">)</span></span>
+<span><span class="va">sF</span> <span class="op">&lt;-</span> <span class="fu">sp</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/sp/man/SpatialPolygons.html" class="external-link">SpatialPolygonsDataFrame</a></span><span class="op">(</span><span class="va">polys_sF</span>, <span class="va">sF</span><span class="op">@</span><span class="va">data</span><span class="op">)</span></span></code></pre></div>
 <p><code>tol</code> is the numerical tolerance value to be used by the Douglas-Peuker algorithm. A larger value thins the polygons by more, reducing the number of points. Doing this helps reduce the overall size of the map considerably, making it faster to plot.</p>
-<div id="extracting-the-electorate-information" class="section level3">
-<h3 class="hasAnchor">
-<a href="#extracting-the-electorate-information" class="anchor"></a>Extracting the electorate information</h3>
+<div class="section level3">
+<h3 id="extracting-the-electorate-information">Extracting the electorate information<a class="anchor" aria-label="anchor" href="#extracting-the-electorate-information"></a>
+</h3>
 <p>A spatial polygons data frame consists of both a data set with information on each of the entities (in this case, electorates), and a set of polygons for each electorate (sometimes multiple polygons are needed, e.g. if the electorate has islands). We want to extract both of these parts.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">nat_data</span> <span class="op">&lt;-</span> <span class="va">sF</span><span class="op">@</span><span class="va">data</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">nat_data</span><span class="op">)</span></code></pre></div>
-<pre><code>##   elect_div state numccds actual projected total_population australians_over_18
-## 1  LINGIARI    NT     335      0         0                0                   0
-## 2   SOLOMON    NT     180      0         0                0                   0
-## 3      BASS   TAS     208      0         0                0                   0
-## 4   BRADDON   TAS     226      0         0                0                   0
-## 5   DENISON   TAS     197      0         0                0                   0
-## 6  FRANKLIN   TAS     179      0         0                0                   0
-##      area_sqkm sortname
-## 1 1352034.0451 LINGIARI
-## 2     336.6861  SOLOMON
-## 3    7378.7516     BASS
-## 4   20826.1840  BRADDON
-## 5     288.7177  DENISON
-## 6    6514.2083 FRANKLIN</code></pre>
+<code class="sourceCode R"><span><span class="va">nat_data</span> <span class="op">&lt;-</span> <span class="va">sF</span><span class="op">@</span><span class="va">data</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">nat_data</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##   elect_div state numccds actual projected total_population australians_over_18</span></span>
+<span><span class="co">## 1  LINGIARI    NT     335      0         0                0                   0</span></span>
+<span><span class="co">## 2   SOLOMON    NT     180      0         0                0                   0</span></span>
+<span><span class="co">## 3      BASS   TAS     208      0         0                0                   0</span></span>
+<span><span class="co">## 4   BRADDON   TAS     226      0         0                0                   0</span></span>
+<span><span class="co">## 5   DENISON   TAS     197      0         0                0                   0</span></span>
+<span><span class="co">## 6  FRANKLIN   TAS     179      0         0                0                   0</span></span>
+<span><span class="co">##      area_sqkm sortname</span></span>
+<span><span class="co">## 1 1352034.0451 LINGIARI</span></span>
+<span><span class="co">## 2     336.6861  SOLOMON</span></span>
+<span><span class="co">## 3    7378.7516     BASS</span></span>
+<span><span class="co">## 4   20826.1840  BRADDON</span></span>
+<span><span class="co">## 5     288.7177  DENISON</span></span>
+<span><span class="co">## 6    6514.2083 FRANKLIN</span></span></code></pre>
 <p>The row names of the data file are identifiers corresponding to the polygons - we want to make them a separate variable:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">nat_data</span><span class="op">$</span><span class="va">id</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/row.names.html">row.names</a></span><span class="op">(</span><span class="va">nat_data</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">nat_data</span><span class="op">$</span><span class="va">id</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/row.names.html" class="external-link">row.names</a></span><span class="op">(</span><span class="va">nat_data</span><span class="op">)</span></span></code></pre></div>
 <p>In the currently published version of the 2016 electorate boundaries, the <code>data</code> data frame has variable <code>elect_div</code> of the electorates’ names, and variable <code>state</code>, which is an abbreviation of the state name. It might be convenient to merge this information (or at least the state abbreviation) into the polygons (see below).</p>
 <p>We are almost ready to export this data into a file, but we still want include geographic centers in the data (see also below).</p>
 </div>
-<div id="extracting-the-polygon-information" class="section level3">
-<h3 class="hasAnchor">
-<a href="#extracting-the-polygon-information" class="anchor"></a>Extracting the polygon information</h3>
+<div class="section level3">
+<h3 id="extracting-the-polygon-information">Extracting the polygon information<a class="anchor" aria-label="anchor" href="#extracting-the-polygon-information"></a>
+</h3>
 <p>The <code>fortify</code> function in the <code>ggplot2</code> package extracts the polygons into a data frame.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">nat_map</span> <span class="op">&lt;-</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/fortify.html">fortify</a></span><span class="op">(</span><span class="va">sF</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">nat_map</span> <span class="op">&lt;-</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/fortify.html" class="external-link">fortify</a></span><span class="op">(</span><span class="va">sF</span><span class="op">)</span></span></code></pre></div>
 <p>We need to make sure that <code>group</code> and <code>piece</code> are kept as factor variables - if they are allowed to be converted to numeric values, it messes things up, because as factor levels <code>9</code> and <code>9.0</code> are distinct, whereas they are not when interpreted as numbers …</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">nat_map</span><span class="op">$</span><span class="va">group</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"g"</span>,<span class="va">nat_map</span><span class="op">$</span><span class="va">group</span>,sep<span class="op">=</span><span class="st">"."</span><span class="op">)</span>
-<span class="va">nat_map</span><span class="op">$</span><span class="va">piece</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"p"</span>,<span class="va">nat_map</span><span class="op">$</span><span class="va">piece</span>,sep<span class="op">=</span><span class="st">"."</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">nat_map</span><span class="op">$</span><span class="va">group</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"g"</span>,<span class="va">nat_map</span><span class="op">$</span><span class="va">group</span>,sep<span class="op">=</span><span class="st">"."</span><span class="op">)</span></span>
+<span><span class="va">nat_map</span><span class="op">$</span><span class="va">piece</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"p"</span>,<span class="va">nat_map</span><span class="op">$</span><span class="va">piece</span>,sep<span class="op">=</span><span class="st">"."</span><span class="op">)</span></span></code></pre></div>
 <p>It is useful to have the electorate name and state attached to the map.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">nms</span> <span class="op">&lt;-</span> <span class="va">sF</span><span class="op">@</span><span class="va">data</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">elect_div</span>, <span class="va">state</span><span class="op">)</span>
-<span class="va">nms</span><span class="op">$</span><span class="va">id</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">150</span><span class="op">)</span>
-<span class="va">nat_map</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">nat_map</span>, <span class="va">nms</span>, by<span class="op">=</span><span class="st">"id"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">nms</span> <span class="op">&lt;-</span> <span class="va">sF</span><span class="op">@</span><span class="va">data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">elect_div</span>, <span class="va">state</span><span class="op">)</span></span>
+<span><span class="va">nms</span><span class="op">$</span><span class="va">id</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">150</span><span class="op">)</span></span>
+<span><span class="va">nat_map</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">nat_map</span>, <span class="va">nms</span>, by<span class="op">=</span><span class="st">"id"</span><span class="op">)</span></span></code></pre></div>
 <p>The map data is ready to be exported to a file:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">nat_map</span><span class="op">)</span></code></pre></div>
-<pre><code>##       long       lat order  hole piece id group elect_div state
-## 1 130.5179 -12.73105     1 FALSE   P.1  1 G.1.1  LINGIARI    NT
-## 2 130.5175 -12.72562     2 FALSE   P.1  1 G.1.1  LINGIARI    NT
-## 3 130.5294 -12.72505     3 FALSE   P.1  1 G.1.1  LINGIARI    NT
-## 4 130.5243 -12.73409     4 FALSE   P.1  1 G.1.1  LINGIARI    NT
-## 5 130.5310 -12.74217     5 FALSE   P.1  1 G.1.1  LINGIARI    NT
-## 6 130.5252 -12.73432     6 FALSE   P.1  1 G.1.1  LINGIARI    NT</code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">nat_map</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##       long       lat order  hole piece id group elect_div state</span></span>
+<span><span class="co">## 1 130.5179 -12.73105     1 FALSE   P.1  1 G.1.1  LINGIARI    NT</span></span>
+<span><span class="co">## 2 130.5175 -12.72562     2 FALSE   P.1  1 G.1.1  LINGIARI    NT</span></span>
+<span><span class="co">## 3 130.5294 -12.72505     3 FALSE   P.1  1 G.1.1  LINGIARI    NT</span></span>
+<span><span class="co">## 4 130.5243 -12.73409     4 FALSE   P.1  1 G.1.1  LINGIARI    NT</span></span>
+<span><span class="co">## 5 130.5310 -12.74217     5 FALSE   P.1  1 G.1.1  LINGIARI    NT</span></span>
+<span><span class="co">## 6 130.5252 -12.73432     6 FALSE   P.1  1 G.1.1  LINGIARI    NT</span></span></code></pre>
 <p>###Getting centroids Getting centroids or any other information from a polygon is fairly simple, once you have worked your way through the polygon structure. First, we are going to just focus on the polygons themselves:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">polys</span> <span class="op">&lt;-</span> <span class="fu">as</span><span class="op">(</span><span class="va">sF</span>, <span class="st">"SpatialPolygons"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">polys</span><span class="op">)</span> <span class="co"># should be SpatialPolygons</span></code></pre></div>
-<pre><code>## [1] "SpatialPolygons"
-## attr(,"package")
-## [1] "sp"</code></pre>
+<code class="sourceCode R"><span><span class="va">polys</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/methods/as.html" class="external-link">as</a></span><span class="op">(</span><span class="va">sF</span>, <span class="st">"SpatialPolygons"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">polys</span><span class="op">)</span> <span class="co"># should be SpatialPolygons</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] "SpatialPolygons"</span></span>
+<span><span class="co">## attr(,"package")</span></span>
+<span><span class="co">## [1] "sp"</span></span></code></pre>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">polys</span><span class="op">)</span> <span class="co"># should be 150</span></code></pre></div>
-<pre><code>## [1] 150</code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">polys</span><span class="op">)</span> <span class="co"># should be 150</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 150</span></span></code></pre>
 <p>Because SpatialPolygons are an S4 object, they have so called <code>slots</code>, and in this case the slots are:</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">slotNames</span><span class="op">(</span><span class="va">polys</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "polygons"    "plotOrder"   "bbox"        "proj4string"</code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/methods/slot.html" class="external-link">slotNames</a></span><span class="op">(</span><span class="va">polys</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] "polygons"    "plotOrder"   "bbox"        "proj4string"</span></span></code></pre>
 <p>We are interested further into the polygon aspect of this object:</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">sp</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/sp/man/SpatialPolygons.html">Polygon</a></span><span class="op">(</span><span class="va">polys</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></code></pre></div>
-<pre><code>## An object of class "Polygon"
-## Slot "labpt":
-## [1] 133.37059 -19.47997
-## 
-## Slot "area":
-## [1] 0
-## 
-## Slot "hole":
-## [1] FALSE
-## 
-## Slot "ringDir":
-## [1] 1
-## 
-## Slot "coords":
-##       [,1]      [,2]
-## 1 133.3706 -19.47997
-## 1 133.3706 -19.47997
-## 1 133.3706 -19.47997
-## 1 133.3706 -19.47997</code></pre>
+<code class="sourceCode R"><span><span class="fu">sp</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/sp/man/SpatialPolygons.html" class="external-link">Polygon</a></span><span class="op">(</span><span class="va">polys</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## An object of class "Polygon"</span></span>
+<span><span class="co">## Slot "labpt":</span></span>
+<span><span class="co">## [1] 133.37059 -19.47997</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Slot "area":</span></span>
+<span><span class="co">## [1] 0</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Slot "hole":</span></span>
+<span><span class="co">## [1] FALSE</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Slot "ringDir":</span></span>
+<span><span class="co">## [1] 1</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Slot "coords":</span></span>
+<span><span class="co">##       [,1]      [,2]</span></span>
+<span><span class="co">## 1 133.3706 -19.47997</span></span>
+<span><span class="co">## 1 133.3706 -19.47997</span></span>
+<span><span class="co">## 1 133.3706 -19.47997</span></span>
+<span><span class="co">## 1 133.3706 -19.47997</span></span></code></pre>
 <p>From this, we want to extract the <code>labpt</code> component, because those are the centroids we are interested in. We will wrap this into a little function called <code>centroid</code> to help us with that:</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://purrr.tidyverse.org">purrr</a></span><span class="op">)</span>
-<span class="va">centroid</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">i</span>, <span class="va">polys</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">ctr</span> <span class="op">&lt;-</span> <span class="fu">sp</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/sp/man/SpatialPolygons.html">Polygon</a></span><span class="op">(</span><span class="va">polys</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span><span class="op">@</span><span class="va">labpt</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>long_c<span class="op">=</span><span class="va">ctr</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, lat_c<span class="op">=</span><span class="va">ctr</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span>
-<span class="op">}</span>
-
-<span class="va">centroids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_along</a></span><span class="op">(</span><span class="va">polys</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_df</a></span><span class="op">(</span><span class="va">centroid</span>, polys<span class="op">=</span><span class="va">polys</span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">centroids</span><span class="op">)</span></code></pre></div>
-<pre><code>##     long_c     lat_c
-## 1 133.3706 -19.47997
-## 2 130.9358 -12.42317
-## 3 147.5085 -41.15761
-## 4 145.4984 -41.76005
-## 5 147.2441 -42.88880
-## 6 146.6276 -43.24340</code></pre>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://purrr.tidyverse.org/" class="external-link">purrr</a></span><span class="op">)</span></span>
+<span><span class="va">centroid</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">i</span>, <span class="va">polys</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">ctr</span> <span class="op">&lt;-</span> <span class="fu">sp</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/sp/man/SpatialPolygons.html" class="external-link">Polygon</a></span><span class="op">(</span><span class="va">polys</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span><span class="op">@</span><span class="va">labpt</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>long_c<span class="op">=</span><span class="va">ctr</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, lat_c<span class="op">=</span><span class="va">ctr</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">centroids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_along</a></span><span class="op">(</span><span class="va">polys</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map_dfr.html" class="external-link">map_df</a></span><span class="op">(</span><span class="va">centroid</span>, polys<span class="op">=</span><span class="va">polys</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">centroids</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##     long_c     lat_c</span></span>
+<span><span class="co">## 1 133.3706 -19.47997</span></span>
+<span><span class="co">## 2 130.9358 -12.42317</span></span>
+<span><span class="co">## 3 147.5085 -41.15761</span></span>
+<span><span class="co">## 4 145.4984 -41.76005</span></span>
+<span><span class="co">## 5 147.2441 -42.88880</span></span>
+<span><span class="co">## 6 146.6276 -43.24340</span></span></code></pre>
 <p>The centroids come in the same order as the data (luckily) and we just extend the data set for the electorates by this information, and finally export:</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">nat_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">nat_data</span>, <span class="va">centroids</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">nat_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">nat_data</span>, <span class="va">centroids</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html">write.csv</a></span><span class="op">(</span><span class="va">nat_data</span>, <span class="st">"National-data-2016.csv"</span>, row.names<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.csv</a></span><span class="op">(</span><span class="va">nat_data</span>, <span class="st">"National-data-2016.csv"</span>, row.names<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <p>Finally, just to check the data, a map of the Australian electorates colored by their size as given in the data (variable <code>area_sqkm</code>):</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>map_id<span class="op">=</span><span class="va">id</span><span class="op">)</span>, data<span class="op">=</span><span class="va">nat_data</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_map.html">geom_map</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill<span class="op">=</span><span class="va">area_sqkm</span><span class="op">)</span>, map<span class="op">=</span><span class="va">nat_map</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expand_limits.html">expand_limits</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">nat_map</span><span class="op">$</span><span class="va">long</span>, y<span class="op">=</span><span class="va">nat_map</span><span class="op">$</span><span class="va">lat</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_map.html">theme_map</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html">coord_equal</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>map_id<span class="op">=</span><span class="va">id</span><span class="op">)</span>, data<span class="op">=</span><span class="va">nat_data</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_map.html" class="external-link">geom_map</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill<span class="op">=</span><span class="va">area_sqkm</span><span class="op">)</span>, map<span class="op">=</span><span class="va">nat_map</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expand_limits.html" class="external-link">expand_limits</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">nat_map</span><span class="op">$</span><span class="va">long</span>, y<span class="op">=</span><span class="va">nat_map</span><span class="op">$</span><span class="va">lat</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_map.html" class="external-link">theme_map</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html" class="external-link">coord_equal</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="getting-ozShapefiles_files/figure-html/unnamed-chunk-22-1.png" width="768" style="display: block; margin: auto;"></p>
 </div>
 </div>
@@ -281,11 +277,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Jeremy Forbes, Di Cook, Anthony Ebert, Heike Hofmann, Rob Hyndman, Thomas Lumley, Ben Marwick, Carson Sievert, Mingzhu Sun, Dilini Talagala, Nicholas Tierney, Nathaniel Tomasetti, Earo Wang, Fang Zhou.</p>
+  <p></p>
+<p>Developed by Jeremy Forbes, Di Cook, Anthony Ebert, Heike Hofmann, Rob Hyndman, Thomas Lumley, Ben Marwick, Carson Sievert, Mingzhu Sun, Dilini Talagala, Nicholas Tierney, Nathaniel Tomasetti, Earo Wang, Fang Zhou.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
@@ -293,6 +291,8 @@
 
   
 
+
+  
 
   </body>
 </html>

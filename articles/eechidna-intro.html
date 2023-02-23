@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,23 +33,17 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eechidna</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -82,7 +78,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/jforbes14/eechidna/">
+  <a href="https://github.com/jforbes14/eechidna/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -101,42 +97,42 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>An Introduction to Exploring Election and Census Highly Informative Data Nationally for Australia</h1>
-                        <h4 class="author">Jeremy Forbes</h4>
+                        <h4 data-toc-skip class="author">Jeremy Forbes</h4>
             
-            <h4 class="date">2021-02-26</h4>
+            <h4 data-toc-skip class="date">2023-02-23</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/jforbes14/eechidna/blob/master/vignettes/eechidna-intro.Rmd"><code>vignettes/eechidna-intro.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/jforbes14/eechidna/blob/HEAD/vignettes/eechidna-intro.Rmd" class="external-link"><code>vignettes/eechidna-intro.Rmd</code></a></small>
       <div class="hidden name"><code>eechidna-intro.Rmd</code></div>
 
     </div>
 
     
     
-<div id="introduction" class="section level1">
-<h1 class="hasAnchor">
-<a href="#introduction" class="anchor"></a>Introduction</h1>
-<p><code>eechidna</code> (Exploring Election and Census Highly Informative Data Nationally for Australia) is an R package that makes it easy to look at the data from the Australian Federal elections and Censuses that occurred between 2001 and 2019. An Australian Federal election typically takes place every three years (2001, 2004, 2007, 2010, 2013, 2016 and 2019), and a Census of Population and Housing is conducted every five years (2001, 2006, 2011, 2016). The data in this package includes voting results for each polling booth and electoral division (electorate), Census information for each electorate and maps of the electorates that were in place at the time of each event. All data in this package is obtained from the <a href="https://results.aec.gov.au/">Australian Electoral Commission</a>, the <a href="https://www.abs.gov.au/websitedbs/D3310114.nsf/home/census">Australian Bureau of Statistics</a> and the <a href="https://data.gov.au/">Australian Government</a>.</p>
+<div class="section level2">
+<h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h2>
+<p><code>eechidna</code> (Exploring Election and Census Highly Informative Data Nationally for Australia) is an R package that makes it easy to look at the data from the Australian Federal elections and Censuses that occurred between 2001 and 2019. An Australian Federal election typically takes place every three years (2001, 2004, 2007, 2010, 2013, 2016 and 2019), and a Census of Population and Housing is conducted every five years (2001, 2006, 2011, 2016). The data in this package includes voting results for each polling booth and electoral division (electorate), Census information for each electorate and maps of the electorates that were in place at the time of each event. All data in this package is obtained from the <a href="https://results.aec.gov.au/" class="external-link">Australian Electoral Commission</a>, the <a href="https://www.abs.gov.au/websitedbs/D3310114.nsf/home/census" class="external-link">Australian Bureau of Statistics</a> and the <a href="https://data.gov.au/" class="external-link">Australian Government</a>.</p>
 <p>This vignette documents how to access these datasets, and shows a few typical methods to explore the data.</p>
 </div>
-<div id="joining-election-and-census-data" class="section level1">
-<h1 class="hasAnchor">
-<a href="#joining-election-and-census-data" class="anchor"></a>Joining election and Census data</h1>
+<div class="section level2">
+<h2 id="joining-election-and-census-data">Joining election and Census data<a class="anchor" aria-label="anchor" href="#joining-election-and-census-data"></a>
+</h2>
 <p>Each electoral division has a unique ID (<code>UniqueID</code>) that can be used to match together Censuses and elections.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/">knitr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jforbes14/eechidna/">eechidna</a></span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">tpp16</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">abs2016</span><span class="op">)</span>
-
-<span class="co"># Join 2016 election and Census</span>
-<span class="va">data16</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">tpp16</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">LNP_Percent</span>, <span class="va">UniqueID</span><span class="op">)</span>, <span class="va">abs2016</span>, by <span class="op">=</span> <span class="st">"UniqueID"</span><span class="op">)</span>
-
-<span class="co"># See what it looks like</span>
-<span class="va">data16</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">LNP_Percent</span>, <span class="va">DivisionNm</span>, <span class="va">Population</span>, <span class="va">Area</span>, <span class="va">AusCitizen</span>, <span class="va">MedianPersonalIncome</span>, <span class="va">Renting</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="va">kable</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/" class="external-link">knitr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jforbes14/eechidna/" class="external-link">eechidna</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">tpp16</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">abs2016</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Join 2016 election and Census</span></span>
+<span><span class="va">data16</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">tpp16</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">LNP_Percent</span>, <span class="va">UniqueID</span><span class="op">)</span>, <span class="va">abs2016</span>, by <span class="op">=</span> <span class="st">"UniqueID"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># See what it looks like</span></span>
+<span><span class="va">data16</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">LNP_Percent</span>, <span class="va">DivisionNm</span>, <span class="va">Population</span>, <span class="va">Area</span>, <span class="va">AusCitizen</span>, <span class="va">MedianPersonalIncome</span>, <span class="va">Renting</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="va">kable</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="right">LNP_Percent</th>
@@ -205,30 +201,30 @@
 </tbody>
 </table>
 </div>
-<div id="election-results" class="section level1">
-<h1 class="hasAnchor">
-<a href="#election-results" class="anchor"></a>Election results</h1>
+<div class="section level2">
+<h2 id="election-results">Election results<a class="anchor" aria-label="anchor" href="#election-results"></a>
+</h2>
 <p>For each of the six elections, three types of votes are recorded: - First preference votes: a tally of primary votes (as Australia has a preferential voting system). These datasets are labelled <code>fp</code> (e.g. <code>fp16</code> for 2016). - Two party preferred vote: a measure of preference between the two major parties - the Australian Labor Party (Labor) and the Liberal/National Coalition (Liberal). These are labelled <code>tpp</code> (e.g. <code>tpp16</code> for 2016). - Two candidate votes: a measure of preference between the two leading candidates in that electorate. These are labelled <code>tcp</code> (e.g. <code>tcp16</code> for 2016).</p>
 <p>The same voting results are available for each polling booth (of which there are around 7500). This data is obtained by calling one of the three functions; <code>firstpref_pollingbooth_download</code>, <code>twoparty_pollingbooth_download</code> and <code>twocand_pollingbooth_download</code>, all of which pull (large) datasets from github. Geocoordinates for each polling booth are also detailed in these datasets (when available).</p>
 <p>Let’s have a look at some of the results from the 2016 Federal election.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Load data</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">fp16</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">tcp16</span><span class="op">)</span></code></pre></div>
-<div id="which-party-won-the-election" class="section level3">
-<h3 class="hasAnchor">
-<a href="#which-party-won-the-election" class="anchor"></a>Which party won the election?</h3>
+<code class="sourceCode R"><span><span class="co"># Load data</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">fp16</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">tcp16</span><span class="op">)</span></span></code></pre></div>
+<div class="section level4">
+<h4 id="which-party-won-the-election">Which party won the election?<a class="anchor" aria-label="anchor" href="#which-party-won-the-election"></a>
+</h4>
 <p>The data can be summarized to reveal some basic details about the election. Start by reproducing the overall result of the election by finding out which party won the most electorates according to the two candidate preferred votes.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">who_won</span> <span class="op">&lt;-</span> <span class="va">tcp16</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Elected</span> <span class="op">==</span> <span class="st">"Y"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">PartyNm</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">tally</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span> 
-
-<span class="co"># Inspect</span>
-<span class="va">who_won</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">who_won</span> <span class="op">&lt;-</span> <span class="va">tcp16</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">Elected</span> <span class="op">==</span> <span class="st">"Y"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">PartyNm</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">tally</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span> </span>
+<span></span>
+<span><span class="co"># Inspect</span></span>
+<span><span class="va">who_won</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">PartyNm</th>
@@ -267,66 +263,68 @@
 </table>
 <p>We see that Liberal/National Coalition won with 76 seats, which is just enough to secure a majority in the House of Representatives.</p>
 </div>
-<div id="which-party-received-the-most-first-preference-votes" class="section level3">
-<h3 class="hasAnchor">
-<a href="#which-party-received-the-most-first-preference-votes" class="anchor"></a>Which party received the most first preference votes?</h3>
+<div class="section level4">
+<h4 id="which-party-received-the-most-first-preference-votes">Which party received the most first preference votes?<a class="anchor" aria-label="anchor" href="#which-party-received-the-most-first-preference-votes"></a>
+</h4>
 <p>An alternative way to evaluate the outcome of the election is by counting the number of ordinary first preference votes for each party (not including postal votes, preference flows, etc.). Here we can find the total number of ordinary votes for each party.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">total_votes_for_parties</span> <span class="op">&lt;-</span> <span class="va">fp16</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">PartyNm</span>, <span class="va">OrdinaryVotes</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">PartyNm</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>total_votes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">OrdinaryVotes</span>, rm.na <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">total_votes</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># Plot the total votes for each party</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">total_votes_for_parties</span>, 
-       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/reorder.factor.html">reorder</a></span><span class="op">(</span><span class="va">PartyNm</span>, <span class="va">total_votes</span><span class="op">)</span>, 
-           <span class="va">total_votes</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org//reference/label_number.html">comma</a></span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Total number of first preference votes"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"Party"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">8</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">total_votes_for_parties</span> <span class="op">&lt;-</span> <span class="va">fp16</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">PartyNm</span>, <span class="va">OrdinaryVotes</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">PartyNm</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>total_votes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">OrdinaryVotes</span>, rm.na <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc</a></span><span class="op">(</span><span class="va">total_votes</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Plot the total votes for each party</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">total_votes_for_parties</span>, </span>
+<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/reorder.factor.html" class="external-link">reorder</a></span><span class="op">(</span><span class="va">PartyNm</span>, <span class="va">total_votes</span><span class="op">)</span>, </span>
+<span>           <span class="va">total_votes</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html" class="external-link">coord_flip</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/comma.html" class="external-link">comma</a></span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ylab</a></span><span class="op">(</span><span class="st">"Total number of first preference votes"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">xlab</a></span><span class="op">(</span><span class="st">"Party"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">8</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="eechidna-intro_files/figure-html/total_votes_for_parties-1.png" width="700" style="display: block; margin: auto;"></p>
 </div>
-<div id="downloading-and-plotting-the-two-party-preferred-vote" class="section level3">
-<h3 class="hasAnchor">
-<a href="#downloading-and-plotting-the-two-party-preferred-vote" class="anchor"></a>Downloading and plotting the two party preferred vote</h3>
+<div class="section level4">
+<h4 id="downloading-and-plotting-the-two-party-preferred-vote">Downloading and plotting the two party preferred vote<a class="anchor" aria-label="anchor" href="#downloading-and-plotting-the-two-party-preferred-vote"></a>
+</h4>
 <p>The function <code><a href="../reference/twoparty_pollingbooth_download.html">twoparty_pollingbooth_download()</a></code> downloads the two party preferred vote for each polling booth in each of the six elections. Boxplots can be used to compare the distributions of this vote across the six elections.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Download TPP for all elections</span>
-<span class="va">tpp_pollingbooth</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/twoparty_pollingbooth_download.html">twoparty_pollingbooth_download</a></span><span class="op">(</span><span class="op">)</span>
-
-<span class="co"># Plot the densities of the TPP vote in each election</span>
-<span class="va">tpp_pollingbooth</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">StateAb</span> <span class="op">==</span> <span class="st">"NSW"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">LNP_Percent</span>, fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guides.html">guides</a></span><span class="op">(</span>fill<span class="op">=</span><span class="cn">F</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Year"</span>, y <span class="op">=</span> <span class="st">"Two party preferred % in favour \nof the Liberal/National Coalition"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Download TPP for all elections</span></span>
+<span><span class="va">tpp_pollingbooth</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/twoparty_pollingbooth_download.html">twoparty_pollingbooth_download</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Plot the densities of the TPP vote in each election</span></span>
+<span><span class="va">tpp_pollingbooth</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">StateAb</span> <span class="op">==</span> <span class="st">"NSW"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">LNP_Percent</span>, fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">geom_boxplot</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guides.html" class="external-link">guides</a></span><span class="op">(</span>fill<span class="op">=</span><span class="cn">F</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Year"</span>, y <span class="op">=</span> <span class="st">"Two party preferred % in favour \nof the Liberal/National Coalition"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Warning: The `&lt;scale&gt;` argument of `guides()` cannot be `FALSE`. Use "none" instead as</span></span>
+<span><span class="co">## of ggplot2 3.3.4.</span></span></code></pre>
 <p><img src="eechidna-intro_files/figure-html/unnamed-chunk-3-1.png" width="700" style="display: block; margin: auto;"></p>
 </div>
 </div>
-<div id="census-data" class="section level1">
-<h1 class="hasAnchor">
-<a href="#census-data" class="anchor"></a>Census data</h1>
+<div class="section level2">
+<h2 id="census-data">Census data<a class="anchor" aria-label="anchor" href="#census-data"></a>
+</h2>
 <p>There are four Censuses included in this package, which consist of 85 variables relating to population characteristics of each electorate. The objects <code>abs2001</code>, <code>abs2006</code>, <code>abs2011</code> and <code>abs2016</code> correspond with each of the four Censuses. A description of each variable can be found in the corresponding help files.</p>
 <p>Let’s have a look at data from the 2016 Census held in <code>abs2016</code>.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Dimensions</span>
-<span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">abs2016</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 150  85</code></pre>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Preview some of the data</span>
-<span class="va">abs2016</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">DivisionNm</span>, <span class="va">State</span>, <span class="va">Population</span>, <span class="va">Area</span>, <span class="va">AusCitizen</span>, <span class="va">BachelorAbv</span>, <span class="va">Indigenous</span>, <span class="va">MedianAge</span>, <span class="va">Unemployed</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="va">head</span> <span class="op">%&gt;%</span> 
-  <span class="va">kable</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Dimensions</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">abs2016</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 150  85</span></span></code></pre>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Preview some of the data</span></span>
+<span><span class="va">abs2016</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">DivisionNm</span>, <span class="va">State</span>, <span class="va">Population</span>, <span class="va">Area</span>, <span class="va">AusCitizen</span>, <span class="va">BachelorAbv</span>, <span class="va">Indigenous</span>, <span class="va">MedianAge</span>, <span class="va">Unemployed</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="va">head</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="va">kable</span></span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="11%">
@@ -419,142 +417,142 @@
 </tr>
 </tbody>
 </table>
-<div id="income-and-unemployment-by-state" class="section level3">
-<h3 class="hasAnchor">
-<a href="#income-and-unemployment-by-state" class="anchor"></a>Income and unemployment by state</h3>
+<div class="section level4">
+<h4 id="income-and-unemployment-by-state">Income and unemployment by state<a class="anchor" aria-label="anchor" href="#income-and-unemployment-by-state"></a>
+</h4>
 <p>We can visualize measures by splitting the electorates into their respective states to gain insight into how states compare with regards to income and unemployment.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">abs2016</span>,
-       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/reorder.factor.html">reorder</a></span><span class="op">(</span><span class="va">State</span>, <span class="op">-</span><span class="va">Unemployed</span><span class="op">)</span>,
-           y <span class="op">=</span> <span class="va">Unemployed</span>,
-           colour <span class="op">=</span> <span class="va">State</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"State"</span>,
-       y <span class="op">=</span> <span class="st">"% Unemployment"</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> </code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">abs2016</span>,</span>
+<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/reorder.factor.html" class="external-link">reorder</a></span><span class="op">(</span><span class="va">State</span>, <span class="op">-</span><span class="va">Unemployed</span><span class="op">)</span>,</span>
+<span>           y <span class="op">=</span> <span class="va">Unemployed</span>,</span>
+<span>           colour <span class="op">=</span> <span class="va">State</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"State"</span>,</span>
+<span>       y <span class="op">=</span> <span class="st">"% Unemployment"</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> </span></code></pre></div>
 <p><img src="eechidna-intro_files/figure-html/unnamed-chunk-6-1.png" width="700" style="display: block; margin: auto;"></p>
 <p>Adding <code>geom_jitter</code> gives us more details about a distribution.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">abs2016</span>,
-       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/reorder.factor.html">reorder</a></span><span class="op">(</span><span class="va">State</span>, <span class="op">-</span><span class="va">MedianPersonalIncome</span><span class="op">)</span>,
-           y <span class="op">=</span> <span class="va">MedianPersonalIncome</span>,
-           colour <span class="op">=</span> <span class="va">State</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html">geom_jitter</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.35</span>, 
-              size <span class="op">=</span> <span class="fl">2</span>,
-              width <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"State"</span>, y <span class="op">=</span> <span class="st">"Median Personal Income ($)"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">abs2016</span>,</span>
+<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/reorder.factor.html" class="external-link">reorder</a></span><span class="op">(</span><span class="va">State</span>, <span class="op">-</span><span class="va">MedianPersonalIncome</span><span class="op">)</span>,</span>
+<span>           y <span class="op">=</span> <span class="va">MedianPersonalIncome</span>,</span>
+<span>           colour <span class="op">=</span> <span class="va">State</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html" class="external-link">geom_jitter</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.35</span>, </span>
+<span>              size <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>              width <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"State"</span>, y <span class="op">=</span> <span class="st">"Median Personal Income ($)"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="eechidna-intro_files/figure-html/unnamed-chunk-7-1.png" width="700" style="display: block; margin: auto;"></p>
 </div>
-<div id="ageing-population" class="section level3">
-<h3 class="hasAnchor">
-<a href="#ageing-population" class="anchor"></a>Ageing population</h3>
+<div class="section level4">
+<h4 id="ageing-population">Ageing population<a class="anchor" aria-label="anchor" href="#ageing-population"></a>
+</h4>
 <p>Australia’s ageing population is clearly seen from observing the distribution of median age across the four Censuses.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Load</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">abs2011</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">abs2006</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">abs2001</span><span class="op">)</span>
-
-<span class="co"># Bind and plot </span>
-<span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">abs2016</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>year <span class="op">=</span> <span class="st">"2016"</span><span class="op">)</span>, <span class="va">abs2011</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>year <span class="op">=</span> <span class="st">"2011"</span><span class="op">)</span>, <span class="va">abs2006</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>year <span class="op">=</span> <span class="st">"2006"</span><span class="op">)</span>, <span class="va">abs2001</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>year <span class="op">=</span> <span class="st">"2001"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">MedianAge</span>, col <span class="op">=</span> <span class="va">year</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html">geom_jitter</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guides.html">guides</a></span><span class="op">(</span>col <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Year"</span>, y <span class="op">=</span> <span class="st">"Median Age"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Load</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">abs2011</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">abs2006</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">abs2001</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Bind and plot </span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html" class="external-link">bind_rows</a></span><span class="op">(</span><span class="va">abs2016</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>year <span class="op">=</span> <span class="st">"2016"</span><span class="op">)</span>, <span class="va">abs2011</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>year <span class="op">=</span> <span class="st">"2011"</span><span class="op">)</span>, <span class="va">abs2006</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>year <span class="op">=</span> <span class="st">"2006"</span><span class="op">)</span>, <span class="va">abs2001</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>year <span class="op">=</span> <span class="st">"2001"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">MedianAge</span>, col <span class="op">=</span> <span class="va">year</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html" class="external-link">geom_jitter</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guides.html" class="external-link">guides</a></span><span class="op">(</span>col <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Year"</span>, y <span class="op">=</span> <span class="st">"Median Age"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="eechidna-intro_files/figure-html/unnamed-chunk-8-1.png" width="700" style="display: block; margin: auto;"></p>
 </div>
 </div>
-<div id="maps-of-the-australian-electoral-divisions" class="section level1">
-<h1 class="hasAnchor">
-<a href="#maps-of-the-australian-electoral-divisions" class="anchor"></a>Maps of the Australian electoral divisions</h1>
+<div class="section level2">
+<h2 id="maps-of-the-australian-electoral-divisions">Maps of the Australian electoral divisions<a class="anchor" aria-label="anchor" href="#maps-of-the-australian-electoral-divisions"></a>
+</h2>
 <p>Electoral divisions change regularly, so many electorates represent different regions from one election to the next. A consequence of this is that the electorate Census data (for example, in 2011) may not align with those in place for any election. As a resource for addressing this problem, and also for plotting visualizations of Australia, a map of electorates for the years 2001, 2004, 2006, 2007, 2010, 2011, 2013 and 2016 are included. The <code>nat_map</code> objects (e.g. <code>nat_map16</code>) are data frames that contain the coordinates of each electoral polygon, and can be plotted using <code>ggplot2</code> graphics. The accompanying <code>nat_data</code> object (e.g. <code>nat_data16</code>) contains some information about each electoral polygon. These objects can be loaded using the <code>nat_map_download</code> and <code>nat_data_download</code> functions, respectively.</p>
 <p>As an example, let’s plot a map of electorates in the 2016 election.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jrnold/ggthemes">ggthemes</a></span><span class="op">)</span>
-<span class="va">nat_map16</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/nat_map_download.html">nat_map_download</a></span><span class="op">(</span><span class="fl">2016</span><span class="op">)</span>
-<span class="va">nat_data16</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/nat_data_download.html">nat_data_download</a></span><span class="op">(</span><span class="fl">2016</span><span class="op">)</span>
-
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>map_id<span class="op">=</span><span class="va">id</span><span class="op">)</span>, data<span class="op">=</span><span class="va">nat_data16</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_map.html">geom_map</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill<span class="op">=</span><span class="va">state</span><span class="op">)</span>, map<span class="op">=</span><span class="va">nat_map16</span>, col <span class="op">=</span> <span class="st">"grey50"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expand_limits.html">expand_limits</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">nat_map16</span><span class="op">$</span><span class="va">long</span>, y<span class="op">=</span><span class="va">nat_map16</span><span class="op">$</span><span class="va">lat</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_map.html">theme_map</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html">coord_equal</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p><img src="eechidna-intro_files/figure-html/unnamed-chunk-9-1.png" width="700" style="display: block; margin: auto;"></p>
-<div id="attaching-election-results" class="section level3">
-<h3 class="hasAnchor">
-<a href="#attaching-election-results" class="anchor"></a>Attaching election results</h3>
-<p>We can fill each electorate by the victorious party in the 2016 election.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Get the electorate winners</span>
-<span class="va">map.winners</span> <span class="op">&lt;-</span> <span class="va">fp16</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Elected</span> <span class="op">==</span> <span class="st">"Y"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">DivisionNm</span>, <span class="va">PartyNm</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/pkg/sp/man/merge.html">merge</a></span><span class="op">(</span><span class="va">nat_map16</span>, by.x<span class="op">=</span><span class="st">"DivisionNm"</span>, by.y<span class="op">=</span><span class="st">"elect_div"</span><span class="op">)</span>
-
-<span class="co"># Grouping</span>
-<span class="va">map.winners</span><span class="op">$</span><span class="va">PartyNm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">map.winners</span><span class="op">$</span><span class="va">PartyNm</span><span class="op">)</span>
-<span class="va">map.winners</span> <span class="op">&lt;-</span> <span class="va">map.winners</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">group</span>, <span class="va">order</span><span class="op">)</span>
-
-<span class="co"># Combine Liberal and National parties</span>
-<span class="va">map.winners</span> <span class="op">&lt;-</span> <span class="va">map.winners</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>PartyNm <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">PartyNm</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"NATIONAL PARTY"</span>, <span class="st">"LIBERAL PARTY"</span><span class="op">)</span>, <span class="st">"LIBERAL NATIONAL COALITION"</span>, <span class="va">PartyNm</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># Colour cells to match that parties colours</span>
-<span class="co"># Order = Australian Labor Party, Independent, Katters, Lib/Nats Coalition, Palmer, The Greens</span>
-<span class="va">partycolours</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#FF0033"</span>, <span class="st">"#000000"</span>, <span class="st">"#CC3300"</span>, <span class="st">"#0066CC"</span>, <span class="st">"#FFFF00"</span>, <span class="st">"#009900"</span><span class="op">)</span>
-
-
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">map.winners</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_polygon.html">geom_polygon</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">long</span>, y<span class="op">=</span><span class="va">lat</span>, group<span class="op">=</span><span class="va">group</span>, fill<span class="op">=</span><span class="va">PartyNm</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>name<span class="op">=</span><span class="st">"Political Party"</span>, values<span class="op">=</span><span class="va">partycolours</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_map.html">theme_map</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html">coord_equal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position<span class="op">=</span><span class="st">"bottom"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jrnold/ggthemes" class="external-link">ggthemes</a></span><span class="op">)</span></span>
+<span><span class="va">nat_map16</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/nat_map_download.html">nat_map_download</a></span><span class="op">(</span><span class="fl">2016</span><span class="op">)</span></span>
+<span><span class="va">nat_data16</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/nat_data_download.html">nat_data_download</a></span><span class="op">(</span><span class="fl">2016</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>map_id<span class="op">=</span><span class="va">id</span><span class="op">)</span>, data<span class="op">=</span><span class="va">nat_data16</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_map.html" class="external-link">geom_map</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill<span class="op">=</span><span class="va">state</span><span class="op">)</span>, map<span class="op">=</span><span class="va">nat_map16</span>, col <span class="op">=</span> <span class="st">"grey50"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expand_limits.html" class="external-link">expand_limits</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">nat_map16</span><span class="op">$</span><span class="va">long</span>, y<span class="op">=</span><span class="va">nat_map16</span><span class="op">$</span><span class="va">lat</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_map.html" class="external-link">theme_map</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html" class="external-link">coord_equal</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><img src="eechidna-intro_files/figure-html/unnamed-chunk-9-1.png" width="700" style="display: block; margin: auto;"></p>
+<div class="section level4">
+<h4 id="attaching-election-results">Attaching election results<a class="anchor" aria-label="anchor" href="#attaching-election-results"></a>
+</h4>
+<p>We can fill each electorate by the victorious party in the 2016 election.</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Get the electorate winners</span></span>
+<span><span class="va">map.winners</span> <span class="op">&lt;-</span> <span class="va">fp16</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">Elected</span> <span class="op">==</span> <span class="st">"Y"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">DivisionNm</span>, <span class="va">PartyNm</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/sp/man/merge.html" class="external-link">merge</a></span><span class="op">(</span><span class="va">nat_map16</span>, by.x<span class="op">=</span><span class="st">"DivisionNm"</span>, by.y<span class="op">=</span><span class="st">"elect_div"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Grouping</span></span>
+<span><span class="va">map.winners</span><span class="op">$</span><span class="va">PartyNm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">map.winners</span><span class="op">$</span><span class="va">PartyNm</span><span class="op">)</span></span>
+<span><span class="va">map.winners</span> <span class="op">&lt;-</span> <span class="va">map.winners</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">group</span>, <span class="va">order</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Combine Liberal and National parties</span></span>
+<span><span class="va">map.winners</span> <span class="op">&lt;-</span> <span class="va">map.winners</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>PartyNm <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">PartyNm</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NATIONAL PARTY"</span>, <span class="st">"LIBERAL PARTY"</span><span class="op">)</span>, <span class="st">"LIBERAL NATIONAL COALITION"</span>, <span class="va">PartyNm</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Colour cells to match that parties colours</span></span>
+<span><span class="co"># Order = Australian Labor Party, Independent, Katters, Lib/Nats Coalition, Palmer, The Greens</span></span>
+<span><span class="va">partycolours</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#FF0033"</span>, <span class="st">"#000000"</span>, <span class="st">"#CC3300"</span>, <span class="st">"#0066CC"</span>, <span class="st">"#FFFF00"</span>, <span class="st">"#009900"</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">map.winners</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_polygon.html" class="external-link">geom_polygon</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">long</span>, y<span class="op">=</span><span class="va">lat</span>, group<span class="op">=</span><span class="va">group</span>, fill<span class="op">=</span><span class="va">PartyNm</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_fill_manual</a></span><span class="op">(</span>name<span class="op">=</span><span class="st">"Political Party"</span>, values<span class="op">=</span><span class="va">partycolours</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_map.html" class="external-link">theme_map</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html" class="external-link">coord_equal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.position<span class="op">=</span><span class="st">"bottom"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="eechidna-intro_files/figure-html/unnamed-chunk-10-1.png" width="700" style="display: block; margin: auto;"></p>
 <p>However, the Australian electoral map is not conducive to chloropleth map, because most of the population concentrate in the five big cities, Sydney, Melbourne, Brisbane, Adelaide and Perth, which means that there are lot of very geographical tiny regions that contribute substantially to the house of representative composition. An alternative is to plot a dorling cartogram, where each electorate is represented by a circle, approximately in the geographic center of each electorate, with an underlying map. The major population centers need to have their center locations ballooned to make this feasible visually. The coordinates corresponding for the dorling cartogram have been pre-processed and correspond with the variables <code>x</code> and <code>y</code> in the <code>nat_data</code> datasets distributed in this package. These can be reproduced using the <code>aec_add_carto_f</code> function in the package.</p>
 <p>A better approach would be to use a cartogram to display the election results, which maintains the geographic location but make the sizes of the electorate polygons approximately equal. This is very hard to perfect for Australia because the size differential between electorates is huge, resulting in a cartogram where all sense of geography is demolished. This data is used to create the display of electoral results below.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Get winners</span>
-<span class="va">cart.winners</span> <span class="op">&lt;-</span> <span class="va">fp16</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Elected</span> <span class="op">==</span> <span class="st">"Y"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">DivisionNm</span>, <span class="va">PartyNm</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/pkg/sp/man/merge.html">merge</a></span><span class="op">(</span><span class="va">nat_data16</span>, by.x<span class="op">=</span><span class="st">"DivisionNm"</span>, by.y<span class="op">=</span><span class="st">"elect_div"</span><span class="op">)</span>
-
-<span class="co"># Combine Liberal and National parties</span>
-<span class="va">cart.winners</span> <span class="op">&lt;-</span> <span class="va">cart.winners</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>PartyNm <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">PartyNm</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"NATIONAL PARTY"</span>, <span class="st">"LIBERAL PARTY"</span><span class="op">)</span>, <span class="st">"LIBERAL NATIONAL COALITION"</span>, <span class="va">PartyNm</span><span class="op">)</span><span class="op">)</span>
-
-
-<span class="co"># Plot dorling cartogram</span>
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">nat_map16</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_polygon.html">geom_polygon</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">long</span>, y<span class="op">=</span><span class="va">lat</span>, group<span class="op">=</span><span class="va">group</span><span class="op">)</span>,
-               fill<span class="op">=</span><span class="st">"grey90"</span>, colour<span class="op">=</span><span class="st">"white"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">cart.winners</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">x</span>, y<span class="op">=</span><span class="va">y</span>, colour<span class="op">=</span><span class="va">PartyNm</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">0.75</span>, alpha<span class="op">=</span><span class="fl">0.8</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_colour_manual</a></span><span class="op">(</span>name<span class="op">=</span><span class="st">"Political Party"</span>, values<span class="op">=</span><span class="va">partycolours</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_map.html">theme_map</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html">coord_equal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position<span class="op">=</span><span class="st">"bottom"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Get winners</span></span>
+<span><span class="va">cart.winners</span> <span class="op">&lt;-</span> <span class="va">fp16</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">Elected</span> <span class="op">==</span> <span class="st">"Y"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">DivisionNm</span>, <span class="va">PartyNm</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/sp/man/merge.html" class="external-link">merge</a></span><span class="op">(</span><span class="va">nat_data16</span>, by.x<span class="op">=</span><span class="st">"DivisionNm"</span>, by.y<span class="op">=</span><span class="st">"elect_div"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Combine Liberal and National parties</span></span>
+<span><span class="va">cart.winners</span> <span class="op">&lt;-</span> <span class="va">cart.winners</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>PartyNm <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">PartyNm</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NATIONAL PARTY"</span>, <span class="st">"LIBERAL PARTY"</span><span class="op">)</span>, <span class="st">"LIBERAL NATIONAL COALITION"</span>, <span class="va">PartyNm</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="co"># Plot dorling cartogram</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">nat_map16</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_polygon.html" class="external-link">geom_polygon</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">long</span>, y<span class="op">=</span><span class="va">lat</span>, group<span class="op">=</span><span class="va">group</span><span class="op">)</span>,</span>
+<span>               fill<span class="op">=</span><span class="st">"grey90"</span>, colour<span class="op">=</span><span class="st">"white"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">cart.winners</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">x</span>, y<span class="op">=</span><span class="va">y</span>, colour<span class="op">=</span><span class="va">PartyNm</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">0.75</span>, alpha<span class="op">=</span><span class="fl">0.8</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_colour_manual</a></span><span class="op">(</span>name<span class="op">=</span><span class="st">"Political Party"</span>, values<span class="op">=</span><span class="va">partycolours</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_map.html" class="external-link">theme_map</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html" class="external-link">coord_equal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.position<span class="op">=</span><span class="st">"bottom"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="eechidna-intro_files/figure-html/unnamed-chunk-11-1.png" width="700" style="display: block; margin: auto;"></p>
 </div>
 </div>
-<div id="modelling-election-results-using-census-data" class="section level1">
-<h1 class="hasAnchor">
-<a href="#modelling-election-results-using-census-data" class="anchor"></a>Modelling election results using Census data</h1>
+<div class="section level2">
+<h2 id="modelling-election-results-using-census-data">Modelling election results using Census data<a class="anchor" aria-label="anchor" href="#modelling-election-results-using-census-data"></a>
+</h2>
 <p>An interesting exercise is to see how we can model electorate voting outcomes as a function of Census information. In the years 2001 and 2016 both a Census and election occur. The Australian Bureau of Statistics aggregate Census information to electoral boundaries that exactly match those in the election for these years, so we can join this data together and fit some models.</p>
 <p>Let’s look at modelling the two party preferred vote (in favour of the Liberal party).</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Join</span>
-<span class="va">data16</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">tpp16</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">LNP_Percent</span>, <span class="va">UniqueID</span><span class="op">)</span>, <span class="va">abs2016</span>, by <span class="op">=</span> <span class="st">"UniqueID"</span><span class="op">)</span>
-
-<span class="co"># Fit a model using all of the available population characteristics</span>
-<span class="va">lmod</span> <span class="op">&lt;-</span> <span class="va">data16</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">ends_with</a></span><span class="op">(</span><span class="st">"NS"</span><span class="op">)</span>, <span class="va">Area</span>, <span class="va">Population</span>, <span class="va">DivisionNm</span>, <span class="va">UniqueID</span>, <span class="va">State</span>, <span class="va">EmuneratedElsewhere</span>, <span class="va">InternetUse</span>, <span class="va">Other_NonChrist</span>, <span class="va">OtherChrist</span>, <span class="va">EnglishOnly</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">LNP_Percent</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">.</span><span class="op">)</span>
-
-<span class="co"># See if the variables are jointly significant</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://broom.tidymodels.org/">broom</a></span><span class="op">)</span>
-<span class="va">lmod</span> <span class="op">%&gt;%</span> 
-  <span class="va">glance</span> <span class="op">%&gt;%</span> 
-  <span class="va">kable</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Join</span></span>
+<span><span class="va">data16</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">tpp16</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">LNP_Percent</span>, <span class="va">UniqueID</span><span class="op">)</span>, <span class="va">abs2016</span>, by <span class="op">=</span> <span class="st">"UniqueID"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Fit a model using all of the available population characteristics</span></span>
+<span><span class="va">lmod</span> <span class="op">&lt;-</span> <span class="va">data16</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html" class="external-link">ends_with</a></span><span class="op">(</span><span class="st">"NS"</span><span class="op">)</span>, <span class="va">Area</span>, <span class="va">Population</span>, <span class="va">DivisionNm</span>, <span class="va">UniqueID</span>, <span class="va">State</span>, <span class="va">EmuneratedElsewhere</span>, <span class="va">InternetUse</span>, <span class="va">Other_NonChrist</span>, <span class="va">OtherChrist</span>, <span class="va">EnglishOnly</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">LNP_Percent</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">.</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># See if the variables are jointly significant</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://broom.tidymodels.org/" class="external-link">broom</a></span><span class="op">)</span></span>
+<span><span class="va">lmod</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="va">glance</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="va">kable</span></span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="9%">
@@ -600,13 +598,13 @@
 </tr></tbody>
 </table>
 <p>We see that electoral socio-demographics from the Census are jointly significant in predicting the two party preferred vote.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># See which variables are individually significant</span>
-<span class="va">lmod</span> <span class="op">%&gt;%</span> 
-  <span class="va">tidy</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">p.value</span> <span class="op">&lt;</span> <span class="fl">0.05</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">p.value</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="va">kable</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># See which variables are individually significant</span></span>
+<span><span class="va">lmod</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="va">tidy</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">p.value</span> <span class="op">&lt;</span> <span class="fl">0.05</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">p.value</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="va">kable</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">term</th>
@@ -731,18 +729,18 @@
 </tbody>
 </table>
 <p>Many variables are individually significant too.</p>
-<div id="imputing-census-data-for-the-elections-that-do-not-have-a-census-that-matches-exactly" class="section level3">
-<h3 class="hasAnchor">
-<a href="#imputing-census-data-for-the-elections-that-do-not-have-a-census-that-matches-exactly" class="anchor"></a>Imputing Census data for the elections that do not have a Census that matches exactly</h3>
+<div class="section level4">
+<h4 id="imputing-census-data-for-the-elections-that-do-not-have-a-census-that-matches-exactly">Imputing Census data for the elections that do not have a Census that matches exactly<a class="anchor" aria-label="anchor" href="#imputing-census-data-for-the-elections-that-do-not-have-a-census-that-matches-exactly"></a>
+</h4>
 <p>The 2004, 2007, 2010 and 2013 elections do not have a Census that directly match. Instead of matching these elections with a Census in neighbouring years, we have imputed Census data to correspond with the both time of the election and the electorate boundaries in place. This uses the most disaggregate Census data available (Statistical Area 1). This was done using an areal interpolation method over space and linear interpolation over time, via the <code>allocate_electorate</code> and <code>weighted_avg_census_sa1</code> functions in this package.</p>
 <p>For the 2019 election, because there only exists a Census before (2016) and not after (as of Nov, 2019), we do an areal interpolation of the 2016 SA1 Census data.</p>
 <p>The resultant (imputed) Census objects are <code>abs2004</code>, <code>abs2007</code>, <code>abs2010</code>, <code>abs2013</code> and <code>abs2019</code>. They include all of the variables in the other Census objects, aside from population, area, state and question non-response.</p>
 </div>
 </div>
-<div id="for-more-details-on-how-the-data-in-this-package-was-obtained" class="section level1">
-<h1 class="hasAnchor">
-<a href="#for-more-details-on-how-the-data-in-this-package-was-obtained" class="anchor"></a>For more details on how the data in this package was obtained…</h1>
-<p>Please see the vignettes on our <a href="https://jforbes14.github.io/eechidna/">webpage</a>. These detail the procedures used to obtain the election data, Census data and electorate maps, as well as the Census imputation method.</p>
+<div class="section level2">
+<h2 id="for-more-details-on-how-the-data-in-this-package-was-obtained">For more details on how the data in this package was obtained…<a class="anchor" aria-label="anchor" href="#for-more-details-on-how-the-data-in-this-package-was-obtained"></a>
+</h2>
+<p>Please see the vignettes on our <a href="https://jforbes14.github.io/eechidna/" class="external-link">webpage</a>. These detail the procedures used to obtain the election data, Census data and electorate maps, as well as the Census imputation method.</p>
 </div>
   </div>
 
@@ -757,11 +755,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Jeremy Forbes, Di Cook, Anthony Ebert, Heike Hofmann, Rob Hyndman, Thomas Lumley, Ben Marwick, Carson Sievert, Mingzhu Sun, Dilini Talagala, Nicholas Tierney, Nathaniel Tomasetti, Earo Wang, Fang Zhou.</p>
+  <p></p>
+<p>Developed by Jeremy Forbes, Di Cook, Anthony Ebert, Heike Hofmann, Rob Hyndman, Thomas Lumley, Ben Marwick, Carson Sievert, Mingzhu Sun, Dilini Talagala, Nicholas Tierney, Nathaniel Tomasetti, Earo Wang, Fang Zhou.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
@@ -769,6 +769,8 @@
 
   
 
+
+  
 
   </body>
 </html>
