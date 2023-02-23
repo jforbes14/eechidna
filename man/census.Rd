@@ -165,8 +165,8 @@ library(ggplot2)
 data(tpp01)
 election2001 <- left_join(abs2001, tpp01, by = "UniqueID")
 # See relationship between personal income and Liberal/National support
-ggplot(election2001, aes(x = MedianPersonalIncome, y = LNP_Percent)) + 
-    geom_jitter() + 
+ggplot(election2001, aes(x = MedianPersonalIncome, y = LNP_Percent)) +
+    geom_jitter() +
     geom_smooth(method='lm')
 
 

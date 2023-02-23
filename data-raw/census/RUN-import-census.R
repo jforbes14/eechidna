@@ -12,6 +12,9 @@ source('data-raw/census/src/abs2011-CED.R')
 ## Import and wrangle 2016
 source('data-raw/census/src/abs2016-CED.R')
 
+## Import and wrangle 2021
+source('data-raw/census/src/abs2021-CED.R')
+
 ## The ABS census dataframes abs2001, abs2006, abs2011 and abs2016 can be found in the 'data' subdirectory
 ## of this folder. These dataframes are not final, as there needs to be another step to link them with the 
 ## election data over the years via UniqueIDs.
