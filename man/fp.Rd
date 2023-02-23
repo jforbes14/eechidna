@@ -10,7 +10,7 @@
 \alias{fp13}
 \alias{fp16}
 \alias{fp19}
-\alias{fp21}
+\alias{fp22}
 \title{First preference votes for candidates (House of Representatives) in each electorate.}
 \format{
 A data frame with the following variables:
@@ -18,16 +18,16 @@ A data frame with the following variables:
 \strong{For the 2001 election only:}
 
 \itemize{
-    \item UniqueID: Numeric identifier that links the electoral division with Census  
+    \item UniqueID: Numeric identifier that links the electoral division with Census
     and other election datasets.
-    \item StateAb: Abbreviation for state name  
-    \item DivisionNm:  Electoral division name   
-    \item Surname: Candidate surname          
-    \item GivenNm: Candidate given name            
-    \item PartyAb: Abbreviation for political party name           
-    \item PartyNm: Political party name      
-    \item Elected: Whether the candidate was elected (Y/N)            
-    \item Percent: Percentage of ordinary votes for the candidate     
+    \item StateAb: Abbreviation for state name
+    \item DivisionNm:  Electoral division name
+    \item Surname: Candidate surname
+    \item GivenNm: Candidate given name
+    \item PartyAb: Abbreviation for political party name
+    \item PartyNm: Political party name
+    \item Elected: Whether the candidate was elected (Y/N)
+    \item Percent: Percentage of ordinary votes for the candidate
     }
 
 \strong{For the 2004 election onwards:}
@@ -102,10 +102,10 @@ fp16
 
 fp19
 
-fp21
+fp22
 }
 \description{
 A dataset containing first preference vote counts, candidate names, and other results for the
-House of Representatives from Australian federal elections from 2001 to 2021.
+House of Representatives from Australian federal elections from 2001 to 2022.
 }
 \keyword{datasets}

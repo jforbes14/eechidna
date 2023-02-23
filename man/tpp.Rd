@@ -10,12 +10,12 @@
 \alias{tpp13}
 \alias{tpp16}
 \alias{tpp19}
-\alias{tpp21}
+\alias{tpp22}
 \title{Two party preferred votes for candidates in each electorate where Labor and
 Liberal parties were the two most popular parties.}
 \format{
-A data frame with the following variables: 
-\describe{ 
+A data frame with the following variables:
+\describe{
   \item{UniqueID}{Numeric identifier that links the electoral division with Census and other election datasets.}
   \item{DivisionNm}{Electoral division name}
   \item{StateAb}{Abbreviation for state name}
@@ -83,7 +83,7 @@ tpp16
 
 tpp19
 
-tpp21
+tpp22
 }
 \description{
 A dataset containing two party preferred vote counts, winning candidate
