@@ -10,7 +10,7 @@ get_electorate_shapes(
   sF = NULL,
   mapinfo = TRUE,
   layer = NULL,
-  tolerance = 0.005
+  tolerance = 0.001
 )
 }
 \arguments{
@@ -30,9 +30,10 @@ The `data` data set consists of demographic or geographic information for each e
 Additionally, geographic latitude and longitude of the electorate's centroid are added.
 }
 \description{
-Extract polygon information and demographics for each of Australia's electorates. 
+This function is only used to create new map data in future elections
+Extract polygon information and demographics for each of Australia's electorates.
 The map and data corresponding to the shapefiles of the 2013 Australian electorates (available at \url{https://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}) are part of this package as nat_map.rda and nat_data.rda in the data folder.
-The function will take several minutes to complete.
+The function may take several minutes to complete.
 }
 \examples{
 \dontrun{

@@ -350,6 +350,35 @@
 #' @order 1
 "tcp01"
 
+#' Map of Australian Electorates from 2022
+#'
+#' A dataset containing the map of the all 150 Australian electorates using the 2019 boundaries of the
+#' The data were obtained from the Australian Electoral Commission, and downloaded
+#' from \url{https://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}. Must be loaded using the
+#' `nat_map_download` function.
+#'
+#' @keywords internal
+#'
+#' @format A data frame with the following variables:
+#' \itemize{
+#'     \item id: Numeric identifier for the polygon
+#'     \item long: longitude coordinate of point in polygon
+#'     \item lat: latitude coordinate of point in polygon
+#'     \item order: order for polygon points
+#'     \item hole: whether polygon has a hole
+#'     \item piece: piece for polygon
+#'     \item group: group for polygon
+#'     \item elect_div: Electoral division name
+#'     \item state: Abbreviation for state name
+#' }
+#'
+#' @examples
+#' \dontrun{
+#' library(eechidna)
+#' nat_map22 <- nat_map_download(2022)
+#' }
+"nat_map22"
+
 #' Map of Australian Electorates from 2019
 #'
 #' A dataset containing the map of the all 150 Australian electorates using the 2019 boundaries of the
@@ -548,6 +577,31 @@
 #'     \item state: Abbreviation for state name
 #' }
 "nat_map01"
+
+#' Data and centroids corresponding to the Australian Electorates from 2022
+#'
+#' A dataset containing some demographic information for each of the 151 Australian electorates.
+#' The data were obtained from the Australian Electoral Commission, and downloaded
+#' from \url{https://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
+#' Must be loaded using the `nat_data_download` function.
+#'
+#' @format A data frame with 151 rows with the following variables:
+#' \itemize{
+#'     \item id: Numeric identifier for the polygon
+#'     \item elect_div: Electorate division name
+#'     \item state: abbreviation of the state name
+#'     \item numccds: AEC variable that might be filled with meaning or a description down the road
+#'     \item area_sqkm: combined square kilometers of each electorate
+#'     \item long_c: longitude coordinate of electorate (polygon) centroid
+#'     \item lat_c: latitude coordinate of electorate (polygon) centroid
+#'     \item x: latitude coordinate for plotting a cartogram
+#'     \item y: longitude coordinate for plotting a cartogram
+#'     \item radius: variable used in the construction of cartogram points
+#' }
+#'
+#' @keywords internal
+#'
+"nat_data22"
 
 #' Data and centroids corresponding to the Australian Electorates from 2019
 #'
@@ -889,3 +943,19 @@
 #' @rdname census
 #' @order 2
 "abs2004"
+
+#' State information for Australian Electorates from 2022
+#'
+#' A dataset containing some state information for each of the 151 Australian electorates.
+#' The data were obtained from \url{https://www.aec.gov.au/profiles/}.
+#' Used to create the nat_data22.
+#'
+#' @format A data frame with 151 rows with the following variables:
+#' \itemize{
+#'     \item elect_div: Electorate division name
+#'     \item state: abbreviation of the state name
+#' }
+#'
+#' @keywords internal
+#'
+"states22"

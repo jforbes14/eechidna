@@ -1,5 +1,5 @@
-pandoc: 2.11.4
-pkgdown: 1.6.1
+pandoc: 2.19.2
+pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   eechidna-intro: eechidna-intro.html
@@ -9,5 +9,5 @@ articles:
   imputing-census-data: imputing-census-data.html
   plotting-electorates: plotting-electorates.html
   plotting-polling-stns: plotting-polling-stns.html
-last_built: 2021-02-26T00:44Z
+last_built: 2023-04-25T01:47Z
 

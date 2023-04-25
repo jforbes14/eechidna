@@ -1,5 +1,5 @@
 Package: eechidna
-Version: 1.4.1
+Version: 1.4.2
 Title: Exploring Election and Census Highly Informative Data Nationally for
     Australia
 Description: Data from the seven Australian Federal Elections (House of
@@ -17,15 +17,13 @@ Imports:
     ggplot2,
     ggthemes,
     magrittr,
-    rgeos,
     plotly (>= 4.5.6),
-    sp,
+    sf,
     tidyr,
     graphics,
     stats,
     purrr,
     colourpicker,
-    rgdal,
     methods,
     stringi,
     tibble,
@@ -34,7 +32,6 @@ Suggests:
     testthat,
     knitr,
     rmarkdown,
-    maptools,
     purrrlyr,
     GGally,
     corrplot,

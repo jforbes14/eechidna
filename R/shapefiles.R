@@ -1,88 +1,104 @@
 #' Load shapefile of Australia into R
-#' 
-#' Load shapefile into R as a SpatialDataFrame, extract polygon information, thin
+#'
+#' This is only used to create the new electorate map data, for future years.
+#' Load shapefile into R as an sf (simple features) object, extract polygon information, thin
 #' polygon, fix any problematic polygons, and format variable names.
-#' "nat_map" and "nat_data" objects for every Australian federal election between 
-#' 2001-2016 can be readily loaded from the package for analysis. 
-#' 
+#' "nat_map" and "nat_data" objects for every Australian federal election between
+#' 2001-2019 can be readily loaded from the package for analysis.
+#'
 #' The function will take several minutes to complete.
-#' 
+#'
 #' @param path_to_shapeFile path to object in local machine
 #' @param tolerance numerical tolerance value to be used by the Douglas-Peuker algorithm
 #' @return object of class SpatialPolygonsDataFrame
 #' @export
-#' @examples 
+#' @examples
 #' \dontrun{
 #' # Load electorate shapefile into R
-#' 
+#'
 #' # Path to your shapefile
 #' fl <- "local/path/to/shapefile.shp"
-#' 
+#'
 #' # Load
 #' my_sF <- load_shapefile(fl)
 #' }
 
 load_shapefile <- function(path_to_shapeFile, tolerance = 0.005) {
-  
+
   # geopackage (.gpkg) is to be treated differently so an if else statement is used
-  
-  if (substr(path_to_shapeFile, nchar(path_to_shapeFile) - 3, nchar(path_to_shapeFile)) != "gpkg") {
-    sF <- rgdal::readOGR(dsn=path_to_shapeFile)
-  } else {
-    layers <- tolower(rgdal::ogrListLayers(path_to_shapeFile))
-    index <- grep("commonwealth", layers)
-    if (length(index) > 1) {
-      print("Warning: Multiple layers with the name 'commonwealth electoral division'. Taking the first by default.")
-    }
-    sF <- rgdal::readOGR(dsn=path_to_shapeFile, layer = layers[index[1]])
-  }
-  
+
+  #if (substr(path_to_shapeFile, nchar(path_to_shapeFile) - 3, nchar(path_to_shapeFile)) != "gpkg") {
+    # sF <- rgdal::readOGR(dsn=path_to_shapeFile)
+    sF <- read_sf(dsn=path_to_shapeFile)
+  #} else {
+  #  layers <- tolower(rgdal::ogrListLayers(path_to_shapeFile))
+  #  index <- grep("commonwealth", layers)
+  #  if (length(index) > 1) {
+  #    print("Warning: Multiple layers with the name 'commonwealth electoral division'. Taking the first by default.")
+  #  }
+  #  sF <- rgdal::readOGR(dsn=path_to_shapeFile, layer = layers[index[1]])
+  #}
+
   # change colnames to lower case and rename
-  names(sF@data) <- tolower(names(sF@data))
-  colnm <- names(sF@data)
-  
+  #names(sF@data) <- tolower(names(sF@data))
+  names(sF) <- tolower(names(sF))
+  #colnm <- names(sF@data)
+  colnm <- names(sF)
+
   if (!"elect_div" %in% colnm) {
-    
+
     if (sum(grepl("ced_name", colnm)) > 0) {
-      names(sF@data)[grep("ced_name", colnm)] <- "elect_div"
+      #names(sF@data)[grep("ced_name", colnm)] <- "elect_div"
+      names(sF)[grep("ced_name", colnm)] <- "elect_div"
     }
-    
+
     if (sum(grepl("ste_name", colnm)) > 0) {
-      names(sF@data)[grep("ste_name", colnm)] <- "state"
+      #names(sF@data)[grep("ste_name", colnm)] <- "state"
+      names(sF)[grep("ste_name", colnm)] <- "state"
     } else {
-      names(sF@data)[grep("name", colnm)] <- "elect_div"
-      names(sF@data)[grep("state", colnm)] <- "state"
-    } 
+      #names(sF@data)[grep("name", colnm)] <- "elect_div"
+      #names(sF@data)[grep("state", colnm)] <- "state"
+      names(sF)[grep("name", colnm)] <- "elect_div"
+      names(sF)[grep("state", colnm)] <- "state"
+    }
   }
-  
+
   # Make all character fields upper case
   chr_upper <- function(df) {
     fc_cols <- sapply(df, class) == 'factor'
     df[, fc_cols] <- lapply(df[, fc_cols], as.character)
-    
+
     ch_cols <- sapply(df, class) == 'character'
     df[, ch_cols] <- lapply(df[, ch_cols], toupper)
     return(df)
   }
-  
+
   # get centroids
-  if (!"lat_c" %in% names(sF@data)) {
-    polys <- methods::as(sF, "SpatialPolygons")
-    
+  #if (!"lat_c" %in% names(sF@data)) {
+  if (!"lat_c" %in% names(sF)) {
+
+    #polys <- methods::as(sF, "SpatialPolygons")
+
     centroid <- function(i, polys) {
-      ctr <- sp::Polygon(polys[i])@labpt
+      #ctr <- sp::Polygon(polys[i])@labpt
+      ctr <- st_centroid(st_geometry(sF)[[i]])
       data.frame(long_c=ctr[1], lat_c=ctr[2])
     }
-    centroids <-  purrr::map_df(seq_along(polys), centroid, polys=polys)
-    
-    sF@data <- data.frame(sF@data, centroids)
+    #centroids <-  purrr::map_df(seq_along(polys), centroid, polys=polys)
+    centroids <-  purrr::map_df(1:nrow(sF), centroid, polys=sf)
+
+    #sF@data <- data.frame(sF@data, centroids)
+    sF_data <- data.frame(sF, centroids)
   }
-  
-  sF@data <- chr_upper(sF@data)
-  
+
+  #sF@data <- chr_upper(sF@data)
+  sF_data <- chr_upper(sF_data)
+
   # Simplify to make sure polygons are valid
-  polys_sF <- rgeos::gSimplify(sF, tol = tolerance)
-  
+  #polys_sF <- rgeos::gSimplify(sF, tol = tolerance)
+  #sF_polys <- st_simplify(sF, TRUE, dTolerance = tolerance)
+  sF_polys <- rmapshaper::ms_simplify(sF, keep = tolerance)
+
   # Ensure all polygons are valid
   #new_sF <- sF %>% subset(elect_div == "")
   #for (i in 1:nrow(sF@data)) {
@@ -92,18 +108,19 @@ load_shapefile <- function(path_to_shapeFile, tolerance = 0.005) {
   #  }
   #  new_sF <- raster::bind(new_sF, temp)
   #}
-  
+
   out <- sp::SpatialPolygonsDataFrame(polys_sF, sF@data)
-  
+
   return(out)
 }
 
 #' Extract shapefiles (of Australian electorates) from raw file into fortified
 #' map and data components.
-#' 
-#' Extract polygon information and demographics for each of Australia's electorates. 
+#'
+#' This function is only used to create new map data in future elections
+#' Extract polygon information and demographics for each of Australia's electorates.
 #' The map and data corresponding to the shapefiles of the 2013 Australian electorates (available at \url{https://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}) are part of this package as nat_map.rda and nat_data.rda in the data folder.
-#' The function will take several minutes to complete.
+#' The function may take several minutes to complete.
 #' @param path_to_shapeFile path to object in local machine (only if shapefile has not already loaded)
 #' @param sF Shapefile object loaded to environment using load_shapefile
 #' @param mapinfo Is the data mapInfo format, rather than ESRI? default=TRUE
@@ -113,104 +130,86 @@ load_shapefile <- function(path_to_shapeFile, tolerance = 0.005) {
 #' The `data` data set consists of demographic or geographic information for each electorate, such as size in square kilometers or corresponding state.
 #' Additionally, geographic latitude and longitude of the electorate's centroid are added.
 #' @export
-#' @examples 
+#' @examples
 #' \dontrun{
 #' # Get electorate shapes in data.frame format
-#' 
+#'
 #' # Path to your shapefile
 #' fl <- "local/path/to/shapefile.shp"
-#' 
+#'
 #' map_and_data16 <- get_electorate_shapes(path_to_shapefile = fl)
 #' }
 
-get_electorate_shapes <- function(path_to_shapeFile = NULL, sF = NULL, mapinfo=TRUE, layer=NULL, tolerance=0.005) {
+get_electorate_shapes <- function(path_to_shapeFile = NULL, sF = NULL, mapinfo=TRUE, layer=NULL, tolerance=0.001) {
 
+  # Read the shapefile first, if not given an sf object
   if (is.null(sF)) {
     if (!is.null(path_to_shapeFile)) {
-      sF <- load_shapefile(path_to_shapeFile = path_to_shapeFile, tolerance = tolerance)
+      sF <- read_sf(dsn=path_to_shapeFile)
     } else {
       stop("Enter path to shapefile or loaded shapefile from function load_shapefile")
     }
-  } else {
-    # Simplify to make sure polygons are valid
-    polys_sF <- rgeos::gSimplify(sF, tol = tolerance)
-    out <- sp::SpatialPolygonsDataFrame(polys_sF, sF@data)
   }
-  
-  # Extract data and map to be ggplot friendly
-  nat_data <- sF@data
-  nat_data$id <- row.names(nat_data)
-  nat_map <- ggplot2::fortify(sF)
-  nat_map$group <- paste("g",nat_map$group,sep=".")
-  nat_map$piece <- paste("p",nat_map$piece,sep=".")
-  
-  if ("state" %in% names(sF@data)) {
-    nms <- dplyr::select(sF@data, elect_div, state)
-  } else {
-    nms <- dplyr::select(sF@data, elect_div)
-  }
-  
-  nms$id <- as.character(row.names(nat_data))
-  nat_map <- dplyr::left_join(nat_map, nms, by="id")
-  
-  # get centroids
-  polys <- methods::as(sF, "SpatialPolygons")
-  
-  centroid <- function(i, polys) {
-    ctr <- sp::Polygon(polys[i])@labpt
-    data.frame(long_c=ctr[1], lat_c=ctr[2])
-  }
-  centroids <-  purrr::map_df(seq_along(polys), centroid, polys=polys)
-  
-  nat_data <- data.frame(nat_data, centroids)
-  
-  # keep relevant variables
-  keep_index <- which(names(nat_data) %in% c("elect_div", "state", "numccds", "area_sqkm", "id", "long_c", "lat_c"))
-  nat_data <- nat_data[, keep_index]
-  
-  # Function: Fix state labels
-  state_label <- function(df) {
-    new <- df
-    
-    if("1" %in% levels(factor(new$state))) {
-      new <- new %>% 
-        mutate(state = recode_factor(state, `1` = "NSW", `2` = "VIC", `3` = "QLD", `4` = "SA", `5` = "WA", 
-          `6` = "TAS", `7` = "NT", `8` = "ACT", "OTHER TERR" = "ACT"))
-    }
-    
-    if("VICTORIA" %in% levels(factor(new$state))) {
-      new <- new %>%
-        mutate(state = recode_factor(factor(state), "NEW SOUTH WALES" = "NSW", "VICTORIA" = "VIC", 
-          "QUEENSLAND" = "QLD", "SOUTH AUSTRALIA" = "SA", "WESTERN AUSTRALIA" = "WA", 
-          "TASMANIA" = "TAS", "NORTHERN TERRITORY" = "NT", "AUSTRALIAN CAPITAL TERRITORY" = "ACT", 
-          "OTHER TERRITORIES" = "ACT", "OTHER TERR" = "ACT"))
-    }
-    
-    if("OTHER TERR" %in% levels(factor(new$state))) {
-      new <- new %>%
-        mutate(state = recode_factor(factor(state), "OTHER TERR" = "ACT"))
-    }
-    
-    return(new)
-  }
-  
-  # Function: characters upper case
+
+  # Make all character fields upper case
   chr_upper <- function(df) {
     fc_cols <- sapply(df, class) == 'factor'
     df[, fc_cols] <- lapply(df[, fc_cols], as.character)
-    
+
     ch_cols <- sapply(df, class) == 'character'
     df[, ch_cols] <- lapply(df[, ch_cols], toupper)
     return(df)
   }
-  
+
+  # Process data part of sF
+  names(sF) <- tolower(names(sF))
+  colnm <- names(sF)
+
+  # For data analysis don't need detailed map, thin it
+  sF_polys <- rmapshaper::ms_simplify(sF, keep = tolerance)
+
+  # get centroids
+  if (!"lat_c" %in% names(sF)) {
+
+    centroid <- function(i, polys) {
+      ctr <- st_centroid(st_geometry(sF)[[i]])
+      data.frame(long_c=ctr[1], lat_c=ctr[2])
+    }
+    centroids <-  purrr::map_df(1:nrow(sF), centroid, polys=sf)
+
+    nat_data <- st_set_geometry(sF, NULL)
+    nat_data <- data.frame(nat_data, centroids)
+  }
+
+  # Make character columns all upper case
+  nat_data <- chr_upper(nat_data)
+
+  # Extract data and map to be ggplot friendly
+  nat_data$id <- row.names(nat_data)
+
+  # Add state
+  if (!("state" %in% names(nat_data))) {
+    states <- states22
+    states$elect_div <- toupper(states$elect_div)
+    nat_data <- nat_data %>%
+      left_join(states) %>%
+      select(id, elect_div, state, numccds, area_sqkm, long_c, lat_c)
+  }
+
+  nat_map <- spbabel::sptable(sF_polys)
+  colnames(nat_map) <- c("id", "long", "lat", "hole", "piece", "order")
+  nat_map$group <- paste("g",nat_map$piece, sep=".")
+  nat_map$point <- paste("p", nat_map$id, nat_map$piece, nat_map$order, sep=".")
+  nat_map$id <- as.character(nat_map$id)
+
+  # nms$id <- as.character(row.names(nat_data))
+  nms <- nat_data %>% select(id, elect_div, state)
+  nat_map <- dplyr::left_join(nat_map, nms, by="id")
+
   # Apply along with cartogram
-  nat_map <- nat_map %>% 
-    chr_upper() %>% state_label()
-  nat_data <- nat_data %>% 
-    chr_upper() %>% state_label() %>% 
+  nat_data <- nat_data %>%
     aec_add_carto_f()
-  
+
   # Out
   return(list(map=nat_map, data=nat_data))
 }

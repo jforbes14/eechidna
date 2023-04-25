@@ -15,10 +15,11 @@ load_shapefile(path_to_shapeFile, tolerance = 0.005)
 object of class SpatialPolygonsDataFrame
 }
 \description{
-Load shapefile into R as a SpatialDataFrame, extract polygon information, thin
+This is only used to create the new electorate map data, for future years.
+Load shapefile into R as an sf (simple features) object, extract polygon information, thin
 polygon, fix any problematic polygons, and format variable names.
-"nat_map" and "nat_data" objects for every Australian federal election between 
-2001-2016 can be readily loaded from the package for analysis.
+"nat_map" and "nat_data" objects for every Australian federal election between
+2001-2019 can be readily loaded from the package for analysis.
 }
 \details{
 The function will take several minutes to complete.

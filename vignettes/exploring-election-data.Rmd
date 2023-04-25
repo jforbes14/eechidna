@@ -62,7 +62,7 @@ data(abs2016)
 # inspect the data frame
 glimpse(fp16)
 # show the first few rows
-head(fp16) %>% kable
+head(fp16) %>% knitr::kable()
 ```
 
 We can see that the data contains `r formatC(nrow(fp16), big.mark=",", drop0trailing=TRUE, format="f")` rows and `r ncol(fp16)` columns. Each of the six data objects can be accessed and inspected in this way. Note that some parties have slightly different names in different states. We've simplified the data by renaming some of the parties to the varient of the name that won the most votes. 
