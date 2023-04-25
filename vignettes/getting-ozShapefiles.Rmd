@@ -172,7 +172,7 @@ nat_data <- data.frame(nat_data, centroids)
 ```
 
 ```{r, eval=FALSE}
-write.csv(nat_data, "National-data-2022.csv", row.names=FALSE)
+readr::write_csv(nat_data, "national-data-2022.csv")
 ```
 
 Finally, just to check the data, after running `get_electorate_shapes()`, a map of the Australian electorates colored by their size as given in the data (variable `area_sqkm`):
