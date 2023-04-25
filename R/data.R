@@ -1,13 +1,42 @@
-#' @format
+#' 2022 Australian Federal election data: Two party preferred votes for candidates (House of
+#' Representative) in each electorate.
+#' @format {}
+#' @source \url{https://results.aec.gov.au/27966/Website/HouseDownloadsMenu-27966-Csv.htm}
+#' @rdname fp
+#' @order 8
+"fp22"
+
+#' 2022 Australian Federal election data: Two party preferred votes for candidates (House of
+#' Representative) in each electorate.
+#' @source \url{https://results.aec.gov.au/27966/Website/HouseDownloadsMenu-27966-Csv.htm}
+#'
+#' @format {}
+#' @rdname tpp
+#' @order 8
+"tpp22"
+
+#' 2022 Australian Federal election data: Two candidate preferred votes for candidates
+#' (House of Representatives) in each electorate.
+#'
+#' @source \url{https://results.aec.gov.au/27966/Website/HouseDownloadsMenu-27966-Csv.htm}
+#'
+#' @format {}
+#' @rdname tcp
+#' @order 8
+"tcp22"
+
+#' 2019 Australian Federal election data: Two party preferred votes for candidates (House of
+#' Representative) in each electorate.
+#' @format {}
 #' @source \url{https://results.aec.gov.au/24310/Website/HouseDownloadsMenu-24310-Csv.htm}
-#' @rdname first_preference
+#' @rdname fp
 #' @order 7
 "fp19"
 
-#' 2019 Australian Federal election data: Two party preferred votes for candidates (House of 
+#' 2019 Australian Federal election data: Two party preferred votes for candidates (House of
 #' Representative) in each electorate.
 #' @source \url{https://results.aec.gov.au/24310/Website/HouseDownloadsMenu-24310-Csv.htm}
-#' 
+#'
 #' @format {}
 #' @rdname tpp
 #' @order 7
@@ -17,26 +46,26 @@
 #' (House of Representatives) in each electorate.
 #'
 #' @source \url{https://results.aec.gov.au/24310/Website/HouseDownloadsMenu-24310-Csv.htm}
-#' 
+#'
 #' @format {}
 #' @rdname tcp
 #' @order 7
 "tcp19"
 
 #' @format {}
-#' 
+#'
 #' @source \url{https://results.aec.gov.au/20499/Website/HouseDownloadsMenu-20499-csv.htm}
 #' @source \url{https://www.aec.gov.au/elections/federal_elections/2016/downloads.htm}
-#' @rdname first_preference
+#' @rdname fp
 #' @order 6
 "fp16"
 
-#' 2016 Australian Federal election data: Two party preferred votes for candidates (House of 
+#' 2016 Australian Federal election data: Two party preferred votes for candidates (House of
 #' Representative) in each electorate.
-#' 
+#'
 #' @source \url{https://results.aec.gov.au/20499/Website/HouseDownloadsMenu-20499-csv.htm}
 #' @source \url{https://www.aec.gov.au/elections/federal_elections/2016/downloads.htm}
-#' 
+#'
 #' @format {}
 #' @rdname tpp
 #' @order 6
@@ -45,58 +74,58 @@
 
 #' 2016 Australian Federal election data: Two candidate preferred votes for candidates
 #' (House of Representatives) in each electorate.
-#' 
+#'
 #' @source \url{https://results.aec.gov.au/20499/Website/HouseDownloadsMenu-20499-csv.htm}
 #' @source \url{https://www.aec.gov.au/elections/federal_elections/2016/downloads.htm}
-#' 
+#'
 #' @format {}
 #' @rdname tcp
 #' @order 6
 "tcp16"
 
 #' @format {}
-#'     
+#'
 #' @source \url{https://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm}
 #' @source \url{https://www.aec.gov.au/elections/federal_elections/2013/downloads.htm}
-#' @rdname first_preference
+#' @rdname fp
 #' @order 5
 "fp13"
 
-#' 2013 Australian Federal election data: Two party preferred votes for candidates (House of 
+#' 2013 Australian Federal election data: Two party preferred votes for candidates (House of
 #' Representatives) in each electorate.
-#'  
-#' @source \url{https://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm} 
+#'
+#' @source \url{https://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm}
 #' @source \url{https://www.aec.gov.au/elections/federal_elections/2013/downloads.htm}
-#' 
+#'
 #' @format {}
 #' @rdname tpp
 #' @order 5
 "tpp13"
 
-#' 2013 Australian Federal election data: Two candidate preferred votes for candidates 
+#' 2013 Australian Federal election data: Two candidate preferred votes for candidates
 #' (House of Representatives) in each electorate.
-#' 
-#' @source \url{https://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm} 
+#'
+#' @source \url{https://results.aec.gov.au/17496/Website/HouseDownloadsMenu-17496-csv.htm}
 #' @source \url{https://www.aec.gov.au/elections/federal_elections/2013/downloads.htm}
-#' 
+#'
 #' @format {}
 #' @rdname tcp
 #' @order 5
 "tcp13"
 
 #' @format {}
-#' 
+#'
 #' @source \url{https://results.aec.gov.au/15508/Website/HouseDownloadsMenu-15508-csv.htm}
 #' @source \url{https://www.aec.gov.au/elections/federal_elections/2010/downloads.htm}
-#' @rdname first_preference
+#' @rdname fp
 #' @order 4
 "fp10"
 
 #' 2010 Australian Federal election data: Two party preferred votes for candidates (House of Representatives) in each electorate.
-#' 
-#' @source \url{https://results.aec.gov.au/15508/Website/HouseDownloadsMenu-15508-csv.htm} 
+#'
+#' @source \url{https://results.aec.gov.au/15508/Website/HouseDownloadsMenu-15508-csv.htm}
 #' @source \url{https://www.aec.gov.au/elections/federal_elections/2010/downloads.htm}
-#' 
+#'
 #' @format {}
 #' @rdname tpp
 #' @order 3
@@ -104,22 +133,22 @@
 
 #' 2010 Australian Federal election data: Two candidate preferred votes for candidates
 #' (House of Representatives) in each electorate.
-#' 
-#' @source \url{https://results.aec.gov.au/15508/Website/HouseDownloadsMenu-15508-csv.htm} 
+#'
+#' @source \url{https://results.aec.gov.au/15508/Website/HouseDownloadsMenu-15508-csv.htm}
 #' @source \url{https://www.aec.gov.au/elections/federal_elections/2010/downloads.htm}
-#' 
+#'
 #' @format {}
 #' @rdname tcp
 #' @order 4
 "tcp10"
 
 #' @format {}
-#' 
+#'
 #' @source
 #'   \url{https://results.aec.gov.au/13745/Website/HouseDownloadsMenu-13745-csv.htm}
 #' @source
 #'   \url{https://www.aec.gov.au/elections/federal_elections/2007/downloads.htm}
-#' @rdname first_preference
+#' @rdname fp
 #' @order 3
 "fp07"
 
@@ -136,25 +165,25 @@
 #' @order 3
 "tpp07"
 
-#' 2007 Australian Federal election data: Two candidate preferred votes for candidates 
+#' 2007 Australian Federal election data: Two candidate preferred votes for candidates
 #' (House of Representatives) in each electorate.
-#' 
+#'
 #' @source \url{https://results.aec.gov.au/13745/Website/HouseDownloadsMenu-13745-csv.htm}
 #' @source \url{https://www.aec.gov.au/elections/federal_elections/2007/downloads.htm}.
-#' 
+#'
 #' @format \strong{For the 2007 election onwards:}
 #' \describe{
 #'     \item{StateAb}{Abbreviation for state name}
-#'     \item{UniqueID}{Numeric identifier that links the electoral division with Census  
+#'     \item{UniqueID}{Numeric identifier that links the electoral division with Census
 #'     and other election datasets.}
 #'     \item{DivisionNm}{Electoral division name}
 #'     \item{BallotPosition}{Candidate's position on the ballot}
 #'     \item{CandidateID}{Candidate ID}
-#'     \item{Surname}{Candidate surname}     
+#'     \item{Surname}{Candidate surname}
 #'     \item{GivenNm}{Candidate given name}
 #'     \item{PartyAb}{Abbreviation for political party name}
 #'     \item{PartyNm}{Political party name}
-#'     \item{Elected}{Whether the candidate was elected (Y/N)}  
+#'     \item{Elected}{Whether the candidate was elected (Y/N)}
 #'     \item{HistoricElected}{Whether the candidate is the incumbent member}
 #'     \item{OrdinaryVotes}{Number of ordinary votes cast for the candidate}
 #'     \item{Percent}{Percentage of ordinary votes cast for the candidate}
@@ -164,57 +193,57 @@
 #' @md
 "tcp07"
 
-#' 2004 Australian Federal election data: First preference votes for candidates (House of 
+#' 2004 Australian Federal election data: First preference votes for candidates (House of
 #' Representatives) in each electorate.
-#' 
+#'
 #' @format \strong{For the 2004 election onwards:}
-#' 
+#'
 #' \itemize{
-#'     \item StateAb: Abbreviation for state name    
-#'     \item UniqueID: Numeric identifier that links the electoral division with Census  
-#'     and other election datasets.  
-#'     \item DivisionNm:  Electoral division name   
-#'     \item BallotPosition: Candidate's position on the ballot 
-#'     \item CandidateID: Candidate ID       
-#'     \item Surname: Candidate surname          
-#'     \item GivenNm: Candidate given name            
-#'     \item PartyAb: Abbreviation for political party name           
-#'     \item PartyNm: Political party name      
-#'     \item Elected: Whether the candidate was elected (Y/N)            
-#'     \item OrdinaryVotes: Number of ordinary votes cast at the electorate for the candidate     
-#'     \item Percent: Percentage of ordinary votes for the candidate     
+#'     \item StateAb: Abbreviation for state name
+#'     \item UniqueID: Numeric identifier that links the electoral division with Census
+#'     and other election datasets.
+#'     \item DivisionNm:  Electoral division name
+#'     \item BallotPosition: Candidate's position on the ballot
+#'     \item CandidateID: Candidate ID
+#'     \item Surname: Candidate surname
+#'     \item GivenNm: Candidate given name
+#'     \item PartyAb: Abbreviation for political party name
+#'     \item PartyNm: Political party name
+#'     \item Elected: Whether the candidate was elected (Y/N)
+#'     \item OrdinaryVotes: Number of ordinary votes cast at the electorate for the candidate
+#'     \item Percent: Percentage of ordinary votes for the candidate
 #'     }
-#'     
+#'
 #' @source \url{https://results.aec.gov.au/12246/results/HouseDownloadsMenu-12246-csv.htm}
 #' @source \url{https://www.aec.gov.au/elections/federal_elections/2004/downloads.htm}
-#' @rdname first_preference
+#' @rdname fp
 #' @order 2
 #' @md
 "fp04"
 
-#' 2004 Australian Federal election data: Two party preferred votes for candidates (House of 
+#' 2004 Australian Federal election data: Two party preferred votes for candidates (House of
 #' Representatives) in each electorate.
-#' 
+#'
 #' @source \url{https://results.aec.gov.au/12246/results/HouseDownloadsMenu-12246-csv.htm}
 #' @source \url{https://www.aec.gov.au/elections/federal_elections/2004/downloads.htm}
-#' 
+#'
 #' @format {}
 #' @rdname tpp
 #' @order 2
 "tpp04"
 
-#' 2004 Australian Federal election data: Two candidate preferred votes for candidates 
+#' 2004 Australian Federal election data: Two candidate preferred votes for candidates
 #' (House of Representatives) in each electorate.
-#' 
-#' @source \url{https://results.aec.gov.au/12246/results/HouseDownloadsMenu-12246-csv.htm} 
+#'
+#' @source \url{https://results.aec.gov.au/12246/results/HouseDownloadsMenu-12246-csv.htm}
 #' @source \url{https://www.aec.gov.au/elections/federal_elections/2004/downloads.htm}.
-#' 
-#' @format 
-#' 
+#'
+#' @format
+#'
 #' \strong{For the 2004 election:}
-#' 
+#'
 #' \describe{
-#'     \item{StateAb}{Abbreviation for state name}  
+#'     \item{StateAb}{Abbreviation for state name}
 #'     \item{UniqueID}{Numeric identifier that links the electoral division with Census
 #'     and other election datasets.}
 #'     \item{DivisionNm}{Electoral division name}
@@ -233,30 +262,30 @@
 "tcp04"
 
 #' First preference votes for candidates (House of Representatives) in each electorate.
-#' 
+#'
 #' A dataset containing first preference vote counts, candidate names, and other results for the
-#' House of Representatives from Australian federal elections from 2001 to 2019.
-#' 
+#' House of Representatives from Australian federal elections from 2001 to 2022.
+#'
 #' @format A data frame with the following variables:
-#' 
+#'
 #' \strong{For the 2001 election only:}
-#' 
+#'
 #' \itemize{
-#'     \item UniqueID: Numeric identifier that links the electoral division with Census  
+#'     \item UniqueID: Numeric identifier that links the electoral division with Census
 #'     and other election datasets.
-#'     \item StateAb: Abbreviation for state name  
-#'     \item DivisionNm:  Electoral division name   
-#'     \item Surname: Candidate surname          
-#'     \item GivenNm: Candidate given name            
-#'     \item PartyAb: Abbreviation for political party name           
-#'     \item PartyNm: Political party name      
-#'     \item Elected: Whether the candidate was elected (Y/N)            
-#'     \item Percent: Percentage of ordinary votes for the candidate     
+#'     \item StateAb: Abbreviation for state name
+#'     \item DivisionNm:  Electoral division name
+#'     \item Surname: Candidate surname
+#'     \item GivenNm: Candidate given name
+#'     \item PartyAb: Abbreviation for political party name
+#'     \item PartyNm: Political party name
+#'     \item Elected: Whether the candidate was elected (Y/N)
+#'     \item Percent: Percentage of ordinary votes for the candidate
 #'     }
-#'     
-#'     
+#'
+#'
 #' @source \url{https://www.aec.gov.au/About_AEC/Publications/statistics/files/aec-2001-election-statistics.zip}
-#' @rdname first_preference
+#' @name fp
 #' @order 1
 "fp01"
 
@@ -267,10 +296,10 @@
 #' names, and other results for the House of Representatives from the 2001 to
 #' 2019 Australian federal elections. Includes the count of votes for the
 #' Australian Labor Party and the count of votes for the Liberal-National
-#' Coalition for each electorate. 
+#' Coalition for each electorate.
 #'
-#' @format A data frame with the following variables: 
-#' \describe{ 
+#' @format A data frame with the following variables:
+#' \describe{
 #'   \item{UniqueID}{Numeric identifier that links the electoral division with Census and other election datasets.}
 #'   \item{DivisionNm}{Electoral division name}
 #'   \item{StateAb}{Abbreviation for state name}
@@ -285,51 +314,51 @@
 #' @source
 #'   \url{https://www.aec.gov.au/About_AEC/Publications/statistics/files/aec-2001-election-statistics.zip}
 #'
-#' @rdname tpp
+#' @name tpp
 #' @order 1
 "tpp01"
 
-#' Two candidate preferred votes for candidates 
+#' Two candidate preferred votes for candidates
 #' (House of Representatives) in each electorate.
-#' 
-#' A dataset containing two candidate preferred vote counts, 
-#' and other results for the House of Representatives from the 
-#' 2001 to 2019 Australian federal elections. 
-#' Includes the count of votes for the leading two candidates 
+#'
+#' A dataset containing two candidate preferred vote counts,
+#' and other results for the House of Representatives from the
+#' 2001 to 2019 Australian federal elections.
+#' Includes the count of votes for the leading two candidates
 #' in the electorate after distribution of preferences.
-#' 
+#'
 #' @source \url{https://www.aec.gov.au/About_AEC/Publications/statistics/files/aec-2001-election-statistics.zip}.
-#' 
+#'
 #' @format A data frame with the following variables:
-#' 
+#'
 #' \strong{For the 2001 election:}
-#' 
+#'
 #' \describe{
-#'     \item{UniqueID}{Numeric identifier that links the electoral division with Census  
+#'     \item{UniqueID}{Numeric identifier that links the electoral division with Census
 #'     and other election datasets}
-#'     \item{StateAb}{Abbreviation for state name}  
-#'     \item{DivisionNm}{Electoral division name}             
-#'     \item{Surname}{Candidate surname}          
+#'     \item{StateAb}{Abbreviation for state name}
+#'     \item{DivisionNm}{Electoral division name}
+#'     \item{Surname}{Candidate surname}
 #'     \item{GivenNm}{Candidate given name}
 #'     \item{Elected}{Whether the candidate was elected (Y/N)}
 #'     \item{Percent}{Percentage of ordinary votes cast for the candidate}
-#'     \item{PartyAb}{Abbreviation for political party name}         
-#'     \item{PartyNm}{Political party name}    
-#'     \item{Swing}{Percentage point change in ordinary votes for the party from the previous election}     
+#'     \item{PartyAb}{Abbreviation for political party name}
+#'     \item{PartyNm}{Political party name}
+#'     \item{Swing}{Percentage point change in ordinary votes for the party from the previous election}
 #'     }
-#' @rdname tcp
+#' @name tcp
 #' @order 1
 "tcp01"
 
 #' Map of Australian Electorates from 2019
 #'
-#' A dataset containing the map of the all 150 Australian electorates using the 2019 boundaries of the 
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
+#' A dataset containing the map of the all 150 Australian electorates using the 2019 boundaries of the
+#' The data were obtained from the Australian Electoral Commission, and downloaded
 #' from \url{https://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}. Must be loaded using the
 #' `nat_map_download` function.
-#' 
+#'
 #' @keywords internal
-#' 
+#'
 #' @format A data frame with the following variables:
 #' \itemize{
 #'     \item id: Numeric identifier for the polygon
@@ -342,8 +371,8 @@
 #'     \item elect_div: Electoral division name
 #'     \item state: Abbreviation for state name
 #' }
-#' 
-#' @examples 
+#'
+#' @examples
 #' \dontrun{
 #' library(eechidna)
 #' nat_map19 <- nat_map_download(2019)
@@ -356,20 +385,20 @@
 #' both <- intersect(unique(abs2019$region), unique(nat_map19$region))
 #' ggplot(aes(map_id=region), data=subset(abs2019, region %in% both)) +
 #'   geom_map(aes(fill=MedianPersonalIncome), map=subset(nat_map19, region %in% both)) +
-#'   expand_limits(x=nat_map19$long, y=nat_map19$lat) + 
+#'   expand_limits(x=nat_map19$long, y=nat_map19$lat) +
 #'   theme_map()
 #' }
 "nat_map19"
 
 #' Map of Australian Electorates from 2016
 #'
-#' A dataset containing the map of the all 150 Australian electorates using the 2016 boundaries of the 
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
+#' A dataset containing the map of the all 150 Australian electorates using the 2016 boundaries of the
+#' The data were obtained from the Australian Electoral Commission, and downloaded
 #' from \url{https://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}. Must be loaded using the
 #' `nat_map_download` function.
-#' 
+#'
 #' @keywords internal
-#' 
+#'
 #' @format A data frame with the following variables:
 #' \itemize{
 #'     \item id: Numeric identifier for the polygon
@@ -382,7 +411,7 @@
 #'     \item elect_div: Electoral division name
 #'     \item state: Abbreviation for state name
 #' }
-#' 
+#'
 #' @examples
 #' \dontrun{
 #' library(eechidna)
@@ -396,16 +425,16 @@
 #' both <- intersect(unique(abs2016$region), unique(nat_map16$region))
 #' ggplot(aes(map_id=region), data=subset(abs2016, region %in% both)) +
 #'   geom_map(aes(fill=MedianPersonalIncome), map=subset(nat_map16, region %in% both)) +
-#'   expand_limits(x=nat_map16$long, y=nat_map16$lat) + 
+#'   expand_limits(x=nat_map16$long, y=nat_map16$lat) +
 #'   theme_map()
 #' }
 "nat_map16"
 
 #' Map of Australian Electorates from 2013
 #'
-#' A dataset containing the map of the all 150 Australian electorates using the 2013 boundaries of the 
+#' A dataset containing the map of the all 150 Australian electorates using the 2013 boundaries of the
 #' electorates.
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
+#' The data were obtained from the Australian Electoral Commission, and downloaded
 #' from \url{https://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}. Must be loaded using the
 #' `nat_map_download` function.
 #'
@@ -427,14 +456,14 @@
 
 #' Map of Australian Electorates from 2010
 #'
-#' A dataset containing the map of the all 150 Australian electorates using the 2010 boundaries of the 
+#' A dataset containing the map of the all 150 Australian electorates using the 2010 boundaries of the
 #' electorates.
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
+#' The data were obtained from the Australian Electoral Commission, and downloaded
 #' from \url{https://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}. Must be loaded using the
 #' `nat_map_download` function.
-#' 
+#'
 #' @keywords internal
-#' 
+#'
 #' @format A data frame with the following variables:
 #' \itemize{
 #'     \item id: Numeric identifier for the polygon
@@ -451,13 +480,13 @@
 
 #' Map of Australian Electorates from 2007
 #'
-#' A dataset containing the map of the all 150 Australian electorates using the 2007 boundaries of the 
-#' electorates. The data were obtained from the Australian Electoral Commission, and downloaded 
-#' from \url{https://www.abs.gov.au/AUSSTATS/abs@@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}. 
+#' A dataset containing the map of the all 150 Australian electorates using the 2007 boundaries of the
+#' electorates. The data were obtained from the Australian Electoral Commission, and downloaded
+#' from \url{https://www.abs.gov.au/AUSSTATS/abs@@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}.
 #' Must be loaded using the `nat_map_download` function.
-#' 
+#'
 #' @keywords internal
-#' 
+#'
 #' @format A data frame with the following variables:
 #' \itemize{
 #'     \item id: Numeric identifier for the polygon
@@ -474,14 +503,14 @@
 
 #' Map of Australian Electorates from 2004
 #'
-#' A dataset containing the map of the all 150 Australian electorates using the 2004 boundaries of the 
+#' A dataset containing the map of the all 150 Australian electorates using the 2004 boundaries of the
 #' electorates.
-#' The data were obtained from the Australian Bureau of Statistics, and downloaded 
+#' The data were obtained from the Australian Bureau of Statistics, and downloaded
 #' from \url{https://www.abs.gov.au/AUSSTATS/abs@@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}.
 #' Must be loaded using the `nat_map_download` function.
-#' 
+#'
 #' @keywords internal
-#' 
+#'
 #' @format A data frame with the following variables:
 #' \itemize{
 #'     \item id: Numeric identifier for the polygon
@@ -498,14 +527,14 @@
 
 #' Map of Australian Electorates from 2001
 #'
-#' A dataset containing the map of the all 150 Australian electorates using the 2001 boundaries of the 
+#' A dataset containing the map of the all 150 Australian electorates using the 2001 boundaries of the
 #' electorates.
-#' The data were obtained from the Australian Government, and downloaded 
+#' The data were obtained from the Australian Government, and downloaded
 #' from \url{https://data.gov.au/dataset/ds-dga-0b939a62-e53e-4616-add5-77f909b58ddd/details?q=asgc\%202001}.
 #' Must be loaded using the `nat_map_download` function.
-#' 
+#'
 #' @keywords internal
-#' 
+#'
 #' @format A data frame with the following variables:
 #' \itemize{
 #'     \item id: Numeric identifier for the polygon
@@ -523,14 +552,14 @@
 #' Data and centroids corresponding to the Australian Electorates from 2019
 #'
 #' A dataset containing some demographic information for each of the 151 Australian electorates.
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
+#' The data were obtained from the Australian Electoral Commission, and downloaded
 #' from \url{https://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
 #' Must be loaded using the `nat_data_download` function.
-#' 
+#'
 #' @format A data frame with 151 rows with the following variables:
 #' \itemize{
 #'     \item id: Numeric identifier for the polygon
-#'     \item elect_div: Electorate division name   
+#'     \item elect_div: Electorate division name
 #'     \item state: abbreviation of the state name
 #'     \item numccds: AEC variable that might be filled with meaning or a description down the road
 #'     \item area_sqkm: combined square kilometers of each electorate
@@ -540,22 +569,22 @@
 #'     \item y: longitude coordinate for plotting a cartogram
 #'     \item radius: variable used in the construction of cartogram points
 #' }
-#' 
+#'
 #' @keywords internal
-#' 
+#'
 "nat_data19"
 
 #' Data and centroids corresponding to the Australian Electorates from 2016
 #'
 #' A dataset containing some demographic information for each of the 150 Australian electorates.
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
+#' The data were obtained from the Australian Electoral Commission, and downloaded
 #' from \url{https://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
 #' Must be loaded using the `nat_data_download` function.
-#' 
+#'
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
 #'     \item id: Numeric identifier for the polygon
-#'     \item elect_div: Electorate division name   
+#'     \item elect_div: Electorate division name
 #'     \item state: abbreviation of the state name
 #'     \item numccds: AEC variable that might be filled with meaning or a description down the road
 #'     \item area_sqkm: combined square kilometers of each electorate
@@ -571,14 +600,14 @@
 #' Data and centroids corresponding to the Australian Electorates from 2013
 #'
 #' A dataset containing some demographic information for each of the 150 Australian electorates.
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
+#' The data were obtained from the Australian Electoral Commission, and downloaded
 #' from \url{https://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
 #' Must be loaded using the `nat_data_download` function.
-#' 
+#'
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
 #'     \item id: Numeric identifier for the polygon
-#'     \item elect_div: Electorate division name   
+#'     \item elect_div: Electorate division name
 #'     \item state: abbreviation of the state name
 #'     \item numccds: AEC variable that might be filled with meaning or a description down the road
 #'     \item area_sqkm: combined square kilometers of each electorate
@@ -588,21 +617,21 @@
 #'     \item y: longitude coordinate for plotting a cartogram
 #'     \item radius: variable used in the construction of cartogram points
 #' }
-#' 
+#'
 #' @keywords internal
 "nat_data13"
 
 #' Data and centroids corresponding to the Australian Electorates from 2010
 #'
 #' A dataset containing some demographic information for each of the 150 Australian electorates.
-#' The data were obtained from the Australian Electoral Commission, and downloaded 
+#' The data were obtained from the Australian Electoral Commission, and downloaded
 #' from \url{https://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
 #' Must be loaded using the `nat_data_download` function.
-#' 
+#'
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
 #'     \item id: Numeric identifier for the polygon
-#'     \item elect_div: Electorate division name   
+#'     \item elect_div: Electorate division name
 #'     \item state: abbreviation of the state name
 #'     \item numccds: AEC variable that might be filled with meaning or a description down the road
 #'     \item area_sqkm: combined square kilometers of each electorate
@@ -612,21 +641,21 @@
 #'     \item y: longitude coordinate for plotting a cartogram
 #'     \item radius: variable used in the construction of cartogram points
 #' }
-#' 
+#'
 #' @keywords internal
 "nat_data10"
 
 #' Data and centroids corresponding to the Australian Electorates from 2007
 #'
 #' A dataset containing some demographic information for each of the 150 Australian electorates.
-#' The data were obtained from the Australian Bureau of Statistics, and downloaded 
+#' The data were obtained from the Australian Bureau of Statistics, and downloaded
 #' from \url{https://www.abs.gov.au/AUSSTATS/abs@@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}.
 #' Must be loaded using the `nat_data_download` function.
-#' 
+#'
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
 #'     \item id: Numeric identifier for the polygon
-#'     \item elect_div: Electorate division name   
+#'     \item elect_div: Electorate division name
 #'     \item state: abbreviation of the state name
 #'     \item long_c: longitude coordinate of electorate (polygon) centroid
 #'     \item lat_c: latitude coordinate of electorate (polygon) centroid
@@ -634,21 +663,21 @@
 #'     \item y: longitude coordinate for plotting a cartogram
 #'     \item radius: variable used in the construction of cartogram points
 #' }
-#' 
+#'
 #' @keywords internal
 "nat_data07"
 
 #' Data and centroids corresponding to the Australian Electorates from 2004
 #'
 #' A dataset containing some demographic information for each of the 150 Australian electorates.
-#' The data were obtained from the Australian Bureau of Statistics, and downloaded 
+#' The data were obtained from the Australian Bureau of Statistics, and downloaded
 #' from \url{https://www.abs.gov.au/AUSSTATS/abs@@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}.
 #' Must be loaded using the `nat_data_download` function.
-#' 
+#'
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
 #'     \item id: Numeric identifier for the polygon
-#'     \item elect_div: Electorate division name   
+#'     \item elect_div: Electorate division name
 #'     \item state: abbreviation of the state name
 #'     \item long_c: longitude coordinate of electorate (polygon) centroid
 #'     \item lat_c: latitude coordinate of electorate (polygon) centroid
@@ -656,21 +685,21 @@
 #'     \item y: longitude coordinate for plotting a cartogram
 #'     \item radius: variable used in the construction of cartogram points
 #' }
-#' 
+#'
 #' @keywords internal
 "nat_data04"
 
 #' Data and centroids corresponding to the Australian Electorates from 2001
 #'
 #' A dataset containing some demographic information for each of the 150 Australian electorates.
-#' The data were obtained from the Australian Government, and downloaded 
+#' The data were obtained from the Australian Government, and downloaded
 #' from \url{https://data.gov.au/dataset/ds-dga-0b939a62-e53e-4616-add5-77f909b58ddd/details?q=asgc\%202001}.
 #' Must be loaded using the `nat_data_download` function.
-#' 
+#'
 #' @format A data frame with 150 rows with the following variables:
 #' \itemize{
 #'     \item id: Numeric identifier for the polygon
-#'     \item elect_div: Electorate division name   
+#'     \item elect_div: Electorate division name
 #'     \item state: abbreviation of the state name
 #'     \item long_c: longitude coordinate of electorate (polygon) centroid
 #'     \item lat_c: latitude coordinate of electorate (polygon) centroid
@@ -678,40 +707,40 @@
 #'     \item y: longitude coordinate for plotting a cartogram
 #'     \item radius: variable used in the construction of cartogram points
 #' }
-#' 
+#'
 #' @keywords internal
 "nat_data01"
 
 #' 2016 Australian Census data on all 150 electorates
 #'
 #' @format {}
-#'  
+#'
 #' @rdname census
 #' @order 8
-"abs2016"  
+"abs2016"
 
 #' 2011 Australian Census data on all 150 electorates
 #'
 #' @format{}
 #' @rdname census
 #' @order 6
-"abs2011" 
+"abs2011"
 
 #' @format {}
 #' @rdname census
 #' @order 3
-"abs2006" 
+"abs2006"
 
 #' Australian Census data on all electorates
 #'
-#' @description 
+#' @description
 #' A dataset containing demographic and other information about each electorate from the
 #' Australian Census of Population and Housing.
-#' 
+#'
 #' The data were obtained from the Australian Bureau of Statistics, and downloaded
 #' from \url{https://www.censusdata.abs.gov.au/datapacks/}.
 #' Electorate boundaries match those in place at the time of the relevant data.
-#' 
+#'
 #' Census data for non-census years has been imputed. For more details on this process,
 #' see the help vignette: \code{vignette("imputing-census-data", package = "eechidna")}
 #'
@@ -720,9 +749,9 @@
 #'
 #' @format Data frames with the following variables, variables with an asterisk are only available
 #' in the 2001, 2006, 2011 and 2016 data sets.
-#' 
+#'
 #' \itemize{
-#'   \item UniqueID: Numeric identifier that links the electoral division with Census 
+#'   \item UniqueID: Numeric identifier that links the electoral division with Census
 #'   and other election datasets.
 #'   \item DivisionNm: Name of electorate
 #'   \item State: State containing electorate
@@ -741,7 +770,7 @@
 #'   \item Age85plus: Percentage of people aged 85 or higher.
 #'   \item Anglican: Percentage of people affiliated with the Anglican denomimation
 #'   \item AusCitizen: Percentage of people who are Australian Citizens
-#'   \item AverageHouseholdSize: Average number of people in a household 
+#'   \item AverageHouseholdSize: Average number of people in a household
 #'   \item BachelorAbv: Percentage of people who have completed a Bachelor degree or above
 #'   \item Born_Asia: Percentage of people born in Asia
 #'   \item Born_MidEast: Percentage of people born in the Middle East
@@ -807,26 +836,26 @@
 #'   \item Unemployed: Unemployment rate
 #'   \item University_NS*: Rate of nonresponse for questions relating to University
 #'   \item Volunteer: Percentage of people who work as a volunteer
-#'   \item Volunteer_NS*: Rate of nonresponse for questions relating to working as a volunteer 
+#'   \item Volunteer_NS*: Rate of nonresponse for questions relating to working as a volunteer
 #' }
-#' 
-#' 
-#' @examples 
+#'
+#'
+#' @examples
 #' library(eechidna)
 #' library(dplyr)
 #' data(abs2001)
 #' abs2001 %>% select(DivisionNm, MedianAge, Unemployed, NoReligion, MedianPersonalIncome) %>% head()
-#' 
+#'
 #' # Join with two-party preferred voting data
 #' library(ggplot2)
 #' data(tpp01)
 #' election2001 <- left_join(abs2001, tpp01, by = "UniqueID")
 #' # See relationship between personal income and Liberal/National support
-#' ggplot(election2001, aes(x = MedianPersonalIncome, y = LNP_Percent)) + 
-#'     geom_jitter() + 
+#' ggplot(election2001, aes(x = MedianPersonalIncome, y = LNP_Percent)) +
+#'     geom_jitter() +
 #'     geom_smooth(method='lm')
-#' 
-#' 
+#'
+#'
 #' @rdname census
 #' @order 1
 #' @md
@@ -837,27 +866,26 @@
 #' @format {}
 #' @rdname census
 #' @order 9
-"abs2019"  
+"abs2019"
 
 #' Imputed Australian Census data for the electorates in place at time of the 2013 Federal election
 #' @format {}
-#' 
+#'
 #' @rdname census
 #' @order 7
-"abs2013"  
+"abs2013"
 
 #' @rdname census
 #' @order 5
-"abs2010"  
+"abs2010"
 
 #' @format {}
-#' 
+#'
 #' @rdname census
 #' @order 4
-"abs2007"  
+"abs2007"
 
 #' @format {}
 #' @rdname census
 #' @order 2
-"abs2004"  
-
+"abs2004"
