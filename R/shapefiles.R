@@ -23,41 +23,22 @@
 #' my_sF <- load_shapefile(fl)
 #' }
 
-load_shapefile <- function(path_to_shapeFile, tolerance = 0.005) {
+load_shapefile <- function(path_to_shapeFile, tolerance = 0.001) {
 
-  # geopackage (.gpkg) is to be treated differently so an if else statement is used
+  sF <- read_sf(dsn=path_to_shapeFile)
 
-  #if (substr(path_to_shapeFile, nchar(path_to_shapeFile) - 3, nchar(path_to_shapeFile)) != "gpkg") {
-    # sF <- rgdal::readOGR(dsn=path_to_shapeFile)
-    sF <- read_sf(dsn=path_to_shapeFile)
-  #} else {
-  #  layers <- tolower(rgdal::ogrListLayers(path_to_shapeFile))
-  #  index <- grep("commonwealth", layers)
-  #  if (length(index) > 1) {
-  #    print("Warning: Multiple layers with the name 'commonwealth electoral division'. Taking the first by default.")
-  #  }
-  #  sF <- rgdal::readOGR(dsn=path_to_shapeFile, layer = layers[index[1]])
-  #}
-
-  # change colnames to lower case and rename
-  #names(sF@data) <- tolower(names(sF@data))
   names(sF) <- tolower(names(sF))
-  #colnm <- names(sF@data)
   colnm <- names(sF)
 
   if (!"elect_div" %in% colnm) {
 
     if (sum(grepl("ced_name", colnm)) > 0) {
-      #names(sF@data)[grep("ced_name", colnm)] <- "elect_div"
       names(sF)[grep("ced_name", colnm)] <- "elect_div"
     }
 
     if (sum(grepl("ste_name", colnm)) > 0) {
-      #names(sF@data)[grep("ste_name", colnm)] <- "state"
       names(sF)[grep("ste_name", colnm)] <- "state"
     } else {
-      #names(sF@data)[grep("name", colnm)] <- "elect_div"
-      #names(sF@data)[grep("state", colnm)] <- "state"
       names(sF)[grep("name", colnm)] <- "elect_div"
       names(sF)[grep("state", colnm)] <- "state"
     }
@@ -74,42 +55,24 @@ load_shapefile <- function(path_to_shapeFile, tolerance = 0.005) {
   }
 
   # get centroids
-  #if (!"lat_c" %in% names(sF@data)) {
   if (!"lat_c" %in% names(sF)) {
 
-    #polys <- methods::as(sF, "SpatialPolygons")
-
     centroid <- function(i, polys) {
-      #ctr <- sp::Polygon(polys[i])@labpt
       ctr <- st_centroid(st_geometry(sF)[[i]])
       data.frame(long_c=ctr[1], lat_c=ctr[2])
     }
-    #centroids <-  purrr::map_df(seq_along(polys), centroid, polys=polys)
     centroids <-  purrr::map_df(1:nrow(sF), centroid, polys=sf)
 
-    #sF@data <- data.frame(sF@data, centroids)
     sF_data <- data.frame(sF, centroids)
   }
 
-  #sF@data <- chr_upper(sF@data)
   sF_data <- chr_upper(sF_data)
 
   # Simplify to make sure polygons are valid
-  #polys_sF <- rgeos::gSimplify(sF, tol = tolerance)
-  #sF_polys <- st_simplify(sF, TRUE, dTolerance = tolerance)
   sF_polys <- rmapshaper::ms_simplify(sF, keep = tolerance)
 
-  # Ensure all polygons are valid
-  #new_sF <- sF %>% subset(elect_div == "")
-  #for (i in 1:nrow(sF@data)) {
-  #  temp <- sF %>% subset(elect_div == sF@data$elect_div[i])
-  #  if (!rgeos::gIsValid(temp)) {
-  #    temp <- rgeos::gBuffer(temp, byid = TRUE, width = 0)
-  #  }
-  #  new_sF <- raster::bind(new_sF, temp)
-  #}
-
-  out <- sp::SpatialPolygonsDataFrame(polys_sF, sF@data)
+  out <- st_as_sf(sF_data)
+  st_geometry(out) <- st_geometry(sF_polys)
 
   return(out)
 }
