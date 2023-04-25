@@ -22,8 +22,8 @@ A data frame with the following variables:
 nat_map19
 }
 \description{
-A dataset containing the map of the all 150 Australian electorates using the 2019 boundaries of the 
-The data were obtained from the Australian Electoral Commission, and downloaded 
+A dataset containing the map of the all 150 Australian electorates using the 2019 boundaries of the
+The data were obtained from the Australian Electoral Commission, and downloaded
 from \url{https://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}. Must be loaded using the
 `nat_map_download` function.
 }
@@ -40,7 +40,7 @@ library(ggthemes)
 both <- intersect(unique(abs2019$region), unique(nat_map19$region))
 ggplot(aes(map_id=region), data=subset(abs2019, region \%in\% both)) +
   geom_map(aes(fill=MedianPersonalIncome), map=subset(nat_map19, region \%in\% both)) +
-  expand_limits(x=nat_map19$long, y=nat_map19$lat) + 
+  expand_limits(x=nat_map19$long, y=nat_map19$lat) +
   theme_map()
 }
 }

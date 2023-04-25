@@ -8,8 +8,7 @@ launch_app(
   election_year = 2016,
   age = c("Age00_04", "Age05_14", "Age15_19", "Age20_24", "Age25_34", "Age35_44",
     "Age45_54", "Age55_64", "Age65_74", "Age75_84", "Age85plus"),
-  religion = c("Christianity", "Catholic", "Buddhism", "Islam", "Judaism",
-    "NoReligion"),
+  religion = c("Christianity", "Catholic", "Buddhism", "Islam", "Judaism", "NoReligion"),
   other = c("AusCitizen", "MedianPersonalIncome", "Unemployed", "BachelorAbv",
     "Indigenous", "EnglishOnly", "OtherLanguageHome", "Married", "DeFacto",
     "FamilyRatio", "Owned"),
@@ -18,15 +17,15 @@ launch_app(
 )
 }
 \arguments{
-\item{election_year}{Year of Federal election to be explored (2001, 2004, 2007, 2010, 2013 or 2016)}
+\item{election_year}{Year of Federal election to be explored (2001, 2004, 2007, 2010, 2013, 2016, 2019, 2022)}
 
 \item{age}{Age variables to show. Variable(s) should match column names from
 \link{abs2016}. By default, all variables are shown.}
 
-\item{religion}{Religion variables to show. Variable(s) should match column 
+\item{religion}{Religion variables to show. Variable(s) should match column
 names from \link{abs2016}. By default, all variables are shown.}
 
-\item{other}{Other census variables to show. Variable(s) should match column 
+\item{other}{Other census variables to show. Variable(s) should match column
 names from \link{abs2016}. By default, all variables are shown.}
 
 \item{palette}{a named character vector of selection colors. The vector names
@@ -42,7 +41,7 @@ library(plotly)
 library(tidyverse)
 # for comparing labor/liberal
 launch_app(
-  election_year = 2016,
+  election_year = 2022,
   age = c("Age20_24", "Age25_34", "Age55_64"),
   religion = c("Christianity", "Catholic", "NoReligion"),
   other = c("AusCitizen", "MedianPersonalIncome", "Unemployed")
@@ -50,7 +49,7 @@ launch_app(
 
 # for inspecting highly contested areas
 launch_app(
-  election_year = 2016,
+  election_year = 2022,
   age = c("Age25_34", "Age35_44", "Age55_64"),
   religion = c("Christianity", "Catholic", "NoReligion"),
   other = c("Owned", "Indigenous", "AusCitizen")

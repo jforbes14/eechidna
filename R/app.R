@@ -1,6 +1,6 @@
 #' Shiny app for exploring census and electorate data
 #'
-#' @param election_year Year of Federal election to be explored (2001, 2004, 2007, 2010, 2013, 2016 or 2019)
+#' @param election_year Year of Federal election to be explored (2001, 2004, 2007, 2010, 2013, 2016, 2019, 2022)
 #' @param age Age variables to show. Variable(s) should match column names from
 #' \link{abs2016}. By default, all variables are shown.
 #' @param religion Religion variables to show. Variable(s) should match column
@@ -17,7 +17,7 @@
 #' library(tidyverse)
 #' # for comparing labor/liberal
 #' launch_app(
-#'   election_year = 2019,
+#'   election_year = 2022,
 #'   age = c("Age20_24", "Age25_34", "Age55_64"),
 #'   religion = c("Christianity", "Catholic", "NoReligion"),
 #'   other = c("AusCitizen", "MedianPersonalIncome", "Unemployed")
@@ -25,7 +25,7 @@
 #'
 #' # for inspecting highly contested areas
 #' launch_app(
-#'   election_year = 2019,
+#'   election_year = 2022,
 #'   age = c("Age25_34", "Age35_44", "Age55_64"),
 #'   religion = c("Christianity", "Catholic", "NoReligion"),
 #'   other = c("Owned", "Indigenous", "AusCitizen")
@@ -48,8 +48,8 @@ launch_app <- function(
 ) {
   election_year = as.numeric(election_year)
 
-  if (!as.numeric(election_year) %in% c(2001, 2004, 2007, 2010, 2013, 2016, 2019)) {
-    warning("Election year enter is not valid. Year must be one of 2001, 2004, 2007, 2010, 2013 and 2016.
+  if (!as.numeric(election_year) %in% c(2001, 2004, 2007, 2010, 2013, 2016, 2019, 2022)) {
+    warning("Election year enter is not valid. Year must be one of 2001, 2004, 2007, 2010, 2013, 2016, 2019 and 2022.
       Using 2016 by default.")
     election_year = 2016
   }
@@ -94,6 +94,13 @@ launch_app <- function(
   } else if (election_year == 2019) {
     fp_data <- as.data.frame(eechidna::fp19)
     tcp_data <- as.data.frame(eechidna::tcp19)
+    nat_data <- nat_data_download(2019)
+    nat_map <- nat_map_download(2019)
+    abs_data <- as.data.frame(eechidna::abs2019)
+  }
+  else if (election_year == 2022) {
+    fp_data <- as.data.frame(eechidna::fp22)
+    tcp_data <- as.data.frame(eechidna::tcp22)
     nat_data <- nat_data_download(2019)
     nat_map <- nat_map_download(2019)
     abs_data <- as.data.frame(eechidna::abs2019)

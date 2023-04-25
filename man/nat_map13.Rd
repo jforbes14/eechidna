@@ -22,9 +22,9 @@ A data frame with the following variables:
 nat_map13
 }
 \description{
-A dataset containing the map of the all 150 Australian electorates using the 2013 boundaries of the 
+A dataset containing the map of the all 150 Australian electorates using the 2013 boundaries of the
 electorates.
-The data were obtained from the Australian Electoral Commission, and downloaded 
+The data were obtained from the Australian Electoral Commission, and downloaded
 from \url{https://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}. Must be loaded using the
 `nat_map_download` function.
 }

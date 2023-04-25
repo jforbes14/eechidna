@@ -8,7 +8,7 @@
 A data frame with 150 rows with the following variables:
 \itemize{
     \item id: Numeric identifier for the polygon
-    \item elect_div: Electorate division name   
+    \item elect_div: Electorate division name
     \item state: abbreviation of the state name
     \item long_c: longitude coordinate of electorate (polygon) centroid
     \item lat_c: latitude coordinate of electorate (polygon) centroid
@@ -22,7 +22,7 @@ nat_data04
 }
 \description{
 A dataset containing some demographic information for each of the 150 Australian electorates.
-The data were obtained from the Australian Bureau of Statistics, and downloaded 
+The data were obtained from the Australian Bureau of Statistics, and downloaded
 from \url{https://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/2923.0.30.0012006?OpenDocument}.
 Must be loaded using the `nat_data_download` function.
 }

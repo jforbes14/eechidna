@@ -8,7 +8,7 @@
 A data frame with 150 rows with the following variables:
 \itemize{
     \item id: Numeric identifier for the polygon
-    \item elect_div: Electorate division name   
+    \item elect_div: Electorate division name
     \item state: abbreviation of the state name
     \item numccds: AEC variable that might be filled with meaning or a description down the road
     \item area_sqkm: combined square kilometers of each electorate
@@ -24,7 +24,7 @@ nat_data10
 }
 \description{
 A dataset containing some demographic information for each of the 150 Australian electorates.
-The data were obtained from the Australian Electoral Commission, and downloaded 
+The data were obtained from the Australian Electoral Commission, and downloaded
 from \url{https://www.aec.gov.au/Electorates/gis/gis_datadownload.htm}.
 Must be loaded using the `nat_data_download` function.
 }
