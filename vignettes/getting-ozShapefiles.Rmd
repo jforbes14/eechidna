@@ -20,7 +20,6 @@ opts_chunk$set(warning = FALSE,
                fig.height = 4,
                fig.align='center',
                dev = "png")
-library(sf)
 ```
 
 This vignette details the procedure used to obtain the maps of electoral boundaries for each of the Australian federal elections and Censuses. 
@@ -32,6 +31,7 @@ Once the files (preferably the national files) are downloaded, unzip the file (i
 The function `get_electorate_shapes` in this package extracts a list from the shapefile, consisting of a `dataframe` containing coordinates of each polygon and a `dataframe` with data associated with each polygon (electorate). These can be used directly with `ggplot` graphics. Alternatively, the `load_shapefile` function (also from `eechidna`) imports the shapefile as a `SpatialPolygonsDataFrame`.
 
 ```{r, message=FALSE, warning=FALSE, eval = F}
+library(eechidna)
 # shapeFile contains the path to the shp file:
 shapeFile <- "/PATH-ON-YOUR-COMPUTER/2021_ELB_region.shp"
 map_and_data <- get_electorate_shapes(shapeFile)
@@ -53,6 +53,7 @@ Here we have a map of the Australian electorates colored by their size as given 
 ```{r, message=FALSE, warning=FALSE, fig.width=8, fig.height=6}
 library(ggplot2)
 library(ggthemes)
+library(ggmap)
 
 ggplot(aes(map_id=id), data=nat_data) +
   geom_map(aes(fill=area_sqkm), map=nat_map) +

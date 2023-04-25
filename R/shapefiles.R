@@ -61,7 +61,7 @@ load_shapefile <- function(path_to_shapeFile, tolerance = 0.001) {
       ctr <- st_centroid(st_geometry(sF)[[i]])
       data.frame(long_c=ctr[1], lat_c=ctr[2])
     }
-    centroids <-  purrr::map_df(1:nrow(sF), centroid, polys=sf)
+    centroids <-  purrr::map_df(1:nrow(sF), centroid, polys=sF)
 
     sF_data <- data.frame(sF, centroids)
   }
@@ -138,7 +138,7 @@ get_electorate_shapes <- function(path_to_shapeFile = NULL, sF = NULL, mapinfo=T
       ctr <- st_centroid(st_geometry(sF)[[i]])
       data.frame(long_c=ctr[1], lat_c=ctr[2])
     }
-    centroids <-  purrr::map_df(1:nrow(sF), centroid, polys=sf)
+    centroids <-  purrr::map_df(1:nrow(sF), centroid, polys=sF)
 
     nat_data <- st_set_geometry(sF, NULL)
     nat_data <- data.frame(nat_data, centroids)
