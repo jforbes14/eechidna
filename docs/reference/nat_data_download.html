@@ -18,7 +18,7 @@ for each of the Australian electorates in the desired federal election."><!-- ma
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eechidna</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.4.2</span>
       </span>
     </div>
 
@@ -120,13 +120,16 @@ for each of the Australian electorates in the desired federal election.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jforbes14/eechidna/" class="external-link">eechidna</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dkahle/ggmap" class="external-link">ggmap</a></span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in library(ggmap):</span> there is no package called ‘ggmap’</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">ℹ</span> Google's Terms of Service: <span style="color: #0000BB; font-style: italic;">&lt;https://mapsplatform.google.com&gt;</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">ℹ</span> Please cite <span style="color: #0000BB;">ggmap</span> if you use it! Use `citation("ggmap")` for details.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">nat_data19</span> <span class="op">&lt;-</span> <span class="fu">nat_data_download</span><span class="op">(</span><span class="fl">2019</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">nat_data19</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu">qmplot</span><span class="op">(</span><span class="va">long_c</span>, <span class="va">lat_c</span>, data<span class="op">=</span><span class="va">.</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in qmplot(long_c, lat_c, data = .):</span> could not find function "qmplot"</span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/ggmap/man/qmplot.html" class="external-link">qmplot</a></span><span class="op">(</span><span class="va">long_c</span>, <span class="va">lat_c</span>, data<span class="op">=</span><span class="va">.</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Using `zoom = 5`</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under ODbL.</span>
+<span class="r-plt img"><img src="nat_data_download-1.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
   </div>
