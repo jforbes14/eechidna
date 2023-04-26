@@ -459,6 +459,7 @@ abs2001 <- abs2001 %>%
 usethis::use_data(fp22, overwrite = T, compress = "xz")
 usethis::use_data(tcp22, overwrite = T, compress = "xz")
 usethis::use_data(tpp22, overwrite = T, compress = "xz")
+usethis::use_data(abs2021, overwrite = T, compress = "xz")
 usethis::use_data(abs2019, overwrite = T, compress = "xz")
 usethis::use_data(fp19, overwrite = T, compress = "xz")
 usethis::use_data(tcp19, overwrite = T, compress = "xz")
