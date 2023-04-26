@@ -130,7 +130,20 @@ tcp19 <- tcp19 %>%
 
 abs2019 <- abs2019 %>% 
   left_join(my_ids_2019, by = "DivisionNm") %>%
-  select(UniqueID, DivisionNm, Population, everything())
+  select(UniqueID, DivisionNm, Population, everything()) %>% 
+  left_join(
+    fp19 %>% select(c('DivisionNm', 'StateAb')) %>% unique(),
+    on = 'DivisionNm'
+  ) %>% 
+  rename(
+    State = StateAb
+  ) %>% 
+  mutate(
+    State = toupper(State)
+  ) %>% 
+  select(
+    UniqueID, DivisionNm, State, everything()
+  )
 
 # 2016
 my_ids_2016 <- get_year_ids(year = 2016, my_ids = my_ids)
@@ -153,7 +166,10 @@ tcp16 <- tcp16 %>%
 abs2016 <- abs2016 %>% 
   left_join(my_ids_2016, by = "DivisionNm") %>% 
   select(-ID) %>% 
-  select(UniqueID, everything())
+  select(UniqueID, everything()) %>% 
+  mutate(
+    State = toupper(State)
+  )
 
 # 2013
 my_ids_2013 <- get_year_ids(year = 2013, my_ids = my_ids)
@@ -175,7 +191,20 @@ tcp13 <- tcp13 %>%
 
 abs2013 <- abs2013 %>% 
   left_join(my_ids_2013, by = "DivisionNm") %>% 
-  select(UniqueID, everything())
+  select(UniqueID, everything()) %>% 
+  left_join(
+    fp13 %>% select(c('DivisionNm', 'StateAb')) %>% unique(),
+    on = 'DivisionNm'
+  ) %>% 
+  rename(
+    State = StateAb
+  ) %>% 
+  mutate(
+    State = toupper(State)
+  ) %>% 
+  select(
+    UniqueID, DivisionNm, State, everything()
+  )
 
 # 2011
 my_ids_2011 <- get_year_ids(year = 2010, my_ids = my_ids)
@@ -183,7 +212,10 @@ my_ids_2011 <- get_year_ids(year = 2010, my_ids = my_ids)
 abs2011 <- abs2011 %>% 
   left_join(my_ids_2011, by = "DivisionNm") %>% 
   select(-ID) %>% 
-  select(UniqueID, everything())
+  select(UniqueID, everything()) %>% 
+  mutate(
+    State = toupper(State)
+  )
 
 # 2010
 my_ids_2010 <- get_year_ids(year = 2010, my_ids = my_ids)
@@ -205,7 +237,20 @@ tcp10 <- tcp10 %>%
 
 abs2010 <- abs2010 %>% 
   left_join(my_ids_2010, by = "DivisionNm") %>% 
-  select(UniqueID, everything())
+  select(UniqueID, everything()) %>% 
+  left_join(
+    fp10 %>% select(c('DivisionNm', 'StateAb')) %>% unique(),
+    on = 'DivisionNm'
+  ) %>% 
+  rename(
+    State = StateAb
+  ) %>% 
+  mutate(
+    State = toupper(State)
+  ) %>% 
+  select(
+    UniqueID, DivisionNm, State, everything()
+  )
 
 # 2007
 my_ids_2007 <- get_year_ids(year = 2007, my_ids = my_ids)
@@ -227,7 +272,20 @@ tcp07 <- tcp07 %>%
 
 abs2007 <- abs2007 %>% 
   left_join(my_ids_2010, by = "DivisionNm") %>% 
-  select(UniqueID, everything())
+  select(UniqueID, everything()) %>% 
+  left_join(
+    fp07 %>% select(c('DivisionNm', 'StateAb')) %>% unique(),
+    on = 'DivisionNm'
+  ) %>% 
+  rename(
+    State = StateAb
+  ) %>% 
+  mutate(
+    State = toupper(State)
+  ) %>% 
+  select(
+    UniqueID, DivisionNm, State, everything()
+  )
 
 # 2006
 my_ids_2006 <- get_year_ids(year = 2006, my_ids = my_ids)
@@ -235,7 +293,10 @@ my_ids_2006 <- get_year_ids(year = 2006, my_ids = my_ids)
 abs2006 <- abs2006 %>% 
   left_join(my_ids_2006, by = "DivisionNm") %>% 
   select(-ID) %>% 
-  select(UniqueID, everything())
+  select(UniqueID, everything()) %>% 
+  mutate(
+    State = toupper(State)
+  )
 
 # 2004
 my_ids_2004 <- get_year_ids(year = 2004, my_ids = my_ids)
@@ -257,7 +318,20 @@ tcp04 <- tcp04 %>%
 
 abs2004 <- abs2004 %>% 
   left_join(my_ids_2004, by = "DivisionNm") %>% 
-  select(UniqueID, everything())
+  select(UniqueID, everything()) %>% 
+  left_join(
+    fp04 %>% select(c('DivisionNm', 'StateAb')) %>% unique(),
+    on = 'DivisionNm'
+  ) %>% 
+  rename(
+    State = StateAb
+  ) %>% 
+  mutate(
+    State = toupper(State)
+  ) %>% 
+  select(
+    UniqueID, DivisionNm, State, everything()
+  )
 
 # 2001
 my_ids_2001 <- get_year_ids(year = 2001, my_ids = my_ids)
@@ -277,7 +351,10 @@ tcp01 <- tcp01 %>%
 abs2001 <- abs2001 %>% 
   left_join(my_ids_2001, by = "DivisionNm") %>% 
   select(-ID) %>% 
-  select(UniqueID, everything())
+  select(UniqueID, everything()) %>% 
+  mutate(
+    State = toupper(State)
+  )
 
 # Save
 
@@ -302,7 +379,6 @@ usethis::use_data(abs2007, overwrite = T, compress = "xz")
 usethis::use_data(fp07, overwrite = T, compress = "xz")
 usethis::use_data(tcp07, overwrite = T, compress = "xz")
 usethis::use_data(tpp07, overwrite = T, compress = "xz")
-usethis::use_data(abs2006_e07, overwrite = T, compress = "xz")
 usethis::use_data(abs2006, overwrite = T, compress = "xz")
 usethis::use_data(abs2004, overwrite = T, compress = "xz")
 usethis::use_data(fp04, overwrite = T, compress = "xz")
