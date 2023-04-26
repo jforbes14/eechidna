@@ -1,3 +1,8 @@
+nat_map22 <- data.frame(read_this = "Run this code: nat_map22 <- nat_map_download(2022)")
+usethis::use_data(nat_map22, overwrite = T, compress = "xz")
+nat_data22 <- data.frame(read_this = "Run this code: nat_data22 <- nat_data_download(2022)")
+usethis::use_data(nat_data22, overwrite = T, compress = "xz")
+
 nat_map19 <- data.frame(read_this = "Run this code: nat_map19 <- nat_map_download(2019)")
 usethis::use_data(nat_map19, overwrite = T, compress = "xz")
 nat_data19 <- data.frame(read_this = "Run this code: nat_data19 <- nat_data_download(2019)")
