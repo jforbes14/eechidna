@@ -7,10 +7,10 @@
 extract_centroids(shapefile)
 }
 \arguments{
-\item{shapefile}{SpatialPolygonsDataFrame containing polygons}
+\item{shapefile}{sf object containing polygon geometry}
 }
 \value{
-list containing centroids as SpatialPoints and a dataframe with
+list containing centroids as sf points object and a dataframe with
 basic data on each polygon (e.g. name)
 }
 \description{

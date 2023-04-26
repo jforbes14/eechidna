@@ -26,8 +26,8 @@ A data frame consisting of points with the following variables:
 }
 }
 \description{
-Downloads and returns a DataFrame containing the points that outline the polygons 
-for each of the Australian electorates in the desired federal election. The data were obtained from the 
+Downloads and returns a DataFrame containing the points that outline the polygons
+for each of the Australian electorates in the desired federal election. The data were obtained from the
 Australian Electoral Commission and the Australian Bureau of Statistics.
 }
 \examples{

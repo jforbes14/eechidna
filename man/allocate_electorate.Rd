@@ -32,7 +32,7 @@ its centroid.
 \examples{
 \dontrun{
 # Mapping each SA1 from the 2011 Census to the 2013 electoral boundaries
-mapping_c11_e13 <- allocate_electorate(centroids_ls = centroids_sa1_2011, electorates_sf = sF_13, 
+mapping_c11_e13 <- allocate_electorate(centroids_ls = centroids_sa1_2011, electorates_sf = sF_13,
 census_year = "2011", election_year = "2013")
 }
 }

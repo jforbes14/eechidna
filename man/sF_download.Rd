@@ -11,9 +11,9 @@ sF_download(year, ...)
 
 \item{...}{Additional arguments passed to `download.file`
 
-Downloads and returns a large SpatialPolygonsDataFrame containing the polygons 
-and associated data for each of the Australian electorates in the desired federal election. 
-This object is obtained using the `sF_download` function. The data were obtained from the 
+Downloads and returns a large SpatialPolygonsDataFrame containing the polygons
+and associated data for each of the Australian electorates in the desired federal election.
+This object is obtained using the `sF_download` function. The data were obtained from the
 Australian Electoral Commission and the Australian Bureau of Statistics.}
 }
 \value{

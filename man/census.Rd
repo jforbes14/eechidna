@@ -11,10 +11,11 @@
 \alias{abs2013}
 \alias{abs2016}
 \alias{abs2019}
+\alias{abs2021}
 \title{Australian Census data on all electorates}
 \format{
 Data frames with the following variables, variables with an asterisk are only available
-in the 2001, 2006, 2011 and 2016 data sets.
+in the 2001, 2006, 2011, 2016 and 2022 data sets.
 
 \itemize{
 \item UniqueID: Numeric identifier that links the electoral division with Census
@@ -111,7 +112,9 @@ and other election datasets.
 
 {}
 
-An object of class \code{data.frame} with 150 rows and 70 columns.
+An object of class \code{data.frame} with 150 rows and 71 columns.
+
+{}
 
 {}
 
@@ -139,6 +142,8 @@ abs2013
 abs2016
 
 abs2019
+
+abs2021
 }
 \description{
 A dataset containing demographic and other information about each electorate from the
@@ -151,7 +156,7 @@ Electorate boundaries match those in place at the time of the relevant data.
 Census data for non-census years has been imputed. For more details on this process,
 see the help vignette: \code{vignette("imputing-census-data", package = "eechidna")}
 
-Data for 2004, 2007, 2013 and 2010 was updated in October 2019. The older versions can be found
+Data for 2004, 2007, 2010 and 2013 was updated in October 2019. The older versions can be found
 \href{https://github.com/jforbes14/eechidna/tree/master/extra-data}{in the GitHub repository}.
 }
 \examples{

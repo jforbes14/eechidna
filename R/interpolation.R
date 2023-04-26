@@ -9,9 +9,8 @@
 #' sF_download(year = 2016)
 #' electorate_centroids_2016 <- extract_centroids(sF_16)
 #' }
-# Function to extract centroids from shapefile
 extract_centroids <- function(shapefile) {
-
+  # CHANGED TO USE SF INSTEAD OF OLDER SPATIAL PACKAGES
   # Function to get centroid from polygon
   centroid <- function(i, polys) {
     ctr <- st_centroid(st_geometry(sF)[[i]])
@@ -51,9 +50,6 @@ extract_centroids <- function(shapefile) {
 #' mapping_c11_e13 <- allocate_electorate(centroids_ls = centroids_sa1_2011, electorates_sf = sF_13,
 #' census_year = "2011", election_year = "2013")
 #' }
-
-
-# Function to allocate centroids to electorates
 allocate_electorate <- function(centroids_ls, electorates_sf, census_year = NA, election_year = NA) {
 
   # Column names to use
@@ -113,7 +109,7 @@ allocate_electorate <- function(centroids_ls, electorates_sf, census_year = NA, 
         electorate_poly <- subset(state_electorates_sf, elect_div == electorate_name)
 
         # Does it contain centroid
-        electorate_contains = gContains(electorate_poly, centroid)
+        electorate_contains = gContains(electorate_poly, centroid) # NEED TO CHANGE to st_within
 
         if (electorate_contains == TRUE) {
           assign_df$electorate[i] = electorate_name
@@ -125,14 +121,14 @@ allocate_electorate <- function(centroids_ls, electorates_sf, census_year = NA, 
     } else { # Not assigned to state, must check all electorates
 
       # Loop through electorates to assign
-      for (j in 1:length(electorates_sf@polygons)) {
+      for (j in 1:length(electorates_sf@polygons)) { # NEED TO CHANGE
 
         # Electorate name and polygon
         electorate_name <- electorates_sf$elect_div[j]
         electorate_poly <- subset(electorates_sf, elect_div == electorate_name)
 
         # Does it contain centroid
-        electorate_contains = gContains(electorate_poly, centroid)
+        electorate_contains = gContains(electorate_poly, centroid) # NEED TO CHANGE to st_within
 
         if (electorate_contains == TRUE) {
           assign_df$electorate[i] = electorate_name
@@ -298,7 +294,7 @@ mapping_fn <- function(aec_sF, abs_sF, area_thres = 0.995) {
     div_poly <- aec_sF %>% subset(as.character(elect_div) == as.character(div_name))
     div_lat_c <- div_poly$lat_c
     div_long_c <- div_poly$long_c
-    div_area <- suppressWarnings(rgeos::gArea(div_poly))
+    div_area <- suppressWarnings(rgeos::gArea(div_poly)) # NEED TO CHANGE to sf::st_area
 
     # Ordering Census divisions by distance to electoral division
     comp <- abs_sF@data %>%
@@ -317,7 +313,7 @@ mapping_fn <- function(aec_sF, abs_sF, area_thres = 0.995) {
 
       if (rgeos::gIntersects(div_poly, cens_poly)) { # Only if polygons intersect
         poly_intersect <- rgeos::gIntersection(div_poly, cens_poly)
-        cens_mapped$Intersect_area[j] = suppressWarnings(rgeos::gArea(poly_intersect))
+        cens_mapped$Intersect_area[j] = suppressWarnings(rgeos::gArea(poly_intersect)) # NEED TO CHANGE to sf::st_area
       }
 
       # break if sum of intersection areas is over threshold (area_thres)

@@ -15,7 +15,7 @@ mapping_fn(aec_sF, abs_sF, area_thres = 0.995)
 \item{area_thres}{threshold for which mapping is sufficient (default is 99.5\%)}
 }
 \value{
-data frame detailing how much Census divisions intersect with each 
+data frame detailing how much Census divisions intersect with each
 electoral division at the time of the election.
 }
 \description{
@@ -26,7 +26,7 @@ divisions in a year that a Census did not occur.
 }
 \examples{
 \dontrun{
-# Each 2013 electorate boundary's composition in terms of the 
+# Each 2013 electorate boundary's composition in terms of the
 # boundaries in place for the 2016 Census
 aec_sF_2013 <- loadShapeFile(path_to_aec_shapefile)
 abs_sF_2016 <- loadShapeFile(path_to_abs_shapefile)

@@ -2,30 +2,30 @@
 % Please edit documentation in R/git-download.R
 \name{firstpref_pollingbooth_download}
 \alias{firstpref_pollingbooth_download}
-\title{Download first preference voting data from each polling booth, from the six 
+\title{Download first preference voting data from each polling booth, from the six
 Australian Federal elections between 2001 and 2016.}
 \format{
 A data frame with the following variables:
 \itemize{
-    \item StateAb: Abbreviation for state name    
-    \item DivisionID: Electoral division ID    
-    \item DivisionNm:  Electoral division name   
-    \item PollingPlaceID: Polling place ID  
-    \item PollingPlace: Polling place name     
-    \item CandidateID: Candidate ID       
-    \item Surname: Candidate surname          
-    \item GivenNm: Candidate given name            
-    \item BallotPosition: Candidate's position on the ballot    
-    \item Elected: Whether the candidate was elected (Y/N)           
-    \item HistoricElected: Whether the candidate is the incumbent member  
-    \item PartyAb: Abbreviation for political party name           
-    \item PartyNm: Political party name           
+    \item StateAb: Abbreviation for state name
+    \item DivisionID: Electoral division ID
+    \item DivisionNm:  Electoral division name
+    \item PollingPlaceID: Polling place ID
+    \item PollingPlace: Polling place name
+    \item CandidateID: Candidate ID
+    \item Surname: Candidate surname
+    \item GivenNm: Candidate given name
+    \item BallotPosition: Candidate's position on the ballot
+    \item Elected: Whether the candidate was elected (Y/N)
+    \item HistoricElected: Whether the candidate is the incumbent member
+    \item PartyAb: Abbreviation for political party name
+    \item PartyNm: Political party name
     \item OrdinaryVotes: Number of ordinary votes cast at the polling place
-    for the candidate     
-    \item Swing: Percentage point change in ordinary votes for the party 
+    for the candidate
+    \item Swing: Percentage point change in ordinary votes for the party
     from the previous election
-    \item PremisesPostCode: Post code of polling booth  
-    \item Latitude: Coordinates        
+    \item PremisesPostCode: Post code of polling booth
+    \item Latitude: Coordinates
     \item Longitude: Coordinates
     \item year: Election year
     }
@@ -36,8 +36,8 @@ firstpref_pollingbooth_download(...)
 \arguments{
 \item{...}{Additional arguments passed to `download.file`
 
-Downloads and returns first preference votes for candidates in the House of 
-Representatives, for each polling both, in the seven Australian Federal elections 
+Downloads and returns first preference votes for candidates in the House of
+Representatives, for each polling both, in the seven Australian Federal elections
 between 2001 and 2016.}
 }
 \value{
@@ -45,12 +45,12 @@ A data frame containing first preference votes
 
 A dataset containing first preference vote counts, candidate names, polling place locations,
 and other results for the House of Representatives from the 2001, 2004, 2007, 2010,
-2013 and 2016 Australian federal elections. This data set is obtained using the 
-`firstpref_pollingbooth_download` function. The data were obtained from the Australian Electoral 
+2013 and 2016 Australian federal elections. This data set is obtained using the
+`firstpref_pollingbooth_download` function. The data were obtained from the Australian Electoral
 Commission.
 }
 \description{
-Download first preference voting data from each polling booth, from the six 
+Download first preference voting data from each polling booth, from the six
 Australian Federal elections between 2001 and 2016.
 }
 \examples{

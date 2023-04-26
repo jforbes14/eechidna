@@ -4,7 +4,7 @@
 \alias{load_shapefile}
 \title{Load shapefile of Australia into R}
 \usage{
-load_shapefile(path_to_shapeFile, tolerance = 0.005)
+load_shapefile(path_to_shapeFile, tolerance = 0.001)
 }
 \arguments{
 \item{path_to_shapeFile}{path to object in local machine}

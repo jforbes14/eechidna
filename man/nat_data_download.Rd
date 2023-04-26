@@ -16,7 +16,7 @@ A data frame with data associated with each of the Australian federal electorate
 
 \itemize{
     \item id: Numeric identifier for the polygon
-    \item elect_div: Electorate division name   
+    \item elect_div: Electorate division name
     \item state: abbreviation of the state name
     \item numccds: AEC variable that might be filled with meaning or a description down the road
     \item area_sqkm: combined square kilometers of each electorate

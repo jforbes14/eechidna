@@ -8,13 +8,13 @@ using imputed populations as weights.}
 weighted_avg_census(mapping_df, abs_df)
 }
 \arguments{
-\item{mapping_df}{data frame detailing how much Census divisions intersect with each 
+\item{mapping_df}{data frame detailing how much Census divisions intersect with each
 electoral division at the time of the election.}
 
 \item{abs_df}{data frame holding Census information from Census year}
 }
 \value{
-data frame with imputed Census data for electoral boundaries at the time of 
+data frame with imputed Census data for electoral boundaries at the time of
 the Census
 }
 \description{
@@ -25,7 +25,7 @@ aggregated at Census division level.
 \dontrun{
 data("abs2016")
 
-# Each 2013 electorate boundary's composition in terms of the 
+# Each 2013 electorate boundary's composition in terms of the
 # boundaries in place for the 2016 Census
 aec_sF_2013 <- loadShapeFile(path_to_aec_shapefile)
 abs_sF_2016 <- loadShapeFile(path_to_abs_shapefile)
