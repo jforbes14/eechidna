@@ -14,7 +14,7 @@ source('data-raw/census-imputation-using-sa1/src/abs2016-SA1.R')
 source('data-raw/census-imputation-using-sa1/src/mapping-CD-to-electorate.R')
 
 # Do imputation using the mapping and census data
-source('data-raw/census-imputation-using-sa1/src/mimputing-census-sa1.R')
+source('data-raw/census-imputation-using-sa1/src/imputing-census-sa1.R')
 
 ## The imputed dataframes abs2019, abs2013, abs2010, abs2007, abs2004 can be found in the 'data' subdirectory
 ## of this folder. These dataframes are not final, as there needs to be another step to link them with the 
