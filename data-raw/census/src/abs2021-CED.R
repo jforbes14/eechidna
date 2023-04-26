@@ -207,10 +207,10 @@ new <- G1_Main %>% mutate(
   )
 
 # Join electorate names and areas
-CED <- read_excel("data-raw/supplement/tidy_CED16.xlsx")
+CED <- read_excel("data-raw/supplement/tidy_CED21.xlsx")
 
 new <- new %>% 
-  left_join(CED %>% rename(ID = CED) %>% select(-"...1"), by = "ID")
+  left_join(CED %>% mutate(ID = as.character(CED)) %>% select(-c("...1", CED)), by = "ID")
 
 # Remove no usual address and offshore rows, and only 
 abs2021 <- new %>% 
@@ -219,21 +219,22 @@ abs2021 <- new %>%
   select(-c(ends_with("_P"), ends_with("_M"), ends_with("_F"), CED_CODE_2021, Age15plus))
 
 # Inflation
-inflation_rates <- c(1.151, 1.330, 1.461)
+# Using: https://www.rba.gov.au/calculator/annualDecimal.html
+inflation_rates <- c(1.1514, 1.3303, 1.4613, 1.6003)
 abs2021 <- abs2021 %>%
-  mutate(MedianFamilyIncome = MedianFamilyIncome/inflation_rates[3],
-         MedianHouseholdIncome = MedianHouseholdIncome/inflation_rates[3],
-         MedianLoanPay = MedianLoanPay/inflation_rates[3],
-         MedianPersonalIncome = MedianPersonalIncome/inflation_rates[3],
-         MedianRent = MedianRent/inflation_rates[3])
+  mutate(MedianFamilyIncome = MedianFamilyIncome/inflation_rates[4],
+         MedianHouseholdIncome = MedianHouseholdIncome/inflation_rates[4],
+         MedianLoanPay = MedianLoanPay/inflation_rates[4],
+         MedianPersonalIncome = MedianPersonalIncome/inflation_rates[4],
+         MedianRent = MedianRent/inflation_rates[4])
 
 # Order by electorate, upper case names, rename electorate column and reorder columns, change BornOverseas to BornElsewhere
 abs2021 <- abs2021 %>% 
   arrange(Electorate) %>% 
   rename(DivisionNm = Electorate) %>% 
-  mutate(DivisionNm = toupper(DivisionNm))
-  #mutate(BornElsewhere = BornOverseas - Born_MidEast - Born_SE_Europe - Born_UK) %>% 
-  #select(-BornOverseas) 
+  mutate(DivisionNm = toupper(DivisionNm)) %>% 
+  mutate(BornElsewhere = BornOverseas - Born_MidEast - Born_SE_Europe - Born_UK) %>%
+  select(-BornOverseas)
 
 abs2021 <- abs2021 %>% 
   select(order(colnames(.))) %>% 
