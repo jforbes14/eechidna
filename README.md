@@ -1,9 +1,9 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# eechidna
+# eechidna <img src="man/figures/logo.png" align="right" width="150" />
 
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/eechidna)](http://cran.r-project.org/package=eechidna)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/eechidna)](http://cran.r-project.org/package=eechidna)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/eechidna)](http://cran.rstudio.com/web/packages/eechidna/index.html)
 [![Travis-CI Build
 Status](https://api.travis-ci.com/jforbes14/eechidna.svg?branch=master)](https://travis-ci.com/github/jforbes14/eechidna)
@@ -24,8 +24,8 @@ This package was developed during the [rOpenSci auunconf
 event](http://auunconf.ropensci.org/) in Brisbane, Queensland, during
 21-22 April 2016. It has been updated many times since to include
 election and Census information for 2001, 2011 and 2019. [Peter
-Ellis’](https://github.com/ellisp/) work on the NZ electoral data was
-an important inspiration for this package.
+Ellis’](https://github.com/ellisp/) work on the NZ electoral data was an
+important inspiration for this package.
 
 ## How to install
 
@@ -65,20 +65,20 @@ We have many vignettes that show how to access these data in the
 package, and demonstrate how to analyse the data using R. These can be
 found in the *articles* tab at the top of this page.
 
-  - [An introduction to
-    eechidna](https://jforbes14.github.io/eechidna/articles/eechidna-intro.html):
-    an overview of the package contents and examples of how to use the
-    data.
+- [An introduction to
+  eechidna](https://jforbes14.github.io/eechidna/articles/eechidna-intro.html):
+  an overview of the package contents and examples of how to use the
+  data.
 
-  - [Exploring election
-    data](https://jforbes14.github.io/eechidna/articles/exploring-election-data.html):
-    examples of wrangling data from the 2016 Federal election data to
-    gain insights.
+- [Exploring election
+  data](https://jforbes14.github.io/eechidna/articles/exploring-election-data.html):
+  examples of wrangling data from the 2016 Federal election data to gain
+  insights.
 
-  - [Exploring Census
-    data](https://jforbes14.github.io/eechidna/articles/exploring-census-data.html):
-    visualizing 2016 Census data to analyse patterns in electoral
-    population characteristics.
+- [Exploring Census
+  data](https://jforbes14.github.io/eechidna/articles/exploring-census-data.html):
+  visualizing 2016 Census data to analyse patterns in electoral
+  population characteristics.
 
 There are also three vignettes that demonstrate how to use the spatial
 data to make maps. Mapping election data for Australia is not trivial
@@ -87,28 +87,28 @@ we show some methods for effectively visualizing election data in
 Australia. These too are found in the *articles* tab at the top of this
 page.
 
-  - [Mapping federal
-    electorates](https://jforbes14.github.io/eechidna/articles/plotting-electorates.html):
-    how to plot a map of Australian federal electorates, and how to
-    better visualize electoral voting data using a cartogram.
+- [Mapping federal
+  electorates](https://jforbes14.github.io/eechidna/articles/plotting-electorates.html):
+  how to plot a map of Australian federal electorates, and how to better
+  visualize electoral voting data using a cartogram.
 
-  - [Mapping polling
-    booths](https://jforbes14.github.io/eechidna/articles/plotting-polling-stns.html):
-    examples of how to plot the polling booth locations and associated
-    voting data.
+- [Mapping polling
+  booths](https://jforbes14.github.io/eechidna/articles/plotting-polling-stns.html):
+  examples of how to plot the polling booth locations and associated
+  voting data.
 
-  - [Getting Australian electoral
-    maps](https://jforbes14.github.io/eechidna/articles/getting-ozShapefiles.html):
-    details the process to produce usable electoral maps from the
-    original shapefiles.
+- [Getting Australian electoral
+  maps](https://jforbes14.github.io/eechidna/articles/getting-ozShapefiles.html):
+  details the process to produce usable electoral maps from the original
+  shapefiles.
 
 Additionally, there is a vignette on how we have imputed electoral
 Census data in election years for which a Census does not exactly align.
 
-  - [Imputing Census data for non-Census
-    years](https://jforbes14.github.io/eechidna/articles/imputing-census-data.html):
-    details the procedure used to impute Census data for 2004, 2007,
-    2010, 2013 and 2019.
+- [Imputing Census data for non-Census
+  years](https://jforbes14.github.io/eechidna/articles/imputing-census-data.html):
+  details the procedure used to impute Census data for 2004, 2007, 2010,
+  2013 and 2019.
 
 ## License
 
