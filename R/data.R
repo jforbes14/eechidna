@@ -3,7 +3,7 @@
 #' @format {}
 #' @source \url{https://results.aec.gov.au/27966/Website/HouseDownloadsMenu-27966-Csv.htm}
 #' @rdname fp
-#' @order 8
+#' @order 11
 "fp22"
 
 #' 2022 Australian Federal election data: Two party preferred votes for candidates (House of
@@ -12,7 +12,7 @@
 #'
 #' @format {}
 #' @rdname tpp
-#' @order 8
+#' @order 11
 "tpp22"
 
 #' 2022 Australian Federal election data: Two candidate preferred votes for candidates
@@ -22,7 +22,7 @@
 #'
 #' @format {}
 #' @rdname tcp
-#' @order 8
+#' @order 11
 "tcp22"
 
 #' 2019 Australian Federal election data: Two party preferred votes for candidates (House of
@@ -765,6 +765,14 @@
 #' @keywords internal
 "nat_data01"
 
+#' 2021 Australian Census data on all 151 electorates
+#'
+#' @format {}
+#'
+#' @rdname census
+#' @order 10
+"abs2021"
+
 #' 2016 Australian Census data on all 150 electorates
 #'
 #' @format {}
@@ -798,11 +806,11 @@
 #' Census data for non-census years has been imputed. For more details on this process,
 #' see the help vignette: \code{vignette("imputing-census-data", package = "eechidna")}
 #'
-#' Data for 2004, 2007, 2013 and 2010 was updated in October 2019. The older versions can be found
+#' Data for 2004, 2007, 2010 and 2013 was updated in October 2019. The older versions can be found
 #' [in the GitHub repository](https://github.com/jforbes14/eechidna/tree/master/extra-data).
 #'
 #' @format Data frames with the following variables, variables with an asterisk are only available
-#' in the 2001, 2006, 2011 and 2016 data sets.
+#' in the 2001, 2006, 2011, 2016 and 2022 data sets.
 #'
 #' \itemize{
 #'   \item UniqueID: Numeric identifier that links the electoral division with Census
