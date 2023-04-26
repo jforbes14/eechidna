@@ -13,7 +13,7 @@ Status](https://ci.appveyor.com/api/projects/status/fbpks81w1jqgimxv?svg=true)](
 ## Exploring Election and Census Highly Informative Data Nationally for Australia
 
 The R package *eechidna* provides data from the Australian Federal
-elections in 2001, 2004, 2007, 2010, 2013, 2016 and 2019, along with the
+elections in 2001, 2004, 2007, 2010, 2013, 2016, 2019 and 2022 along with the
 Australian Census information for each House of Representatives
 electorate from the 2001, 2006, 2011 and 2016 Censuses. Additionally,
 Census information is imputed for electorates in years 2004, 2007, 2010,
@@ -26,6 +26,8 @@ event](http://auunconf.ropensci.org/) in Brisbane, Queensland, during
 election and Census information for 2001, 2011 and 2019. [Peter
 Ellis’](https://github.com/ellisp/) work on the NZ electoral data was an
 important inspiration for this package.
+
+You can find out more about *eechidna* here: [https://jforbes14.github.io/eechidna/](https://jforbes14.github.io/eechidna/)
 
 ## How to install
 
