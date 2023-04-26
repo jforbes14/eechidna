@@ -9,6 +9,7 @@ load("data-raw/census/data/abs2001.rda")
 load("data-raw/census/data/abs2006.rda")
 load("data-raw/census/data/abs2011.rda")
 load("data-raw/census/data/abs2016.rda")
+load("data-raw/census/data/abs2021.rda")
 
 # Imputed census
 load("data-raw/census-imputation-using-sa1/data/abs2019.rda")
@@ -73,6 +74,7 @@ my_ids <- my_ids %>%
 # DENISON became CLARK, BATMAN became COOPER, MELBOURNE PORTS became MACNAMARA, MCMILLAN became MONASH, 
 # MURRAY became NICHOLLS, WAKEFIELD became SPENCE
 # New electorates in 2019: BEAN, FRASER (same name as an extinct electorate, but is actually a new distinct one)
+# New electorate in 2021: HAWKE (new electorate, doesn't supersede any existing electorates)
 
 my_ids <- my_ids %>% 
   mutate(UniqueID = ifelse(DivisionNm == "BONYTHON", 412, 
@@ -90,8 +92,9 @@ my_ids <- my_ids %>%
                           ifelse(DivisionNm == "COOPER", 203, 
                             ifelse(DivisionNm == "MACNAMARA", 232, 
                               ifelse(DivisionNm == "MONASH", 230, 
-                                ifelse(DivisionNm == "NICHOLLS", 234, UniqueID
-                                ))))))))))))))))) %>% unique() %>% 
+                                ifelse(DivisionNm == "NICHOLLS", 234,
+                                  ifelse(DivisionNm == "HAWKE", 148, UniqueID
+                                )))))))))))))))))) %>% unique() %>% 
   # Add last year used where needed
   mutate(LastYearRelevant = ifelse(DivisionNm %in% c("FRASER"), 2013, 9999)) %>% 
   bind_rows(data.frame(DivisionNm = 'FRASER', UniqueID = 238, LastYearRelevant = 9999))
@@ -114,7 +117,7 @@ get_year_ids <- function(year, my_ids) {
 load("data-raw/supplement/my_ids.rda")
 
 # 2022
-# TODO: Add UniqueID when abs2022 objects are created
+# TODO: Add abs2022 objects
 
 fp22 <- fp22 %>% 
   mutate(
@@ -129,6 +132,17 @@ tpp22 <- tpp22 %>%
 tcp22 <- tcp22 %>% 
   mutate(
     StateAb = toupper(StateAb)
+  )
+
+# 2021
+my_ids_2021 <- get_year_ids(year = 2021, my_ids = my_ids)
+
+abs2021 <- abs2021 %>% 
+  left_join(my_ids_2021, by = "DivisionNm") %>% 
+  select(-ID) %>% 
+  select(UniqueID, everything()) %>% 
+  mutate(
+    State = toupper(State)
   )
 
 # 2019
