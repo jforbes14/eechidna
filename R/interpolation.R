@@ -109,7 +109,7 @@ allocate_electorate <- function(centroids_ls, electorates_sf, census_year = NA, 
         electorate_poly <- subset(state_electorates_sf, elect_div == electorate_name)
 
         # Does it contain centroid
-        electorate_contains = st_within(electorate_poly, centroid) # NEED TO CHANGE to st_within - DONE
+        electorate_contains = st_within(electorate_poly, centroid)
 
         if (electorate_contains == TRUE) {
           assign_df$electorate[i] = electorate_name
@@ -121,14 +121,14 @@ allocate_electorate <- function(centroids_ls, electorates_sf, census_year = NA, 
     } else { # Not assigned to state, must check all electorates
 
       # Loop through electorates to assign
-      for (j in 1:length(st_geometry(electorates_sf))) { # NEED TO CHANGE - DONE
+      for (j in 1:length(st_geometry(electorates_sf))) {
 
         # Electorate name and polygon
         electorate_name <- electorates_sf$elect_div[j]
         electorate_poly <- subset(electorates_sf, elect_div == electorate_name)
 
         # Does it contain centroid
-        electorate_contains = st_within(electorate_poly, centroid) # NEED TO CHANGE to st_within - DONE
+        electorate_contains = st_within(electorate_poly, centroid)
 
         if (electorate_contains == TRUE) {
           assign_df$electorate[i] = electorate_name
@@ -294,7 +294,7 @@ mapping_fn <- function(aec_sF, abs_sF, area_thres = 0.995) {
     div_poly <- aec_sF %>% subset(as.character(elect_div) == as.character(div_name))
     div_lat_c <- div_poly$lat_c
     div_long_c <- div_poly$long_c
-    div_area <- suppressWarnings(sf::st_area(div_poly)) # NEED TO CHANGE to sf::st_area - DONE
+    div_area <- suppressWarnings(sf::st_area(div_poly))
 
     # Ordering Census divisions by distance to electoral division
     comp <- abs_sF@data %>%
@@ -311,9 +311,9 @@ mapping_fn <- function(aec_sF, abs_sF, area_thres = 0.995) {
     for (j in 1:length(cens_names)) {
       cens_poly <- abs_sF %>% subset(elect_div == cens_names[j])
 
-      if (rgeos::gIntersects(div_poly, cens_poly)) { # Only if polygons intersect
-        poly_intersect <- rgeos::gIntersection(div_poly, cens_poly)
-        cens_mapped$Intersect_area[j] = suppressWarnings(sf::st_area(poly_intersect)) # NEED TO CHANGE to sf::st_area - DONE
+      if (sf::st_intersects(div_poly, cens_poly)) { # Only if polygons intersect
+        poly_intersect <- sf::st_intersection(div_poly, cens_poly)
+        cens_mapped$Intersect_area[j] = suppressWarnings(sf::st_area(poly_intersect))
       }
 
       # break if sum of intersection areas is over threshold (area_thres)
@@ -334,7 +334,7 @@ mapping_fn <- function(aec_sF, abs_sF, area_thres = 0.995) {
   cens_area <- data.frame(ABS_division = abs_sF$elect_div, ABS_division_area = 0)
 
   for (i in 1:nrow(cens_area)) {
-    cens_area$ABS_division_area[i] = rgeos::gArea(abs_sF %>% subset(elect_div == cens_area[i,1]))
+    cens_area$ABS_division_area[i] = sf::st_area(abs_sF %>% subset(elect_div == cens_area[i,1]))
   }
 
   for (i in 1:nrow(Mapping_df)) {

@@ -18,7 +18,7 @@ Extract centroids from the polygons within a shapefile.
 }
 \examples{
 \dontrun{
-sF_download(year = 2016)
+sF_16 <- sF_download(year = 2016)
 electorate_centroids_2016 <- extract_centroids(sF_16)
 }
 }

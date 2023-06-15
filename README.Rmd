@@ -80,4 +80,4 @@ Please open an issue if you find something that doesn't work as expected or have
 
 ## Acknowledgements 
 
-Thanks to Xiaoyue Cheng for her [cartogram](https://github.com/chxy/cartogram) package which supplies the Dorling algorithm for this package. Thanks also to Roger Bivand for his `rgdal` and `rgeos` packages which has some key functions for working with shapefiles. Thanks to Scott Chamberlain and Yihui Xie for help with troubleshooting. 
+Thanks to Xiaoyue Cheng for her [cartogram](https://github.com/chxy/cartogram) package which supplies the Dorling algorithm for this package. Thanks also to Roger Bivand for his help with some of the some of the key functions for working with shapefiles. Thanks to Scott Chamberlain and Yihui Xie for help with troubleshooting. 
